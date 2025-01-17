@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.adapters.FechaAdapter
 import com.pruden.habits.clases.generateLastDates
 import com.pruden.habits.databinding.ActivityMainBinding
+import com.pruden.habits.fragments.cargarFragmentAgregarPartidaManual
 
 
 class MainActivity : AppCompatActivity() {
@@ -51,6 +52,18 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_tool_bar, menu)
         return true
@@ -59,7 +72,9 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.subir_habito -> {
-                Toast.makeText(this, "Añadir hábito clicado", Toast.LENGTH_SHORT).show()
+
+                cargarFragmentAgregarPartidaManual(this)
+
                 return true
             }
         }
