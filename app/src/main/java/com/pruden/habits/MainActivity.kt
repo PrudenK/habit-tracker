@@ -1,20 +1,19 @@
 package com.pruden.habits
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.RecyclerView.LayoutManager
 import com.pruden.habits.adapters.FechaAdapter
-import com.pruden.habits.clases.Fecha
+import com.pruden.habits.clases.generateLastDates
 import com.pruden.habits.databinding.ActivityMainBinding
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -48,26 +47,23 @@ class MainActivity : AppCompatActivity() {
 
         LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
-        val snapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(mBinding.recyclerFechas)
-
+        setSupportActionBar(findViewById(R.id.toolbar))
     }
 
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_tool_bar, menu)
+        return true
+    }
 
-
-    fun generateLastDates(): MutableList<Fecha> {
-        val dates = mutableListOf<Fecha>()
-        val calendar = Calendar.getInstance()
-
-        for (i in 0 until 1000) {
-            val day = SimpleDateFormat("EEE", Locale.getDefault()).format(calendar.time)
-            val date = SimpleDateFormat("dd", Locale.getDefault()).format(calendar.time)
-            dates.add(Fecha(day, date))
-            calendar.add(Calendar.DATE, -1)
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.subir_habito -> {
+                Toast.makeText(this, "Añadir hábito clicado", Toast.LENGTH_SHORT).show()
+                return true
+            }
         }
-
-        return dates
+        return super.onOptionsItemSelected(item)
     }
 
 }
