@@ -32,28 +32,24 @@ class ColorPickerView @JvmOverloads constructor(
         val cx = width / 2f
         val cy = height / 2f
 
-        // Clip circular
-        val path = Path()
-        path.addCircle(cx, cy, radius, Path.Direction.CW)
-        canvas.clipPath(path)
+        // Dibuja el degradado radial
+        val shader = SweepGradient(cx, cy, createHueColors(), null)
+        paint.shader = shader
+        canvas.drawCircle(cx, cy, radius, paint)
 
-        // Dibuja la circunferencia de colores
+        // Dibuja el indicador
+        canvas.drawCircle(indicatorX, indicatorY, 20f, indicatorPaint)
+    }
+
+    private fun createHueColors(): IntArray {
+        val colors = IntArray(361)
         for (i in 0..360) {
             hsv[0] = i.toFloat()
             hsv[1] = 1f
             hsv[2] = 1f
-            paint.color = Color.HSVToColor(hsv)
-            paint.strokeWidth = 5f
-            canvas.drawLine(
-                cx, cy,
-                cx + radius * cos(Math.toRadians(i.toDouble())).toFloat(),
-                cy + radius * sin(Math.toRadians(i.toDouble())).toFloat(),
-                paint
-            )
+            colors[i] = Color.HSVToColor(hsv)
         }
-
-        // Dibuja el indicador
-        canvas.drawCircle(indicatorX, indicatorY, 20f, indicatorPaint)
+        return colors
     }
 
     override fun onTouchEvent(event: MotionEvent): Boolean {

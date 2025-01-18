@@ -77,8 +77,6 @@ class MainActivity : AppCompatActivity() {
         when (item.itemId) {
             R.id.subir_habito -> {
 
-
-
                 cargarFragmentAgregarPartidaManual(this)
 
                 return true

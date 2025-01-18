@@ -11,5 +11,5 @@ data class HabitoEntity(
     val objetivo: String?,
     val tipo: Boolean,
     val unidad: String?,
-//    val color:
+    val color: Int
 )

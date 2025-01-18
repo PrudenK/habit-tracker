@@ -9,6 +9,7 @@
 
     <!-- Capa interna (relleno del fondo del ImageView) -->
     <item
+        android:id="@+id/interna"
         android:left="2dp"
         android:top="2dp"
         android:right="2dp"
