@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.AgregarHabitoFragment">
 
 
@@ -14,22 +15,89 @@
         android:background="@color/white"
         />
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar_fragment"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@android:color/darker_gray">
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@android:color/darker_gray"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            >
+
+            <TextView
+                android:id="@+id/titulo_tool_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Agregar hábito"
+                android:textSize="26dp"
+
+                />
+        </androidx.appcompat.widget.Toolbar>
 
         <TextView
-            android:id="@+id/titulo_tool_bar"
+            android:id="@+id/ordenar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Elige el tipo de hábito"
+
+            app:layout_constraintTop_toBottomOf="@id/toolbar_fragment"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="12dp"
             android:gravity="center"
-            android:text="Agregar hábito"
-            android:textSize="26dp"
+            android:textSize="20sp"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:padding="4dp"
 
             />
-    </androidx.appcompat.widget.Toolbar>
+
+        <TextView
+            android:id="@+id/numerico"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Numérico"
+            app:layout_constraintTop_toBottomOf="@id/ordenar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/booleano"
+            android:gravity="center"
+            android:layout_marginStart="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="4dp"
+
+            />
+
+        <TextView
+            android:id="@+id/booleano"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Booleano"
+            app:layout_constraintTop_toBottomOf="@id/ordenar"
+            app:layout_constraintStart_toEndOf="@id/numerico"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
+            android:layout_marginEnd="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="4dp"
+            />
+
+        <FrameLayout
+            android:id="@+id/contenedor_dinamico"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/booleano"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="16dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </FrameLayout>

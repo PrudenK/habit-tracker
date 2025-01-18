@@ -18,11 +18,15 @@ class AgregarHabitoFragment : Fragment() {
 
     private lateinit var binding : FragmentAgregarHabitoBinding
 
+    private var numerico = true;
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentAgregarHabitoBinding.inflate(inflater, container, false)
+
+        cargarContenedorDinamico(R.layout.layout_numerico)
 
         return binding.root
     }
@@ -43,7 +47,14 @@ class AgregarHabitoFragment : Fragment() {
 
         setHasOptionsMenu(true)
 
+        binding.numerico.setOnClickListener {
+            cargarContenedorDinamico(R.layout.layout_numerico)
+        }
 
+        // Escuchar clic en "Booleano"
+        binding.booleano.setOnClickListener {
+            cargarContenedorDinamico(R.layout.layout_booleano)
+        }
 
     }
 
@@ -68,5 +79,9 @@ class AgregarHabitoFragment : Fragment() {
         }
     }
 
-
+    private fun cargarContenedorDinamico(layoutRes: Int) {
+        binding.contenedorDinamico.removeAllViews()
+        val dynamicView = LayoutInflater.from(requireContext()).inflate(layoutRes, binding.contenedorDinamico, false)
+        binding.contenedorDinamico.addView(dynamicView)
+    }
 }

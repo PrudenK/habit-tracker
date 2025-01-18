@@ -17,7 +17,6 @@ import com.pruden.habits.fragments.cargarFragmentAgregarPartidaManual
 
 
 class MainActivity : AppCompatActivity() {
-
     private lateinit var mBinding: ActivityMainBinding
 
     private lateinit var linearLayoutFechas: RecyclerView.LayoutManager
@@ -37,16 +36,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        fechasAdapter = FechaAdapter(generateLastDates())
-
-        linearLayoutFechas = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-
-        mBinding.recyclerFechas.apply {
-            adapter = fechasAdapter
-            layoutManager = linearLayoutFechas
-        }
-
-        LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        configurarRecyclerFechas()
 
         setSupportActionBar(findViewById(R.id.toolbar))
     }
@@ -63,6 +53,18 @@ class MainActivity : AppCompatActivity() {
 
 
 
+    private fun configurarRecyclerFechas(){
+        fechasAdapter = FechaAdapter(generateLastDates())
+
+        linearLayoutFechas = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
+        mBinding.recyclerFechas.apply {
+            adapter = fechasAdapter
+            layoutManager = linearLayoutFechas
+        }
+
+        LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_tool_bar, menu)
