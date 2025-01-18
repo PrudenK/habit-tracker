@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingTop="8dp"
+
+    >
+
+    <TextView
+        android:id="@+id/nombre_habito"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:text="Habit Name"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingVertical="16dp"
+        android:paddingHorizontal="8dp"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_data_habitos"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:paddingTop="4dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/nombre_habito"
+        app:layout_constraintBottom_toBottomOf="@id/nombre_habito"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/material_dynamic_neutral80"
+
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

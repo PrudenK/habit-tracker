@@ -1,4 +1,4 @@
-package com.pruden.habits.clases
+package com.pruden.habits.clases.data
 
 data class Fecha(
     val diaSemana: String,

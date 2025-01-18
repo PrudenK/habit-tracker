@@ -8,8 +8,8 @@ data class HabitoEntity(
     @PrimaryKey(autoGenerate = true)
     val idHabito: Long = 0,
     val nombre: String,
-    val objetivo: String?,
-    val tipo: Boolean,
+    val objetivo: Int?,
+    val tipoNumerico: Boolean,
     val unidad: String?,
     val color: Int
 )

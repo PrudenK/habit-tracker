@@ -1,11 +1,8 @@
 package com.pruden.habits
 
-import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -13,9 +10,12 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.adapters.FechaAdapter
-import com.pruden.habits.clases.generateLastDates
+import com.pruden.habits.adapters.HabitoAdapter
+import com.pruden.habits.metodos.generateLastDates
 import com.pruden.habits.databinding.ActivityMainBinding
 import com.pruden.habits.fragments.cargarFragmentAgregarPartidaManual
+import com.pruden.habits.metodos.listaHabitos
+import java.util.concurrent.RecursiveTask
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +23,9 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var linearLayoutFechas: RecyclerView.LayoutManager
     private lateinit var fechasAdapter: FechaAdapter
+
+    private lateinit var linearLayoutHabitos: RecyclerView.LayoutManager
+    private lateinit var habitosAdapter: HabitoAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,13 +43,24 @@ class MainActivity : AppCompatActivity() {
 
         configurarRecyclerFechas()
 
+        configurarRecyclerHabitos()
+
         setSupportActionBar(findViewById(R.id.toolbar))
     }
 
 
 
 
+    private fun configurarRecyclerHabitos(){
+        habitosAdapter = HabitoAdapter(listaHabitos)
 
+        linearLayoutHabitos = LinearLayoutManager(this)
+
+        mBinding.recyclerHabitos.apply {
+            adapter = habitosAdapter
+            layoutManager = linearLayoutHabitos
+        }
+    }
 
 
 
@@ -63,10 +77,27 @@ class MainActivity : AppCompatActivity() {
         mBinding.recyclerFechas.apply {
             adapter = fechasAdapter
             layoutManager = linearLayoutFechas
+
+            addOnScrollListener(object : RecyclerView.OnScrollListener() {
+                override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                    super.onScrolled(recyclerView, dx, dy)
+
+                    sincronizarScroll(dx)
+                }
+            })
         }
 
         LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
     }
+
+    private fun sincronizarScroll(dx: Int) {
+        val count = linearLayoutHabitos.childCount
+        for (i in 0 until count) {
+            val holder = mBinding.recyclerHabitos.findViewHolderForAdapterPosition(i) as? HabitoAdapter.ViewHolder
+            holder?.binding?.recyclerDataHabitos?.scrollBy(dx, 0)
+        }
+    }
+
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_tool_bar, menu)

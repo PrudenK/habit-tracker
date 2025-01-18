@@ -1,10 +1,8 @@
 package com.pruden.habits.fragments
 
-import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -20,7 +18,6 @@ import com.google.android.material.textfield.TextInputLayout
 import com.pruden.habits.ColorPickerView
 import com.pruden.habits.R
 import com.pruden.habits.databinding.FragmentAgregarHabitoBinding
-import com.pruden.habits.databinding.LayoutNumericoBinding
 
 @Suppress("DEPRECATION")
 class AgregarHabitoFragment : Fragment() {
@@ -60,10 +57,12 @@ class AgregarHabitoFragment : Fragment() {
         setHasOptionsMenu(true)
 
         binding.numerico.setOnClickListener {
+            colorHabito = R.color.white
             cargarContenedorDinamico(R.layout.layout_numerico)
         }
 
         binding.booleano.setOnClickListener {
+            colorHabito = R.color.white
             cargarContenedorDinamico(R.layout.layout_booleano)
         }
     }

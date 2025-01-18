@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.R
-import com.pruden.habits.clases.Fecha
+import com.pruden.habits.clases.data.Fecha
 import com.pruden.habits.databinding.ItemFechaBinding
 
 class FechaAdapter(val listaFechas : MutableList<Fecha>) : RecyclerView.Adapter<FechaAdapter.ViewHolder>() {
