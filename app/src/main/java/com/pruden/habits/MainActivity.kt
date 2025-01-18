@@ -1,6 +1,8 @@
 package com.pruden.habits
 
+import android.app.Dialog
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
@@ -74,6 +76,8 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.subir_habito -> {
+
+
 
                 cargarFragmentAgregarPartidaManual(this)
 
