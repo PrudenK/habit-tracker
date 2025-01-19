@@ -69,7 +69,7 @@ class HabitoAdapter (val listaHabitos : MutableList<Habito>, private val sincron
                     LinearLayoutManager.HORIZONTAL, false)
             }else{
 
-                val registroAdapter = RegistroBooleanoAdapter(listaDataHabitoEntity, this@HabitoAdapter)
+                val registroAdapter = RegistroBooleanoAdapter(listaDataHabitoEntity, this@HabitoAdapter, habito.colorHabito)
                 binding.recyclerDataHabitos.adapter = registroAdapter
                 binding.recyclerDataHabitos.layoutManager = LinearLayoutManager(contexto,
                     LinearLayoutManager.HORIZONTAL, false)
@@ -87,7 +87,7 @@ class HabitoAdapter (val listaHabitos : MutableList<Habito>, private val sincron
     }
 
 
-    override fun onClickBooleanRegistro(icono: ImageView, habitoData: DataHabitoEntity) {
+    override fun onClickBooleanRegistro(icono: ImageView, habitoData: DataHabitoEntity, color: Int) {
         val dialog = Dialog(contexto)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_edit_boolean)
@@ -108,6 +108,7 @@ class HabitoAdapter (val listaHabitos : MutableList<Habito>, private val sincron
                 habitoData.valorCampo = 0.0f
                 habitoData.notas = inputNotas.text.toString()
                 HabitosApplication.database.dataHabitoDao().updateDataHabito(habitoData)
+                icono.clearColorFilter()
             }.start()
             icono.setImageResource(R.drawable.ic_no_check)
             dialog.dismiss()
@@ -118,6 +119,7 @@ class HabitoAdapter (val listaHabitos : MutableList<Habito>, private val sincron
                 habitoData.valorCampo = 1.0f
                 habitoData.notas = inputNotas.text.toString()
                 HabitosApplication.database.dataHabitoDao().updateDataHabito(habitoData)
+                icono.setColorFilter(color)
             }.start()
             icono.setImageResource(R.drawable.ic_check)
             dialog.dismiss()

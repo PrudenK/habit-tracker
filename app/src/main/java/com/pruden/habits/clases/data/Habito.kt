@@ -6,6 +6,7 @@ data class Habito(
     val objetivo: Float,
     val tipoNumerico: Boolean,
     val unidad: String?,
+    var colorHabito: Int,
     val listaValores: List<Float>,
     val listaNotas: List<String?>,
     val listaFechas: List<String>
