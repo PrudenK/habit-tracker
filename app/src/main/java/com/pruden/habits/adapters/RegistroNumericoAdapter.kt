@@ -5,9 +5,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.R
+import com.pruden.habits.adapters.listeners.OnClickNumericoRegistro
 import com.pruden.habits.databinding.ItemRegistroNumericoBinding
 
-class RegistroNumericoAdapter (val listaRegistros: MutableList<Int>, val unidad: String)
+class RegistroNumericoAdapter (val listaRegistros: MutableList<Int>, val unidad: String, val listener: OnClickNumericoRegistro)
     : RecyclerView.Adapter<RegistroNumericoAdapter.ViewHolder>() {
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemRegistroNumericoBinding.bind(view)
@@ -25,6 +26,11 @@ class RegistroNumericoAdapter (val listaRegistros: MutableList<Int>, val unidad:
         with(holder) {
             binding.unidad.text = unidad
             binding.puntuacion.text = "$registro"
+
+            binding.itemRegistroNumerico.setOnClickListener {
+                listener.onClickNumericoRegistro(binding.puntuacion, registro, unidad)
+            }
         }
+
     }
 }
