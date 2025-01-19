@@ -17,8 +17,9 @@ import com.pruden.habits.adapters.listeners.OnClickBooleanRegistro
 import com.pruden.habits.adapters.listeners.OnClickNumericoRegistro
 import com.pruden.habits.clases.data.Habito
 import com.pruden.habits.databinding.ItemHabitoBinding
+import com.pruden.habits.elementos.SincronizadorDeScrolls
 
-class HabitoAdapter (val listaHabitos : MutableList<Habito>):
+class HabitoAdapter (val listaHabitos : MutableList<Habito>, private val sincronizadorDeScrolls: SincronizadorDeScrolls):
     RecyclerView.Adapter<HabitoAdapter.ViewHolder>(), OnClickBooleanRegistro, OnClickNumericoRegistro{
 
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view){
@@ -52,12 +53,9 @@ class HabitoAdapter (val listaHabitos : MutableList<Habito>):
                 binding.recyclerDataHabitos.layoutManager = LinearLayoutManager(contexto,
                     LinearLayoutManager.HORIZONTAL, false)
             }
-            binding.recyclerDataHabitos.isNestedScrollingEnabled = false
-
-            binding.recyclerDataHabitos.overScrollMode = RecyclerView.OVER_SCROLL_NEVER
-            binding.recyclerDataHabitos.setHasFixedSize(true)
 
 
+            sincronizadorDeScrolls.addRecyclerView(binding.recyclerDataHabitos)
         }
     }
 
@@ -113,5 +111,6 @@ class HabitoAdapter (val listaHabitos : MutableList<Habito>):
 
         dialog.show()
     }
+
 
 }

@@ -29,7 +29,7 @@
 
     <ImageView
         android:id="@+id/auxiliar"
-        android:layout_width="160dp"
+        android:layout_width="140dp"
         android:layout_height="55dp"
 
         app:layout_constraintStart_toStartOf="parent"

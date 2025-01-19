@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
-import com.pruden.habits.ColorPickerView
+import com.pruden.habits.elementos.ColorPickerView
 import com.pruden.habits.R
 import com.pruden.habits.databinding.FragmentAgregarHabitoBinding
 

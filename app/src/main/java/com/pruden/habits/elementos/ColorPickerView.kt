@@ -1,4 +1,4 @@
-package com.pruden.habits
+package com.pruden.habits.elementos
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet

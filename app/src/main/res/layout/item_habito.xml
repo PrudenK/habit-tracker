@@ -9,7 +9,7 @@
 
     <TextView
         android:id="@+id/nombre_habito"
-        android:layout_width="160dp"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:text="Habit Name"
         android:textSize="20sp"
