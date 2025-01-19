@@ -18,6 +18,8 @@
         app:layout_constraintStart_toStartOf="parent"
         android:paddingVertical="16dp"
         android:paddingHorizontal="18dp"
+        android:maxLines="1"
+        android:ellipsize="end"
         />
 
     <androidx.recyclerview.widget.RecyclerView

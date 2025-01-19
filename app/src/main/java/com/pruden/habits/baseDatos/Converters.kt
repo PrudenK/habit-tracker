@@ -42,4 +42,21 @@ class Converters {
         }
     }
 
+    @TypeConverter
+    fun fromListToStringFechas(list: List<String>): String {
+        return Gson().toJson(list) // Convierte la lista de fechas a JSON
+    }
+
+    @TypeConverter
+    fun fromStringToListFechas(value: String?): List<String> {
+        if (value.isNullOrEmpty()) {
+            return emptyList()
+        }
+        return try {
+            val listType = object : TypeToken<List<String>>() {}.type
+            Gson().fromJson(value, listType)
+        } catch (e: Exception) {
+            emptyList()
+        }
+    }
 }

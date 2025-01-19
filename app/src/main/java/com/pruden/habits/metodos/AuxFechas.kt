@@ -48,6 +48,11 @@ fun generarFechasFormatoYYYYMMDD(): MutableList<String> {
     return dateStrings
 }
 
+
+
+
+
+
 fun devolverListaHabitos(): MutableList<Habito>{
     var listaHabitos = mutableListOf<Habito>()
     val hilo = Thread{

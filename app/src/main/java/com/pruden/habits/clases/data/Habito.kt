@@ -7,7 +7,8 @@ data class Habito(
     val tipoNumerico: Boolean,
     val unidad: String?,
     val listaValores: List<Float>,
-    val listaNotas: List<String?>
+    val listaNotas: List<String?>,
+    val listaFechas: List<String>
 
 
 ) {

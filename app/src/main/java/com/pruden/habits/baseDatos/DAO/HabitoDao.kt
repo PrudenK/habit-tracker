@@ -26,7 +26,8 @@ interface HabitoDao {
            H.tipoNumerico, 
            H.unidad, 
            '[' || GROUP_CONCAT(D.valorCampo) || ']' AS listaValores, 
-           '[' || GROUP_CONCAT('"' || IFNULL(D.notas, '') || '"') || ']' AS listaNotas
+           '[' || GROUP_CONCAT('"' || IFNULL(D.notas, '') || '"') || ']' AS listaNotas,
+           '[' || GROUP_CONCAT('"' || D.fecha || '"') || ']' AS listaFechas
     FROM Habitos AS H
     LEFT JOIN DataHabitos AS D ON H.idHabito = D.idHabito
     GROUP BY H.idHabito
