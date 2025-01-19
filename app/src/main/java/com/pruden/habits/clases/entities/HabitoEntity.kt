@@ -5,10 +5,9 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "Habitos")
 data class HabitoEntity(
-    @PrimaryKey(autoGenerate = true)
-    val idHabito: Long = 0,
+    @PrimaryKey(autoGenerate = true) val idHabito: Long = 0,
     val nombre: String,
-    val objetivo: Int?,
+    val objetivo: Float?,
     val tipoNumerico: Boolean,
     val unidad: String?,
     val color: Int

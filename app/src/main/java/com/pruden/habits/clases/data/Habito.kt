@@ -5,7 +5,7 @@ data class Habito (
     val nombre: String,
     val listaValores: MutableList<Int>,
     val listaNotas: MutableList<String>,
-    val objetivo: Int,
+    val objetivo: Float,
     val tipoNumerico: Boolean,
     val unidad: String
 )

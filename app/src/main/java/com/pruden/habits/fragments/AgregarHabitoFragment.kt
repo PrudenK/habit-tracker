@@ -3,6 +3,7 @@ package com.pruden.habits.fragments
 import android.app.Dialog
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -14,10 +15,15 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.pruden.habits.elementos.ColorPickerView
 import com.pruden.habits.R
+import com.pruden.habits.baseDatos.HabitosApplication
+import com.pruden.habits.clases.entities.DataHabitoEntity
+import com.pruden.habits.clases.entities.HabitoEntity
 import com.pruden.habits.databinding.FragmentAgregarHabitoBinding
+import com.pruden.habits.metodos.generarFechasFormatoYYYYMMDD
 
 @Suppress("DEPRECATION")
 class AgregarHabitoFragment : Fragment() {
@@ -33,6 +39,8 @@ class AgregarHabitoFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+
         binding = FragmentAgregarHabitoBinding.inflate(inflater, container, false)
 
         cargarContenedorDinamico(R.layout.layout_numerico)
@@ -41,7 +49,10 @@ class AgregarHabitoFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
+
+
 
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbarFragment)
 
@@ -89,6 +100,43 @@ class AgregarHabitoFragment : Fragment() {
                 }
 
                 if(habitoValido){
+                    if(numerico){
+                        var id = -1L
+                        val hilo = Thread{
+                            id = HabitosApplication.database.habitoDao().insertHabito(
+                                HabitoEntity(
+                                    nombre = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_numerico).text.toString(),
+                                    objetivo = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_objetivo).text.toString().toFloat(),
+                                    tipoNumerico = true,
+                                    unidad = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_unidad).text.toString(),
+                                    color = colorHabito
+                                )
+                            )
+                        }
+                        hilo.start()
+                        hilo.join()
+
+                        agregarRegistrosDBDAtaHabitos(id)
+
+                    }else{
+                        var id = -1L
+                        val hilo = Thread{
+                            id = HabitosApplication.database.habitoDao().insertHabito(
+                                HabitoEntity(
+                                    nombre = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_boolean).text.toString(),
+                                    objetivo = null,
+                                    tipoNumerico = false,
+                                    unidad = null,
+                                    color = colorHabito
+                                )
+                            )
+                        }
+                        hilo.start()
+                        hilo.join()
+
+                        agregarRegistrosDBDAtaHabitos(id)
+                    }
+
                     Snackbar.make(binding.root, "Hábito añadido con éxito", Snackbar.LENGTH_SHORT).show()
                     activity?.onBackPressed()
                 }
@@ -176,5 +224,21 @@ class AgregarHabitoFragment : Fragment() {
 
     private fun devolverTextInputLayout(id : Int): TextInputLayout{
         return vistaDinamicaActual.findViewById<TextInputLayout>(id)
+    }
+
+    private fun agregarRegistrosDBDAtaHabitos(id : Long){
+        val listaFechas = generarFechasFormatoYYYYMMDD()
+        Thread{
+            for(fecha in listaFechas){
+                HabitosApplication.database.dataHabitoDao().insertDataHabito(
+                    DataHabitoEntity(
+                        idHabito = id,
+                        fecha = fecha,
+                        valorCampo = 0.0f,
+                        notas = null
+                    )
+                )
+            }
+        }.start()
     }
 }

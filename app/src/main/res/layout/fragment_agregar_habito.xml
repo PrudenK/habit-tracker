@@ -4,7 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.AgregarHabitoFragment">
+    tools:context=".fragments.AgregarHabitoFragment"
+    android:background="#80000000"
+    android:focusable="true"
+    android:clickable="true"
+    >
 
 
     <ImageView
@@ -98,6 +102,5 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="16dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 
 </FrameLayout>
