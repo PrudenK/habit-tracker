@@ -18,7 +18,7 @@ class HabitosApplication : Application(){
             HabitosDatabase::class.java,
             "HabitosDatabase"
         )
-            //.fallbackToDestructiveMigration()
+          //  .fallbackToDestructiveMigration()
             .build()
 
     }

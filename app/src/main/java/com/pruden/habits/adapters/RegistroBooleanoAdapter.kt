@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.R
 import com.pruden.habits.adapters.listeners.OnClickBooleanRegistro
 
-class RegistroBooleanoAdapter(val listaRegistros: MutableList<Int>, val listener : OnClickBooleanRegistro) : RecyclerView.Adapter<RegistroBooleanoAdapter.ViewHolder>() {
+class RegistroBooleanoAdapter(val listaRegistros: MutableList<Float>, val listener : OnClickBooleanRegistro) : RecyclerView.Adapter<RegistroBooleanoAdapter.ViewHolder>() {
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemRegistroBooleanoBinding.bind(view)
     }
@@ -24,7 +24,7 @@ class RegistroBooleanoAdapter(val listaRegistros: MutableList<Int>, val listener
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val registro = listaRegistros[position]
         with(holder) {
-            if(registro == 1){
+            if(registro == 1.0f){
                 binding.icono.setImageResource(R.drawable.ic_check)
             }else{
                 binding.icono.setImageResource(R.drawable.ic_no_check)

@@ -3,7 +3,9 @@ package com.pruden.habits.baseDatos.DAO
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.Query
 import androidx.room.Update
+import com.pruden.habits.clases.data.Habito
 import com.pruden.habits.clases.entities.HabitoEntity
 
 @Dao
@@ -17,5 +19,18 @@ interface HabitoDao {
     @Delete
     fun deleteHabito(habitoEntity: HabitoEntity)
 
+    @Query("""
+    SELECT H.idHabito, 
+           H.nombre, 
+           H.objetivo, 
+           H.tipoNumerico, 
+           H.unidad, 
+           '[' || GROUP_CONCAT(D.valorCampo) || ']' AS listaValores, 
+           '[' || GROUP_CONCAT('"' || IFNULL(D.notas, '') || '"') || ']' AS listaNotas
+    FROM Habitos AS H
+    LEFT JOIN DataHabitos AS D ON H.idHabito = D.idHabito
+    GROUP BY H.idHabito
+""")
+    fun obtenerHabitosConValores(): MutableList<Habito>
 
 }

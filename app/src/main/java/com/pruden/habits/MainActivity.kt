@@ -12,11 +12,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.adapters.FechaAdapter
 import com.pruden.habits.adapters.HabitoAdapter
+import com.pruden.habits.clases.data.Habito
 import com.pruden.habits.elementos.SincronizadorDeScrolls
 import com.pruden.habits.metodos.generateLastDates
 import com.pruden.habits.databinding.ActivityMainBinding
 import com.pruden.habits.fragments.cargarFragmentAgregarPartidaManual
-import com.pruden.habits.metodos.listaHabitos
+import com.pruden.habits.metodos.devolverListaHabitos
 
 
 class MainActivity : AppCompatActivity() {
@@ -51,28 +52,23 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(findViewById(R.id.toolbar))
     }
 
-
+    fun actualizarConDatos(listaHabitos: MutableList<Habito>) {
+        runOnUiThread {
+            sincronizadorDeScrolls.limpiarRecycler()
+            sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)
+            habitosAdapter.actualizarLista(listaHabitos)
+        }
+    }
 
 
     private fun configurarRecyclerHabitos() {
-        habitosAdapter = HabitoAdapter(listaHabitos, sincronizadorDeScrolls)
+        habitosAdapter = HabitoAdapter(devolverListaHabitos(), sincronizadorDeScrolls)
         linearLayoutHabitos = LinearLayoutManager(this)
 
         mBinding.recyclerHabitos.apply {
             adapter = habitosAdapter
             layoutManager = linearLayoutHabitos
         }
-
-        habitosAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
-            override fun onChanged() {
-                for (i in 0 until habitosAdapter.itemCount) {
-                    val holder = mBinding.recyclerHabitos.findViewHolderForAdapterPosition(i) as? HabitoAdapter.ViewHolder
-                    holder?.binding?.recyclerDataHabitos?.let {
-                        sincronizadorDeScrolls.addRecyclerView(it)
-                    }
-                }
-            }
-        })
     }
 
     private fun configurarRecyclerFechas() {
@@ -86,15 +82,6 @@ class MainActivity : AppCompatActivity() {
 
         sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)
     }
-
-    private fun sincronizarScroll(dx: Int) {
-        val count = linearLayoutHabitos.childCount
-        for (i in 0 until count) {
-            val holder = mBinding.recyclerHabitos.findViewHolderForAdapterPosition(i) as? HabitoAdapter.ViewHolder
-            holder?.binding?.recyclerDataHabitos?.scrollBy(dx, 0)
-        }
-    }
-
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_tool_bar, menu)

@@ -2,6 +2,7 @@ package com.pruden.habits.adapters
 
 import android.app.Dialog
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,13 +43,15 @@ class HabitoAdapter (val listaHabitos : MutableList<Habito>, private val sincron
         with(holder){
             binding.nombreHabito.text = habito.nombre
 
+            Log.d("adfads", habito.listaValores.size.toString())
+
             if(habito.tipoNumerico){
-                val registroAdapter = RegistroNumericoAdapter(habito.listaValores, habito.unidad, this@HabitoAdapter)
+                val registroAdapter = RegistroNumericoAdapter(habito.listaValores.toMutableList(), habito.unidad!!, this@HabitoAdapter)
                 binding.recyclerDataHabitos.adapter = registroAdapter
                 binding.recyclerDataHabitos.layoutManager = LinearLayoutManager(contexto,
                     LinearLayoutManager.HORIZONTAL, false)
             }else{
-                val registroAdapter = RegistroBooleanoAdapter(habito.listaValores, this@HabitoAdapter)
+                val registroAdapter = RegistroBooleanoAdapter(habito.listaValores.toMutableList(), this@HabitoAdapter)
                 binding.recyclerDataHabitos.adapter = registroAdapter
                 binding.recyclerDataHabitos.layoutManager = LinearLayoutManager(contexto,
                     LinearLayoutManager.HORIZONTAL, false)
@@ -59,7 +62,11 @@ class HabitoAdapter (val listaHabitos : MutableList<Habito>, private val sincron
         }
     }
 
-
+    fun actualizarLista(nuevaLista: MutableList<Habito>) {
+        listaHabitos.clear()
+        listaHabitos.addAll(nuevaLista)
+        notifyDataSetChanged()
+    }
 
 
     override fun onClickBooleanRegistro(icono: ImageView) {
@@ -90,7 +97,7 @@ class HabitoAdapter (val listaHabitos : MutableList<Habito>, private val sincron
         dialog.show()
     }
 
-    override fun onClickNumericoRegistro(textField: TextView, valor: Int, unidad: String) {
+    override fun onClickNumericoRegistro(textField: TextView, valor: Float, unidad: String) {
         val dialog = Dialog(contexto)
         dialog.setContentView(R.layout.dialog_edit_numerico)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)

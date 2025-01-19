@@ -17,12 +17,15 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.pruden.habits.MainActivity
 import com.pruden.habits.elementos.ColorPickerView
 import com.pruden.habits.R
 import com.pruden.habits.baseDatos.HabitosApplication
 import com.pruden.habits.clases.entities.DataHabitoEntity
 import com.pruden.habits.clases.entities.HabitoEntity
 import com.pruden.habits.databinding.FragmentAgregarHabitoBinding
+import com.pruden.habits.metodos.devolverListaHabitos
+import com.pruden.habits.metodos.devolverListaHabitosConCallBack
 import com.pruden.habits.metodos.generarFechasFormatoYYYYMMDD
 
 @Suppress("DEPRECATION")
@@ -85,6 +88,8 @@ class AgregarHabitoFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val main = activity as MainActivity
+
         return when (item.itemId) {
             android.R.id.home -> {
                 activity?.onBackPressed()
@@ -136,6 +141,9 @@ class AgregarHabitoFragment : Fragment() {
 
                         agregarRegistrosDBDAtaHabitos(id)
                     }
+
+                    main.actualizarConDatos(devolverListaHabitos())
+
 
                     Snackbar.make(binding.root, "Hábito añadido con éxito", Snackbar.LENGTH_SHORT).show()
                     activity?.onBackPressed()
@@ -223,12 +231,12 @@ class AgregarHabitoFragment : Fragment() {
     }
 
     private fun devolverTextInputLayout(id : Int): TextInputLayout{
-        return vistaDinamicaActual.findViewById<TextInputLayout>(id)
+        return vistaDinamicaActual.findViewById(id)
     }
 
     private fun agregarRegistrosDBDAtaHabitos(id : Long){
         val listaFechas = generarFechasFormatoYYYYMMDD()
-        Thread{
+        val hilo = Thread{
             for(fecha in listaFechas){
                 HabitosApplication.database.dataHabitoDao().insertDataHabito(
                     DataHabitoEntity(
@@ -239,6 +247,8 @@ class AgregarHabitoFragment : Fragment() {
                     )
                 )
             }
-        }.start()
+        }
+        hilo.start()
+        hilo.join()
     }
 }
