@@ -3,6 +3,7 @@ package com.pruden.habits.baseDatos.DAO
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.Query
 import androidx.room.Update
 import com.pruden.habits.clases.entities.DataHabitoEntity
 
@@ -16,4 +17,7 @@ interface DataHabitoDao {
 
     @Delete
     fun deleteDataHabito(dataHabitoEntity: DataHabitoEntity)
+
+    @Query("Select max(fecha) from datahabitos")
+    fun selectMaxFecha(): String
 }

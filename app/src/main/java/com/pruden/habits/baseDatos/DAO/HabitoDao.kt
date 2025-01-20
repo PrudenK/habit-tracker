@@ -35,4 +35,6 @@ interface HabitoDao {
 """)
     fun obtenerHabitosConValores(): MutableList<Habito>
 
+    @Query("Select idHabito from habitos")
+    fun obtenerTdosLosId(): List<Long>
 }

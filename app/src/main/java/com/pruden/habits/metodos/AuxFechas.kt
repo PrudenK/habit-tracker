@@ -1,12 +1,18 @@
 package com.pruden.habits.metodos
 
 import android.app.Activity
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import com.pruden.habits.baseDatos.HabitosApplication
 import com.pruden.habits.clases.data.Fecha
 import com.pruden.habits.clases.data.Habito
+import com.pruden.habits.clases.entities.DataHabitoEntity
 import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 
 fun generateLastDates(): MutableList<Fecha> {
@@ -49,13 +55,66 @@ fun generarFechasFormatoYYYYMMDD(): MutableList<String> {
 }
 
 
+fun obtenerFechaActual(): String {
+    val formato = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    return formato.format(Date())
+}
 
+fun obtenerFechasEntre(diaInicio: String, diaFin: String): List<String> {
+    val formato = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val fechaInicio = formato.parse(diaInicio) ?: return emptyList()
+    val fechaFin = formato.parse(diaFin) ?: return emptyList()
 
+    val calendario = Calendar.getInstance()
+    calendario.time = fechaInicio
 
+    val listaFechas = mutableListOf<String>()
+
+    while (calendario.time.before(fechaFin)) {
+        calendario.add(Calendar.DATE, 1)
+        if (!calendario.time.after(fechaFin)) {
+            listaFechas.add(formato.format(calendario.time))
+        }
+    }
+
+    return listaFechas
+}
 
 fun devolverListaHabitos(): MutableList<Habito>{
     var listaHabitos = mutableListOf<Habito>()
+
+    Log.d("da",obtenerFechaActual())
+
     val hilo = Thread{
+        val ultimaFechaDB = HabitosApplication.database.dataHabitoDao().selectMaxFecha()
+
+        Log.d("adf", ultimaFechaDB)
+        Log.d("adfadf", obtenerFechasEntre(ultimaFechaDB, obtenerFechaActual()).toString())
+
+        val listaFechas = obtenerFechasEntre(ultimaFechaDB, obtenerFechaActual())
+
+        val agregarRegistros = Thread{
+            if(listaFechas.isNotEmpty()){
+                val listaIDHabitos = HabitosApplication.database.habitoDao().obtenerTdosLosId()
+
+                for(fecha in listaFechas){
+                    for(id in listaIDHabitos){
+                        HabitosApplication.database.dataHabitoDao().insertDataHabito(
+                            DataHabitoEntity(
+                                idHabito = id,
+                                fecha = fecha,
+                                valorCampo = 0.0f,
+                                notas = null
+                            )
+                        )
+                    }
+                }
+            }
+        }
+        agregarRegistros.start()
+        agregarRegistros.join()
+
+
         listaHabitos = HabitosApplication.database.habitoDao().obtenerHabitosConValores()
     }
     hilo.start()
