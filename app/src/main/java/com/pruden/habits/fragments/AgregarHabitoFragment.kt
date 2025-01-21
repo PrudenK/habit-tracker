@@ -143,7 +143,7 @@ class AgregarHabitoFragment : Fragment() {
                         agregarRegistrosDBDAtaHabitos(id)
                     }
 
-                    main.actualizarConDatos(devolverListaHabitos())
+                    main.actualizarConDatos()
 
 
                     Snackbar.make(binding.root, "Hábito añadido con éxito", Snackbar.LENGTH_SHORT).show()

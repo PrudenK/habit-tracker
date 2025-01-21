@@ -110,7 +110,6 @@ class HabitoAdapter (
 
     fun deleteHabito(habito: HabitoEntity){
         listaHabitos.remove(listaHabitos.find { it.idHabito.toLong() == habito.idHabito })
-        //actualizarLista(listaHabitos)
         notifyDataSetChanged()
     }
 

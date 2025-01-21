@@ -58,11 +58,11 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         setSupportActionBar(findViewById(R.id.toolbar))
     }
 
-    fun actualizarConDatos(listaHabitos: MutableList<Habito>) {
+    fun actualizarConDatos() {
         runOnUiThread {
             sincronizadorDeScrolls.limpiarRecycler()
             sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)
-            habitosAdapter.actualizarLista(listaHabitos)
+            habitosAdapter.actualizarLista(devolverListaHabitos())
         }
     }
 
@@ -108,14 +108,11 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
 
     override fun onLongClickListenerHabito(habito: HabitoEntity) {
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_borrar_habito, null)
-        val dialog = AlertDialog.Builder(this)
-            .setView(dialogView)
-            .create()
+        val dialog = AlertDialog.Builder(this).setView(dialogView).create()
 
         val buttonCancel = dialogView.findViewById<Button>(R.id.button_cancelar_borrar_habito)
         val buttonAccept = dialogView.findViewById<Button>(R.id.button_acceptar_borrar_habito)
 
-        // Configurar acciones de los botones
         buttonCancel.setOnClickListener {
             dialog.dismiss()
         }
@@ -125,14 +122,12 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
                 HabitosApplication.database.habitoDao().deleteHabito(habito)
                 runOnUiThread{
                     habitosAdapter.deleteHabito(habito)
+                    actualizarConDatos()
                 }
             }.start()
             dialog.dismiss()
         }
 
-        // Mostrar el diálogo
         dialog.show()
-
-
     }
 }
