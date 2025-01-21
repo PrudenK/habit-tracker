@@ -25,6 +25,7 @@ import com.pruden.habits.clases.data.Habito
 import com.pruden.habits.clases.entities.DataHabitoEntity
 import com.pruden.habits.databinding.ItemHabitoBinding
 import com.pruden.habits.elementos.SincronizadorDeScrolls
+import com.pruden.habits.metodos.formatearNumero
 
 class HabitoAdapter (val listaHabitos : MutableList<Habito>, private val sincronizadorDeScrolls: SincronizadorDeScrolls):
     RecyclerView.Adapter<HabitoAdapter.ViewHolder>(), OnClickBooleanRegistro, OnClickNumericoRegistro{
@@ -151,7 +152,7 @@ class HabitoAdapter (val listaHabitos : MutableList<Habito>, private val sincron
             if(inputCantidad.text!!.isNotBlank()){
                 habitoData.notas = inputNotas.text.toString()
                 habitoData.valorCampo = inputCantidad.text.toString()
-                tvNumerico.puntuacion.text = inputCantidad.text
+                tvNumerico.puntuacion.text =  formatearNumero(inputCantidad.text.toString().toFloat())
 
                 Thread{
                     HabitosApplication.database.dataHabitoDao().updateDataHabito(habitoData)

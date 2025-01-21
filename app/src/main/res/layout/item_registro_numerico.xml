@@ -15,6 +15,7 @@
         android:gravity="center"
         android:textSize="16sp"
         app:layout_constraintTop_toTopOf="parent"
+        android:maxLines="1"
         />
 
     <TextView
@@ -22,6 +23,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="pags"
+        android:maxLength="6"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:gravity="center"
         android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@id/puntuacion"

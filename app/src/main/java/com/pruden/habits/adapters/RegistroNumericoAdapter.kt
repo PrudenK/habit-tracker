@@ -1,9 +1,12 @@
 package com.pruden.habits.adapters
 
+import android.content.Context
 import android.graphics.Typeface
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.R
 import com.pruden.habits.adapters.listeners.OnClickNumericoRegistro
@@ -11,6 +14,7 @@ import com.pruden.habits.clases.auxClass.HabitoAux
 import com.pruden.habits.clases.auxClass.TextViewsNumerico
 import com.pruden.habits.clases.entities.DataHabitoEntity
 import com.pruden.habits.databinding.ItemRegistroNumericoBinding
+import com.pruden.habits.metodos.formatearNumero
 
 class RegistroNumericoAdapter (val listaRegistros: MutableList<DataHabitoEntity>, val listener: OnClickNumericoRegistro, val habitoAux: HabitoAux)
     : RecyclerView.Adapter<RegistroNumericoAdapter.ViewHolder>() {
@@ -18,7 +22,10 @@ class RegistroNumericoAdapter (val listaRegistros: MutableList<DataHabitoEntity>
         val binding = ItemRegistroNumericoBinding.bind(view)
     }
 
+    private lateinit var contexto: Context
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        contexto = parent.context
         val vista = LayoutInflater.from(parent.context).inflate(R.layout.item_registro_numerico, parent, false)
         return ViewHolder(vista)
     }
@@ -30,15 +37,24 @@ class RegistroNumericoAdapter (val listaRegistros: MutableList<DataHabitoEntity>
         with(holder) {
 
             if(registro.valorCampo.toFloat() >= habitoAux.objetivo.toFloat()){
+                Log.d("asd123", habitoAux.objetivo.toFloat().toString())
+                Log.d("asd456", registro.valorCampo.toFloat().toString())
                 binding.unidad.setTextColor(habitoAux.color)
                 binding.unidad.setTypeface(null, Typeface.BOLD)
 
                 binding.puntuacion.setTextColor(habitoAux.color)
                 binding.puntuacion.setTypeface(null, Typeface.BOLD)
+            }else{
+                binding.unidad.setTextColor(ContextCompat.getColor(contexto, R.color.black))
+                binding.unidad.setTypeface(null, Typeface.NORMAL)
+
+                binding.puntuacion.setTextColor(ContextCompat.getColor(contexto, R.color.black))
+                binding.puntuacion.setTypeface(null, Typeface.NORMAL)
             }
 
+
             binding.unidad.text = habitoAux.unidad
-            binding.puntuacion.text = "${registro.valorCampo}"
+            binding.puntuacion.text = formatearNumero(registro.valorCampo.toFloat())
 
             binding.itemRegistroNumerico.setOnClickListener {
                 listener.onClickNumericoRegistro(TextViewsNumerico(binding.unidad, binding.puntuacion), registro, habitoAux)
