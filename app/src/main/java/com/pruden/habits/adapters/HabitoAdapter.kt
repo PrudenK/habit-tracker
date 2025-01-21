@@ -2,6 +2,7 @@ package com.pruden.habits.adapters
 
 import android.app.Dialog
 import android.content.Context
+import android.graphics.Typeface
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputEditText
@@ -17,6 +19,8 @@ import com.pruden.habits.R
 import com.pruden.habits.adapters.listeners.OnClickBooleanRegistro
 import com.pruden.habits.adapters.listeners.OnClickNumericoRegistro
 import com.pruden.habits.baseDatos.HabitosApplication
+import com.pruden.habits.clases.auxClass.HabitoAux
+import com.pruden.habits.clases.auxClass.TextViewsNumerico
 import com.pruden.habits.clases.data.Habito
 import com.pruden.habits.clases.entities.DataHabitoEntity
 import com.pruden.habits.databinding.ItemHabitoBinding
@@ -63,7 +67,8 @@ class HabitoAdapter (val listaHabitos : MutableList<Habito>, private val sincron
             listaDataHabitoEntity.reverse()
 
             if(habito.tipoNumerico){
-                val registroAdapter = RegistroNumericoAdapter(listaDataHabitoEntity, habito.unidad!!, this@HabitoAdapter)
+                val habitoAux = HabitoAux(habito.unidad!!, habito.colorHabito, habito.objetivo!!)
+                val registroAdapter = RegistroNumericoAdapter(listaDataHabitoEntity,this@HabitoAdapter, habitoAux)
                 binding.recyclerDataHabitos.adapter = registroAdapter
                 binding.recyclerDataHabitos.layoutManager = LinearLayoutManager(contexto,
                     LinearLayoutManager.HORIZONTAL, false)
@@ -105,7 +110,7 @@ class HabitoAdapter (val listaHabitos : MutableList<Habito>, private val sincron
 
         botonCancelar.setOnClickListener {
             Thread{
-                habitoData.valorCampo = 0.0f
+                habitoData.valorCampo = "0.0"
                 habitoData.notas = inputNotas.text.toString()
                 HabitosApplication.database.dataHabitoDao().updateDataHabito(habitoData)
                 icono.clearColorFilter()
@@ -116,7 +121,7 @@ class HabitoAdapter (val listaHabitos : MutableList<Habito>, private val sincron
 
         botonGuardar.setOnClickListener {
             Thread{
-                habitoData.valorCampo = 1.0f
+                habitoData.valorCampo = "1.0"
                 habitoData.notas = inputNotas.text.toString()
                 HabitosApplication.database.dataHabitoDao().updateDataHabito(habitoData)
                 icono.setColorFilter(color)
@@ -128,7 +133,7 @@ class HabitoAdapter (val listaHabitos : MutableList<Habito>, private val sincron
         dialog.show()
     }
 
-    override fun onClickNumericoRegistro(textField: TextView, habitoData: DataHabitoEntity, unidad: String) {
+    override fun onClickNumericoRegistro(tvNumerico: TextViewsNumerico, habitoData: DataHabitoEntity, habitoAux: HabitoAux) {
         val dialog = Dialog(contexto)
         dialog.setContentView(R.layout.dialog_edit_numerico)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
@@ -137,20 +142,34 @@ class HabitoAdapter (val listaHabitos : MutableList<Habito>, private val sincron
         val inputCantidad = dialog.findViewById<TextInputEditText>(R.id.input_cantidad_numerico)
         val tilCantidad = dialog.findViewById<TextInputLayout>(R.id.til_cantidad)
 
-        inputCantidad.setText("${habitoData.valorCampo}")
-        tilCantidad.hint = unidad
+        inputCantidad.setText(habitoData.valorCampo)
+        tilCantidad.hint = habitoAux.unidad
 
         inputNotas.setText(habitoData.notas)
 
         dialog.setOnDismissListener {
             if(inputCantidad.text!!.isNotBlank()){
                 habitoData.notas = inputNotas.text.toString()
-                habitoData.valorCampo = inputCantidad.text.toString().toFloat()
-                textField.text = inputCantidad.text
+                habitoData.valorCampo = inputCantidad.text.toString()
+                tvNumerico.puntuacion.text = inputCantidad.text
 
                 Thread{
                     HabitosApplication.database.dataHabitoDao().updateDataHabito(habitoData)
                 }.start()
+
+                if(inputCantidad.text.toString().toFloat() >= habitoAux.objetivo.toFloat()){
+                    tvNumerico.puntuacion.setTextColor(habitoAux.color)
+                    tvNumerico.unidad.setTextColor(habitoAux.color)
+
+                    tvNumerico.puntuacion.setTypeface(null, Typeface.BOLD)
+                    tvNumerico.unidad.setTypeface(null, Typeface.BOLD)
+                }else{
+                    tvNumerico.puntuacion.setTextColor(ContextCompat.getColor(contexto, R.color.black))
+                    tvNumerico.unidad.setTextColor(ContextCompat.getColor(contexto, R.color.black))
+
+                    tvNumerico.puntuacion.setTypeface(null, Typeface.NORMAL)
+                    tvNumerico.unidad.setTypeface(null, Typeface.NORMAL)
+                }
             }
         }
 

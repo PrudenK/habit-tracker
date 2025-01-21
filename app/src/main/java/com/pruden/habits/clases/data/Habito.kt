@@ -3,11 +3,11 @@ package com.pruden.habits.clases.data
 data class Habito(
     val idHabito: Int,
     val nombre: String,
-    val objetivo: Float,
+    val objetivo: String?,
     val tipoNumerico: Boolean,
     val unidad: String?,
     var colorHabito: Int,
-    val listaValores: List<Float>,
+    val listaValores: List<String>,
     val listaNotas: List<String?>,
     val listaFechas: List<String>
 

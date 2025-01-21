@@ -86,34 +86,36 @@ fun devolverListaHabitos(): MutableList<Habito>{
     Log.d("da",obtenerFechaActual())
 
     val hilo = Thread{
-        val ultimaFechaDB = HabitosApplication.database.dataHabitoDao().selectMaxFecha()
+        val listaIDHabitos = HabitosApplication.database.habitoDao().obtenerTdosLosId()
+        if(listaIDHabitos.isNotEmpty()){
+            val ultimaFechaDB = HabitosApplication.database.dataHabitoDao().selectMaxFecha()
 
-        Log.d("adf", ultimaFechaDB)
-        Log.d("adfadf", obtenerFechasEntre(ultimaFechaDB, obtenerFechaActual()).toString())
+            //Log.d("adf", ultimaFechaDB)
+            //Log.d("adfadf", obtenerFechasEntre(ultimaFechaDB, obtenerFechaActual()).toString())
 
-        val listaFechas = obtenerFechasEntre(ultimaFechaDB, obtenerFechaActual())
+            val listaFechas = obtenerFechasEntre(ultimaFechaDB, obtenerFechaActual())
 
-        val agregarRegistros = Thread{
-            if(listaFechas.isNotEmpty()){
-                val listaIDHabitos = HabitosApplication.database.habitoDao().obtenerTdosLosId()
+            val agregarRegistros = Thread{
+                if(listaFechas.isNotEmpty() ){
 
-                for(fecha in listaFechas){
-                    for(id in listaIDHabitos){
-                        HabitosApplication.database.dataHabitoDao().insertDataHabito(
-                            DataHabitoEntity(
-                                idHabito = id,
-                                fecha = fecha,
-                                valorCampo = 0.0f,
-                                notas = null
+
+                    for(fecha in listaFechas){
+                        for(id in listaIDHabitos){
+                            HabitosApplication.database.dataHabitoDao().insertDataHabito(
+                                DataHabitoEntity(
+                                    idHabito = id,
+                                    fecha = fecha,
+                                    valorCampo = "0.0",
+                                    notas = null
+                                )
                             )
-                        )
+                        }
                     }
                 }
             }
+            agregarRegistros.start()
+            agregarRegistros.join()
         }
-        agregarRegistros.start()
-        agregarRegistros.join()
-
 
         listaHabitos = HabitosApplication.database.habitoDao().obtenerHabitosConValores()
     }

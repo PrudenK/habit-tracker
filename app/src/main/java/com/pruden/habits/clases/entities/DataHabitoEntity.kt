@@ -18,7 +18,7 @@ import androidx.room.ForeignKey
 data class DataHabitoEntity(
     val idHabito: Long,
     val fecha: String,
-    var valorCampo: Float,
+    var valorCampo: String,
     var notas: String?
 )
 

@@ -27,7 +27,7 @@ class RegistroBooleanoAdapter(val listaDataEnity: MutableList<DataHabitoEntity>,
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val registro = listaDataEnity[position]
         with(holder) {
-            if(registro.valorCampo == 1.0f){
+            if(registro.valorCampo == "1.0"){
                 binding.icono.setImageResource(R.drawable.ic_check)
                 binding.icono.setColorFilter(color)
             }else{

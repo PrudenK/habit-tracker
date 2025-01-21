@@ -1,5 +1,6 @@
 package com.pruden.habits.fragments
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
@@ -111,7 +112,7 @@ class AgregarHabitoFragment : Fragment() {
                             id = HabitosApplication.database.habitoDao().insertHabito(
                                 HabitoEntity(
                                     nombre = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_numerico).text.toString(),
-                                    objetivo = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_objetivo).text.toString().toFloat(),
+                                    objetivo = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_objetivo).text.toString().toFloat().let { String.format("%.2f", it) },
                                     tipoNumerico = true,
                                     unidad = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_unidad).text.toString(),
                                     color = colorHabito
@@ -242,7 +243,7 @@ class AgregarHabitoFragment : Fragment() {
                     DataHabitoEntity(
                         idHabito = id,
                         fecha = fecha,
-                        valorCampo = 0.0f,
+                        valorCampo = "0.0",
                         notas = null
                     )
                 )
