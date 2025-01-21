@@ -18,16 +18,23 @@ import com.google.android.material.textfield.TextInputLayout
 import com.pruden.habits.R
 import com.pruden.habits.adapters.listeners.OnClickBooleanRegistro
 import com.pruden.habits.adapters.listeners.OnClickNumericoRegistro
+import com.pruden.habits.adapters.listeners.OnLongClickHabito
 import com.pruden.habits.baseDatos.HabitosApplication
 import com.pruden.habits.clases.auxClass.HabitoAux
 import com.pruden.habits.clases.auxClass.TextViewsNumerico
 import com.pruden.habits.clases.data.Habito
 import com.pruden.habits.clases.entities.DataHabitoEntity
+import com.pruden.habits.clases.entities.HabitoEntity
 import com.pruden.habits.databinding.ItemHabitoBinding
 import com.pruden.habits.elementos.SincronizadorDeScrolls
 import com.pruden.habits.metodos.formatearNumero
 
-class HabitoAdapter (val listaHabitos : MutableList<Habito>, private val sincronizadorDeScrolls: SincronizadorDeScrolls):
+class HabitoAdapter (
+    val listaHabitos : MutableList<Habito>,
+    private val sincronizadorDeScrolls: SincronizadorDeScrolls,
+    private val onLongListenr: OnLongClickHabito
+
+):
     RecyclerView.Adapter<HabitoAdapter.ViewHolder>(), OnClickBooleanRegistro, OnClickNumericoRegistro{
 
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view){
@@ -83,7 +90,28 @@ class HabitoAdapter (val listaHabitos : MutableList<Habito>, private val sincron
 
 
             sincronizadorDeScrolls.addRecyclerView(binding.recyclerDataHabitos)
+
+
+
+            binding.nombreHabito.setOnLongClickListener {
+                Log.d("adsfadfas", "aefjadkfljadfadfjadsfadfadfad")
+                onLongListenr.onLongClickListenerHabito(HabitoEntity(
+                    idHabito = habito.idHabito.toLong(),
+                    nombre = habito.nombre,
+                    objetivo = habito.objetivo,
+                    tipoNumerico = habito.tipoNumerico,
+                    unidad = habito.unidad,
+                    color = habito.colorHabito
+                ))
+                true
+            }
         }
+    }
+
+    fun deleteHabito(habito: HabitoEntity){
+        listaHabitos.remove(listaHabitos.find { it.idHabito.toLong() == habito.idHabito })
+        //actualizarLista(listaHabitos)
+        notifyDataSetChanged()
     }
 
     fun actualizarLista(nuevaLista: MutableList<Habito>) {
