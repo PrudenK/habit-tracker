@@ -37,8 +37,6 @@ class RegistroNumericoAdapter (val listaRegistros: MutableList<DataHabitoEntity>
         with(holder) {
 
             if(registro.valorCampo.toFloat() >= habitoAux.objetivo.toFloat()){
-                Log.d("asd123", habitoAux.objetivo.toFloat().toString())
-                Log.d("asd456", registro.valorCampo.toFloat().toString())
                 binding.unidad.setTextColor(habitoAux.color)
                 binding.unidad.setTypeface(null, Typeface.BOLD)
 

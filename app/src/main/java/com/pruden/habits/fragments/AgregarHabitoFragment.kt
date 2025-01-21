@@ -112,7 +112,7 @@ class AgregarHabitoFragment : Fragment() {
                             id = HabitosApplication.database.habitoDao().insertHabito(
                                 HabitoEntity(
                                     nombre = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_numerico).text.toString(),
-                                    objetivo = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_objetivo).text.toString().toFloat().let { String.format("%.2f", it) },
+                                    objetivo = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_objetivo).text.toString().toFloat().let { String.format("%.2f", it) }.replace(",", "."),
                                     tipoNumerico = true,
                                     unidad = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_unidad).text.toString(),
                                     color = colorHabito
