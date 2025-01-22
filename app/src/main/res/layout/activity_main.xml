@@ -7,13 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tool_bar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
+        android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="12dp"
         >
 
         <TextView
@@ -23,9 +24,39 @@
             android:gravity="center"
             android:text="Habit tracker"
             android:textSize="26sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
 
             />
-    </androidx.appcompat.widget.Toolbar>
+
+        <ImageView
+            android:id="@+id/opciones_menu"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:src="@drawable/ic_menu"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
+            />
+
+        <ImageView
+            android:id="@+id/agregar_habito"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_add"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
     <ImageView
         android:id="@+id/auxiliar"
@@ -33,7 +64,7 @@
         android:layout_height="55dp"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+        app:layout_constraintTop_toBottomOf="@+id/tool_bar" />
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -44,7 +75,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/auxiliar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/auxiliar"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        app:layout_constraintTop_toBottomOf="@id/tool_bar"
         tools:listitem="@layout/item_fecha"
         android:layout_marginEnd="16dp"
 

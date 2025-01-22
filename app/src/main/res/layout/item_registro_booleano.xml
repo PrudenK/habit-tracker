@@ -11,5 +11,9 @@
         android:layout_height="match_parent"
 
         android:scaleType="centerInside"
+
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

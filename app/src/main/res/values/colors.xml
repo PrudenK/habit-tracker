@@ -2,4 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="bottom_app_bar">#666565</color>
+    <color name="lightGrayColor">#E9E8E8</color>
 </resources>

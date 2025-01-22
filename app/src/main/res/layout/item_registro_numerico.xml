@@ -5,6 +5,9 @@
     android:layout_height="wrap_content"
     android:id="@+id/item_registro_numerico"
 
+    android:clickable="true"
+    android:focusable="true"
+    android:background="?attr/selectableItemBackground"
     >
 
     <TextView
@@ -29,5 +32,7 @@
         android:gravity="center"
         android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@id/puntuacion"
+
+
         />
 </androidx.constraintlayout.widget.ConstraintLayout>

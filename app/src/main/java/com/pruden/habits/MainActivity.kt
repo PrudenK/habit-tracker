@@ -3,12 +3,14 @@ package com.pruden.habits
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.os.Bundle
+import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.PopupMenu
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -55,17 +57,10 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         configurarRecyclerFechas()
         configurarRecyclerHabitos()
 
-        setSupportActionBar(findViewById(R.id.toolbar))
-    }
+        agregarHabito()
 
-    fun actualizarConDatos() {
-        runOnUiThread {
-            sincronizadorDeScrolls.limpiarRecycler()
-            sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)
-            habitosAdapter.actualizarLista(devolverListaHabitos())
-        }
+        menu()
     }
-
 
     private fun configurarRecyclerHabitos() {
         habitosAdapter = HabitoAdapter(devolverListaHabitos(), sincronizadorDeScrolls, this)
@@ -87,23 +82,6 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         }
 
         sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_tool_bar, menu)
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.subir_habito -> {
-
-                cargarFragmentAgregarPartidaManual(this)
-
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
     }
 
     override fun onLongClickListenerHabito(habito: HabitoEntity) {
@@ -129,5 +107,46 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         }
 
         dialog.show()
+    }
+
+    fun actualizarConDatos() {
+        runOnUiThread {
+            sincronizadorDeScrolls.limpiarRecycler()
+            sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)
+            habitosAdapter.actualizarLista(devolverListaHabitos())
+        }
+    }
+
+    fun agregarHabito(){
+        mBinding.agregarHabito.setOnClickListener {
+            cargarFragmentAgregarPartidaManual(this)
+        }
+    }
+
+    fun menu(){
+        mBinding.opcionesMenu.setOnClickListener {
+            val contextWrapper = ContextThemeWrapper(this, R.style.CustomPopupMenu)
+
+            val popupMenu = PopupMenu(contextWrapper, mBinding.opcionesMenu)
+            popupMenu.menuInflater.inflate(R.menu.menu_opciones, popupMenu.menu)
+
+            popupMenu.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.menu_exportar -> {
+
+                        true
+                    }
+                    R.id.menu_importar ->{
+
+                        true
+                    }
+                    R.id.menu_borrar ->{
+                        true
+                    }
+                    else -> false
+                }
+            }
+            popupMenu.show()
+        }
     }
 }
