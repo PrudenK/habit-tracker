@@ -112,13 +112,15 @@ class AgregarHabitoFragment : Fragment() {
                 }
 
                 var nombreRepetido = false
+                var campoFecha = false
 
                 if(habitoValido){
                     if(numerico){
                         val nombre = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_numerico).text.toString()
 
-                        if(nombresDeHabitosDB.contains(nombre.lowercase())){
+                        if(nombresDeHabitosDB.contains(nombre.lowercase()) || nombre.lowercase() == "Fecha"){
                             nombreRepetido = true
+                            campoFecha = nombre.lowercase() == "Fecha"
                         }else{
                             val hilo = Thread{
                                 HabitosApplication.database.habitoDao().insertHabito(
@@ -139,8 +141,9 @@ class AgregarHabitoFragment : Fragment() {
                     }else{
                         val nombre = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_boolean).text.toString()
 
-                        if(nombresDeHabitosDB.contains(nombre.lowercase())){
+                        if(nombresDeHabitosDB.contains(nombre.lowercase()) || nombre.lowercase() == "Fecha"){
                             nombreRepetido = true
+                            campoFecha = nombre.lowercase() == "Fecha"
                         }else{
                             val hilo = Thread{
                                 HabitosApplication.database.habitoDao().insertHabito(
@@ -161,7 +164,11 @@ class AgregarHabitoFragment : Fragment() {
                     }
 
                     if(nombreRepetido){
-                        Snackbar.make(binding.root, "Ya tienes un hábito con ese nombre", Snackbar.LENGTH_SHORT).show()
+                        if(campoFecha){
+                            Snackbar.make(binding.root, "La palabra fecha esta reservada", Snackbar.LENGTH_SHORT).show()
+                        }else{
+                            Snackbar.make(binding.root, "Ya tienes un hábito con ese nombre", Snackbar.LENGTH_SHORT).show()
+                        }
                     }else{
                         main.actualizarConDatos()
 
