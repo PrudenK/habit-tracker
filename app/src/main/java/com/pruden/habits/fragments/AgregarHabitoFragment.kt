@@ -3,6 +3,7 @@ package com.pruden.habits.fragments
 import android.app.Dialog
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -24,6 +25,7 @@ import com.pruden.habits.clases.entities.DataHabitoEntity
 import com.pruden.habits.clases.entities.HabitoEntity
 import com.pruden.habits.databinding.FragmentAgregarHabitoBinding
 import com.pruden.habits.metodos.Fechas.generarFechasFormatoYYYYMMDD
+import com.pruden.habits.metodos.lanzarHiloConJoin
 
 @Suppress("DEPRECATION")
 class AgregarHabitoFragment : Fragment() {
@@ -35,15 +37,23 @@ class AgregarHabitoFragment : Fragment() {
 
     private lateinit var vistaDinamicaActual: View
 
+    private var nombresDeHabitosDB = mutableListOf<String>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-
         binding = FragmentAgregarHabitoBinding.inflate(inflater, container, false)
 
         cargarContenedorDinamico(R.layout.layout_numerico)
+
+        val hilo = Thread{
+            nombresDeHabitosDB = HabitosApplication.database.habitoDao().obtenerTdosLosNombres().map { it.lowercase() }.toMutableList()
+        }
+        lanzarHiloConJoin(hilo)
+
+        Log.d("341324131324", nombresDeHabitosDB.toString())
 
         return binding.root
     }
@@ -101,49 +111,65 @@ class AgregarHabitoFragment : Fragment() {
                     validarCampos(devolverTextInputLayout(R.id.til_nombre_bol))
                 }
 
+                var nombreRepetido = false
+
                 if(habitoValido){
                     if(numerico){
-                        var id = -1L
-                        val hilo = Thread{
-                            id = HabitosApplication.database.habitoDao().insertHabito(
-                                HabitoEntity(
-                                    nombre = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_numerico).text.toString(),
-                                    objetivo = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_objetivo).text.toString().toFloat().let { String.format("%.2f", it) }.replace(",", "."),
-                                    tipoNumerico = true,
-                                    unidad = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_unidad).text.toString(),
-                                    color = colorHabito
-                                )
-                            )
-                        }
-                        hilo.start()
-                        hilo.join()
+                        val nombre = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_numerico).text.toString()
 
-                        agregarRegistrosDBDAtaHabitos(id)
+                        if(nombresDeHabitosDB.contains(nombre.lowercase())){
+                            nombreRepetido = true
+                        }else{
+                            val hilo = Thread{
+                                HabitosApplication.database.habitoDao().insertHabito(
+                                    HabitoEntity(
+                                        nombre = nombre,
+                                        objetivo = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_objetivo).text.toString().toFloat().let { String.format("%.2f", it) }.replace(",", "."),
+                                        tipoNumerico = true,
+                                        unidad = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_unidad).text.toString(),
+                                        color = colorHabito
+                                    )
+                                )
+                            }
+                            lanzarHiloConJoin(hilo)
+
+                            agregarRegistrosDBDAtaHabitos(nombre)
+                        }
 
                     }else{
-                        var id = -1L
-                        val hilo = Thread{
-                            id = HabitosApplication.database.habitoDao().insertHabito(
-                                HabitoEntity(
-                                    nombre = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_boolean).text.toString(),
-                                    objetivo = null,
-                                    tipoNumerico = false,
-                                    unidad = null,
-                                    color = colorHabito
-                                )
-                            )
-                        }
-                        hilo.start()
-                        hilo.join()
+                        val nombre = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_boolean).text.toString()
 
-                        agregarRegistrosDBDAtaHabitos(id)
+                        if(nombresDeHabitosDB.contains(nombre.lowercase())){
+                            nombreRepetido = true
+                        }else{
+                            val hilo = Thread{
+                                HabitosApplication.database.habitoDao().insertHabito(
+                                    HabitoEntity(
+                                        nombre = nombre,
+                                        objetivo = null,
+                                        tipoNumerico = false,
+                                        unidad = null,
+                                        color = colorHabito
+                                    )
+                                )
+                            }
+                            lanzarHiloConJoin(hilo)
+
+                            agregarRegistrosDBDAtaHabitos(nombre)
+                        }
+
                     }
 
-                    main.actualizarConDatos()
+                    if(nombreRepetido){
+                        Snackbar.make(binding.root, "Ya tienes un hábito con ese nombre", Snackbar.LENGTH_SHORT).show()
+                    }else{
+                        main.actualizarConDatos()
+
+                        Snackbar.make(binding.root, "Hábito añadido con éxito", Snackbar.LENGTH_SHORT).show()
+                        activity?.onBackPressed()
+                    }
 
 
-                    Snackbar.make(binding.root, "Hábito añadido con éxito", Snackbar.LENGTH_SHORT).show()
-                    activity?.onBackPressed()
                 }
                 true
             }
@@ -180,7 +206,7 @@ class AgregarHabitoFragment : Fragment() {
         val colorPickerView = dialog.findViewById<ColorPickerView>(R.id.colorPickerView)
 
         colorPickerView.setOnColorSelectedListener { colorPicker ->
-            onColorSelected(colorPicker) // Llama al callback con el color seleccionado
+            onColorSelected(colorPicker)
             dialog.dismiss()
         }
 
@@ -231,13 +257,13 @@ class AgregarHabitoFragment : Fragment() {
         return vistaDinamicaActual.findViewById(id)
     }
 
-    private fun agregarRegistrosDBDAtaHabitos(id : Long){
+    private fun agregarRegistrosDBDAtaHabitos(nombreHabito : String){
         val listaFechas = generarFechasFormatoYYYYMMDD()
         val hilo = Thread{
             for(fecha in listaFechas){
                 HabitosApplication.database.dataHabitoDao().insertDataHabito(
                     DataHabitoEntity(
-                        idHabito = id,
+                        nombre = nombreHabito,
                         fecha = fecha,
                         valorCampo = "0.0",
                         notas = null

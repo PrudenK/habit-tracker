@@ -12,11 +12,11 @@ import java.util.Locale
 
 fun crearFicheroHabitosCSV(habitos : MutableList<HabitoEntity>, contexto: Context) : File {
     val stringBuilder = StringBuilder()
-    stringBuilder.append("idHabito,nombre,objetivo,tipoNumerico,unidad,color\n")
+    stringBuilder.append("nombre,objetivo,tipoNumerico,unidad,color\n")
 
     for(habito in habitos){
         with(habito){
-            stringBuilder.append("$idHabito,$nombre,$objetivo,$tipoNumerico,$unidad,$color\n")
+            stringBuilder.append("$nombre,$objetivo,$tipoNumerico,$unidad,$color\n")
         }
     }
 
@@ -28,19 +28,19 @@ fun crearFicheroHabitosCSV(habitos : MutableList<HabitoEntity>, contexto: Contex
 
 fun crearFicheroDATAHabitosCSV(habitos: MutableList<HabitoEntity>, contexto: Context): File {
     val stringBuilder = StringBuilder()
-    val hashMapDataHabitos = HashMap<Long, MutableList<DataHabitoEntity>>()
+    val hashMapDataHabitos = HashMap<String, MutableList<DataHabitoEntity>>()
     val cabecera = devolverCabeceraDataHabitos(habitos)
     stringBuilder.append(cabecera+"\n")
 
-    val listaIDs = devolverIdCabecera(cabecera)
+    val listaNombres = devolverIdCabecera(cabecera)
 
-    for(id in listaIDs){
+    for(nombre in listaNombres){
         var lista = mutableListOf<DataHabitoEntity>()
         val hilo = Thread{
-            lista = HabitosApplication.database.dataHabitoDao().obtenerDatosHabitoPorIdHabito(id)
+            lista = HabitosApplication.database.dataHabitoDao().obtenerDatosHabitoPorIdHabito(nombre)
         }
         lanzarHiloConJoin(hilo)
-        hashMapDataHabitos[id] = lista
+        hashMapDataHabitos[nombre] = lista
     }
 
 
@@ -53,11 +53,11 @@ fun crearFicheroDATAHabitosCSV(habitos: MutableList<HabitoEntity>, contexto: Con
         hashMapDataHabitos[key] = listaOrdenada.toMutableList()
     }
 
-    val numRegistros = hashMapDataHabitos[listaIDs[0]]!!.size-1
+    val numRegistros = hashMapDataHabitos[listaNombres[0]]!!.size-1
 
     for(i in 0..numRegistros){
-        var linea = hashMapDataHabitos[listaIDs[0]]!![i].fecha
-        for(id in listaIDs){
+        var linea = hashMapDataHabitos[listaNombres[0]]!![i].fecha
+        for(id in listaNombres){
             linea+= ","+ hashMapDataHabitos[id]!![i].valorCampo
         }
         stringBuilder.append(linea+"\n")

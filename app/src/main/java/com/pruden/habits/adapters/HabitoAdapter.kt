@@ -64,7 +64,7 @@ class HabitoAdapter (
             for(i in habito.listaFechas.indices){
                 listaDataHabitoEntity.add(
                     DataHabitoEntity(
-                        idHabito = habito.idHabito.toLong(),
+                        nombre = habito.nombre,
                         fecha = habito.listaFechas[i],
                         valorCampo = habito.listaValores[i],
                         notas = habito.listaNotas[i]
@@ -96,7 +96,6 @@ class HabitoAdapter (
             binding.nombreHabito.setOnLongClickListener {
                 Log.d("adsfadfas", "aefjadkfljadfadfjadsfadfadfad")
                 onLongListenr.onLongClickListenerHabito(HabitoEntity(
-                    idHabito = habito.idHabito.toLong(),
                     nombre = habito.nombre,
                     objetivo = habito.objetivo,
                     tipoNumerico = habito.tipoNumerico,
@@ -109,7 +108,7 @@ class HabitoAdapter (
     }
 
     fun deleteHabito(habito: HabitoEntity){
-        listaHabitos.remove(listaHabitos.find { it.idHabito.toLong() == habito.idHabito })
+        listaHabitos.remove(listaHabitos.find { it.nombre == habito.nombre })
         notifyDataSetChanged()
     }
 

@@ -21,6 +21,6 @@ interface DataHabitoDao {
     @Query("Select max(fecha) from datahabitos")
     fun selectMaxFecha(): String
 
-    @Query("Select * from datahabitos where idHabito = :id")
-    fun obtenerDatosHabitoPorIdHabito(id: Long): MutableList<DataHabitoEntity>
+    @Query("Select * from datahabitos where nombre = :nombre")
+    fun obtenerDatosHabitoPorIdHabito(nombre: String): MutableList<DataHabitoEntity>
 }

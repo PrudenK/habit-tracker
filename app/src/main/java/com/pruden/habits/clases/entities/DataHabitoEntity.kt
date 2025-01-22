@@ -5,20 +5,19 @@ import androidx.room.ForeignKey
 
 @Entity(
     tableName = "DataHabitos",
-    primaryKeys = ["idHabito", "fecha"],
+    primaryKeys = ["nombre", "fecha"],
     foreignKeys = [
         ForeignKey(
             entity = HabitoEntity::class,
-            parentColumns = ["idHabito"],
-            childColumns = ["idHabito"],
+            parentColumns = ["nombre"],
+            childColumns = ["nombre"],
             onDelete = ForeignKey.CASCADE
         )
     ]
 )
 data class DataHabitoEntity(
-    val idHabito: Long,
+    val nombre: String,
     val fecha: String,
     var valorCampo: String,
     var notas: String?
 )
-

@@ -82,8 +82,8 @@ fun devolverListaHabitos(): MutableList<Habito>{
     Log.d("da", obtenerFechaActual())
 
     val hilo = Thread{
-        val listaIDHabitos = HabitosApplication.database.habitoDao().obtenerTdosLosId()
-        if(listaIDHabitos.isNotEmpty()){
+        val listaNombresHabitos = HabitosApplication.database.habitoDao().obtenerTdosLosNombres()
+        if(listaNombresHabitos.isNotEmpty()){
             val ultimaFechaDB = HabitosApplication.database.dataHabitoDao().selectMaxFecha()
 
             //Log.d("adf", ultimaFechaDB)
@@ -96,10 +96,10 @@ fun devolverListaHabitos(): MutableList<Habito>{
 
 
                     for(fecha in listaFechas){
-                        for(id in listaIDHabitos){
+                        for(nombre in listaNombresHabitos){
                             HabitosApplication.database.dataHabitoDao().insertDataHabito(
                                 DataHabitoEntity(
-                                    idHabito = id,
+                                    nombre = nombre,
                                     fecha = fecha,
                                     valorCampo = "0.0",
                                     notas = null

@@ -11,7 +11,7 @@ import com.pruden.habits.clases.entities.HabitoEntity
 @Dao
 interface HabitoDao {
     @Insert
-    fun insertHabito(habitoEntity: HabitoEntity): Long
+    fun insertHabito(habitoEntity: HabitoEntity)
 
     @Update
     fun updateHabito(habitoEntity: HabitoEntity)
@@ -20,7 +20,7 @@ interface HabitoDao {
     fun deleteHabito(habitoEntity: HabitoEntity)
 
     @Query("""
-    SELECT H.idHabito, 
+    SELECT 
            H.nombre, 
            H.objetivo, 
            H.tipoNumerico, 
@@ -30,13 +30,13 @@ interface HabitoDao {
            '[' || GROUP_CONCAT('"' || IFNULL(D.notas, '') || '"') || ']' AS listaNotas,
            '[' || GROUP_CONCAT('"' || D.fecha || '"') || ']' AS listaFechas
     FROM Habitos AS H
-    LEFT JOIN DataHabitos AS D ON H.idHabito = D.idHabito
-    GROUP BY H.idHabito
+    LEFT JOIN DataHabitos AS D ON H.nombre = D.nombre
+    GROUP BY H.nombre
 """)
     fun obtenerHabitosConValores(): MutableList<Habito>
 
-    @Query("Select idHabito from habitos")
-    fun obtenerTdosLosId(): List<Long>
+    @Query("Select nombre from habitos")
+    fun obtenerTdosLosNombres(): MutableList<String>
 
     @Query("Select * from habitos")
     fun obtenerTodosLosHabitos(): MutableList<HabitoEntity>

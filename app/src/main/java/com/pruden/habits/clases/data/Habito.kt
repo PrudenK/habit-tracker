@@ -1,7 +1,6 @@
 package com.pruden.habits.clases.data
 
 data class Habito(
-    val idHabito: Int,
     val nombre: String,
     val objetivo: String?,
     val tipoNumerico: Boolean,
@@ -14,6 +13,6 @@ data class Habito(
 
 ) {
     override fun toString(): String {
-        return "Habito(idHabito=$idHabito, nombre='$nombre', objetivo=$objetivo, tipoNumerico=$tipoNumerico, unidad=$unidad, listaValores=$listaValores, listaNotas=$listaNotas)"
+        return "Habito(nombre='$nombre', objetivo=$objetivo, tipoNumerico=$tipoNumerico, unidad=$unidad, listaValores=$listaValores, listaNotas=$listaNotas)"
     }
 }
