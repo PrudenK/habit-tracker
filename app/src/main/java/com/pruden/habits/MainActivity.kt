@@ -1,12 +1,9 @@
 package com.pruden.habits
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.os.Bundle
 import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuItem
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -19,13 +16,13 @@ import com.pruden.habits.adapters.FechaAdapter
 import com.pruden.habits.adapters.HabitoAdapter
 import com.pruden.habits.adapters.listeners.OnLongClickHabito
 import com.pruden.habits.baseDatos.HabitosApplication
-import com.pruden.habits.clases.data.Habito
 import com.pruden.habits.clases.entities.HabitoEntity
 import com.pruden.habits.elementos.SincronizadorDeScrolls
-import com.pruden.habits.metodos.generateLastDates
+import com.pruden.habits.metodos.Fechas.generateLastDates
 import com.pruden.habits.databinding.ActivityMainBinding
 import com.pruden.habits.fragments.cargarFragmentAgregarPartidaManual
-import com.pruden.habits.metodos.devolverListaHabitos
+import com.pruden.habits.metodos.Fechas.devolverListaHabitos
+import com.pruden.habits.metodos.exportarDatos.exportarHabitosCSV
 
 
 class MainActivity : AppCompatActivity(), OnLongClickHabito {
@@ -133,7 +130,7 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
             popupMenu.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.menu_exportar -> {
-
+                        exportarHabitosCSV(this)
                         true
                     }
                     R.id.menu_importar ->{
@@ -149,4 +146,6 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
             popupMenu.show()
         }
     }
+
+
 }

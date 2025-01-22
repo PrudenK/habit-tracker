@@ -1,16 +1,12 @@
-package com.pruden.habits.metodos
+package com.pruden.habits.metodos.Fechas
 
 import android.app.Activity
-import android.os.Build
 import android.util.Log
-import androidx.annotation.RequiresApi
 import com.pruden.habits.baseDatos.HabitosApplication
 import com.pruden.habits.clases.data.Fecha
 import com.pruden.habits.clases.data.Habito
 import com.pruden.habits.clases.entities.DataHabitoEntity
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
@@ -83,7 +79,7 @@ fun obtenerFechasEntre(diaInicio: String, diaFin: String): List<String> {
 fun devolverListaHabitos(): MutableList<Habito>{
     var listaHabitos = mutableListOf<Habito>()
 
-    Log.d("da",obtenerFechaActual())
+    Log.d("da", obtenerFechaActual())
 
     val hilo = Thread{
         val listaIDHabitos = HabitosApplication.database.habitoDao().obtenerTdosLosId()

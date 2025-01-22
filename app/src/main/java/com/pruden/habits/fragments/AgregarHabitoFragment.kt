@@ -1,10 +1,8 @@
 package com.pruden.habits.fragments
 
-import android.annotation.SuppressLint
 import android.app.Dialog
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -25,9 +23,7 @@ import com.pruden.habits.baseDatos.HabitosApplication
 import com.pruden.habits.clases.entities.DataHabitoEntity
 import com.pruden.habits.clases.entities.HabitoEntity
 import com.pruden.habits.databinding.FragmentAgregarHabitoBinding
-import com.pruden.habits.metodos.devolverListaHabitos
-import com.pruden.habits.metodos.devolverListaHabitosConCallBack
-import com.pruden.habits.metodos.generarFechasFormatoYYYYMMDD
+import com.pruden.habits.metodos.Fechas.generarFechasFormatoYYYYMMDD
 
 @Suppress("DEPRECATION")
 class AgregarHabitoFragment : Fragment() {

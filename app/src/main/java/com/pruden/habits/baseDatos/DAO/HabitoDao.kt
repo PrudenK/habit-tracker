@@ -37,4 +37,7 @@ interface HabitoDao {
 
     @Query("Select idHabito from habitos")
     fun obtenerTdosLosId(): List<Long>
+
+    @Query("Select * from habitos")
+    fun obtenerTodosLosHabitos(): MutableList<HabitoEntity>
 }
