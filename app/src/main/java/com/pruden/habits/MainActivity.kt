@@ -21,6 +21,7 @@ import com.pruden.habits.elementos.SincronizadorDeScrolls
 import com.pruden.habits.metodos.Fechas.generateLastDates
 import com.pruden.habits.databinding.ActivityMainBinding
 import com.pruden.habits.fragments.cargarFragmentAgregarPartidaManual
+import com.pruden.habits.metodos.Dialogos.borrarTodosLosDatos
 import com.pruden.habits.metodos.Fechas.devolverListaHabitos
 import com.pruden.habits.metodos.exportarDatos.exportarHabitosCSV
 
@@ -106,13 +107,7 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         dialog.show()
     }
 
-    fun actualizarConDatos() {
-        runOnUiThread {
-            sincronizadorDeScrolls.limpiarRecycler()
-            sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)
-            habitosAdapter.actualizarLista(devolverListaHabitos())
-        }
-    }
+
 
     fun agregarHabito(){
         mBinding.agregarHabito.setOnClickListener {
@@ -138,6 +133,7 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
                         true
                     }
                     R.id.menu_borrar ->{
+                        borrarTodosLosDatos(this, this)
                         true
                     }
                     else -> false
@@ -147,5 +143,19 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         }
     }
 
+    fun actualizarConDatos() {
+        runOnUiThread {
+            sincronizadorDeScrolls.limpiarRecycler()
+            sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)
+            habitosAdapter.actualizarLista(devolverListaHabitos())
+        }
+    }
 
+    fun actualizarDespuesDeBorrarTodosLosDatos() {
+        runOnUiThread {
+            sincronizadorDeScrolls.limpiarRecycler()
+            sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)
+            habitosAdapter.actualizarLista(mutableListOf())
+        }
+    }
 }
