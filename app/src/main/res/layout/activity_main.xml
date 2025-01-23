@@ -19,7 +19,7 @@
 
         <TextView
             android:id="@+id/titulo_tool_bar"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="Habit tracker"
@@ -31,12 +31,13 @@
             />
 
         <ImageView
-            android:id="@+id/opciones_menu"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:src="@drawable/ic_menu"
+            android:id="@+id/configuraciones"
+            app:layout_constraintTop_toTopOf="@id/titulo_tool_bar"
+            app:layout_constraintBottom_toBottomOf="@id/titulo_tool_bar"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:src="@drawable/ic_configuraciones"
             android:clickable="true"
             android:focusable="true"
             android:background="?attr/selectableItemBackground"
@@ -45,13 +46,14 @@
         <ImageView
             android:id="@+id/agregar_habito"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            app:layout_constraintEnd_toStartOf="@id/configuraciones"
             android:src="@drawable/ic_add"
             android:clickable="true"
             android:focusable="true"
             android:background="?attr/selectableItemBackground"
+            android:layout_marginEnd="12dp"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

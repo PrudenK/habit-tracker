@@ -1,8 +1,9 @@
-package com.pruden.habits.fragments
+package com.pruden.habits.metodos.Fragments
 
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
 import com.pruden.habits.R
+import com.pruden.habits.fragments.AgregarHabitoFragment
 
 fun cargarFragmentAgregarPartidaManual(activity: FragmentActivity, argumentos : Bundle? = null){
     val fragment = AgregarHabitoFragment()

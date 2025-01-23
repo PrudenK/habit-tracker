@@ -2,12 +2,10 @@ package com.pruden.habits
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.PopupMenu
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,10 +18,9 @@ import com.pruden.habits.clases.entities.HabitoEntity
 import com.pruden.habits.elementos.SincronizadorDeScrolls
 import com.pruden.habits.metodos.Fechas.generateLastDates
 import com.pruden.habits.databinding.ActivityMainBinding
-import com.pruden.habits.fragments.cargarFragmentAgregarPartidaManual
-import com.pruden.habits.metodos.Dialogos.borrarTodosLosDatos
+import com.pruden.habits.metodos.Fragments.cargarFragmentAgregarPartidaManual
 import com.pruden.habits.metodos.Fechas.devolverListaHabitos
-import com.pruden.habits.metodos.exportarDatos.exportarHabitosCSV
+import com.pruden.habits.metodos.Fragments.cargarFragmentConfiguraciones
 
 
 class MainActivity : AppCompatActivity(), OnLongClickHabito {
@@ -57,7 +54,7 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
 
         agregarHabito()
 
-        menu()
+        configuraciones()
     }
 
     private fun configurarRecyclerHabitos() {
@@ -115,31 +112,9 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         }
     }
 
-    fun menu(){
-        mBinding.opcionesMenu.setOnClickListener {
-            val contextWrapper = ContextThemeWrapper(this, R.style.CustomPopupMenu)
-
-            val popupMenu = PopupMenu(contextWrapper, mBinding.opcionesMenu)
-            popupMenu.menuInflater.inflate(R.menu.menu_opciones, popupMenu.menu)
-
-            popupMenu.setOnMenuItemClickListener { item ->
-                when (item.itemId) {
-                    R.id.menu_exportar -> {
-                        exportarHabitosCSV(this)
-                        true
-                    }
-                    R.id.menu_importar ->{
-
-                        true
-                    }
-                    R.id.menu_borrar ->{
-                        borrarTodosLosDatos(this, this)
-                        true
-                    }
-                    else -> false
-                }
-            }
-            popupMenu.show()
+    fun configuraciones(){
+        mBinding.configuraciones.setOnClickListener {
+            cargarFragmentConfiguraciones(this)
         }
     }
 

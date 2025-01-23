@@ -53,7 +53,6 @@ class AgregarHabitoFragment : Fragment() {
         }
         lanzarHiloConJoin(hilo)
 
-        Log.d("341324131324", nombresDeHabitosDB.toString())
 
         return binding.root
     }
