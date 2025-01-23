@@ -79,7 +79,10 @@ fun crearFicherosDataHabitosCSVPorHabito(habitos: MutableList<HabitoEntity>, con
     lanzarHiloConJoin(hilo)
 
     val directorio = File(contexto.filesDir, "Habitos_Data_${obtenerFechaActual()}").apply {
-        if (!exists()) mkdir()
+        if (exists()) {
+            deleteRecursively()
+        }
+        mkdir()
     }
 
     for(habito in habitos){

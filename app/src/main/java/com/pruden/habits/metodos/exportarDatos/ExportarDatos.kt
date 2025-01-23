@@ -1,6 +1,7 @@
 package com.pruden.habits.metodos.exportarDatos
 
 import android.content.Context
+import android.util.Log
 import com.pruden.habits.baseDatos.HabitosApplication
 import com.pruden.habits.clases.entities.HabitoEntity
 import com.pruden.habits.metodos.Dialogos.makeToast
@@ -30,6 +31,21 @@ fun exportarSolosLosHabitosCSV(contexto : Context){
         val habitosCSV = crearFicheroHabitosCSV(habitos, contexto)
 
         descargarCSVFile(contexto, habitosCSV)
+
+    }else{
+        makeToast("No hay hábitos que exportar", contexto)
+    }
+}
+
+fun exportarSolosLosRegistrosCSV(contexto : Context){
+    val habitos = devolverTdoosLosHabitosEntity()
+
+    if(habitos.isNotEmpty()){
+        val registros = crearFicherosDataHabitosCSVPorHabito(habitos, contexto)
+
+        val zip = crearZipConContenidoDeDirectorio(contexto, registros)
+
+        descargarZip(contexto, zip)
 
     }else{
         makeToast("No hay hábitos que exportar", contexto)

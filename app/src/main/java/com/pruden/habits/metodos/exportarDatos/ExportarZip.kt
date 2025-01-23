@@ -69,3 +69,16 @@ fun descargarCSVFile(context: Context, file: File) {
 
     context.startActivity(Intent.createChooser(intent, "Compartir archivo CSV"))
 }
+
+
+fun crearZipConContenidoDeDirectorio(context: Context, directorio: File): File {
+    val zipFile = File(context.filesDir, "Datos_Directorio_${obtenerFechaActual()}.zip")
+
+    ZipOutputStream(BufferedOutputStream(FileOutputStream(zipFile))).use { zos ->
+        // Agregar el contenido del directorio al ZIP
+        agregarDirectorioAlZip(directorio, zos)
+    }
+
+    return zipFile
+}
+
