@@ -20,6 +20,7 @@ import com.pruden.habits.baseDatos.HabitosApplication
 import com.pruden.habits.clases.entities.HabitoEntity
 import com.pruden.habits.databinding.FragmentConfiguracionesBinding
 import com.pruden.habits.metodos.Dialogos.borrarTodosLosDatos
+import com.pruden.habits.metodos.Dialogos.borrarTodosLosRegistros
 import com.pruden.habits.metodos.Dialogos.makeToast
 import com.pruden.habits.metodos.exportarDatos.exportarHabitosCSV
 import com.pruden.habits.metodos.lanzarHiloConJoin
@@ -41,7 +42,9 @@ class ConfiguracionesFragment : Fragment() {
         main = activity as MainActivity
 
         borrarTodosLosDatosFragment()
+        borrarTodosLosRegistrosFragment()
         exportartTodosLosDatosCSV()
+
 
         return binding.root
     }
@@ -100,4 +103,10 @@ class ConfiguracionesFragment : Fragment() {
         }
     }
 
+    private fun borrarTodosLosRegistrosFragment(){
+        binding.borrarTodosLosRegistrosFragment.setOnClickListener {
+            borrarTodosLosRegistros(requireContext(), main)
+
+        }
+    }
 }

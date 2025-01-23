@@ -210,6 +210,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/borrar_todos_los_registros_fragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Borrar solo los registros"
