@@ -1,6 +1,5 @@
 package com.pruden.habits.fragments
 
-import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,21 +8,16 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.textfield.TextInputEditText
 import com.pruden.habits.MainActivity
 import com.pruden.habits.R
-import com.pruden.habits.baseDatos.HabitosApplication
-import com.pruden.habits.clases.entities.HabitoEntity
 import com.pruden.habits.databinding.FragmentConfiguracionesBinding
 import com.pruden.habits.metodos.Dialogos.borrarTodosLosDatos
 import com.pruden.habits.metodos.Dialogos.borrarTodosLosRegistros
 import com.pruden.habits.metodos.Dialogos.makeToast
-import com.pruden.habits.metodos.exportarDatos.exportarHabitosCSV
-import com.pruden.habits.metodos.lanzarHiloConJoin
+import com.pruden.habits.metodos.exportarDatos.exportarSolosLosHabitosCSV
+import com.pruden.habits.metodos.exportarDatos.exportarTodosLosHabitosCSV
 
 
 @Suppress("DEPRECATION")
@@ -44,6 +38,7 @@ class ConfiguracionesFragment : Fragment() {
         borrarTodosLosDatosFragment()
         borrarTodosLosRegistrosFragment()
         exportartTodosLosDatosCSV()
+        exportarSoloLosHabitos()
 
 
         return binding.root
@@ -99,7 +94,7 @@ class ConfiguracionesFragment : Fragment() {
 
     private fun exportartTodosLosDatosCSV(){
         binding.exportartTodosLosDatosCsvFragment.setOnClickListener {
-            exportarHabitosCSV(requireContext())
+            exportarTodosLosHabitosCSV(requireContext())
         }
     }
 
@@ -107,6 +102,12 @@ class ConfiguracionesFragment : Fragment() {
         binding.borrarTodosLosRegistrosFragment.setOnClickListener {
             borrarTodosLosRegistros(requireContext(), main)
 
+        }
+    }
+
+    private fun exportarSoloLosHabitos(){
+        binding.exportarSoloLosHabitosFragment.setOnClickListener {
+            exportarSolosLosHabitosCSV(requireContext())
         }
     }
 }
