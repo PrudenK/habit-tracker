@@ -8,26 +8,34 @@ import android.content.Intent
 import androidx.core.content.FileProvider
 import com.pruden.habits.metodos.Fechas.obtenerFechaActual
 
-fun crearZipConCSV(context: Context, habitosCSV: File, dataHabitosCSV: File): File {
-    val zipFile = File(context.filesDir, "archivos_csv_${obtenerFechaActual()}.zip")
+fun crearZipConArchivosYDirectorio(context: Context, habitosCSV: File, dataHabitosCSV: File, directorio: File): File {
+    val zipFile = File(context.filesDir, "Datos_Habit_Tracker_${obtenerFechaActual()}.zip")
 
     ZipOutputStream(BufferedOutputStream(FileOutputStream(zipFile))).use { zos ->
-        FileInputStream(habitosCSV).use { fis ->
-            val entry = ZipEntry(habitosCSV.name)
-            zos.putNextEntry(entry)
-            fis.copyTo(zos)
-            zos.closeEntry()
+        listOf(habitosCSV, dataHabitosCSV).forEach { file ->
+            FileInputStream(file).use { fis ->
+                val entry = ZipEntry(file.name) // Nombre del archivo
+                zos.putNextEntry(entry)
+                fis.copyTo(zos)
+                zos.closeEntry()
+            }
         }
 
-        FileInputStream(dataHabitosCSV).use { fis ->
-            val entry = ZipEntry(dataHabitosCSV.name)
+        agregarDirectorioAlZip(directorio, zos)
+    }
+
+    return zipFile
+}
+
+private fun agregarDirectorioAlZip(directorio: File, zos: ZipOutputStream) {
+    directorio.listFiles()?.forEach { file ->
+        FileInputStream(file).use { fis ->
+            val entry = ZipEntry("${directorio.name}/${file.name}")
             zos.putNextEntry(entry)
             fis.copyTo(zos)
             zos.closeEntry()
         }
     }
-
-    return zipFile
 }
 
 fun descargarZip(context: Context, zipFile: File) {

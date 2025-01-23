@@ -22,8 +22,9 @@ fun exportarHabitosCSV(contexto : Context){
     if(habitos.isNotEmpty()){
         val habitosCSV = crearFicheroHabitosCSV(habitos, contexto)
         val dataHabitosCSV = crearFicheroDATAHabitosCSV(habitos, contexto)
+        val directorioDataHabitos = crearFicherosDataHabitosCSVPorHabito(habitos, contexto)
 
-        val zipFile = crearZipConCSV(contexto, habitosCSV, dataHabitosCSV)
+        val zipFile = crearZipConArchivosYDirectorio(contexto, habitosCSV, dataHabitosCSV, directorioDataHabitos)
 
         descargarZip(contexto, zipFile)
     }else{

@@ -23,4 +23,7 @@ interface DataHabitoDao {
 
     @Query("Select * from datahabitos where nombre = :nombre")
     fun obtenerDatosHabitoPorIdHabito(nombre: String): MutableList<DataHabitoEntity>
+
+    @Query("Select * from datahabitos")
+    fun obtenerTodoDataHabitos(): MutableList<DataHabitoEntity>
 }

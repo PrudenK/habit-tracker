@@ -63,8 +63,39 @@ fun crearFicheroDATAHabitosCSV(habitos: MutableList<HabitoEntity>, contexto: Con
         stringBuilder.append(linea+"\n")
     }
 
-    val csvHabitos = File(contexto.filesDir, "Data_Habitos_${obtenerFechaActual()}.csv")
+    val csvHabitos = File(contexto.filesDir, "Habitos_Data_${obtenerFechaActual()}.csv")
     csvHabitos.writeText(stringBuilder.toString())
 
     return csvHabitos
+}
+
+fun crearFicherosDataHabitosCSVPorHabito(habitos: MutableList<HabitoEntity>, contexto: Context): File{
+    val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    var listaDataHabito = mutableListOf<DataHabitoEntity>()
+
+    val hilo = Thread{
+        listaDataHabito = HabitosApplication.database.dataHabitoDao().obtenerTodoDataHabitos()
+    }
+    lanzarHiloConJoin(hilo)
+
+    val directorio = File(contexto.filesDir, "Habitos_Data_${obtenerFechaActual()}").apply {
+        if (!exists()) mkdir()
+    }
+
+    for(habito in habitos){
+        val stringBuilder = StringBuilder()
+        stringBuilder.append("Fecha,${habito.nombre},notas\n")
+
+        val listaOrdenada = listaDataHabito.filter { it.nombre == habito.nombre  }.sortedBy {
+            dateFormat.parse(it.fecha)
+        }
+        for(data in listaOrdenada){
+            stringBuilder.append("${data.fecha},${data.valorCampo},${data.notas}\n")
+        }
+        val file = File(directorio, "Data_${habito.nombre}_${obtenerFechaActual()}.csv")
+        file.writeText(stringBuilder.toString())
+    }
+
+
+    return directorio
 }
