@@ -168,7 +168,7 @@
         />
 
     <TextView
-        android:id="@+id/hora_seleccionada"
+        android:id="@+id/hora_seleccionada_numercio"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
@@ -191,7 +191,7 @@
         android:layout_height="wrap_content"
         android:hint="Notificación. (Ej; ¡Toca Gym!)"
         app:endIconMode="clear_text"
-        app:layout_constraintTop_toBottomOf="@id/hora_seleccionada"
+        app:layout_constraintTop_toBottomOf="@id/hora_seleccionada_numercio"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="12dp"
