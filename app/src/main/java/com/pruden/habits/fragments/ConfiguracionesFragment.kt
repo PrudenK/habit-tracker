@@ -16,6 +16,7 @@ import com.pruden.habits.databinding.FragmentConfiguracionesBinding
 import com.pruden.habits.metodos.Dialogos.borrarTodosLosDatos
 import com.pruden.habits.metodos.Dialogos.borrarTodosLosRegistros
 import com.pruden.habits.metodos.Dialogos.makeToast
+import com.pruden.habits.metodos.exportarDatos.exportarCopiaDeSeguridadCSV
 import com.pruden.habits.metodos.exportarDatos.exportarSolosLosHabitosCSV
 import com.pruden.habits.metodos.exportarDatos.exportarSolosLosRegistrosCSV
 import com.pruden.habits.metodos.exportarDatos.exportarTodosLosHabitosCSV
@@ -41,6 +42,7 @@ class ConfiguracionesFragment : Fragment() {
         exportartTodosLosDatosCSV()
         exportarSoloLosHabitos()
         exportarSoloLosRegistros()
+        exportarCopiaDeSeguridad()
 
 
         return binding.root
@@ -116,6 +118,12 @@ class ConfiguracionesFragment : Fragment() {
     private fun exportarSoloLosRegistros(){
         binding.exportarSoloLosRegistrosFragment.setOnClickListener {
             exportarSolosLosRegistrosCSV(requireContext())
+        }
+    }
+
+    private fun exportarCopiaDeSeguridad(){
+        binding.exportarCopiaSeguridadFragment.setOnClickListener {
+            exportarCopiaDeSeguridadCSV(requireContext())
         }
     }
 }

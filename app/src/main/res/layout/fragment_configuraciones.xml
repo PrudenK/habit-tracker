@@ -147,6 +147,7 @@
                     />
 
                 <TextView
+                    android:id="@+id/exportar_copia_seguridad_fragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Exportar copia de seguridad"

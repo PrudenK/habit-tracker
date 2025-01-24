@@ -51,3 +51,16 @@ fun exportarSolosLosRegistrosCSV(contexto : Context){
         makeToast("No hay hábitos que exportar", contexto)
     }
 }
+
+fun exportarCopiaDeSeguridadCSV(contexto: Context){
+    val habitos = devolverTdoosLosHabitosEntity()
+
+    if(habitos.isNotEmpty()){
+        val copiaSeguridad = crearFicheroCopiaSeguridad(habitos, contexto)
+
+        descargarCSVFile(contexto, copiaSeguridad)
+
+    }else{
+        makeToast("No hay hábitos que exportar", contexto)
+    }
+}

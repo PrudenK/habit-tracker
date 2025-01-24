@@ -13,3 +13,11 @@ fun devolverCabeceraDataHabitos(habitos : MutableList<HabitoEntity>): String{
     }
     return cabecera
 }
+
+fun devolverCabeceraCopiaDeSeguridadData(habitos : MutableList<HabitoEntity>): String{
+    var cabecera = "Fecha"
+    for(habito in habitos){
+        cabecera += ","+habito.nombre+","+habito.nombre+"_Notas"
+    }
+    return cabecera
+}
