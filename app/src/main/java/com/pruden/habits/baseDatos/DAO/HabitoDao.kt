@@ -26,6 +26,9 @@ interface HabitoDao {
            H.tipoNumerico, 
            H.unidad, 
            H.color as colorHabito,
+           H.descripcion,
+           H.horaNotificacion,
+           H.mensajeNotificacion,
            '[' || GROUP_CONCAT(D.valorCampo) || ']' AS listaValores, 
            '[' || GROUP_CONCAT('"' || IFNULL(D.notas, '') || '"') || ']' AS listaNotas,
            '[' || GROUP_CONCAT('"' || D.fecha || '"') || ']' AS listaFechas

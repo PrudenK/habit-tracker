@@ -94,13 +94,15 @@ class HabitoAdapter (
 
 
             binding.nombreHabito.setOnLongClickListener {
-                Log.d("adsfadfas", "aefjadkfljadfadfjadsfadfadfad")
                 onLongListenr.onLongClickListenerHabito(HabitoEntity(
                     nombre = habito.nombre,
                     objetivo = habito.objetivo,
                     tipoNumerico = habito.tipoNumerico,
                     unidad = habito.unidad,
-                    color = habito.colorHabito
+                    color = habito.colorHabito,
+                    descripcion = habito.descripcion,
+                    horaNotificacion = habito.horaNotificacion,
+                    mensajeNotificacion = habito.mensajeNotificacion
                 ))
                 true
             }
@@ -184,19 +186,33 @@ class HabitoAdapter (
                     HabitosApplication.database.dataHabitoDao().updateDataHabito(habitoData)
                 }.start()
 
-                if(inputCantidad.text.toString().toFloat() >= habitoAux.objetivo.toFloat()){
+
+
+                fun cumplido(){
                     tvNumerico.puntuacion.setTextColor(habitoAux.color)
                     tvNumerico.unidad.setTextColor(habitoAux.color)
 
                     tvNumerico.puntuacion.setTypeface(null, Typeface.BOLD)
                     tvNumerico.unidad.setTypeface(null, Typeface.BOLD)
-                }else{
+                }
+
+                fun noCumplido(){
                     tvNumerico.puntuacion.setTextColor(ContextCompat.getColor(contexto, R.color.black))
                     tvNumerico.unidad.setTextColor(ContextCompat.getColor(contexto, R.color.black))
 
                     tvNumerico.puntuacion.setTypeface(null, Typeface.NORMAL)
                     tvNumerico.unidad.setTypeface(null, Typeface.NORMAL)
                 }
+
+                val objetivo = habitoAux.objetivo.split("@")[0]
+                val condicion = habitoAux.objetivo.split("@")[1]
+
+                when(condicion){
+                    "Más de"-> if (habitoData.valorCampo.toFloat() >= objetivo.toFloat()) cumplido()  else noCumplido()
+                    "Igual a"-> if (habitoData.valorCampo.toFloat() == objetivo.toFloat()) cumplido()  else noCumplido()
+                    "Menos de"-> if (habitoData.valorCampo.toFloat() < objetivo.toFloat()) cumplido()  else noCumplido()
+                }
+
             }
         }
 

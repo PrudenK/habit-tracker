@@ -36,18 +36,30 @@ class RegistroNumericoAdapter (val listaRegistros: MutableList<DataHabitoEntity>
         val registro = listaRegistros[position]
         with(holder) {
 
-            if(registro.valorCampo.toFloat() >= habitoAux.objetivo.toFloat()){
+            fun cumplido(){
                 binding.unidad.setTextColor(habitoAux.color)
                 binding.unidad.setTypeface(null, Typeface.BOLD)
 
                 binding.puntuacion.setTextColor(habitoAux.color)
                 binding.puntuacion.setTypeface(null, Typeface.BOLD)
-            }else{
+            }
+
+            fun noCumplido(){
                 binding.unidad.setTextColor(ContextCompat.getColor(contexto, R.color.black))
                 binding.unidad.setTypeface(null, Typeface.NORMAL)
 
                 binding.puntuacion.setTextColor(ContextCompat.getColor(contexto, R.color.black))
                 binding.puntuacion.setTypeface(null, Typeface.NORMAL)
+            }
+
+            val objetivo = habitoAux.objetivo.split("@")[0]
+            val condicion = habitoAux.objetivo.split("@")[1]
+
+
+            when(condicion){
+                "Más de"-> if (registro.valorCampo.toFloat() >= objetivo.toFloat()) cumplido()  else noCumplido()
+                "Igual a"-> if (registro.valorCampo.toFloat() == objetivo.toFloat()) cumplido()  else noCumplido()
+                "Menos de"-> if (registro.valorCampo.toFloat() < objetivo.toFloat()) cumplido()  else noCumplido()
             }
 
 
@@ -57,6 +69,8 @@ class RegistroNumericoAdapter (val listaRegistros: MutableList<DataHabitoEntity>
             binding.itemRegistroNumerico.setOnClickListener {
                 listener.onClickNumericoRegistro(TextViewsNumerico(binding.unidad, binding.puntuacion), registro, habitoAux)
             }
+
+
         }
 
     }

@@ -126,14 +126,26 @@ class AgregarHabitoFragment : Fragment() {
                             nombreRepetido = true
                             campoFecha = nombre.lowercase() == "Fecha"
                         }else{
+                            val valorSpinner = vistaDinamicaActual.findViewById<Spinner>(R.id.spinner_opciones).selectedItem.toString()
+                            val descripcion = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_descripcion_numerico).text?.toString()?.takeIf { it.isNotBlank() }
+                            val hora = vistaDinamicaActual.findViewById<TextView>(R.id.hora_seleccionada_numercio).text?.toString()?.takeIf { it.isNotBlank() }
+                            var mensaje: String? = null
+                            if(hora != null){
+                                mensaje = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_mensaje_noti_num).text.toString()
+                            }
+
                             val hilo = Thread{
                                 HabitosApplication.database.habitoDao().insertHabito(
                                     HabitoEntity(
                                         nombre = nombre,
-                                        objetivo = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_objetivo).text.toString().toFloat().let { String.format("%.2f", it) }.replace(",", "."),
+                                        objetivo = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_objetivo).text.toString()
+                                            .toFloat().let { String.format("%.2f", it) }.replace(",", ".")+"@"+valorSpinner,
                                         tipoNumerico = true,
                                         unidad = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_unidad).text.toString(),
-                                        color = colorHabito
+                                        color = colorHabito,
+                                        descripcion = descripcion,
+                                        horaNotificacion = hora,
+                                        mensajeNotificacion = mensaje
                                     )
                                 )
                             }
@@ -149,6 +161,13 @@ class AgregarHabitoFragment : Fragment() {
                             nombreRepetido = true
                             campoFecha = nombre.lowercase() == "Fecha"
                         }else{
+                            val descripcion = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_descripcion_booleano).text?.toString()?.takeIf { it.isNotBlank() }
+                            val hora = vistaDinamicaActual.findViewById<TextView>(R.id.hora_seleccionada_booleano).text?.toString()?.takeIf { it.isNotBlank() }
+                            var mensaje: String? = null
+                            if(hora != null){
+                                mensaje = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_mensaje_noti_booleano).text.toString()
+                            }
+
                             val hilo = Thread{
                                 HabitosApplication.database.habitoDao().insertHabito(
                                     HabitoEntity(
@@ -156,7 +175,10 @@ class AgregarHabitoFragment : Fragment() {
                                         objetivo = null,
                                         tipoNumerico = false,
                                         unidad = null,
-                                        color = colorHabito
+                                        color = colorHabito,
+                                        descripcion = descripcion,
+                                        horaNotificacion = hora,
+                                        mensajeNotificacion = mensaje
                                     )
                                 )
                             }
