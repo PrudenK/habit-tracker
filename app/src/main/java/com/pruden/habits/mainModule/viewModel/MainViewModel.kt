@@ -6,6 +6,10 @@ import androidx.lifecycle.ViewModel
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.mainModule.model.MainInteractor
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainViewModel: ViewModel() {
     private val interactor = MainInteractor()
@@ -31,4 +35,11 @@ class MainViewModel: ViewModel() {
     fun borrarHabito(habitoEntity: HabitoEntity){
         interactor.borrarHabito(habitoEntity)
     }
+
+    fun getHabitoPorNombre(nombre: String, callback: (Habito) -> Unit){
+        interactor.getHabitoPorNombre(nombre){
+            callback(it)
+        }
+    }
+
 }

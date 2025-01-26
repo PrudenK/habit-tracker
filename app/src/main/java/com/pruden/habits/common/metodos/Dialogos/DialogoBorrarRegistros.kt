@@ -32,7 +32,7 @@ fun borrarTodosLosRegistros(contexto: Context, main: MainActivity){
             HabitosApplication.database.habitoDao().borrarTodosLosRegistros()
 
             main.runOnUiThread {
-                main.actualizarConDatos()
+                //main.actualizarConDatos()
             }
         }
 

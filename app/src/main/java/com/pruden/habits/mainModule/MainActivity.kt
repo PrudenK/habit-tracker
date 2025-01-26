@@ -2,6 +2,7 @@ package com.pruden.habits.mainModule
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
@@ -11,14 +12,12 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.pruden.habits.HabitosApplication
 import com.pruden.habits.R
 import com.pruden.habits.mainModule.adapters.FechaAdapter
 import com.pruden.habits.mainModule.adapters.HabitoAdapter
 import com.pruden.habits.mainModule.adapters.listeners.OnLongClickHabito
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.elementos.SincronizadorDeScrolls
-import com.pruden.habits.common.metodos.Fechas.devolverListaHabitos
 import com.pruden.habits.common.metodos.Fechas.generateLastDates
 import com.pruden.habits.common.metodos.Fragments.cargarFragmentAgregarPartidaManual
 import com.pruden.habits.common.metodos.Fragments.cargarFragmentConfiguraciones
@@ -115,8 +114,6 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         dialog.show()
     }
 
-
-
     fun agregarHabito(){
         mBinding.agregarHabito.setOnClickListener {
             cargarFragmentAgregarPartidaManual(this)
@@ -129,11 +126,13 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         }
     }
 
-    fun actualizarConDatos() {
-        runOnUiThread {
-            sincronizadorDeScrolls.limpiarRecycler()
-            sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)
-            habitosAdapter.actualizarLista(devolverListaHabitos())
+    fun actualizarConDatos(nombre: String) {
+        mainViewModel.getHabitoPorNombre(nombre) { habito ->
+            runOnUiThread {
+                sincronizadorDeScrolls.limpiarRecycler()
+                sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)
+                habitosAdapter.actualizarTrasInsercion(habito)
+            }
         }
     }
 
@@ -141,7 +140,7 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         runOnUiThread {
             sincronizadorDeScrolls.limpiarRecycler()
             sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)
-            habitosAdapter.actualizarLista(mutableListOf())
+            //habitosAdapter.actualizarLista(mutableListOf())
         }
     }
 }

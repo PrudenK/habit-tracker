@@ -22,6 +22,15 @@ class MainInteractor {
         }
     }
 
+    fun getHabitoPorNombre(nombre: String, callback: (Habito) -> Unit){
+        CoroutineScope(Dispatchers.IO).launch {
+            val habito = HabitosApplication.database.habitoDao().obtenerHabitoConValoresPorNombre(nombre)
+            withContext(Dispatchers.Main){
+                callback(habito)
+            }
+        }
+    }
+
     private suspend fun sincronizarRegistrosFaltantes() {
         val listaNombresHabitos = HabitosApplication.database.habitoDao().obtenerTdosLosNombres()
         if (listaNombresHabitos.isNotEmpty()) {
@@ -47,4 +56,5 @@ class MainInteractor {
             HabitosApplication.database.habitoDao().deleteHabito(habitoEntity)
         }
     }
+
 }

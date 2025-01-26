@@ -18,18 +18,23 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.pruden.habits.mainModule.MainActivity
 import com.pruden.habits.common.elementos.ColorPickerView
 import com.pruden.habits.R
-import com.pruden.habits.HabitosApplication
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.metodos.Fechas.generarFechasFormatoYYYYMMDD
-import com.pruden.habits.common.metodos.lanzarHiloConJoin
 import com.pruden.habits.databinding.FragmentAgregarHabitoBinding
+import com.pruden.habits.fragmentsModule.viewModel.AgregarHabitoViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.Calendar
 
 @Suppress("DEPRECATION")
@@ -44,6 +49,15 @@ class AgregarHabitoFragment : Fragment() {
 
     private var nombresDeHabitosDB = mutableListOf<String>()
 
+    //MVVM
+    private lateinit var fragmentViewModel: AgregarHabitoViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        fragmentViewModel = ViewModelProvider(requireActivity())[AgregarHabitoViewModel::class.java]
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -52,13 +66,10 @@ class AgregarHabitoFragment : Fragment() {
         binding = FragmentAgregarHabitoBinding.inflate(inflater, container, false)
 
         cargarContenedorDinamico(R.layout.layout_numerico)
-        /*
-        val hilo = Thread{
-            nombresDeHabitosDB = HabitosApplication.database.habitoDao().obtenerTdosLosNombres().map { it.lowercase() }.toMutableList()
-        }
-        lanzarHiloConJoin(hilo)
 
-         */
+        fragmentViewModel.devolverTodosLosNombres {
+            nombresDeHabitosDB = it
+        }
 
 
         return binding.root
@@ -119,10 +130,11 @@ class AgregarHabitoFragment : Fragment() {
 
                 var nombreRepetido = false
                 var campoFecha = false
+                var nombre = ""
 
                 if(habitoValido){
                     if(numerico){
-                        val nombre = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_numerico).text.toString()
+                        nombre = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_numerico).text.toString()
 
                         if(nombresDeHabitosDB.contains(nombre.lowercase()) || nombre.lowercase() == "Fecha"){
                             nombreRepetido = true
@@ -136,28 +148,23 @@ class AgregarHabitoFragment : Fragment() {
                                 mensaje = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_mensaje_noti_num).text.toString()
                             }
 
-                            val hilo = Thread{
-                                HabitosApplication.database.habitoDao().insertHabito(
-                                    HabitoEntity(
-                                        nombre = nombre,
-                                        objetivo = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_objetivo).text.toString()
-                                            .toFloat().let { String.format("%.2f", it) }.replace(",", ".")+"@"+valorSpinner,
-                                        tipoNumerico = true,
-                                        unidad = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_unidad).text.toString(),
-                                        color = colorHabito,
-                                        descripcion = descripcion,
-                                        horaNotificacion = hora,
-                                        mensajeNotificacion = mensaje
-                                    )
+                            fragmentViewModel.insertarHabito(
+                                HabitoEntity(
+                                    nombre = nombre,
+                                    objetivo = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_objetivo).text.toString()
+                                        .toFloat().let { String.format("%.2f", it) }.replace(",", ".")+"@"+valorSpinner,
+                                    tipoNumerico = true,
+                                    unidad = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_unidad).text.toString(),
+                                    color = colorHabito,
+                                    descripcion = descripcion,
+                                    horaNotificacion = hora,
+                                    mensajeNotificacion = mensaje
                                 )
-                            }
-                            lanzarHiloConJoin(hilo)
-
-                            agregarRegistrosDBDAtaHabitos(nombre)
+                            )
                         }
 
                     }else{
-                        val nombre = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_boolean).text.toString()
+                        nombre = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_boolean).text.toString()
 
                         if(nombresDeHabitosDB.contains(nombre.lowercase()) || nombre.lowercase() == "Fecha"){
                             nombreRepetido = true
@@ -170,23 +177,19 @@ class AgregarHabitoFragment : Fragment() {
                                 mensaje = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_mensaje_noti_booleano).text.toString()
                             }
 
-                            val hilo = Thread{
-                                HabitosApplication.database.habitoDao().insertHabito(
-                                    HabitoEntity(
-                                        nombre = nombre,
-                                        objetivo = null,
-                                        tipoNumerico = false,
-                                        unidad = null,
-                                        color = colorHabito,
-                                        descripcion = descripcion,
-                                        horaNotificacion = hora,
-                                        mensajeNotificacion = mensaje
-                                    )
+                            fragmentViewModel.insertarHabito(
+                                HabitoEntity(
+                                    nombre = nombre,
+                                    objetivo = null,
+                                    tipoNumerico = false,
+                                    unidad = null,
+                                    color = colorHabito,
+                                    descripcion = descripcion,
+                                    horaNotificacion = hora,
+                                    mensajeNotificacion = mensaje
                                 )
-                            }
-                            lanzarHiloConJoin(hilo)
+                            )
 
-                            agregarRegistrosDBDAtaHabitos(nombre)
                         }
 
                     }
@@ -197,11 +200,15 @@ class AgregarHabitoFragment : Fragment() {
                         }else{
                             Snackbar.make(binding.root, "Ya tienes un hábito con ese nombre", Snackbar.LENGTH_SHORT).show()
                         }
-                    }else{
-                        main.actualizarConDatos()
-
-                        Snackbar.make(binding.root, "Hábito añadido con éxito", Snackbar.LENGTH_SHORT).show()
-                        activity?.onBackPressed()
+                    }else{ //TODO REVISAR
+                        CoroutineScope(Dispatchers.IO).launch {
+                            agregarRegistrosDBDAtaHabitos(nombre)
+                            withContext(Dispatchers.Main) {
+                                main.actualizarConDatos(nombre)
+                                Snackbar.make(binding.root, "Hábito añadido con éxito", Snackbar.LENGTH_SHORT).show()
+                                activity?.onBackPressed()
+                            }
+                        }
                     }
 
 
@@ -362,24 +369,19 @@ class AgregarHabitoFragment : Fragment() {
         return vistaDinamicaActual.findViewById(id)
     }
 
-    private fun agregarRegistrosDBDAtaHabitos(nombreHabito : String){
-        /*
+    private suspend fun agregarRegistrosDBDAtaHabitos(nombreHabito: String) {
         val listaFechas = generarFechasFormatoYYYYMMDD()
-        val hilo = Thread{
-            for(fecha in listaFechas){
-                HabitosApplication.database.dataHabitoDao().insertDataHabito(
-                    DataHabitoEntity(
-                        nombre = nombreHabito,
-                        fecha = fecha,
-                        valorCampo = "0.0",
-                        notas = null
-                    )
-                )
-            }
-        }
-        hilo.start()
-        hilo.join()
 
-         */
+        listaFechas.forEach { fecha ->
+            fragmentViewModel.insertarDataHabito(
+                DataHabitoEntity(
+                    nombre = nombreHabito,
+                    fecha = fecha,
+                    valorCampo = "0.0",
+                    notas = null
+                )
+            )
+        }
     }
+
 }

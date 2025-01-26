@@ -57,7 +57,7 @@ class HabitoAdapter (
         with(holder){
             binding.nombreHabito.text = habito.nombre
 
-            Log.d("adfads", habito.listaValores.size.toString())
+            Log.d("12345", habito.listaValores.size.toString())
 
             val listaDataHabitoEntity = mutableListOf<DataHabitoEntity>()
 
@@ -111,9 +111,9 @@ class HabitoAdapter (
         }
     }
 
-    fun actualizarLista(nuevaLista: MutableList<Habito>) {
-        listaHabitos.clear()
-        listaHabitos.addAll(nuevaLista)
+    fun actualizarTrasInsercion(habito: Habito) {
+        listaHabitos.add(habito)
+        listaHabitos.sortBy { it.nombre }
         notifyDataSetChanged()
     }
 
