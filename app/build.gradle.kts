@@ -43,15 +43,23 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
-    implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
-
+    implementation(libs.gson)
+    implementation(libs.androidx.activity)
+    //Room
     implementation(libs.androidx.room.runtime)
-    implementation(libs.glide)
+    implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
 
-    implementation(libs.gson)
+    //ViewModel
+    implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
+    //Glide
+    implementation(libs.glide)
+
+    // Corrutinas
+    implementation(libs.kotlinx.coroutines.android)
+    
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
