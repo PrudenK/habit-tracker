@@ -108,8 +108,7 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         buttonAccept.setOnClickListener {
             mainViewModel.borrarHabito(habito)
             habitosAdapter.deleteHabito(habito)
-            sincronizadorDeScrolls.limpiarRecycler()
-            sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)
+
             dialog.dismiss()
         }
 
