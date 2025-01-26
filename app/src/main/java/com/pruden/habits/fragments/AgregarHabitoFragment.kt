@@ -217,144 +217,89 @@ class AgregarHabitoFragment : Fragment() {
         vistaDinamicaActual = vistaDinamica
         binding.contenedorDinamico.addView(vistaDinamica)
 
-        when(layoutRes){
-            R.layout.layout_numerico -> {
-                numerico = true
-                val imagenColorNum = vistaDinamica.findViewById<ImageView>(R.id.img_color_habito_num)
-                colorHabito(imagenColorNum)
+        numerico = layoutRes == R.layout.layout_numerico
+        val imagenColor = vistaDinamica.findViewById<ImageView>(
+            if (numerico) R.id.img_color_habito_num else R.id.img_color_habito_booleano
+        )
+        colorHabito(imagenColor)
 
-                //TODO NOTAS PARA REFACTORIZACIÓN DE ESTE CÓDIGO
+        inicializarSpinnerSiAplica(vistaDinamica, numerico)
+        configurarTimePicker(vistaDinamica, numerico)
+        configurarNotificaciones(vistaDinamica, numerico)
+    }
 
-                //TODO; CÓDIGO DEL SPINNER
-                val spinner: Spinner = vistaDinamica.findViewById(R.id.spinner_opciones)
+    private fun inicializarSpinnerSiAplica(vistaDinamica: View, esNumerico: Boolean) {
+        if (!esNumerico) return
 
-                val opciones = listOf("Más de","Igual a","Menos de")
+        val spinner: Spinner = vistaDinamica.findViewById(R.id.spinner_opciones)
+        val opciones = listOf("Más de", "Igual a", "Menos de")
+        val adaptador = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, opciones)
+        adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinner.adapter = adaptador
+    }
 
-                val adaptador = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, opciones)
-                adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-                spinner.adapter = adaptador
+    private fun configurarTimePicker(vistaDinamica: View, esNumerico: Boolean) {
+        val horaSeleccionadaId = if (esNumerico) R.id.hora_seleccionada_numercio else R.id.hora_seleccionada_booleano
+        val horaSeleccionada = vistaDinamica.findViewById<TextView>(horaSeleccionadaId)
 
-                //TODO; CÓDIGO DEL TIMEPICKER
-                val horaSeleccionada = vistaDinamica.findViewById<TextView>(R.id.hora_seleccionada_numercio)
-                horaSeleccionada.setOnClickListener {
-                    val cal = Calendar.getInstance()
-                    val timePicker = TimePickerDialog(
-                        requireContext(),
-                        { _, hourOfDay, minute ->
-                            val hora = String.format("%02d:%02d", hourOfDay, minute)
-                            horaSeleccionada.text = hora
-                        },
-                        cal.get(Calendar.HOUR_OF_DAY),
-                        cal.get(Calendar.MINUTE),
-                        true
-                    )
-                    timePicker.show()
-                }
-
-                //TODO; CÓDIGO PARA LAS NOTIFICACIONES
-                val mensajeNotificacionesLayout = vistaDinamica.findViewById<TextInputLayout>(R.id.til_mensaje_noti_num)
-                val mensajeNotificacionesEdit = vistaDinamica.findViewById<TextInputEditText>(R.id.input_mensaje_noti_num)
-                val switchNotificaciones = vistaDinamica.findViewById<SwitchCompat>(R.id.notificaciones_habito_numerico)
-
-                switchNotificaciones.setOnCheckedChangeListener { _, isChecked ->
-                    horaSeleccionada.isEnabled = isChecked
-                    mensajeNotificacionesLayout.isEnabled = isChecked
-                    mensajeNotificacionesEdit.isEnabled = isChecked
-                    if (isChecked) {
-                        horaSeleccionada.alpha = 1f
-                        mensajeNotificacionesLayout.alpha = 1f
-                    } else {
-                        horaSeleccionada.alpha = 0.5f
-                        horaSeleccionada.text = "Seleccionar hora"
-
-                        mensajeNotificacionesLayout.alpha = 0.5f
-                        mensajeNotificacionesEdit.setText("")
-
-                    }
-                }
-
-                //TODO; PARA QUE AL CARGAR SALGA YA DESACTIVADO
-
-
-                horaSeleccionada.isEnabled = switchNotificaciones.isChecked
-                mensajeNotificacionesLayout.isEnabled = switchNotificaciones.isChecked
-                mensajeNotificacionesEdit.isEnabled = switchNotificaciones.isChecked
-                if (switchNotificaciones.isChecked) {
-                    horaSeleccionada.alpha = 1f
-                    mensajeNotificacionesLayout.alpha = 1f
-                } else {
-                    horaSeleccionada.alpha = 0.5f
-                    horaSeleccionada.text = "Seleccionar hora"
-
-                    mensajeNotificacionesLayout.alpha = 0.5f
-                }
-
-            }
-            R.layout.layout_booleano->{
-                numerico = false
-                val imagenColorNum = vistaDinamica.findViewById<ImageView>(R.id.img_color_habito_booleano)
-                colorHabito(imagenColorNum)
-
-                //TODO NOTAS PARA REFACTORIZACIÓN DE ESTE CÓDIGO
-
-                //TODO; CÓDIGO DEL TIMEPICKER
-                val horaSeleccionada = vistaDinamica.findViewById<TextView>(R.id.hora_seleccionada_booleano)
-                horaSeleccionada.setOnClickListener {
-                    val cal = Calendar.getInstance()
-                    val timePicker = TimePickerDialog(
-                        requireContext(),
-                        { _, hourOfDay, minute ->
-                            val hora = String.format("%02d:%02d", hourOfDay, minute)
-                            horaSeleccionada.text = hora
-                        },
-                        cal.get(Calendar.HOUR_OF_DAY),
-                        cal.get(Calendar.MINUTE),
-                        true
-                    )
-                    timePicker.show()
-                }
-
-                //TODO; CÓDIGO PARA LAS NOTIFICACIONES
-                val mensajeNotificacionesLayout = vistaDinamica.findViewById<TextInputLayout>(R.id.til_mensaje_noti_booleano)
-                val mensajeNotificacionesEdit = vistaDinamica.findViewById<TextInputEditText>(R.id.input_mensaje_noti_booleano)
-                val switchNotificaciones = vistaDinamica.findViewById<SwitchCompat>(R.id.notificaciones_habito_booleano)
-
-                switchNotificaciones.setOnCheckedChangeListener { _, isChecked ->
-                    horaSeleccionada.isEnabled = isChecked
-                    mensajeNotificacionesLayout.isEnabled = isChecked
-                    mensajeNotificacionesEdit.isEnabled = isChecked
-                    if (isChecked) {
-                        horaSeleccionada.alpha = 1f
-                        mensajeNotificacionesLayout.alpha = 1f
-                    } else {
-                        horaSeleccionada.alpha = 0.5f
-                        horaSeleccionada.text = "Seleccionar hora"
-
-                        mensajeNotificacionesLayout.alpha = 0.5f
-                        mensajeNotificacionesEdit.setText("")
-
-                    }
-                }
-
-                //TODO; PARA QUE AL CARGAR SALGA YA DESACTIVADO
-
-
-                horaSeleccionada.isEnabled = switchNotificaciones.isChecked
-                mensajeNotificacionesLayout.isEnabled = switchNotificaciones.isChecked
-                mensajeNotificacionesEdit.isEnabled = switchNotificaciones.isChecked
-                if (switchNotificaciones.isChecked) {
-                    horaSeleccionada.alpha = 1f
-                    mensajeNotificacionesLayout.alpha = 1f
-                } else {
-                    horaSeleccionada.alpha = 0.5f
-                    horaSeleccionada.text = "Seleccionar hora"
-
-                    mensajeNotificacionesLayout.alpha = 0.5f
-                }
-
-            }
+        horaSeleccionada.setOnClickListener {
+            val cal = Calendar.getInstance()
+            val timePicker = TimePickerDialog(
+                requireContext(),
+                { _, hourOfDay, minute ->
+                    val hora = String.format("%02d:%02d", hourOfDay, minute)
+                    horaSeleccionada.text = hora
+                },
+                cal.get(Calendar.HOUR_OF_DAY),
+                cal.get(Calendar.MINUTE),
+                true
+            )
+            timePicker.show()
         }
     }
+
+    private fun configurarNotificaciones(vistaDinamica: View, esNumerico: Boolean) {
+        val horaSeleccionadaId = if (esNumerico) R.id.hora_seleccionada_numercio else R.id.hora_seleccionada_booleano
+        val mensajeLayoutId = if (esNumerico) R.id.til_mensaje_noti_num else R.id.til_mensaje_noti_booleano
+        val mensajeEditId = if (esNumerico) R.id.input_mensaje_noti_num else R.id.input_mensaje_noti_booleano
+        val switchNotificacionesId = if (esNumerico) R.id.notificaciones_habito_numerico else R.id.notificaciones_habito_booleano
+
+        val horaSeleccionada = vistaDinamica.findViewById<TextView>(horaSeleccionadaId)
+        val mensajeNotificacionesLayout = vistaDinamica.findViewById<TextInputLayout>(mensajeLayoutId)
+        val mensajeNotificacionesEdit = vistaDinamica.findViewById<TextInputEditText>(mensajeEditId)
+        val switchNotificaciones = vistaDinamica.findViewById<SwitchCompat>(switchNotificacionesId)
+
+        switchNotificaciones.setOnCheckedChangeListener { _, isChecked ->
+            habilitarNotificaciones(isChecked, horaSeleccionada, mensajeNotificacionesLayout, mensajeNotificacionesEdit)
+        }
+
+        habilitarNotificaciones(
+            switchNotificaciones.isChecked,
+            horaSeleccionada,
+            mensajeNotificacionesLayout,
+            mensajeNotificacionesEdit
+        )
+    }
+
+    private fun habilitarNotificaciones(
+        isEnabled: Boolean,
+        horaSeleccionada: TextView,
+        mensajeNotificacionesLayout: TextInputLayout,
+        mensajeNotificacionesEdit: TextInputEditText
+    ) {
+        horaSeleccionada.isEnabled = isEnabled
+        mensajeNotificacionesLayout.isEnabled = isEnabled
+        mensajeNotificacionesEdit.isEnabled = isEnabled
+
+        horaSeleccionada.alpha = if (isEnabled) 1f else 0.5f
+        mensajeNotificacionesLayout.alpha = if (isEnabled) 1f else 0.5f
+
+        if (!isEnabled) {
+            horaSeleccionada.text = "Seleccionar hora"
+            mensajeNotificacionesEdit.setText("")
+        }
+    }
+
 
     fun dialogoColorPicker(onColorSelected: (Int) -> Unit) {
         val dialog = Dialog(requireContext())
