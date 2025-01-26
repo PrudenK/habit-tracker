@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     >
 
-    <com.pruden.habits.elementos.ColorPickerView
+    <com.pruden.habits.common.elementos.ColorPickerView
         android:id="@+id/colorPickerView"
         android:layout_width="300dp"
         android:layout_height="300dp"
