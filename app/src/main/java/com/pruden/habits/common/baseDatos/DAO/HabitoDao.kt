@@ -17,7 +17,7 @@ interface HabitoDao {
     fun updateHabito(habitoEntity: HabitoEntity)
 
     @Delete
-    fun deleteHabito(habitoEntity: HabitoEntity)
+    suspend fun deleteHabito(habitoEntity: HabitoEntity)
 
     @Query("""
     SELECT 

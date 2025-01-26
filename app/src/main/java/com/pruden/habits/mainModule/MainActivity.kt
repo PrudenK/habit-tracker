@@ -106,13 +106,10 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         }
 
         buttonAccept.setOnClickListener {
-            Thread{
-                HabitosApplication.database.habitoDao().deleteHabito(habito)
-                runOnUiThread{
-                    habitosAdapter.deleteHabito(habito)
-                    actualizarConDatos()
-                }
-            }.start()
+            mainViewModel.borrarHabito(habito)
+            habitosAdapter.deleteHabito(habito)
+            sincronizadorDeScrolls.limpiarRecycler()
+            sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)
             dialog.dismiss()
         }
 

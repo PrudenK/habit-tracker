@@ -3,6 +3,7 @@ package com.pruden.habits.mainModule.model
 import com.pruden.habits.HabitosApplication
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
+import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.metodos.Fechas.obtenerFechaActual
 import com.pruden.habits.common.metodos.Fechas.obtenerFechasEntre
 import kotlinx.coroutines.CoroutineScope
@@ -35,16 +36,15 @@ class MainInteractor {
         fechas.forEach { fecha ->
             nombresHabitos.forEach { nombre ->
                 HabitosApplication.database.dataHabitoDao().insertDataHabito(
-                    DataHabitoEntity(
-                        nombre = nombre,
-                        fecha = fecha,
-                        valorCampo = "0.0",
-                        notas = null
-                    )
+                    DataHabitoEntity(nombre, fecha, "0.0", null)
                 )
             }
         }
     }
 
-
+    fun borrarHabito(habitoEntity: HabitoEntity){
+        CoroutineScope(Dispatchers.IO).launch {
+            HabitosApplication.database.habitoDao().deleteHabito(habitoEntity)
+        }
+    }
 }

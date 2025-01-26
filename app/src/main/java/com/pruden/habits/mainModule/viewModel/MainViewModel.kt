@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.pruden.habits.common.clases.data.Habito
+import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.mainModule.model.MainInteractor
 
 class MainViewModel: ViewModel() {
@@ -25,5 +26,9 @@ class MainViewModel: ViewModel() {
             habitosList = it
             habitos.value = it
         }
+    }
+
+    fun borrarHabito(habitoEntity: HabitoEntity){
+        interactor.borrarHabito(habitoEntity)
     }
 }

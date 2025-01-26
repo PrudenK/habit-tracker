@@ -111,11 +111,6 @@ class HabitoAdapter (
         }
     }
 
-    fun deleteHabito(habito: HabitoEntity){
-        listaHabitos.remove(listaHabitos.find { it.nombre == habito.nombre })
-        notifyDataSetChanged()
-    }
-
     fun actualizarLista(nuevaLista: MutableList<Habito>) {
         listaHabitos.clear()
         listaHabitos.addAll(nuevaLista)
@@ -224,5 +219,13 @@ class HabitoAdapter (
     fun setHabitos(habitos : List<Habito>){
         listaHabitos = habitos as MutableList<Habito>
         notifyDataSetChanged()
+    }
+
+    fun deleteHabito(habitoEntity: HabitoEntity){
+        val indice = listaHabitos.indexOfFirst { it.nombre == habitoEntity.nombre }
+        if (indice != -1) {
+            listaHabitos.removeAt(indice)
+            notifyItemRemoved(indice)
+        }
     }
 }
