@@ -9,11 +9,11 @@ import java.util.Locale
 
 fun devolverContenidoHabitosCSV(habitos: MutableList<HabitoEntity>): java.lang.StringBuilder{
     val stringBuilder = StringBuilder()
-    stringBuilder.append("nombre,objetivo,tipoNumerico,unidad,color\n")
+    stringBuilder.append("nombre,objetivo,tipoNumerico,unidad,color,descrip,horaNotis,mensajeNoti\n")
 
     for(habito in habitos){
         with(habito){
-            stringBuilder.append("$nombre,$objetivo,$tipoNumerico,$unidad,$color\n")
+            stringBuilder.append("$nombre,$objetivo,$tipoNumerico,$unidad,$color,$descripcion,$horaNotificacion,$mensajeNotificacion\n")
         }
     }
     return stringBuilder
