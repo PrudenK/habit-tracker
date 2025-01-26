@@ -29,7 +29,7 @@ import com.pruden.habits.common.elementos.SincronizadorDeScrolls
 import com.pruden.habits.common.metodos.formatearNumero
 
 class HabitoAdapter (
-    val listaHabitos : MutableList<Habito>,
+    var listaHabitos : MutableList<Habito>,
     private val sincronizadorDeScrolls: SincronizadorDeScrolls,
     private val onLongListenr: OnLongClickHabito
 
@@ -221,5 +221,8 @@ class HabitoAdapter (
         dialog.show()
     }
 
-
+    fun setHabitos(habitos : List<Habito>){
+        listaHabitos = habitos as MutableList<Habito>
+        notifyDataSetChanged()
+    }
 }

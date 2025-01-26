@@ -8,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.HabitosApplication
@@ -22,6 +23,7 @@ import com.pruden.habits.common.metodos.Fechas.generateLastDates
 import com.pruden.habits.common.metodos.Fragments.cargarFragmentAgregarPartidaManual
 import com.pruden.habits.common.metodos.Fragments.cargarFragmentConfiguraciones
 import com.pruden.habits.databinding.ActivityMainBinding
+import com.pruden.habits.mainModule.viewModel.MainViewModel
 
 
 class MainActivity : AppCompatActivity(), OnLongClickHabito {
@@ -34,6 +36,9 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
     private lateinit var habitosAdapter: HabitoAdapter
 
     private val sincronizadorDeScrolls = SincronizadorDeScrolls()
+
+    //MVVM
+    private lateinit var mainViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +55,7 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         }
 
 
+        cargarViewModel()
         configurarRecyclerFechas()
         configurarRecyclerHabitos()
 
@@ -58,8 +64,16 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         configuraciones()
     }
 
+    private fun cargarViewModel() {
+        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        mainViewModel.getAllHabitosConDatos().observe(this){
+            habitosAdapter.setHabitos(it)
+        }
+    }
+
+
     private fun configurarRecyclerHabitos() {
-        habitosAdapter = HabitoAdapter(devolverListaHabitos(), sincronizadorDeScrolls, this)
+        habitosAdapter = HabitoAdapter(mutableListOf(), sincronizadorDeScrolls, this)
         linearLayoutHabitos = LinearLayoutManager(this)
 
         mBinding.recyclerHabitos.apply {

@@ -80,7 +80,7 @@ fun devolverListaHabitos(): MutableList<Habito>{
     var listaHabitos = mutableListOf<Habito>()
 
     Log.d("da", obtenerFechaActual())
-
+/*
     val hilo = Thread{
         val listaNombresHabitos = HabitosApplication.database.habitoDao().obtenerTdosLosNombres()
         if(listaNombresHabitos.isNotEmpty()){
@@ -118,15 +118,7 @@ fun devolverListaHabitos(): MutableList<Habito>{
     hilo.start()
     hilo.join()
 
-    return listaHabitos
-}
+ */
 
-fun devolverListaHabitosConCallBack(activity: Activity, callback: (MutableList<Habito>) -> Unit) {
-    val hilo = Thread {
-        val listaHabitos = HabitosApplication.database.habitoDao().obtenerHabitosConValores()
-          activity.runOnUiThread {
-            callback(listaHabitos)
-        }
-    }
-    hilo.start()
+    return listaHabitos
 }

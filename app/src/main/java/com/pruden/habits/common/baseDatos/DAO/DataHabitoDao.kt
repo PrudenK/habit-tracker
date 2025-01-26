@@ -10,7 +10,7 @@ import com.pruden.habits.common.clases.entities.DataHabitoEntity
 @Dao
 interface DataHabitoDao {
     @Insert
-    fun insertDataHabito(dataHabitoEntity: DataHabitoEntity): Long
+    suspend fun insertDataHabito(dataHabitoEntity: DataHabitoEntity): Long
 
     @Update
     fun updateDataHabito(dataHabitoEntity: DataHabitoEntity)
@@ -19,7 +19,7 @@ interface DataHabitoDao {
     fun deleteDataHabito(dataHabitoEntity: DataHabitoEntity)
 
     @Query("Select max(fecha) from datahabitos")
-    fun selectMaxFecha(): String
+    suspend fun selectMaxFecha(): String
 
     @Query("Select * from datahabitos where nombre = :nombre")
     fun obtenerDatosHabitoPorIdHabito(nombre: String): MutableList<DataHabitoEntity>

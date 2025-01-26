@@ -36,10 +36,10 @@ interface HabitoDao {
     LEFT JOIN DataHabitos AS D ON H.nombre = D.nombre
     GROUP BY H.nombre
 """)
-    fun obtenerHabitosConValores(): MutableList<Habito>
+    suspend fun obtenerHabitosConValores(): MutableList<Habito>
 
     @Query("Select nombre from habitos")
-    fun obtenerTdosLosNombres(): MutableList<String>
+    suspend fun obtenerTdosLosNombres(): MutableList<String>
 
     @Query("Select * from habitos")
     fun obtenerTodosLosHabitos(): MutableList<HabitoEntity>

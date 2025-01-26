@@ -52,11 +52,13 @@ class AgregarHabitoFragment : Fragment() {
         binding = FragmentAgregarHabitoBinding.inflate(inflater, container, false)
 
         cargarContenedorDinamico(R.layout.layout_numerico)
-
+        /*
         val hilo = Thread{
             nombresDeHabitosDB = HabitosApplication.database.habitoDao().obtenerTdosLosNombres().map { it.lowercase() }.toMutableList()
         }
         lanzarHiloConJoin(hilo)
+
+         */
 
 
         return binding.root
@@ -361,6 +363,7 @@ class AgregarHabitoFragment : Fragment() {
     }
 
     private fun agregarRegistrosDBDAtaHabitos(nombreHabito : String){
+        /*
         val listaFechas = generarFechasFormatoYYYYMMDD()
         val hilo = Thread{
             for(fecha in listaFechas){
@@ -376,5 +379,7 @@ class AgregarHabitoFragment : Fragment() {
         }
         hilo.start()
         hilo.join()
+
+         */
     }
 }
