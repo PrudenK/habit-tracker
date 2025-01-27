@@ -99,7 +99,7 @@ class ConfiguracionesFragment : Fragment() {
 
     private fun borrarTodosLosDatosFragment(){
         binding.borrarTodosLosHabitosFragment.setOnClickListener {
-            borrarTodosLosDatos(requireContext(),main)
+            borrarTodosLosDatos(requireContext(),main, viewModel)
         }
     }
 

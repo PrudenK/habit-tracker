@@ -8,8 +8,13 @@ import android.widget.TextView
 import com.pruden.habits.mainModule.MainActivity
 import com.pruden.habits.R
 import com.pruden.habits.HabitosApplication
+import com.pruden.habits.fragmentsModule.viewModel.ConfiguracionesViewModel
 
-fun borrarTodosLosDatos(contexto: Context, main: MainActivity){
+fun borrarTodosLosDatos(
+    contexto: Context,
+    main: MainActivity,
+    viewModel: ConfiguracionesViewModel
+){
     val dialogView = LayoutInflater.from(contexto).inflate(R.layout.dialog_borrar_habito, null)
     val dialog = AlertDialog.Builder(contexto).setView(dialogView).create()
 
@@ -27,10 +32,9 @@ fun borrarTodosLosDatos(contexto: Context, main: MainActivity){
     }
 
     buttonAccept.setOnClickListener {
-       Thread{
-            HabitosApplication.database.habitoDao().borrarTodosLosHabitos()
-       }.start()
-        main.actualizarDespuesDeBorrarTodosLosDatos()
+       viewModel.borrarTodosLosHabitos {
+           main.actualizarDespuesDeBorrarTodosLosDatos()
+       }
         dialog.dismiss()
     }
 

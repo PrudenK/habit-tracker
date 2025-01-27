@@ -91,4 +91,10 @@ class ConfiguracionesViewModel: ViewModel() {
             onComplete()
         }
     }
+
+    fun borrarTodosLosHabitos(onComplete: () -> Unit){
+        interactor.borrarTodosLosHabitos {
+            onComplete()
+        }
+    }
 }

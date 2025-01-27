@@ -1,11 +1,6 @@
 package com.pruden.habits.common.metodos.Fechas
 
-import android.app.Activity
-import android.util.Log
-import com.pruden.habits.HabitosApplication
 import com.pruden.habits.common.clases.data.Fecha
-import com.pruden.habits.common.clases.data.Habito
-import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Date
@@ -74,51 +69,4 @@ fun obtenerFechasEntre(diaInicio: String, diaFin: String): List<String> {
     }
 
     return listaFechas
-}
-
-fun devolverListaHabitos(): MutableList<Habito>{
-    var listaHabitos = mutableListOf<Habito>()
-
-    Log.d("da", obtenerFechaActual())
-/*
-    val hilo = Thread{
-        val listaNombresHabitos = HabitosApplication.database.habitoDao().obtenerTdosLosNombres()
-        if(listaNombresHabitos.isNotEmpty()){
-            val ultimaFechaDB = HabitosApplication.database.dataHabitoDao().selectMaxFecha()
-
-            //Log.d("adf", ultimaFechaDB)
-            //Log.d("adfadf", obtenerFechasEntre(ultimaFechaDB, obtenerFechaActual()).toString())
-
-            val listaFechas = obtenerFechasEntre(ultimaFechaDB, obtenerFechaActual())
-
-            val agregarRegistros = Thread{
-                if(listaFechas.isNotEmpty() ){
-
-
-                    for(fecha in listaFechas){
-                        for(nombre in listaNombresHabitos){
-                            HabitosApplication.database.dataHabitoDao().insertDataHabito(
-                                DataHabitoEntity(
-                                    nombre = nombre,
-                                    fecha = fecha,
-                                    valorCampo = "0.0",
-                                    notas = null
-                                )
-                            )
-                        }
-                    }
-                }
-            }
-            agregarRegistros.start()
-            agregarRegistros.join()
-        }
-
-        listaHabitos = HabitosApplication.database.habitoDao().obtenerHabitosConValores()
-    }
-    hilo.start()
-    hilo.join()
-
- */
-
-    return listaHabitos
 }

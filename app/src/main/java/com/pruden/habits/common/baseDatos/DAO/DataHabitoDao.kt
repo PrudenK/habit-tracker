@@ -16,14 +16,14 @@ interface DataHabitoDao {
     suspend fun updateDataHabito(dataHabitoEntity: DataHabitoEntity)
 
     @Delete
-    fun deleteDataHabito(dataHabitoEntity: DataHabitoEntity)
+    suspend fun deleteDataHabito(dataHabitoEntity: DataHabitoEntity)
 
     @Query("Select max(fecha) from datahabitos")
     suspend fun selectMaxFecha(): String
 
     @Query("Select * from datahabitos where nombre = :nombre")
-    fun obtenerDatosHabitoPorIdHabito(nombre: String): MutableList<DataHabitoEntity>
+    suspend fun obtenerDatosHabitoPorIdHabito(nombre: String): MutableList<DataHabitoEntity>
 
     @Query("Select * from datahabitos")
-    fun obtenerTodoDataHabitos(): MutableList<DataHabitoEntity>
+    suspend fun obtenerTodoDataHabitos(): MutableList<DataHabitoEntity>
 }

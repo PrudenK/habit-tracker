@@ -226,4 +226,9 @@ class HabitoAdapter (
             notifyItemRemoved(indice)
         }
     }
+
+    fun borrarDatosAdapter() {
+        listaHabitos = mutableListOf()
+        notifyDataSetChanged()
+    }
 }

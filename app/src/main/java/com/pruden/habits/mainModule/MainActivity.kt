@@ -140,10 +140,8 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
     }
 
     fun actualizarDespuesDeBorrarTodosLosDatos() {
-        runOnUiThread {
-            sincronizadorDeScrolls.limpiarRecycler()
-            sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)
-            //habitosAdapter.actualizarLista(mutableListOf())
-        }
+        sincronizadorDeScrolls.limpiarRecycler()
+        sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)
+        habitosAdapter.borrarDatosAdapter()
     }
 }

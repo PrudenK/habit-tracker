@@ -14,7 +14,7 @@ interface HabitoDao {
     suspend fun insertHabito(habitoEntity: HabitoEntity)
 
     @Update
-    fun updateHabito(habitoEntity: HabitoEntity)
+    suspend fun updateHabito(habitoEntity: HabitoEntity)
 
     @Delete
     suspend fun deleteHabito(habitoEntity: HabitoEntity)
@@ -65,7 +65,7 @@ interface HabitoDao {
     suspend fun obtenerTodosLosHabitos(): MutableList<HabitoEntity>
 
     @Query("Delete from habitos")
-    fun borrarTodosLosHabitos()
+    suspend fun borrarTodosLosHabitos()
 
     @Query("Update datahabitos set valorCampo = 0.0, notas = null")
     suspend fun borrarTodosLosRegistros()

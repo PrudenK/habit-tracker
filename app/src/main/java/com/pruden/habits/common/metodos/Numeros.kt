@@ -1,7 +1,5 @@
 package com.pruden.habits.common.metodos
 
-import android.annotation.SuppressLint
-
 fun formatearNumero(value: Float): String {
     return when {
         value >= 1_000_000_000_000 -> String.format("%.1fT", value / 1_000_000_000_000) // Trillones (Q)

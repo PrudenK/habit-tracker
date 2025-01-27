@@ -53,4 +53,13 @@ class ConfiguracionesInteractor {
             }
         }
     }
+
+    fun borrarTodosLosHabitos(onComplete: () -> Unit){
+        CoroutineScope(Dispatchers.IO).launch {
+            HabitosApplication.database.habitoDao().borrarTodosLosHabitos()
+            withContext(Dispatchers.Main){
+                onComplete()
+            }
+        }
+    }
 }
