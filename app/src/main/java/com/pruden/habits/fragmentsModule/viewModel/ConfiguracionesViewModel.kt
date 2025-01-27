@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pruden.habits.common.metodos.Dialogos.makeToast
+import com.pruden.habits.common.metodos.exportarDatos.devolverCabeceraDataHabitos
+import com.pruden.habits.common.metodos.exportarDatos.devolverIdCabecera
 import com.pruden.habits.fragmentsModule.metodos.ExportarDatos
 import com.pruden.habits.fragmentsModule.model.ConfiguracionesInteractor
 import kotlinx.coroutines.Dispatchers
@@ -17,8 +19,14 @@ class ConfiguracionesViewModel: ViewModel() {
     fun exportarTodosLosDatosHabitosCSV(context: Context) {
         viewModelScope.launch {
             val habitos = interactor.obtenerTodosLosHabitos()
+            val hashMapDataHabitos = interactor.procesarHashMapDataHabitos(
+                devolverIdCabecera(
+                    devolverCabeceraDataHabitos(habitos)
+                )
+            )
+            val dataHabitoEntity = interactor.obtenerDataHabitos()
             if (habitos.isNotEmpty()) {
-                exportarDatos.exportarHabitosCSV(context, habitos)
+                exportarDatos.exportarHabitosCSV(context, habitos, hashMapDataHabitos, dataHabitoEntity)
             } else {
                 withContext(Dispatchers.Main) {
                     makeToast("No hay hábitos que exportar", context)
@@ -45,9 +53,10 @@ class ConfiguracionesViewModel: ViewModel() {
     fun exportarSoloLosRegistrosCSV(context: Context){
         viewModelScope.launch(Dispatchers.IO) {
             val habitos = interactor.obtenerTodosLosHabitos()
+            val dataHabitoEntity = interactor.obtenerDataHabitos()
             if(habitos.isNotEmpty()){
                 withContext(Dispatchers.Main) {
-                    exportarDatos.exportarSolosLosRegistrosCSV(context, habitos)
+                    exportarDatos.exportarSolosLosRegistrosCSV(context, habitos, dataHabitoEntity)
                 }
             }else{
                 withContext(Dispatchers.Main) {
@@ -60,9 +69,14 @@ class ConfiguracionesViewModel: ViewModel() {
     fun exportarCopiaSeguridad(context: Context){
         viewModelScope.launch(Dispatchers.IO) {
             val habitos = interactor.obtenerTodosLosHabitos()
+            val hashMapDataHabitos = interactor.procesarHashMapDataHabitos(
+                devolverIdCabecera(
+                    devolverCabeceraDataHabitos(habitos)
+                )
+            )
             if(habitos.isNotEmpty()){
                 withContext(Dispatchers.Main) {
-                    exportarDatos.exportarCopiaDeSeguridadCSV(context, habitos)
+                    exportarDatos.exportarCopiaDeSeguridadCSV(context, habitos, hashMapDataHabitos)
                 }
             }else{
                 withContext(Dispatchers.Main) {

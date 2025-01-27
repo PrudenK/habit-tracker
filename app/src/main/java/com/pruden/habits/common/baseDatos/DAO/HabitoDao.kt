@@ -62,7 +62,7 @@ interface HabitoDao {
     suspend fun obtenerTdosLosNombres(): MutableList<String>
 
     @Query("Select * from habitos")
-    fun obtenerTodosLosHabitos(): MutableList<HabitoEntity>
+    suspend fun obtenerTodosLosHabitos(): MutableList<HabitoEntity>
 
     @Query("Delete from habitos")
     fun borrarTodosLosHabitos()
