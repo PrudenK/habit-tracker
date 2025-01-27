@@ -2,7 +2,6 @@ package com.pruden.habits.fragmentsModule.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.fragmentsModule.model.AgregarHabitoInteractor
 import kotlinx.coroutines.Dispatchers

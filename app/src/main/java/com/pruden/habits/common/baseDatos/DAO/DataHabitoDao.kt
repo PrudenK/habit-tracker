@@ -13,7 +13,7 @@ interface DataHabitoDao {
     suspend fun insertDataHabito(dataHabitoEntity: DataHabitoEntity): Long
 
     @Update
-    fun updateDataHabito(dataHabitoEntity: DataHabitoEntity)
+    suspend fun updateDataHabito(dataHabitoEntity: DataHabitoEntity)
 
     @Delete
     fun deleteDataHabito(dataHabitoEntity: DataHabitoEntity)

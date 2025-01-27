@@ -18,7 +18,6 @@ import com.pruden.habits.R
 import com.pruden.habits.mainModule.adapters.listeners.OnClickBooleanRegistro
 import com.pruden.habits.mainModule.adapters.listeners.OnClickNumericoRegistro
 import com.pruden.habits.mainModule.adapters.listeners.OnLongClickHabito
-import com.pruden.habits.HabitosApplication
 import com.pruden.habits.common.clases.auxClass.HabitoAux
 import com.pruden.habits.common.clases.auxClass.TextViewsNumerico
 import com.pruden.habits.common.clases.data.Habito
@@ -27,6 +26,7 @@ import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.databinding.ItemHabitoBinding
 import com.pruden.habits.common.elementos.SincronizadorDeScrolls
 import com.pruden.habits.common.metodos.formatearNumero
+import com.pruden.habits.mainModule.viewModel.HabitoAdapterViewModel
 
 class HabitoAdapter (
     var listaHabitos : MutableList<Habito>,
@@ -42,8 +42,10 @@ class HabitoAdapter (
     }
 
     lateinit var contexto: Context
+    private lateinit var viewModel: HabitoAdapterViewModel
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        viewModel = HabitoAdapterViewModel()
         contexto = parent.context
 
         val vista = LayoutInflater.from(contexto).inflate(R.layout.item_habito, parent, false)
@@ -91,20 +93,18 @@ class HabitoAdapter (
 
             sincronizadorDeScrolls.addRecyclerView(binding.recyclerDataHabitos)
 
-
-
             binding.nombreHabito.setOnLongClickListener {
                 onLongListenr.onLongClickListenerHabito(
                     HabitoEntity(
-                    nombre = habito.nombre,
-                    objetivo = habito.objetivo,
-                    tipoNumerico = habito.tipoNumerico,
-                    unidad = habito.unidad,
-                    color = habito.colorHabito,
-                    descripcion = habito.descripcion,
-                    horaNotificacion = habito.horaNotificacion,
-                    mensajeNotificacion = habito.mensajeNotificacion
-                )
+                        nombre = habito.nombre,
+                        objetivo = habito.objetivo,
+                        tipoNumerico = habito.tipoNumerico,
+                        unidad = habito.unidad,
+                        color = habito.colorHabito,
+                        descripcion = habito.descripcion,
+                        horaNotificacion = habito.horaNotificacion,
+                        mensajeNotificacion = habito.mensajeNotificacion
+                    )
                 )
                 true
             }
@@ -135,23 +135,23 @@ class HabitoAdapter (
         botonGuardar.setImageResource(R.drawable.ic_check)
 
         botonCancelar.setOnClickListener {
-            Thread{
-                habitoData.valorCampo = "0.0"
-                habitoData.notas = inputNotas.text.toString()
-                HabitosApplication.database.dataHabitoDao().updateDataHabito(habitoData)
-                icono.clearColorFilter()
-            }.start()
+            habitoData.valorCampo = "0.0"
+            habitoData.notas = inputNotas.text.toString()
+
+            viewModel.updateDataHabito(habitoData)
+
+            icono.clearColorFilter()
             icono.setImageResource(R.drawable.ic_no_check)
             dialog.dismiss()
         }
 
         botonGuardar.setOnClickListener {
-            Thread{
-                habitoData.valorCampo = "1.0"
-                habitoData.notas = inputNotas.text.toString()
-                HabitosApplication.database.dataHabitoDao().updateDataHabito(habitoData)
-                icono.setColorFilter(color)
-            }.start()
+            habitoData.valorCampo = "1.0"
+            habitoData.notas = inputNotas.text.toString()
+
+            viewModel.updateDataHabito(habitoData)
+
+            icono.setColorFilter(color)
             icono.setImageResource(R.drawable.ic_check)
             dialog.dismiss()
         }
@@ -179,10 +179,8 @@ class HabitoAdapter (
                 habitoData.valorCampo = inputCantidad.text.toString()
                 tvNumerico.puntuacion.text =  formatearNumero(inputCantidad.text.toString().toFloat())
 
-                Thread{
-                    HabitosApplication.database.dataHabitoDao().updateDataHabito(habitoData)
-                }.start()
 
+                viewModel.updateDataHabito(habitoData)
 
 
                 fun cumplido(){
