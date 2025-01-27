@@ -10,20 +10,14 @@ import java.io.File
 
 fun crearFicheroCopiaSeguridad(habitos: MutableList<HabitoEntity>, contexto: Context): File {
     val stringBuilder = StringBuilder()
-    stringBuilder.append(
-        com.pruden.habits.common.metodos.exportarDatos.crearFicherosCSV.devolverContenidoHabitosCSV(
-            habitos
-        ).toString())
+    stringBuilder.append(devolverContenidoHabitosCSV(habitos).toString())
     stringBuilder.append("COMIENZAN_DATA_HABITOS\n")
 
     stringBuilder.append(devolverCabeceraCopiaDeSeguridadData(habitos) +"\n")
 
     val listaNombres = devolverIdCabecera(devolverCabeceraDataHabitos(habitos))
 
-    val hashMapDataHabitos =
-        com.pruden.habits.common.metodos.exportarDatos.crearFicherosCSV.procesarHashMapDataHabitos(
-            listaNombres
-        )
+    val hashMapDataHabitos = procesarHashMapDataHabitos(listaNombres)
 
     val numRegistros = hashMapDataHabitos[listaNombres[0]]!!.size-1
 

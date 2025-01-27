@@ -10,16 +10,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import com.pruden.habits.mainModule.MainActivity
 import com.pruden.habits.R
 import com.pruden.habits.common.metodos.Dialogos.borrarTodosLosDatos
 import com.pruden.habits.common.metodos.Dialogos.borrarTodosLosRegistros
 import com.pruden.habits.common.metodos.Dialogos.makeToast
-import com.pruden.habits.common.metodos.exportarDatos.exportarCopiaDeSeguridadCSV
-import com.pruden.habits.common.metodos.exportarDatos.exportarSolosLosHabitosCSV
-import com.pruden.habits.common.metodos.exportarDatos.exportarSolosLosRegistrosCSV
-import com.pruden.habits.common.metodos.exportarDatos.exportarTodosLosHabitosCSV
 import com.pruden.habits.databinding.FragmentConfiguracionesBinding
+import com.pruden.habits.fragmentsModule.viewModel.ConfiguracionesViewModel
 
 
 @Suppress("DEPRECATION")
@@ -27,6 +25,15 @@ class ConfiguracionesFragment : Fragment() {
 
     private lateinit var binding : FragmentConfiguracionesBinding
     private lateinit var main: MainActivity
+
+    //MVVM
+    private lateinit var viewModel: ConfiguracionesViewModel
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        viewModel = ViewModelProvider(requireActivity())[ConfiguracionesViewModel::class.java]
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -98,7 +105,7 @@ class ConfiguracionesFragment : Fragment() {
 
     private fun exportartTodosLosDatosCSV(){
         binding.exportartTodosLosDatosCsvFragment.setOnClickListener {
-            exportarTodosLosHabitosCSV(requireContext())
+            viewModel.exportarTodosLosDatosHabitosCSV(requireContext())
         }
     }
 
@@ -110,19 +117,19 @@ class ConfiguracionesFragment : Fragment() {
 
     private fun exportarSoloLosHabitos(){
         binding.exportarSoloLosHabitosFragment.setOnClickListener {
-            exportarSolosLosHabitosCSV(requireContext())
+            viewModel.exportarSoloHabitosCSV(requireContext())
         }
     }
 
     private fun exportarSoloLosRegistros(){
         binding.exportarSoloLosRegistrosFragment.setOnClickListener {
-            exportarSolosLosRegistrosCSV(requireContext())
+            viewModel.exportarSoloLosRegistrosCSV(requireContext())
         }
     }
 
     private fun exportarCopiaDeSeguridad(){
         binding.exportarCopiaSeguridadFragment.setOnClickListener {
-            exportarCopiaDeSeguridadCSV(requireContext())
+            viewModel.exportarCopiaSeguridad(requireContext())
         }
     }
 }

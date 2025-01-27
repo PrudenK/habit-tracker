@@ -1,70 +1,44 @@
-package com.pruden.habits.common.metodos.exportarDatos
+package com.pruden.habits.fragmentsModule.metodos
 
 import android.content.Context
+import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.metodos.Dialogos.makeToast
 import com.pruden.habits.common.metodos.RecogidaDatos.devolverTdoosLosHabitosEntity
 import com.pruden.habits.common.metodos.exportarDatos.crearFicherosCSV.crearFicheroCopiaSeguridad
 import com.pruden.habits.common.metodos.exportarDatos.crearFicherosCSV.crearFicheroDATAHabitosCSV
 import com.pruden.habits.common.metodos.exportarDatos.crearFicherosCSV.crearFicheroHabitosCSV
 import com.pruden.habits.common.metodos.exportarDatos.crearFicherosCSV.crearFicherosDataHabitosCSVPorHabito
+import com.pruden.habits.common.metodos.exportarDatos.crearZipConArchivosYDirectorio
+import com.pruden.habits.common.metodos.exportarDatos.crearZipConContenidoDeDirectorio
+import com.pruden.habits.common.metodos.exportarDatos.descargarCSVFile
+import com.pruden.habits.common.metodos.exportarDatos.descargarZip
+import com.pruden.habits.fragmentsModule.model.ConfiguracionesInteractor
 
-fun exportarTodosLosHabitosCSV(contexto : Context){
-    val habitos = com.pruden.habits.common.metodos.RecogidaDatos.devolverTdoosLosHabitosEntity()
+class ExportarDatos{
+    private val interactor = ConfiguracionesInteractor()
 
-    if(habitos.isNotEmpty()){
+    fun exportarHabitosCSV(contexto: Context, habitos: MutableList<HabitoEntity>) {
         val habitosCSV = crearFicheroHabitosCSV(habitos, contexto)
         val dataHabitosCSV = crearFicheroDATAHabitosCSV(habitos, contexto)
         val directorioDataHabitos = crearFicherosDataHabitosCSVPorHabito(habitos, contexto)
 
         val zipFile = crearZipConArchivosYDirectorio(contexto, habitosCSV, dataHabitosCSV, directorioDataHabitos)
-
         descargarZip(contexto, zipFile)
-    }else{
-        makeToast("No hay hábitos que exportar", contexto)
     }
-}
 
-fun exportarSolosLosHabitosCSV(contexto : Context){
-    val habitos = com.pruden.habits.common.metodos.RecogidaDatos.devolverTdoosLosHabitosEntity()
-
-    if(habitos.isNotEmpty()){
+    fun exportarSolosLosHabitosCSV(contexto : Context, habitos: MutableList<HabitoEntity>){
         val habitosCSV = crearFicheroHabitosCSV(habitos, contexto)
-
         descargarCSVFile(contexto, habitosCSV)
-
-    }else{
-        makeToast("No hay hábitos que exportar", contexto)
     }
-}
 
-fun exportarSolosLosRegistrosCSV(contexto : Context){
-    val habitos = com.pruden.habits.common.metodos.RecogidaDatos.devolverTdoosLosHabitosEntity()
-
-    if(habitos.isNotEmpty()){
+    fun exportarSolosLosRegistrosCSV(contexto : Context, habitos: MutableList<HabitoEntity>){
         val registros = crearFicherosDataHabitosCSVPorHabito(habitos, contexto)
-
         val zip = crearZipConContenidoDeDirectorio(contexto, registros)
-
         descargarZip(contexto, zip)
-
-    }else{
-        makeToast("No hay hábitos que exportar", contexto)
     }
-}
 
-fun exportarCopiaDeSeguridadCSV(contexto: Context){
-    val habitos = com.pruden.habits.common.metodos.RecogidaDatos.devolverTdoosLosHabitosEntity()
-
-    if(habitos.isNotEmpty()){
-        val copiaSeguridad =
-            com.pruden.habits.common.metodos.exportarDatos.crearFicherosCSV.crearFicheroCopiaSeguridad(
-                habitos,
-                contexto
-            )
-
+    fun exportarCopiaDeSeguridadCSV(contexto : Context, habitos: MutableList<HabitoEntity>){
+        val copiaSeguridad = crearFicheroCopiaSeguridad(habitos, contexto)
         descargarCSVFile(contexto, copiaSeguridad)
-
-    }else{
-        makeToast("No hay hábitos que exportar", contexto)
     }
 }
