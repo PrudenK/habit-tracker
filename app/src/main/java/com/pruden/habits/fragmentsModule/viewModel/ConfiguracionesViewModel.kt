@@ -85,4 +85,10 @@ class ConfiguracionesViewModel: ViewModel() {
             }
         }
     }
+
+    fun borrarTodosLosRegistros(onComplete: ()->Unit){
+        interactor.borrarTodosLosRegistros {
+            onComplete()
+        }
+    }
 }

@@ -7,10 +7,9 @@ import android.widget.Button
 import android.widget.TextView
 import com.pruden.habits.mainModule.MainActivity
 import com.pruden.habits.R
-import com.pruden.habits.HabitosApplication
-import com.pruden.habits.common.metodos.lanzarHiloConJoin
+import com.pruden.habits.fragmentsModule.viewModel.ConfiguracionesViewModel
 
-fun borrarTodosLosRegistros(contexto: Context, main: MainActivity){
+fun borrarTodosLosRegistros(contexto: Context, main: MainActivity, viewModel: ConfiguracionesViewModel){
     val dialogView = LayoutInflater.from(contexto).inflate(R.layout.dialog_borrar_habito, null)
     val dialog = AlertDialog.Builder(contexto).setView(dialogView).create()
 
@@ -28,15 +27,11 @@ fun borrarTodosLosRegistros(contexto: Context, main: MainActivity){
     }
 
     buttonAccept.setOnClickListener {
-        val hilo = Thread{
-            HabitosApplication.database.habitoDao().borrarTodosLosRegistros()
-
+        viewModel.borrarTodosLosRegistros {
             main.runOnUiThread {
-                //main.actualizarConDatos()
+                main.actualizarDatosHabitos()
             }
         }
-
-        lanzarHiloConJoin(hilo)
         dialog.dismiss()
     }
 

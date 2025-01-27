@@ -2,7 +2,6 @@ package com.pruden.habits.mainModule
 
 import android.app.AlertDialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
@@ -126,12 +125,18 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         }
     }
 
-    fun actualizarConDatos(nombre: String) {
+    fun actualizarTrasInsertarNuevoHabito(nombre: String) {
         mainViewModel.getHabitoPorNombre(nombre) { habito ->
             sincronizadorDeScrolls.limpiarRecycler()
             configurarRecyclerFechas()
             habitosAdapter.actualizarTrasInsercion(habito)
         }
+    }
+
+    fun actualizarDatosHabitos(){
+        sincronizadorDeScrolls.limpiarRecycler()
+        configurarRecyclerFechas()
+        habitosAdapter.notifyDataSetChanged()
     }
 
     fun actualizarDespuesDeBorrarTodosLosDatos() {

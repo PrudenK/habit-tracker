@@ -68,5 +68,5 @@ interface HabitoDao {
     fun borrarTodosLosHabitos()
 
     @Query("Update datahabitos set valorCampo = 0.0, notas = null")
-    fun borrarTodosLosRegistros()
+    suspend fun borrarTodosLosRegistros()
 }

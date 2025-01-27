@@ -25,16 +25,9 @@ import com.google.android.material.textfield.TextInputLayout
 import com.pruden.habits.mainModule.MainActivity
 import com.pruden.habits.common.elementos.ColorPickerView
 import com.pruden.habits.R
-import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
-import com.pruden.habits.common.metodos.Fechas.generarFechasFormatoYYYYMMDD
 import com.pruden.habits.databinding.FragmentAgregarHabitoBinding
 import com.pruden.habits.fragmentsModule.viewModel.AgregarHabitoViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import java.util.Calendar
 
 @Suppress("DEPRECATION")
@@ -202,7 +195,7 @@ class AgregarHabitoFragment : Fragment() {
                         }
                     }else{
                         fragmentViewModel.agregarRegistrosHabito(nombre){
-                            main.actualizarConDatos(nombre)
+                            main.actualizarTrasInsertarNuevoHabito(nombre)
                             Snackbar.make(binding.root, "Hábito añadido con éxito", Snackbar.LENGTH_SHORT).show()
                             activity?.onBackPressed()
                         }

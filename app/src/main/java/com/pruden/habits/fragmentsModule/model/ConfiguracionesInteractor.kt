@@ -3,7 +3,9 @@ package com.pruden.habits.fragmentsModule.model
 import com.pruden.habits.HabitosApplication
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Locale
@@ -40,6 +42,15 @@ class ConfiguracionesInteractor {
             }
 
             hashMapDataHabitos
+        }
+    }
+
+    fun borrarTodosLosRegistros(onComplete: ()->Unit){
+        CoroutineScope(Dispatchers.IO).launch {
+            HabitosApplication.database.habitoDao().borrarTodosLosRegistros()
+            withContext(Dispatchers.Main){
+                onComplete()
+            }
         }
     }
 }

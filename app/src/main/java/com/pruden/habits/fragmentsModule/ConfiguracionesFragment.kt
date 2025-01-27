@@ -111,7 +111,7 @@ class ConfiguracionesFragment : Fragment() {
 
     private fun borrarTodosLosRegistrosFragment(){
         binding.borrarTodosLosRegistrosFragment.setOnClickListener {
-            borrarTodosLosRegistros(requireContext(), main)
+            borrarTodosLosRegistros(requireContext(), main, viewModel)
         }
     }
 
