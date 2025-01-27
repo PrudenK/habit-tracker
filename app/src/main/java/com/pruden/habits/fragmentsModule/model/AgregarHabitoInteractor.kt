@@ -3,6 +3,7 @@ package com.pruden.habits.fragmentsModule.model
 import com.pruden.habits.HabitosApplication
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
+import com.pruden.habits.common.metodos.Fechas.generarFechasFormatoYYYYMMDD
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -24,8 +25,18 @@ class AgregarHabitoInteractor {
         }
     }
 
-    suspend fun insertarDataHabito(dataHabitoEntity: DataHabitoEntity){
-        HabitosApplication.database.dataHabitoDao().insertDataHabito(dataHabitoEntity)
+    suspend fun agregarRegistrosDBDataHabitos(nombreHabito: String) {
+        val listaFechas = generarFechasFormatoYYYYMMDD()
 
+        listaFechas.forEach { fecha ->
+            HabitosApplication.database.dataHabitoDao().insertDataHabito(
+                DataHabitoEntity(
+                    nombre = nombreHabito,
+                    fecha = fecha,
+                    valorCampo = "0.0",
+                    notas = null
+                )
+            )
+        }
     }
 }

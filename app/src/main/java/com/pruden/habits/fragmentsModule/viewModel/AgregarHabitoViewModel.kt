@@ -1,9 +1,12 @@
 package com.pruden.habits.fragmentsModule.viewModel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.fragmentsModule.model.AgregarHabitoInteractor
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class AgregarHabitoViewModel : ViewModel(){
     private val interactor = AgregarHabitoInteractor()
@@ -18,7 +21,12 @@ class AgregarHabitoViewModel : ViewModel(){
         interactor.insertarHabito(habitoEntity)
     }
 
-    suspend fun insertarDataHabito(dataHabitoEntity: DataHabitoEntity){
-        interactor.insertarDataHabito(dataHabitoEntity)
+    fun agregarRegistrosHabito(nombreHabito: String, onSuccess: () -> Unit) {
+        viewModelScope.launch(Dispatchers.IO) {
+            interactor.agregarRegistrosDBDataHabitos(nombreHabito)
+            launch(Dispatchers.Main) {
+                onSuccess()
+            }
+        }
     }
 }

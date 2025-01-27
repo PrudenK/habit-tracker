@@ -128,11 +128,9 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
 
     fun actualizarConDatos(nombre: String) {
         mainViewModel.getHabitoPorNombre(nombre) { habito ->
-            runOnUiThread {
-                sincronizadorDeScrolls.limpiarRecycler()
-                sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)
-                habitosAdapter.actualizarTrasInsercion(habito)
-            }
+            sincronizadorDeScrolls.limpiarRecycler()
+            configurarRecyclerFechas()
+            habitosAdapter.actualizarTrasInsercion(habito)
         }
     }
 

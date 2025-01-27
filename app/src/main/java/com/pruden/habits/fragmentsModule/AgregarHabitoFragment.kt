@@ -200,14 +200,11 @@ class AgregarHabitoFragment : Fragment() {
                         }else{
                             Snackbar.make(binding.root, "Ya tienes un hábito con ese nombre", Snackbar.LENGTH_SHORT).show()
                         }
-                    }else{ //TODO REVISAR
-                        CoroutineScope(Dispatchers.IO).launch {
-                            agregarRegistrosDBDAtaHabitos(nombre)
-                            withContext(Dispatchers.Main) {
-                                main.actualizarConDatos(nombre)
-                                Snackbar.make(binding.root, "Hábito añadido con éxito", Snackbar.LENGTH_SHORT).show()
-                                activity?.onBackPressed()
-                            }
+                    }else{
+                        fragmentViewModel.agregarRegistrosHabito(nombre){
+                            main.actualizarConDatos(nombre)
+                            Snackbar.make(binding.root, "Hábito añadido con éxito", Snackbar.LENGTH_SHORT).show()
+                            activity?.onBackPressed()
                         }
                     }
 
@@ -367,21 +364,6 @@ class AgregarHabitoFragment : Fragment() {
 
     private fun devolverTextInputLayout(id : Int): TextInputLayout{
         return vistaDinamicaActual.findViewById(id)
-    }
-
-    private suspend fun agregarRegistrosDBDAtaHabitos(nombreHabito: String) {
-        val listaFechas = generarFechasFormatoYYYYMMDD()
-
-        listaFechas.forEach { fecha ->
-            fragmentViewModel.insertarDataHabito(
-                DataHabitoEntity(
-                    nombre = nombreHabito,
-                    fecha = fecha,
-                    valorCampo = "0.0",
-                    notas = null
-                )
-            )
-        }
     }
 
 }
