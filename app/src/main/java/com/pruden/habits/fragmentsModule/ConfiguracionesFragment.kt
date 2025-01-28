@@ -1,6 +1,10 @@
 package com.pruden.habits.fragmentsModule
 
+import android.app.Activity.RESULT_OK
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -8,6 +12,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -16,8 +21,11 @@ import com.pruden.habits.R
 import com.pruden.habits.common.metodos.Dialogos.borrarTodosLosDatos
 import com.pruden.habits.common.metodos.Dialogos.borrarTodosLosRegistros
 import com.pruden.habits.common.metodos.Dialogos.makeToast
+import com.pruden.habits.common.metodos.importarDatos.leerCsvDesdeUri
 import com.pruden.habits.databinding.FragmentConfiguracionesBinding
 import com.pruden.habits.fragmentsModule.viewModel.ConfiguracionesViewModel
+import java.io.BufferedReader
+import java.io.InputStreamReader
 
 
 @Suppress("DEPRECATION")
@@ -50,6 +58,7 @@ class ConfiguracionesFragment : Fragment() {
         exportarSoloLosHabitos()
         exportarSoloLosRegistros()
         exportarCopiaDeSeguridad()
+        importarCopiaSeguridad()
 
 
         return binding.root
@@ -132,4 +141,34 @@ class ConfiguracionesFragment : Fragment() {
             viewModel.exportarCopiaSeguridad(requireContext())
         }
     }
+
+    val REQUEST_CODE_PICK_CSV = 1
+
+    private fun importarCopiaSeguridad(){
+        binding.importarCopiaDeSeguridad.setOnClickListener {
+            val filePickerIntent = Intent(Intent.ACTION_GET_CONTENT).apply {
+                type = "text/csv"
+                addCategory(Intent.CATEGORY_OPENABLE)
+            }
+            startActivityForResult(filePickerIntent, REQUEST_CODE_PICK_CSV)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == REQUEST_CODE_PICK_CSV && resultCode == RESULT_OK) {
+            val uri: Uri? = data?.data
+            if (uri != null) {
+                leerCsvDesdeUri(uri, requireContext(), viewModel, main)
+
+                //main.actualizarDatosHabitos()
+            } else {
+                Toast.makeText(requireContext(), "No se seleccionó ningún archivo", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+
+
 }

@@ -3,6 +3,7 @@ package com.pruden.habits.common.metodos.exportarDatos.crearFicherosCSV
 import android.content.Context
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
+import com.pruden.habits.common.metodos.Constantes
 import com.pruden.habits.common.metodos.Fechas.obtenerFechaActual
 import com.pruden.habits.common.metodos.exportarDatos.devolverCabeceraCopiaDeSeguridadData
 import com.pruden.habits.common.metodos.exportarDatos.devolverCabeceraDataHabitos
@@ -85,7 +86,7 @@ class CrearFicherosCSV {
     ): File {
         val stringBuilder = StringBuilder()
         stringBuilder.append(devolverContenidoHabitosCSV(habitos).toString())
-        stringBuilder.append("COMIENZAN_DATA_HABITOS\n")
+        stringBuilder.append(Constantes.COMIENZAN_DATA_HABITOS+"\n")
 
         stringBuilder.append(devolverCabeceraCopiaDeSeguridadData(habitos) +"\n")
 

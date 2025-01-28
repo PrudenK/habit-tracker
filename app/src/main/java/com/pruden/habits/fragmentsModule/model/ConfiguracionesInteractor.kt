@@ -62,4 +62,16 @@ class ConfiguracionesInteractor {
             }
         }
     }
+
+    fun insertarHabito(habitoEntity: HabitoEntity){
+        CoroutineScope(Dispatchers.IO).launch {
+            HabitosApplication.database.habitoDao().insertHabito(habitoEntity)
+        }
+    }
+
+    fun insertarDataHabito(dataHabitoEntity: DataHabitoEntity){
+        CoroutineScope(Dispatchers.IO).launch {
+            HabitosApplication.database.dataHabitoDao().insertDataHabito(dataHabitoEntity)
+        }
+    }
 }

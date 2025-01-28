@@ -3,6 +3,8 @@ package com.pruden.habits.fragmentsModule.viewModel
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.pruden.habits.common.clases.entities.DataHabitoEntity
+import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.metodos.Dialogos.makeToast
 import com.pruden.habits.common.metodos.exportarDatos.devolverCabeceraDataHabitos
 import com.pruden.habits.common.metodos.exportarDatos.devolverIdCabecera
@@ -96,5 +98,13 @@ class ConfiguracionesViewModel: ViewModel() {
         interactor.borrarTodosLosHabitos {
             onComplete()
         }
+    }
+
+    fun insertarHabito(habitoEntity: HabitoEntity){
+        interactor.insertarHabito(habitoEntity)
+    }
+
+    fun insertarDataHabito(dataHabitoEntity: DataHabitoEntity){
+        interactor.insertarDataHabito(dataHabitoEntity)
     }
 }

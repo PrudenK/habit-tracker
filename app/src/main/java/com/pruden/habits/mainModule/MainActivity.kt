@@ -2,6 +2,7 @@ package com.pruden.habits.mainModule
 
 import android.app.AlertDialog
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import androidx.activity.enableEdgeToEdge
@@ -12,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.R
+import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.mainModule.adapters.FechaAdapter
 import com.pruden.habits.mainModule.adapters.HabitoAdapter
 import com.pruden.habits.mainModule.adapters.listeners.OnLongClickHabito
@@ -137,7 +139,19 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         sincronizadorDeScrolls.limpiarRecycler()
         configurarRecyclerFechas()
         habitosAdapter.notifyDataSetChanged()
+        Log.d("ads", habitosAdapter.listaHabitos.size.toString())
     }
+    /*
+    fun actualizarDatosHabitosImportados(){
+        sincronizadorDeScrolls.limpiarRecycler()
+        configurarRecyclerFechas()
+
+        habitosAdapter.setHabitos()
+        habitosAdapter.notifyDataSetChanged()
+        Log.d("ads", habitosAdapter.listaHabitos.size.toString())
+    }
+
+     */
 
     fun actualizarDespuesDeBorrarTodosLosDatos() {
         sincronizadorDeScrolls.limpiarRecycler()
