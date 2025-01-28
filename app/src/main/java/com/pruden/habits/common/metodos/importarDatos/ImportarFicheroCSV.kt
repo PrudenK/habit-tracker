@@ -9,6 +9,8 @@ import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.metodos.Constantes
 import com.pruden.habits.common.metodos.Dialogos.makeToast
+import com.pruden.habits.common.metodos.General.obtenerFechaActual
+import com.pruden.habits.common.metodos.General.obtenerFechasEntre
 import com.pruden.habits.fragmentsModule.viewModel.ConfiguracionesViewModel
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -28,54 +30,100 @@ import java.io.InputStreamReader
         inputStream?.close()
 
         val listaHabitosEntity = mutableListOf<HabitoEntity>()
-        val listaHabitos = mutableListOf<Habito>()
 
         var comienzanDataHabitos = false
 
-        if(contenidoCsv.contains(Constantes.COMIENZAN_DATA_HABITOS)){
-            if(contenidoCsv.removeAt(0) == Constantes.CABECERA_HABITOS_CSV){
-                contenidoCsv.forEach { linea ->
-                    if(linea == Constantes.COMIENZAN_DATA_HABITOS) comienzanDataHabitos = true
 
-                    if(!comienzanDataHabitos){
-                        val h = linea.split(",")
+        val indice = contenidoCsv.indexOfFirst { it.startsWith("Fecha") }
+        if(indice != -1){
 
-                        val habito = HabitoEntity(h[0], h[1], h[2].toBoolean(), h[3], h[4].toInt(), h[5], h[6], h[7])
-                        viewModel.insertarHabito(habito)
-                        listaHabitosEntity.add(habito)
-                        with(habito){
-                            listaHabitos.add(
-                                Habito(nombre, objetivo, tipoNumerico, unidad, color, descripcion,
-                                    horaNotificacion, mensajeNotificacion, mutableListOf(), mutableListOf(), mutableListOf()
+            val fechaInicio = contenidoCsv[indice+1].split(",")[0]
+            val fechaFin = contenidoCsv[contenidoCsv.size-1].split(",")[0]
+
+            Log.d("fechaInicio", fechaInicio)
+            Log.d("fechaFin", fechaFin)
+
+            var fechasEntreBaseInicio = listOf<String>()
+            val fechaEntreFinYHoy = obtenerFechasEntre(fechaFin, obtenerFechaActual())
+
+            if(fechaInicio > Constantes.FECHA_INICIO){
+                val auxLista = obtenerFechasEntre(Constantes.FECHA_INICIO_PARA_DIFF, fechaInicio)
+                fechasEntreBaseInicio = auxLista.subList(0, auxLista.size - 1)
+            }
+
+            if(fechaFin > obtenerFechaActual()){
+                makeToast("Fichero no válido", context)
+                return
+            }
+
+            for(x in fechasEntreBaseInicio)
+                Log.v("Inicio-InicioConst",x)
+
+            for(y in fechaEntreFinYHoy)
+                Log.v("Fin-Hoy",y)
+
+            if(contenidoCsv.contains(Constantes.COMIENZAN_DATA_HABITOS)){
+                if(contenidoCsv.removeAt(0) == Constantes.CABECERA_HABITOS_CSV){
+                    contenidoCsv.forEach { linea ->
+                        if(linea == Constantes.COMIENZAN_DATA_HABITOS) comienzanDataHabitos = true
+
+                        Log.v("asdfasdf", "adsfadsfsadfadsfadsf")
+
+                        if(!comienzanDataHabitos){
+                            val h = linea.split(",")
+
+                            val habito = HabitoEntity(h[0], h[1], h[2].toBoolean(), h[3], h[4].toInt(), h[5], h[6], h[7])
+                            viewModel.insertarHabito(habito)
+                            listaHabitosEntity.add(habito)
+
+                            for(fecha in fechasEntreBaseInicio){
+                                viewModel.insertarDataHabito(
+                                    DataHabitoEntity(h[0], fecha,"0.0",null)
                                 )
-                            )
-                        }
-                    }else{
-                        if(linea != Constantes.COMIENZAN_DATA_HABITOS && !linea.startsWith("Fecha")){
-                            val d = linea.split(",")
-                            val fecha = d[0]
-                            Log.d("Fechas", fecha)
+                            }
+                            for(fecha in fechaEntreFinYHoy){
+                                viewModel.insertarDataHabito(
+                                    DataHabitoEntity(h[0], fecha,"0.0",null)
+                                )
+                            }
+
+
+                        }else{
+                            if(linea != Constantes.COMIENZAN_DATA_HABITOS && !linea.startsWith("Fecha")){
+                                val d = linea.split(",")
+                                val fecha = d[0]
+                                Log.d("Fechas", fecha)
 
 
 
 
-                            var k = 0
-                            for (i in 1..<d.size step 2) {
-                                viewModel.insertarDataHabito(DataHabitoEntity(listaHabitosEntity[k].nombre, fecha, d[i],d[i+1]))
-                                listaHabitos[k].listaFechas.add(fecha)
-                                listaHabitos[k].listaValores.add(d[i])
-                                listaHabitos[k].listaNotas.add(if (d[i + 1] != "null") d[i + 1] else null)
-                                k++
+                                var k = 0
+                                for (i in 1..<d.size step 2) {
+                                    viewModel.insertarDataHabito(DataHabitoEntity(listaHabitosEntity[k].nombre,
+                                        fecha, d[i],if (d[i + 1] != "null") d[i + 1] else null))
+                                    k++
+                                }
                             }
                         }
                     }
                 }
+
+            }else{
+                makeToast("Fichero no válido", context)
+                return
             }
+
+
+
+
 
         }else{
             makeToast("Fichero no válido", context)
             return
         }
+
+
+
 
         Toast.makeText(context, "Archivo CSV importado correctamente", Toast.LENGTH_SHORT).show()
 
