@@ -214,9 +214,10 @@ class HabitoAdapter (
         dialog.show()
     }
 
-    fun setHabitos(habitos : List<Habito>){
-        listaHabitos = habitos as MutableList<Habito>
-        notifyDataSetChanged()
+    fun setHabitos(nuevosHabitos: List<Habito>) {
+        listaHabitos.clear()
+        listaHabitos.addAll(nuevosHabitos)
+        notifyDataSetChanged() // Notifica que los datos han cambiado
     }
 
     fun deleteHabito(habitoEntity: HabitoEntity){

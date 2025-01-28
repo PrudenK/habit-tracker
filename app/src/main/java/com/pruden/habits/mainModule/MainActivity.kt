@@ -142,13 +142,7 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         habitosAdapter.notifyDataSetChanged()
         Log.d("ads", habitosAdapter.listaHabitos.size.toString())
     }
-
-    fun actualizarDatosHabitosImport(habitos: List<Habito>) {
-        sincronizadorDeScrolls.limpiarRecycler()
-        configurarRecyclerFechas()
-        habitosAdapter.setHabitos(habitos)
-    }
-
+    
     fun actualizarDespuesDeBorrarTodosLosDatos() {
         sincronizadorDeScrolls.limpiarRecycler()
         sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)

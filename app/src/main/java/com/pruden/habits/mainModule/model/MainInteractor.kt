@@ -1,5 +1,7 @@
 package com.pruden.habits.mainModule.model
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MediatorLiveData
 import com.pruden.habits.HabitosApplication
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
@@ -31,7 +33,7 @@ class MainInteractor {
         }
     }
 
-    private suspend fun sincronizarRegistrosFaltantes() {
+    suspend fun sincronizarRegistrosFaltantes() {
         val listaNombresHabitos = HabitosApplication.database.habitoDao().obtenerTdosLosNombres()
         if (listaNombresHabitos.isNotEmpty()) {
             val ultimaFechaDB = HabitosApplication.database.dataHabitoDao().selectMaxFecha()
@@ -57,5 +59,20 @@ class MainInteractor {
         }
     }
 
+    fun getAllHabitosConDatos(): LiveData<List<Habito>> {
+        val result = MediatorLiveData<List<Habito>>()
 
+        CoroutineScope(Dispatchers.IO).launch {
+            sincronizarRegistrosFaltantes()
+
+            withContext(Dispatchers.Main) {
+                val liveDataFromRoom = HabitosApplication.database.habitoDao().obtenerHabitosConLiveData()
+                result.addSource(liveDataFromRoom) { habitos ->
+                    result.value = habitos
+                }
+            }
+        }
+
+        return result
+    }
 }

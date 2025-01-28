@@ -1,24 +1,19 @@
 package com.pruden.habits.common.metodos.importarDatos
 
 import android.content.Context
-import android.content.Intent
 import android.net.Uri
 import android.util.Log
 import android.widget.Toast
-import androidx.core.app.ActivityCompat.startActivityForResult
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.metodos.Constantes
 import com.pruden.habits.common.metodos.Dialogos.makeToast
 import com.pruden.habits.fragmentsModule.viewModel.ConfiguracionesViewModel
-import com.pruden.habits.mainModule.MainActivity
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.withContext
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
- fun leerCsvDesdeUri(uri: Uri, context: Context, viewModel: ConfiguracionesViewModel, main : MainActivity) {
+ fun leerCsvDesdeUri(uri: Uri, context: Context, viewModel: ConfiguracionesViewModel) {
     try {
         val inputStream = context.contentResolver.openInputStream(uri)
         val reader = BufferedReader(InputStreamReader(inputStream))
@@ -80,11 +75,6 @@ import java.io.InputStreamReader
         }else{
             makeToast("Fichero no válido", context)
             return
-        }
-
-
-        main.runOnUiThread {
-           // main.cargarDatos()
         }
 
         Toast.makeText(context, "Archivo CSV importado correctamente", Toast.LENGTH_SHORT).show()

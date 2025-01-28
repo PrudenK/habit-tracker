@@ -160,7 +160,7 @@ class ConfiguracionesFragment : Fragment() {
         if (requestCode == REQUEST_CODE_PICK_CSV && resultCode == RESULT_OK) {
             val uri: Uri? = data?.data
             if (uri != null) {
-                leerCsvDesdeUri(uri, requireContext(), viewModel, main)
+                leerCsvDesdeUri(uri, requireContext(), viewModel)
             } else {
                 Toast.makeText(requireContext(), "No se seleccionó ningún archivo", Toast.LENGTH_SHORT).show()
             }

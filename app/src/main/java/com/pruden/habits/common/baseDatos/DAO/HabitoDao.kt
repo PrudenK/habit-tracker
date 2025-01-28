@@ -54,6 +54,25 @@ interface HabitoDao {
            '[' || GROUP_CONCAT('"' || D.fecha || '"') || ']' AS listaFechas
     FROM Habitos AS H
     LEFT JOIN DataHabitos AS D ON H.nombre = D.nombre
+    GROUP BY H.nombre
+""")
+    fun obtenerHabitosConLiveData(): LiveData<List<Habito>>
+
+    @Query("""
+    SELECT 
+           H.nombre, 
+           H.objetivo, 
+           H.tipoNumerico, 
+           H.unidad, 
+           H.color as colorHabito,
+           H.descripcion,
+           H.horaNotificacion,
+           H.mensajeNotificacion,
+           '[' || GROUP_CONCAT(D.valorCampo) || ']' AS listaValores, 
+           '[' || GROUP_CONCAT('"' || IFNULL(D.notas, '') || '"') || ']' AS listaNotas,
+           '[' || GROUP_CONCAT('"' || D.fecha || '"') || ']' AS listaFechas
+    FROM Habitos AS H
+    LEFT JOIN DataHabitos AS D ON H.nombre = D.nombre
     WHERE H.nombre = :nombre
     GROUP BY H.nombre
 """)
