@@ -13,6 +13,7 @@ import com.pruden.habits.common.metodos.Constantes
 import com.pruden.habits.common.metodos.Dialogos.makeToast
 import com.pruden.habits.fragmentsModule.viewModel.ConfiguracionesViewModel
 import com.pruden.habits.mainModule.MainActivity
+import kotlinx.coroutines.withContext
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
@@ -28,10 +29,10 @@ fun leerCsvDesdeUri(uri: Uri, context: Context, viewModel: ConfiguracionesViewMo
                 contenidoCsv.add(line)
             }
         }
-
         inputStream?.close()
 
-        val listaNombres = mutableListOf<String>()
+        val listaHabitosEntity = mutableListOf<HabitoEntity>()
+        val listaHabitos = mutableListOf<Habito>()
 
         var comienzanDataHabitos = false
 
@@ -42,8 +43,17 @@ fun leerCsvDesdeUri(uri: Uri, context: Context, viewModel: ConfiguracionesViewMo
 
                     if(!comienzanDataHabitos){
                         val h = linea.split(",")
-                        listaNombres.add(h[0])
-                        viewModel.insertarHabito(HabitoEntity(h[0], h[1], h[2].toBoolean(), h[3], h[4].toInt(), h[5], h[6], h[7]))
+
+                        val habito = HabitoEntity(h[0], h[1], h[2].toBoolean(), h[3], h[4].toInt(), h[5], h[6], h[7])
+                        viewModel.insertarHabito(habito)
+                        listaHabitosEntity.add(habito)
+                        with(habito){
+                            listaHabitos.add(
+                                Habito(nombre, objetivo, tipoNumerico, unidad, color, descripcion,
+                                    horaNotificacion, mensajeNotificacion, mutableListOf(), mutableListOf(), mutableListOf()
+                                )
+                            )
+                        }
                     }else{
                         if(linea != Constantes.COMIENZAN_DATA_HABITOS && !linea.startsWith("Fecha")){
                             val d = linea.split(",")
@@ -51,12 +61,14 @@ fun leerCsvDesdeUri(uri: Uri, context: Context, viewModel: ConfiguracionesViewMo
 
                             var k = 0
                             for (i in 1..<d.size step 2) {
-                                viewModel.insertarDataHabito(DataHabitoEntity(listaNombres[k], fecha, d[i],d[i+1]))
+                                viewModel.insertarDataHabito(DataHabitoEntity(listaHabitosEntity[k].nombre, fecha, d[i],d[i+1]))
+                                listaHabitos[k].listaFechas.add(fecha)
+                                listaHabitos[k].listaValores.add(d[i])
+                                listaHabitos[k].listaNotas.add(if (d[i + 1] != "null") d[i + 1] else null)
                                 k++
                             }
                         }
                     }
-
                 }
             }
 
@@ -66,7 +78,7 @@ fun leerCsvDesdeUri(uri: Uri, context: Context, viewModel: ConfiguracionesViewMo
         }
 
         main.runOnUiThread {
-            main.actualizarDatosHabitos()
+            main.actualizarDatosHabitosImport(listaHabitos)
         }
 
         Toast.makeText(context, "Archivo CSV importado correctamente", Toast.LENGTH_SHORT).show()

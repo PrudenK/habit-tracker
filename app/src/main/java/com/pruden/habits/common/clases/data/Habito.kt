@@ -9,9 +9,9 @@ data class Habito(
     var descripcion: String?,
     var horaNotificacion: String?,
     var mensajeNotificacion: String?,
-    val listaValores: List<String>,
-    val listaNotas: List<String?>,
-    val listaFechas: List<String>
+    var listaValores: MutableList<String>,
+    var listaNotas: MutableList<String?>,
+    var listaFechas: MutableList<String>
 
 
 ) {

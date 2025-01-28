@@ -161,8 +161,6 @@ class ConfiguracionesFragment : Fragment() {
             val uri: Uri? = data?.data
             if (uri != null) {
                 leerCsvDesdeUri(uri, requireContext(), viewModel, main)
-
-                //main.actualizarDatosHabitos()
             } else {
                 Toast.makeText(requireContext(), "No se seleccionó ningún archivo", Toast.LENGTH_SHORT).show()
             }

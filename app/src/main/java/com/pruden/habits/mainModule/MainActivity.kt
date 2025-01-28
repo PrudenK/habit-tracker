@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.R
+import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.mainModule.adapters.FechaAdapter
 import com.pruden.habits.mainModule.adapters.HabitoAdapter
@@ -68,6 +69,7 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         mainViewModel.getAllHabitosConDatos().observe(this){
             habitosAdapter.setHabitos(it)
+            habitosAdapter.notifyDataSetChanged()
         }
     }
 
@@ -141,17 +143,12 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         habitosAdapter.notifyDataSetChanged()
         Log.d("ads", habitosAdapter.listaHabitos.size.toString())
     }
-    /*
-    fun actualizarDatosHabitosImportados(){
+
+    fun actualizarDatosHabitosImport(habitos: List<Habito>) {
         sincronizadorDeScrolls.limpiarRecycler()
         configurarRecyclerFechas()
-
-        habitosAdapter.setHabitos()
-        habitosAdapter.notifyDataSetChanged()
-        Log.d("ads", habitosAdapter.listaHabitos.size.toString())
+        habitosAdapter.setHabitos(habitos)
     }
-
-     */
 
     fun actualizarDespuesDeBorrarTodosLosDatos() {
         sincronizadorDeScrolls.limpiarRecycler()

@@ -8,55 +8,35 @@ import com.google.gson.reflect.TypeToken
 class Converters {
 
     @TypeConverter
-    fun fromListToString(list: List<Float>): String {
-        return Gson().toJson(list) // Convierte la lista a JSON
+    fun fromMutableListToString(list: MutableList<String>): String {
+        return Gson().toJson(list)
     }
 
     @TypeConverter
-    fun fromStringToList(value: String?): List<Float> {
-        if (value.isNullOrEmpty()) return emptyList()
+    fun fromStringToMutableList(value: String?): MutableList<String> {
+        if (value.isNullOrEmpty()) return mutableListOf()
         return try {
-            val listType = object : TypeToken<List<Float>>() {}.type
+            val listType = object : TypeToken<MutableList<String>>() {}.type
             Gson().fromJson(value, listType)
         } catch (e: Exception) {
-            emptyList()
+            mutableListOf()
         }
     }
 
-
     @TypeConverter
-    fun fromListToStringNotas(list: List<String?>): String {
-        return Gson().toJson(list) // Convierte la lista de notas a JSON
+    fun fromMutableListToStringNullable(list: MutableList<String?>): String {
+        return Gson().toJson(list)
     }
 
     @TypeConverter
-    fun fromStringToListNotas(value: String?): List<String?> {
-        if (value.isNullOrEmpty()) {
-            return emptyList()
-        }
+    fun fromStringToMutableListNullable(value: String?): MutableList<String?> {
+        if (value.isNullOrEmpty()) return mutableListOf()
         return try {
-            val listType = object : TypeToken<List<String?>>() {}.type
+            val listType = object : TypeToken<MutableList<String?>>() {}.type
             Gson().fromJson(value, listType)
         } catch (e: Exception) {
-            emptyList()
+            mutableListOf()
         }
     }
 
-    @TypeConverter
-    fun fromListToStringFechas(list: List<String>): String {
-        return Gson().toJson(list) // Convierte la lista de fechas a JSON
-    }
-
-    @TypeConverter
-    fun fromStringToListFechas(value: String?): List<String> {
-        if (value.isNullOrEmpty()) {
-            return emptyList()
-        }
-        return try {
-            val listType = object : TypeToken<List<String>>() {}.type
-            Gson().fromJson(value, listType)
-        } catch (e: Exception) {
-            emptyList()
-        }
-    }
 }
