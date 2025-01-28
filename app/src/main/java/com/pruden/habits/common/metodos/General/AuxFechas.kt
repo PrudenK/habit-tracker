@@ -1,4 +1,4 @@
-package com.pruden.habits.common.metodos.Fechas
+package com.pruden.habits.common.metodos.General
 
 import com.pruden.habits.common.clases.data.Fecha
 import java.text.SimpleDateFormat

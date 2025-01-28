@@ -4,8 +4,8 @@ import com.pruden.habits.HabitosApplication
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
-import com.pruden.habits.common.metodos.Fechas.obtenerFechaActual
-import com.pruden.habits.common.metodos.Fechas.obtenerFechasEntre
+import com.pruden.habits.common.metodos.General.obtenerFechaActual
+import com.pruden.habits.common.metodos.General.obtenerFechasEntre
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -56,5 +56,6 @@ class MainInteractor {
             HabitosApplication.database.habitoDao().deleteHabito(habitoEntity)
         }
     }
+
 
 }

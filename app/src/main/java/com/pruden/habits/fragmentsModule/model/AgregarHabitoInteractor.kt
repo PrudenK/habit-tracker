@@ -3,7 +3,7 @@ package com.pruden.habits.fragmentsModule.model
 import com.pruden.habits.HabitosApplication
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
-import com.pruden.habits.common.metodos.Fechas.generarFechasFormatoYYYYMMDD
+import com.pruden.habits.common.metodos.General.generarFechasFormatoYYYYMMDD
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

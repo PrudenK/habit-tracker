@@ -14,13 +14,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.data.Habito
-import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.mainModule.adapters.FechaAdapter
 import com.pruden.habits.mainModule.adapters.HabitoAdapter
 import com.pruden.habits.mainModule.adapters.listeners.OnLongClickHabito
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.elementos.SincronizadorDeScrolls
-import com.pruden.habits.common.metodos.Fechas.generateLastDates
+import com.pruden.habits.common.metodos.General.generateLastDates
 import com.pruden.habits.common.metodos.Fragments.cargarFragmentAgregarPartidaManual
 import com.pruden.habits.common.metodos.Fragments.cargarFragmentConfiguraciones
 import com.pruden.habits.databinding.ActivityMainBinding

@@ -1,5 +1,6 @@
 package com.pruden.habits.common.baseDatos.DAO
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -69,4 +70,6 @@ interface HabitoDao {
 
     @Query("Update datahabitos set valorCampo = 0.0, notas = null")
     suspend fun borrarTodosLosRegistros()
+
+
 }

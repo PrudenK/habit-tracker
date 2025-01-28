@@ -4,7 +4,7 @@ import android.content.Context
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.metodos.Constantes
-import com.pruden.habits.common.metodos.Fechas.obtenerFechaActual
+import com.pruden.habits.common.metodos.General.obtenerFechaActual
 import com.pruden.habits.common.metodos.exportarDatos.devolverCabeceraCopiaDeSeguridadData
 import com.pruden.habits.common.metodos.exportarDatos.devolverCabeceraDataHabitos
 import com.pruden.habits.common.metodos.exportarDatos.devolverIdCabecera

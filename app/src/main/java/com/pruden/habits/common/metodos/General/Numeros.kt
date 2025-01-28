@@ -1,4 +1,4 @@
-package com.pruden.habits.common.metodos
+package com.pruden.habits.common.metodos.General
 
 fun formatearNumero(value: Float): String {
     return when {

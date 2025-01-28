@@ -12,7 +12,7 @@ import com.pruden.habits.mainModule.adapters.listeners.OnClickNumericoRegistro
 import com.pruden.habits.common.clases.auxClass.HabitoAux
 import com.pruden.habits.common.clases.auxClass.TextViewsNumerico
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
-import com.pruden.habits.common.metodos.formatearNumero
+import com.pruden.habits.common.metodos.General.formatearNumero
 import com.pruden.habits.databinding.ItemRegistroNumericoBinding
 
 class RegistroNumericoAdapter (val listaRegistros: MutableList<DataHabitoEntity>, val listener: OnClickNumericoRegistro, val habitoAux: HabitoAux)

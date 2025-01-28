@@ -7,7 +7,7 @@ import java.util.zip.ZipOutputStream
 import android.content.Intent
 import android.net.Uri
 import androidx.core.content.FileProvider
-import com.pruden.habits.common.metodos.Fechas.obtenerFechaActual
+import com.pruden.habits.common.metodos.General.obtenerFechaActual
 
 fun crearZipConArchivosYDirectorio(context: Context, habitosCSV: File, dataHabitosCSV: File, directorio: File): File {
     val zipFile = File(context.filesDir, "Datos_Habit_Tracker_${obtenerFechaActual()}.zip")

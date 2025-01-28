@@ -13,11 +13,12 @@ import com.pruden.habits.common.metodos.Constantes
 import com.pruden.habits.common.metodos.Dialogos.makeToast
 import com.pruden.habits.fragmentsModule.viewModel.ConfiguracionesViewModel
 import com.pruden.habits.mainModule.MainActivity
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
-fun leerCsvDesdeUri(uri: Uri, context: Context, viewModel: ConfiguracionesViewModel, main : MainActivity) {
+ fun leerCsvDesdeUri(uri: Uri, context: Context, viewModel: ConfiguracionesViewModel, main : MainActivity) {
     try {
         val inputStream = context.contentResolver.openInputStream(uri)
         val reader = BufferedReader(InputStreamReader(inputStream))
@@ -58,6 +59,10 @@ fun leerCsvDesdeUri(uri: Uri, context: Context, viewModel: ConfiguracionesViewMo
                         if(linea != Constantes.COMIENZAN_DATA_HABITOS && !linea.startsWith("Fecha")){
                             val d = linea.split(",")
                             val fecha = d[0]
+                            Log.d("Fechas", fecha)
+
+
+
 
                             var k = 0
                             for (i in 1..<d.size step 2) {
@@ -77,8 +82,9 @@ fun leerCsvDesdeUri(uri: Uri, context: Context, viewModel: ConfiguracionesViewMo
             return
         }
 
+
         main.runOnUiThread {
-            main.actualizarDatosHabitosImport(listaHabitos)
+           // main.cargarDatos()
         }
 
         Toast.makeText(context, "Archivo CSV importado correctamente", Toast.LENGTH_SHORT).show()

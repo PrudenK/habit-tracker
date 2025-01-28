@@ -25,7 +25,7 @@ import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.databinding.ItemHabitoBinding
 import com.pruden.habits.common.elementos.SincronizadorDeScrolls
-import com.pruden.habits.common.metodos.formatearNumero
+import com.pruden.habits.common.metodos.General.formatearNumero
 import com.pruden.habits.mainModule.viewModel.HabitoAdapterViewModel
 
 class HabitoAdapter (

@@ -41,5 +41,4 @@ class MainViewModel: ViewModel() {
             callback(it)
         }
     }
-
 }
