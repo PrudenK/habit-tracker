@@ -68,6 +68,8 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         mainViewModel.getAllHabitosConDatos().observe(this){
             habitosAdapter.setHabitos(it)
+            sincronizadorDeScrolls.limpiarRecycler()
+            configurarRecyclerFechas()
             habitosAdapter.notifyDataSetChanged()
         }
     }
@@ -142,7 +144,7 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         habitosAdapter.notifyDataSetChanged()
         Log.d("ads", habitosAdapter.listaHabitos.size.toString())
     }
-    
+
     fun actualizarDespuesDeBorrarTodosLosDatos() {
         sincronizadorDeScrolls.limpiarRecycler()
         sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)
