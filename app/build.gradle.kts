@@ -59,7 +59,9 @@ dependencies {
 
     // Corrutinas
     implementation(libs.kotlinx.coroutines.android)
-    
+
+    implementation ("com.github.rubensousa:gravitysnaphelper:2.2.1")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)

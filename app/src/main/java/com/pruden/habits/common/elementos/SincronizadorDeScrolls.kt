@@ -1,23 +1,28 @@
 package com.pruden.habits.common.elementos
 
+import android.view.Gravity
 import androidx.recyclerview.widget.RecyclerView
+import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 
 class SincronizadorDeScrolls {
     private val recyclerViews = mutableListOf<RecyclerView>()
     private val scrollListeners = mutableMapOf<RecyclerView, RecyclerView.OnScrollListener>()
-    private val flingListeners = mutableMapOf<RecyclerView, RecyclerView.OnFlingListener>()
     private var isSyncing = false
+    private val snapHelpers = mutableMapOf<RecyclerView, GravitySnapHelper>()
 
     fun addRecyclerView(recyclerView: RecyclerView) {
-        // Si el RecyclerView ya está registrado, elimina sus listeners previos
         if (recyclerViews.contains(recyclerView)) {
             removeListeners(recyclerView)
         }
 
-        // Registrar el RecyclerView
         recyclerViews.add(recyclerView)
 
-        // Agregar el listener de scroll
+        // Usar GravitySnapHelper para alinear a la izquierda
+        val snapHelper = GravitySnapHelper(Gravity.START)
+        snapHelper.attachToRecyclerView(recyclerView)
+        snapHelpers[recyclerView] = snapHelper
+
+        // Listener para sincronizar scroll entre RecyclerViews
         val scrollListener = object : RecyclerView.OnScrollListener() {
             override fun onScrolled(rv: RecyclerView, dx: Int, dy: Int) {
                 if (!isSyncing) {
@@ -33,24 +38,6 @@ class SincronizadorDeScrolls {
         }
         recyclerView.addOnScrollListener(scrollListener)
         scrollListeners[recyclerView] = scrollListener
-
-        // Agregar el listener de fling
-        val flingListener = object : RecyclerView.OnFlingListener() {
-            override fun onFling(velocityX: Int, velocityY: Int): Boolean {
-                if (!isSyncing) {
-                    isSyncing = true
-                    recyclerViews.forEach { syncedRecycler ->
-                        if (syncedRecycler !== recyclerView) {
-                            syncedRecycler.fling(velocityX, velocityY)
-                        }
-                    }
-                    isSyncing = false
-                }
-                return false // Permitir el fling normal
-            }
-        }
-        recyclerView.onFlingListener = flingListener
-        flingListeners[recyclerView] = flingListener
     }
 
     fun removeRecyclerView(recyclerView: RecyclerView) {
@@ -64,20 +51,16 @@ class SincronizadorDeScrolls {
         recyclerViews.forEach { removeListeners(it) }
         recyclerViews.clear()
         scrollListeners.clear()
-        flingListeners.clear()
+        snapHelpers.clear()
     }
 
     private fun removeListeners(recyclerView: RecyclerView) {
-        // Quitar el listener de scroll
         scrollListeners[recyclerView]?.let {
             recyclerView.removeOnScrollListener(it)
         }
         scrollListeners.remove(recyclerView)
 
-        // Quitar el listener de fling
-        flingListeners[recyclerView]?.let {
-            recyclerView.onFlingListener = null
-        }
-        flingListeners.remove(recyclerView)
+        snapHelpers[recyclerView]?.attachToRecyclerView(null)
+        snapHelpers.remove(recyclerView)
     }
 }
