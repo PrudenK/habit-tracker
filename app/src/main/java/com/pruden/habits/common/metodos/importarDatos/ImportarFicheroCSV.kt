@@ -76,16 +76,7 @@ import java.io.InputStreamReader
                             viewModel.insertarHabito(habito)
                             listaHabitosEntity.add(habito)
 
-                            for(fecha in fechasEntreBaseInicio){
-                                viewModel.insertarDataHabito(
-                                    DataHabitoEntity(h[0], fecha,"0.0",null)
-                                )
-                            }
-                            for(fecha in fechaEntreFinYHoy){
-                                viewModel.insertarDataHabito(
-                                    DataHabitoEntity(h[0], fecha,"0.0",null)
-                                )
-                            }
+
 
 
                         }else{
@@ -106,7 +97,20 @@ import java.io.InputStreamReader
                             }
                         }
                     }
+                    for(h in listaHabitosEntity){
+                        for(fecha in fechaEntreFinYHoy){
+                            viewModel.insertarDataHabito(
+                                DataHabitoEntity(h.nombre, fecha,"0.0",null)
+                            )
+                        }
+                        for(fecha in fechasEntreBaseInicio){
+                            viewModel.insertarDataHabito(
+                                DataHabitoEntity(h.nombre, fecha,"0.0",null)
+                            )
+                        }
+                    }
                 }
+
 
             }else{
                 makeToast("Fichero no válido", context)
