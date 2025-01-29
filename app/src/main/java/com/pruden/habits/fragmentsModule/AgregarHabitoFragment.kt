@@ -195,7 +195,6 @@ class AgregarHabitoFragment : Fragment() {
                         }
                     }else{
                         fragmentViewModel.agregarRegistrosHabito(nombre){
-                            main.actualizarTrasInsertarNuevoHabito(nombre)
                             Snackbar.make(binding.root, "Hábito añadido con éxito", Snackbar.LENGTH_SHORT).show()
                             activity?.onBackPressed()
                         }

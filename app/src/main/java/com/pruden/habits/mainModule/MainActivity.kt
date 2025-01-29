@@ -129,15 +129,7 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
             cargarFragmentConfiguraciones(this)
         }
     }
-
-    fun actualizarTrasInsertarNuevoHabito(nombre: String) {
-        mainViewModel.getHabitoPorNombre(nombre) { habito ->
-            sincronizadorDeScrolls.limpiarRecycler()
-            configurarRecyclerFechas()
-            habitosAdapter.actualizarTrasInsercion(habito)
-        }
-    }
-
+    
     fun actualizarDatosHabitos(){
         sincronizadorDeScrolls.limpiarRecycler()
         configurarRecyclerFechas()
