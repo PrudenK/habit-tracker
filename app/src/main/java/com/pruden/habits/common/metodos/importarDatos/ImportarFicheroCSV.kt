@@ -52,7 +52,7 @@ import java.io.InputStreamReader
             }
 
             if(fechaFin > obtenerFechaActual()){
-                makeToast("Fichero no válido", context)
+                makeToast("Fichero no válido_3", context)
                 return
             }
 
@@ -62,10 +62,14 @@ import java.io.InputStreamReader
             for(y in fechaEntreFinYHoy)
                 Log.v("Fin-Hoy",y)
 
-            if(contenidoCsv.contains(Constantes.COMIENZAN_DATA_HABITOS)){
-                if(contenidoCsv.removeAt(0) == Constantes.CABECERA_HABITOS_CSV){
+            for (z in contenidoCsv)
+                Log.v("adfa",z)
+
+            if(contenidoCsv.any { it.trimEnd(',') == Constantes.COMIENZAN_DATA_HABITOS }){
+                if(contenidoCsv.removeAt(0).trimEnd(',') == Constantes.CABECERA_HABITOS_CSV){
+
                     contenidoCsv.forEach { linea ->
-                        if(linea == Constantes.COMIENZAN_DATA_HABITOS) comienzanDataHabitos = true
+                        if(linea.startsWith(Constantes.COMIENZAN_DATA_HABITOS)) comienzanDataHabitos = true
 
                         Log.v("asdfasdf", "adsfadsfsadfadsfadsf")
 
@@ -80,7 +84,7 @@ import java.io.InputStreamReader
 
 
                         }else{
-                            if(linea != Constantes.COMIENZAN_DATA_HABITOS && !linea.startsWith("Fecha")){
+                            if(linea.trimEnd(',') != Constantes.COMIENZAN_DATA_HABITOS && !linea.startsWith("Fecha")){
                                 val d = linea.split(",")
                                 val fecha = d[0]
                                 Log.d("Fechas", fecha)
@@ -113,7 +117,7 @@ import java.io.InputStreamReader
 
 
             }else{
-                makeToast("Fichero no válido", context)
+                makeToast("Fichero no válido_1", context)
                 return
             }
 
@@ -122,7 +126,7 @@ import java.io.InputStreamReader
 
 
         }else{
-            makeToast("Fichero no válido", context)
+            makeToast("Fichero no válido_2", context)
             return
         }
 

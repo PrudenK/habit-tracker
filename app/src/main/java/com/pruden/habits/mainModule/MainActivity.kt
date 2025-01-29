@@ -129,7 +129,7 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
             cargarFragmentConfiguraciones(this)
         }
     }
-    
+
     fun actualizarDatosHabitos(){
         sincronizadorDeScrolls.limpiarRecycler()
         configurarRecyclerFechas()
