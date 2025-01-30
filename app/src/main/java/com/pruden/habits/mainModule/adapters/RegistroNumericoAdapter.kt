@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.R
 import com.pruden.habits.mainModule.adapters.listeners.OnClickNumericoRegistro
@@ -34,21 +35,24 @@ class RegistroNumericoAdapter (val listaRegistros: MutableList<DataHabitoEntity>
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val registro = listaRegistros[position]
         with(holder) {
+            val typeface = ResourcesCompat.getFont(binding.root.context, R.font.encabezados)
 
             fun cumplido(){
+
+
                 binding.unidad.setTextColor(habitoAux.color)
-                binding.unidad.setTypeface(null, Typeface.BOLD)
+                binding.unidad.setTypeface(typeface, Typeface.BOLD)
 
                 binding.puntuacion.setTextColor(habitoAux.color)
-                binding.puntuacion.setTypeface(null, Typeface.BOLD)
+                binding.puntuacion.setTypeface(typeface, Typeface.BOLD)
             }
 
             fun noCumplido(){
                 binding.unidad.setTextColor(ContextCompat.getColor(contexto, R.color.gray_color_dark))
-                binding.unidad.setTypeface(null, Typeface.NORMAL)
+                binding.unidad.setTypeface(typeface, Typeface.NORMAL)
 
                 binding.puntuacion.setTextColor(ContextCompat.getColor(contexto, R.color.gray_color_dark))
-                binding.puntuacion.setTypeface(null, Typeface.NORMAL)
+                binding.puntuacion.setTypeface(typeface, Typeface.NORMAL)
             }
 
             val objetivo = habitoAux.objetivo.split("@")[0]

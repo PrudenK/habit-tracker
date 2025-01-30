@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.view.Window
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputEditText
@@ -168,7 +169,9 @@ class HabitoAdapter (
         val inputCantidad = dialog.findViewById<TextInputEditText>(R.id.input_cantidad_numerico)
         val tilCantidad = dialog.findViewById<TextInputLayout>(R.id.til_cantidad)
 
-        inputCantidad.setText(habitoData.valorCampo)
+        if(habitoData.valorCampo != "0.0"){
+            inputCantidad.setText(habitoData.valorCampo)
+        }
         tilCantidad.hint = habitoAux.unidad
 
         inputNotas.setText(habitoData.notas)
@@ -181,22 +184,23 @@ class HabitoAdapter (
 
 
                 viewModel.updateDataHabito(habitoData)
+                val typeface = ResourcesCompat.getFont(contexto, R.font.encabezados)
 
 
                 fun cumplido(){
                     tvNumerico.puntuacion.setTextColor(habitoAux.color)
                     tvNumerico.unidad.setTextColor(habitoAux.color)
 
-                    tvNumerico.puntuacion.setTypeface(null, Typeface.BOLD)
-                    tvNumerico.unidad.setTypeface(null, Typeface.BOLD)
+                    tvNumerico.puntuacion.setTypeface(typeface, Typeface.BOLD)
+                    tvNumerico.unidad.setTypeface(typeface, Typeface.BOLD)
                 }
 
                 fun noCumplido(){
                     tvNumerico.puntuacion.setTextColor(ContextCompat.getColor(contexto, R.color.gray_color_dark))
                     tvNumerico.unidad.setTextColor(ContextCompat.getColor(contexto, R.color.gray_color_dark))
 
-                    tvNumerico.puntuacion.setTypeface(null, Typeface.NORMAL)
-                    tvNumerico.unidad.setTypeface(null, Typeface.NORMAL)
+                    tvNumerico.puntuacion.setTypeface(typeface, Typeface.NORMAL)
+                    tvNumerico.unidad.setTypeface(typeface, Typeface.NORMAL)
                 }
 
                 val objetivo = habitoAux.objetivo.split("@")[0]
