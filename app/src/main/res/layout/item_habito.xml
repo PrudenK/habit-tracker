@@ -4,8 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingTop="8dp"
-
-    >
+    android:background="@color/dark_background">
 
     <HorizontalScrollView
         android:id="@+id/scroll_habito"
@@ -15,11 +14,9 @@
         app:layout_constraintStart_toStartOf="parent"
         android:scrollbars="none"
         android:paddingHorizontal="18dp"
-
         android:clickable="true"
         android:focusable="true"
-        android:background="?attr/selectableItemBackground"
-        >
+        android:background="?attr/selectableItemBackground">
 
         <TextView
             android:id="@+id/nombre_habito"
@@ -29,9 +26,10 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:paddingVertical="16dp"
-
             android:maxLines="1"
             android:ellipsize="end"
+            android:textColor="@color/gray_color"
+            android:fontFamily="@font/encabezados"
             />
     </HorizontalScrollView>
 
@@ -45,8 +43,5 @@
         app:layout_constraintStart_toEndOf="@id/scroll_habito"
         app:layout_constraintBottom_toBottomOf="@id/scroll_habito"
         app:layout_constraintEnd_toEndOf="parent"
-        android:background="@color/material_dynamic_neutral80"
-        />
-
-
+        android:background="@color/dark_gray"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

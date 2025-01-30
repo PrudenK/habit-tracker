@@ -192,8 +192,8 @@ class HabitoAdapter (
                 }
 
                 fun noCumplido(){
-                    tvNumerico.puntuacion.setTextColor(ContextCompat.getColor(contexto, R.color.black))
-                    tvNumerico.unidad.setTextColor(ContextCompat.getColor(contexto, R.color.black))
+                    tvNumerico.puntuacion.setTextColor(ContextCompat.getColor(contexto, R.color.gray_color_dark))
+                    tvNumerico.unidad.setTextColor(ContextCompat.getColor(contexto, R.color.gray_color_dark))
 
                     tvNumerico.puntuacion.setTypeface(null, Typeface.NORMAL)
                     tvNumerico.unidad.setTypeface(null, Typeface.NORMAL)

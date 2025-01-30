@@ -44,10 +44,10 @@ class RegistroNumericoAdapter (val listaRegistros: MutableList<DataHabitoEntity>
             }
 
             fun noCumplido(){
-                binding.unidad.setTextColor(ContextCompat.getColor(contexto, R.color.black))
+                binding.unidad.setTextColor(ContextCompat.getColor(contexto, R.color.gray_color_dark))
                 binding.unidad.setTypeface(null, Typeface.NORMAL)
 
-                binding.puntuacion.setTextColor(ContextCompat.getColor(contexto, R.color.black))
+                binding.puntuacion.setTextColor(ContextCompat.getColor(contexto, R.color.gray_color_dark))
                 binding.puntuacion.setTypeface(null, Typeface.NORMAL)
             }
 

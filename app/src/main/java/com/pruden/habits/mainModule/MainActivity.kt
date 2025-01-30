@@ -54,6 +54,7 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
             insets
         }
 
+        window.navigationBarColor = resources.getColor(R.color.dark_gray) // Color barra móvil
 
         cargarViewModel()
         configurarRecyclerFechas()
