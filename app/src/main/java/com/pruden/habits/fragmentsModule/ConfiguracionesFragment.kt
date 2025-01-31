@@ -147,7 +147,7 @@ class ConfiguracionesFragment : Fragment() {
     private fun importarCopiaSeguridad(){
         binding.importarCopiaDeSeguridad.setOnClickListener {
             val filePickerIntent = Intent(Intent.ACTION_GET_CONTENT).apply {
-                type = "text/csv"
+                type = "*/*"
                 addCategory(Intent.CATEGORY_OPENABLE)
             }
             startActivityForResult(filePickerIntent, REQUEST_CODE_PICK_CSV)

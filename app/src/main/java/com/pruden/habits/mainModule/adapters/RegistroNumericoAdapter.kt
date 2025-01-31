@@ -60,7 +60,7 @@ class RegistroNumericoAdapter (val listaRegistros: MutableList<DataHabitoEntity>
 
 
             when(condicion){
-                "Más de"-> if (registro.valorCampo.toFloat() >= objetivo.toFloat()) cumplido()  else noCumplido()
+                "Más de" , "Mas de"-> if (registro.valorCampo.toFloat() >= objetivo.toFloat()) cumplido()  else noCumplido()
                 "Igual a"-> if (registro.valorCampo.toFloat() == objetivo.toFloat()) cumplido()  else noCumplido()
                 "Menos de"-> if (registro.valorCampo.toFloat() < objetivo.toFloat()) cumplido()  else noCumplido()
             }

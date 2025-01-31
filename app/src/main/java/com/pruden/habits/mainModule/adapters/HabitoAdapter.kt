@@ -169,7 +169,7 @@ class HabitoAdapter (
         val inputCantidad = dialog.findViewById<TextInputEditText>(R.id.input_cantidad_numerico)
         val tilCantidad = dialog.findViewById<TextInputLayout>(R.id.til_cantidad)
 
-        if(habitoData.valorCampo != "0.0"){
+        if(habitoData.valorCampo != "0.0" && habitoData.valorCampo != "0"){
             inputCantidad.setText(habitoData.valorCampo)
         }
         tilCantidad.hint = habitoAux.unidad
