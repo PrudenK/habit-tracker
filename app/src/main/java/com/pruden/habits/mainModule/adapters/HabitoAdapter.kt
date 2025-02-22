@@ -210,6 +210,10 @@ class HabitoAdapter (
         submitList(nuevaLista)
     }
 
+    fun actualizarLista(nuevaLista: List<Habito>) {
+        submitList(nuevaLista)
+    }
+
 
     class HabitoDiffCallback : DiffUtil.ItemCallback<Habito>() {
         override fun areItemsTheSame(oldItem: Habito, newItem: Habito) = oldItem.nombre == newItem.nombre

@@ -9,7 +9,7 @@
     <HorizontalScrollView
         android:id="@+id/scroll_habito"
         android:layout_width="140dp"
-        android:layout_height="wrap_content"
+        android:layout_height="@dimen/altura_habito"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:scrollbars="none"

@@ -56,6 +56,7 @@ import java.io.InputStreamReader
                 return
             }
 
+            /*
             for(x in fechasEntreBaseInicio)
                 Log.v("Inicio-InicioConst",x)
 
@@ -65,13 +66,15 @@ import java.io.InputStreamReader
             for (z in contenidoCsv)
                 Log.v("adfa",z)
 
+             */
+
             if(contenidoCsv.any { it.trimEnd(',') == Constantes.COMIENZAN_DATA_HABITOS }){
                 if(contenidoCsv.removeAt(0).trimEnd(',') == Constantes.CABECERA_HABITOS_CSV){
 
                     contenidoCsv.forEach { linea ->
                         if(linea.startsWith(Constantes.COMIENZAN_DATA_HABITOS)) comienzanDataHabitos = true
 
-                        Log.v("asdfasdf", "adsfadsfsadfadsfadsf")
+                     //   Log.v("asdfasdf", "adsfadsfsadfadsfadsf")
 
                         if(!comienzanDataHabitos){
                             val h = linea.split(",")

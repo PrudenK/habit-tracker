@@ -1,7 +1,6 @@
 package com.pruden.habits.mainModule.viewModel
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.HabitoEntity

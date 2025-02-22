@@ -40,6 +40,11 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
     //MVVM
     private lateinit var mainViewModel: MainViewModel
 
+    // Paginación
+    private var tamanoPagina = 8
+    private var paginaActual = 0
+    private var listaCompletaHabitos: MutableList<Habito> = mutableListOf()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -54,6 +59,8 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
             insets
         }
 
+        calcularTamanoPagina()
+
         window.navigationBarColor = resources.getColor(R.color.dark_gray) // Color barra móvil
 
         cargarViewModel()
@@ -65,15 +72,56 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         configuraciones()
     }
 
-    private fun cargarViewModel() {
-        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        mainViewModel.getAllHabitosConDatos().observe(this){
-            habitosAdapter.submitList(it)
-            sincronizadorDeScrolls.limpiarRecycler()
-            configurarRecyclerFechas()
-            habitosAdapter.notifyDataSetChanged()
+    private fun calcularTamanoPagina() {
+        mBinding.recyclerHabitos.post {
+            val alturaRecycler = mBinding.recyclerHabitos.height
+            val alturaItem = resources.getDimensionPixelSize(R.dimen.altura_habito)
+
+            tamanoPagina = if (alturaItem > 0) (alturaRecycler / alturaItem) - 1 else 8
+
+            tamanoPagina = tamanoPagina.coerceAtLeast(1)
+
+            actualizarPagina()
         }
     }
+
+    private fun cargarViewModel() {
+        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
+
+        mainViewModel.getAllHabitosConDatos().observe(this) { habitos ->
+            listaCompletaHabitos = habitos.toMutableList()
+            actualizarPagina()
+        }
+
+        mBinding.btnAnterior.setOnClickListener {
+            if (paginaActual > 0) {
+                paginaActual--
+                actualizarPagina()
+            }
+        }
+
+        mBinding.btnSiguiente.setOnClickListener {
+            if ((paginaActual + 1) * tamanoPagina < listaCompletaHabitos.size) {
+                paginaActual++
+                actualizarPagina()
+            }
+        }
+    }
+
+    private fun actualizarPagina() {
+        val inicio = paginaActual * tamanoPagina
+        val fin = (inicio + tamanoPagina).coerceAtMost(listaCompletaHabitos.size)
+
+        val subLista = listaCompletaHabitos.subList(inicio, fin)
+
+        sincronizadorDeScrolls.limpiarRecycler()
+        configurarRecyclerFechas()
+
+        habitosAdapter.submitList(subLista)
+
+        mBinding.tvPagina.text = "Página ${paginaActual + 1}"
+    }
+
 
 
     private fun configurarRecyclerHabitos() {
@@ -110,10 +158,14 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         buttonCancel.setOnClickListener {
             dialog.dismiss()
         }
+        Log.d("1","${sincronizadorDeScrolls.recyclerViews.size}")
 
         buttonAccept.setOnClickListener {
             mainViewModel.borrarHabito(habito)
             habitosAdapter.deleteHabito(habito)
+            //actualizarPagina()
+
+            Log.d("2","${sincronizadorDeScrolls.recyclerViews.size}")
 
             dialog.dismiss()
         }

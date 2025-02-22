@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 
 class SincronizadorDeScrolls {
-    private val recyclerViews = mutableListOf<RecyclerView>()
+     val recyclerViews = mutableListOf<RecyclerView>()
     private val scrollListeners = mutableMapOf<RecyclerView, RecyclerView.OnScrollListener>()
     private var isSyncing = false
     private val snapHelpers = mutableMapOf<RecyclerView, GravitySnapHelper>()
