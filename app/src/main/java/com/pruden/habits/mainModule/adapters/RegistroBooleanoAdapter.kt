@@ -5,14 +5,17 @@ import com.pruden.habits.databinding.ItemRegistroBooleanoBinding
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.R
+import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.mainModule.adapters.listeners.OnClickBooleanRegistro
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 
-class RegistroBooleanoAdapter(val listaDataEnity: MutableList<DataHabitoEntity>, val listener : OnClickBooleanRegistro,
-                              val color: Int
-    ) : RecyclerView.Adapter<RegistroBooleanoAdapter.ViewHolder>() {
+class RegistroBooleanoAdapter(val listener : OnClickBooleanRegistro, val color: Int
+    ) : ListAdapter<DataHabitoEntity, RecyclerView.ViewHolder>(RegistroBooleanoDiffCallback()) {
+
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemRegistroBooleanoBinding.bind(view)
     }
@@ -22,11 +25,10 @@ class RegistroBooleanoAdapter(val listaDataEnity: MutableList<DataHabitoEntity>,
         return ViewHolder(vista)
     }
 
-    override fun getItemCount() = listaDataEnity.size
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val registro = listaDataEnity[position]
-        with(holder) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val registro = getItem(position)
+        with(holder as ViewHolder) {
             if(registro.valorCampo == "1.0" || registro.valorCampo == "1"){
                 binding.icono.setImageResource(R.drawable.ic_check)
                 binding.icono.setColorFilter(color)
@@ -38,5 +40,10 @@ class RegistroBooleanoAdapter(val listaDataEnity: MutableList<DataHabitoEntity>,
                 listener.onClickBooleanRegistro(binding.icono, registro, color)
             }
         }
+    }
+
+    class RegistroBooleanoDiffCallback : DiffUtil.ItemCallback<DataHabitoEntity>() {
+        override fun areItemsTheSame(oldItem: DataHabitoEntity, newItem: DataHabitoEntity) = oldItem.nombre == newItem.nombre
+        override fun areContentsTheSame(oldItem: DataHabitoEntity, newItem: DataHabitoEntity) = oldItem == newItem
     }
 }

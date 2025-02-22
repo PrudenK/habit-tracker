@@ -7,17 +7,22 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.R
 import com.pruden.habits.mainModule.adapters.listeners.OnClickNumericoRegistro
 import com.pruden.habits.common.clases.auxClass.HabitoAux
 import com.pruden.habits.common.clases.auxClass.TextViewsNumerico
+import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.metodos.General.formatearNumero
 import com.pruden.habits.databinding.ItemRegistroNumericoBinding
 
-class RegistroNumericoAdapter (val listaRegistros: MutableList<DataHabitoEntity>, val listener: OnClickNumericoRegistro, val habitoAux: HabitoAux)
-    : RecyclerView.Adapter<RegistroNumericoAdapter.ViewHolder>() {
+class RegistroNumericoAdapter (
+    val listener: OnClickNumericoRegistro, val habitoAux: HabitoAux)
+    : ListAdapter<DataHabitoEntity, RecyclerView.ViewHolder>(RegistroNumericoDiffCallback()) {
+
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemRegistroNumericoBinding.bind(view)
     }
@@ -30,11 +35,9 @@ class RegistroNumericoAdapter (val listaRegistros: MutableList<DataHabitoEntity>
         return ViewHolder(vista)
     }
 
-    override fun getItemCount() = listaRegistros.size
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val registro = listaRegistros[position]
-        with(holder) {
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val registro = getItem(position)
+        with(holder as ViewHolder) {
             val typeface = ResourcesCompat.getFont(binding.root.context, R.font.encabezados)
 
             fun cumplido(){
@@ -72,9 +75,11 @@ class RegistroNumericoAdapter (val listaRegistros: MutableList<DataHabitoEntity>
             binding.itemRegistroNumerico.setOnClickListener {
                 listener.onClickNumericoRegistro(TextViewsNumerico(binding.unidad, binding.puntuacion), registro, habitoAux)
             }
-
-
         }
+    }
 
+    class RegistroNumericoDiffCallback : DiffUtil.ItemCallback<DataHabitoEntity>() {
+        override fun areItemsTheSame(oldItem: DataHabitoEntity, newItem: DataHabitoEntity) = oldItem.nombre == newItem.nombre
+        override fun areContentsTheSame(oldItem: DataHabitoEntity, newItem: DataHabitoEntity) = oldItem == newItem
     }
 }

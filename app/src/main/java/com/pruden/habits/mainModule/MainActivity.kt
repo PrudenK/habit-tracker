@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
     private fun cargarViewModel() {
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         mainViewModel.getAllHabitosConDatos().observe(this){
-            habitosAdapter.setHabitos(it)
+            habitosAdapter.submitList(it)
             sincronizadorDeScrolls.limpiarRecycler()
             configurarRecyclerFechas()
             habitosAdapter.notifyDataSetChanged()
@@ -77,7 +77,7 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
 
 
     private fun configurarRecyclerHabitos() {
-        habitosAdapter = HabitoAdapter(mutableListOf(), sincronizadorDeScrolls, this)
+        habitosAdapter = HabitoAdapter(sincronizadorDeScrolls, this)
         linearLayoutHabitos = LinearLayoutManager(this)
 
         mBinding.recyclerHabitos.apply {
@@ -87,13 +87,15 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
     }
 
     private fun configurarRecyclerFechas() {
-        fechasAdapter = FechaAdapter(generateLastDates())
+        fechasAdapter = FechaAdapter()
         linearLayoutFechas = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         mBinding.recyclerFechas.apply {
             adapter = fechasAdapter
             layoutManager = linearLayoutFechas
         }
+
+        fechasAdapter.submitList(generateLastDates())
 
         sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)
     }
@@ -135,12 +137,12 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         sincronizadorDeScrolls.limpiarRecycler()
         configurarRecyclerFechas()
         habitosAdapter.notifyDataSetChanged()
-        Log.d("ads", habitosAdapter.listaHabitos.size.toString())
+        Log.d("ads", habitosAdapter.currentList.size.toString())
     }
 
     fun actualizarDespuesDeBorrarTodosLosDatos() {
         sincronizadorDeScrolls.limpiarRecycler()
         sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)
-        habitosAdapter.borrarDatosAdapter()
+        habitosAdapter.submitList(emptyList())
     }
 }

@@ -3,7 +3,6 @@ package com.pruden.habits.mainModule.adapters
 import android.app.Dialog
 import android.content.Context
 import android.graphics.Typeface
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,9 @@ import android.view.Window
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -30,13 +31,10 @@ import com.pruden.habits.common.metodos.General.formatearNumero
 import com.pruden.habits.mainModule.viewModel.HabitoAdapterViewModel
 
 class HabitoAdapter (
-    var listaHabitos : MutableList<Habito>,
     private val sincronizadorDeScrolls: SincronizadorDeScrolls,
     private val onLongListenr: OnLongClickHabito
-
 ):
-    RecyclerView.Adapter<HabitoAdapter.ViewHolder>(), OnClickBooleanRegistro,
-    OnClickNumericoRegistro {
+    ListAdapter<Habito, RecyclerView.ViewHolder>(HabitoDiffCallback()), OnClickBooleanRegistro, OnClickNumericoRegistro {
 
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view){
         val binding = ItemHabitoBinding.bind(view)
@@ -53,14 +51,10 @@ class HabitoAdapter (
         return ViewHolder(vista)
     }
 
-    override fun getItemCount() = listaHabitos.size
-
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val habito = listaHabitos[position]
-        with(holder){
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val habito = getItem(position)
+        with(holder as ViewHolder){
             binding.nombreHabito.text = habito.nombre
-
-            Log.d("12345", habito.listaValores.size.toString())
 
             val listaDataHabitoEntity = mutableListOf<DataHabitoEntity>()
 
@@ -79,16 +73,16 @@ class HabitoAdapter (
 
             if(habito.tipoNumerico){
                 val habitoAux = HabitoAux(habito.unidad!!, habito.colorHabito, habito.objetivo!!)
-                val registroAdapter = RegistroNumericoAdapter(listaDataHabitoEntity,this@HabitoAdapter, habitoAux)
+                val registroAdapter = RegistroNumericoAdapter(this@HabitoAdapter, habitoAux)
                 binding.recyclerDataHabitos.adapter = registroAdapter
-                binding.recyclerDataHabitos.layoutManager = LinearLayoutManager(contexto,
-                    LinearLayoutManager.HORIZONTAL, false)
+                binding.recyclerDataHabitos.layoutManager = LinearLayoutManager(contexto, LinearLayoutManager.HORIZONTAL, false)
+                registroAdapter.submitList(listaDataHabitoEntity)
             }else{
 
-                val registroAdapter = RegistroBooleanoAdapter(listaDataHabitoEntity, this@HabitoAdapter, habito.colorHabito)
+                val registroAdapter = RegistroBooleanoAdapter(this@HabitoAdapter, habito.colorHabito)
                 binding.recyclerDataHabitos.adapter = registroAdapter
-                binding.recyclerDataHabitos.layoutManager = LinearLayoutManager(contexto,
-                    LinearLayoutManager.HORIZONTAL, false)
+                binding.recyclerDataHabitos.layoutManager = LinearLayoutManager(contexto, LinearLayoutManager.HORIZONTAL, false)
+                registroAdapter.submitList(listaDataHabitoEntity)
             }
 
 
@@ -111,13 +105,6 @@ class HabitoAdapter (
             }
         }
     }
-
-    fun actualizarTrasInsercion(habito: Habito) {
-        listaHabitos.add(habito)
-        listaHabitos.sortBy { it.nombre }
-        notifyDataSetChanged()
-    }
-
 
     override fun onClickBooleanRegistro(icono: ImageView, habitoData: DataHabitoEntity, color: Int) {
         val dialog = Dialog(contexto)
@@ -218,22 +205,14 @@ class HabitoAdapter (
         dialog.show()
     }
 
-    fun setHabitos(nuevosHabitos: List<Habito>) {
-        listaHabitos.clear()
-        listaHabitos.addAll(nuevosHabitos)
-        notifyDataSetChanged() // Notifica que los datos han cambiado
+    fun deleteHabito(habitoEntity: HabitoEntity) {
+        val nuevaLista = currentList.filter { it.nombre != habitoEntity.nombre }
+        submitList(nuevaLista)
     }
 
-    fun deleteHabito(habitoEntity: HabitoEntity){
-        val indice = listaHabitos.indexOfFirst { it.nombre == habitoEntity.nombre }
-        if (indice != -1) {
-            listaHabitos.removeAt(indice)
-            notifyItemRemoved(indice)
-        }
-    }
 
-    fun borrarDatosAdapter() {
-        listaHabitos = mutableListOf()
-        notifyDataSetChanged()
+    class HabitoDiffCallback : DiffUtil.ItemCallback<Habito>() {
+        override fun areItemsTheSame(oldItem: Habito, newItem: Habito) = oldItem.nombre == newItem.nombre
+        override fun areContentsTheSame(oldItem: Habito, newItem: Habito) = oldItem == newItem
     }
 }

@@ -4,18 +4,19 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.data.Fecha
+import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.databinding.ItemFechaBinding
 
-class FechaAdapter(val listaFechas : MutableList<Fecha>) : RecyclerView.Adapter<FechaAdapter.ViewHolder>() {
+class FechaAdapter : ListAdapter<Fecha, RecyclerView.ViewHolder>(FechaDiffCallback()) {
 
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val binding = ItemFechaBinding.bind(view)
     }
-
-    override fun getItemCount() = listaFechas.size
 
     private lateinit var contexto: Context
 
@@ -25,14 +26,17 @@ class FechaAdapter(val listaFechas : MutableList<Fecha>) : RecyclerView.Adapter<
         return ViewHolder(vista)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val fecha = listaFechas[position]
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val fecha = getItem(position)
 
-        with(holder){
+        with(holder as ViewHolder){
             binding.diaSemana.text = fecha.diaSemana
             binding.diaMes.text = fecha.diaMes
         }
     }
 
-
+    class FechaDiffCallback : DiffUtil.ItemCallback<Fecha>() {
+        override fun areItemsTheSame(oldItem: Fecha, newItem: Fecha) = oldItem === newItem // === para comparar referencias de objetos en memoria
+        override fun areContentsTheSame(oldItem: Fecha, newItem: Fecha) = oldItem == newItem
+    }
 }
