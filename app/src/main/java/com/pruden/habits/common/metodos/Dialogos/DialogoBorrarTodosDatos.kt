@@ -5,10 +5,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.TextView
-import com.pruden.habits.mainModule.MainActivity
+import com.pruden.habits.modules.mainModule.MainActivity
 import com.pruden.habits.R
-import com.pruden.habits.HabitosApplication
-import com.pruden.habits.fragmentsModule.viewModel.ConfiguracionesViewModel
+import com.pruden.habits.modules.configuracionesModule.viewModel.ConfiguracionesViewModel
 
 fun borrarTodosLosDatos(
     contexto: Context,

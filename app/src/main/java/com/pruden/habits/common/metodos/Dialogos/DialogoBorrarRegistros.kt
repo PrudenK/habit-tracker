@@ -5,9 +5,9 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.TextView
-import com.pruden.habits.mainModule.MainActivity
+import com.pruden.habits.modules.mainModule.MainActivity
 import com.pruden.habits.R
-import com.pruden.habits.fragmentsModule.viewModel.ConfiguracionesViewModel
+import com.pruden.habits.modules.configuracionesModule.viewModel.ConfiguracionesViewModel
 
 fun borrarTodosLosRegistros(contexto: Context, main: MainActivity, viewModel: ConfiguracionesViewModel){
     val dialogView = LayoutInflater.from(contexto).inflate(R.layout.dialog_borrar_habito, null)

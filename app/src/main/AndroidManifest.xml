@@ -19,7 +19,7 @@
         android:theme="@style/Theme.Habits"
         tools:targetApi="31">
         <activity
-            android:name=".mainModule.MainActivity"
+            android:name=".modules.mainModule.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
