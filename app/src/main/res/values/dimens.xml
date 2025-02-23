@@ -4,4 +4,5 @@
     <dimen name="boton_width">160dp</dimen>
     <dimen name="text_24">24sp</dimen>
     <dimen name="text_18">18sp</dimen>
+    <dimen name="text_20">20sp</dimen>
 </resources>

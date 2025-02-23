@@ -77,6 +77,9 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         }
 
         actualizarPagina()
+
+        cargarScrollFecha()
+
     }
 
     private fun calcularTamanoPagina() {
@@ -145,6 +148,11 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         fechasAdapter.submitList(generateLastDates())
 
         sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)
+
+        if (fechasAdapter.currentList.isNotEmpty()) {
+            val primerFecha = fechasAdapter.currentList[0]
+            mBinding.auxiliar.text = "${primerFecha.mes.uppercase()} ${primerFecha.year}"
+        }
     }
 
     override fun onLongClickListenerHabito(habito: HabitoEntity) {
@@ -194,4 +202,21 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
             }
         }
     }
+
+    private fun cargarScrollFecha() {
+        mBinding.recyclerFechas.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+
+                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+                val primeraPosicionVisible = layoutManager.findFirstVisibleItemPosition()
+
+                if (primeraPosicionVisible != RecyclerView.NO_POSITION) {
+                    val fechaVisible = fechasAdapter.currentList[primeraPosicionVisible]
+                    mBinding.auxiliar.text = "${fechaVisible.mes.uppercase()} ${fechaVisible.year}"
+                }
+            }
+        })
+    }
+
 }
