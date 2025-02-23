@@ -5,10 +5,15 @@ import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.pruden.habits.common.baseDatos.HabitosDatabase
+import com.pruden.habits.common.clases.data.Fecha
+import com.pruden.habits.common.clases.data.Habito
+import com.pruden.habits.common.metodos.General.generateLastDates
 
 class HabitosApplication : Application(){
     companion object{
         lateinit var database: HabitosDatabase
+        var listaHabitos = mutableListOf<Habito>()
+        var listaFechas = mutableListOf<Fecha>()
     }
 
     override fun onCreate(){
@@ -25,6 +30,7 @@ class HabitosApplication : Application(){
           //  .fallbackToDestructiveMigration()
             .build()
 
+        listaFechas = generateLastDates()
     }
 
     val MIGRATION_1_2 = object : Migration(1, 2) {

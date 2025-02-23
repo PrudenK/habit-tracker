@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Agregar hábito"
-                android:textSize="26dp"
+                android:textSize="@dimen/text_26"
 
                 />
         </androidx.appcompat.widget.Toolbar>

@@ -9,6 +9,8 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.pruden.habits.HabitosApplication.Companion.listaFechas
+import com.pruden.habits.HabitosApplication.Companion.listaHabitos
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.modules.mainModule.adapters.FechaAdapter
@@ -16,10 +18,12 @@ import com.pruden.habits.modules.mainModule.adapters.HabitoAdapter
 import com.pruden.habits.modules.mainModule.adapters.listeners.OnLongClickHabito
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.elementos.SincronizadorDeScrolls
+import com.pruden.habits.common.metodos.Fragments.cargarFragment
 import com.pruden.habits.common.metodos.General.generateLastDates
-import com.pruden.habits.common.metodos.Fragments.cargarFragmentAgregarPartidaManual
-import com.pruden.habits.common.metodos.Fragments.cargarFragmentConfiguraciones
 import com.pruden.habits.databinding.ActivityMainBinding
+import com.pruden.habits.modules.agregarHabitoModule.AgregarHabitoFragment
+import com.pruden.habits.modules.archivarHabitoModule.ArchivarHabitoFragment
+import com.pruden.habits.modules.configuracionesModule.ConfiguracionesFragment
 import com.pruden.habits.modules.mainModule.metodos.dialogoOnLongClickHabito
 import com.pruden.habits.modules.mainModule.viewModel.MainViewModel
 
@@ -68,13 +72,10 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         configurarRecyclerFechas()
         configurarRecyclerHabitos()
 
+        // FRAGMENTS
         agregarHabito()
-
         configuraciones()
-
-        mBinding.habitosArchivados.setOnClickListener {
-            Log.d("dafa", habitosAdapter.currentList[0].archivado.toString())
-        }
+        archivados()
 
         actualizarPagina()
 
@@ -99,6 +100,7 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
         mainViewModel.getAllHabitosConDatos().observe(this) { nuevaLista ->
+            listaHabitos = nuevaLista.toMutableList()
             val listaFiltrada = nuevaLista.filter { !it.archivado }
 
             if (listaCompletaHabitos.isEmpty() || listaCompletaHabitos.size != listaFiltrada.size) {
@@ -145,7 +147,7 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
             layoutManager = linearLayoutFechas
         }
 
-        fechasAdapter.submitList(generateLastDates())
+        fechasAdapter.submitList(listaFechas)
 
         sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)
 
@@ -161,15 +163,22 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
 
     private fun agregarHabito(){
         mBinding.agregarHabito.setOnClickListener {
-            cargarFragmentAgregarPartidaManual(this)
+            cargarFragment(this, AgregarHabitoFragment())
         }
     }
 
     private fun configuraciones(){
         mBinding.configuraciones.setOnClickListener {
-            cargarFragmentConfiguraciones(this)
+            cargarFragment(this, ConfiguracionesFragment())
         }
     }
+
+    private fun archivados(){
+        mBinding.habitosArchivados.setOnClickListener {
+            cargarFragment(this, ArchivarHabitoFragment())
+        }
+    }
+
 
     fun actualizarDatosHabitos(){
         sincronizadorDeScrolls.limpiarRecycler()
