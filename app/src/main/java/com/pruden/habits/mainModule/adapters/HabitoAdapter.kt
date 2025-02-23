@@ -1,8 +1,10 @@
 package com.pruden.habits.mainModule.adapters
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.graphics.Typeface
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,6 +31,9 @@ import com.pruden.habits.databinding.ItemHabitoBinding
 import com.pruden.habits.common.elementos.SincronizadorDeScrolls
 import com.pruden.habits.common.metodos.General.formatearNumero
 import com.pruden.habits.mainModule.viewModel.HabitoAdapterViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class HabitoAdapter (
     private val sincronizadorDeScrolls: SincronizadorDeScrolls,
@@ -36,11 +41,11 @@ class HabitoAdapter (
 ):
     ListAdapter<Habito, RecyclerView.ViewHolder>(HabitoDiffCallback()), OnClickBooleanRegistro, OnClickNumericoRegistro {
 
-    inner class ViewHolder(view: View): RecyclerView.ViewHolder(view){
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemHabitoBinding.bind(view)
     }
 
-    lateinit var contexto: Context
+    private lateinit var contexto: Context
     private lateinit var viewModel: HabitoAdapterViewModel
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -53,12 +58,12 @@ class HabitoAdapter (
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         val habito = getItem(position)
-        with(holder as ViewHolder){
+        with(holder as ViewHolder) {
             binding.nombreHabito.text = habito.nombre
 
             val listaDataHabitoEntity = mutableListOf<DataHabitoEntity>()
 
-            for(i in habito.listaFechas.indices){
+            for (i in habito.listaFechas.indices) {
                 listaDataHabitoEntity.add(
                     DataHabitoEntity(
                         nombre = habito.nombre,
@@ -71,17 +76,20 @@ class HabitoAdapter (
 
             listaDataHabitoEntity.reverse()
 
-            if(habito.tipoNumerico){
+            if (habito.tipoNumerico) {
                 val habitoAux = HabitoAux(habito.unidad!!, habito.colorHabito, habito.objetivo!!)
                 val registroAdapter = RegistroNumericoAdapter(this@HabitoAdapter, habitoAux)
                 binding.recyclerDataHabitos.adapter = registroAdapter
-                binding.recyclerDataHabitos.layoutManager = LinearLayoutManager(contexto, LinearLayoutManager.HORIZONTAL, false)
+                binding.recyclerDataHabitos.layoutManager =
+                    LinearLayoutManager(contexto, LinearLayoutManager.HORIZONTAL, false)
                 registroAdapter.submitList(listaDataHabitoEntity)
-            }else{
+            } else {
 
-                val registroAdapter = RegistroBooleanoAdapter(this@HabitoAdapter, habito.colorHabito)
+                val registroAdapter =
+                    RegistroBooleanoAdapter(this@HabitoAdapter, habito.colorHabito)
                 binding.recyclerDataHabitos.adapter = registroAdapter
-                binding.recyclerDataHabitos.layoutManager = LinearLayoutManager(contexto, LinearLayoutManager.HORIZONTAL, false)
+                binding.recyclerDataHabitos.layoutManager =
+                    LinearLayoutManager(contexto, LinearLayoutManager.HORIZONTAL, false)
                 registroAdapter.submitList(listaDataHabitoEntity)
             }
 
@@ -106,7 +114,11 @@ class HabitoAdapter (
         }
     }
 
-    override fun onClickBooleanRegistro(icono: ImageView, habitoData: DataHabitoEntity, color: Int) {
+    override fun onClickBooleanRegistro(
+        icono: ImageView,
+        habitoData: DataHabitoEntity,
+        color: Int
+    ) {
         val dialog = Dialog(contexto)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_edit_boolean)
@@ -147,7 +159,11 @@ class HabitoAdapter (
         dialog.show()
     }
 
-    override fun onClickNumericoRegistro(tvNumerico: TextViewsNumerico, habitoData: DataHabitoEntity, habitoAux: HabitoAux) {
+    override fun onClickNumericoRegistro(
+        tvNumerico: TextViewsNumerico,
+        habitoData: DataHabitoEntity,
+        habitoAux: HabitoAux
+    ) {
         val dialog = Dialog(contexto)
         dialog.setContentView(R.layout.dialog_edit_numerico)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
@@ -156,7 +172,7 @@ class HabitoAdapter (
         val inputCantidad = dialog.findViewById<TextInputEditText>(R.id.input_cantidad_numerico)
         val tilCantidad = dialog.findViewById<TextInputLayout>(R.id.til_cantidad)
 
-        if(habitoData.valorCampo != "0.0" && habitoData.valorCampo != "0"){
+        if (habitoData.valorCampo != "0.0" && habitoData.valorCampo != "0") {
             inputCantidad.setText(habitoData.valorCampo)
         }
         tilCantidad.hint = habitoAux.unidad
@@ -164,17 +180,17 @@ class HabitoAdapter (
         inputNotas.setText(habitoData.notas)
 
         dialog.setOnDismissListener {
-            if(inputCantidad.text!!.isNotBlank()){
+            if (inputCantidad.text!!.isNotBlank()) {
                 habitoData.notas = inputNotas.text.toString()
                 habitoData.valorCampo = inputCantidad.text.toString()
-                tvNumerico.puntuacion.text =  formatearNumero(inputCantidad.text.toString().toFloat())
+                tvNumerico.puntuacion.text = formatearNumero(inputCantidad.text.toString().toFloat())
 
 
                 viewModel.updateDataHabito(habitoData)
                 val typeface = ResourcesCompat.getFont(contexto, R.font.encabezados)
 
 
-                fun cumplido(){
+                fun cumplido() {
                     tvNumerico.puntuacion.setTextColor(habitoAux.color)
                     tvNumerico.unidad.setTextColor(habitoAux.color)
 
@@ -182,7 +198,7 @@ class HabitoAdapter (
                     tvNumerico.unidad.setTypeface(typeface, Typeface.BOLD)
                 }
 
-                fun noCumplido(){
+                fun noCumplido() {
                     tvNumerico.puntuacion.setTextColor(ContextCompat.getColor(contexto, R.color.gray_color_dark))
                     tvNumerico.unidad.setTextColor(ContextCompat.getColor(contexto, R.color.gray_color_dark))
 
@@ -193,12 +209,11 @@ class HabitoAdapter (
                 val objetivo = habitoAux.objetivo.split("@")[0]
                 val condicion = habitoAux.objetivo.split("@")[1]
 
-                when(condicion){
-                    "Más de"-> if (habitoData.valorCampo.toFloat() >= objetivo.toFloat()) cumplido()  else noCumplido()
-                    "Igual a"-> if (habitoData.valorCampo.toFloat() == objetivo.toFloat()) cumplido()  else noCumplido()
-                    "Menos de"-> if (habitoData.valorCampo.toFloat() < objetivo.toFloat()) cumplido()  else noCumplido()
+                when (condicion) {
+                    "Más de", "Mas de" -> if (habitoData.valorCampo.toFloat() >= objetivo.toFloat()) cumplido() else noCumplido()
+                    "Igual a" -> if (habitoData.valorCampo.toFloat() == objetivo.toFloat()) cumplido() else noCumplido()
+                    "Menos de" -> if (habitoData.valorCampo.toFloat() < objetivo.toFloat()) cumplido() else noCumplido()
                 }
-
             }
         }
 
@@ -210,13 +225,10 @@ class HabitoAdapter (
         submitList(nuevaLista)
     }
 
-    fun actualizarLista(nuevaLista: List<Habito>) {
-        submitList(nuevaLista)
-    }
-
 
     class HabitoDiffCallback : DiffUtil.ItemCallback<Habito>() {
-        override fun areItemsTheSame(oldItem: Habito, newItem: Habito) = oldItem.nombre == newItem.nombre
-        override fun areContentsTheSame(oldItem: Habito, newItem: Habito) = oldItem == newItem
+        override fun areItemsTheSame(oldItem: Habito, newItem: Habito) = false
+        override fun areContentsTheSame(oldItem: Habito, newItem: Habito) = false
     }
+
 }

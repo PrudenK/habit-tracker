@@ -70,6 +70,12 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         agregarHabito()
 
         configuraciones()
+
+        mBinding.habitosArchivados.setOnClickListener {
+            actualizarPagina()
+        }
+
+        actualizarPagina()
     }
 
     private fun calcularTamanoPagina() {
@@ -88,9 +94,15 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
     private fun cargarViewModel() {
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
-        mainViewModel.getAllHabitosConDatos().observe(this) { habitos ->
-            listaCompletaHabitos = habitos.toMutableList()
-            actualizarPagina()
+        mainViewModel.getAllHabitosConDatos().observe(this) { nuevaLista ->
+            if (listaCompletaHabitos.isEmpty() || listaCompletaHabitos.size != nuevaLista.size) {
+                listaCompletaHabitos = nuevaLista.toMutableList()
+                actualizarPagina()
+            } else {
+                listaCompletaHabitos = nuevaLista.toMutableList()
+            }
+
+
         }
 
         mBinding.btnAnterior.setOnClickListener {
