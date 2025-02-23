@@ -59,7 +59,7 @@ fun dialogoOnLongClickHabito(
     }
 
     btnArchivar.setOnClickListener {
-
+        mainViewModel.archivarHabito(habito)
         dialogoOpciones.hide()
     }
 

@@ -23,4 +23,7 @@ class MainViewModel: ViewModel() {
         }
     }
 
+    fun archivarHabito(habitoEntity: HabitoEntity){
+        interactor.archivarHabito(habitoEntity)
+    }
 }

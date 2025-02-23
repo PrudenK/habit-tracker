@@ -14,16 +14,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MainInteractor {
-    fun getAllHabitos(callback: (MutableList<Habito>) -> Unit) {
-        CoroutineScope(Dispatchers.IO).launch {
-            sincronizarRegistrosFaltantes()
-            val listaHabitos = HabitosApplication.database.habitoDao().obtenerHabitosConValores()
-            withContext(Dispatchers.Main) {
-                callback(listaHabitos)
-            }
-        }
-    }
-
     fun getHabitoPorNombre(nombre: String, callback: (Habito) -> Unit){
         CoroutineScope(Dispatchers.IO).launch {
             val habito = HabitosApplication.database.habitoDao().obtenerHabitoConValoresPorNombre(nombre)
@@ -72,7 +62,12 @@ class MainInteractor {
                 }
             }
         }
-
         return result
+    }
+
+    fun archivarHabito(habitoEntity: HabitoEntity){
+        CoroutineScope(Dispatchers.IO).launch {
+            HabitosApplication.database.habitoDao().alternarArchivado(true, habitoEntity.nombre)
+        }
     }
 }
