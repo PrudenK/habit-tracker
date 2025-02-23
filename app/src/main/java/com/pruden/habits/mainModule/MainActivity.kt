@@ -1,10 +1,7 @@
 package com.pruden.habits.mainModule
 
-import android.app.AlertDialog
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -23,6 +20,7 @@ import com.pruden.habits.common.metodos.General.generateLastDates
 import com.pruden.habits.common.metodos.Fragments.cargarFragmentAgregarPartidaManual
 import com.pruden.habits.common.metodos.Fragments.cargarFragmentConfiguraciones
 import com.pruden.habits.databinding.ActivityMainBinding
+import com.pruden.habits.mainModule.metodos.dialogoOnLongClickHabito
 import com.pruden.habits.mainModule.viewModel.MainViewModel
 
 
@@ -64,6 +62,9 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         window.navigationBarColor = resources.getColor(R.color.dark_gray) // Color barra móvil
 
         cargarViewModel()
+        paginaAnterior()
+        paginaSiguiente()
+
         configurarRecyclerFechas()
         configurarRecyclerHabitos()
 
@@ -95,27 +96,13 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
         mainViewModel.getAllHabitosConDatos().observe(this) { nuevaLista ->
-            if (listaCompletaHabitos.isEmpty() || listaCompletaHabitos.size != nuevaLista.size) {
-                listaCompletaHabitos = nuevaLista.toMutableList()
+            val listaFiltrada = nuevaLista.filter { !it.archivado }
+
+            if (listaCompletaHabitos.isEmpty() || listaCompletaHabitos.size != listaFiltrada.size) {
+                listaCompletaHabitos = listaFiltrada.toMutableList()
                 actualizarPagina()
             } else {
-                listaCompletaHabitos = nuevaLista.toMutableList()
-            }
-
-
-        }
-
-        mBinding.btnAnterior.setOnClickListener {
-            if (paginaActual > 0) {
-                paginaActual--
-                actualizarPagina()
-            }
-        }
-
-        mBinding.btnSiguiente.setOnClickListener {
-            if ((paginaActual + 1) * tamanoPagina < listaCompletaHabitos.size) {
-                paginaActual++
-                actualizarPagina()
+                listaCompletaHabitos = listaFiltrada.toMutableList()
             }
         }
     }
@@ -161,37 +148,16 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
     }
 
     override fun onLongClickListenerHabito(habito: HabitoEntity) {
-        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_borrar_habito, null)
-        val dialog = AlertDialog.Builder(this).setView(dialogView).create()
-
-        val buttonCancel = dialogView.findViewById<Button>(R.id.button_cancelar_borrar_habito)
-        val buttonAccept = dialogView.findViewById<Button>(R.id.button_acceptar_borrar_habito)
-
-        buttonCancel.setOnClickListener {
-            dialog.dismiss()
-        }
-        Log.d("1","${sincronizadorDeScrolls.recyclerViews.size}")
-
-        buttonAccept.setOnClickListener {
-            mainViewModel.borrarHabito(habito)
-            habitosAdapter.deleteHabito(habito)
-            //actualizarPagina()
-
-            Log.d("2","${sincronizadorDeScrolls.recyclerViews.size}")
-
-            dialog.dismiss()
-        }
-
-        dialog.show()
+        dialogoOnLongClickHabito(this, mainViewModel, habitosAdapter, habito, resources)
     }
 
-    fun agregarHabito(){
+    private fun agregarHabito(){
         mBinding.agregarHabito.setOnClickListener {
             cargarFragmentAgregarPartidaManual(this)
         }
     }
 
-    fun configuraciones(){
+    private fun configuraciones(){
         mBinding.configuraciones.setOnClickListener {
             cargarFragmentConfiguraciones(this)
         }
@@ -209,5 +175,23 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)
         habitosAdapter.submitList(emptyList())
         actualizarPagina()
+    }
+
+    private fun paginaSiguiente(){
+        mBinding.btnSiguiente.setOnClickListener {
+            if ((paginaActual + 1) * tamanoPagina < listaCompletaHabitos.size) {
+                paginaActual++
+                actualizarPagina()
+            }
+        }
+    }
+
+    private fun paginaAnterior(){
+        mBinding.btnAnterior.setOnClickListener {
+            if (paginaActual > 0) {
+                paginaActual--
+                actualizarPagina()
+            }
+        }
     }
 }
