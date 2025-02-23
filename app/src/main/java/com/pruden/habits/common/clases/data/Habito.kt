@@ -9,6 +9,7 @@ data class Habito(
     var descripcion: String?,
     var horaNotificacion: String?,
     var mensajeNotificacion: String?,
+    var archivado: Boolean,
     var listaValores: MutableList<String>,
     var listaNotas: MutableList<String?>,
     var listaFechas: MutableList<String>

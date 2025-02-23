@@ -12,5 +12,6 @@ data class HabitoEntity(
     val color: Int,
     val descripcion: String?,
     val horaNotificacion: String?,
-    val mensajeNotificacion: String?
+    val mensajeNotificacion: String?,
+    var archivado: Boolean
 )

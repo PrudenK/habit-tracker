@@ -30,6 +30,7 @@ interface HabitoDao {
            H.descripcion,
            H.horaNotificacion,
            H.mensajeNotificacion,
+           H.archivado,
            '[' || GROUP_CONCAT(D.valorCampo) || ']' AS listaValores, 
            '[' || GROUP_CONCAT('"' || IFNULL(D.notas, '') || '"') || ']' AS listaNotas,
            '[' || GROUP_CONCAT('"' || D.fecha || '"') || ']' AS listaFechas
@@ -49,6 +50,7 @@ interface HabitoDao {
            H.descripcion,
            H.horaNotificacion,
            H.mensajeNotificacion,
+           H.archivado,
            '[' || GROUP_CONCAT(D.valorCampo) || ']' AS listaValores, 
            '[' || GROUP_CONCAT('"' || IFNULL(D.notas, '') || '"') || ']' AS listaNotas,
            '[' || GROUP_CONCAT('"' || D.fecha || '"') || ']' AS listaFechas
@@ -68,6 +70,7 @@ interface HabitoDao {
            H.descripcion,
            H.horaNotificacion,
            H.mensajeNotificacion,
+           H.archivado,
            '[' || GROUP_CONCAT(D.valorCampo) || ']' AS listaValores, 
            '[' || GROUP_CONCAT('"' || IFNULL(D.notas, '') || '"') || ']' AS listaNotas,
            '[' || GROUP_CONCAT('"' || D.fecha || '"') || ']' AS listaFechas

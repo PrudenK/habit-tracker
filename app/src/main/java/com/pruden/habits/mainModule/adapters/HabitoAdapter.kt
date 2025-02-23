@@ -106,7 +106,8 @@ class HabitoAdapter (
                         color = habito.colorHabito,
                         descripcion = habito.descripcion,
                         horaNotificacion = habito.horaNotificacion,
-                        mensajeNotificacion = habito.mensajeNotificacion
+                        mensajeNotificacion = habito.mensajeNotificacion,
+                        archivado = habito.archivado
                     )
                 )
                 true

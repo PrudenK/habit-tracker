@@ -72,7 +72,7 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         configuraciones()
 
         mBinding.habitosArchivados.setOnClickListener {
-            actualizarPagina()
+            Log.d("dafa", habitosAdapter.currentList[0].archivado.toString())
         }
 
         actualizarPagina()
@@ -208,5 +208,6 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         sincronizadorDeScrolls.limpiarRecycler()
         sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)
         habitosAdapter.submitList(emptyList())
+        actualizarPagina()
     }
 }

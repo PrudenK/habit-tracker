@@ -151,7 +151,8 @@ class AgregarHabitoFragment : Fragment() {
                                     color = colorHabito,
                                     descripcion = descripcion,
                                     horaNotificacion = hora,
-                                    mensajeNotificacion = mensaje
+                                    mensajeNotificacion = mensaje,
+                                    archivado = false
                                 )
                             )
                         }
@@ -179,7 +180,8 @@ class AgregarHabitoFragment : Fragment() {
                                     color = colorHabito,
                                     descripcion = descripcion,
                                     horaNotificacion = hora,
-                                    mensajeNotificacion = mensaje
+                                    mensajeNotificacion = mensaje,
+                                    archivado = false
                                 )
                             )
 

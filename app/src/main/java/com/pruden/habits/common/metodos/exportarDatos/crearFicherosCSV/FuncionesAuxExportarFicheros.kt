@@ -9,7 +9,7 @@ fun devolverContenidoHabitosCSV(habitos: MutableList<HabitoEntity>): java.lang.S
 
     for(habito in habitos){
         with(habito){
-            stringBuilder.append("$nombre,$objetivo,$tipoNumerico,$unidad,$color,$descripcion,$horaNotificacion,$mensajeNotificacion\n")
+            stringBuilder.append("$nombre,$objetivo,$tipoNumerico,$unidad,$color,$descripcion,$horaNotificacion,$mensajeNotificacion,$archivado\n")
         }
     }
     return stringBuilder
