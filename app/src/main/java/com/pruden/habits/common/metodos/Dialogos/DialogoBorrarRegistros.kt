@@ -2,6 +2,8 @@ package com.pruden.habits.common.metodos.Dialogos
 
 import android.app.AlertDialog
 import android.content.Context
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.TextView
@@ -12,6 +14,8 @@ import com.pruden.habits.modules.configuracionesModule.viewModel.Configuraciones
 fun borrarTodosLosRegistros(contexto: Context, main: MainActivity, viewModel: ConfiguracionesViewModel){
     val dialogView = LayoutInflater.from(contexto).inflate(R.layout.dialog_borrar_habito, null)
     val dialog = AlertDialog.Builder(contexto).setView(dialogView).create()
+
+    dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
     val buttonCancel = dialogView.findViewById<Button>(R.id.button_cancelar_borrar_habito)
     val buttonAccept = dialogView.findViewById<Button>(R.id.button_acceptar_borrar_habito)

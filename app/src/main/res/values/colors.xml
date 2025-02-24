@@ -18,5 +18,9 @@
 
     <color name="rojo_borrar">#5F2A2A</color>
 
+    <color name="switch_thumb">#FFFFFF</color>
+    <color name="switch_track">#555555</color>
 
+
+    <color name="click_button">#8BB7CC</color>
 </resources>

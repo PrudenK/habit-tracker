@@ -2,6 +2,7 @@ package com.pruden.habits.modules.configuracionesModule
 
 import android.app.Activity.RESULT_OK
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -13,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.pruden.habits.modules.mainModule.MainActivity
@@ -57,6 +59,7 @@ class ConfiguracionesFragment : Fragment() {
         exportarCopiaDeSeguridad()
         importarCopiaSeguridad()
 
+        cargarEstiloSwitchNotificaicones()
 
         return binding.root
     }
@@ -73,7 +76,7 @@ class ConfiguracionesFragment : Fragment() {
         }
 
         val back = ContextCompat.getDrawable(requireContext(), R.drawable.ic_back)
-
+        back?.setTint(ContextCompat.getColor(requireContext(), R.color.lightGrayColor))
         (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(back)
 
         setHasOptionsMenu(true)
@@ -83,6 +86,12 @@ class ConfiguracionesFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.clear()
         inflater.inflate(R.menu.menu_tool_bar_save, menu)
+        val item = menu.findItem(R.id.gurdar_config)
+        val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_save)
+
+        drawable?.setTint(ContextCompat.getColor(requireContext(), R.color.lightGrayColor))
+        item.icon = drawable
+
         super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -165,5 +174,18 @@ class ConfiguracionesFragment : Fragment() {
     }
 
 
+    private fun cargarEstiloSwitchNotificaicones(){
+        val switchNotificaciones = binding.switchNotificaciones
 
+        switchNotificaciones.thumbTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gray_color))
+        switchNotificaciones.trackTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gray_color_dark))
+
+        switchNotificaciones.setOnClickListener{
+            if(switchNotificaciones.isChecked){
+                switchNotificaciones.trackTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.click_button))
+            }else{
+                switchNotificaciones.trackTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gray_color_dark))
+            }
+        }
+    }
 }
