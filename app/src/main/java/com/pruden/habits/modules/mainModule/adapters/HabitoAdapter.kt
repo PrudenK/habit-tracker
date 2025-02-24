@@ -120,7 +120,7 @@ class HabitoAdapter (
         }
     }
 
-    override fun onClickBooleanRegistro(
+    override fun onLongClickBooleanRegistro(
         icono: ImageView,
         habitoData: DataHabitoEntity,
         color: Int
@@ -131,8 +131,18 @@ class HabitoAdapter (
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
         val inputNotas = dialog.findViewById<TextInputEditText>(R.id.input_notas_booleano)
+        val tilNotas = dialog.findViewById<TextInputLayout>(R.id.til_notas_bool)
 
         inputNotas.setText(habitoData.notas)
+
+        // Focus y mostrar teclado
+        inputNotas.requestFocus()
+        val imm = contexto.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        Handler(Looper.getMainLooper()).postDelayed({
+            imm.showSoftInput(inputNotas, InputMethodManager.SHOW_IMPLICIT)
+        }, 200)
+
+        tilNotas.defaultHintTextColor = ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.lightGrayColor))
 
         val botonCancelar = dialog.findViewById<ImageView>(R.id.no_check)
         val botonGuardar = dialog.findViewById<ImageView>(R.id.check)
@@ -163,6 +173,24 @@ class HabitoAdapter (
         }
 
         dialog.show()
+    }
+
+    override fun onClickBooleanRegistro(
+        icono: ImageView,
+        habitoData: DataHabitoEntity,
+        color: Int
+    ) {
+        if(habitoData.valorCampo == "1.0"){
+            habitoData.valorCampo = "0.0"
+            viewModel.updateDataHabito(habitoData)
+            icono.clearColorFilter()
+            icono.setImageResource(R.drawable.ic_no_check)
+        }else{
+            habitoData.valorCampo = "1.0"
+            viewModel.updateDataHabito(habitoData)
+            icono.setColorFilter(color)
+            icono.setImageResource(R.drawable.ic_check)
+        }
     }
 
     override fun onClickNumericoRegistro(

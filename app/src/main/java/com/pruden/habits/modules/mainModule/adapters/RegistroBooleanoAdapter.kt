@@ -9,9 +9,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.R
-import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.modules.mainModule.adapters.listeners.OnClickBooleanRegistro
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
+import kotlin.math.truncate
 
 class RegistroBooleanoAdapter(val listener : OnClickBooleanRegistro, val color: Int
     ) : ListAdapter<DataHabitoEntity, RecyclerView.ViewHolder>(RegistroBooleanoDiffCallback()) {
@@ -36,7 +36,11 @@ class RegistroBooleanoAdapter(val listener : OnClickBooleanRegistro, val color: 
                 binding.icono.setImageResource(R.drawable.ic_no_check)
                 binding.icono.clearColorFilter()
             }
-            binding.icono.setOnClickListener{
+            binding.icono.setOnLongClickListener{
+                listener.onLongClickBooleanRegistro(binding.icono, registro, color)
+                true
+            }
+            binding.icono.setOnClickListener {
                 listener.onClickBooleanRegistro(binding.icono, registro, color)
             }
         }
