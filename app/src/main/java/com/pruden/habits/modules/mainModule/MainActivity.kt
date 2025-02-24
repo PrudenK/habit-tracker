@@ -2,6 +2,7 @@ package com.pruden.habits.modules.mainModule
 
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -99,6 +100,8 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
     private fun cargarViewModel() {
         mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
 
+        mBinding.progressBar.visibility = View.VISIBLE
+
         mainViewModel.getAllHabitosConDatos().observe(this) { nuevaLista ->
             listaHabitos = nuevaLista.toMutableList()
             val listaFiltrada = nuevaLista.filter { !it.archivado }
@@ -109,6 +112,8 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
             } else {
                 listaCompletaHabitos = listaFiltrada.toMutableList()
             }
+
+            mBinding.progressBar.visibility = View.GONE
         }
     }
 
