@@ -2,6 +2,7 @@ package com.pruden.habits.modules.agregarHabitoModule
 
 import android.app.Dialog
 import android.app.TimePickerDialog
+import android.content.res.ColorStateList
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -82,18 +83,22 @@ class AgregarHabitoFragment : Fragment() {
         }
 
         val back = ContextCompat.getDrawable(requireContext(), R.drawable.ic_back)
-
+        back?.setTint(ContextCompat.getColor(requireContext(), R.color.lightGrayColor))
         (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(back)
 
         setHasOptionsMenu(true)
 
         binding.numerico.setOnClickListener {
             colorHabito = R.color.white
+            binding.booleano.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.dark_background))
+            binding.numerico.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.gris_clarito_tipo))
             cargarContenedorDinamico(R.layout.layout_numerico)
         }
 
         binding.booleano.setOnClickListener {
             colorHabito = R.color.white
+            binding.numerico.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.dark_background))
+            binding.booleano.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.gris_clarito_tipo))
             cargarContenedorDinamico(R.layout.layout_booleano)
         }
     }
@@ -101,6 +106,12 @@ class AgregarHabitoFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.clear()
         inflater.inflate(R.menu.menu_tool_bar_agregar, menu)
+        val item = menu.findItem(R.id.guardar_habito)
+        val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_check)
+
+        drawable?.setTint(ContextCompat.getColor(requireContext(), R.color.lightGrayColor))
+        item.icon = drawable
+
         super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -272,6 +283,21 @@ class AgregarHabitoFragment : Fragment() {
         switchNotificaciones.setOnCheckedChangeListener { _, isChecked ->
             habilitarNotificaciones(isChecked, horaSeleccionada, mensajeNotificacionesLayout, mensajeNotificacionesEdit)
         }
+
+
+
+        switchNotificaciones.thumbTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gray_color))
+        switchNotificaciones.trackTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gray_color_dark))
+
+        switchNotificaciones.setOnClickListener{
+            if(switchNotificaciones.isChecked){
+                switchNotificaciones.trackTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.click_button))
+            }else{
+                switchNotificaciones.trackTintList = ColorStateList.valueOf(ContextCompat.getColor(requireContext(), R.color.gray_color_dark))
+            }
+        }
+
+
 
         habilitarNotificaciones(
             switchNotificaciones.isChecked,

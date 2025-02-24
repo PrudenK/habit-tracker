@@ -16,7 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:background="@color/white"
+        android:background="@color/dark_background"
+
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,7 +28,7 @@
             android:id="@+id/toolbar_fragment"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@android:color/darker_gray"
+            android:background="@color/dark_background"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -39,7 +40,9 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Agregar hábito"
-                android:textSize="@dimen/text_26"
+                android:textSize="@dimen/text_32"
+                android:textColor="@color/gray_color"
+                android:fontFamily="@font/titulos"
 
                 />
         </androidx.appcompat.widget.Toolbar>
@@ -55,11 +58,13 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="12dp"
             android:gravity="center"
-            android:textSize="20sp"
+            android:textSize="@dimen/text_26"
             android:layout_marginStart="12dp"
             android:layout_marginEnd="12dp"
-            android:padding="4dp"
-
+            android:padding="8dp"
+            android:textColor="@color/gray_color"
+            android:background="@color/gris_clarito_tipo_titulo"
+            android:fontFamily="@font/subtitulos"
             />
 
         <TextView
@@ -74,7 +79,11 @@
             android:layout_marginStart="12dp"
             android:clickable="true"
             android:focusable="true"
-            android:padding="4dp"
+            android:padding="6dp"
+            android:textColor="@color/gray_color"
+            android:textSize="@dimen/text_20"
+            android:background="@color/gris_clarito_tipo"
+            android:fontFamily="@font/subtitulos"
 
             />
 
@@ -90,7 +99,11 @@
             android:layout_marginEnd="12dp"
             android:clickable="true"
             android:focusable="true"
-            android:padding="4dp"
+            android:padding="6dp"
+            android:textColor="@color/gray_color"
+            android:textSize="@dimen/text_20"
+            android:fontFamily="@font/subtitulos"
+
             />
 
         <FrameLayout
