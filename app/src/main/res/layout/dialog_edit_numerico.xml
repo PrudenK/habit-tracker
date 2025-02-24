@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
+
     android:padding="16dp">
 
     <com.google.android.material.card.MaterialCardView
@@ -13,7 +14,9 @@
         app:cardCornerRadius="12dp"
         app:cardElevation="4dp"
         android:layout_margin="16dp"
-        android:backgroundTint="@android:color/white">
+        android:background="@drawable/background_dialogo_opciones"
+
+        >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -29,14 +32,20 @@
                 app:endIconMode="clear_text"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:boxStrokeColor="@color/light_gray"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxStrokeWidth="1dp"
+
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_notas_numerico"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLines="2"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@android:color/white"
+                    android:textCursorDrawable="@null" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Campo de "Cantidad" -->
@@ -49,7 +58,11 @@
                 app:layout_constraintTop_toBottomOf="@id/til_notas"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="12dp">
+                android:layout_marginTop="12dp"
+                app:boxStrokeColor="@color/light_gray"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:boxStrokeWidth="1dp"
+                >
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/input_cantidad_numerico"
@@ -58,7 +71,10 @@
                     android:maxLines="1"
                     android:maxLength="15"
                     android:inputType="numberDecimal"
-                    android:textColor="@android:color/black" />
+                    android:textColor="@android:color/white"
+                    android:textCursorDrawable="@null"
+
+                    />
             </com.google.android.material.textfield.TextInputLayout>
 
 

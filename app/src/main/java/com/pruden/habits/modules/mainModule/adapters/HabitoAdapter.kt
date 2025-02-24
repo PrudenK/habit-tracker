@@ -3,12 +3,16 @@ package com.pruden.habits.modules.mainModule.adapters
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.Typeface
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
@@ -173,6 +177,19 @@ class HabitoAdapter (
         val inputNotas = dialog.findViewById<TextInputEditText>(R.id.input_notas_numerico)
         val inputCantidad = dialog.findViewById<TextInputEditText>(R.id.input_cantidad_numerico)
         val tilCantidad = dialog.findViewById<TextInputLayout>(R.id.til_cantidad)
+        val tilNotas = dialog.findViewById<TextInputLayout>(R.id.til_notas)
+
+        // Focus y mostrar teclado
+        inputCantidad.requestFocus()
+        val imm = contexto.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        Handler(Looper.getMainLooper()).postDelayed({
+            imm.showSoftInput(inputCantidad, InputMethodManager.SHOW_IMPLICIT)
+        }, 200)
+
+        val textInputLayouts = listOf(tilCantidad, tilNotas)
+        textInputLayouts.forEach { til ->
+            til.defaultHintTextColor = ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.lightGrayColor))
+        }
 
         if (habitoData.valorCampo != "0.0" && habitoData.valorCampo != "0") {
             inputCantidad.setText(habitoData.valorCampo)
