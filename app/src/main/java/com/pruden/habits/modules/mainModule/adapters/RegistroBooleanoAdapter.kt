@@ -5,13 +5,13 @@ import com.pruden.habits.databinding.ItemRegistroBooleanoBinding
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.R
 import com.pruden.habits.modules.mainModule.adapters.listeners.OnClickBooleanRegistro
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
-import kotlin.math.truncate
 
 class RegistroBooleanoAdapter(val listener : OnClickBooleanRegistro, val color: Int
     ) : ListAdapter<DataHabitoEntity, RecyclerView.ViewHolder>(RegistroBooleanoDiffCallback()) {
@@ -36,8 +36,17 @@ class RegistroBooleanoAdapter(val listener : OnClickBooleanRegistro, val color: 
                 binding.icono.setImageResource(R.drawable.ic_no_check)
                 binding.icono.clearColorFilter()
             }
+
+            if(registro.notas!!.isNotBlank() && registro.notas != null){
+                binding.iconoNotas.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.ic_notas))
+                binding.iconoNotas.setColorFilter(color)
+                binding.iconoNotas.visibility = View.VISIBLE
+            }else{
+                binding.iconoNotas.visibility = View.GONE
+            }
+
             binding.icono.setOnLongClickListener{
-                listener.onLongClickBooleanRegistro(binding.icono, registro, color)
+                listener.onLongClickBooleanRegistro(binding.icono, registro, color, binding.iconoNotas)
                 true
             }
             binding.icono.setOnClickListener {

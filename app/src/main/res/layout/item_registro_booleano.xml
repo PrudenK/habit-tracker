@@ -17,4 +17,14 @@
         android:background="?attr/selectableItemBackground"
         app:tint="@color/gray_color_dark"
         />
+
+    <ImageView
+        android:id="@+id/icono_notas"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="4dp"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

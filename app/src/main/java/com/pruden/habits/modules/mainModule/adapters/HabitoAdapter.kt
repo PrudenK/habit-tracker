@@ -1,13 +1,11 @@
 package com.pruden.habits.modules.mainModule.adapters
 
-import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Typeface
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,9 +33,6 @@ import com.pruden.habits.databinding.ItemHabitoBinding
 import com.pruden.habits.common.elementos.SincronizadorDeScrolls
 import com.pruden.habits.common.metodos.General.formatearNumero
 import com.pruden.habits.modules.mainModule.viewModel.HabitoAdapterViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class HabitoAdapter (
     private val sincronizadorDeScrolls: SincronizadorDeScrolls,
@@ -123,7 +118,8 @@ class HabitoAdapter (
     override fun onLongClickBooleanRegistro(
         icono: ImageView,
         habitoData: DataHabitoEntity,
-        color: Int
+        color: Int,
+        iconoNotas: ImageView
     ) {
         val dialog = Dialog(contexto)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -158,6 +154,7 @@ class HabitoAdapter (
 
             icono.clearColorFilter()
             icono.setImageResource(R.drawable.ic_no_check)
+            notasBoolean(habitoData,iconoNotas,color)
             dialog.dismiss()
         }
 
@@ -169,10 +166,21 @@ class HabitoAdapter (
 
             icono.setColorFilter(color)
             icono.setImageResource(R.drawable.ic_check)
+            notasBoolean(habitoData,iconoNotas,color)
             dialog.dismiss()
         }
 
         dialog.show()
+    }
+
+    private fun notasBoolean(habito: DataHabitoEntity, iconoNotas: ImageView, color: Int){
+        if(habito.notas != null && habito.notas!!.isNotBlank()){
+            iconoNotas.setImageDrawable(ContextCompat.getDrawable(contexto, R.drawable.ic_notas))
+            iconoNotas.setColorFilter(color)
+            iconoNotas.visibility = View.VISIBLE
+        }else{
+            iconoNotas.visibility = View.GONE
+        }
     }
 
     override fun onClickBooleanRegistro(
