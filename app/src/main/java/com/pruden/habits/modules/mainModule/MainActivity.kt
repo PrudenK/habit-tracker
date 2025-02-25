@@ -1,7 +1,6 @@
 package com.pruden.habits.modules.mainModule
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -21,7 +20,8 @@ import com.pruden.habits.modules.mainModule.adapters.listeners.OnLongClickHabito
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.elementos.SincronizadorDeScrolls
 import com.pruden.habits.common.metodos.Fragments.cargarFragment
-import com.pruden.habits.common.metodos.General.generateLastDates
+import com.pruden.habits.common.metodos.General.cargarScrollFechaCommon
+import com.pruden.habits.common.metodos.General.configurarRecyclerFechasCommon
 import com.pruden.habits.databinding.ActivityMainBinding
 import com.pruden.habits.modules.agregarHabitoModule.AgregarHabitoFragment
 import com.pruden.habits.modules.archivarHabitoModule.ArchivarHabitoFragment
@@ -33,7 +33,6 @@ import com.pruden.habits.modules.mainModule.viewModel.MainViewModel
 class MainActivity : AppCompatActivity(), OnLongClickHabito {
     private lateinit var mBinding: ActivityMainBinding
 
-    private lateinit var linearLayoutFechas: RecyclerView.LayoutManager
     private lateinit var fechasAdapter: FechaAdapter
 
     private lateinit var linearLayoutHabitos: RecyclerView.LayoutManager
@@ -80,7 +79,7 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
 
         actualizarPagina()
 
-        cargarScrollFecha()
+        cargarScrollFechaCommon(mBinding.recyclerFechas, fechasAdapter, mBinding.auxiliar)
 
     }
 
@@ -145,21 +144,7 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
 
     private fun configurarRecyclerFechas() {
         fechasAdapter = FechaAdapter()
-        linearLayoutFechas = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-
-        mBinding.recyclerFechas.apply {
-            adapter = fechasAdapter
-            layoutManager = linearLayoutFechas
-        }
-
-        fechasAdapter.submitList(listaFechas)
-
-        sincronizadorDeScrolls.addRecyclerView(mBinding.recyclerFechas)
-
-        if (fechasAdapter.currentList.isNotEmpty()) {
-            val primerFecha = fechasAdapter.currentList[0]
-            mBinding.auxiliar.text = "${primerFecha.mes.uppercase()} ${primerFecha.year}"
-        }
+        configurarRecyclerFechasCommon(fechasAdapter,mBinding.recyclerFechas, sincronizadorDeScrolls, mBinding.auxiliar, this)
     }
 
     override fun onLongClickListenerHabito(habito: HabitoEntity) {
@@ -189,7 +174,6 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
         sincronizadorDeScrolls.limpiarRecycler()
         configurarRecyclerFechas()
         habitosAdapter.notifyDataSetChanged()
-        Log.d("ads", habitosAdapter.currentList.size.toString())
     }
 
     fun actualizarDespuesDeBorrarTodosLosDatos() {
@@ -215,22 +199,6 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
                 actualizarPagina()
             }
         }
-    }
-
-    private fun cargarScrollFecha() {
-        mBinding.recyclerFechas.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-
-                val layoutManager = recyclerView.layoutManager as LinearLayoutManager
-                val primeraPosicionVisible = layoutManager.findFirstVisibleItemPosition()
-
-                if (primeraPosicionVisible != RecyclerView.NO_POSITION) {
-                    val fechaVisible = fechasAdapter.currentList[primeraPosicionVisible]
-                    mBinding.auxiliar.text = "${fechaVisible.mes.uppercase()} ${fechaVisible.year}"
-                }
-            }
-        })
     }
 
 }
