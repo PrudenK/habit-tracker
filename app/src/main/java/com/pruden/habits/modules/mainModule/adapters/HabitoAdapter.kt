@@ -96,7 +96,7 @@ class HabitoAdapter (
 
             sincronizadorDeScrolls.addRecyclerView(binding.recyclerDataHabitos)
 
-            binding.nombreHabito.setOnLongClickListener {
+            binding.contendorNombreHabito.setOnLongClickListener {
                 onLongListenr.onLongClickListenerHabito(
                     HabitoEntity(
                         nombre = habito.nombre,

@@ -14,10 +14,11 @@ import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.modules.archivarHabitoModule.viewModel.ArchivarViewModel
 
 fun mostrarDialogoDesarchivar(
-    habito: HabitoEntity,
+    habito: HabitoEntity?,
     context: Context,
     archivarViewModel: ArchivarViewModel,
-    resources: Resources
+    resources: Resources,
+    todos: Boolean = false
 ) {
     val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_desarchivar, null)
     val dialog = AlertDialog.Builder(context).setView(dialogView).create()
@@ -30,12 +31,20 @@ fun mostrarDialogoDesarchivar(
     titulo.text = "Desarchivar"
     mensaje.text = "¿Quiéres desarchivar este hábito?"
 
+    if(todos){
+        titulo.text = "Desarchivar todos"
+        mensaje.text = "¿Quiéres desarchivar todos los hábito?"
+    }
     btnCancelar.setOnClickListener {
         dialog.dismiss()
     }
 
     btnDesarchivar.setOnClickListener {
-        archivarViewModel.desarchivarHabito(habito)
+        if(todos){
+            archivarViewModel.desarchivarTodos()
+        }else{
+            archivarViewModel.desarchivarHabito(habito!!.nombre)
+        }
         dialog.dismiss()
     }
 

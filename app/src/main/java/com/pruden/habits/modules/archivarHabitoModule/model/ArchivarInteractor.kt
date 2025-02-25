@@ -3,6 +3,7 @@ package com.pruden.habits.modules.archivarHabitoModule.model
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.pruden.habits.HabitosApplication
+import com.pruden.habits.HabitosApplication.Companion.listaArchivados
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import kotlinx.coroutines.CoroutineScope
@@ -26,9 +27,15 @@ class ArchivarInteractor {
         return result
     }
 
-    fun desarchivarHabito(habitoEntity: HabitoEntity){
+    fun desarchivarHabito(habito: String){
         CoroutineScope(Dispatchers.IO).launch {
-            HabitosApplication.database.habitoDao().alternarArchivado(false, habitoEntity.nombre)
+            HabitosApplication.database.habitoDao().alternarArchivado(false, habito)
+        }
+    }
+
+    fun desarchivarTodosHabitos(){
+        for(habito in listaArchivados){
+            desarchivarHabito(habito.nombre)
         }
     }
 }

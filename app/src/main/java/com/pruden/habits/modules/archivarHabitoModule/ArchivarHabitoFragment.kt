@@ -15,7 +15,6 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.HabitosApplication.Companion.listaArchivados
-import com.pruden.habits.HabitosApplication.Companion.listaFechas
 import com.pruden.habits.HabitosApplication.Companion.listaHabitos
 import com.pruden.habits.HabitosApplication.Companion.tamanoPagina
 import com.pruden.habits.R
@@ -84,7 +83,7 @@ class ArchivarHabitoFragment : Fragment(), OnLongClickHabito {
         configurarRecyclerFechas()
         configurarRecyclerHabitos()
 
-        habitosAdapter.submitList(listaHabitos.filter { it.archivado })
+       // habitosAdapter.submitList(listaHabitos.filter { it.archivado })
 
         cargarScrollFechaCommon(binding.recyclerFechas, fechasAdapter, binding.auxiliar)
 
@@ -113,8 +112,7 @@ class ArchivarHabitoFragment : Fragment(), OnLongClickHabito {
                 true
             }
             R.id.desarchivar_todos ->{
-                makeToast("Desarchivar todos", requireContext())
-                Log.d("adsfadsf", listaHabitos.toString())
+                mostrarDialogoDesarchivar(null, requireContext(), archivarViewModel, resources, true)
                 true
             }
 

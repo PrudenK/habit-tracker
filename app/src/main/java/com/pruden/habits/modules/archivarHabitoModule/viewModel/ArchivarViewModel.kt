@@ -13,7 +13,12 @@ class ArchivarViewModel: ViewModel() {
         return interactor.getAllHabitosConDatosArchivados()
     }
 
-    fun desarchivarHabito(habitoEntity: HabitoEntity){
-        interactor.desarchivarHabito(habitoEntity)
+    fun desarchivarHabito(habito: String){
+        interactor.desarchivarHabito(habito)
     }
+
+    fun desarchivarTodos(){
+        interactor.desarchivarTodosHabitos()
+    }
+
 }
