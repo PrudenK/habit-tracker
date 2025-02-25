@@ -11,6 +11,7 @@
     >
 
     <TextView
+        android:paddingTop="10dp"
         android:id="@+id/puntuacion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,7 +36,15 @@
         android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@id/puntuacion"
         android:fontFamily="@font/encabezados"
-
-
         />
+
+    <ImageView
+        android:id="@+id/icono_notas"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="4dp"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

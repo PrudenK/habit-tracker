@@ -8,5 +8,5 @@ import com.pruden.habits.common.clases.auxClass.TextViewsNumerico
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 
 interface OnClickNumericoRegistro {
-    fun onClickNumericoRegistro(tvNumerico : TextViewsNumerico, habitoData : DataHabitoEntity, habitoAux: HabitoAux)
+    fun onClickNumericoRegistro(tvNumerico : TextViewsNumerico, habitoData : DataHabitoEntity, habitoAux: HabitoAux, iconoNotas: ImageView)
 }

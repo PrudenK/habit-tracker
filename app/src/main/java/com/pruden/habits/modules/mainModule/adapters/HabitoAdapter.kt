@@ -204,7 +204,8 @@ class HabitoAdapter (
     override fun onClickNumericoRegistro(
         tvNumerico: TextViewsNumerico,
         habitoData: DataHabitoEntity,
-        habitoAux: HabitoAux
+        habitoAux: HabitoAux,
+        iconoNotas: ImageView
     ) {
         val dialog = Dialog(contexto)
         dialog.setContentView(R.layout.dialog_edit_numerico)
@@ -269,6 +270,8 @@ class HabitoAdapter (
                     "Igual a" -> if (habitoData.valorCampo.toFloat() == objetivo.toFloat()) cumplido() else noCumplido()
                     "Menos de" -> if (habitoData.valorCampo.toFloat() < objetivo.toFloat()) cumplido() else noCumplido()
                 }
+
+                notasBoolean(habitoData,iconoNotas, habitoAux.color)
             }
         }
 

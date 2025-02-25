@@ -68,12 +68,20 @@ class RegistroNumericoAdapter (
                 "Menos de"-> if (registro.valorCampo.toFloat() < objetivo.toFloat()) cumplido()  else noCumplido()
             }
 
+            if(registro.notas!!.isNotBlank() && registro.notas != null){
+                binding.iconoNotas.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.ic_notas))
+                binding.iconoNotas.setColorFilter(habitoAux.color)
+                binding.iconoNotas.visibility = View.VISIBLE
+            }else{
+                binding.iconoNotas.visibility = View.GONE
+            }
+
 
             binding.unidad.text = habitoAux.unidad
             binding.puntuacion.text = formatearNumero(registro.valorCampo.toFloat())
 
             binding.itemRegistroNumerico.setOnClickListener {
-                listener.onClickNumericoRegistro(TextViewsNumerico(binding.unidad, binding.puntuacion), registro, habitoAux)
+                listener.onClickNumericoRegistro(TextViewsNumerico(binding.unidad, binding.puntuacion), registro, habitoAux, binding.iconoNotas)
             }
         }
     }
