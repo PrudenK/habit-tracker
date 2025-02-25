@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.HabitosApplication.Companion.listaFechas
 import com.pruden.habits.HabitosApplication.Companion.listaHabitos
+import com.pruden.habits.HabitosApplication.Companion.tamanoPagina
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.modules.mainModule.adapters.FechaAdapter
@@ -44,7 +45,6 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
     private lateinit var mainViewModel: MainViewModel
 
     // Paginación
-    private var tamanoPagina = 8
     private var paginaActual = 0
     private var listaCompletaHabitos: MutableList<Habito> = mutableListOf()
 

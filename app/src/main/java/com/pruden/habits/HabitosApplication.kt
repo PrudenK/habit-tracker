@@ -13,7 +13,9 @@ class HabitosApplication : Application(){
     companion object{
         lateinit var database: HabitosDatabase
         var listaHabitos = mutableListOf<Habito>()
+        var listaArchivados = mutableListOf<Habito>()
         var listaFechas = mutableListOf<Fecha>()
+        var tamanoPagina = 8
     }
 
     override fun onCreate(){

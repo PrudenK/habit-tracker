@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/background_dialogo_opciones"
+
+    >
+
+    <TextView
+        android:id="@+id/dialog_titulo_borrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Desarchivar hábito"
+        android:textSize="@dimen/text_24"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:paddingBottom="8dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/white"
+        />
+
+    <TextView
+        android:id="@+id/dialog_mensaje_borrar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="¿Quiéres desarchivar este hábito?"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:paddingBottom="16dp"
+        app:layout_constraintTop_toBottomOf="@id/dialog_titulo_borrar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/white"
+        />
+
+
+    <Button
+        android:id="@+id/button_cancelar_desarchivar"
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="Cancelar"
+        app:layout_constraintTop_toBottomOf="@id/dialog_mensaje_borrar"
+        app:layout_constraintStart_toStartOf="parent"
+        android:textSize="@dimen/text_18"
+
+        />
+
+    <Button
+        android:id="@+id/button_desarchivar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Desarchivar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_mensaje_borrar"
+        android:textSize="@dimen/text_18"
+
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

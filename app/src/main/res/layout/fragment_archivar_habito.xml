@@ -14,8 +14,22 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:background="@color/white"
+        android:background="@color/dark_background"
         />
+
+    <ProgressBar
+        android:id="@+id/progress_bar_archivados"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        style="?android:attr/progressBarStyleLarge"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -23,26 +37,107 @@
 
 
         <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar_fragment"
+            android:id="@+id/toolbar_fragment_archivado"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@android:color/darker_gray"
+            android:background="@color/dark_background"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+
             >
 
             <TextView
-                android:id="@+id/titulo_tool_bar"
+                android:id="@+id/titulo_tool_bar_archivados"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Archivados"
-                android:textSize="@dimen/text_26"
+                android:textSize="@dimen/text_32"
+                android:textColor="@color/gray_color"
+                android:fontFamily="@font/titulos"
 
                 />
         </androidx.appcompat.widget.Toolbar>
 
+        <TextView
+            android:id="@+id/auxiliar"
+            android:layout_width="140dp"
+            android:layout_height="55dp"
+            android:textColor="@color/white"
+            android:text="FECHA"
+            android:textSize="@dimen/text_20"
+            android:gravity="center_horizontal|center_vertical"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_fragment_archivado" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_fechas"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scrollbars="none"
+            app:layout_constraintBottom_toBottomOf="@+id/auxiliar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/auxiliar"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_fragment_archivado"
+            tools:listitem="@layout/item_fecha"
+            android:layout_marginEnd="16dp"
+
+            android:background="@color/dark_gray"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_habitos"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+
+
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/auxiliar"
+            android:layout_marginBottom="60dp"
+            />
+
+        <LinearLayout
+            android:id="@+id/paginacionContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/recycler_habitos"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="16dp"
+            >
+
+            <Button
+                android:id="@+id/btnAnterior"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Anterior"
+                android:drawableLeft="@drawable/ic_anterior"
+                android:drawableTint="@color/white"
+                android:visibility="visible"/>
+
+            <TextView
+                android:id="@+id/tvPagina"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Página 1"
+                android:textSize="18sp"
+                android:padding="16dp"
+                android:textColor="@color/white"
+                />
+
+            <Button
+                android:id="@+id/btnSiguiente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Siguiente"
+                android:drawableRight="@drawable/ic_siguiente"
+                android:drawableTint="@color/white"
+                android:visibility="visible"/>
+        </LinearLayout>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
