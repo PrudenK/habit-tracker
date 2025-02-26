@@ -72,3 +72,8 @@ fun obtenerFechasEntre(diaInicio: String, diaFin: String): List<String> {
 
     return listaFechas
 }
+
+fun obtenerFechaActualMESYEAR(): String {
+    val formato = SimpleDateFormat("MMM yyyy", Locale.getDefault())
+    return formato.format(Date())
+}
