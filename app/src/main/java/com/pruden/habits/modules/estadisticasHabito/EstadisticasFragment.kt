@@ -12,6 +12,7 @@ import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -137,6 +138,14 @@ class EstadisticasFragment : Fragment() {
             )
 
             cargarBarGrafica()
+
+            val opciones = arrayOf("Día","Semana","Mes","Año")
+            val adapter = ArrayAdapter(
+                requireContext(), R.layout.spinner_item, opciones
+            )
+            adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
+            binding.spinnerEsta.adapter = adapter
+
         }
     }
 
@@ -190,7 +199,7 @@ class EstadisticasFragment : Fragment() {
         }
 
         // Crear un conjunto de datos con las entradas
-        val dataSet = BarDataSet(entries, habito.unidad.toString().take(5).lowercase().replaceFirstChar { it.uppercase() })
+        val dataSet = BarDataSet(entries, "${habito.unidad.toString().take(5).lowercase().replaceFirstChar { it.uppercase() } } x Día")
         dataSet.color = habito.colorHabito
         dataSet.valueTextSize = 14f
         dataSet.valueTextColor = Color.WHITE

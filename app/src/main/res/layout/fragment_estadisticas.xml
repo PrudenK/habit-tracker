@@ -203,15 +203,24 @@
 
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/grafica_bar"
-                android:layout_width="320dp"
+                android:layout_width="match_parent"
                 android:layout_height="280dp"
                 android:background="@color/dark_gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textoMesAnio"
-
+                android:layout_marginHorizontal="40dp"
                 />
 
+            <Spinner
+                android:id="@+id/spinner_esta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:popupBackground="@color/black"
+                app:layout_constraintBottom_toTopOf="@+id/grafica_bar"
+                app:layout_constraintEnd_toEndOf="@+id/grafica_bar"
+                android:background="@color/dark_gray"
+                 />
 
 
 
