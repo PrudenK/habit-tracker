@@ -8,8 +8,8 @@ import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.metodos.Constantes
 import com.pruden.habits.common.metodos.Dialogos.makeToast
-import com.pruden.habits.common.metodos.General.obtenerFechaActual
-import com.pruden.habits.common.metodos.General.obtenerFechasEntre
+import com.pruden.habits.common.metodos.fechas.obtenerFechaActual
+import com.pruden.habits.common.metodos.fechas.obtenerFechasEntre
 import com.pruden.habits.modules.configuracionesModule.viewModel.ConfiguracionesViewModel
 import java.io.BufferedReader
 import java.io.InputStreamReader

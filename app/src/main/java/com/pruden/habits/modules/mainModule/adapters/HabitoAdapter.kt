@@ -23,7 +23,7 @@ import com.google.android.material.textfield.TextInputLayout
 import com.pruden.habits.R
 import com.pruden.habits.modules.mainModule.adapters.listeners.OnClickBooleanRegistro
 import com.pruden.habits.modules.mainModule.adapters.listeners.OnClickNumericoRegistro
-import com.pruden.habits.modules.mainModule.adapters.listeners.OnLongClickHabito
+import com.pruden.habits.modules.mainModule.adapters.listeners.OnClickHabito
 import com.pruden.habits.common.clases.auxClass.HabitoAux
 import com.pruden.habits.common.clases.auxClass.TextViewsNumerico
 import com.pruden.habits.common.clases.data.Habito
@@ -36,7 +36,7 @@ import com.pruden.habits.modules.mainModule.viewModel.HabitoAdapterViewModel
 
 class HabitoAdapter (
     private val sincronizadorDeScrolls: SincronizadorDeScrolls,
-    private val onLongListenr: OnLongClickHabito
+    private val listenerHabito: OnClickHabito
 ):
     ListAdapter<Habito, RecyclerView.ViewHolder>(HabitoDiffCallback()), OnClickBooleanRegistro,
     OnClickNumericoRegistro {
@@ -97,7 +97,7 @@ class HabitoAdapter (
             sincronizadorDeScrolls.addRecyclerView(binding.recyclerDataHabitos)
 
             binding.contendorNombreHabito.setOnLongClickListener {
-                onLongListenr.onLongClickListenerHabito(
+                listenerHabito.onLongClickListenerHabito(
                     HabitoEntity(
                         nombre = habito.nombre,
                         objetivo = habito.objetivo,
@@ -111,6 +111,10 @@ class HabitoAdapter (
                     )
                 )
                 true
+            }
+
+            binding.contendorNombreHabito.setOnClickListener {
+                listenerHabito.onClickHabito(habito)
             }
         }
     }

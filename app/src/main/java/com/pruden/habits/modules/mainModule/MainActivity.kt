@@ -1,6 +1,7 @@
 package com.pruden.habits.modules.mainModule
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -9,28 +10,29 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.pruden.habits.HabitosApplication.Companion.listaFechas
 import com.pruden.habits.HabitosApplication.Companion.listaHabitos
 import com.pruden.habits.HabitosApplication.Companion.tamanoPagina
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.modules.mainModule.adapters.FechaAdapter
 import com.pruden.habits.modules.mainModule.adapters.HabitoAdapter
-import com.pruden.habits.modules.mainModule.adapters.listeners.OnLongClickHabito
+import com.pruden.habits.modules.mainModule.adapters.listeners.OnClickHabito
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.elementos.SincronizadorDeScrolls
 import com.pruden.habits.common.metodos.Fragments.cargarFragment
 import com.pruden.habits.common.metodos.General.cargarScrollFechaCommon
 import com.pruden.habits.common.metodos.General.configurarRecyclerFechasCommon
+import com.pruden.habits.common.metodos.fechas.obtenerFechasSemanaActual
 import com.pruden.habits.databinding.ActivityMainBinding
 import com.pruden.habits.modules.agregarHabitoModule.AgregarHabitoFragment
 import com.pruden.habits.modules.archivarHabitoModule.ArchivarHabitoFragment
 import com.pruden.habits.modules.configuracionesModule.ConfiguracionesFragment
+import com.pruden.habits.modules.estadisticasHabito.EstadisticasFragment
 import com.pruden.habits.modules.mainModule.metodos.dialogoOnLongClickHabito
 import com.pruden.habits.modules.mainModule.viewModel.MainViewModel
 
 
-class MainActivity : AppCompatActivity(), OnLongClickHabito {
+class MainActivity : AppCompatActivity(), OnClickHabito {
     private lateinit var mBinding: ActivityMainBinding
 
     private lateinit var fechasAdapter: FechaAdapter
@@ -149,6 +151,10 @@ class MainActivity : AppCompatActivity(), OnLongClickHabito {
 
     override fun onLongClickListenerHabito(habito: HabitoEntity) {
         dialogoOnLongClickHabito(this, mainViewModel, habitosAdapter, habito, resources)
+    }
+
+    override fun onClickHabito(habito: Habito) {
+        cargarFragment(this, EstadisticasFragment(), habito.nombre)
     }
 
     private fun agregarHabito(){

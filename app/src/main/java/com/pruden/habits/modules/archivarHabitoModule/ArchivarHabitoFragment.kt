@@ -1,7 +1,6 @@
 package com.pruden.habits.modules.archivarHabitoModule
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -15,13 +14,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.HabitosApplication.Companion.listaArchivados
-import com.pruden.habits.HabitosApplication.Companion.listaHabitos
 import com.pruden.habits.HabitosApplication.Companion.tamanoPagina
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.elementos.SincronizadorDeScrolls
-import com.pruden.habits.common.metodos.Dialogos.makeToast
 import com.pruden.habits.common.metodos.General.cargarScrollFechaCommon
 import com.pruden.habits.common.metodos.General.configurarRecyclerFechasCommon
 import com.pruden.habits.databinding.FragmentArchivarHabitoBinding
@@ -29,10 +26,10 @@ import com.pruden.habits.modules.archivarHabitoModule.metodos.mostrarDialogoDesa
 import com.pruden.habits.modules.archivarHabitoModule.viewModel.ArchivarViewModel
 import com.pruden.habits.modules.mainModule.adapters.FechaAdapter
 import com.pruden.habits.modules.mainModule.adapters.HabitoAdapter
-import com.pruden.habits.modules.mainModule.adapters.listeners.OnLongClickHabito
+import com.pruden.habits.modules.mainModule.adapters.listeners.OnClickHabito
 
 @Suppress("DEPRECATION")
-class ArchivarHabitoFragment : Fragment(), OnLongClickHabito {
+class ArchivarHabitoFragment : Fragment(), OnClickHabito {
 
     private lateinit var binding: FragmentArchivarHabitoBinding
 
@@ -156,6 +153,10 @@ class ArchivarHabitoFragment : Fragment(), OnLongClickHabito {
 
     override fun onLongClickListenerHabito(habito: HabitoEntity) {
         mostrarDialogoDesarchivar(habito, requireContext(), archivarViewModel, resources)
+    }
+
+    override fun onClickHabito(habito: Habito) {
+
     }
 
     private fun actualizarPagina() {
