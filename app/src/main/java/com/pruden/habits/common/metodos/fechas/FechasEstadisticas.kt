@@ -111,3 +111,28 @@ fun agruparPorSemanaConRegistros(fechas: List<String>, valores: List<String>): M
     return semanasMap
 }
 
+fun agruparPorMesConRegistros(fechas: List<String>, valores: List<String>): Map<String, Float> {
+    if (fechas.isEmpty() || valores.isEmpty()) return emptyMap()
+
+    val dateFormatInput = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val dateFormatMonthYear = SimpleDateFormat("MMM@yyyy", Locale.getDefault())
+    val calendar = Calendar.getInstance()
+
+    val mesesMap = linkedMapOf<String, Float>()
+
+    for (i in fechas.indices) {
+        val fecha = fechas[i]
+        val valor = valores[i].toFloatOrNull() ?: 0.0f // Convertir a float, si falla poner 0.0f
+        val date = dateFormatInput.parse(fecha) ?: continue
+        calendar.time = date
+
+        // Obtener el mes en formato "MMM-yyyy"
+        val mesYear = dateFormatMonthYear.format(calendar.time)
+
+        // Sumar los valores en el mismo mes
+        mesesMap[mesYear] = (mesesMap[mesYear] ?: 0.0f) + valor
+    }
+
+    return mesesMap
+}
+

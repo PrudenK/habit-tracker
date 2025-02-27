@@ -30,6 +30,7 @@ import com.pruden.habits.HabitosApplication.Companion.listaHabitos
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.metodos.General.formatearNumero
+import com.pruden.habits.common.metodos.fechas.agruparPorMesConRegistros
 import com.pruden.habits.common.metodos.fechas.agruparPorSemanaConRegistros
 import com.pruden.habits.common.metodos.fechas.obtenerDiasDelAnioActual
 import com.pruden.habits.common.metodos.fechas.obtenerDiasDelMesActual
@@ -257,9 +258,18 @@ class EstadisticasFragment : Fragment() {
                     }
                 }
                 "Mes" -> {
-                    xValues = mutableListOf()
-                    yValues = mutableListOf()
-                }
+                    val datosMensuales = agruparPorMesConRegistros(habito.listaFechas, habito.listaValores)
+                    xValues = datosMensuales.keys.toMutableList()
+                    yValues = datosMensuales.values.map { it.toString().split("@")[0] }.toMutableList()
+                    barras = 6f
+                    tama = 0.7f
+
+                    fechaTexto = if (xValues.isNotEmpty()) {
+                        xValues.last().split("@")[1]
+                    } else {
+                        "Sin datos"
+                    }
+                 }
                 "Año" -> {
                     xValues = mutableListOf()
                     yValues = mutableListOf()
@@ -365,6 +375,9 @@ class EstadisticasFragment : Fragment() {
             textoMesAnio.text = when (tiempo) {
                 "Semana" -> {
                     xValues[visibleXIndex].split(" ").last().uppercase().replace("@", " ")
+                }
+                "Mes" -> {
+                    xValues[visibleXIndex].split("@")[1]
                 }
                 else -> {
                     try {
