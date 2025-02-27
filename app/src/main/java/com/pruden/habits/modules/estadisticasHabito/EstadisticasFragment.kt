@@ -4,6 +4,7 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -12,6 +13,7 @@ import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.ProgressBar
 import android.widget.TextView
@@ -28,6 +30,7 @@ import com.pruden.habits.HabitosApplication.Companion.listaHabitos
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.metodos.General.formatearNumero
+import com.pruden.habits.common.metodos.fechas.agruparPorSemanaConRegistros
 import com.pruden.habits.common.metodos.fechas.obtenerDiasDelAnioActual
 import com.pruden.habits.common.metodos.fechas.obtenerDiasDelMesActual
 import com.pruden.habits.common.metodos.fechas.obtenerFechaActualMESYEAR
@@ -35,6 +38,11 @@ import com.pruden.habits.common.metodos.fechas.obtenerFechasAnioActual
 import com.pruden.habits.common.metodos.fechas.obtenerFechasMesActual
 import com.pruden.habits.common.metodos.fechas.obtenerFechasSemanaActual
 import com.pruden.habits.databinding.FragmentEstadisticasBinding
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -44,6 +52,10 @@ class EstadisticasFragment : Fragment() {
     private lateinit var habito: Habito
 
     private var nombreHabito = ""
+
+    private val formatoFechaOriginal = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    private val foramtoFecha_dd = SimpleDateFormat("dd", Locale.getDefault())
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,6 +94,8 @@ class EstadisticasFragment : Fragment() {
 
         binding.textoMesAnio.text = obtenerFechaActualMESYEAR().uppercase()
         cargarProgressBar()
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -137,7 +151,7 @@ class EstadisticasFragment : Fragment() {
                 obtenerFechasAnioActual()
             )
 
-            cargarBarGrafica()
+            actualizarGrafica("Día")
 
             val opciones = arrayOf("Día","Semana","Mes","Año")
             val adapter = ArrayAdapter(
@@ -146,8 +160,26 @@ class EstadisticasFragment : Fragment() {
             adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
             binding.spinnerEsta.adapter = adapter
 
+            binding.spinnerEsta.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                    val opcionSeleccionada = parent?.getItemAtPosition(position).toString()
+
+                    // para el scroll
+                    binding.graficaBar.onTouchEvent(MotionEvent.obtain(0, 0, MotionEvent.ACTION_DOWN, 0f, 0f, 0))
+                    binding.graficaBar.onTouchEvent(MotionEvent.obtain(0, 0, MotionEvent.ACTION_UP, 0f, 0f, 0))
+                    binding.graficaBar.highlightValues(null)
+
+                    actualizarGrafica(opcionSeleccionada)
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                    // No hacer nada si no se selecciona nada
+                }
+            }
+
         }
     }
+
 
     private fun cargarCadaProgressBar(
         progressBar: ProgressBar,
@@ -174,44 +206,117 @@ class EstadisticasFragment : Fragment() {
         layerDrawableMes.findDrawableByLayerId(android.R.id.progress).setTint(habito.colorHabito)
     }
 
-    private fun cargarBarGrafica() {
-        val barChart = binding.graficaBar
-        val textoMesAnio = binding.textoMesAnio // Referencia al TextView
 
-        val dateFormatInput = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()) // Formato original
-        val dateFormatOutput = SimpleDateFormat("dd", Locale.getDefault()) // "Feb 2025"
-        val dateFormatOutputMesFECHA = SimpleDateFormat("MMM yyyy", Locale.getDefault()) // "Feb 2025"
 
-        val xValues = habito.listaFechas.map { fecha ->
-            try {
-                val date = dateFormatInput.parse(fecha) // Convertir String a Date
-                dateFormatOutput.format(date!!) // Convertir Date a String en nuevo formato
-            } catch (e: Exception) {
-                fecha
+
+    private fun actualizarGrafica(opcion: String) {
+
+
+        CoroutineScope(Dispatchers.IO).launch {
+            val xValues: MutableList<String>
+            val yValues: MutableList<String>
+            var formatoFechaArriba = ""
+            var barras = 7f
+            var tama = 0.7f
+            var fechaTexto = ""
+
+            when (opcion) {
+                "Día" -> {
+                    xValues = habito.listaFechas.mapNotNull { fecha ->
+                        try {
+                            val date = formatoFechaOriginal.parse(fecha)
+                            foramtoFecha_dd.format(date!!)
+                        } catch (e: Exception) {
+                            null
+                        }
+                    }.toMutableList()
+
+                    yValues = habito.listaValores.toMutableList()
+
+                    formatoFechaArriba = "MMM yyyy"
+
+                    fechaTexto = if (habito.listaFechas.isNotEmpty()) {
+                        val ultimaFecha = formatoFechaOriginal.parse(habito.listaFechas.last())
+                        SimpleDateFormat("MMM yyyy", Locale.getDefault()).format(ultimaFecha!!).uppercase()
+                    } else {
+                        "Sin datos"
+                    }
+                }
+                "Semana" -> {
+                    val datosSemanales = agruparPorSemanaConRegistros(habito.listaFechas, habito.listaValores)
+                    xValues = datosSemanales.keys.toMutableList()
+                    yValues = datosSemanales.values.map { it.toString() }.toMutableList()
+                    formatoFechaArriba = "MMM yyyy"
+                    barras = 4f
+                    tama = 0.75f
+
+                    fechaTexto = if (xValues.isNotEmpty()) {
+                        xValues.last().split(" ").last().uppercase().replace("@", " ")
+                    } else {
+                        "Sin datos"
+                    }
+                }
+                "Mes" -> {
+                    xValues = mutableListOf()
+                    yValues = mutableListOf()
+                }
+                "Año" -> {
+                    xValues = mutableListOf()
+                    yValues = mutableListOf()
+                }
+                else -> return@launch
+            }
+
+            withContext(Dispatchers.Main) {
+
+                binding.textoMesAnio.text = fechaTexto
+
+                cargarBarGrafica(xValues, yValues, opcion, formatoFechaArriba, barras, tama)
+                binding.graficaBar.resetViewPortOffsets()
+
+
             }
         }
+    }
 
-        val yValues = habito.listaValores
+    private fun cargarBarGrafica(
+        xValues : MutableList<String>,
+        yValues: MutableList<String>,
+        tiempo: String,
+        formatoFechaArriba: String,
+        barras: Float,
+        tama: Float
+    ) {
+
+
+        val barChart = binding.graficaBar
+        val textoMesAnio = binding.textoMesAnio
+
+        val dateFormatOutputMesFECHA = SimpleDateFormat(formatoFechaArriba, Locale.getDefault())
 
         // Crear entradas para el gráfico
         val entries = yValues.mapIndexed { index, value ->
-            BarEntry(index.toFloat(), value.toFloat())
+            try {
+                BarEntry(index.toFloat(), value.toFloat())
+            } catch (e: Exception) {
+                Log.e("ERROR", "Error al convertir valor en índice $index: $value", e)
+                BarEntry(index.toFloat(), 0f) // Evitar crash
+            }
         }
 
-        // Crear un conjunto de datos con las entradas
-        val dataSet = BarDataSet(entries, "${habito.unidad.toString().take(5).lowercase().replaceFirstChar { it.uppercase() } } x Día")
+        val dataSet = BarDataSet(entries, "${habito.unidad.toString().take(5).lowercase().replaceFirstChar { it.uppercase() } } x $tiempo")
+        dataSet.notifyDataSetChanged()
         dataSet.color = habito.colorHabito
         dataSet.valueTextSize = 14f
         dataSet.valueTextColor = Color.WHITE
         dataSet.valueTypeface = Typeface.DEFAULT_BOLD
 
-        // Crear los datos del gráfico con el conjunto de datos
         val barData = BarData(dataSet)
         barChart.data = barData
 
         // Configurar el eje X
         val xAxis = barChart.xAxis
-        xAxis.valueFormatter = IndexAxisValueFormatter(xValues)
+        xAxis.valueFormatter = IndexAxisValueFormatter(xValues.map { it.split("@")[0] })
         xAxis.position = XAxis.XAxisPosition.BOTTOM
         xAxis.setDrawGridLines(false)
         xAxis.granularity = 1f
@@ -219,6 +324,7 @@ class EstadisticasFragment : Fragment() {
         xAxis.textColor = Color.WHITE
         xAxis.axisLineColor = Color.WHITE
         xAxis.axisLineWidth = 1.5f
+
 
         // Configurar el eje Y
         val yAxis = barChart.axisLeft
@@ -230,34 +336,47 @@ class EstadisticasFragment : Fragment() {
         yAxis.axisLineWidth = 1.5f
         yAxis.gridColor = Color.argb(50, 255, 255, 255)
 
-        // Deshabilitar el eje Y derecho
+
         val rightAxis = barChart.axisRight
         rightAxis.isEnabled = false
 
-        // Configurar la leyenda
         val legend = barChart.legend
         legend.textSize = 14f
         legend.textColor = Color.WHITE
         legend.typeface = Typeface.DEFAULT_BOLD
 
-        // Habilitar desplazamiento horizontal
-        barData.barWidth = 0.7f
-        barChart.setVisibleXRangeMaximum(7f)
-        barChart.setVisibleXRangeMinimum(3f)
+        // Configurar visibilidad y tamaño de barras
+        barData.barWidth = tama
+        barChart.setVisibleXRangeMaximum(barras)
+        barChart.setVisibleXRangeMinimum(barras)
         barChart.isDragEnabled = true
         barChart.setScaleEnabled(false)
-        barChart.moveViewToX(entries.size.toFloat())
 
-        // Quitar la etiqueta de descripción del gráfico
+
+
+        barChart.moveViewToX(barChart.xAxis.axisMaximum)
+
         barChart.description.isEnabled = false
 
-
         fun actualizarFechaTexto() {
-            val visibleXIndex = barChart.highestVisibleX.toInt().coerceAtLeast(0).coerceAtMost(habito.listaFechas.size - 1)
-            val newDate = dateFormatOutputMesFECHA.format(dateFormatInput.parse(habito.listaFechas[visibleXIndex])!!)
-            textoMesAnio.text = newDate.uppercase() // Actualizar el TextView con el nuevo mes y año
-        }
+            val visibleXIndex = barChart.highestVisibleX.toInt().coerceAtLeast(0).coerceAtMost(xValues.size - 1)
 
+
+            textoMesAnio.text = when (tiempo) {
+                "Semana" -> {
+                    xValues[visibleXIndex].split(" ").last().uppercase().replace("@", " ")
+                }
+                else -> {
+                    try {
+                        val newDate = formatoFechaOriginal.parse(habito.listaFechas[visibleXIndex])
+                        dateFormatOutputMesFECHA.format(newDate!!).uppercase()
+                    } catch (e: Exception) {
+                        "Error de fecha"
+                    }
+                }
+            }
+
+        }
 
         barChart.onChartGestureListener = object : OnChartGestureListener {
             override fun onChartTranslate(me: MotionEvent?, dX: Float, dY: Float) {
@@ -272,6 +391,9 @@ class EstadisticasFragment : Fragment() {
             override fun onChartScale(me: MotionEvent?, scaleX: Float, scaleY: Float) {}
         }
 
-        barChart.invalidate()
+        binding.graficaBar.notifyDataSetChanged()
+        binding.graficaBar.invalidate()
+
     }
+
 }
