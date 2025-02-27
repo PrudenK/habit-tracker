@@ -136,3 +136,28 @@ fun agruparPorMesConRegistros(fechas: List<String>, valores: List<String>): Map<
     return mesesMap
 }
 
+fun agruparPorAnioConRegistros(fechas: List<String>, valores: List<String>): Map<String, Float> {
+    if (fechas.isEmpty() || valores.isEmpty()) return emptyMap()
+
+    val dateFormatInput = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val dateFormatYear = SimpleDateFormat("yyyy", Locale.getDefault())
+    val calendar = Calendar.getInstance()
+
+    val aniosMap = linkedMapOf<String, Float>()
+
+    for (i in fechas.indices) {
+        val fecha = fechas[i]
+        val valor = valores[i].toFloatOrNull() ?: 0.0f // Convertir a float, si falla poner 0.0f
+        val date = dateFormatInput.parse(fecha) ?: continue
+        calendar.time = date
+
+        // Obtener el año en formato "yyyy"
+        val anio = dateFormatYear.format(calendar.time)
+
+        // Sumar los valores en el mismo año
+        aniosMap[anio] = (aniosMap[anio] ?: 0.0f) + valor
+    }
+
+    return aniosMap
+}
+

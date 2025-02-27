@@ -30,6 +30,7 @@ import com.pruden.habits.HabitosApplication.Companion.listaHabitos
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.metodos.General.formatearNumero
+import com.pruden.habits.common.metodos.fechas.agruparPorAnioConRegistros
 import com.pruden.habits.common.metodos.fechas.agruparPorMesConRegistros
 import com.pruden.habits.common.metodos.fechas.agruparPorSemanaConRegistros
 import com.pruden.habits.common.metodos.fechas.obtenerDiasDelAnioActual
@@ -41,7 +42,6 @@ import com.pruden.habits.common.metodos.fechas.obtenerFechasSemanaActual
 import com.pruden.habits.databinding.FragmentEstadisticasBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
@@ -271,8 +271,12 @@ class EstadisticasFragment : Fragment() {
                     }
                  }
                 "Año" -> {
-                    xValues = mutableListOf()
-                    yValues = mutableListOf()
+                    val datosAnuales = agruparPorAnioConRegistros(habito.listaFechas, habito.listaValores)
+                    xValues = datosAnuales.keys.toMutableList()
+                    yValues = datosAnuales.values.map { it.toString()}.toMutableList()
+                    barras = 5f
+                    tama = 0.7f
+
                 }
                 else -> return@launch
             }
@@ -373,20 +377,17 @@ class EstadisticasFragment : Fragment() {
 
 
             textoMesAnio.text = when (tiempo) {
+                "Día" ->{
+                    val newDate = formatoFechaOriginal.parse(habito.listaFechas[visibleXIndex])
+                    dateFormatOutputMesFECHA.format(newDate!!).uppercase()
+                }
                 "Semana" -> {
                     xValues[visibleXIndex].split(" ").last().uppercase().replace("@", " ")
                 }
                 "Mes" -> {
                     xValues[visibleXIndex].split("@")[1]
                 }
-                else -> {
-                    try {
-                        val newDate = formatoFechaOriginal.parse(habito.listaFechas[visibleXIndex])
-                        dateFormatOutputMesFECHA.format(newDate!!).uppercase()
-                    } catch (e: Exception) {
-                        "Error de fecha"
-                    }
-                }
+                else -> ""
             }
 
         }
