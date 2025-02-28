@@ -2,6 +2,7 @@ package com.pruden.habits.modules.estadisticasHabito.adapter
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -35,7 +36,7 @@ class FechaCalendarioAdapter(
 
         with(holder as ViewHolder) {
             if (fechaItem == null) {
-                binding.fechaCalendario.text = "" // Espacio en blanco
+                binding.fechaCalendario.text = ""
                 binding.fechaCalendario.setBackgroundColor(Color.TRANSPARENT)
             } else {
                 binding.fechaCalendario.text = fechaItem.fecha.split("-")[2].toInt().toString()
