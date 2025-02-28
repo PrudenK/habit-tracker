@@ -52,7 +52,13 @@ fun cargarSpinnerGraficoDeLineas(
                 id: Long
             ) {
                 val opcionSeleccionada = parent?.getItemAtPosition(position).toString()
+
+                binding.lineChart.onTouchEvent(MotionEvent.obtain(
+                    0, 0, MotionEvent.ACTION_DOWN, 0f, 0f, 0))
+                binding.lineChart.onTouchEvent(MotionEvent.obtain(
+                    0, 0, MotionEvent.ACTION_UP, 0f, 0f, 0))
                 binding.lineChart.highlightValues(null)
+
                 actualizarGraficoDeLineas(opcionSeleccionada, binding, habito, formatoFechaOriginal, foramtoFecha_dd)
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {}

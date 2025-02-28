@@ -1,0 +1,68 @@
+package com.pruden.habits.modules.estadisticasHabito.adapter
+
+import android.content.Context
+import android.graphics.Color
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
+import androidx.recyclerview.widget.RecyclerView
+import com.pruden.habits.R
+import com.pruden.habits.common.clases.auxClass.FechaCalendario
+import com.pruden.habits.databinding.ItemFechaCalendarBinding
+
+class FechaCalendarioAdapter(
+    val color: Int,
+    val objetivo: String?
+) : ListAdapter<FechaCalendario, RecyclerView.ViewHolder>(FechaDiffCallback()) {
+
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val binding = ItemFechaCalendarBinding.bind(view)
+    }
+
+    private lateinit var contexto: Context
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        contexto = parent.context
+        val vista = LayoutInflater.from(contexto).inflate(R.layout.item_fecha_calendar, parent, false)
+        return ViewHolder(vista)
+    }
+
+    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+        val fechaItem = getItem(position)
+
+        with(holder as ViewHolder) {
+            if (fechaItem == null) {
+                binding.fechaCalendario.text = "" // Espacio en blanco
+                binding.fechaCalendario.setBackgroundColor(Color.TRANSPARENT)
+            } else {
+                binding.fechaCalendario.text = fechaItem.fecha.split("-")[2].toInt().toString()
+
+                // Color basado en objetivo
+                if (objetivo != null) {
+                    val objetivoNum = objetivo.split("@")[0].toFloat()
+                    val objetivoCondicion = objetivo.split("@")[1]
+
+                    when (objetivoCondicion) {
+                        "Mas de", "Más de" -> {
+                            if (fechaItem.valor.toFloat() >= objetivoNum) {
+                                binding.fechaCalendario.setBackgroundColor(color)
+                                binding.fechaCalendario.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.dark_gray))
+                            } else {
+                                binding.fechaCalendario.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.dark_gray))
+                                binding.fechaCalendario.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.lightGrayColor))
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    class FechaDiffCallback : DiffUtil.ItemCallback<FechaCalendario>() {
+        override fun areItemsTheSame(oldItem: FechaCalendario, newItem: FechaCalendario) = oldItem.fecha == newItem.fecha
+        override fun areContentsTheSame(oldItem: FechaCalendario, newItem: FechaCalendario) = oldItem == newItem
+    }
+}

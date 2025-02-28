@@ -69,4 +69,7 @@ dependencies {
     // https://github.com/PhilJay/MPAndroidChart?tab=readme-ov-file
 
     implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
+
+
 }
