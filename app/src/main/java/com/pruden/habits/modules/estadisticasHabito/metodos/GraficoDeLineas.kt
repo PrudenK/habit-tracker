@@ -2,16 +2,19 @@ package com.pruden.habits.modules.estadisticasHabito.metodos
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.DashPathEffect
 import android.graphics.Typeface
+import android.graphics.drawable.GradientDrawable
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
-import com.github.mikephil.charting.data.BarData
-import com.github.mikephil.charting.data.BarDataSet
-import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineData
+import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
 import com.github.mikephil.charting.listener.ChartTouchListener
 import com.github.mikephil.charting.listener.OnChartGestureListener
@@ -25,23 +28,22 @@ import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Locale
 
-fun cargarSpinnerGraficoDeBarras(
+fun cargarSpinnerGraficoDeLineas(
     context: Context,
     binding: FragmentEstadisticasBinding,
     habito: Habito,
     formatoFechaOriginal: SimpleDateFormat,
     foramtoFecha_dd: SimpleDateFormat
 ){
-    actualizarGraficoDeBarras("Mes", binding, habito, formatoFechaOriginal, foramtoFecha_dd)
+    actualizarGraficoDeLineas("Mes", binding, habito, formatoFechaOriginal, foramtoFecha_dd)
 
     val opciones = arrayOf("Día", "Semana", "Mes", "Año")
     val adapter = ArrayAdapter(context, R.layout.spinner_item, opciones)
     adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
-    binding.spinnerEsta.adapter = adapter
-    binding.spinnerEsta.setSelection(2)
+    binding.spinnerEstaLineChart.adapter = adapter
+    binding.spinnerEstaLineChart.setSelection(2)
 
-
-    binding.spinnerEsta.onItemSelectedListener =
+    binding.spinnerEstaLineChart.onItemSelectedListener =
         object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -50,24 +52,14 @@ fun cargarSpinnerGraficoDeBarras(
                 id: Long
             ) {
                 val opcionSeleccionada = parent?.getItemAtPosition(position).toString()
-
-                // para el scroll
-                binding.graficaBar.onTouchEvent(MotionEvent.obtain(
-                    0, 0, MotionEvent.ACTION_DOWN, 0f, 0f, 0))
-                binding.graficaBar.onTouchEvent(MotionEvent.obtain(
-                    0, 0, MotionEvent.ACTION_UP, 0f, 0f, 0))
-                binding.graficaBar.highlightValues(null)
-
-                actualizarGraficoDeBarras(opcionSeleccionada, binding, habito, formatoFechaOriginal, foramtoFecha_dd)
+                binding.lineChart.highlightValues(null)
+                actualizarGraficoDeLineas(opcionSeleccionada, binding, habito, formatoFechaOriginal, foramtoFecha_dd)
             }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // No hacer nada si no se selecciona nada
-            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
         }
 }
 
-private fun actualizarGraficoDeBarras(
+private fun actualizarGraficoDeLineas(
     opcion: String,
     binding: FragmentEstadisticasBinding,
     habito: Habito,
@@ -79,7 +71,7 @@ private fun actualizarGraficoDeBarras(
         val yValues: MutableList<String>
         var formatoFechaArriba = ""
         var barras = 7f
-        var tama = 0.7f
+        var espacio = 0.3f
         var fechaTexto = ""
 
         when (opcion) {
@@ -92,7 +84,6 @@ private fun actualizarGraficoDeBarras(
                         null
                     }
                 }.toMutableList()
-
                 yValues = habito.listaValores.toMutableList()
 
                 formatoFechaArriba = "MMM yyyy"
@@ -105,15 +96,15 @@ private fun actualizarGraficoDeBarras(
                     "Sin datos"
                 }
             }
-
             "Semana" -> {
-                val datosSemanales =
-                    agruparPorSemanaConRegistros(habito.listaFechas, habito.listaValores)
+                val datosSemanales = agruparPorSemanaConRegistros(habito.listaFechas, habito.listaValores)
                 xValues = datosSemanales.keys.toMutableList()
                 yValues = datosSemanales.values.map { it.toString() }.toMutableList()
-                formatoFechaArriba = "MMM yyyy"
                 barras = 4f
-                tama = 0.75f
+                espacio = 0.2f
+
+
+                formatoFechaArriba = "MMM yyyy"
 
                 fechaTexto = if (xValues.isNotEmpty()) {
                     xValues.last().split(" ").last().uppercase().replace("@", " ")
@@ -121,15 +112,12 @@ private fun actualizarGraficoDeBarras(
                     "Sin datos"
                 }
             }
-
             "Mes" -> {
-                val datosMensuales =
-                    agruparPorMesConRegistros(habito.listaFechas, habito.listaValores)
+                val datosMensuales = agruparPorMesConRegistros(habito.listaFechas, habito.listaValores)
                 xValues = datosMensuales.keys.toMutableList()
-                yValues =
-                    datosMensuales.values.map { it.toString().split("@")[0] }.toMutableList()
+                yValues = datosMensuales.values.map { it.toString() }.toMutableList()
                 barras = 6f
-                tama = 0.7f
+                espacio = 0.1f
 
                 fechaTexto = if (xValues.isNotEmpty()) {
                     xValues.last().split("@")[1]
@@ -137,115 +125,112 @@ private fun actualizarGraficoDeBarras(
                     "Sin datos"
                 }
             }
-
             "Año" -> {
-                val datosAnuales =
-                    agruparPorAnioConRegistros(habito.listaFechas, habito.listaValores)
+                val datosAnuales = agruparPorAnioConRegistros(habito.listaFechas, habito.listaValores)
                 xValues = datosAnuales.keys.toMutableList()
                 yValues = datosAnuales.values.map { it.toString() }.toMutableList()
                 barras = 5f
-                tama = 0.7f
 
             }
-
             else -> return@launch
         }
 
         withContext(Dispatchers.Main) {
-
-            binding.textoMesAnio.text = fechaTexto
-
-            cargarGraficoDeBarras(xValues, yValues, opcion, formatoFechaArriba,
-                barras, tama, binding, habito, formatoFechaOriginal)
-
-            binding.graficaBar.resetViewPortOffsets()
+            binding.textoFechaLineChart.text = fechaTexto
+            cargarGraficoDeLineas(xValues, yValues, opcion, formatoFechaArriba, barras, espacio,
+                    binding, habito, formatoFechaOriginal)
+            binding.lineChart.resetViewPortOffsets()
         }
     }
 }
 
-
-private fun cargarGraficoDeBarras(
+private fun cargarGraficoDeLineas(
     xValues : MutableList<String>,
     yValues: MutableList<String>,
     tiempo: String,
     formatoFechaArriba: String,
     barras: Float,
-    tama: Float,
+    espacio: Float,
     binding: FragmentEstadisticasBinding,
     habito: Habito,
     formatoFechaOriginal: SimpleDateFormat
 ) {
-    val barChart = binding.graficaBar
-    val textoMesAnio = binding.textoMesAnio
-
+    val lineChart = binding.lineChart
+    val textoMesAnio = binding.textoFechaLineChart
     val dateFormatOutputMesFECHA = SimpleDateFormat(formatoFechaArriba, Locale.getDefault())
 
-    // Crear entradas para el gráfico
     val entries = yValues.mapIndexed { index, value ->
         try {
-            BarEntry(index.toFloat(), value.toFloat())
+            Entry(index.toFloat(), value.toFloat())
         } catch (e: Exception) {
             Log.e("ERROR", "Error al convertir valor en índice $index: $value", e)
-            BarEntry(index.toFloat(), 0f) // Evitar crash
+            Entry(index.toFloat(), 0f)
         }
     }
 
-    val dataSet = BarDataSet(entries, "${habito.unidad.toString().take(5).lowercase().replaceFirstChar { it.uppercase() } } x $tiempo")
-    dataSet.notifyDataSetChanged()
-    dataSet.color = habito.colorHabito
-    dataSet.valueTextSize = 14f
-    dataSet.valueTextColor = Color.WHITE
-    dataSet.valueTypeface = Typeface.DEFAULT_BOLD
-
-    val barData = BarData(dataSet)
-    barChart.data = barData
-
-    // Configurar el eje X
-    val xAxis = barChart.xAxis
-    xAxis.valueFormatter = IndexAxisValueFormatter(xValues.map { it.split("@")[0] })
-    xAxis.position = XAxis.XAxisPosition.BOTTOM
-    xAxis.setDrawGridLines(false)
-    xAxis.granularity = 1f
-    xAxis.textSize = 14f
-    xAxis.textColor = Color.WHITE
-    xAxis.axisLineColor = Color.WHITE
-    xAxis.axisLineWidth = 1.5f
-
-
-    // Configurar el eje Y
-    val yAxis = barChart.axisLeft
-    yAxis.axisMinimum = 0f
-    yAxis.axisMaximum = barData.yMax * 1.1f
-    yAxis.textSize = 14f
-    yAxis.textColor = Color.WHITE
-    yAxis.axisLineColor = Color.WHITE
-    yAxis.axisLineWidth = 1.5f
-    yAxis.gridColor = Color.argb(50, 255, 255, 255)
-
-
-    val rightAxis = barChart.axisRight
-    rightAxis.isEnabled = false
-
-    val legend = barChart.legend
-    legend.textSize = 14f
-    legend.textColor = Color.WHITE
-    legend.typeface = Typeface.DEFAULT_BOLD
-
-    // Configurar visibilidad y tamaño de barras
-    barData.barWidth = tama
-    barChart.setVisibleXRangeMaximum(barras)
-    barChart.setVisibleXRangeMinimum(barras)
-    barChart.isDragEnabled = true
-    barChart.setScaleEnabled(false)
+    val dataSet = LineDataSet(entries, "${habito.unidad.toString().take(5).lowercase().replaceFirstChar { it.uppercase() } } x $tiempo").apply {
+        color = habito.colorHabito
+        setCircleColor(Color.WHITE)
+        circleRadius = 5f
+        setDrawCircleHole(false)
+        setDrawValues(true)
+        valueTextSize = 14f
+        valueTextColor = Color.WHITE
+        valueTypeface = Typeface.DEFAULT_BOLD
+        enableDashedLine(10f, 5f, 0f)
+        setDrawFilled(true)
+        fillDrawable = GradientDrawable(
+            GradientDrawable.Orientation.TOP_BOTTOM,
+            intArrayOf(habito.colorHabito, Color.TRANSPARENT)
+        )
+    }
 
 
 
-    barChart.moveViewToX(barChart.xAxis.axisMaximum)
+    val lineData = LineData(dataSet)
+    lineChart.data = lineData
+    lineChart.invalidate()
 
-    barChart.description.isEnabled = false
+    lineChart.xAxis.apply {
+        valueFormatter = IndexAxisValueFormatter(xValues.map { it.split("@")[0] })
+        position = XAxis.XAxisPosition.BOTTOM
+        setDrawGridLines(false)
+        granularity = 1f
+        textSize = 14f
+        textColor = Color.WHITE
+        axisLineColor = Color.WHITE
+        axisLineWidth = 1.5f
+        spaceMax = espacio
+        spaceMin = espacio
+    }
+
+    lineChart.axisLeft.apply {
+        axisMinimum = 0f
+        textSize = 14f
+        textColor = Color.WHITE
+        axisLineColor = Color.WHITE
+        axisLineWidth = 1.5f
+        gridColor = Color.argb(50, 255, 255, 255)
+    }
+
+    lineChart.axisRight.isEnabled = false
+
+    lineChart.legend.apply {
+        textSize = 14f
+        textColor = Color.WHITE
+        typeface = Typeface.DEFAULT_BOLD
+    }
+
+    lineChart.description.isEnabled = false
+    lineChart.setVisibleXRangeMaximum(barras)
+    lineChart.setVisibleXRangeMinimum(barras)
+    lineChart.isDragEnabled = true
+    lineChart.setScaleEnabled(false)
+
+    lineChart.moveViewToX(lineData.xMax)
 
     fun actualizarFechaTexto() {
-        val visibleXIndex = barChart.highestVisibleX.toInt().coerceAtLeast(0).coerceAtMost(xValues.size - 1)
+        val visibleXIndex = lineChart.highestVisibleX.toInt().coerceAtLeast(0).coerceAtMost(xValues.size - 1)
         textoMesAnio.text = when (tiempo) {
             "Día" ->{
                 val newDate = formatoFechaOriginal.parse(habito.listaFechas[visibleXIndex])
@@ -259,10 +244,9 @@ private fun cargarGraficoDeBarras(
             }
             else -> ""
         }
-
     }
 
-    barChart.onChartGestureListener = object : OnChartGestureListener {
+    lineChart.onChartGestureListener = object : OnChartGestureListener {
         override fun onChartTranslate(me: MotionEvent?, dX: Float, dY: Float) {
             actualizarFechaTexto()
         }
@@ -275,7 +259,6 @@ private fun cargarGraficoDeBarras(
         override fun onChartScale(me: MotionEvent?, scaleX: Float, scaleY: Float) {}
     }
 
-    binding.graficaBar.notifyDataSetChanged()
-    binding.graficaBar.invalidate()
-
+    lineChart.notifyDataSetChanged()
+    lineChart.invalidate()
 }

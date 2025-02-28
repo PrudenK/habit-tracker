@@ -45,6 +45,7 @@
         android:layout_height="match_parent"
         android:fillViewport="true"
         android:layout_marginTop="?attr/actionBarSize"
+        android:layout_marginBottom="50dp"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -222,9 +223,41 @@
                 android:background="@color/dark_gray"
                  />
 
+            <TextView
+                android:id="@+id/texto_fecha_line_chart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:paddingBottom="4dp"
+                android:text="Fecha"
+                android:textColor="@android:color/white"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/grafica_bar"
+                app:layout_constraintTop_toBottomOf="@+id/grafica_bar"
+                android:layout_marginTop="16dp"
+                />
 
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/lineChart"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:background="@color/dark_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/texto_fecha_line_chart"
+                android:layout_marginHorizontal="40dp"
+                />
 
-
+            <Spinner
+                android:id="@+id/spinner_esta_line_chart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:popupBackground="@color/black"
+                app:layout_constraintBottom_toTopOf="@+id/lineChart"
+                app:layout_constraintEnd_toEndOf="@+id/lineChart"
+                android:background="@color/dark_gray"
+                />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

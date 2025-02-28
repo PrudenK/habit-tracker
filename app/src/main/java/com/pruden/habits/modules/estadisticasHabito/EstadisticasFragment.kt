@@ -17,6 +17,10 @@ import com.pruden.habits.common.metodos.fechas.obtenerFechaActualMESYEAR
 import com.pruden.habits.databinding.FragmentEstadisticasBinding
 import com.pruden.habits.modules.estadisticasHabito.metodos.cargarProgressBar
 import com.pruden.habits.modules.estadisticasHabito.metodos.cargarSpinnerGraficoDeBarras
+import com.pruden.habits.modules.estadisticasHabito.metodos.cargarSpinnerGraficoDeLineas
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -69,6 +73,8 @@ class EstadisticasFragment : Fragment() {
         binding.textoMesAnio.text = obtenerFechaActualMESYEAR().uppercase()
         cargarProgressBar(habito, binding, requireContext()) // cargar las progressbar
         cargarSpinnerGraficoDeBarras(requireContext(), binding, habito, formatoFechaOriginal, foramtoFecha_dd) // cargar el gráfico de barras
+        cargarSpinnerGraficoDeLineas(requireContext(), binding, habito, formatoFechaOriginal, foramtoFecha_dd) // cargar el gráfico de barras
+
 
     }
 
