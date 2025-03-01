@@ -34,13 +34,25 @@ class FechaCalendarioAdapter(
         val fechaItem = getItem(position)
 
         with(holder as ViewHolder) {
+            fun ponerNotas(idColor: Int){
+                if(fechaItem.nota!!.isNotBlank() && fechaItem.nota != null){
+                    binding.iconoNotas.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.ic_notas))
+                    binding.iconoNotas.setColorFilter(ContextCompat.getColor(binding.root.context, idColor))
+                    binding.iconoNotas.visibility = View.VISIBLE
+                }else{
+                    binding.iconoNotas.visibility = View.GONE
+                }
+            }
+
             fun habitoCumplido(condicion: Boolean){
                 if(condicion){
                     binding.fechaCalendario.setBackgroundColor(color)
                     binding.fechaCalendario.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.dark_gray))
+                    ponerNotas(R.color.dark_gray)
                 }else{
                     binding.fechaCalendario.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.dark_gray))
                     binding.fechaCalendario.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.lightGrayColor))
+                    ponerNotas(R.color.lightGrayColor)
                 }
             }
 
@@ -66,6 +78,9 @@ class FechaCalendarioAdapter(
                     habitoCumplido(fechaItem.valor.toFloat() == 1.0f)
                 }
             }
+
+
+
         }
     }
 
