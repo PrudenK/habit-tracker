@@ -19,34 +19,35 @@ fun cargarProgressBar(
     binding: FragmentEstadisticasBinding,
     context: Context
 ) {
-    if (habito.tipoNumerico) {
-        val objetivoDiario = habito.objetivo!!.split("@")[0].toFloat()
+
+    val objetivoDiario = if (habito.objetivo != null && habito.objetivo != "null") {
+        habito.objetivo.split("@")[0].toFloat()
+    } else 1f
 
 
-        cargarCadaProgressBar(
-            binding.progressBarSemana,
-            objetivoDiario * 7,
-            binding.textoProgresoSemanal,
-            obtenerFechasSemanaActual(),
-            habito, context
-        )
+    cargarCadaProgressBar(
+        binding.progressBarSemana,
+        objetivoDiario * 7,
+        binding.textoProgresoSemanal,
+        obtenerFechasSemanaActual(),
+        habito, context
+    )
 
-        cargarCadaProgressBar(
-            binding.progressBarMes,
-            objetivoDiario * obtenerDiasDelMesActual(),
-            binding.textProgresoMensual,
-            obtenerFechasMesActual(),
-            habito, context
-        )
+    cargarCadaProgressBar(
+        binding.progressBarMes,
+        objetivoDiario * obtenerDiasDelMesActual(),
+        binding.textProgresoMensual,
+        obtenerFechasMesActual(),
+        habito, context
+    )
 
-        cargarCadaProgressBar(
-            binding.progressBarAnual,
-            objetivoDiario * obtenerDiasDelAnioActual(),
-            binding.textProgresoAnual,
-            obtenerFechasAnioActual(),
-            habito, context
-        )
-    }
+    cargarCadaProgressBar(
+        binding.progressBarAnual,
+        objetivoDiario * obtenerDiasDelAnioActual(),
+        binding.textProgresoAnual,
+        obtenerFechasAnioActual(),
+        habito, context
+    )
 }
 
 
