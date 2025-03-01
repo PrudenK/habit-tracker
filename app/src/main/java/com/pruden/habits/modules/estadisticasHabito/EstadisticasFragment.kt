@@ -13,7 +13,9 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.view.Window
 import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
@@ -142,8 +144,32 @@ class EstadisticasFragment : Fragment(), OnClikCalendario {
     }
 
     override fun onClikHabito(habito: Habito, fechaItem: FechaCalendario, binding: ItemFechaCalendarBinding) {
+        val contexto = requireContext()
+
+        fun ponerNotas(idColor: Int){
+            if(fechaItem.nota!!.isNotBlank() && fechaItem.nota != null){
+                binding.iconoNotas.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.ic_notas))
+                binding.iconoNotas.setColorFilter(ContextCompat.getColor(binding.root.context, idColor))
+                binding.iconoNotas.visibility = View.VISIBLE
+            }else{
+                binding.iconoNotas.visibility = View.GONE
+            }
+        }
+
+        fun habitoCumplido(condicion: Boolean){
+            if(condicion){
+                binding.fechaCalendario.setBackgroundColor(habito.colorHabito)
+                binding.fechaCalendario.setTextColor(ContextCompat.getColor(contexto, R.color.dark_gray))
+                ponerNotas(R.color.dark_gray)
+            }else{
+                binding.fechaCalendario.setBackgroundColor(ContextCompat.getColor(contexto, R.color.dark_gray))
+                binding.fechaCalendario.setTextColor(ContextCompat.getColor(contexto, R.color.lightGrayColor))
+                ponerNotas(R.color.lightGrayColor)
+            }
+        }
+
+
         if(habito.tipoNumerico){
-            val contexto = requireContext()
             val dialog = Dialog(contexto)
             dialog.setContentView(R.layout.dialog_edit_numerico_calendar)
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
@@ -183,29 +209,6 @@ class EstadisticasFragment : Fragment(), OnClikCalendario {
                     val objetivoNum = habito.objetivo!!.split("@")[0].toFloat()
                     val condicion = habito.objetivo.split("@")[1]
 
-                    fun ponerNotas(idColor: Int){
-                        if(fechaItem.nota!!.isNotBlank() && fechaItem.nota != null){
-                            binding.iconoNotas.setImageDrawable(ContextCompat.getDrawable(binding.root.context, R.drawable.ic_notas))
-                            binding.iconoNotas.setColorFilter(ContextCompat.getColor(binding.root.context, idColor))
-                            binding.iconoNotas.visibility = View.VISIBLE
-                        }else{
-                            binding.iconoNotas.visibility = View.GONE
-                        }
-                    }
-
-                    fun habitoCumplido(condicion: Boolean){
-                        if(condicion){
-                            binding.fechaCalendario.setBackgroundColor(habito.colorHabito)
-                            binding.fechaCalendario.setTextColor(ContextCompat.getColor(contexto, R.color.dark_gray))
-                            ponerNotas(R.color.dark_gray)
-                        }else{
-                            binding.fechaCalendario.setBackgroundColor(ContextCompat.getColor(contexto, R.color.dark_gray))
-                            binding.fechaCalendario.setTextColor(ContextCompat.getColor(contexto, R.color.lightGrayColor))
-                            ponerNotas(R.color.lightGrayColor)
-                        }
-                    }
-
-
                     when (condicion) {
                         "Mas de", "Más de" -> habitoCumplido(fechaItem.valor.toFloat() >= objetivoNum)
                         "Menos de" -> habitoCumplido(fechaItem.valor.toFloat() < objetivoNum)
@@ -233,7 +236,85 @@ class EstadisticasFragment : Fragment(), OnClikCalendario {
 
             dialog.show()
         }else{
+            val dialog = Dialog(contexto)
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+            dialog.setContentView(R.layout.dialog_edit_booleano_calendar)
+            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
+            val inputNotas = dialog.findViewById<TextInputEditText>(R.id.input_notas_booleano_calendar)
+            val tilNotas = dialog.findViewById<TextInputLayout>(R.id.til_notas_bool_calendar)
+            val fechaTV = dialog.findViewById<TextView>(R.id.fecha_boolean_calendar)
+
+            fechaTV.text = fechaItem.fecha
+
+            inputNotas.setText(fechaItem.nota)
+
+            inputNotas.requestFocus()
+            val imm = contexto.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            Handler(Looper.getMainLooper()).postDelayed({
+                imm.showSoftInput(inputNotas, InputMethodManager.SHOW_IMPLICIT)
+            }, 200)
+
+            tilNotas.defaultHintTextColor = ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.lightGrayColor))
+
+            val botonCancelar = dialog.findViewById<ImageView>(R.id.no_check_calendar)
+            val botonGuardar = dialog.findViewById<ImageView>(R.id.check_calendar)
+
+            botonCancelar.setImageResource(R.drawable.ic_no_check)
+            botonGuardar.setImageResource(R.drawable.ic_check)
+
+            botonCancelar.setOnClickListener {
+                fechaItem.valor = "0.0"
+                fechaItem.nota = inputNotas.text.toString()
+
+                estadisticasViewModel.updateDataHabito(DataHabitoEntity(habito.nombre, fechaItem.fecha,
+                    fechaItem.valor, fechaItem.nota))
+
+                habitoCumplido(fechaItem.valor == "1.0")
+
+                habitoModificado = true
+
+                val index = this.habito.listaFechas.indexOf(fechaItem.fecha)
+
+                if (index != -1) {
+                    this.habito.listaValores[index] = fechaItem.valor
+                    this.habito.listaNotas[index] = fechaItem.nota
+                }
+
+                cargarProgressBar(this.habito, this.binding, requireContext())
+                cargarSpinnerGraficoDeBarras(requireContext(), this.binding, this.habito, formatoFechaOriginal, foramtoFecha_dd)
+                cargarSpinnerGraficoDeLineas(requireContext(), this.binding, this.habito, formatoFechaOriginal, foramtoFecha_dd)
+
+                dialog.dismiss()
+            }
+
+            botonGuardar.setOnClickListener {
+                fechaItem.valor = "1.0"
+                fechaItem.nota = inputNotas.text.toString()
+
+                estadisticasViewModel.updateDataHabito(DataHabitoEntity(habito.nombre, fechaItem.fecha,
+                    fechaItem.valor, fechaItem.nota))
+
+
+                habitoCumplido(fechaItem.valor == "1.0")
+
+                habitoModificado = true
+
+                val index = this.habito.listaFechas.indexOf(fechaItem.fecha)
+
+                if (index != -1) {
+                    this.habito.listaValores[index] = fechaItem.valor
+                    this.habito.listaNotas[index] = fechaItem.nota
+                }
+
+                cargarProgressBar(this.habito, this.binding, requireContext())
+                cargarSpinnerGraficoDeBarras(requireContext(), this.binding, this.habito, formatoFechaOriginal, foramtoFecha_dd)
+                cargarSpinnerGraficoDeLineas(requireContext(), this.binding, this.habito, formatoFechaOriginal, foramtoFecha_dd)
+
+                dialog.dismiss()
+            }
+
+            dialog.show()
         }
     }
 
