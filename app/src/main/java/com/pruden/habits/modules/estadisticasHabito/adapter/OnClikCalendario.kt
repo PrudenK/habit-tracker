@@ -5,5 +5,5 @@ import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.databinding.ItemFechaCalendarBinding
 
 interface OnClikCalendario {
-    fun onClikHabito(habito: Habito, fechaItem: FechaCalendario, binding: ItemFechaCalendarBinding)
+    fun onClikHabito(habitoCalendar: Habito, fechaItem: FechaCalendario, binding: ItemFechaCalendarBinding)
 }
