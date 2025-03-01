@@ -35,28 +35,36 @@ class FechaCalendarioAdapter(
         val fechaItem = getItem(position)
 
         with(holder as ViewHolder) {
+            fun habitoCumplido(condicion: Boolean){
+                if(condicion){
+                    binding.fechaCalendario.setBackgroundColor(color)
+                    binding.fechaCalendario.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.dark_gray))
+                }else{
+                    binding.fechaCalendario.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.dark_gray))
+                    binding.fechaCalendario.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.lightGrayColor))
+                }
+            }
+
+
+
             if (fechaItem == null) {
                 binding.fechaCalendario.text = ""
                 binding.fechaCalendario.setBackgroundColor(Color.TRANSPARENT)
             } else {
                 binding.fechaCalendario.text = fechaItem.fecha.split("-")[2].toInt().toString()
 
-                // Color basado en objetivo
-                if (objetivo != null) {
+                if (objetivo != null && objetivo != "null") {
                     val objetivoNum = objetivo.split("@")[0].toFloat()
                     val objetivoCondicion = objetivo.split("@")[1]
 
+
                     when (objetivoCondicion) {
-                        "Mas de", "Más de" -> {
-                            if (fechaItem.valor.toFloat() >= objetivoNum) {
-                                binding.fechaCalendario.setBackgroundColor(color)
-                                binding.fechaCalendario.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.dark_gray))
-                            } else {
-                                binding.fechaCalendario.setBackgroundColor(ContextCompat.getColor(holder.itemView.context, R.color.dark_gray))
-                                binding.fechaCalendario.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.lightGrayColor))
-                            }
-                        }
+                        "Mas de", "Más de" -> habitoCumplido(fechaItem.valor.toFloat() >= objetivoNum)
+                        "Menos de" -> habitoCumplido(fechaItem.valor.toFloat() < objetivoNum)
+                        "Igual a" -> habitoCumplido(fechaItem.valor.toFloat() == objetivoNum)
                     }
+                }else{
+                    habitoCumplido(fechaItem.valor.toFloat() == 1.0f)
                 }
             }
         }
