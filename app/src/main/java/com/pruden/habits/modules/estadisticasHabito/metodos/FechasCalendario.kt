@@ -7,6 +7,7 @@ import com.pruden.habits.common.clases.auxClass.FechaCalendario
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.databinding.FragmentEstadisticasBinding
 import com.pruden.habits.modules.estadisticasHabito.adapter.FechaCalendarioAdapter
+import com.pruden.habits.modules.estadisticasHabito.adapter.OnClikCalendario
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -14,9 +15,10 @@ import java.util.Locale
 fun setUpRecyclerCalendar(
     habito: Habito,
     context: Context,
-    binding: FragmentEstadisticasBinding
+    binding: FragmentEstadisticasBinding,
+    onClikCalendario: OnClikCalendario
 ) {
-    val adapterFechaCalendar = FechaCalendarioAdapter(habito.colorHabito, habito.objetivo)
+    val adapterFechaCalendar = FechaCalendarioAdapter(habito, onClikCalendario)
     val layoutFechaCalendar = GridLayoutManager(context, 7, GridLayoutManager.HORIZONTAL, false)
 
     binding.recyclerCalendario.apply {

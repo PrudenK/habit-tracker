@@ -4,7 +4,7 @@
     android:layout_height="40dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="3dp"
-
+    android:id="@+id/contenedor_item_fecha_calendar"
     >
 
     <TextView

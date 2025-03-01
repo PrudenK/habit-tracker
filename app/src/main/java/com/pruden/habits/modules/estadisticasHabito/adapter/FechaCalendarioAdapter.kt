@@ -11,11 +11,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.auxClass.FechaCalendario
+import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.databinding.ItemFechaCalendarBinding
 
 class FechaCalendarioAdapter(
-    val color: Int,
-    val objetivo: String?
+    val habito: Habito,
+    val listener: OnClikCalendario
 ) : ListAdapter<FechaCalendario, RecyclerView.ViewHolder>(FechaDiffCallback()) {
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -46,7 +47,7 @@ class FechaCalendarioAdapter(
 
             fun habitoCumplido(condicion: Boolean){
                 if(condicion){
-                    binding.fechaCalendario.setBackgroundColor(color)
+                    binding.fechaCalendario.setBackgroundColor(habito.colorHabito)
                     binding.fechaCalendario.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.dark_gray))
                     ponerNotas(R.color.dark_gray)
                 }else{
@@ -64,9 +65,9 @@ class FechaCalendarioAdapter(
             } else {
                 binding.fechaCalendario.text = fechaItem.fecha.split("-")[2].toInt().toString()
 
-                if (objetivo != null && objetivo != "null") {
-                    val objetivoNum = objetivo.split("@")[0].toFloat()
-                    val objetivoCondicion = objetivo.split("@")[1]
+                if (habito.objetivo != null && habito.objetivo != "null") {
+                    val objetivoNum = habito.objetivo.split("@")[0].toFloat()
+                    val objetivoCondicion = habito.objetivo.split("@")[1]
 
 
                     when (objetivoCondicion) {
@@ -79,7 +80,9 @@ class FechaCalendarioAdapter(
                 }
             }
 
-
+            binding.contenedorItemFechaCalendar.setOnClickListener {
+                listener.onClikHabito(habito, fechaItem, binding)
+            }
 
         }
     }
