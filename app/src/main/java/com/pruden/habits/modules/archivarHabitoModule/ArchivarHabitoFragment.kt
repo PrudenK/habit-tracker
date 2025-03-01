@@ -19,11 +19,13 @@ import com.pruden.habits.R
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.elementos.SincronizadorDeScrolls
+import com.pruden.habits.common.metodos.Fragments.cargarFragment
 import com.pruden.habits.common.metodos.General.cargarScrollFechaCommon
 import com.pruden.habits.common.metodos.General.configurarRecyclerFechasCommon
 import com.pruden.habits.databinding.FragmentArchivarHabitoBinding
 import com.pruden.habits.modules.archivarHabitoModule.metodos.mostrarDialogoDesarchivar
 import com.pruden.habits.modules.archivarHabitoModule.viewModel.ArchivarViewModel
+import com.pruden.habits.modules.estadisticasHabito.EstadisticasFragment
 import com.pruden.habits.modules.mainModule.adapters.FechaAdapter
 import com.pruden.habits.modules.mainModule.adapters.HabitoAdapter
 import com.pruden.habits.modules.mainModule.adapters.listeners.OnClickHabito
@@ -49,6 +51,8 @@ class ArchivarHabitoFragment : Fragment(), OnClickHabito {
         super.onCreate(savedInstanceState)
 
         archivarViewModel = ViewModelProvider(requireActivity())[ArchivarViewModel::class.java]
+
+
     }
 
     override fun onCreateView(
@@ -88,6 +92,10 @@ class ArchivarHabitoFragment : Fragment(), OnClickHabito {
         cargarArchivadosMVVM()
         paginaAnterior()
         paginaSiguiente()
+
+        parentFragmentManager.setFragmentResultListener("actualizar_habitos", viewLifecycleOwner) { _, _ ->
+            actualizarPagina()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -156,7 +164,7 @@ class ArchivarHabitoFragment : Fragment(), OnClickHabito {
     }
 
     override fun onClickHabito(habito: Habito) {
-
+        cargarFragment(requireActivity(), EstadisticasFragment(), habito.nombre)
     }
 
     private fun actualizarPagina() {
