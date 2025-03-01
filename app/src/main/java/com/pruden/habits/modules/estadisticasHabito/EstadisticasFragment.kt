@@ -15,17 +15,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.content.res.ResourcesCompat
+import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.pruden.habits.HabitosApplication.Companion.listaHabitos
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.auxClass.FechaCalendario
 import com.pruden.habits.common.clases.data.Habito
+import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.metodos.fechas.obtenerFechaActualMESYEAR
-import com.pruden.habits.databinding.FragmentArchivarHabitoBinding
 import com.pruden.habits.databinding.FragmentEstadisticasBinding
 import com.pruden.habits.databinding.ItemFechaCalendarBinding
 import com.pruden.habits.modules.estadisticasHabito.adapter.OnClikCalendario
@@ -33,6 +34,7 @@ import com.pruden.habits.modules.estadisticasHabito.metodos.cargarProgressBar
 import com.pruden.habits.modules.estadisticasHabito.metodos.cargarSpinnerGraficoDeBarras
 import com.pruden.habits.modules.estadisticasHabito.metodos.cargarSpinnerGraficoDeLineas
 import com.pruden.habits.modules.estadisticasHabito.metodos.setUpRecyclerCalendar
+import com.pruden.habits.modules.estadisticasHabito.viewModel.EstadisticasViewModel
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -46,13 +48,19 @@ class EstadisticasFragment : Fragment(), OnClikCalendario {
     private val formatoFechaOriginal = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
     private val foramtoFecha_dd = SimpleDateFormat("dd", Locale.getDefault())
 
+    private lateinit var estadisticasViewModel: EstadisticasViewModel
 
+    private var habitoModificado = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         nombreHabito = arguments?.getString("nombre")!!
         habito = listaHabitos.find { it.nombre == nombreHabito }!!
+
+        estadisticasViewModel = ViewModelProvider(requireActivity())[EstadisticasViewModel::class.java]
+
+        habitoModificado = false
     }
 
     override fun onCreateView(
@@ -60,6 +68,14 @@ class EstadisticasFragment : Fragment(), OnClikCalendario {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentEstadisticasBinding.inflate(inflater, container, false)
+
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            if (habitoModificado) {
+                parentFragmentManager.setFragmentResult("actualizar_habitos", Bundle())
+            }
+            isEnabled = false
+            activity?.onBackPressed()
+        }
 
         return binding.root
     }
@@ -109,6 +125,9 @@ class EstadisticasFragment : Fragment(), OnClikCalendario {
 
         return when (item.itemId) {
             android.R.id.home -> {
+                if(habitoModificado){
+                    parentFragmentManager.setFragmentResult("actualizar_habitos", Bundle())
+                }
                 activity?.onBackPressed()
                 true
             }
@@ -161,13 +180,8 @@ class EstadisticasFragment : Fragment(), OnClikCalendario {
                     fechaItem.nota = inputNotas.text.toString()
                     fechaItem.valor = inputCantidad.text.toString()
 
-
-                    //viewModel.updateDataHabito(habitoData)
-
                     val objetivoNum = habito.objetivo!!.split("@")[0].toFloat()
                     val condicion = habito.objetivo.split("@")[1]
-
-
 
                     fun ponerNotas(idColor: Int){
                         if(fechaItem.nota!!.isNotBlank() && fechaItem.nota != null){
@@ -198,7 +212,22 @@ class EstadisticasFragment : Fragment(), OnClikCalendario {
                         "Igual a" -> habitoCumplido(fechaItem.valor.toFloat() == objetivoNum)
                     }
 
-                    
+                    estadisticasViewModel.updateDataHabito(DataHabitoEntity(habito.nombre, fechaItem.fecha,
+                        fechaItem.valor, fechaItem.nota))
+
+                    val index = this.habito.listaFechas.indexOf(fechaItem.fecha)
+
+                    if (index != -1) {
+                        this.habito.listaValores[index] = fechaItem.valor
+                        this.habito.listaNotas[index] = fechaItem.nota
+                    }
+
+                    habitoModificado = true
+
+                    cargarProgressBar(this.habito, this.binding, requireContext())
+                    cargarSpinnerGraficoDeBarras(requireContext(), this.binding, this.habito, formatoFechaOriginal, foramtoFecha_dd)
+                    cargarSpinnerGraficoDeLineas(requireContext(), this.binding, this.habito, formatoFechaOriginal, foramtoFecha_dd)
+
                 }
             }
 

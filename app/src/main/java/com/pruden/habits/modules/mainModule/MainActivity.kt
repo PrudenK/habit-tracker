@@ -62,6 +62,9 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        supportFragmentManager.setFragmentResultListener("actualizar_habitos", this) { _, _ ->
+            actualizarPagina()
+        }
 
         calcularTamanoPagina()
 
