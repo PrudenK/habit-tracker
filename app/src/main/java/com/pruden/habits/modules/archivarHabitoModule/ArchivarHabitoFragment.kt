@@ -84,8 +84,6 @@ class ArchivarHabitoFragment : Fragment(), OnClickHabito {
         configurarRecyclerFechas()
         configurarRecyclerHabitos()
 
-       // habitosAdapter.submitList(listaHabitos.filter { it.archivado })
-
         cargarScrollFechaCommon(binding.recyclerFechas, fechasAdapter, binding.auxiliar)
 
 

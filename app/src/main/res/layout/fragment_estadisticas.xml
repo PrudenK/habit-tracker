@@ -193,7 +193,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Fecha"
-                android:textColor="@android:color/white"
+                android:textColor="@color/lightGrayColor"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/grafica_bar"
@@ -230,7 +230,7 @@
                 android:layout_gravity="center"
                 android:paddingBottom="4dp"
                 android:text="Fecha"
-                android:textColor="@android:color/white"
+                android:textColor="@color/lightGrayColor"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/grafica_bar"
@@ -280,7 +280,7 @@
                 android:layout_gravity="center"
                 android:paddingBottom="4dp"
                 android:text="Fecha"
-                android:textColor="@android:color/white"
+                android:textColor="@color/lightGrayColor"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/recycler_calendario"
@@ -300,6 +300,61 @@
                 android:layout_marginTop="40dp"
                 />
 
+            <TextView
+                android:id="@+id/titulo_racha_actual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Racha actual"
+                android:textColor="@color/lightGrayColor"
+                android:textSize="@dimen/text_28"
+                android:fontFamily="@font/encabezados"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recycler_calendario"
+                />
+
+            <FrameLayout
+                android:id="@+id/frame_racha_actual"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="40dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@id/titulo_racha_actual"
+
+                >
+
+                <ProgressBar
+                    android:id="@+id/progress_racha_actual"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="20dp"
+                    android:progressDrawable="@drawable/custom_progress"
+                    android:max="1"
+                    android:progress="1"/>
+
+                <TextView
+                    android:id="@+id/texto_racha_actual"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="50/70"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_gravity="center"
+                    android:background="@android:color/transparent"/>
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/texto_fecha_inicio_racha_actual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Desde 2023-03-03 hasta hoy"
+                android:textColor="@color/lightGrayColor"
+                android:textSize="14sp"
+                app:layout_constraintTop_toBottomOf="@id/frame_racha_actual"
+                app:layout_constraintStart_toStartOf="@id/frame_racha_actual"
+                android:paddingTop="4dp"
+                />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
