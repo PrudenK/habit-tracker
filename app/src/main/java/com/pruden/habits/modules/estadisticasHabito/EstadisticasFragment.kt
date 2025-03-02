@@ -27,6 +27,13 @@ import com.pruden.habits.modules.estadisticasHabito.metodos.modificarHabitoCalen
 import com.pruden.habits.modules.estadisticasHabito.metodos.setUpRecyclerCalendar
 import com.pruden.habits.modules.estadisticasHabito.metodos.setUpRecyclerRachas
 import com.pruden.habits.modules.estadisticasHabito.viewModel.EstadisticasViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Locale
 
@@ -91,14 +98,31 @@ class EstadisticasFragment : Fragment(), OnClikCalendario {
 
         setHasOptionsMenu(true)
 
-        binding.textoMesAnio.text = obtenerFechaActualMESYEAR().uppercase()
-        cargarProgressBar(habito, binding, requireContext()) // cargar las progressbar
-        cargarSpinnerGraficoDeBarras(requireContext(), binding, habito, formatoFechaOriginal, foramtoFecha_dd) // cargar el gráfico de barras
-        cargarSpinnerGraficoDeLineas(requireContext(), binding, habito, formatoFechaOriginal, foramtoFecha_dd) // cargar el gráfico de barras
+        binding.progressBarEstadisticas.visibility = View.VISIBLE
+        binding.contenedorEstadisticas.visibility = View.GONE
 
-        setUpRecyclerCalendar(habito, requireContext(), binding, this)
+        cargarDatos()
+    }
 
-        setUpRecyclerRachas(habito, requireContext(), binding)
+    private fun cargarDatos() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val fechaActual = async { obtenerFechaActualMESYEAR().uppercase() }
+
+            val progressBarCarga = async { cargarProgressBar(habito, binding, requireContext()) }
+            val graficoBarras = async { cargarSpinnerGraficoDeBarras(requireContext(), binding, habito, formatoFechaOriginal, foramtoFecha_dd) }
+            val graficoLineas = async { cargarSpinnerGraficoDeLineas(requireContext(), binding, habito, formatoFechaOriginal, foramtoFecha_dd) }
+            val recyclerCalendar = async { setUpRecyclerCalendar(habito, requireContext(), binding, this@EstadisticasFragment) }
+            val recyclerRachas = async { setUpRecyclerRachas(habito, requireContext(), binding) }
+
+            awaitAll(progressBarCarga, graficoBarras, graficoLineas, recyclerCalendar, recyclerRachas)
+
+            withContext(Dispatchers.Main) {
+                binding.textoMesAnio.text = fechaActual.await()
+
+                binding.progressBarEstadisticas.visibility = View.GONE
+                binding.contenedorEstadisticas.visibility = View.VISIBLE
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
