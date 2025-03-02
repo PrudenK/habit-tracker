@@ -14,6 +14,7 @@ import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.pruden.habits.HabitosApplication.Companion.listaHabitos
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.auxClass.FechaCalendario
@@ -23,6 +24,7 @@ import com.pruden.habits.common.metodos.fechas.obtenerFechaActualMESYEAR
 import com.pruden.habits.databinding.FragmentEstadisticasBinding
 import com.pruden.habits.databinding.ItemFechaCalendarBinding
 import com.pruden.habits.modules.estadisticasHabito.adapter.OnClikCalendario
+import com.pruden.habits.modules.estadisticasHabito.adapter.RachaAdapter
 import com.pruden.habits.modules.estadisticasHabito.metodos.cargarProgressBar
 import com.pruden.habits.modules.estadisticasHabito.metodos.cargarSpinnerGraficoDeBarras
 import com.pruden.habits.modules.estadisticasHabito.metodos.cargarSpinnerGraficoDeLineas
@@ -103,9 +105,22 @@ class EstadisticasFragment : Fragment(), OnClikCalendario {
         setUpRecyclerCalendar(habito, requireContext(), binding, this)
 
 
-
         listaRachas = calcularTop5Rachas()
+        setUpRecyclerRachas()
         cargarRachaActual()
+    }
+
+    private fun setUpRecyclerRachas() {
+        val rachaMasLarga = listaRachas.maxOfOrNull { it.duracion } ?: 1
+        val adapterRachas = RachaAdapter(rachaMasLarga, habito.colorHabito)
+        val linearLayout = LinearLayoutManager(requireContext())
+
+        binding.recyclerMejoresRachas.apply {
+            adapter = adapterRachas
+            layoutManager = linearLayout
+        }
+
+        adapterRachas.submitList(listaRachas)
     }
 
 
