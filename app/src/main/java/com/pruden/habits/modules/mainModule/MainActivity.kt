@@ -151,7 +151,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
     }
 
     override fun onLongClickListenerHabito(habito: HabitoEntity) {
-        dialogoOnLongClickHabito(this, mainViewModel, habitosAdapter, habito, resources)
+        dialogoOnLongClickHabito(this, mainViewModel, habitosAdapter, habito, resources, this)
     }
 
     override fun onClickHabito(habito: Habito) {

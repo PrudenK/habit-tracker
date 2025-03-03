@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Update
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.HabitoEntity
@@ -104,4 +105,18 @@ interface HabitoDao {
 
     @Query("Update habitos set archivado = :bool where nombre == :nombre")
     suspend fun alternarArchivado(bool: Boolean, nombre: String)
+
+
+    @Transaction
+    suspend fun actualizarHabitoConNuevoNombre(habitoViejo: String, nuevoHabito: HabitoEntity) {
+        insertHabito(nuevoHabito)
+        actualizarNombreEnDataHabitos(habitoViejo, nuevoHabito.nombre)
+        eliminarHabitoPorNombre(habitoViejo)
+    }
+
+    @Query("UPDATE DataHabitos SET nombre = :nuevoNombre WHERE nombre = :habitoViejo")
+    suspend fun actualizarNombreEnDataHabitos(habitoViejo: String, nuevoNombre: String)
+
+    @Query("DELETE FROM Habitos WHERE nombre = :nombre")
+    suspend fun eliminarHabitoPorNombre(nombre: String)
 }

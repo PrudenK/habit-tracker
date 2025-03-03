@@ -1,5 +1,6 @@
 package com.pruden.habits.modules.mainModule.metodos
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.res.Resources
@@ -11,6 +12,9 @@ import android.view.ViewGroup
 import android.widget.Button
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.entities.HabitoEntity
+import com.pruden.habits.common.metodos.Fragments.cargarFragment
+import com.pruden.habits.modules.agregarEditarHabitoModule.AgregarEditarHabitoFragment
+import com.pruden.habits.modules.mainModule.MainActivity
 import com.pruden.habits.modules.mainModule.adapters.HabitoAdapter
 import com.pruden.habits.modules.mainModule.viewModel.MainViewModel
 
@@ -19,13 +23,15 @@ fun dialogoOnLongClickHabito(
     mainViewModel: MainViewModel,
     habitosAdapter: HabitoAdapter,
     habito: HabitoEntity,
-    resources: Resources
+    resources: Resources,
+    activity: MainActivity
 ){
     val dialogoOpcionesView = LayoutInflater.from(context).inflate(R.layout.dialogo_opciones_habitos, null)
     val dialogoOpciones = AlertDialog.Builder(context).setView(dialogoOpcionesView).create()
 
     val btnMover = dialogoOpcionesView.findViewById<Button>(R.id.btnMover)
     val btnArchivar = dialogoOpcionesView.findViewById<Button>(R.id.btnArchivar)
+    val btnEditar = dialogoOpcionesView.findViewById<Button>(R.id.btnEditar)
     val btnBorrar = dialogoOpcionesView.findViewById<Button>(R.id.btnBorrar)
 
     dialogoOpciones.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -60,6 +66,11 @@ fun dialogoOnLongClickHabito(
 
     btnArchivar.setOnClickListener {
         mainViewModel.archivarHabito(habito)
+        dialogoOpciones.hide()
+    }
+
+    btnEditar.setOnClickListener {
+        cargarFragment(activity, AgregarEditarHabitoFragment(), habito.nombre)
         dialogoOpciones.hide()
     }
 

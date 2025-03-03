@@ -20,7 +20,6 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.pruden.habits.HabitosApplication.Companion.listaHabitos
-import com.pruden.habits.modules.mainModule.MainActivity
 import com.pruden.habits.common.elementos.ColorPickerView
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.data.Habito
@@ -49,6 +48,8 @@ class AgregarEditarHabitoFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+
         val nombreHabito = arguments?.getString("nombre")
         habitoEditar = listaHabitos.find { it.nombre == nombreHabito }
 
@@ -56,8 +57,6 @@ class AgregarEditarHabitoFragment : Fragment() {
         if(editar){
             editarNumerico = habitoEditar!!.tipoNumerico
         }
-
-
 
         fragmentViewModel = ViewModelProvider(requireActivity())[AgregarEditarHabitoViewModel::class.java]
     }
@@ -117,7 +116,7 @@ class AgregarEditarHabitoFragment : Fragment() {
             binding.numerico.visibility = View.GONE
             binding.booleano.visibility = View.GONE
             binding.ordenar.visibility = View.GONE
-            binding.tituloToolBar.text = "Editar hábito $editarNumerico"
+            binding.tituloToolBar.text = "Editar hábito"
             cargarValoresDelHabitoEditarEnLaUI()
         }
     }
@@ -137,6 +136,9 @@ class AgregarEditarHabitoFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             android.R.id.home -> {
+                if(editar){
+                    parentFragmentManager.setFragmentResult("actualizar_habitos", Bundle())
+                }
                 activity?.onBackPressed()
                 true
             }
@@ -156,45 +158,53 @@ class AgregarEditarHabitoFragment : Fragment() {
                 if(habitoValido){
                     if(numerico){
                         nombre = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_numerico).text.toString()
+                        val valorSpinner = vistaDinamicaActual.findViewById<Spinner>(R.id.spinner_opciones).selectedItem.toString()
+
+
+                        val habitoNumerico = HabitoEntity(
+                            nombre = nombre,
+                            objetivo = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_objetivo).text.toString()
+                                .toFloat().let { String.format("%.2f", it) }.replace(",", ".")+"@"+valorSpinner,
+                            tipoNumerico = true,
+                            unidad = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_unidad).text.toString(),
+                            color = colorHabito,
+                            archivado = false
+                        )
+
 
                         if(nombresDeHabitosDB.contains(nombre.lowercase()) || nombre.lowercase() == "Fecha"){
-                            nombreRepetido = true
-                            campoFecha = nombre.lowercase() == "Fecha"
+                            if(nombre.lowercase() != "Fecha" && editar && nombre != habitoEditar?.nombre){
+                                fragmentViewModel.actualizarHabito(habitoNumerico)
+                            }else{
+                                nombreRepetido = true
+                                campoFecha = nombre.lowercase() == "Fecha"
+                            }
                         }else{
-                            val valorSpinner = vistaDinamicaActual.findViewById<Spinner>(R.id.spinner_opciones).selectedItem.toString()
-
-                            fragmentViewModel.insertarHabito(
-                                HabitoEntity(
-                                    nombre = nombre,
-                                    objetivo = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_objetivo).text.toString()
-                                        .toFloat().let { String.format("%.2f", it) }.replace(",", ".")+"@"+valorSpinner,
-                                    tipoNumerico = true,
-                                    unidad = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_unidad).text.toString(),
-                                    color = colorHabito,
-                                    archivado = false
-                                )
-                            )
+                            if(editar){
+                                fragmentViewModel.actualizarHabitoCompleto(habitoEditar!!.nombre, habitoNumerico)
+                            }else{
+                                fragmentViewModel.insertarHabito(habitoNumerico)
+                            }
                         }
 
                     }else{
                         nombre = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_boolean).text.toString()
 
+                        val habitoBooleano = HabitoEntity(nombre, null, false, null, colorHabito, false)
+
                         if(nombresDeHabitosDB.contains(nombre.lowercase()) || nombre.lowercase() == "Fecha"){
-                            nombreRepetido = true
-                            campoFecha = nombre.lowercase() == "Fecha"
+                            if(nombre.lowercase() != "Fecha" && editar && nombre != habitoEditar?.nombre){
+                                fragmentViewModel.actualizarHabito(habitoBooleano)
+                            }else{
+                                nombreRepetido = true
+                                campoFecha = nombre.lowercase() == "Fecha"
+                            }
                         }else{
-
-                            fragmentViewModel.insertarHabito(
-                                HabitoEntity(
-                                    nombre = nombre,
-                                    objetivo = null,
-                                    tipoNumerico = false,
-                                    unidad = null,
-                                    color = colorHabito,
-                                    archivado = false
-                                )
-                            )
-
+                            if(editar){
+                                fragmentViewModel.actualizarHabitoCompleto(habitoEditar!!.nombre, habitoBooleano)
+                            }else{
+                                fragmentViewModel.insertarHabito(habitoBooleano)
+                            }
                         }
 
                     }
@@ -206,9 +216,13 @@ class AgregarEditarHabitoFragment : Fragment() {
                             Snackbar.make(binding.root, "Ya tienes un hábito con ese nombre", Snackbar.LENGTH_SHORT).show()
                         }
                     }else{
-                        fragmentViewModel.agregarRegistrosHabito(nombre){
-                            Snackbar.make(binding.root, "Hábito añadido con éxito", Snackbar.LENGTH_SHORT).show()
-                            activity?.onBackPressed()
+                        if(editar){
+                            Snackbar.make(binding.root, "Hábito editado con éxito", Snackbar.LENGTH_SHORT).show()
+                        }else{
+                            fragmentViewModel.agregarRegistrosHabito(nombre){
+                                Snackbar.make(binding.root, "Hábito añadido con éxito", Snackbar.LENGTH_SHORT).show()
+                                activity?.onBackPressed()
+                            }
                         }
                     }
                 }
@@ -327,6 +341,8 @@ class AgregarEditarHabitoFragment : Fragment() {
             val nombreEditText = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_boolean)
             nombreEditText.setText(habitoEditar!!.nombre)
         }
+
+        colorHabito = habitoEditar!!.colorHabito
 
         val drawable = imagenColor.background as LayerDrawable
         val capaInterna = drawable.findDrawableByLayerId(R.id.interna)

@@ -149,7 +149,6 @@ class EstadisticasFragment : Fragment(), OnClikCalendario {
             }
 
             R.id.editar_habito -> {
-                cargarFragment(requireActivity(), AgregarEditarHabitoFragment(), habito.nombre)
                 true
             }
 

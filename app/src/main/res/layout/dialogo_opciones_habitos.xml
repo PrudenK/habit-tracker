@@ -52,6 +52,21 @@
         />
 
     <Button
+        android:id="@+id/btnEditar"
+        android:layout_width="@dimen/boton_width"
+        android:layout_height="wrap_content"
+        android:text="Editar"
+        android:backgroundTint="@android:color/black"
+        android:textColor="@android:color/white"
+        android:padding="4dp"
+        app:layout_constraintTop_toBottomOf="@id/btnArchivar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="8dp"
+        android:textSize="@dimen/text_18"
+        />
+
+    <Button
         android:id="@+id/btnBorrar"
         android:layout_width="@dimen/boton_width"
         android:layout_height="wrap_content"
@@ -59,7 +74,7 @@
         android:textColor="@android:color/white"
         android:backgroundTint="@color/rojo_borrar"
         android:padding="4dp"
-        app:layout_constraintTop_toBottomOf="@id/btnArchivar"
+        app:layout_constraintTop_toBottomOf="@id/btnEditar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="8dp"
