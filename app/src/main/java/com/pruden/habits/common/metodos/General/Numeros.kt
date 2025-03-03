@@ -6,7 +6,7 @@ fun formatearNumero(value: Float): String {
         value >= 1_000_000_000 -> formateoConPrecision(value, 1_000_000_000, "B")
         value >= 1_000_000 -> formateoConPrecision(value, 1_000_000, "M")
         value >= 1_000 -> formateoConPrecision(value, 1_000, "K")
-        value >= 100 -> if (value % 1 == 0f) value.toInt().toString() else String.format("%.1f", value)
+        value >= 100 -> value.toInt().toString()
         value % 1 == 0f -> value.toInt().toString() // Enteros sin decimales
         else -> String.format("%.2f", value) // Menos de 100 → 2 decimales
     }

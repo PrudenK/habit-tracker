@@ -13,10 +13,12 @@ import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.listener.ChartTouchListener
 import com.github.mikephil.charting.listener.OnChartGestureListener
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.data.Habito
+import com.pruden.habits.common.metodos.General.formatearNumero
 import com.pruden.habits.databinding.FragmentEstadisticasBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -196,6 +198,11 @@ private fun cargarGraficoDeBarras(
     dataSet.valueTextSize = 14f
     dataSet.valueTextColor = Color.WHITE
     dataSet.valueTypeface = Typeface.DEFAULT_BOLD
+    dataSet.valueFormatter = object : ValueFormatter() {
+        override fun getFormattedValue(value: Float): String {
+            return formatearNumero(value)
+        }
+    }
 
     val barData = BarData(dataSet)
     barChart.data = barData
@@ -221,6 +228,11 @@ private fun cargarGraficoDeBarras(
     yAxis.axisLineColor = Color.WHITE
     yAxis.axisLineWidth = 1.5f
     yAxis.gridColor = Color.argb(50, 255, 255, 255)
+    yAxis.valueFormatter = object : ValueFormatter() {
+        override fun getFormattedValue(value: Float): String {
+            return formatearNumero(value)
+        }
+    }
 
 
     val rightAxis = barChart.axisRight

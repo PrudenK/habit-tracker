@@ -16,10 +16,12 @@ import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.data.LineDataSet
 import com.github.mikephil.charting.formatter.IndexAxisValueFormatter
+import com.github.mikephil.charting.formatter.ValueFormatter
 import com.github.mikephil.charting.listener.ChartTouchListener
 import com.github.mikephil.charting.listener.OnChartGestureListener
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.data.Habito
+import com.pruden.habits.common.metodos.General.formatearNumero
 import com.pruden.habits.databinding.FragmentEstadisticasBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -189,6 +191,11 @@ private fun cargarGraficoDeLineas(
             GradientDrawable.Orientation.TOP_BOTTOM,
             intArrayOf(habito.colorHabito, Color.TRANSPARENT)
         )
+        valueFormatter = object : ValueFormatter() {
+            override fun getFormattedValue(value: Float): String {
+                return formatearNumero(value)
+            }
+        }
     }
 
 
@@ -217,6 +224,11 @@ private fun cargarGraficoDeLineas(
         axisLineColor = Color.WHITE
         axisLineWidth = 1.5f
         gridColor = Color.argb(50, 255, 255, 255)
+        valueFormatter = object : ValueFormatter() {
+            override fun getFormattedValue(value: Float): String {
+                return formatearNumero(value)
+            }
+        }
     }
 
     lineChart.axisRight.isEnabled = false
