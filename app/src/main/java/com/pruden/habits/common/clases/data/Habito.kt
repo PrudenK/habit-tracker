@@ -7,8 +7,6 @@ data class Habito(
     val unidad: String?,
     var colorHabito: Int,
     var descripcion: String?,
-    var horaNotificacion: String?,
-    var mensajeNotificacion: String?,
     var archivado: Boolean,
     var listaValores: MutableList<String>,
     var listaNotas: MutableList<String?>,

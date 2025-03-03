@@ -140,9 +140,6 @@
 
     </LinearLayout>
 
-
-
-
     <TextView
         android:id="@+id/titulo_color_habito"
         android:layout_width="wrap_content"
@@ -167,81 +164,5 @@
         android:layout_marginStart="30dp"
         android:background="@drawable/borde_negro"
         />
-
-
-    <View
-        android:id="@+id/linea_img_notificaciones_num"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@android:color/darker_gray"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@id/img_color_habito_num"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
-
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/notificaciones_habito_numerico"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Habilitar notificaciones"
-        app:layout_constraintTop_toBottomOf="@id/linea_img_notificaciones_num"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="24dp"
-        android:layout_marginVertical="12dp"
-        android:textSize="18sp"
-        android:textColor="@color/lightGrayColor"
-        />
-
-    <TextView
-        android:id="@+id/hora_seleccionada_numercio"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginHorizontal="12dp"
-        android:padding="12dp"
-        android:gravity="center_vertical"
-        android:background="@color/gris_clarito_tipo_titulo"
-        android:text="Seleccionar hora"
-        android:textColor="@color/lightGrayColor"
-        android:textSize="18sp"
-        app:drawableEndCompat="@android:drawable/ic_menu_edit"
-        app:layout_constraintTop_toBottomOf="@id/notificaciones_habito_numerico"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-
-        />
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_mensaje_noti_num"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Notificación. (Ej; ¡Toca Gym!)"
-        app:endIconMode="clear_text"
-        app:layout_constraintTop_toBottomOf="@id/hora_seleccionada_numercio"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="12dp"
-        app:hintTextColor="@color/lightGrayColor"
-        app:boxStrokeColor="@color/light_gray"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:boxStrokeWidth="1dp"
-        app:boxStrokeWidthFocused="2dp"
-        >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_mensaje_noti_num"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:maxLines="1"
-            android:maxLength="40"
-            android:textColor="@color/lightGrayColor"
-            android:textCursorDrawable="@null"
-
-            />
-    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

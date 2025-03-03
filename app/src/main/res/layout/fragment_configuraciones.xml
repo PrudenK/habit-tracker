@@ -69,14 +69,6 @@
                     android:textColor="@color/gray_color"
                     />
 
-                <androidx.appcompat.widget.SwitchCompat
-                    android:id="@+id/switchNotificaciones"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Habilitar notificaciones"
-                    android:textColor="@color/gray_color"
-                    android:textSize="@dimen/text_16"
-                    />
 
                 <View
                     android:layout_width="match_parent"
