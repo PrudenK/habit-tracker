@@ -1,4 +1,4 @@
-package com.pruden.habits.modules.agregarHabitoModule
+package com.pruden.habits.modules.agregarEditarHabitoModule
 
 import android.app.Dialog
 import android.graphics.drawable.LayerDrawable
@@ -19,15 +19,17 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.pruden.habits.HabitosApplication.Companion.listaHabitos
 import com.pruden.habits.modules.mainModule.MainActivity
 import com.pruden.habits.common.elementos.ColorPickerView
 import com.pruden.habits.R
+import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.databinding.FragmentAgregarHabitoBinding
-import com.pruden.habits.modules.agregarHabitoModule.viewModel.AgregarHabitoViewModel
+import com.pruden.habits.modules.agregarEditarHabitoModule.viewModel.AgregarEditarHabitoViewModel
 
 @Suppress("DEPRECATION")
-class AgregarHabitoFragment : Fragment() {
+class AgregarEditarHabitoFragment : Fragment() {
 
     private lateinit var binding : FragmentAgregarHabitoBinding
 
@@ -39,12 +41,25 @@ class AgregarHabitoFragment : Fragment() {
     private var nombresDeHabitosDB = mutableListOf<String>()
 
     //MVVM
-    private lateinit var fragmentViewModel: AgregarHabitoViewModel
+    private lateinit var fragmentViewModel: AgregarEditarHabitoViewModel
+
+    private var editar = false
+    private var editarNumerico = false
+    private var habitoEditar: Habito? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val nombreHabito = arguments?.getString("nombre")
+        habitoEditar = listaHabitos.find { it.nombre == nombreHabito }
 
-        fragmentViewModel = ViewModelProvider(requireActivity())[AgregarHabitoViewModel::class.java]
+        editar = habitoEditar != null
+        if(editar){
+            editarNumerico = habitoEditar!!.tipoNumerico
+        }
+
+
+
+        fragmentViewModel = ViewModelProvider(requireActivity())[AgregarEditarHabitoViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -54,7 +69,11 @@ class AgregarHabitoFragment : Fragment() {
 
         binding = FragmentAgregarHabitoBinding.inflate(inflater, container, false)
 
-        cargarContenedorDinamico(R.layout.layout_numerico)
+        if(editar && !editarNumerico){
+            cargarContenedorDinamico(R.layout.layout_booleano)
+        }else{
+            cargarContenedorDinamico(R.layout.layout_numerico)
+        }
 
         fragmentViewModel.devolverTodosLosNombres {
             nombresDeHabitosDB = it
@@ -65,10 +84,7 @@ class AgregarHabitoFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
         super.onViewCreated(view, savedInstanceState)
-
-
 
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbarFragment)
 
@@ -96,6 +112,14 @@ class AgregarHabitoFragment : Fragment() {
             binding.booleano.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.gris_clarito_tipo))
             cargarContenedorDinamico(R.layout.layout_booleano)
         }
+
+        if(editar){
+            binding.numerico.visibility = View.GONE
+            binding.booleano.visibility = View.GONE
+            binding.ordenar.visibility = View.GONE
+            binding.tituloToolBar.text = "Editar hábito $editarNumerico"
+            cargarValoresDelHabitoEditarEnLaUI()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -111,8 +135,6 @@ class AgregarHabitoFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val main = activity as MainActivity
-
         return when (item.itemId) {
             android.R.id.home -> {
                 activity?.onBackPressed()
@@ -278,6 +300,37 @@ class AgregarHabitoFragment : Fragment() {
 
     private fun devolverTextInputLayout(id : Int): TextInputLayout{
         return vistaDinamicaActual.findViewById(id)
+    }
+
+    private fun cargarValoresDelHabitoEditarEnLaUI(){
+        val imagenColor = vistaDinamicaActual.findViewById<ImageView>(
+            if (editarNumerico) R.id.img_color_habito_num else R.id.img_color_habito_booleano
+        )
+
+        if(editarNumerico){
+            val nombreEditText = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_numerico)
+            val unidadEditText = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_unidad)
+            val spinner = vistaDinamicaActual.findViewById<Spinner>(R.id.spinner_opciones)
+            val objetivoDiarioEditText = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_objetivo)
+
+            val condicionSpinner = habitoEditar!!.objetivo!!.split("@")[1]
+            val posicion = (spinner.adapter as? ArrayAdapter<String>)?.getPosition(condicionSpinner) ?: 0
+
+            spinner.setSelection(posicion)
+
+            nombreEditText.setText(habitoEditar!!.nombre)
+            unidadEditText.setText(habitoEditar!!.unidad)
+            nombreEditText.setText(habitoEditar!!.nombre)
+            objetivoDiarioEditText.setText(habitoEditar!!.objetivo!!.split("@")[0])
+
+        }else{
+            val nombreEditText = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_boolean)
+            nombreEditText.setText(habitoEditar!!.nombre)
+        }
+
+        val drawable = imagenColor.background as LayerDrawable
+        val capaInterna = drawable.findDrawableByLayerId(R.id.interna)
+        capaInterna.setTint(habitoEditar!!.colorHabito)
     }
 
 }

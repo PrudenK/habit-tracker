@@ -1,14 +1,14 @@
-package com.pruden.habits.modules.agregarHabitoModule.viewModel
+package com.pruden.habits.modules.agregarEditarHabitoModule.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pruden.habits.common.clases.entities.HabitoEntity
-import com.pruden.habits.modules.agregarHabitoModule.model.AgregarHabitoInteractor
+import com.pruden.habits.modules.agregarEditarHabitoModule.model.AgregarHabitoEditarInteractor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class AgregarHabitoViewModel : ViewModel(){
-    private val interactor = AgregarHabitoInteractor()
+class AgregarEditarHabitoViewModel : ViewModel(){
+    private val interactor = AgregarHabitoEditarInteractor()
 
     fun devolverTodosLosNombres(callback: (MutableList<String>) -> Unit){
         interactor.obtenerTodosLosNombresDeLosHabitos {

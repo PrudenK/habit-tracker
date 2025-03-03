@@ -1,4 +1,4 @@
-package com.pruden.habits.modules.agregarHabitoModule.model
+package com.pruden.habits.modules.agregarEditarHabitoModule.model
 
 import com.pruden.habits.HabitosApplication
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
@@ -9,7 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class AgregarHabitoInteractor {
+class AgregarHabitoEditarInteractor {
     fun obtenerTodosLosNombresDeLosHabitos(callback: (MutableList<String>) -> Unit){
         CoroutineScope(Dispatchers.IO).launch {
             val listaNombres = HabitosApplication.database.habitoDao().obtenerTdosLosNombres()

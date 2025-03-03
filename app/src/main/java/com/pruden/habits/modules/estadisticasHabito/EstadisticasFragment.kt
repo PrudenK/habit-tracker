@@ -16,9 +16,11 @@ import com.pruden.habits.HabitosApplication.Companion.listaHabitos
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.auxClass.FechaCalendario
 import com.pruden.habits.common.clases.data.Habito
+import com.pruden.habits.common.metodos.Fragments.cargarFragment
 import com.pruden.habits.common.metodos.fechas.obtenerFechaActualMESYEAR
 import com.pruden.habits.databinding.FragmentEstadisticasBinding
 import com.pruden.habits.databinding.ItemFechaCalendarBinding
+import com.pruden.habits.modules.agregarEditarHabitoModule.AgregarEditarHabitoFragment
 import com.pruden.habits.modules.estadisticasHabito.adapter.OnClikCalendario
 import com.pruden.habits.modules.estadisticasHabito.metodos.cargarProgressBar
 import com.pruden.habits.modules.estadisticasHabito.metodos.cargarSpinnerGraficoDeBarras
@@ -147,7 +149,7 @@ class EstadisticasFragment : Fragment(), OnClikCalendario {
             }
 
             R.id.editar_habito -> {
-
+                cargarFragment(requireActivity(), AgregarEditarHabitoFragment(), habito.nombre)
                 true
             }
 

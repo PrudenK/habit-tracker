@@ -1,7 +1,6 @@
 package com.pruden.habits.modules.mainModule
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -22,9 +21,8 @@ import com.pruden.habits.common.elementos.SincronizadorDeScrolls
 import com.pruden.habits.common.metodos.Fragments.cargarFragment
 import com.pruden.habits.common.metodos.General.cargarScrollFechaCommon
 import com.pruden.habits.common.metodos.General.configurarRecyclerFechasCommon
-import com.pruden.habits.common.metodos.fechas.obtenerFechasSemanaActual
 import com.pruden.habits.databinding.ActivityMainBinding
-import com.pruden.habits.modules.agregarHabitoModule.AgregarHabitoFragment
+import com.pruden.habits.modules.agregarEditarHabitoModule.AgregarEditarHabitoFragment
 import com.pruden.habits.modules.archivarHabitoModule.ArchivarHabitoFragment
 import com.pruden.habits.modules.configuracionesModule.ConfiguracionesFragment
 import com.pruden.habits.modules.estadisticasHabito.EstadisticasFragment
@@ -162,7 +160,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
 
     private fun agregarHabito(){
         mBinding.agregarHabito.setOnClickListener {
-            cargarFragment(this, AgregarHabitoFragment())
+            cargarFragment(this, AgregarEditarHabitoFragment())
         }
     }
 
