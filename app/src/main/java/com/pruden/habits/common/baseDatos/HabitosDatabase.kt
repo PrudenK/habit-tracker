@@ -8,7 +8,7 @@ import com.pruden.habits.common.baseDatos.DAO.HabitoDao
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
 
-@Database(entities =  [HabitoEntity::class, DataHabitoEntity::class], version = 3)
+@Database(entities =  [HabitoEntity::class, DataHabitoEntity::class], version = 4)
 @TypeConverters(Converters::class)
 abstract class HabitosDatabase : RoomDatabase(){
     abstract fun habitoDao(): HabitoDao

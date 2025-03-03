@@ -104,7 +104,6 @@ class HabitoAdapter (
                         tipoNumerico = habito.tipoNumerico,
                         unidad = habito.unidad,
                         color = habito.colorHabito,
-                        descripcion = habito.descripcion,
                         archivado = habito.archivado
                     )
                 )

@@ -28,7 +28,7 @@ class HabitosApplication : Application(){
             HabitosDatabase::class.java,
             "HabitosDatabase"
         )
-           // .addMigrations(MIGRATION_1_2, MIGRATION_2_3)
+           // .addMigrations(MIGRATION_2_4)
           //  .fallbackToDestructiveMigration()
             .build()
 
@@ -42,9 +42,8 @@ class HabitosApplication : Application(){
         }
     }
 
-    val MIGRATION_2_3 = object : Migration(2, 3) {
+    val MIGRATION_2_4 = object : Migration(3, 4) {
         override fun migrate(database: SupportSQLiteDatabase) {
-            // 1. Crear la nueva tabla sin las columnas horaNotificacion y mensajeNotificacion
             database.execSQL("""
             CREATE TABLE Habitos_nueva (
                 nombre TEXT NOT NULL PRIMARY KEY,
@@ -52,15 +51,14 @@ class HabitosApplication : Application(){
                 tipoNumerico INTEGER NOT NULL,
                 unidad TEXT,
                 color INTEGER NOT NULL,
-                descripcion TEXT,
                 archivado INTEGER NOT NULL
             )
         """.trimIndent())
 
             // 2. Copiar datos de la tabla antigua a la nueva
             database.execSQL("""
-            INSERT INTO Habitos_nueva (nombre, objetivo, tipoNumerico, unidad, color, descripcion, archivado)
-            SELECT nombre, objetivo, tipoNumerico, unidad, color, descripcion, archivado FROM Habitos
+            INSERT INTO Habitos_nueva (nombre, objetivo, tipoNumerico, unidad, color, archivado)
+            SELECT nombre, objetivo, tipoNumerico, unidad, color, archivado FROM Habitos
         """.trimIndent())
 
             // 3. Eliminar la tabla antigua

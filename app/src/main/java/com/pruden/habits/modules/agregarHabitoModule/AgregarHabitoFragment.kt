@@ -140,7 +140,6 @@ class AgregarHabitoFragment : Fragment() {
                             campoFecha = nombre.lowercase() == "Fecha"
                         }else{
                             val valorSpinner = vistaDinamicaActual.findViewById<Spinner>(R.id.spinner_opciones).selectedItem.toString()
-                            val descripcion = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_descripcion_numerico).text?.toString()?.takeIf { it.isNotBlank() }
 
                             fragmentViewModel.insertarHabito(
                                 HabitoEntity(
@@ -150,7 +149,6 @@ class AgregarHabitoFragment : Fragment() {
                                     tipoNumerico = true,
                                     unidad = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_unidad).text.toString(),
                                     color = colorHabito,
-                                    descripcion = descripcion,
                                     archivado = false
                                 )
                             )
@@ -163,7 +161,6 @@ class AgregarHabitoFragment : Fragment() {
                             nombreRepetido = true
                             campoFecha = nombre.lowercase() == "Fecha"
                         }else{
-                            val descripcion = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_descripcion_booleano).text?.toString()?.takeIf { it.isNotBlank() }
 
                             fragmentViewModel.insertarHabito(
                                 HabitoEntity(
@@ -172,7 +169,6 @@ class AgregarHabitoFragment : Fragment() {
                                     tipoNumerico = false,
                                     unidad = null,
                                     color = colorHabito,
-                                    descripcion = descripcion,
                                     archivado = false
                                 )
                             )

@@ -36,41 +36,12 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_descripcion_num"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Añade una breve descripción al hábito"
-        app:endIconMode="clear_text"
-        app:layout_constraintTop_toBottomOf="@id/til_nombre_num"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="12dp"
-        app:hintTextColor="@color/lightGrayColor"
-        app:boxStrokeColor="@color/light_gray"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:boxStrokeWidth="1dp"
-        app:boxStrokeWidthFocused="2dp"
-        >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_descripcion_numerico"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:maxLines="1"
-            android:maxLength="40"
-            android:textColor="@color/lightGrayColor"
-            android:textCursorDrawable="@null"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_unidad_num"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Unidades (ej. páginas, km, horas...)"
         app:endIconMode="clear_text"
-        app:layout_constraintTop_toBottomOf="@id/til_descripcion_num"
+        app:layout_constraintTop_toBottomOf="@id/til_nombre_num"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="12dp"

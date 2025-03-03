@@ -6,7 +6,7 @@ import android.util.Log
 import android.widget.Toast
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
-import com.pruden.habits.common.metodos.Constantes
+import com.pruden.habits.common.Constantes
 import com.pruden.habits.common.metodos.Dialogos.makeToast
 import com.pruden.habits.common.metodos.fechas.obtenerFechaActual
 import com.pruden.habits.common.metodos.fechas.obtenerFechasEntre
@@ -78,7 +78,7 @@ import java.io.InputStreamReader
                         if(!comienzanDataHabitos){
                             val h = linea.split(",")
 
-                            val habito = HabitoEntity(h[0], h[1], h[2].toBoolean(), h[3], h[4].toInt(), h[5], h[6].toBoolean())
+                            val habito = HabitoEntity(h[0], h[1], h[2].toBoolean(), h[3], h[4].toInt(), h[6].toBoolean())
                             viewModel.insertarHabito(habito)
                             listaHabitosEntity.add(habito)
 

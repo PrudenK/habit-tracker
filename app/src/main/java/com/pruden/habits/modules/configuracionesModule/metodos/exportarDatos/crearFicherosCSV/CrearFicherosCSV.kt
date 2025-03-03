@@ -3,7 +3,7 @@ package com.pruden.habits.modules.configuracionesModule.metodos.exportarDatos.cr
 import android.content.Context
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
-import com.pruden.habits.common.metodos.Constantes
+import com.pruden.habits.common.Constantes
 import com.pruden.habits.common.metodos.fechas.obtenerFechaActual
 import com.pruden.habits.modules.configuracionesModule.metodos.exportarDatos.devolverCabeceraCopiaDeSeguridadData
 import com.pruden.habits.modules.configuracionesModule.metodos.exportarDatos.devolverCabeceraDataHabitos

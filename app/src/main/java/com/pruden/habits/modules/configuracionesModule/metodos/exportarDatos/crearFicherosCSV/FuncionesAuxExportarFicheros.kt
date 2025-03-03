@@ -1,7 +1,7 @@
 package com.pruden.habits.modules.configuracionesModule.metodos.exportarDatos.crearFicherosCSV
 
 import com.pruden.habits.common.clases.entities.HabitoEntity
-import com.pruden.habits.common.metodos.Constantes
+import com.pruden.habits.common.Constantes
 
 fun devolverContenidoHabitosCSV(habitos: MutableList<HabitoEntity>): java.lang.StringBuilder{
     val stringBuilder = StringBuilder()
@@ -9,7 +9,7 @@ fun devolverContenidoHabitosCSV(habitos: MutableList<HabitoEntity>): java.lang.S
 
     for(habito in habitos){
         with(habito){
-            stringBuilder.append("$nombre,$objetivo,$tipoNumerico,$unidad,$color,$descripcion,$archivado\n")
+            stringBuilder.append("$nombre,$objetivo,$tipoNumerico,$unidad,$color,$archivado\n")
         }
     }
     return stringBuilder
