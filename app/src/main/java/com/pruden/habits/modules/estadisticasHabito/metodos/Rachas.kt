@@ -86,7 +86,7 @@ private fun cargarRachaActual(
     layerDrawableMes.findDrawableByLayerId(android.R.id.progress).setTint(colorConOpacidad)
 
     if(contadorRacha == 0){
-        binding.textoFechaInicioRachaActual.text = "Espabila chavalín"
+        binding.textoFechaInicioRachaActual.text = "No tienes una racha activa"
     }else{
         if(primerRegistroNoCumplido){
             binding.textoFechaInicioRachaActual.text = "Desde $fechaInicio hasta ayer"
