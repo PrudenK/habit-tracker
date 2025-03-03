@@ -45,6 +45,8 @@ private fun cargarRachaActual(
 
     var contadorRacha = 0
     var fechaInicio = ""
+    var primerRegistroNoCumplido = false
+    var primerRegistroProcesado = false
 
     for ((i, _) in habito.listaFechas.withIndex().reversed()) {
         val valorActual = habito.listaValores[i].toFloat()
@@ -57,13 +59,19 @@ private fun cargarRachaActual(
         }
 
         if (!cumpleCondicion) {
-            if (i + 1 < habito.listaFechas.size) {
-                fechaInicio = habito.listaFechas[i + 1]
+            if (!primerRegistroProcesado) {
+                primerRegistroNoCumplido = true
+                primerRegistroProcesado = true
+                continue
+            } else {
+                if (i + 1 < habito.listaFechas.size) {
+                    fechaInicio = habito.listaFechas[i + 1]
+                }
+                break
             }
-            break
-        } else {
-            contadorRacha++
         }
+        primerRegistroProcesado = true
+        contadorRacha++
     }
 
     binding.textoRachaActual.text = contadorRacha.toString()
@@ -77,10 +85,14 @@ private fun cargarRachaActual(
     val layerDrawableMes = binding.progressRachaActual.progressDrawable as LayerDrawable
     layerDrawableMes.findDrawableByLayerId(android.R.id.progress).setTint(colorConOpacidad)
 
-    if(fechaInicio == ""){
+    if(contadorRacha == 0){
         binding.textoFechaInicioRachaActual.text = "Espabila chavalín"
     }else{
-        binding.textoFechaInicioRachaActual.text = "Desde $fechaInicio hasta hoy"
+        if(primerRegistroNoCumplido){
+            binding.textoFechaInicioRachaActual.text = "Desde $fechaInicio hasta ayer"
+        }else{
+            binding.textoFechaInicioRachaActual.text = "Desde $fechaInicio hasta hoy"
+        }
     }
 }
 
