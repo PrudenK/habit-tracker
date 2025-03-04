@@ -29,6 +29,7 @@ interface HabitoDao {
            H.unidad, 
            H.color as colorHabito,
            H.archivado,
+           H.posicion,
            '[' || GROUP_CONCAT(D.valorCampo) || ']' AS listaValores, 
            '[' || GROUP_CONCAT('"' || IFNULL(D.notas, '') || '"') || ']' AS listaNotas,
            '[' || GROUP_CONCAT('"' || D.fecha || '"') || ']' AS listaFechas
@@ -46,6 +47,7 @@ interface HabitoDao {
            H.unidad, 
            H.color as colorHabito,
            H.archivado,
+           H.posicion,
            '[' || GROUP_CONCAT(D.valorCampo) || ']' AS listaValores, 
            '[' || GROUP_CONCAT('"' || IFNULL(D.notas, '') || '"') || ']' AS listaNotas,
            '[' || GROUP_CONCAT('"' || D.fecha || '"') || ']' AS listaFechas
@@ -62,6 +64,7 @@ interface HabitoDao {
            H.tipoNumerico, 
            H.unidad, 
            H.color as colorHabito,
+           H.posicion,
            H.archivado,
            '[' || GROUP_CONCAT(D.valorCampo) || ']' AS listaValores, 
            '[' || GROUP_CONCAT('"' || IFNULL(D.notas, '') || '"') || ']' AS listaNotas,
@@ -80,6 +83,7 @@ interface HabitoDao {
            H.tipoNumerico, 
            H.unidad, 
            H.color as colorHabito,
+           H.posicion,
            H.archivado,
            '[' || GROUP_CONCAT(D.valorCampo) || ']' AS listaValores, 
            '[' || GROUP_CONCAT('"' || IFNULL(D.notas, '') || '"') || ']' AS listaNotas,
@@ -119,4 +123,7 @@ interface HabitoDao {
 
     @Query("DELETE FROM Habitos WHERE nombre = :nombre")
     suspend fun eliminarHabitoPorNombre(nombre: String)
+
+    @Query("Select max(posicion) From Habitos")
+    suspend fun getPosicionMasAlta(): Int
 }

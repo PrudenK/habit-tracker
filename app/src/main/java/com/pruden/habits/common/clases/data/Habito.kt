@@ -9,9 +9,8 @@ data class Habito(
     var archivado: Boolean,
     var listaValores: MutableList<String>,
     var listaNotas: MutableList<String?>,
-    var listaFechas: MutableList<String>
-
-
+    var listaFechas: MutableList<String>,
+    var posicion: Int
 ) {
     override fun toString(): String {
         return "Habito(nombre='$nombre', objetivo=$objetivo, tipoNumerico=$tipoNumerico, unidad=$unidad, listaValores=$listaValores, listaNotas=$listaNotas)"

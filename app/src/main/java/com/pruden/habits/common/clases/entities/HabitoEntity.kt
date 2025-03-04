@@ -10,5 +10,6 @@ data class HabitoEntity(
     val tipoNumerico: Boolean,
     val unidad: String?,
     val color: Int,
-    var archivado: Boolean
+    var archivado: Boolean,
+    var posicion: Int
 )

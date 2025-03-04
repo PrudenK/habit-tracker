@@ -160,9 +160,17 @@ class AgregarEditarHabitoFragment : Fragment() {
                 var nombre = ""
 
                 if(habitoValido){
+                    val posicion = if(editar){
+                        habitoEditar!!.posicion
+                    }else{
+                        nombresDeHabitosDB.size
+                    }
+
                     if(numerico){
                         nombre = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_numerico).text.toString()
                         val valorSpinner = vistaDinamicaActual.findViewById<Spinner>(R.id.spinner_opciones).selectedItem.toString()
+
+
 
                         val habitoNumerico = HabitoEntity(
                             nombre = nombre,
@@ -171,13 +179,14 @@ class AgregarEditarHabitoFragment : Fragment() {
                             tipoNumerico = true,
                             unidad = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_unidad).text.toString(),
                             color = colorHabito,
-                            archivado = false
+                            archivado = false,
+                            posicion = posicion
                         )
                         nombreRepetido = procesarHabito(nombre, habitoNumerico)
 
                     }else{
                         nombre = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_boolean).text.toString()
-                        val habitoBooleano = HabitoEntity(nombre, null, false, null, colorHabito, false)
+                        val habitoBooleano = HabitoEntity(nombre, null, false, null, colorHabito, false, posicion)
                         nombreRepetido = procesarHabito(nombre, habitoBooleano)
                     }
                     campoFecha = nombre.lowercase() == "fecha"

@@ -78,7 +78,7 @@ import java.io.InputStreamReader
                         if(!comienzanDataHabitos){
                             val h = linea.split(",")
 
-                            val habito = HabitoEntity(h[0], h[1], h[2].toBoolean(), h[3], h[4].toInt(), h[6].toBoolean())
+                            val habito = HabitoEntity(h[0], h[1], h[2].toBoolean(), h[3], h[4].toInt(), h[5].toBoolean(), h[6].toInt())
                             viewModel.insertarHabito(habito)
                             listaHabitosEntity.add(habito)
 
