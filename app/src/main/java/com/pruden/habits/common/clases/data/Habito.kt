@@ -1,7 +1,7 @@
 package com.pruden.habits.common.clases.data
 
 data class Habito(
-    val nombre: String,
+    var nombre: String,
     val objetivo: String?,
     val tipoNumerico: Boolean,
     val unidad: String?,

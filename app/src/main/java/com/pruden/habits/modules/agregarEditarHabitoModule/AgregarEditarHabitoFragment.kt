@@ -3,6 +3,7 @@ package com.pruden.habits.modules.agregarEditarHabitoModule
 import android.app.Dialog
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -26,6 +27,10 @@ import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.databinding.FragmentAgregarHabitoBinding
 import com.pruden.habits.modules.agregarEditarHabitoModule.viewModel.AgregarEditarHabitoViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 @Suppress("DEPRECATION")
 class AgregarEditarHabitoFragment : Fragment() {
@@ -74,10 +79,9 @@ class AgregarEditarHabitoFragment : Fragment() {
             cargarContenedorDinamico(R.layout.layout_numerico)
         }
 
-        fragmentViewModel.devolverTodosLosNombres {
-            nombresDeHabitosDB = it
+        fragmentViewModel.devolverTodosLosNombres { listaNombres ->
+            nombresDeHabitosDB = listaNombres.map { it.lowercase() }.toMutableList()
         }
-
 
         return binding.root
     }
@@ -170,44 +174,14 @@ class AgregarEditarHabitoFragment : Fragment() {
                             color = colorHabito,
                             archivado = false
                         )
-
-
-                        if(nombresDeHabitosDB.contains(nombre.lowercase()) || nombre.lowercase() == "Fecha"){
-                            if(nombre.lowercase() != "Fecha" && editar && nombre != habitoEditar?.nombre){
-                                fragmentViewModel.actualizarHabito(habitoNumerico)
-                            }else{
-                                nombreRepetido = true
-                                campoFecha = nombre.lowercase() == "Fecha"
-                            }
-                        }else{
-                            if(editar){
-                                fragmentViewModel.actualizarHabitoCompleto(habitoEditar!!.nombre, habitoNumerico)
-                            }else{
-                                fragmentViewModel.insertarHabito(habitoNumerico)
-                            }
-                        }
+                        nombreRepetido = procesarHabito(nombre, habitoNumerico)
 
                     }else{
                         nombre = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_boolean).text.toString()
-
                         val habitoBooleano = HabitoEntity(nombre, null, false, null, colorHabito, false)
-
-                        if(nombresDeHabitosDB.contains(nombre.lowercase()) || nombre.lowercase() == "Fecha"){
-                            if(nombre.lowercase() != "Fecha" && editar && nombre != habitoEditar?.nombre){
-                                fragmentViewModel.actualizarHabito(habitoBooleano)
-                            }else{
-                                nombreRepetido = true
-                                campoFecha = nombre.lowercase() == "Fecha"
-                            }
-                        }else{
-                            if(editar){
-                                fragmentViewModel.actualizarHabitoCompleto(habitoEditar!!.nombre, habitoBooleano)
-                            }else{
-                                fragmentViewModel.insertarHabito(habitoBooleano)
-                            }
-                        }
-
+                        nombreRepetido = procesarHabito(nombre, habitoBooleano)
                     }
+                    campoFecha = nombre.lowercase() == "fecha"
 
                     if(nombreRepetido){
                         if(campoFecha){
@@ -217,7 +191,10 @@ class AgregarEditarHabitoFragment : Fragment() {
                         }
                     }else{
                         if(editar){
+                            nombresDeHabitosDB.remove(nombre)
+
                             Snackbar.make(binding.root, "Hábito editado con éxito", Snackbar.LENGTH_SHORT).show()
+
                         }else{
                             fragmentViewModel.agregarRegistrosHabito(nombre){
                                 Snackbar.make(binding.root, "Hábito añadido con éxito", Snackbar.LENGTH_SHORT).show()
@@ -230,6 +207,41 @@ class AgregarEditarHabitoFragment : Fragment() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun procesarHabito(nombre: String, habitoAgregarOEditar: HabitoEntity): Boolean{
+        var nombreRepetido = false
+        if(nombresDeHabitosDB.contains(nombre.lowercase()) || nombre.lowercase() == "fecha"){
+            Log.d("1", "1")
+            if(editar){
+                if(nombre.lowercase() == habitoEditar?.nombre?.lowercase()){
+                    Log.d("2", "2")
+                    fragmentViewModel.actualizarHabito(habitoAgregarOEditar)
+
+                }else{
+                    nombreRepetido = true
+                }
+            }else{
+                nombreRepetido = true
+            }
+        }else{
+            if(editar){
+                Log.d("4", "4")
+
+                Log.d("listaAntes", nombresDeHabitosDB.toString())
+                fragmentViewModel.actualizarHabitoCompleto(habitoEditar!!.nombre, habitoAgregarOEditar)
+
+                nombresDeHabitosDB.remove(habitoEditar!!.nombre.lowercase())
+                habitoEditar!!.nombre = nombre
+                nombresDeHabitosDB.add(nombre.lowercase())
+
+                Log.d("listaDespues", nombresDeHabitosDB.toString())
+
+            }else{
+                fragmentViewModel.insertarHabito(habitoAgregarOEditar)
+            }
+        }
+        return nombreRepetido
     }
 
     private fun cargarContenedorDinamico(layoutRes: Int) {
@@ -257,7 +269,7 @@ class AgregarEditarHabitoFragment : Fragment() {
         spinner.adapter = adaptador
     }
 
-    fun dialogoColorPicker(onColorSelected: (Int) -> Unit) {
+    private fun dialogoColorPicker(onColorSelected: (Int) -> Unit) {
         val dialog = Dialog(requireContext())
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
