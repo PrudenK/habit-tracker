@@ -58,7 +58,7 @@ private fun cargarRachaActual(
             else -> false
         }
 
-        if (!cumpleCondicion) {
+        if (!cumpleCondicion || habito.listaValores[i] != "0.0") {
             if (!primerRegistroProcesado) {
                 primerRegistroNoCumplido = true
                 primerRegistroProcesado = true
@@ -120,7 +120,7 @@ private fun calcularTop5Rachas(
             else -> false
         }
 
-        if (cumpleCondicion) {
+        if (cumpleCondicion && habito.listaValores[i] != "0") {
             if (inicioRacha == null) {
                 inicioRacha = fecha
             }

@@ -83,8 +83,12 @@ fun modificarHabitoCalendarEstadisticas(
             til.defaultHintTextColor = ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.lightGrayColor))
         }
 
-        if (fechaItem.valor != "0.0" && fechaItem.valor != "0") {
-            inputCantidad.setText(fechaItem.valor)
+        if (fechaItem.valor != "0") {
+            if(fechaItem.valor == "0.0"){
+                inputCantidad.setText("0")
+            }else{
+                inputCantidad.setText(fechaItem.valor)
+            }
         }
         tilCantidad.hint = habitoCalendar.unidad
 
@@ -92,8 +96,13 @@ fun modificarHabitoCalendarEstadisticas(
 
         dialog.setOnDismissListener {
             if (inputCantidad.text!!.isNotBlank()) {
+
+                var cantidad = inputCantidad.text.toString()
+                if (cantidad == "0") cantidad = "0.0"
+                fechaItem.valor = cantidad
                 fechaItem.nota = inputNotas.text.toString()
-                fechaItem.valor = inputCantidad.text.toString()
+
+
 
                 val objetivoNum = habitoCalendar.objetivo!!.split("@")[0].toFloat()
                 val condicion = habitoCalendar.objetivo.split("@")[1]
