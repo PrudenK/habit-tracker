@@ -49,7 +49,7 @@ class RegistroNumericoAdapter (
             }
 
             fun cumplido(){
-                if(registro.valorCampo != "0.0"){
+                if(registro.valorCampo != "0"){
                     binding.unidad.setTextColor(habitoAux.color)
                     binding.unidad.setTypeface(typeface, Typeface.BOLD)
 

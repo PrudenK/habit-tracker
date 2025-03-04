@@ -46,7 +46,7 @@ class FechaCalendarioAdapter(
             }
 
             fun habitoCumplido(condicion: Boolean){
-                if(condicion){
+                if(condicion && fechaItem.valor != "0"){
                     binding.fechaCalendario.setBackgroundColor(habito.colorHabito)
                     binding.fechaCalendario.setTextColor(ContextCompat.getColor(holder.itemView.context, R.color.dark_gray))
                     ponerNotas(R.color.dark_gray)
