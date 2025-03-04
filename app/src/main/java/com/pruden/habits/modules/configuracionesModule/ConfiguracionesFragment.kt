@@ -17,8 +17,8 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import com.pruden.habits.modules.mainModule.MainActivity
 import com.pruden.habits.R
-import com.pruden.habits.common.metodos.Dialogos.borrarTodosLosDatos
-import com.pruden.habits.common.metodos.Dialogos.borrarTodosLosRegistros
+import com.pruden.habits.modules.configuracionesModule.metodos.borrarDatos.borrarTodosLosDatos
+import com.pruden.habits.modules.configuracionesModule.metodos.borrarDatos.borrarTodosLosRegistros
 import com.pruden.habits.common.metodos.Dialogos.makeToast
 import com.pruden.habits.modules.configuracionesModule.metodos.importarDatos.leerCsvDesdeUri
 import com.pruden.habits.databinding.FragmentConfiguracionesBinding

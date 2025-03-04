@@ -1,4 +1,4 @@
-package com.pruden.habits.common.metodos.Dialogos
+package com.pruden.habits.modules.configuracionesModule.metodos.borrarDatos
 
 import android.app.AlertDialog
 import android.content.Context
