@@ -80,6 +80,11 @@ class FechaCalendarioAdapter(
                 }
             }
 
+            if(fechaItem == null){
+               binding.contenedorItemFechaCalendar.visibility = View.GONE
+            }else{
+                binding.contenedorItemFechaCalendar.visibility = View.VISIBLE
+            }
             binding.contenedorItemFechaCalendar.setOnClickListener {
                 listener.onClikHabito(habito, fechaItem, binding)
             }
