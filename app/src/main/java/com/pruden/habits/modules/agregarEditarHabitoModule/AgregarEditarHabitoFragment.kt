@@ -164,7 +164,6 @@ class AgregarEditarHabitoFragment : Fragment() {
                         nombre = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_numerico).text.toString()
                         val valorSpinner = vistaDinamicaActual.findViewById<Spinner>(R.id.spinner_opciones).selectedItem.toString()
 
-
                         val habitoNumerico = HabitoEntity(
                             nombre = nombre,
                             objetivo = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_objetivo).text.toString()
@@ -196,8 +195,18 @@ class AgregarEditarHabitoFragment : Fragment() {
                             Snackbar.make(binding.root, "Hábito editado con éxito", Snackbar.LENGTH_SHORT).show()
 
                         }else{
+                            
+                            binding.progressBarAgregar.visibility = View.VISIBLE
+                            vistaDinamicaActual.visibility = View.GONE
+                            binding.ordenar.visibility = View.GONE
+                            binding.booleano.visibility = View.GONE
+                            binding.numerico.visibility = View.GONE
+                            binding.agregandoHabito.visibility = View.VISIBLE
+
                             fragmentViewModel.agregarRegistrosHabito(nombre){
                                 Snackbar.make(binding.root, "Hábito añadido con éxito", Snackbar.LENGTH_SHORT).show()
+                                binding.progressBarAgregar.visibility = View.GONE
+                                binding.agregandoHabito.visibility = View.GONE
                                 activity?.onBackPressed()
                             }
                         }
@@ -212,10 +221,8 @@ class AgregarEditarHabitoFragment : Fragment() {
     private fun procesarHabito(nombre: String, habitoAgregarOEditar: HabitoEntity): Boolean{
         var nombreRepetido = false
         if(nombresDeHabitosDB.contains(nombre.lowercase()) || nombre.lowercase() == "fecha"){
-            Log.d("1", "1")
             if(editar){
                 if(nombre.lowercase() == habitoEditar?.nombre?.lowercase()){
-                    Log.d("2", "2")
                     fragmentViewModel.actualizarHabito(habitoAgregarOEditar)
 
                 }else{
@@ -226,17 +233,10 @@ class AgregarEditarHabitoFragment : Fragment() {
             }
         }else{
             if(editar){
-                Log.d("4", "4")
-
-                Log.d("listaAntes", nombresDeHabitosDB.toString())
                 fragmentViewModel.actualizarHabitoCompleto(habitoEditar!!.nombre, habitoAgregarOEditar)
-
                 nombresDeHabitosDB.remove(habitoEditar!!.nombre.lowercase())
                 habitoEditar!!.nombre = nombre
                 nombresDeHabitosDB.add(nombre.lowercase())
-
-                Log.d("listaDespues", nombresDeHabitosDB.toString())
-
             }else{
                 fragmentViewModel.insertarHabito(habitoAgregarOEditar)
             }
