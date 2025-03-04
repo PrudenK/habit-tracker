@@ -132,7 +132,7 @@ class EstadisticasFragment : Fragment(), OnClikCalendario {
         val item = menu.findItem(R.id.editar_habito)
         val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_editar)
 
-        drawable?.setTint(ContextCompat.getColor(requireContext(), R.color.lightGrayColor))
+        drawable?.setTint(ContextCompat.getColor(requireContext(), R.color.dark_background)) ////////
         item.icon = drawable
         super.onCreateOptionsMenu(menu, inflater)
     }

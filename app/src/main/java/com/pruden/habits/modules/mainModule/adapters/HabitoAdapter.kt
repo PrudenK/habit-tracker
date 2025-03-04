@@ -229,7 +229,7 @@ class HabitoAdapter (
             til.defaultHintTextColor = ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.lightGrayColor))
         }
 
-        if (habitoData.valorCampo != "0.0" && habitoData.valorCampo != "0") {
+        if (habitoData.valorCampo != "0.0") {
             inputCantidad.setText(habitoData.valorCampo)
         }
         tilCantidad.hint = habitoAux.unidad
@@ -239,7 +239,9 @@ class HabitoAdapter (
         dialog.setOnDismissListener {
             if (inputCantidad.text!!.isNotBlank()) {
                 habitoData.notas = inputNotas.text.toString()
-                habitoData.valorCampo = inputCantidad.text.toString()
+                var cantidad = inputCantidad.text.toString()
+                if (cantidad == "0.0") cantidad = "0"
+                habitoData.valorCampo = cantidad
                 tvNumerico.puntuacion.text = formatearNumero(inputCantidad.text.toString().toFloat())
 
 

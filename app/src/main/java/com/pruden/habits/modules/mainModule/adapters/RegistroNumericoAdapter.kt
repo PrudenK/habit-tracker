@@ -40,16 +40,6 @@ class RegistroNumericoAdapter (
         with(holder as ViewHolder) {
             val typeface = ResourcesCompat.getFont(binding.root.context, R.font.encabezados)
 
-            fun cumplido(){
-
-
-                binding.unidad.setTextColor(habitoAux.color)
-                binding.unidad.setTypeface(typeface, Typeface.BOLD)
-
-                binding.puntuacion.setTextColor(habitoAux.color)
-                binding.puntuacion.setTypeface(typeface, Typeface.BOLD)
-            }
-
             fun noCumplido(){
                 binding.unidad.setTextColor(ContextCompat.getColor(contexto, R.color.gray_color_dark))
                 binding.unidad.setTypeface(typeface, Typeface.NORMAL)
@@ -57,6 +47,20 @@ class RegistroNumericoAdapter (
                 binding.puntuacion.setTextColor(ContextCompat.getColor(contexto, R.color.gray_color_dark))
                 binding.puntuacion.setTypeface(typeface, Typeface.NORMAL)
             }
+
+            fun cumplido(){
+                if(registro.valorCampo != "0.0"){
+                    binding.unidad.setTextColor(habitoAux.color)
+                    binding.unidad.setTypeface(typeface, Typeface.BOLD)
+
+                    binding.puntuacion.setTextColor(habitoAux.color)
+                    binding.puntuacion.setTypeface(typeface, Typeface.BOLD)
+                }else{
+                    noCumplido()
+                }
+            }
+
+
 
             val objetivo = habitoAux.objetivo.split("@")[0]
             val condicion = habitoAux.objetivo.split("@")[1]
