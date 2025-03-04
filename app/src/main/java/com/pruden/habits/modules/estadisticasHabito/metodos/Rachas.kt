@@ -58,7 +58,7 @@ private fun cargarRachaActual(
             else -> false
         }
 
-        if (!cumpleCondicion || habito.listaValores[i] != "0.0") {
+        if (!cumpleCondicion || habito.listaValores[i] == "0") {
             if (!primerRegistroProcesado) {
                 primerRegistroNoCumplido = true
                 primerRegistroProcesado = true
