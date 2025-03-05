@@ -11,4 +11,5 @@
     <dimen name="text_28">28sp</dimen>
     <dimen name="text_14">14sp</dimen>
     <dimen name="text_22">22sp</dimen>
+    <dimen name="text_12">12sp</dimen>
 </resources>

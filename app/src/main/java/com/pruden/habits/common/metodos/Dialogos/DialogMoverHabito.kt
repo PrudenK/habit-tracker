@@ -23,14 +23,14 @@ fun dialogoMoverHabito(
     mainViewModel: MainViewModel,
     main: MainActivity
     ){
-    val dialogoMoverView = LayoutInflater.from(context).inflate(R.layout.dialog_posicion_picker, null)
+    val dialogoMoverView = LayoutInflater.from(context).inflate(R.layout.dialog_mover_posicion, null)
     val dialogoPosicion = AlertDialog.Builder(context).setView(dialogoMoverView).create()
 
     val posicionPicker = dialogoMoverView.findViewById<TextView>(R.id.posicion_picker)
     val btnCancelar = dialogoMoverView.findViewById<Button>(R.id.button_cancelar_number_picker)
     val btnAplicar = dialogoMoverView.findViewById<Button>(R.id.button_aplicar_number_picker)
-    val btnSumar = dialogoMoverView.findViewById<ImageView>(R.id.boton_sumar_posicion)
-    val btnRestar = dialogoMoverView.findViewById<ImageView>(R.id.boton_menos_posicion)
+    val areaRestar = dialogoMoverView.findViewById<ImageView>(R.id.restar_posicion_area)
+    val areaSumar = dialogoMoverView.findViewById<ImageView>(R.id.sumar_posicion_area)
 
     dialogoPosicion.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
@@ -69,18 +69,26 @@ fun dialogoMoverHabito(
         dialogoPosicion.dismiss()
     }
 
-    btnSumar.setOnClickListener {
+    fun sumar(){
         if(posicion < listaHabitos.filter { !it.archivado }.size){
             posicion++
             posicionPicker.text = posicion.toString()
         }
     }
 
-    btnRestar.setOnClickListener {
+    fun restar(){
         if(posicion > 1){
             posicion--
             posicionPicker.text = posicion.toString()
         }
+    }
+
+    areaSumar.setOnClickListener {
+      sumar()
+    }
+
+    areaRestar.setOnClickListener {
+        restar()
     }
 
     dialogoPosicion.show()
