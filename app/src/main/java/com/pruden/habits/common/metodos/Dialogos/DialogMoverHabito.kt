@@ -70,7 +70,7 @@ fun dialogoMoverHabito(
     }
 
     btnSumar.setOnClickListener {
-        if(posicion < listaHabitos.size){
+        if(posicion < listaHabitos.filter { !it.archivado }.size){
             posicion++
             posicionPicker.text = posicion.toString()
         }
