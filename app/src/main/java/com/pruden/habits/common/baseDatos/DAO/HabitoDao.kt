@@ -107,9 +107,8 @@ interface HabitoDao {
     @Query("Update datahabitos set valorCampo = 0.0, notas = null")
     suspend fun borrarTodosLosRegistros()
 
-    @Query("Update habitos set archivado = :bool where nombre == :nombre")
-    suspend fun alternarArchivado(bool: Boolean, nombre: String)
-
+    @Query("UPDATE habitos SET archivado = :bool, posicion = :cantidad WHERE nombre = :nombre")
+    suspend fun alternarArchivado(bool: Boolean, nombre: String, cantidad: Int)
 
     @Transaction
     suspend fun actualizarHabitoConNuevoNombre(habitoViejo: String, nuevoHabito: HabitoEntity) {

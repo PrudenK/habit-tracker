@@ -3,6 +3,8 @@ package com.pruden.habits.modules.mainModule.model
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import com.pruden.habits.HabitosApplication
+import com.pruden.habits.HabitosApplication.Companion.listaHabitos
+import com.pruden.habits.common.Constantes
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
@@ -67,7 +69,18 @@ class MainInteractor {
 
     fun archivarHabito(habitoEntity: HabitoEntity){
         CoroutineScope(Dispatchers.IO).launch {
-            HabitosApplication.database.habitoDao().alternarArchivado(true, habitoEntity.nombre)
+            val posicion = habitoEntity.posicion
+            HabitosApplication.database.habitoDao().alternarArchivado(true, habitoEntity.nombre, Constantes.CANTIDAD_DIFF_HABITO_ARCHIVADO + habitoEntity.posicion)
+
+            for(habito in listaHabitos){
+                if(habito.posicion > posicion){
+                    with(habito){
+                        HabitosApplication.database.habitoDao().updateHabito(
+                            HabitoEntity(nombre, objetivo, tipoNumerico, unidad, colorHabito, archivado, this.posicion -1)
+                        )
+                    }
+                }
+            }
         }
     }
 
