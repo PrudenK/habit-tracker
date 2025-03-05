@@ -76,7 +76,7 @@ fun dialogoOnLongClickHabito(
     }
 
     btnMover.setOnClickListener {
-        dialogoMoverHabito(context, resources, habito)
+        dialogoMoverHabito(context, resources, habito, mainViewModel, activity)
         dialogoOpciones.hide()
     }
 

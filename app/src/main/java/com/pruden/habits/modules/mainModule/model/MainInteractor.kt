@@ -70,4 +70,16 @@ class MainInteractor {
             HabitosApplication.database.habitoDao().alternarArchivado(true, habitoEntity.nombre)
         }
     }
+
+    fun actualizarPosicionesHabitos(listaHabitos: MutableList<HabitoEntity>, callback: () -> Unit){
+        CoroutineScope(Dispatchers.IO).launch {
+            listaHabitos.forEach { habito ->
+                HabitosApplication.database.habitoDao().updateHabito(habito)
+            }
+
+            withContext(Dispatchers.Main) {
+                callback()
+            }
+        }
+    }
 }

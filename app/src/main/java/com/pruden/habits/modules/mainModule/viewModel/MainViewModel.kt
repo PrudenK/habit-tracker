@@ -26,4 +26,8 @@ class MainViewModel: ViewModel() {
     fun archivarHabito(habitoEntity: HabitoEntity){
         interactor.archivarHabito(habitoEntity)
     }
+
+    fun actualizarPosicionesHabitos(listaHabitos: MutableList<HabitoEntity>, callback: () -> Unit){
+        interactor.actualizarPosicionesHabitos(listaHabitos, callback)
+    }
 }

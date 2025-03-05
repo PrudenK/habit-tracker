@@ -13,15 +13,16 @@ import com.pruden.habits.HabitosApplication.Companion.listaHabitos
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.modules.mainModule.MainActivity
-import com.pruden.habits.modules.mainModule.adapters.HabitoAdapter
 import com.pruden.habits.modules.mainModule.metodos.ajustarDialogo
 import com.pruden.habits.modules.mainModule.viewModel.MainViewModel
 
 fun dialogoMoverHabito(
     context: Context,
     resources: Resources,
-    habito: HabitoEntity
-){
+    habito: HabitoEntity,
+    mainViewModel: MainViewModel,
+    main: MainActivity
+    ){
     val dialogoMoverView = LayoutInflater.from(context).inflate(R.layout.dialog_posicion_picker, null)
     val dialogoPosicion = AlertDialog.Builder(context).setView(dialogoMoverView).create()
 
@@ -35,8 +36,32 @@ fun dialogoMoverHabito(
 
     posicionPicker.text = habito.posicion.toString()
 
-    btnAplicar.setOnClickListener {
+    var posicion = habito.posicion
+    val posicionOriginal = habito.posicion
 
+
+    btnAplicar.setOnClickListener {
+        habito.posicion = posicion
+
+        if(posicionOriginal != posicion){
+            val habitoModificado = listaHabitos.find { it.nombre == habito.nombre }!!
+            listaHabitos.remove(habitoModificado)
+            listaHabitos.add(posicion-1, habitoModificado)
+
+            val nuevaLista = listaHabitos.toList()
+            nuevaLista.forEachIndexed { index, h ->
+                h.posicion = index + 1
+            }
+
+            val listaHabitoEntity = listaHabitos.map {
+                HabitoEntity(it.nombre, it.objetivo, it.tipoNumerico, it.unidad, it.colorHabito, it.archivado, it.posicion)
+            }.toMutableList()
+
+            mainViewModel.actualizarPosicionesHabitos(listaHabitoEntity){
+                main.actualizarPagina(true)
+            }
+
+        }
         dialogoPosicion.dismiss()
     }
 
@@ -45,26 +70,24 @@ fun dialogoMoverHabito(
     }
 
     btnSumar.setOnClickListener {
-        if(habito.posicion < listaHabitos.size){
-            habito.posicion++
-            posicionPicker.text = habito.posicion.toString()
+        if(posicion < listaHabitos.size){
+            posicion++
+            posicionPicker.text = posicion.toString()
         }
     }
 
     btnRestar.setOnClickListener {
-        if(habito.posicion > 1){
-            habito.posicion--
-            posicionPicker.text = habito.posicion.toString()
+        if(posicion > 1){
+            posicion--
+            posicionPicker.text = posicion.toString()
         }
     }
-
-
 
     dialogoPosicion.show()
 
     ajustarDialogo(
         resources,
         dialogoPosicion,
-        0.75f
+        0.8f
     )
 }

@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.HabitosApplication.Companion.listaHabitos
@@ -105,7 +104,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
         mBinding.progressBar.visibility = View.VISIBLE
 
         mainViewModel.getAllHabitosConDatos().observe(this) { nuevaLista ->
-            listaHabitos = nuevaLista.toMutableList()
+            listaHabitos = nuevaLista.toMutableList().sortedBy { it.posicion }.toMutableList()
 
             val listaFiltrada = nuevaLista.filter { !it.archivado }.sortedBy { it.posicion }
 
@@ -120,11 +119,18 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
         }
     }
 
-    private fun actualizarPagina() {
+    fun actualizarPagina(mover: Boolean = false) {
         val inicio = paginaActual * tamanoPagina
-        val fin = (inicio + tamanoPagina).coerceAtMost(listaCompletaHabitos.size)
+        val fin: Int
+        val subLista: MutableList<Habito>
 
-        val subLista = listaCompletaHabitos.subList(inicio, fin)
+        if(mover){
+            fin = (inicio + tamanoPagina).coerceAtMost(listaHabitos.filter { !it.archivado }.size)
+            subLista = listaHabitos.filter { !it.archivado }.subList(inicio, fin).toMutableList()
+        }else{
+            fin = (inicio + tamanoPagina).coerceAtMost(listaCompletaHabitos.size)
+            subLista = listaCompletaHabitos.subList(inicio, fin)
+        }
 
         sincronizadorDeScrolls.limpiarRecycler()
         configurarRecyclerFechas()
@@ -133,8 +139,6 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
 
         mBinding.tvPagina.text = "Página ${paginaActual + 1}"
     }
-
-
 
     private fun configurarRecyclerHabitos() {
         habitosAdapter = HabitoAdapter(sincronizadorDeScrolls, this)
