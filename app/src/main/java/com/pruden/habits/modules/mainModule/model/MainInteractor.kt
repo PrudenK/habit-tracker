@@ -37,7 +37,7 @@ class MainInteractor {
         fechas.forEach { fecha ->
             nombresHabitos.forEach { nombre ->
                 HabitosApplication.database.dataHabitoDao().insertDataHabito(
-                    DataHabitoEntity(nombre, fecha, "0.0", null) //TODO
+                    DataHabitoEntity(nombre, fecha, "0", null)
                 )
             }
         }
