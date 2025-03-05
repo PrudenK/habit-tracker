@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.entities.HabitoEntity
+import com.pruden.habits.common.metodos.Dialogos.dialogoMoverHabito
 import com.pruden.habits.common.metodos.Fragments.cargarFragment
 import com.pruden.habits.modules.agregarEditarHabitoModule.AgregarEditarHabitoFragment
 import com.pruden.habits.modules.mainModule.MainActivity
@@ -74,13 +75,18 @@ fun dialogoOnLongClickHabito(
         dialogoOpciones.hide()
     }
 
+    btnMover.setOnClickListener {
+        dialogoMoverHabito(context, resources, habito)
+        dialogoOpciones.hide()
+    }
+
 
     dialogoOpciones.show()
 
     ajustarDialogo(resources, dialogoOpciones, 0.7f)
 }
 
-private fun ajustarDialogo(
+fun ajustarDialogo(
     resources: Resources,
     dialogo: AlertDialog,
     tamaX: Float
