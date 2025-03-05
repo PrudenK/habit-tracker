@@ -106,12 +106,12 @@ import java.io.InputStreamReader
                     for(h in listaHabitosEntity){
                         for(fecha in fechaEntreFinYHoy){
                             viewModel.insertarDataHabito(
-                                DataHabitoEntity(h.nombre, fecha,"0.0",null)
+                                DataHabitoEntity(h.nombre, fecha,"0",null)
                             )
                         }
                         for(fecha in fechasEntreBaseInicio){
                             viewModel.insertarDataHabito(
-                                DataHabitoEntity(h.nombre, fecha,"0.0",null)
+                                DataHabitoEntity(h.nombre, fecha,"0",null)
                             )
                         }
                     }
