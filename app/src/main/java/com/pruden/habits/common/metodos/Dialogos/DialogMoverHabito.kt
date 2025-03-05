@@ -48,7 +48,7 @@ fun dialogoMoverHabito(
             listaHabitos.remove(habitoModificado)
             listaHabitos.add(posicion-1, habitoModificado)
 
-            val nuevaLista = listaHabitos.toList()
+            val nuevaLista = listaHabitos.filter { !it.archivado }.toList()
             nuevaLista.forEachIndexed { index, h ->
                 h.posicion = index + 1
             }

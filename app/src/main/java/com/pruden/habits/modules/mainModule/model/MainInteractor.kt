@@ -73,7 +73,7 @@ class MainInteractor {
             HabitosApplication.database.habitoDao().alternarArchivado(true, habitoEntity.nombre, Constantes.CANTIDAD_DIFF_HABITO_ARCHIVADO + habitoEntity.posicion)
 
             for(habito in listaHabitos){
-                if(habito.posicion > posicion){
+                if(habito.posicion > posicion && habito.posicion < Constantes.CANTIDAD_DIFF_HABITO_ARCHIVADO){
                     with(habito){
                         HabitosApplication.database.habitoDao().updateHabito(
                             HabitoEntity(nombre, objetivo, tipoNumerico, unidad, colorHabito, archivado, this.posicion -1)
