@@ -1,5 +1,7 @@
 package com.pruden.habits.common.metodos.fechas
 
+import android.util.Log
+import com.pruden.habits.common.Constantes
 import com.pruden.habits.common.clases.data.Fecha
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -31,7 +33,8 @@ fun generarFechasFormatoYYYYMMDD(): MutableList<String> {
     val dateStrings = mutableListOf<String>()
     val calendar = Calendar.getInstance()
 
-    calendar.set(2023, Calendar.JANUARY, 1)
+    val v = Constantes.FECHA_INICIO.split("-")
+    calendar.set(v[0].toInt(), v[1].toInt()-1, v[2].toInt())
 
     val today = Calendar.getInstance()
 
