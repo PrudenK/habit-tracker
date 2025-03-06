@@ -13,6 +13,15 @@ fun mostrarDatePicker(
     binding: FragmentConfiguracionesBinding
 ) {
     val calendario = Calendar.getInstance()
+
+    val fechaInicio = Constantes.FECHA_INICIO
+    if (fechaInicio.isNotEmpty()) {
+        val partes = fechaInicio.split("-")
+        calendario.set(Calendar.YEAR, partes[0].toInt())
+        calendario.set(Calendar.MONTH, partes[1].toInt() - 1)
+        calendario.set(Calendar.DAY_OF_MONTH, partes[2].toInt())
+    }
+
     val year = calendario.get(Calendar.YEAR)
     val mes = calendario.get(Calendar.MONTH)
     val dia = calendario.get(Calendar.DAY_OF_MONTH)
