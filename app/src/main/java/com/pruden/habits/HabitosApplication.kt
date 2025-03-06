@@ -1,9 +1,11 @@
 package com.pruden.habits
 
 import android.app.Application
+import android.content.SharedPreferences
 import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
+import com.pruden.habits.common.Constantes
 import com.pruden.habits.common.baseDatos.HabitosDatabase
 import com.pruden.habits.common.clases.data.Fecha
 import com.pruden.habits.common.clases.data.Habito
@@ -17,6 +19,7 @@ class HabitosApplication : Application(){
         var listaArchivados = mutableListOf<Habito>()
         var listaFechas = mutableListOf<Fecha>()
         var tamanoPagina = 8
+        lateinit var sharedConfiguraciones : SharedPreferences
     }
 
     override fun onCreate(){
@@ -34,6 +37,8 @@ class HabitosApplication : Application(){
             .build()
 
         listaFechas = generateLastDates()
+
+        sharedConfiguraciones = getSharedPreferences(Constantes.SHARED_CONFIGURACIONES, MODE_PRIVATE)
     }
 
     val MIGRATION_1_2 = object : Migration(1, 2) {

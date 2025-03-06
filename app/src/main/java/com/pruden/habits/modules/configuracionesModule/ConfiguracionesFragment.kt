@@ -1,6 +1,7 @@
 package com.pruden.habits.modules.configuracionesModule
 
 import android.app.Activity.RESULT_OK
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -11,18 +12,24 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.DatePicker
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import com.pruden.habits.HabitosApplication.Companion.sharedConfiguraciones
 import com.pruden.habits.modules.mainModule.MainActivity
 import com.pruden.habits.R
+import com.pruden.habits.common.Constantes
 import com.pruden.habits.modules.configuracionesModule.metodos.borrarDatos.borrarTodosLosDatos
 import com.pruden.habits.modules.configuracionesModule.metodos.borrarDatos.borrarTodosLosRegistros
 import com.pruden.habits.common.metodos.Dialogos.makeToast
 import com.pruden.habits.modules.configuracionesModule.metodos.importarDatos.leerCsvDesdeUri
 import com.pruden.habits.databinding.FragmentConfiguracionesBinding
 import com.pruden.habits.modules.configuracionesModule.viewModel.ConfiguracionesViewModel
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 
 @Suppress("DEPRECATION")
@@ -57,9 +64,57 @@ class ConfiguracionesFragment : Fragment() {
         exportarCopiaDeSeguridad()
         importarCopiaSeguridad()
 
+        binding.fechaIncioRegistrosHabitos.setOnClickListener {
+            mostrarDatePicker()
+        }
+
+        binding.fechaIncioRegistrosHabitos.text = "Fecha inicio de los registros: ${Constantes.FECHA_INICIO}"
 
         return binding.root
     }
+
+    private fun mostrarDatePicker() {
+        val calendario = Calendar.getInstance()
+        val year = calendario.get(Calendar.YEAR)
+        val mes = calendario.get(Calendar.MONTH)
+        val dia = calendario.get(Calendar.DAY_OF_MONTH)
+
+
+        val datePickerDialog = DatePickerDialog(
+            requireContext(),
+            android.R.style.Theme_Holo_Dialog,
+            { _: DatePicker, yearSeleccionado: Int, mesSeleccionado: Int, diaSeleccionado: Int ->
+                val fechaSeleccionada = "$yearSeleccionado/${mesSeleccionado + 1}/$diaSeleccionado"
+                binding.fechaIncioRegistrosHabitos.text = fechaSeleccionada
+            },
+            year,
+            mes,
+            dia
+        )
+
+        datePickerDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        val datePicker = datePickerDialog.datePicker
+        datePicker.calendarViewShown = false
+        datePicker.spinnersShown = true
+
+
+        datePickerDialog.setButton(DatePickerDialog.BUTTON_POSITIVE, "OK") { _, _ ->
+            val yearSeleccionado = datePicker.year
+            val mesSeleccionado = datePicker.month
+            val diaSeleccionado = datePicker.dayOfMonth
+
+            val fecha = String.format("%d-%02d-%02d", yearSeleccionado, mesSeleccionado + 1, diaSeleccionado)
+
+            binding.fechaIncioRegistrosHabitos.text = "Fecha inicio de los registros: $fecha"
+
+            sharedConfiguraciones.edit().putString(Constantes.SHARED_FECHA_INICIO, fecha).apply()
+            Constantes.FECHA_INICIO = fecha
+        }
+
+        datePickerDialog.show()
+    }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
