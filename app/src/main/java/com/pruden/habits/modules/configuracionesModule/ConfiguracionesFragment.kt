@@ -26,6 +26,7 @@ import com.pruden.habits.modules.configuracionesModule.metodos.borrarDatos.borra
 import com.pruden.habits.common.metodos.Dialogos.makeToast
 import com.pruden.habits.modules.configuracionesModule.metodos.importarDatos.leerCsvDesdeUri
 import com.pruden.habits.databinding.FragmentConfiguracionesBinding
+import com.pruden.habits.modules.configuracionesModule.metodos.modifcarFecha.mostrarDatePicker
 import com.pruden.habits.modules.configuracionesModule.viewModel.ConfiguracionesViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -63,58 +64,13 @@ class ConfiguracionesFragment : Fragment() {
         exportarSoloLosRegistros()
         exportarCopiaDeSeguridad()
         importarCopiaSeguridad()
+        datePickerFechaInicio()
 
-        binding.fechaIncioRegistrosHabitos.setOnClickListener {
-            mostrarDatePicker()
-        }
 
         binding.fechaIncioRegistrosHabitos.text = "Fecha inicio de los registros: ${Constantes.FECHA_INICIO}"
 
         return binding.root
     }
-
-    private fun mostrarDatePicker() {
-        val calendario = Calendar.getInstance()
-        val year = calendario.get(Calendar.YEAR)
-        val mes = calendario.get(Calendar.MONTH)
-        val dia = calendario.get(Calendar.DAY_OF_MONTH)
-
-
-        val datePickerDialog = DatePickerDialog(
-            requireContext(),
-            android.R.style.Theme_Holo_Dialog,
-            { _: DatePicker, yearSeleccionado: Int, mesSeleccionado: Int, diaSeleccionado: Int ->
-                val fechaSeleccionada = "$yearSeleccionado/${mesSeleccionado + 1}/$diaSeleccionado"
-                binding.fechaIncioRegistrosHabitos.text = fechaSeleccionada
-            },
-            year,
-            mes,
-            dia
-        )
-
-        datePickerDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-
-        val datePicker = datePickerDialog.datePicker
-        datePicker.calendarViewShown = false
-        datePicker.spinnersShown = true
-
-
-        datePickerDialog.setButton(DatePickerDialog.BUTTON_POSITIVE, "OK") { _, _ ->
-            val yearSeleccionado = datePicker.year
-            val mesSeleccionado = datePicker.month
-            val diaSeleccionado = datePicker.dayOfMonth
-
-            val fecha = String.format("%d-%02d-%02d", yearSeleccionado, mesSeleccionado + 1, diaSeleccionado)
-
-            binding.fechaIncioRegistrosHabitos.text = "Fecha inicio de los registros: $fecha"
-
-            sharedConfiguraciones.edit().putString(Constantes.SHARED_FECHA_INICIO, fecha).apply()
-            Constantes.FECHA_INICIO = fecha
-        }
-
-        datePickerDialog.show()
-    }
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -200,7 +156,13 @@ class ConfiguracionesFragment : Fragment() {
         }
     }
 
-    val REQUEST_CODE_PICK_CSV = 1
+    private fun datePickerFechaInicio(){
+        binding.fechaIncioRegistrosHabitos.setOnClickListener {
+            mostrarDatePicker(requireContext(), binding)
+        }
+    }
+
+    private val REQUEST_CODE_PICK_CSV = 1
 
     private fun importarCopiaSeguridad(){
         binding.importarCopiaDeSeguridad.setOnClickListener {
