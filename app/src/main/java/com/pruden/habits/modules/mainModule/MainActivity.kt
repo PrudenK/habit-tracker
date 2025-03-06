@@ -1,5 +1,6 @@
 package com.pruden.habits.modules.mainModule
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
@@ -67,6 +68,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
         calcularTamanoPagina()
 
         window.navigationBarColor = resources.getColor(R.color.dark_gray) // Color barra móvil
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT // Bloquear giro pnatalla
 
         cargarViewModel()
         paginaAnterior()
