@@ -29,6 +29,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Locale
+import kotlin.concurrent.timer
 
 fun cargarSpinnerGraficoDeLineas(
     context: Context,
@@ -176,7 +177,12 @@ private fun cargarGraficoDeLineas(
         }
     }
 
-    val dataSet = LineDataSet(entries, "${habito.unidad.toString().take(5).lowercase().replaceFirstChar { it.uppercase() } } x $tiempo").apply {
+    var unidad = habito.unidad.toString().take(5).lowercase().replaceFirstChar { it.uppercase() }
+    if(unidad == "Null"){
+        unidad = "Checks"
+    }
+
+    val dataSet = LineDataSet(entries, "$unidad x $tiempo").apply {
         color = habito.colorHabito
         setCircleColor(Color.WHITE)
         circleRadius = 5f
@@ -217,19 +223,46 @@ private fun cargarGraficoDeLineas(
         spaceMin = espacio
     }
 
-    lineChart.axisLeft.apply {
-        axisMinimum = 0f
-        textSize = 14f
-        textColor = Color.WHITE
-        axisLineColor = Color.WHITE
-        axisLineWidth = 1.5f
-        gridColor = Color.argb(50, 255, 255, 255)
-        valueFormatter = object : ValueFormatter() {
-            override fun getFormattedValue(value: Float): String {
-                return formatearNumero(value)
+    if(tiempo == "Día" && !habito.tipoNumerico){
+        lineChart.axisLeft.apply {
+            axisMinimum = 0f
+            axisMaximum = 1f
+            granularity = 1f
+            labelCount = 2
+            textSize = 14f
+            textColor = Color.WHITE
+            axisLineColor = Color.WHITE
+            axisLineWidth = 1.5f
+            gridColor = Color.argb(50, 255, 255, 255)
+            valueFormatter = object : ValueFormatter() {
+                override fun getFormattedValue(value: Float): String {
+                    return when (value) {
+                        0f -> "0"
+                        1f -> "1"
+                        else -> ""
+                    }
+                }
+            }
+        }
+    }else{
+        lineChart.axisLeft.apply {
+            resetAxisMaximum()
+            axisMinimum = 0f
+            textSize = 14f
+            textColor = Color.WHITE
+            axisLineColor = Color.WHITE
+            axisLineWidth = 1.5f
+            granularity = 0f
+            labelCount = 6
+            gridColor = Color.argb(50, 255, 255, 255)
+            valueFormatter = object : ValueFormatter() {
+                override fun getFormattedValue(value: Float): String {
+                    return formatearNumero(value)
+                }
             }
         }
     }
+
 
     lineChart.axisRight.isEnabled = false
 

@@ -192,7 +192,11 @@ private fun cargarGraficoDeBarras(
         }
     }
 
-    val dataSet = BarDataSet(entries, "${habito.unidad.toString().take(5).lowercase().replaceFirstChar { it.uppercase() } } x $tiempo")
+    var unidad = habito.unidad.toString().take(5).lowercase().replaceFirstChar { it.uppercase() }
+    if(unidad == "Null"){
+        unidad = "Checks"
+    }
+    val dataSet = BarDataSet(entries, "$unidad x $tiempo")
     dataSet.notifyDataSetChanged()
     dataSet.color = habito.colorHabito
     dataSet.valueTextSize = 14f
@@ -219,18 +223,42 @@ private fun cargarGraficoDeBarras(
     xAxis.axisLineWidth = 1.5f
 
 
-    // Configurar el eje Y
-    val yAxis = barChart.axisLeft
-    yAxis.axisMinimum = 0f
-    yAxis.axisMaximum = barData.yMax * 1.1f
-    yAxis.textSize = 14f
-    yAxis.textColor = Color.WHITE
-    yAxis.axisLineColor = Color.WHITE
-    yAxis.axisLineWidth = 1.5f
-    yAxis.gridColor = Color.argb(50, 255, 255, 255)
-    yAxis.valueFormatter = object : ValueFormatter() {
-        override fun getFormattedValue(value: Float): String {
-            return formatearNumero(value)
+
+    if (tiempo == "Día" && !habito.tipoNumerico) {
+        barChart.axisLeft.apply {
+            axisMinimum = 0f  // Valor mínimo
+            axisMaximum = 1f  // Valor máximo
+            granularity = 1f  // Paso entre valores (solo permite 0 y 1)
+            labelCount = 2     // Solo 2 etiquetas (0 y 1)
+            textSize = 14f
+            textColor = Color.WHITE
+            axisLineColor = Color.WHITE
+            axisLineWidth = 1.5f
+            gridColor = Color.argb(50, 255, 255, 255)
+            valueFormatter = object : ValueFormatter() {
+                override fun getFormattedValue(value: Float): String {
+                    return when (value) {
+                        0f -> "0"
+                        1f -> "1"
+                        else -> "" // Oculta otros valores intermedios
+                    }
+                }
+            }
+        }
+    } else {
+        barChart.axisLeft.apply {
+            resetAxisMaximum()
+            axisMinimum = 0f
+            axisLineWidth = 1.5f
+            granularity = 0f
+            labelCount = 6
+            textSize = 14f
+            textColor = Color.WHITE
+            valueFormatter = object : ValueFormatter() {
+                override fun getFormattedValue(value: Float): String {
+                    return formatearNumero(value)
+                }
+            }
         }
     }
 
