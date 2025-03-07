@@ -20,7 +20,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar_fragment_confi"
@@ -45,6 +46,34 @@
                 />
         </androidx.appcompat.widget.Toolbar>
 
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/progress_bar_configuraciones"
+            android:layout_width="75dp"
+            android:layout_height="75dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar_fragment_confi"
+            android:layout_marginBottom="60dp"
+            />
+
+        <TextView
+            android:visibility="gone"
+            android:id="@+id/texto_carga_configuracione"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintBottom_toTopOf="@+id/progress_bar_configuraciones"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:text="adfsadfsas"
+            android:textColor="@color/lightGrayColor"
+            android:textSize="@dimen/text_28"
+            android:fontFamily="@font/encabezados"
+            android:layout_marginBottom="12dp"
+            />
+
         <ScrollView
             android:id="@+id/scrollViewConfig"
             android:layout_width="match_parent"
@@ -52,7 +81,8 @@
             app:layout_constraintTop_toBottomOf="@id/toolbar_fragment_confi"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            >
 
             <LinearLayout
                 android:layout_width="match_parent"

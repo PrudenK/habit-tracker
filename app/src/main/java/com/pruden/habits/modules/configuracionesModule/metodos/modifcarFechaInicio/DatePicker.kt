@@ -8,6 +8,7 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
 import android.widget.DatePicker
 import com.pruden.habits.HabitosApplication.Companion.formatoFecha
@@ -19,10 +20,13 @@ import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.metodos.fechas.obtenerFechasEntre
 import com.pruden.habits.databinding.FragmentConfiguracionesBinding
 import com.pruden.habits.modules.configuracionesModule.viewModel.ConfiguracionesViewModel
+import com.pruden.habits.modules.mainModule.MainActivity
 import com.pruden.habits.modules.mainModule.metodos.ajustarDialogo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import java.util.Calendar
 
 
@@ -31,7 +35,8 @@ fun mostrarDatePicker(
     context: Context,
     binding: FragmentConfiguracionesBinding,
     resurces: Resources,
-    viewModel: ConfiguracionesViewModel
+    viewModel: ConfiguracionesViewModel,
+    main: MainActivity
 ) {
     val calendario = Calendar.getInstance()
 
@@ -121,29 +126,30 @@ fun mostrarDatePicker(
 
                     fechaNueva = formatoFecha.format(calendar.time)
 
-                    CoroutineScope(Dispatchers.IO).launch {
-                        /*
-                        withContext(Dispatchers.Main) {
-                            progressBar.visibility = View.VISIBLE
-                        }
-                         */
+                    binding.scrollViewConfig.visibility = View.GONE
+                    binding.progressBarConfiguraciones.visibility = View.VISIBLE
+                    binding.textoCargaConfiguracione.visibility = View.VISIBLE
+                    binding.textoCargaConfiguracione.text = "¡Cargando tus registros!"
 
+                    CoroutineScope(Dispatchers.IO).launch { //TODO optimizar en un futuro
                         val fechasDiff = obtenerFechasEntre(fechaNueva, fechaAntiguaInicio)
 
                         viewModel.insertarListaDataHabitos(fechasDiff, listaHabitos)
 
-                        /*
+                        delay((0.7* fechasDiff.size).toLong())
+
                         withContext(Dispatchers.Main) {
-                            progressBar.visibility = View.GONE
+                            binding.scrollViewConfig.visibility = View.VISIBLE
+                            binding.progressBarConfiguraciones.visibility = View.GONE
+                            binding.textoCargaConfiguracione.visibility = View.GONE
                         }
-                         */
                     }
 
 
                 }
-
-
                 dialogConfirmar.dismiss()
+
+
             }
             dialogConfirmar.show()
             ajustarDialogo(resurces, dialogConfirmar, 0.8f)
