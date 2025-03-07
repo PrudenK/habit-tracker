@@ -1,10 +1,15 @@
 package com.pruden.habits.modules.mainModule
 
+import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.view.ContextThemeWrapper
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.PopupMenu
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
@@ -79,12 +84,12 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
 
         // FRAGMENTS
         agregarHabito()
-        configuraciones()
-        archivados()
 
         actualizarPagina()
 
         cargarScrollFechaCommon(mBinding.recyclerFechas, fechasAdapter, mBinding.auxiliar)
+
+        menuExtra()
     }
 
     private fun calcularTamanoPagina() {
@@ -170,19 +175,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
             cargarFragment(this, AgregarEditarHabitoFragment())
         }
     }
-
-    private fun configuraciones(){
-        mBinding.configuraciones.setOnClickListener {
-            cargarFragment(this, ConfiguracionesFragment())
-        }
-    }
-
-    private fun archivados(){
-        mBinding.habitosArchivados.setOnClickListener {
-            cargarFragment(this, ArchivarHabitoFragment())
-        }
-    }
-
+    
 
     fun actualizarDatosHabitos(){
         sincronizadorDeScrolls.limpiarRecycler()
@@ -215,4 +208,32 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
         }
     }
 
+    private fun menuExtra(){
+        mBinding.menuExtra.setOnClickListener {
+            val contextWrapper = ContextThemeWrapper(this, R.style.CustomPopupMenu)
+
+            val popupMenu = PopupMenu(contextWrapper, mBinding.menuExtra)
+            popupMenu.menuInflater.inflate(R.menu.menu_tool_bar_main, popupMenu.menu)
+
+            popupMenu.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.menu_configuraciones -> {
+                        cargarFragment(this, ConfiguracionesFragment())
+                        true
+                    }
+                    R.id.menu_archivados->{
+                        cargarFragment(this, ArchivarHabitoFragment())
+                        true
+                    }
+                    R.id.menu_etiquetas->{
+
+                        true
+                    }
+
+                    else -> false
+                }
+            }
+            popupMenu.show()
+        }
+    }
 }

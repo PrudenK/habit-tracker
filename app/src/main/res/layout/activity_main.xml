@@ -37,58 +37,42 @@
             android:id="@+id/titulo_tool_bar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/titulos"
             android:gravity="center"
             android:text="Habit tracker"
-            android:textSize="@dimen/text_32"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
             android:textColor="@color/gray_color"
-            android:fontFamily="@font/titulos"
-            />
-
-        <ImageView
-            android:id="@+id/configuraciones"
-            app:layout_constraintTop_toTopOf="@id/titulo_tool_bar"
-            app:layout_constraintBottom_toBottomOf="@id/titulo_tool_bar"
-            android:layout_width="27dp"
-            android:layout_height="27dp"
+            android:textSize="@dimen/text_32"
             app:layout_constraintEnd_toEndOf="parent"
-            android:src="@drawable/ic_configuraciones"
-            android:clickable="true"
-            android:focusable="true"
-            android:background="?attr/selectableItemBackground"
-            app:tint="@color/gray_color"
-            android:layout_marginEnd="12dp"
-            />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/agregar_habito"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="@dimen/w_40"
+            android:layout_height="@dimen/h_40"
             android:layout_marginEnd="12dp"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
             android:src="@drawable/ic_add"
             app:layout_constraintBottom_toBottomOf="@+id/titulo_tool_bar"
-            app:layout_constraintEnd_toStartOf="@id/configuraciones"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/gray_color" />
 
         <ImageView
-            android:id="@+id/habitos_archivados"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
-            android:layout_marginStart="6dp"
+            android:id="@+id/menu_extra"
+            android:layout_width="@dimen/w_40"
+            android:layout_height="@dimen/h_40"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/ic_archivados"
-            app:layout_constraintBottom_toBottomOf="@+id/titulo_tool_bar"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/gray_color" />
+            android:src="@drawable/ic_menu"
+            app:layout_constraintBottom_toBottomOf="@id/titulo_tool_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/titulo_tool_bar"
+
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_configuraciones"
+        android:title="Configuraciones"
+        android:icon="@drawable/ic_configuraciones"
+        />
+
+    <item
+        android:id="@+id/menu_archivados"
+        android:title="Archivados"
+        android:icon="@drawable/ic_archivados"
+        />
+
+    <item
+        android:id="@+id/menu_etiquetas"
+        android:title="Etiquetas"
+        android:icon="@drawable/ic_add"
+        />
+
+
+</menu>
