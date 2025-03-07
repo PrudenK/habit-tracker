@@ -1,11 +1,8 @@
 package com.pruden.habits.modules.mainModule
 
-import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.ContextThemeWrapper
-import android.view.Menu
-import android.view.MenuItem
 import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -175,7 +172,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
             cargarFragment(this, AgregarEditarHabitoFragment())
         }
     }
-    
+
 
     fun actualizarDatosHabitos(){
         sincronizadorDeScrolls.limpiarRecycler()

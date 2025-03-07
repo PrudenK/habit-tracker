@@ -11,8 +11,9 @@
     <style name="Theme.Habits" parent="Base.Theme.Habits" />
 
     <style name="CustomPopupMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
-        <item name="android:backgroundTint">@color/bottom_app_bar</item>
+        <item name="android:backgroundTint">@color/menu_color</item>
         <item name="android:textColor">@color/lightGrayColor</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:popupElevation">0dp</item>
     </style>
 </resources>

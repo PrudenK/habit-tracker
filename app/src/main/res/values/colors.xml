@@ -10,6 +10,7 @@
 
 
     <color name="dark_gray">#1E1E1E</color>
+    <color name="menu_color">#313030</color>
     <color name="light_gray">#A0A0A0</color>
     <color name="green_check">#4CAF50</color>
     <color name="blue_highlight">#3F51B5</color>
