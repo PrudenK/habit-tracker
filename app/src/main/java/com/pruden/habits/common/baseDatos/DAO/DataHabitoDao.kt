@@ -26,4 +26,7 @@ interface DataHabitoDao {
 
     @Query("Select * from datahabitos")
     suspend fun obtenerTodoDataHabitos(): MutableList<DataHabitoEntity>
+
+    @Query("DELETE FROM datahabitos WHERE fecha < :fechaLimite")
+    suspend fun eliminarRegistrosAnterioresA(fechaLimite: String)
 }

@@ -1,12 +1,12 @@
 package com.pruden.habits.modules.configuracionesModule.metodos.modifcarFechaInicio
 
-import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.DatePicker
@@ -22,6 +22,7 @@ fun mostrarDatePicker(
     context: Context,
     binding: FragmentConfiguracionesBinding,
     resurces: Resources,
+    viewModel: ConfiguracionesViewModel
 ) {
     val calendario = Calendar.getInstance()
 
@@ -32,6 +33,8 @@ fun mostrarDatePicker(
         calendario.set(Calendar.MONTH, partes[1].toInt() - 1)
         calendario.set(Calendar.DAY_OF_MONTH, partes[2].toInt())
     }
+
+    val fechaAntiguaInicio = Constantes.FECHA_INICIO // Guardo la fecha aquí por si es que se cambia luego.
 
     val year = calendario.get(Calendar.YEAR)
     val mes = calendario.get(Calendar.MONTH)
@@ -91,14 +94,19 @@ fun mostrarDatePicker(
                 val mesSeleccionado = datePicker.month
                 val diaSeleccionado = datePicker.dayOfMonth
 
-                val fecha = String.format("%d-%02d-%02d", yearSeleccionado, mesSeleccionado + 1, diaSeleccionado)
+                val fechaNueva = String.format("%d-%02d-%02d", yearSeleccionado, mesSeleccionado + 1, diaSeleccionado)
 
-                binding.fechaIncioRegistrosHabitos.text = "Fecha inicio de los registros: $fecha"
+                binding.fechaIncioRegistrosHabitos.text = "Fecha inicio de los registros: $fechaNueva"
 
-                sharedConfiguraciones.edit().putString(Constantes.SHARED_FECHA_INICIO, fecha).apply()
-                Constantes.FECHA_INICIO = fecha
+                sharedConfiguraciones.edit().putString(Constantes.SHARED_FECHA_INICIO, fechaNueva).apply()
+                Constantes.FECHA_INICIO = fechaNueva
 
+                Log.d("fehcasssads", "$fechaNueva, $fechaAntiguaInicio, ${fechaNueva> fechaAntiguaInicio}")
+                if(fechaNueva > fechaAntiguaInicio){ // Quitar
+                    viewModel.eliminarRegistrosAnterioresA(fechaNueva)
+                }else if(fechaNueva < fechaAntiguaInicio){ // Añadir
 
+                }
 
 
                 dialogConfirmar.dismiss()

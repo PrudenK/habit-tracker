@@ -74,4 +74,10 @@ class ConfiguracionesInteractor {
             HabitosApplication.database.dataHabitoDao().insertDataHabito(dataHabitoEntity)
         }
     }
+
+    fun eliminarDataHabitosAnteriroresA(fechaLimite: String){
+        CoroutineScope(Dispatchers.IO).launch {
+            HabitosApplication.database.dataHabitoDao().eliminarRegistrosAnterioresA(fechaLimite)
+        }
+    }
 }

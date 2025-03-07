@@ -107,4 +107,8 @@ class ConfiguracionesViewModel: ViewModel() {
     fun insertarDataHabito(dataHabitoEntity: DataHabitoEntity){
         interactor.insertarDataHabito(dataHabitoEntity)
     }
+
+    fun eliminarRegistrosAnterioresA(fechaLimite: String){
+        interactor.eliminarDataHabitosAnteriroresA(fechaLimite)
+    }
 }
