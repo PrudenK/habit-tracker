@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import android.util.Log
 import android.widget.Toast
+import com.pruden.habits.HabitosApplication.Companion.sharedConfiguraciones
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.Constantes
@@ -16,6 +17,7 @@ import java.io.InputStreamReader
 
  fun leerCsvDesdeUri(uri: Uri, context: Context, viewModel: ConfiguracionesViewModel) {
     try {
+
         val inputStream = context.contentResolver.openInputStream(uri)
         val reader = BufferedReader(InputStreamReader(inputStream))
 
@@ -55,25 +57,11 @@ import java.io.InputStreamReader
                 return
             }
 
-            /*
-            for(x in fechasEntreBaseInicio)
-                Log.v("Inicio-InicioConst",x)
-
-            for(y in fechaEntreFinYHoy)
-                Log.v("Fin-Hoy",y)
-
-            for (z in contenidoCsv)
-                Log.v("adfa",z)
-
-             */
-
             if(contenidoCsv.any { it.trimEnd(',') == Constantes.COMIENZAN_DATA_HABITOS }){
                 if(contenidoCsv.removeAt(0).trimEnd(',') == Constantes.CABECERA_HABITOS_CSV){
 
                     contenidoCsv.forEach { linea ->
                         if(linea.startsWith(Constantes.COMIENZAN_DATA_HABITOS)) comienzanDataHabitos = true
-
-                     //   Log.v("asdfasdf", "adsfadsfsadfadsfadsf")
 
                         if(!comienzanDataHabitos){
                             val h = linea.split(",")
@@ -89,8 +77,6 @@ import java.io.InputStreamReader
                             if(linea.trimEnd(',') != Constantes.COMIENZAN_DATA_HABITOS && !linea.startsWith("Fecha")){
                                 val d = linea.split(",")
                                 val fecha = d[0]
-                                Log.d("Fechas", fecha)
-
 
 
 

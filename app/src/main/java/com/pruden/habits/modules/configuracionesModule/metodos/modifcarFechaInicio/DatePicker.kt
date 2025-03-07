@@ -70,8 +70,10 @@ fun mostrarDatePicker(
     datePicker.calendarViewShown = false
     datePicker.spinnersShown = true
 
-    val calendarMin = Calendar.getInstance()
-    calendarMin.set(2020, Calendar.JANUARY, 1) // Hace un año
+    val calendarMin = Calendar.getInstance().apply {
+        set(2020, Calendar.JANUARY, 1, 0, 0, 0) // 🔹 Fecha mínima fija en 2020-01-01
+        set(Calendar.MILLISECOND, 0)
+    }
     datePicker.minDate = calendarMin.timeInMillis
 
     val calendarMax = Calendar.getInstance()
