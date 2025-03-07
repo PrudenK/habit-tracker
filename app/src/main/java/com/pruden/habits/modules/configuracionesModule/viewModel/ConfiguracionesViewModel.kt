@@ -3,6 +3,7 @@ package com.pruden.habits.modules.configuracionesModule.viewModel
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.metodos.Dialogos.makeToast
@@ -110,5 +111,9 @@ class ConfiguracionesViewModel: ViewModel() {
 
     fun eliminarRegistrosAnterioresA(fechaLimite: String){
         interactor.eliminarDataHabitosAnteriroresA(fechaLimite)
+    }
+
+    fun insertarListaDataHabitos(fechas: List<String>, habitos: MutableList<Habito>){
+        interactor.insertarListaDeDataHabitos(fechas, habitos)
     }
 }

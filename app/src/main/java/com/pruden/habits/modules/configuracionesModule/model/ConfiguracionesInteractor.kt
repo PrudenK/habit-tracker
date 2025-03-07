@@ -1,6 +1,7 @@
 package com.pruden.habits.modules.configuracionesModule.model
 
 import com.pruden.habits.HabitosApplication
+import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import kotlinx.coroutines.CoroutineScope
@@ -78,6 +79,12 @@ class ConfiguracionesInteractor {
     fun eliminarDataHabitosAnteriroresA(fechaLimite: String){
         CoroutineScope(Dispatchers.IO).launch {
             HabitosApplication.database.dataHabitoDao().eliminarRegistrosAnterioresA(fechaLimite)
+        }
+    }
+
+    fun insertarListaDeDataHabitos(fechas: List<String>, habitos: MutableList<Habito>){
+        CoroutineScope(Dispatchers.IO).launch {
+            HabitosApplication.database.dataHabitoDao().insertarListaDataHabitoTransaction(fechas, habitos)
         }
     }
 }

@@ -3,8 +3,11 @@ package com.pruden.habits.common.baseDatos.DAO
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Update
+import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 
 @Dao
@@ -29,4 +32,18 @@ interface DataHabitoDao {
 
     @Query("DELETE FROM datahabitos WHERE fecha < :fechaLimite")
     suspend fun eliminarRegistrosAnterioresA(fechaLimite: String)
+
+    @Transaction
+    suspend fun insertarListaDataHabitoTransaction(fechas: List<String>, habitos: MutableList<Habito>) {
+        val listaAInsertar = mutableListOf<DataHabitoEntity>()
+        for (habito in habitos) {
+            for (fecha in fechas) {
+                listaAInsertar.add(DataHabitoEntity(habito.nombre, fecha, "0", null))
+            }
+        }
+        insertarListaDataHabito(listaAInsertar)
+    }
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertarListaDataHabito(lista: List<DataHabitoEntity>)
 }

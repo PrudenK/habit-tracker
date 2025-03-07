@@ -10,13 +10,22 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import android.widget.DatePicker
+import com.pruden.habits.HabitosApplication.Companion.formatoFecha
+import com.pruden.habits.HabitosApplication.Companion.listaHabitos
 import com.pruden.habits.HabitosApplication.Companion.sharedConfiguraciones
 import com.pruden.habits.R
 import com.pruden.habits.common.Constantes
+import com.pruden.habits.common.clases.entities.DataHabitoEntity
+import com.pruden.habits.common.metodos.fechas.obtenerFechasEntre
 import com.pruden.habits.databinding.FragmentConfiguracionesBinding
 import com.pruden.habits.modules.configuracionesModule.viewModel.ConfiguracionesViewModel
 import com.pruden.habits.modules.mainModule.metodos.ajustarDialogo
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import java.util.Calendar
+
+
 
 fun mostrarDatePicker(
     context: Context,
@@ -94,7 +103,7 @@ fun mostrarDatePicker(
                 val mesSeleccionado = datePicker.month
                 val diaSeleccionado = datePicker.dayOfMonth
 
-                val fechaNueva = String.format("%d-%02d-%02d", yearSeleccionado, mesSeleccionado + 1, diaSeleccionado)
+                var fechaNueva = String.format("%d-%02d-%02d", yearSeleccionado, mesSeleccionado + 1, diaSeleccionado)
 
                 binding.fechaIncioRegistrosHabitos.text = "Fecha inicio de los registros: $fechaNueva"
 
@@ -105,6 +114,31 @@ fun mostrarDatePicker(
                 if(fechaNueva > fechaAntiguaInicio){ // Quitar
                     viewModel.eliminarRegistrosAnterioresA(fechaNueva)
                 }else if(fechaNueva < fechaAntiguaInicio){ // Añadir
+                    val calendar = Calendar.getInstance()
+
+                    calendar.time = formatoFecha.parse(fechaNueva)
+                    calendar.add(Calendar.DAY_OF_MONTH, -1)
+
+                    fechaNueva = formatoFecha.format(calendar.time)
+
+                    CoroutineScope(Dispatchers.IO).launch {
+                        /*
+                        withContext(Dispatchers.Main) {
+                            progressBar.visibility = View.VISIBLE
+                        }
+                         */
+
+                        val fechasDiff = obtenerFechasEntre(fechaNueva, fechaAntiguaInicio)
+
+                        viewModel.insertarListaDataHabitos(fechasDiff, listaHabitos)
+
+                        /*
+                        withContext(Dispatchers.Main) {
+                            progressBar.visibility = View.GONE
+                        }
+                         */
+                    }
+
 
                 }
 

@@ -20,6 +20,7 @@ class HabitosApplication : Application(){
         var listaFechas = mutableListOf<Fecha>()
         var tamanoPagina = 8
         lateinit var sharedConfiguraciones : SharedPreferences
+        val formatoFecha = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
     }
 
     override fun onCreate(){

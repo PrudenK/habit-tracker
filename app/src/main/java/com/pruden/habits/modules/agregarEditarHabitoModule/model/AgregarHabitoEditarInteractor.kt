@@ -33,7 +33,7 @@ class AgregarHabitoEditarInteractor {
                 DataHabitoEntity(
                     nombre = nombreHabito,
                     fecha = fecha,
-                    valorCampo = "0.0",
+                    valorCampo = "0",
                     notas = null
                 )
             )
