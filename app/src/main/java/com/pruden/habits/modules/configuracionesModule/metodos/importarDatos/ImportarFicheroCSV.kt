@@ -11,12 +11,15 @@ import com.pruden.habits.common.Constantes
 import com.pruden.habits.common.metodos.Dialogos.makeToast
 import com.pruden.habits.common.metodos.fechas.obtenerFechaActual
 import com.pruden.habits.common.metodos.fechas.obtenerFechasEntre
+import com.pruden.habits.databinding.DialogDesarchivarBinding
+import com.pruden.habits.databinding.FragmentConfiguracionesBinding
 import com.pruden.habits.modules.configuracionesModule.viewModel.ConfiguracionesViewModel
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
- fun leerCsvDesdeUri(uri: Uri, context: Context, viewModel: ConfiguracionesViewModel) {
+ fun leerCsvDesdeUri(uri: Uri, context: Context, viewModel: ConfiguracionesViewModel, binding: FragmentConfiguracionesBinding) {
     try {
+        var primeraFecha = false
 
         val inputStream = context.contentResolver.openInputStream(uri)
         val reader = BufferedReader(InputStreamReader(inputStream))
@@ -44,13 +47,8 @@ import java.io.InputStreamReader
             Log.d("fechaInicio", fechaInicio)
             Log.d("fechaFin", fechaFin)
 
-            var fechasEntreBaseInicio = listOf<String>()
             val fechaEntreFinYHoy = obtenerFechasEntre(fechaFin, obtenerFechaActual())
 
-            if(fechaInicio > Constantes.FECHA_INICIO){
-                val auxLista = obtenerFechasEntre(Constantes.FECHA_INICIO_PARA_DIFF, fechaInicio)
-                fechasEntreBaseInicio = auxLista.subList(0, auxLista.size - 1)
-            }
 
             if(fechaFin > obtenerFechaActual()){
                 makeToast("Fichero no válido_3", context)
@@ -78,7 +76,12 @@ import java.io.InputStreamReader
                                 val d = linea.split(",")
                                 val fecha = d[0]
 
-
+                                if(!primeraFecha){
+                                    sharedConfiguraciones.edit().putString(Constantes.SHARED_FECHA_INICIO, fecha).apply()
+                                    Constantes.FECHA_INICIO = fecha
+                                    primeraFecha = true
+                                    binding.fechaIncioRegistrosHabitos.text = "Fecha inicio de los registros: ${Constantes.FECHA_INICIO}"
+                                }
 
                                 var k = 0
                                 for (i in 1..<d.size step 2) {
@@ -91,11 +94,6 @@ import java.io.InputStreamReader
                     }
                     for(h in listaHabitosEntity){
                         for(fecha in fechaEntreFinYHoy){
-                            viewModel.insertarDataHabito(
-                                DataHabitoEntity(h.nombre, fecha,"0",null)
-                            )
-                        }
-                        for(fecha in fechasEntreBaseInicio){
                             viewModel.insertarDataHabito(
                                 DataHabitoEntity(h.nombre, fecha,"0",null)
                             )
