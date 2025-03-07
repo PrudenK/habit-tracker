@@ -12,6 +12,8 @@ object Constantes {
 
     const val SHARED_CONFIGURACIONES = "Configuraciones"
 
+    const val FECHA_MINIMA_SOPORTADA = "2020-01-01"
+
 
     const val SHARED_FECHA_INICIO = "fecha_inicio"
     var FECHA_INICIO = sharedConfiguraciones.getString(SHARED_FECHA_INICIO, "2023-01-01")!!

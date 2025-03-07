@@ -77,10 +77,16 @@ import java.io.InputStreamReader
                                 val fecha = d[0]
 
                                 if(!primeraFecha){
-                                    sharedConfiguraciones.edit().putString(Constantes.SHARED_FECHA_INICIO, fecha).apply()
-                                    Constantes.FECHA_INICIO = fecha
-                                    primeraFecha = true
-                                    binding.fechaIncioRegistrosHabitos.text = "Fecha inicio de los registros: ${Constantes.FECHA_INICIO}"
+                                    if(fecha >= Constantes.FECHA_MINIMA_SOPORTADA){
+                                        sharedConfiguraciones.edit().putString(Constantes.SHARED_FECHA_INICIO, fecha).apply()
+                                        Constantes.FECHA_INICIO = fecha
+                                        primeraFecha = true
+                                        binding.fechaIncioRegistrosHabitos.text = "Fecha inicio de los registros: ${Constantes.FECHA_INICIO}"
+                                    }else{
+                                        makeToast("Error al importar la fecha mínima soportada es ${Constantes.FECHA_MINIMA_SOPORTADA}", context)
+                                        return
+                                    }
+
                                 }
 
                                 var k = 0
