@@ -1,7 +1,6 @@
 package com.pruden.habits.modules.configuracionesModule
 
 import android.app.Activity.RESULT_OK
-import android.app.DatePickerDialog
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -12,12 +11,10 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.DatePicker
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import com.pruden.habits.HabitosApplication.Companion.sharedConfiguraciones
 import com.pruden.habits.modules.mainModule.MainActivity
 import com.pruden.habits.R
 import com.pruden.habits.common.Constantes
@@ -26,11 +23,8 @@ import com.pruden.habits.modules.configuracionesModule.metodos.borrarDatos.borra
 import com.pruden.habits.common.metodos.Dialogos.makeToast
 import com.pruden.habits.modules.configuracionesModule.metodos.importarDatos.leerCsvDesdeUri
 import com.pruden.habits.databinding.FragmentConfiguracionesBinding
-import com.pruden.habits.modules.configuracionesModule.metodos.modifcarFecha.mostrarDatePicker
+import com.pruden.habits.modules.configuracionesModule.metodos.modifcarFechaInicio.mostrarDatePicker
 import com.pruden.habits.modules.configuracionesModule.viewModel.ConfiguracionesViewModel
-import java.text.SimpleDateFormat
-import java.util.Calendar
-import java.util.Locale
 
 
 @Suppress("DEPRECATION")
@@ -158,7 +152,7 @@ class ConfiguracionesFragment : Fragment() {
 
     private fun datePickerFechaInicio(){
         binding.fechaIncioRegistrosHabitos.setOnClickListener {
-            mostrarDatePicker(requireContext(), binding)
+            mostrarDatePicker(requireContext(), binding, resources)
         }
     }
 
