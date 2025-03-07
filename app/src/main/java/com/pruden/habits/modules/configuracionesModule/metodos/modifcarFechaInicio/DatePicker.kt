@@ -16,11 +16,9 @@ import com.pruden.habits.HabitosApplication.Companion.listaHabitos
 import com.pruden.habits.HabitosApplication.Companion.sharedConfiguraciones
 import com.pruden.habits.R
 import com.pruden.habits.common.Constantes
-import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.metodos.fechas.obtenerFechasEntre
 import com.pruden.habits.databinding.FragmentConfiguracionesBinding
 import com.pruden.habits.modules.configuracionesModule.viewModel.ConfiguracionesViewModel
-import com.pruden.habits.modules.mainModule.MainActivity
 import com.pruden.habits.modules.mainModule.metodos.ajustarDialogo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -35,8 +33,7 @@ fun mostrarDatePicker(
     context: Context,
     binding: FragmentConfiguracionesBinding,
     resurces: Resources,
-    viewModel: ConfiguracionesViewModel,
-    main: MainActivity
+    viewModel: ConfiguracionesViewModel
 ) {
     val calendario = Calendar.getInstance()
 
@@ -72,6 +69,13 @@ fun mostrarDatePicker(
     val datePicker = datePickerDialog.datePicker
     datePicker.calendarViewShown = false
     datePicker.spinnersShown = true
+
+    val calendarMin = Calendar.getInstance()
+    calendarMin.set(2020, Calendar.JANUARY, 1) // Hace un año
+    datePicker.minDate = calendarMin.timeInMillis
+
+    val calendarMax = Calendar.getInstance()
+    datePicker.maxDate = calendarMax.timeInMillis
 
 
     datePickerDialog.setButton(DatePickerDialog.BUTTON_POSITIVE, "OK") { _, _ ->

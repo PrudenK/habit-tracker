@@ -152,7 +152,7 @@ class ConfiguracionesFragment : Fragment() {
 
     private fun datePickerFechaInicio(){
         binding.fechaIncioRegistrosHabitos.setOnClickListener {
-            mostrarDatePicker(requireContext(), binding, resources, viewModel, main)
+            mostrarDatePicker(requireContext(), binding, resources, viewModel)
         }
     }
 
