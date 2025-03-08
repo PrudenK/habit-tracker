@@ -7,6 +7,7 @@ import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
@@ -212,6 +213,22 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
             val popupMenu = PopupMenu(contextWrapper, mBinding.menuExtra)
             popupMenu.menuInflater.inflate(R.menu.menu_tool_bar_main, popupMenu.menu)
 
+            try {
+                val popupHelper = PopupMenu::class.java.getDeclaredField("mPopup")
+                popupHelper.isAccessible = true
+                val menuPopupHelper = popupHelper.get(popupMenu)
+                val setForceShowIcon = menuPopupHelper.javaClass.getDeclaredMethod("setForceShowIcon", Boolean::class.java)
+                setForceShowIcon.invoke(menuPopupHelper, true)
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+
+            for (i in 0 until popupMenu.menu.size()) {
+                val menuItem = popupMenu.menu.getItem(i)
+                val drawable = menuItem.icon
+                drawable?.setTint(ContextCompat.getColor(this, R.color.lightGrayColor))
+            }
+
             popupMenu.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
                     R.id.menu_configuraciones -> {
@@ -223,6 +240,10 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
                         true
                     }
                     R.id.menu_etiquetas->{
+
+                        true
+                    }
+                    R.id.menu_agreagar_etiquetas->{
 
                         true
                     }
