@@ -36,6 +36,8 @@ class ConfiguracionesFragment : Fragment() {
     //MVVM
     private lateinit var viewModel: ConfiguracionesViewModel
 
+    private var fechasCambiadas = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -102,6 +104,9 @@ class ConfiguracionesFragment : Fragment() {
 
         return when (item.itemId) {
             android.R.id.home -> {
+                if(fechasCambiadas){
+                    parentFragmentManager.setFragmentResult("actualizar_habitos", Bundle())
+                }
                 activity?.onBackPressed()
                 true
             }
@@ -153,6 +158,7 @@ class ConfiguracionesFragment : Fragment() {
     private fun datePickerFechaInicio(){
         binding.fechaIncioRegistrosHabitos.setOnClickListener {
             mostrarDatePicker(requireContext(), binding, resources, viewModel)
+            fechasCambiadas = true
         }
     }
 
