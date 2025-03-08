@@ -8,9 +8,9 @@
         />
 
     <item
-        android:id="@+id/menu_archivados"
-        android:title="Archivados"
-        android:icon="@drawable/ic_archivados"
+        android:id="@+id/menu_agregar"
+        android:title="Agregar hábito"
+        android:icon="@drawable/ic_add"
         />
 
     <item

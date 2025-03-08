@@ -47,18 +47,19 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/agregar_habito"
+            android:id="@+id/archivados"
             android:layout_width="@dimen/w_40"
             android:layout_height="@dimen/h_40"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="16dp"
             android:background="?attr/selectableItemBackground"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/ic_add"
+            android:src="@drawable/ic_archivados"
             app:layout_constraintBottom_toBottomOf="@+id/titulo_tool_bar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/gray_color" />
+            app:tint="@color/gray_color"
+            />
 
         <ImageView
             android:id="@+id/menu_extra"

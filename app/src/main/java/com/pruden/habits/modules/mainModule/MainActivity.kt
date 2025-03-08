@@ -80,7 +80,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
         configurarRecyclerHabitos()
 
         // FRAGMENTS
-        agregarHabito()
+        archivados()
 
         actualizarPagina()
 
@@ -167,9 +167,9 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
         cargarFragment(this, EstadisticasFragment(), habito.nombre)
     }
 
-    private fun agregarHabito(){
-        mBinding.agregarHabito.setOnClickListener {
-            cargarFragment(this, AgregarEditarHabitoFragment())
+    private fun archivados(){
+        mBinding.archivados.setOnClickListener {
+            cargarFragment(this, ArchivarHabitoFragment())
         }
     }
 
@@ -218,8 +218,8 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
                         cargarFragment(this, ConfiguracionesFragment())
                         true
                     }
-                    R.id.menu_archivados->{
-                        cargarFragment(this, ArchivarHabitoFragment())
+                    R.id.menu_agregar->{
+                        cargarFragment(this, AgregarEditarHabitoFragment())
                         true
                     }
                     R.id.menu_etiquetas->{
