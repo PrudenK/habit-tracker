@@ -28,15 +28,15 @@ class AgregarHabitoEditarInteractor {
     suspend fun agregarRegistrosDBDataHabitos(nombreHabito: String) {
         val listaFechas = generarFechasFormatoYYYYMMDD()
 
-        listaFechas.forEach { fecha ->
-            HabitosApplication.database.dataHabitoDao().insertDataHabito(
-                DataHabitoEntity(
-                    nombre = nombreHabito,
-                    fecha = fecha,
-                    valorCampo = "0",
-                    notas = null
-                )
+        val listaRegistros = listaFechas.map { fecha ->
+            DataHabitoEntity(
+                nombre = nombreHabito,
+                fecha = fecha,
+                valorCampo = "0",
+                notas = null
             )
         }
+
+        HabitosApplication.database.dataHabitoDao().insertarListaDataHabito(listaRegistros)
     }
 }

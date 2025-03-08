@@ -46,4 +46,10 @@ interface DataHabitoDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertarListaDataHabito(lista: List<DataHabitoEntity>)
+
+    @Dao
+    interface DataHabitoDao {
+        @Insert(onConflict = OnConflictStrategy.REPLACE)
+        suspend fun insertarListaDataHabitos(lista: List<DataHabitoEntity>)
+    }
 }

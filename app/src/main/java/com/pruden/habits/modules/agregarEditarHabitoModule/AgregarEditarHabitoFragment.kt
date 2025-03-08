@@ -216,6 +216,7 @@ class AgregarEditarHabitoFragment : Fragment() {
                                 Snackbar.make(binding.root, "Hábito añadido con éxito", Snackbar.LENGTH_SHORT).show()
                                 binding.progressBarAgregar.visibility = View.GONE
                                 binding.agregandoHabito.visibility = View.GONE
+                                parentFragmentManager.setFragmentResult("actualizar_habitos", Bundle())
                                 activity?.onBackPressed()
                             }
                         }
