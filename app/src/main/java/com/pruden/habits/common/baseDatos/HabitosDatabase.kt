@@ -4,13 +4,20 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.pruden.habits.common.baseDatos.DAO.DataHabitoDao
+import com.pruden.habits.common.baseDatos.DAO.EtiquetaDao
 import com.pruden.habits.common.baseDatos.DAO.HabitoDao
+import com.pruden.habits.common.baseDatos.DAO.HabitoEtiquetaDao
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
+import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
+import com.pruden.habits.common.clases.entities.HabitoEtiquetaEntity
 
-@Database(entities =  [HabitoEntity::class, DataHabitoEntity::class], version = 5)
+@Database(entities =  [HabitoEntity::class, DataHabitoEntity::class,
+    EtiquetaEntity::class, HabitoEtiquetaEntity::class], version = 6)
 @TypeConverters(Converters::class)
 abstract class HabitosDatabase : RoomDatabase(){
     abstract fun habitoDao(): HabitoDao
     abstract fun dataHabitoDao(): DataHabitoDao
+    abstract fun etiquetaDao(): EtiquetaDao
+    abstract fun habitoEtiquetaDao(): HabitoEtiquetaDao
 }
