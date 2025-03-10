@@ -66,7 +66,7 @@ fun dialogoAgregarEtiqueta(
     btnGuardar.setOnClickListener {
         val nombreEtiqueta = editTextNombreEtiqeta.text.toString()
 
-        if(listaHabitosEtiquetas.map { it.etiqueta.lowercase() }.toMutableList().contains(nombreEtiqueta.lowercase())){
+        if(listaHabitosEtiquetas.map { it.nombreEtiquta.lowercase() }.toMutableList().contains(nombreEtiqueta.lowercase())){
             makeToast("Ese nombre de etiqueta ya existe", context)
         }else{
             if(colorEtiqueta == -1){

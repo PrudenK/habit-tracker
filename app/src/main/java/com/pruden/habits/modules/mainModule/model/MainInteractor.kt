@@ -99,12 +99,12 @@ class MainInteractor {
         }
     }
 
-    fun obtenerEtiquetaConHabitos(): LiveData<List<HabitosEtiqueta>> {
-        val result = MediatorLiveData<List<HabitosEtiqueta>>()
+    fun obtenerEtiquetaConHabitos(): LiveData<List<EtiquetaEntity>> {
+        val result = MediatorLiveData<List<EtiquetaEntity>>()
 
         CoroutineScope(Dispatchers.IO).launch {
             withContext(Dispatchers.Main) {
-                val liveDataFromRoom = HabitosApplication.database.habitoEtiquetaDao().obtenerEtiquetasYSusHabitosConLiveData()
+                val liveDataFromRoom = HabitosApplication.database.etiquetaDao().obtenerTodasLasEtiquetasConLiveData()
                 result.addSource(liveDataFromRoom) { etiquetas ->
                     result.value = etiquetas
                 }

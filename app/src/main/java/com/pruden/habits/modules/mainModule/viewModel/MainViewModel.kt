@@ -15,7 +15,7 @@ class MainViewModel: ViewModel() {
         return interactor.getAllHabitosConDatos()
     }
 
-    fun getAllEtiquetasConHabitos(): LiveData<List<HabitosEtiqueta>>{
+    fun getAllEtiquetasConHabitos(): LiveData<List<EtiquetaEntity>>{
         return interactor.obtenerEtiquetaConHabitos()
     }
 

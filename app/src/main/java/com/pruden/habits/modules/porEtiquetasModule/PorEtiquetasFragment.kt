@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.HabitosApplication.Companion.listaArchivados
+import com.pruden.habits.HabitosApplication.Companion.listaHabitosEtiquetas
 import com.pruden.habits.HabitosApplication.Companion.tamanoPagina
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.data.Habito
@@ -29,6 +30,7 @@ import com.pruden.habits.modules.mainModule.adapters.FechaAdapter
 import com.pruden.habits.modules.mainModule.adapters.HabitoAdapter
 import com.pruden.habits.modules.mainModule.adapters.listeners.OnClickHabito
 import com.pruden.habits.modules.mainModule.viewModel.MainViewModel
+import com.pruden.habits.modules.porEtiquetasModule.adapter.EtiquetasAdapter
 
 class PorEtiquetasFragment : Fragment(), OnClickHabito {
     private lateinit var binding: FragmentPorEtiquetasBinding
@@ -37,6 +39,9 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
 
     private lateinit var linearLayoutHabitos: RecyclerView.LayoutManager
     private lateinit var habitosAdapter: HabitoAdapter
+
+    private lateinit var linearLayoutEtiquetas: RecyclerView.LayoutManager
+    private lateinit var etiquetasAdapter: EtiquetasAdapter
 
     private val sincronizadorDeScrolls = SincronizadorDeScrolls()
 
@@ -80,6 +85,7 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
 
         configurarRecyclerFechas()
         configurarRecyclerHabitos()
+        configurarRecyclerEtiquetas()
 
         cargarScrollFechaCommon(binding.recyclerFechas, fechasAdapter, binding.auxiliar)
 
@@ -146,6 +152,18 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
             adapter = habitosAdapter
             layoutManager = linearLayoutHabitos
         }
+    }
+
+    private fun configurarRecyclerEtiquetas() {
+        etiquetasAdapter = EtiquetasAdapter()
+        linearLayoutEtiquetas = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+
+        binding.recyclerChipsEtiquetas.apply {
+            adapter = etiquetasAdapter
+            layoutManager = linearLayoutEtiquetas
+        }
+
+        etiquetasAdapter.submitList(listaHabitosEtiquetas)
     }
 
     private fun configurarRecyclerFechas() {

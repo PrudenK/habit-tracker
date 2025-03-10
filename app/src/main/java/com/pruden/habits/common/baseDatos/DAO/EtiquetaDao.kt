@@ -1,5 +1,6 @@
 package com.pruden.habits.common.baseDatos.DAO
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -11,8 +12,9 @@ interface EtiquetaDao {
     @Insert
     suspend fun insertarEtiqueta(etiqueta: EtiquetaEntity)
 
-    @Query("SELECT * FROM Etiqueta")
-    suspend fun obtenerTodasLasEtiquetas(): List<EtiquetaEntity>
+
+    @Query("Select * From Etiqueta")
+    fun obtenerTodasLasEtiquetasConLiveData(): LiveData<List<EtiquetaEntity>>
 
     @Query("SELECT * FROM Etiqueta WHERE nombreEtiquta = :nombreEtiqueta")
     suspend fun obtenerEtiquetaPorNombre(nombreEtiqueta: String): EtiquetaEntity

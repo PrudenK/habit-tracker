@@ -10,6 +10,7 @@ import com.pruden.habits.common.baseDatos.HabitosDatabase
 import com.pruden.habits.common.clases.auxClass.HabitosEtiqueta
 import com.pruden.habits.common.clases.data.Fecha
 import com.pruden.habits.common.clases.data.Habito
+import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.metodos.fechas.generateLastDates
 
@@ -23,7 +24,7 @@ class HabitosApplication : Application(){
         lateinit var sharedConfiguraciones : SharedPreferences
         val formatoFecha = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
 
-        var listaHabitosEtiquetas = mutableListOf<HabitosEtiqueta>()
+        var listaHabitosEtiquetas = mutableListOf<EtiquetaEntity>()
     }
 
     override fun onCreate(){

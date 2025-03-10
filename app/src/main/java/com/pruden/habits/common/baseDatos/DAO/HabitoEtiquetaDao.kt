@@ -25,16 +25,18 @@ interface HabitoEtiquetaDao {
     @Query("DELETE FROM HabitoEtiqueta WHERE nombreHabito = :nombreHabito AND nombreEtiqueta = :nombreEtiqueta")
     suspend fun eliminarRelacion(nombreHabito: String, nombreEtiqueta: String)
 
-    @Query("""
-        SELECT 
-            T.nombreEtiquta AS etiqueta, 
-            T.colorEtiqueta AS colorEtiqueta,
-            '[' || IFNULL(GROUP_CONCAT('"' || H.nombre || '"'), '') || ']' AS habitos
-        FROM Etiqueta AS T
-        LEFT JOIN HabitoEtiqueta AS HE ON T.nombreEtiquta = HE.nombreEtiqueta
-        LEFT JOIN Habitos AS H ON HE.nombreHabito = H.nombre
-        GROUP BY T.nombreEtiquta
-""")
-    fun obtenerEtiquetasYSusHabitosConLiveData(): LiveData<List<HabitosEtiqueta>>
+
+
+
 
 }
+/*
+        SELECT
+        T.nombreEtiquta AS etiqueta,
+        T.colorEtiqueta AS colorEtiqueta,
+        '[' || IFNULL(GROUP_CONCAT('"' || H.nombre || '"'), '') || ']' AS habitos
+    FROM Etiqueta AS T
+    LEFT JOIN HabitoEtiqueta AS HE ON T.nombreEtiquta = HE.nombreEtiqueta
+    LEFT JOIN Habitos AS H ON HE.nombreHabito = H.nombre
+    GROUP BY T.nombreEtiquta
+ */
