@@ -15,7 +15,7 @@
 
     <item
         android:id="@+id/menu_etiquetas"
-        android:title="Etiquetas"
+        android:title="Por etiquetas"
         android:icon="@drawable/ic_etiqueta"
         />
 

@@ -32,9 +32,11 @@ interface HabitoDao {
            H.posicion,
            '[' || GROUP_CONCAT(D.valorCampo) || ']' AS listaValores, 
            '[' || GROUP_CONCAT('"' || IFNULL(D.notas, '') || '"') || ']' AS listaNotas,
-           '[' || GROUP_CONCAT('"' || D.fecha || '"') || ']' AS listaFechas
+           '[' || GROUP_CONCAT('"' || D.fecha || '"') || ']' AS listaFechas,
+           '[' || GROUP_CONCAT(DISTINCT '"' || HE.nombreEtiqueta || '"') || ']' AS listaEtiquetas
     FROM Habitos AS H
     LEFT JOIN DataHabitos AS D ON H.nombre = D.nombre
+    LEFT JOIN HabitoEtiqueta AS HE ON H.nombre = HE.nombreHabito
     GROUP BY H.nombre
 """)
     suspend fun obtenerHabitosConValores(): MutableList<Habito>
@@ -50,9 +52,11 @@ interface HabitoDao {
            H.posicion,
            '[' || GROUP_CONCAT(D.valorCampo) || ']' AS listaValores, 
            '[' || GROUP_CONCAT('"' || IFNULL(D.notas, '') || '"') || ']' AS listaNotas,
-           '[' || GROUP_CONCAT('"' || D.fecha || '"') || ']' AS listaFechas
+           '[' || GROUP_CONCAT('"' || D.fecha || '"') || ']' AS listaFechas,
+           '[' || GROUP_CONCAT(DISTINCT '"' || HE.nombreEtiqueta || '"') || ']' AS listaEtiquetas
     FROM Habitos AS H
     LEFT JOIN DataHabitos AS D ON H.nombre = D.nombre
+    LEFT JOIN HabitoEtiqueta AS HE ON H.nombre = HE.nombreHabito
     GROUP BY H.nombre
 """)
     fun obtenerHabitosConLiveData(): LiveData<List<Habito>>
@@ -68,9 +72,11 @@ interface HabitoDao {
            H.archivado,
            '[' || GROUP_CONCAT(D.valorCampo) || ']' AS listaValores, 
            '[' || GROUP_CONCAT('"' || IFNULL(D.notas, '') || '"') || ']' AS listaNotas,
-           '[' || GROUP_CONCAT('"' || D.fecha || '"') || ']' AS listaFechas
+           '[' || GROUP_CONCAT('"' || D.fecha || '"') || ']' AS listaFechas,
+           '[' || GROUP_CONCAT(DISTINCT '"' || HE.nombreEtiqueta || '"') || ']' AS listaEtiquetas
     FROM Habitos AS H
     LEFT JOIN DataHabitos AS D ON H.nombre = D.nombre
+    LEFT JOIN HabitoEtiqueta AS HE ON H.nombre = HE.nombreHabito
     WHERE H.archivado = 1
     GROUP BY H.nombre
 """)
@@ -87,9 +93,11 @@ interface HabitoDao {
            H.archivado,
            '[' || GROUP_CONCAT(D.valorCampo) || ']' AS listaValores, 
            '[' || GROUP_CONCAT('"' || IFNULL(D.notas, '') || '"') || ']' AS listaNotas,
-           '[' || GROUP_CONCAT('"' || D.fecha || '"') || ']' AS listaFechas
+           '[' || GROUP_CONCAT('"' || D.fecha || '"') || ']' AS listaFechas,
+           '[' || GROUP_CONCAT(DISTINCT '"' || HE.nombreEtiqueta || '"') || ']' AS listaEtiquetas
     FROM Habitos AS H
     LEFT JOIN DataHabitos AS D ON H.nombre = D.nombre
+    LEFT JOIN HabitoEtiqueta AS HE ON H.nombre = HE.nombreHabito
     WHERE H.nombre = :nombre
     GROUP BY H.nombre
 """)

@@ -10,7 +10,8 @@ data class Habito(
     var listaValores: MutableList<String>,
     var listaNotas: MutableList<String?>,
     var listaFechas: MutableList<String>,
-    var posicion: Int
+    var posicion: Int,
+    var listaEtiquetas: MutableList<String>
 ) {
     override fun toString(): String {
         return "Habito(nombre='$nombre', objetivo=$objetivo, tipoNumerico=$tipoNumerico, unidad=$unidad, listaValores=$listaValores, listaNotas=$listaNotas)"
