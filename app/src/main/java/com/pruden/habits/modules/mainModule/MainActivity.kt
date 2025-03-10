@@ -145,7 +145,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
                 mainViewModel.insertarEtiqueta(EtiquetaEntity("Todos", Color.parseColor("#4cecec")))
                 mainViewModel.insertarEtiqueta(EtiquetaEntity("Archivados", Color.parseColor("#f7634f")))
             }
-
+            listaHabitosEtiquetas.clear()
             listaHabitosEtiquetas.addAll(nuevaLista)
         }
     }
