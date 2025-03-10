@@ -71,7 +71,9 @@ class EstadisticasFragment : Fragment(), OnClikCalendario {
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             if (habitoModificado) {
-                parentFragmentManager.setFragmentResult("actualizar_habitos", Bundle())
+                parentFragmentManager.setFragmentResult("actualizar_habitos_main", Bundle())
+                parentFragmentManager.setFragmentResult("actualizar_habitos_etiquetas", Bundle())
+                parentFragmentManager.setFragmentResult("actualizar_habitos_archivados", Bundle())
             }
             isEnabled = false
             activity?.onBackPressed()
@@ -142,7 +144,9 @@ class EstadisticasFragment : Fragment(), OnClikCalendario {
         return when (item.itemId) {
             android.R.id.home -> {
                 if(habitoModificado){
-                    parentFragmentManager.setFragmentResult("actualizar_habitos", Bundle())
+                    parentFragmentManager.setFragmentResult("actualizar_habitos_main", Bundle())
+                    parentFragmentManager.setFragmentResult("actualizar_habitos_etiquetas", Bundle())
+                    parentFragmentManager.setFragmentResult("actualizar_habitos_archivados", Bundle())
                 }
                 activity?.onBackPressed()
                 true

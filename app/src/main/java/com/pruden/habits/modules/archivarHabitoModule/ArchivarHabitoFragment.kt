@@ -91,7 +91,7 @@ class ArchivarHabitoFragment : Fragment(), OnClickHabito {
         paginaAnterior()
         paginaSiguiente()
 
-        parentFragmentManager.setFragmentResultListener("actualizar_habitos", viewLifecycleOwner) { _, _ ->
+        parentFragmentManager.setFragmentResultListener("actualizar_habitos_archivados", viewLifecycleOwner) { _, _ ->
             actualizarPagina()
         }
     }

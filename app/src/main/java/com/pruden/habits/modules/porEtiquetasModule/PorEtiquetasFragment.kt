@@ -1,6 +1,7 @@
 package com.pruden.habits.modules.porEtiquetasModule
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -8,6 +9,7 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -26,6 +28,7 @@ import com.pruden.habits.common.metodos.General.configurarRecyclerFechasCommon
 import com.pruden.habits.databinding.FragmentPorEtiquetasBinding
 import com.pruden.habits.modules.archivarHabitoModule.viewModel.ArchivarViewModel
 import com.pruden.habits.modules.estadisticasHabito.EstadisticasFragment
+import com.pruden.habits.modules.estadisticasHabito.metodos.cargarSpinnerGraficoDeLineas
 import com.pruden.habits.modules.mainModule.adapters.FechaAdapter
 import com.pruden.habits.modules.mainModule.adapters.HabitoAdapter
 import com.pruden.habits.modules.mainModule.adapters.listeners.OnClickHabito
@@ -64,6 +67,15 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
     ): View {
         binding = FragmentPorEtiquetasBinding.inflate(inflater, container, false)
 
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            parentFragmentManager.setFragmentResult("actualizar_habitos_main", Bundle())
+
+            isEnabled = false
+            activity?.onBackPressed()
+        }
+
+
+
         return binding.root
     }
 
@@ -94,9 +106,12 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
         paginaAnterior()
         paginaSiguiente()
 
-        parentFragmentManager.setFragmentResultListener("actualizar_habitos", viewLifecycleOwner) { _, _ ->
+        parentFragmentManager.setFragmentResultListener("actualizar_habitos_etiquetas", viewLifecycleOwner) { _, _ ->
+            cargarHabitosMVVM()
             actualizarPagina()
         }
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -114,7 +129,7 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
 
         return when (item.itemId) {
             android.R.id.home -> {
-                requireActivity().supportFragmentManager.setFragmentResult("actualizar_habitos", Bundle())
+                requireActivity().supportFragmentManager.setFragmentResult("actualizar_habitos_main", Bundle())
 
                 activity?.onBackPressed()
                 true
@@ -151,9 +166,11 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
             }
 
 
-            if (listaHabitosFiltrados.size != nuevaLista.size) {
+            if (listaHabitosFiltrados.isEmpty() || listaHabitosFiltrados.size != nuevaLista.size) {
                 listaHabitosFiltrados = nuevaLista.sortedBy { it.posicion }.toMutableList()
                 actualizarPagina()
+            }else{
+                listaHabitosFiltrados = nuevaLista.sortedBy { it.posicion }.toMutableList()
             }
 
             binding.progressBarEtiquetas.visibility = View.GONE
