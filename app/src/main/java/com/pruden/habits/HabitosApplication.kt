@@ -7,6 +7,7 @@ import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.pruden.habits.common.Constantes
 import com.pruden.habits.common.baseDatos.HabitosDatabase
+import com.pruden.habits.common.clases.auxClass.HabitosEtiqueta
 import com.pruden.habits.common.clases.data.Fecha
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.HabitoEntity
@@ -21,6 +22,8 @@ class HabitosApplication : Application(){
         var tamanoPagina = 8
         lateinit var sharedConfiguraciones : SharedPreferences
         val formatoFecha = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
+
+        var listaHabitosEtiquetas = mutableListOf<HabitosEtiqueta>()
     }
 
     override fun onCreate(){
@@ -33,7 +36,7 @@ class HabitosApplication : Application(){
             HabitosDatabase::class.java,
             "HabitosDatabase"
         )
-            .addMigrations(MIGRATION_5_6)
+          //  .addMigrations(MIGRATION_5_6)
           //  .fallbackToDestructiveMigration()
             .build()
 

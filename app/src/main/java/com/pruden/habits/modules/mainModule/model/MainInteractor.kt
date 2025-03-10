@@ -2,11 +2,14 @@ package com.pruden.habits.modules.mainModule.model
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
+import androidx.recyclerview.widget.ListAdapter
 import com.pruden.habits.HabitosApplication
 import com.pruden.habits.HabitosApplication.Companion.listaHabitos
 import com.pruden.habits.common.Constantes
+import com.pruden.habits.common.clases.auxClass.HabitosEtiqueta
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
+import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.metodos.fechas.obtenerFechaActual
 import com.pruden.habits.common.metodos.fechas.obtenerFechasEntre
@@ -93,6 +96,27 @@ class MainInteractor {
             withContext(Dispatchers.Main) {
                 callback()
             }
+        }
+    }
+
+    fun obtenerEtiquetaConHabitos(): LiveData<List<HabitosEtiqueta>> {
+        val result = MediatorLiveData<List<HabitosEtiqueta>>()
+
+        CoroutineScope(Dispatchers.IO).launch {
+            withContext(Dispatchers.Main) {
+                val liveDataFromRoom = HabitosApplication.database.habitoEtiquetaDao().obtenerEtiquetasYSusHabitosConLiveData()
+                result.addSource(liveDataFromRoom) { etiquetas ->
+                    result.value = etiquetas
+                }
+            }
+        }
+        return result
+    }
+
+
+    fun insertarEtiqueta(etiquetaEntity: EtiquetaEntity){
+        CoroutineScope(Dispatchers.IO).launch {
+            HabitosApplication.database.etiquetaDao().insertarEtiqueta(etiquetaEntity)
         }
     }
 }

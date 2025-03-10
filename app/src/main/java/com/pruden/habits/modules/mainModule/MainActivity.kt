@@ -2,6 +2,7 @@ package com.pruden.habits.modules.mainModule
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
+import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.View
 import androidx.activity.enableEdgeToEdge
@@ -14,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.HabitosApplication.Companion.listaHabitos
+import com.pruden.habits.HabitosApplication.Companion.listaHabitosEtiquetas
 import com.pruden.habits.HabitosApplication.Companion.tamanoPagina
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.data.Habito
@@ -109,6 +111,11 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
 
         mBinding.progressBar.visibility = View.VISIBLE
 
+        cargarLiveDataHabitos()
+        cargarLiveDataEtiquetas()
+    }
+
+    private fun cargarLiveDataHabitos(){
         mainViewModel.getAllHabitosConDatos().observe(this) { nuevaLista ->
             listaHabitos = nuevaLista.toMutableList().sortedBy { it.posicion }.toMutableList()
 
@@ -122,6 +129,14 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
             }
 
             mBinding.progressBar.visibility = View.GONE
+        }
+    }
+
+    private fun cargarLiveDataEtiquetas(){
+        mainViewModel.getAllEtiquetasConHabitos().observe(this){ nuevaLista ->
+            listaHabitosEtiquetas = nuevaLista.toMutableList()
+
+            Log.d("Listaaaaa", listaHabitosEtiquetas.toString())
         }
     }
 
@@ -245,7 +260,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
                         true
                     }
                     R.id.menu_agreagar_etiquetas->{
-                        dialogoAgregarEtiqueta(this, resources)
+                        dialogoAgregarEtiqueta(this, resources, mainViewModel)
                         true
                     }
 

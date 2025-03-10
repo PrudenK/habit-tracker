@@ -8,7 +8,7 @@ import com.pruden.habits.common.clases.entities.EtiquetaEntity
 
 @Dao
 interface EtiquetaDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert
     suspend fun insertarEtiqueta(etiqueta: EtiquetaEntity)
 
     @Query("SELECT * FROM Etiqueta")

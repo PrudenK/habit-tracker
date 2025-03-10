@@ -18,14 +18,18 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.pruden.habits.HabitosApplication.Companion.listaHabitosEtiquetas
 import com.pruden.habits.R
+import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.common.elementos.ColorPickerView
 import com.pruden.habits.common.metodos.Dialogos.makeToast
 import com.pruden.habits.modules.mainModule.MainActivity
+import com.pruden.habits.modules.mainModule.viewModel.MainViewModel
 
 fun dialogoAgregarEtiqueta(
     context: Context,
-    resources: Resources
+    resources: Resources,
+    mainViewModel: MainViewModel
 ){
     var colorEtiqueta = -1
 
@@ -60,12 +64,20 @@ fun dialogoAgregarEtiqueta(
     }
 
     btnGuardar.setOnClickListener {
-        val nombreEtiqueta = editTextNombreEtiqeta.text
+        val nombreEtiqueta = editTextNombreEtiqeta.text.toString()
 
-        if(colorEtiqueta == -1){
-            makeToast( "El blanco no es un color", context)
+        if(listaHabitosEtiquetas.map { it.etiqueta.lowercase() }.toMutableList().contains(nombreEtiqueta.lowercase())){
+            makeToast("Ese nombre de etiqueta ya existe", context)
         }else{
-            dialogo.dismiss()
+            if(colorEtiqueta == -1){
+                makeToast("El blanco no es un color", context)
+            }else{
+                mainViewModel.insertarEtiqueta(EtiquetaEntity(nombreEtiqueta, colorEtiqueta))
+
+                makeToast("Eiqueta: $nombreEtiqueta creada con éxito", context)
+
+                dialogo.dismiss()
+            }
         }
     }
 
