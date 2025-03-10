@@ -35,6 +35,7 @@ import com.pruden.habits.modules.estadisticasHabito.EstadisticasFragment
 import com.pruden.habits.modules.mainModule.metodos.dialogoAgregarEtiqueta
 import com.pruden.habits.modules.mainModule.metodos.dialogoOnLongClickHabito
 import com.pruden.habits.modules.mainModule.viewModel.MainViewModel
+import com.pruden.habits.modules.porEtiquetasModule.PorEtiquetasFragment
 
 
 class MainActivity : AppCompatActivity(), OnClickHabito {
@@ -256,7 +257,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
                         true
                     }
                     R.id.menu_etiquetas->{
-
+                        cargarFragment(this, PorEtiquetasFragment())
                         true
                     }
                     R.id.menu_agreagar_etiquetas->{
