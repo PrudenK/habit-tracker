@@ -1,0 +1,91 @@
+package com.pruden.habits.modules.mainModule.metodos
+
+import android.app.AlertDialog
+import android.app.Dialog
+import android.content.Context
+import android.content.res.ColorStateList
+import android.content.res.Resources
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.LayerDrawable
+import android.view.LayoutInflater
+import android.view.View
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.core.content.ContextCompat
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
+import com.pruden.habits.R
+import com.pruden.habits.common.elementos.ColorPickerView
+import com.pruden.habits.common.metodos.Dialogos.makeToast
+import com.pruden.habits.modules.mainModule.MainActivity
+
+fun dialogoAgregarEtiqueta(
+    context: Context,
+    resources: Resources
+){
+    var colorEtiqueta = -1
+
+    val dialogoView = LayoutInflater.from(context).inflate(R.layout.dialog_agregar_etiqueta, null)
+    val dialogo = AlertDialog.Builder(context).setView(dialogoView).create()
+
+    val btnCancelar = dialogoView.findViewById<Button>(R.id.button_cancelar_agregar_etiqueta)
+    val btnGuardar = dialogoView.findViewById<Button>(R.id.button_guardar_agreagr_etiqueta)
+
+    val tilNombreEtiqueta = dialogoView.findViewById<TextInputLayout>(R.id.til_nombre_etiqueta)
+    tilNombreEtiqueta.defaultHintTextColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.lightGrayColor))
+
+    val editTextNombreEtiqeta = dialogoView.findViewById<TextInputEditText>(R.id.input_notas_numerico_calendar)
+
+    val imgColorPicker = dialogoView.findViewById<ImageView>(R.id.img_color_etiqueta_num)
+    val drawable = imgColorPicker.background as LayerDrawable
+    val capaInterna = drawable.findDrawableByLayerId(R.id.interna)
+    capaInterna.setTint(ContextCompat.getColor(context, R.color.white))
+
+
+    dialogo.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+    imgColorPicker.setOnClickListener {
+        dialogoColorPicker(context) { color ->
+            colorEtiqueta = color
+            capaInterna.setTint(color)
+        }
+    }
+
+    btnCancelar.setOnClickListener {
+        dialogo.dismiss()
+    }
+
+    btnGuardar.setOnClickListener {
+        val nombreEtiqueta = editTextNombreEtiqeta.text
+
+        if(colorEtiqueta == -1){
+            makeToast( "El blanco no es un color", context)
+        }else{
+            dialogo.dismiss()
+        }
+    }
+
+
+    dialogo.show()
+
+    ajustarDialogo(resources, dialogo, 0.85f)
+}
+
+private fun dialogoColorPicker(context: Context, onColorSelected: (Int) -> Unit) {
+    val dialog = Dialog(context)
+    dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+    dialog.setContentView(R.layout.dialog_color_picker)
+    val colorPickerView = dialog.findViewById<ColorPickerView>(R.id.colorPickerView)
+
+    colorPickerView.setOnColorSelectedListener { colorPicker ->
+        onColorSelected(colorPicker)
+        dialog.dismiss()
+    }
+
+    dialog.show()
+}

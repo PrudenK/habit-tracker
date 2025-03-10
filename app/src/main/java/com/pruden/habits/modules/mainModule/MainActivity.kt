@@ -30,6 +30,7 @@ import com.pruden.habits.modules.agregarEditarHabitoModule.AgregarEditarHabitoFr
 import com.pruden.habits.modules.archivarHabitoModule.ArchivarHabitoFragment
 import com.pruden.habits.modules.configuracionesModule.ConfiguracionesFragment
 import com.pruden.habits.modules.estadisticasHabito.EstadisticasFragment
+import com.pruden.habits.modules.mainModule.metodos.dialogoAgregarEtiqueta
 import com.pruden.habits.modules.mainModule.metodos.dialogoOnLongClickHabito
 import com.pruden.habits.modules.mainModule.viewModel.MainViewModel
 
@@ -244,7 +245,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
                         true
                     }
                     R.id.menu_agreagar_etiquetas->{
-
+                        dialogoAgregarEtiqueta(this, resources)
                         true
                     }
 
