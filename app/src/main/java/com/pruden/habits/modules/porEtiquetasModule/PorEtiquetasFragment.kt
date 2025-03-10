@@ -114,6 +114,8 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
 
         return when (item.itemId) {
             android.R.id.home -> {
+                requireActivity().supportFragmentManager.setFragmentResult("actualizar_habitos", Bundle())
+
                 activity?.onBackPressed()
                 true
             }
@@ -149,7 +151,7 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
             }
 
 
-            if (listaHabitosFiltrados != nuevaLista) {
+            if (listaHabitosFiltrados.size != nuevaLista.size) {
                 listaHabitosFiltrados = nuevaLista.sortedBy { it.posicion }.toMutableList()
                 actualizarPagina()
             }

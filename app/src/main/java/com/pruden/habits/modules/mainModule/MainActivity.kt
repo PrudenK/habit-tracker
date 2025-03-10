@@ -120,6 +120,10 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
         mainViewModel.getAllHabitosConDatos().observe(this) { nuevaLista ->
             listaHabitos = nuevaLista.toMutableList().sortedBy { it.posicion }.toMutableList()
 
+            if (nuevaLista.any { it.listaValores.isEmpty() }) {
+                return@observe
+            }
+
             val listaFiltrada = nuevaLista.filter { !it.archivado }.sortedBy { it.posicion }
 
             if (listaCompletaHabitos.isEmpty() || listaCompletaHabitos.size != listaFiltrada.size) {

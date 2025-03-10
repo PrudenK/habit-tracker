@@ -217,6 +217,7 @@ class AgregarEditarHabitoFragment : Fragment() {
                                 binding.progressBarAgregar.visibility = View.GONE
                                 binding.agregandoHabito.visibility = View.GONE
                                 parentFragmentManager.setFragmentResult("actualizar_habitos", Bundle())
+
                                 activity?.onBackPressed()
                             }
                         }
