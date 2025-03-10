@@ -135,7 +135,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
 
     private fun cargarLiveDataEtiquetas(){
         mainViewModel.getAllEtiquetasConHabitos().observe(this){ nuevaLista ->
-            listaHabitosEtiquetas = nuevaLista.toMutableList()
+            listaHabitosEtiquetas.addAll(nuevaLista)
         }
     }
 

@@ -18,7 +18,13 @@ import com.pruden.habits.R
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.databinding.ItemEtiquetaBinding
 
-class EtiquetasAdapter : ListAdapter<EtiquetaEntity, RecyclerView.ViewHolder>(EtiquetaEntityDiffCallback()) {
+class EtiquetasAdapter (
+    private val onFilterChanged: (Set<String>) -> Unit
+
+): ListAdapter<EtiquetaEntity, RecyclerView.ViewHolder>(EtiquetaEntityDiffCallback()) {
+
+    private val selectedEtiquetas = mutableSetOf<String>()
+
 
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val binding = ItemEtiquetaBinding.bind(view)
@@ -62,6 +68,13 @@ class EtiquetasAdapter : ListAdapter<EtiquetaEntity, RecyclerView.ViewHolder>(Et
                 alpha = if (isChecked) 1f else 0.5f
 
                 setOnCheckedChangeListener { _, isChecked ->
+                    if (isChecked) {
+                        selectedEtiquetas.add(etiqueta.nombreEtiquta)
+                    } else {
+                        selectedEtiquetas.remove(etiqueta.nombreEtiquta)
+                    }
+                    onFilterChanged(selectedEtiquetas)
+
                     alpha = if (isChecked) 1f else 0.5f
                 }
             }

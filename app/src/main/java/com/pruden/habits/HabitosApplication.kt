@@ -2,6 +2,7 @@ package com.pruden.habits
 
 import android.app.Application
 import android.content.SharedPreferences
+import android.graphics.Color
 import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
@@ -44,6 +45,9 @@ class HabitosApplication : Application(){
         listaFechas = generateLastDates()
 
         sharedConfiguraciones = getSharedPreferences(Constantes.SHARED_CONFIGURACIONES, MODE_PRIVATE)
+
+        listaHabitosEtiquetas.add(EtiquetaEntity("Todos", Color.parseColor("#4cecec")))
+        listaHabitosEtiquetas.add(EtiquetaEntity("Archivados", Color.parseColor("#f7634f")))
     }
 
     val MIGRATION_1_2 = object : Migration(1, 2) {

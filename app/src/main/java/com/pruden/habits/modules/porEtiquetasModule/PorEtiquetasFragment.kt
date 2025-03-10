@@ -48,7 +48,7 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
     private lateinit var etiquetasViewModel: ArchivarViewModel
     private lateinit var mainViewModel: MainViewModel
 
-    private var listaCompletaArchivados: MutableList<Habito> = mutableListOf()
+    private var listaHabitosFiltrados: MutableList<Habito> = mutableListOf()
     private var paginaActual = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -90,7 +90,7 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
         cargarScrollFechaCommon(binding.recyclerFechas, fechasAdapter, binding.auxiliar)
 
 
-        cargarArchivadosMVVM()
+        cargarHabitosMVVM()
         paginaAnterior()
         paginaSiguiente()
 
@@ -125,22 +125,36 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
             else -> super.onOptionsItemSelected(item)
         }
     }
-    private fun cargarArchivadosMVVM(){
-        mainViewModel.getAllHabitosConDatos().observe(requireActivity()){ lista->
+
+    private val selectedEtiquetas = mutableSetOf<String>()
+
+    private fun cargarHabitosMVVM(){
+        mainViewModel.getAllHabitosConDatos().observe(viewLifecycleOwner) { lista ->
             if (!isAdded || activity == null) return@observe
 
             listaArchivados = lista.toMutableList()
             binding.progressBarEtiquetas.visibility = View.VISIBLE
 
-            if (listaCompletaArchivados.isEmpty() || listaCompletaArchivados.size != listaArchivados.size) {
-                listaCompletaArchivados = listaArchivados.toMutableList()
+            val incluirTodos = "Todos" in selectedEtiquetas
+            val incluirArchivados = "Archivados" in selectedEtiquetas
+
+            val nuevaLista = when {
+                incluirTodos && incluirArchivados -> listaArchivados.toMutableList()
+                incluirTodos -> listaArchivados.filter { !it.archivado }.toMutableList()
+                incluirArchivados -> listaArchivados.filter { it.archivado }.toMutableList()
+                selectedEtiquetas.isEmpty() -> listaArchivados.toMutableList()
+                else -> listaArchivados.filter { habito ->
+                    habito.listaEtiquetas.any { it in selectedEtiquetas }
+                }.toMutableList()
+            }
+
+
+            if (listaHabitosFiltrados != nuevaLista) {
+                listaHabitosFiltrados = nuevaLista.sortedBy { it.posicion }.toMutableList()
                 actualizarPagina()
-            } else {
-                listaCompletaArchivados = listaArchivados.toMutableList()
             }
 
             binding.progressBarEtiquetas.visibility = View.GONE
-
         }
     }
 
@@ -155,7 +169,11 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
     }
 
     private fun configurarRecyclerEtiquetas() {
-        etiquetasAdapter = EtiquetasAdapter()
+        etiquetasAdapter = EtiquetasAdapter{ etiquetasSeleccionadas ->
+            selectedEtiquetas.clear()
+            selectedEtiquetas.addAll(etiquetasSeleccionadas)
+            cargarHabitosMVVM()
+        }
         linearLayoutEtiquetas = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         binding.recyclerChipsEtiquetas.apply {
@@ -182,11 +200,19 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
 
 
     private fun actualizarPagina() {
-        val tamaPaginaRecalculado = tamanoPagina-1
-        val inicio = paginaActual * tamaPaginaRecalculado
-        val fin = (inicio + tamaPaginaRecalculado).coerceAtMost(listaCompletaArchivados.size)
+        val tamaPaginaRecalculado = tamanoPagina - 1
+        val totalPaginas = if (listaHabitosFiltrados.isNotEmpty()) {
+            (listaHabitosFiltrados.size + tamaPaginaRecalculado - 1) / tamaPaginaRecalculado
+        } else 1
 
-        val subLista = listaCompletaArchivados.subList(inicio, fin)
+        if (paginaActual >= totalPaginas) {
+            paginaActual = maxOf(0, totalPaginas - 1) // Evita que sea menor que 0
+        }
+
+        val inicio = paginaActual * tamaPaginaRecalculado
+        val fin = (inicio + tamaPaginaRecalculado).coerceAtMost(listaHabitosFiltrados.size)
+
+        val subLista = listaHabitosFiltrados.subList(inicio, fin)
 
         sincronizadorDeScrolls.limpiarRecycler()
         configurarRecyclerFechas()
@@ -197,9 +223,10 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
     }
 
 
+
     private fun paginaSiguiente(){
         binding.btnSiguiente.setOnClickListener {
-            if ((paginaActual + 1) * (tamanoPagina-1) < listaCompletaArchivados.size) {
+            if ((paginaActual + 1) * (tamanoPagina-1) < listaHabitosFiltrados.size) {
                 paginaActual++
                 actualizarPagina()
             }
