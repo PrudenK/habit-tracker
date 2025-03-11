@@ -1,9 +1,14 @@
 package com.pruden.habits.modules.etiquetasModule.viewModel
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.pruden.habits.HabitosApplication
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.modules.etiquetasModule.model.PorEtiquetasInteractor
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class PorEtiquetasViewModel: ViewModel() {
     private val interactor = PorEtiquetasInteractor()
@@ -19,5 +24,15 @@ class PorEtiquetasViewModel: ViewModel() {
 
     fun borrarEtiqueta(etiquetaEntity: EtiquetaEntity){
         interactor.borrarEtiqueta(etiquetaEntity)
+    }
+
+    fun updateEtiquetaSimple(etiquetaEntity: EtiquetaEntity, onComplete: () -> Unit){
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                HabitosApplication.database.etiquetaDao().updateEtiquetaSimple(etiquetaEntity)
+            }
+
+            onComplete()
+        }
     }
 }

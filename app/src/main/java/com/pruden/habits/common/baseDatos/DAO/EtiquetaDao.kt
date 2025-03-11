@@ -5,12 +5,16 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
 
 @Dao
 interface EtiquetaDao {
     @Insert
     suspend fun insertarEtiqueta(etiqueta: EtiquetaEntity)
+
+    @Update
+    suspend fun updateEtiquetaSimple(etiqueta: EtiquetaEntity)
 
     @Query("Select * From Etiqueta")
     fun obtenerTodasLasEtiquetasConLiveData(): LiveData<List<EtiquetaEntity>>
