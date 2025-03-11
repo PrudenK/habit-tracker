@@ -272,6 +272,10 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
                         dialogoAgregarEtiqueta(this, resources, mainViewModel){}
                         true
                     }
+                    R.id.menu_tutorial->{
+
+                        true
+                    }
 
                     else -> false
                 }

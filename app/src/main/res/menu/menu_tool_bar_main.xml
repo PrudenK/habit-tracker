@@ -25,4 +25,10 @@
         android:icon="@drawable/ic_agregar_etiqueta"
         />
 
+    <item
+        android:id="@+id/menu_tutorial"
+        android:title="Ver tutorial"
+        android:icon="@drawable/ic_tutorial"
+        />
+
 </menu>
