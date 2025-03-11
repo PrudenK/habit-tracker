@@ -1,10 +1,9 @@
-package com.pruden.habits.modules.porEtiquetasModule.adapter
+package com.pruden.habits.modules.etiquetasModule.adapter
 
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Typeface
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

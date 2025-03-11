@@ -38,7 +38,7 @@ class HabitosApplication : Application(){
             HabitosDatabase::class.java,
             "HabitosDatabase"
         )
-          //  .addMigrations(MIGRATION_5_6)
+           // .addMigrations(MIGRATION_6_7)
           //  .fallbackToDestructiveMigration()
             .build()
 
@@ -88,6 +88,8 @@ class HabitosApplication : Application(){
         }
     }
 
+    /////////////////////// ETIQUETAS
+
     val MIGRATION_5_6 = object : Migration(5, 6) { // Reemplaza X e Y con los números de versión correctos
         override fun migrate(database: SupportSQLiteDatabase) {
             // Crear la tabla Etiqueta
@@ -108,6 +110,13 @@ class HabitosApplication : Application(){
                 FOREIGN KEY (nombreEtiqueta) REFERENCES Etiqueta(nombreEtiquta) ON DELETE CASCADE
             )
         """.trimIndent())
+        }
+    }
+
+    val MIGRATION_6_7 = object : Migration(6, 7) {
+        override fun migrate(database: SupportSQLiteDatabase) {
+            // Agregar la nueva columna con un valor por defecto
+            database.execSQL("ALTER TABLE Etiqueta ADD COLUMN seleccionada INTEGER NOT NULL DEFAULT 0")
         }
     }
 

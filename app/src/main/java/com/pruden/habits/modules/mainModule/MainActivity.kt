@@ -3,7 +3,6 @@ package com.pruden.habits.modules.mainModule
 import android.content.pm.ActivityInfo
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.View
 import androidx.activity.enableEdgeToEdge
@@ -37,7 +36,7 @@ import com.pruden.habits.modules.estadisticasHabito.EstadisticasFragment
 import com.pruden.habits.modules.mainModule.metodos.dialogoAgregarEtiqueta
 import com.pruden.habits.modules.mainModule.metodos.dialogoOnLongClickHabito
 import com.pruden.habits.modules.mainModule.viewModel.MainViewModel
-import com.pruden.habits.modules.porEtiquetasModule.PorEtiquetasFragment
+import com.pruden.habits.modules.etiquetasModule.PorEtiquetasFragment
 
 
 class MainActivity : AppCompatActivity(), OnClickHabito {
@@ -142,8 +141,8 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
     private fun cargarLiveDataEtiquetas(){
         mainViewModel.getAllEtiquetasConHabitos().observe(this){ nuevaLista ->
             if(nuevaLista.isEmpty()){
-                mainViewModel.insertarEtiqueta(EtiquetaEntity("Todos", Color.parseColor("#4cecec")))
-                mainViewModel.insertarEtiqueta(EtiquetaEntity("Archivados", Color.parseColor("#f7634f")))
+                mainViewModel.insertarEtiqueta(EtiquetaEntity("Todos", Color.parseColor("#4cecec"), true))
+                mainViewModel.insertarEtiqueta(EtiquetaEntity("Archivados", Color.parseColor("#f7634f"), false))
             }
             listaHabitosEtiquetas.clear()
             listaHabitosEtiquetas.addAll(nuevaLista)

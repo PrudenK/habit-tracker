@@ -1,7 +1,6 @@
-package com.pruden.habits.modules.porEtiquetasModule
+package com.pruden.habits.modules.etiquetasModule
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -28,12 +27,11 @@ import com.pruden.habits.common.metodos.General.configurarRecyclerFechasCommon
 import com.pruden.habits.databinding.FragmentPorEtiquetasBinding
 import com.pruden.habits.modules.archivarHabitoModule.viewModel.ArchivarViewModel
 import com.pruden.habits.modules.estadisticasHabito.EstadisticasFragment
-import com.pruden.habits.modules.estadisticasHabito.metodos.cargarSpinnerGraficoDeLineas
 import com.pruden.habits.modules.mainModule.adapters.FechaAdapter
 import com.pruden.habits.modules.mainModule.adapters.HabitoAdapter
 import com.pruden.habits.modules.mainModule.adapters.listeners.OnClickHabito
 import com.pruden.habits.modules.mainModule.viewModel.MainViewModel
-import com.pruden.habits.modules.porEtiquetasModule.adapter.EtiquetasAdapter
+import com.pruden.habits.modules.etiquetasModule.adapter.EtiquetasAdapter
 
 class PorEtiquetasFragment : Fragment(), OnClickHabito {
     private lateinit var binding: FragmentPorEtiquetasBinding
