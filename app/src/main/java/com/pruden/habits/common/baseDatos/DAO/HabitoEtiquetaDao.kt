@@ -2,6 +2,7 @@ package com.pruden.habits.common.baseDatos.DAO
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -14,7 +15,10 @@ import com.pruden.habits.common.clases.entities.HabitoEtiquetaEntity
 interface HabitoEtiquetaDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertarRelacion(habitoEtiqueta: HabitoEtiquetaEntity)
+    suspend fun insertarRelaciones(relaciones: List<HabitoEtiquetaEntity>)
+
+    @Delete
+    suspend fun borrarRelaciones(relaciones: List<HabitoEtiquetaEntity>)
 
     @Query("SELECT * FROM Etiqueta INNER JOIN HabitoEtiqueta ON Etiqueta.nombreEtiquta = HabitoEtiqueta.nombreEtiqueta WHERE HabitoEtiqueta.nombreHabito = :nombreHabito")
     suspend fun obtenerEtiquetasPorHabito(nombreHabito: String): List<EtiquetaEntity>
@@ -24,8 +28,6 @@ interface HabitoEtiquetaDao {
 
     @Query("DELETE FROM HabitoEtiqueta WHERE nombreHabito = :nombreHabito AND nombreEtiqueta = :nombreEtiqueta")
     suspend fun eliminarRelacion(nombreHabito: String, nombreEtiqueta: String)
-
-
 
 
 

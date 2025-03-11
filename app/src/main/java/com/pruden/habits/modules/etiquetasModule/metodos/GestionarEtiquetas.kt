@@ -5,12 +5,9 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
-import androidx.constraintlayout.helper.widget.Grid
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.HabitosApplication.Companion.listaHabitosEtiquetas
 import com.pruden.habits.R
@@ -35,9 +32,9 @@ fun dialogGestionarEtiquetas(
 
     dialogo.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-    val listaEtiquetas = habito.listaEtiquetas.toMutableList()
+    val listaEtiquetasDelHabito = habito.listaEtiquetas.toMutableList()
 
-    val etiquetaAdapter = EtiquetasAdapter(etiquetaViewModel,true, habito, listaEtiquetas){
+    val etiquetaAdapter = EtiquetasAdapter(etiquetaViewModel,true, habito, listaEtiquetasDelHabito){
         onRecargarUI()
     }
 
@@ -46,27 +43,24 @@ fun dialogGestionarEtiquetas(
         layoutManager = GridLayoutManager(context,3, GridLayoutManager.HORIZONTAL, false)
     }
 
-    etiquetaAdapter.submitList(listaHabitosEtiquetas.filter { it.nombreEtiquta != "Todos" && it.nombreEtiquta != "Archivados"})
+    val listaSoloEtiquetas = listaHabitosEtiquetas.filter { it.nombreEtiquta != "Todos"
+            && it.nombreEtiquta != "Archivados"}.toMutableList()
+
+    etiquetaAdapter.submitList(listaSoloEtiquetas)
 
     btnCancelar.setOnClickListener {
         dialogo.dismiss()
     }
 
     btnGuardar.setOnClickListener {
-        Log.d("Listaaaaaa", listaEtiquetas.toString())
+        etiquetaViewModel.actualizarEtiquetasDeUnHabito(habito,
+            listaSoloEtiquetas.map { it.nombreEtiquta }.toMutableList(), listaEtiquetasDelHabito)
 
 
-
-
-
+        dialogo.dismiss()
     }
-
-
-
-
 
     dialogo.show()
 
     ajustarDialogo(resources, dialogo, 0.8f)
-
 }
