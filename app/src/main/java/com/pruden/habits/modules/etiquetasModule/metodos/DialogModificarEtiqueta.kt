@@ -90,11 +90,16 @@ fun dialogoModificarEtiqueta(
 
             btnGuardar.setOnClickListener {
                 val nombreEtiqueta = editTextNombreEtiqeta.text.toString()
-                etiqueta.nombreEtiquta = nombreEtiqueta
-                etiqueta.colorEtiqueta = colorEtiqueta
+
 
                 if(listaHabitosEtiquetas.map { it.nombreEtiquta.lowercase() }.toMutableList().contains(nombreEtiqueta.lowercase())){
                     if(nombreEtiqueta == nombreAntiguo){
+
+
+                        etiqueta.nombreEtiquta = nombreEtiqueta
+                        etiqueta.colorEtiqueta = colorEtiqueta
+
+
                         viewModel.updateEtiquetaSimple(etiqueta){
                             etiquetasAdapter.notifyDataSetChanged()
                             onRecargarUI.invoke()
@@ -107,12 +112,15 @@ fun dialogoModificarEtiqueta(
                     if(nombreEtiqueta.isBlank()){
                         makeToast("No puedes dejar el nombre en blanco", context)
                     }else {
-                        //mainViewModel.insertarEtiqueta(EtiquetaEntity(nombreEtiqueta, colorEtiqueta, false))
 
-                        makeToast("Eiqueta: $nombreEtiqueta creada con éxito", context)
+                        etiqueta.nombreEtiquta = nombreEtiqueta
+                        etiqueta.colorEtiqueta = colorEtiqueta
 
-                        //onTerminar()
-                        dialogo.dismiss()
+                        viewModel.updateEtiquetaCompleta(nombreAntiguo, etiqueta){
+                            etiquetasAdapter.submitList(listaHabitosEtiquetas.toList())
+                            onRecargarUI.invoke()
+                            dialogo.dismiss()
+                        }
                     }
                 }
             }

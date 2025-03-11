@@ -35,4 +35,14 @@ class PorEtiquetasViewModel: ViewModel() {
             onComplete()
         }
     }
+
+    fun updateEtiquetaCompleta(nombreAntiguo: String, etiquetaEntity: EtiquetaEntity, onComplete: () -> Unit){
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                HabitosApplication.database.etiquetaDao().actualizarEtiquetaConNuevoNombre(nombreAntiguo, etiquetaEntity)
+            }
+
+            onComplete()
+        }
+    }
 }

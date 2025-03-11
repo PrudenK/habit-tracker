@@ -5,8 +5,10 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Update
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
+import com.pruden.habits.common.clases.entities.HabitoEntity
 
 @Dao
 interface EtiquetaDao {
@@ -30,4 +32,17 @@ interface EtiquetaDao {
 
     @Query("Update Etiqueta set seleccionada = :bool where nombreEtiquta = :nombre")
     suspend fun cambiarSelecionEtiqueta(bool: Boolean, nombre: String)
+
+    @Transaction
+    suspend fun actualizarEtiquetaConNuevoNombre(eitquitaVieja: String, nuevaEtiqueta: EtiquetaEntity) {
+        insertarEtiqueta(nuevaEtiqueta)
+        actualizarNombreEnHabitosEtiqueta(eitquitaVieja, nuevaEtiqueta.nombreEtiquta)
+        eliminarEtiquetaPorNombre(eitquitaVieja)
+    }
+
+    @Query("UPDATE HabitoEtiqueta SET nombreEtiqueta = :nuevoNombre WHERE nombreEtiqueta = :eitquitaVieja")
+    suspend fun actualizarNombreEnHabitosEtiqueta(eitquitaVieja: String, nuevoNombre: String)
+
+    @Query("DELETE FROM Etiqueta WHERE nombreEtiquta = :etiqueta")
+    suspend fun eliminarEtiquetaPorNombre(etiqueta: String)
 }

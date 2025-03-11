@@ -37,6 +37,7 @@ import com.pruden.habits.modules.etiquetasModule.adapter.OnLongClickEtiqueta
 import com.pruden.habits.modules.etiquetasModule.metodos.dialogGestionarEtiquetas
 import com.pruden.habits.modules.etiquetasModule.metodos.dialogoModificarEtiqueta
 import com.pruden.habits.modules.etiquetasModule.viewModel.PorEtiquetasViewModel
+import com.pruden.habits.modules.mainModule.MainActivity
 import com.pruden.habits.modules.mainModule.metodos.dialogoAgregarEtiqueta
 
 class PorEtiquetasFragment : Fragment(), OnClickHabito, OnLongClickEtiqueta {

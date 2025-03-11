@@ -3,6 +3,7 @@ package com.pruden.habits.modules.mainModule
 import android.content.pm.ActivityInfo
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.View
 import androidx.activity.enableEdgeToEdge
@@ -146,6 +147,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
             }
             listaHabitosEtiquetas.clear()
             listaHabitosEtiquetas.addAll(nuevaLista)
+            Log.d("Listaaa123", nuevaLista.map { it.nombreEtiquta }.toString())
         }
     }
 
