@@ -2,6 +2,7 @@ package com.pruden.habits.modules.etiquetasModule.model
 
 import com.pruden.habits.HabitosApplication
 import com.pruden.habits.common.clases.data.Habito
+import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.common.clases.entities.HabitoEtiquetaEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -32,6 +33,12 @@ class PorEtiquetasInteractor {
             if (relacionesABorrar.isNotEmpty()) {
                 HabitosApplication.database.habitoEtiquetaDao().borrarRelaciones(relacionesABorrar)
             }
+        }
+    }
+
+    fun borrarEtiqueta(etiquetaEntity: EtiquetaEntity){
+        CoroutineScope(Dispatchers.IO).launch {
+            HabitosApplication.database.etiquetaDao().eliminarEtiqueta(etiquetaEntity)
         }
     }
 

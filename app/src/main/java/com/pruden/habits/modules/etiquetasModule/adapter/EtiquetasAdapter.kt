@@ -24,6 +24,7 @@ class EtiquetasAdapter (
     private val estamosEnGestion: Boolean = false,
     private val habito: Habito?,
     private val listaEtiuetasAdd: MutableList<String>,
+    private val listener: OnLongClickEtiqueta,
     private val onEtiquetaSeleccionada: () -> Unit
 ): ListAdapter<EtiquetaEntity, RecyclerView.ViewHolder>(EtiquetaEntityDiffCallback()) {
 
@@ -98,13 +99,18 @@ class EtiquetasAdapter (
 
                         alpha = if (isChecked) 1f else 0.5f
                     }
-
                 }
-
             }
 
-            binding.chipGroup.addView(chip)
+            if(!estamosEnGestion){
+                chip.setOnLongClickListener {
+                    listener.onLongClickEtiqueta(etiqueta)
+                    true
+                }
+            }
 
+
+            binding.chipGroup.addView(chip)
 
         }
     }

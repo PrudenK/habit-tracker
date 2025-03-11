@@ -2,6 +2,7 @@ package com.pruden.habits.common.baseDatos.DAO
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
@@ -20,8 +21,8 @@ interface EtiquetaDao {
     @Query("UPDATE Etiqueta SET nombreEtiquta = :nuevoNombre, colorEtiqueta = :nuevoColor WHERE nombreEtiquta = :nombreActual")
     suspend fun actualizarEtiqueta(nombreActual: String, nuevoNombre: String, nuevoColor: Int)
 
-    @Query("DELETE FROM Etiqueta WHERE nombreEtiquta = :nombreEtiqueta")
-    suspend fun eliminarEtiqueta(nombreEtiqueta: String)
+    @Delete
+    suspend fun eliminarEtiqueta(etiqueta: EtiquetaEntity)
 
     @Query("Update Etiqueta set seleccionada = :bool where nombreEtiquta = :nombre")
     suspend fun cambiarSelecionEtiqueta(bool: Boolean, nombre: String)

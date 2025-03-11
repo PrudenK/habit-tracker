@@ -13,6 +13,7 @@ import com.pruden.habits.HabitosApplication.Companion.listaHabitosEtiquetas
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.modules.etiquetasModule.adapter.EtiquetasAdapter
+import com.pruden.habits.modules.etiquetasModule.adapter.OnLongClickEtiqueta
 import com.pruden.habits.modules.etiquetasModule.viewModel.PorEtiquetasViewModel
 import com.pruden.habits.modules.mainModule.metodos.ajustarDialogo
 
@@ -21,6 +22,7 @@ fun dialogGestionarEtiquetas(
     etiquetaViewModel: PorEtiquetasViewModel,
     habito: Habito,
     resources: Resources,
+    listener: OnLongClickEtiqueta,
     onRecargarUI: () -> Unit
 ){
     val dialogoView = LayoutInflater.from(context).inflate(R.layout.dialog_gestion_etiquetas, null)
@@ -34,13 +36,13 @@ fun dialogGestionarEtiquetas(
 
     val listaEtiquetasDelHabito = habito.listaEtiquetas.toMutableList()
 
-    val etiquetaAdapter = EtiquetasAdapter(etiquetaViewModel,true, habito, listaEtiquetasDelHabito){
+    val etiquetaAdapter = EtiquetasAdapter(etiquetaViewModel,true, habito, listaEtiquetasDelHabito, listener){
         onRecargarUI()
     }
 
     recyclerEtiquetas.apply {
         adapter = etiquetaAdapter
-        layoutManager = GridLayoutManager(context,3, GridLayoutManager.HORIZONTAL, false)
+        layoutManager = GridLayoutManager(context,2, GridLayoutManager.HORIZONTAL, false)
     }
 
     val listaSoloEtiquetas = listaHabitosEtiquetas.filter { it.nombreEtiquta != "Todos"

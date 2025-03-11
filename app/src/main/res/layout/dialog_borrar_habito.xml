@@ -29,7 +29,7 @@
         android:id="@+id/dialog_mensaje_borrar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="¿Estás seguro de que quieres borrar este hábito?"
+        android:text="¿Estás seguro de qué quieres borrar este hábito?"
         android:textSize="16sp"
         android:gravity="center"
         android:paddingBottom="16dp"

@@ -1,6 +1,7 @@
 package com.pruden.habits.modules.etiquetasModule
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -19,6 +20,7 @@ import com.pruden.habits.HabitosApplication.Companion.listaHabitosEtiquetas
 import com.pruden.habits.HabitosApplication.Companion.tamanoPagina
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.data.Habito
+import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.elementos.SincronizadorDeScrolls
 import com.pruden.habits.common.metodos.Fragments.cargarFragment
@@ -32,11 +34,13 @@ import com.pruden.habits.modules.mainModule.adapters.HabitoAdapter
 import com.pruden.habits.modules.mainModule.adapters.listeners.OnClickHabito
 import com.pruden.habits.modules.mainModule.viewModel.MainViewModel
 import com.pruden.habits.modules.etiquetasModule.adapter.EtiquetasAdapter
+import com.pruden.habits.modules.etiquetasModule.adapter.OnLongClickEtiqueta
 import com.pruden.habits.modules.etiquetasModule.metodos.dialogGestionarEtiquetas
+import com.pruden.habits.modules.etiquetasModule.metodos.dialogoBorrarEtiqueta
 import com.pruden.habits.modules.etiquetasModule.viewModel.PorEtiquetasViewModel
 import com.pruden.habits.modules.mainModule.metodos.dialogoAgregarEtiqueta
 
-class PorEtiquetasFragment : Fragment(), OnClickHabito {
+class PorEtiquetasFragment : Fragment(), OnClickHabito, OnLongClickEtiqueta {
     private lateinit var binding: FragmentPorEtiquetasBinding
 
     private lateinit var fechasAdapter: FechaAdapter
@@ -162,13 +166,26 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
 
             val nuevaLista = when {
                 incluirTodos && incluirArchivados -> listaArchivados.toMutableList()
-                incluirTodos -> listaArchivados.filter { !it.archivado }.toMutableList()
-                incluirArchivados -> listaArchivados.filter { it.archivado }.toMutableList()
+
+                incluirTodos -> listaArchivados.filter { !it.archivado }.toMutableList().apply {
+                    addAll(listaArchivados.filter { habito ->
+                        habito.listaEtiquetas.any { it in listaEtiquetasSelecoinas - "Todos" }
+                    })
+                }.distinct().toMutableList()
+
+                incluirArchivados -> listaArchivados.filter { it.archivado }.toMutableList().apply {
+                    addAll(listaArchivados.filter { habito ->
+                        habito.listaEtiquetas.any { it in listaEtiquetasSelecoinas - "Archivados" }
+                    })
+                }.distinct().toMutableList()
+
                 listaEtiquetasSelecoinas.isEmpty() -> listaArchivados.toMutableList()
+
                 else -> listaArchivados.filter { habito ->
-                    habito.listaEtiquetas.any { i -> i in listaEtiquetasSelecoinas }
+                    habito.listaEtiquetas.any { it in listaEtiquetasSelecoinas }
                 }.toMutableList()
             }
+
 
 
             if (listaHabitosFiltrados.isEmpty() || listaHabitosFiltrados.size != nuevaLista.size) {
@@ -177,6 +194,8 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
             }else{
                 listaHabitosFiltrados = nuevaLista.sortedBy { it.posicion }.toMutableList()
             }
+
+            Log.d("Listaaa", listaHabitosEtiquetas.map{it.nombreEtiquta}.toString())
 
             binding.progressBarEtiquetas.visibility = View.GONE
         }
@@ -193,7 +212,7 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
     }
 
     private fun configurarRecyclerEtiquetas() {
-        etiquetasAdapter = EtiquetasAdapter(etiquetasViewModel, false, null, mutableListOf()){
+        etiquetasAdapter = EtiquetasAdapter(etiquetasViewModel, false, null, mutableListOf(), this){
             cargarHabitosMVVM()
         }
         linearLayoutEtiquetas = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -213,7 +232,7 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
 
 
     override fun onLongClickListenerHabitoEntity(habitoEntity: HabitoEntity, habito: Habito) {
-        dialogGestionarEtiquetas(requireContext(), etiquetasViewModel, habito, resources){
+        dialogGestionarEtiquetas(requireContext(), etiquetasViewModel, habito, resources, this){
             cargarHabitosMVVM()
         }
     }
@@ -263,6 +282,12 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
                 paginaActual--
                 actualizarPagina()
             }
+        }
+    }
+
+    override fun onLongClickEtiqueta(etiquetaEntity: EtiquetaEntity) {
+        dialogoBorrarEtiqueta(requireContext(), etiquetasViewModel, resources, etiquetaEntity, etiquetasAdapter){
+            cargarHabitosMVVM()
         }
     }
 }
