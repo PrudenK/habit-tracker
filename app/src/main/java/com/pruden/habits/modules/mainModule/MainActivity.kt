@@ -269,7 +269,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
                         true
                     }
                     R.id.menu_agreagar_etiquetas->{
-                        dialogoAgregarEtiqueta(this, resources, mainViewModel)
+                        dialogoAgregarEtiqueta(this, resources, mainViewModel){}
                         true
                     }
 

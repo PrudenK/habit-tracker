@@ -33,6 +33,7 @@ import com.pruden.habits.modules.mainModule.adapters.listeners.OnClickHabito
 import com.pruden.habits.modules.mainModule.viewModel.MainViewModel
 import com.pruden.habits.modules.etiquetasModule.adapter.EtiquetasAdapter
 import com.pruden.habits.modules.etiquetasModule.viewModel.PorEtiquetasViewModel
+import com.pruden.habits.modules.mainModule.metodos.dialogoAgregarEtiqueta
 
 class PorEtiquetasFragment : Fragment(), OnClickHabito {
     private lateinit var binding: FragmentPorEtiquetasBinding
@@ -115,9 +116,9 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.clear()
-        inflater.inflate(R.menu.menu_tool_bar_archivar, menu)
-        val item = menu.findItem(R.id.desarchivar_todos)
-        val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_desarchivar)
+        inflater.inflate(R.menu.menu_tool_bar_agregar_etiqueta, menu)
+        val item = menu.findItem(R.id.agregar_etiqueta_fragment)
+        val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_agregar_etiqueta)
 
         drawable?.setTint(ContextCompat.getColor(requireContext(), R.color.lightGrayColor))
         item.icon = drawable
@@ -133,8 +134,11 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
                 activity?.onBackPressed()
                 true
             }
-            R.id.desarchivar_todos ->{
-                //mostrarDialogoDesarchivar(null, requireContext(), archivarViewModel, resources, true)
+            R.id.agregar_etiqueta_fragment ->{
+                dialogoAgregarEtiqueta(requireContext(), resources, mainViewModel){
+                    etiquetasAdapter.notifyDataSetChanged()
+                }
+
                 true
             }
 

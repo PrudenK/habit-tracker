@@ -29,7 +29,8 @@ import com.pruden.habits.modules.mainModule.viewModel.MainViewModel
 fun dialogoAgregarEtiqueta(
     context: Context,
     resources: Resources,
-    mainViewModel: MainViewModel
+    mainViewModel: MainViewModel,
+    onTerminar: () -> Unit
 ){
     var colorEtiqueta = -1
 
@@ -76,6 +77,7 @@ fun dialogoAgregarEtiqueta(
 
                 makeToast("Eiqueta: $nombreEtiqueta creada con éxito", context)
 
+                onTerminar()
                 dialogo.dismiss()
             }
         }
