@@ -32,6 +32,7 @@ import com.pruden.habits.modules.mainModule.adapters.HabitoAdapter
 import com.pruden.habits.modules.mainModule.adapters.listeners.OnClickHabito
 import com.pruden.habits.modules.mainModule.viewModel.MainViewModel
 import com.pruden.habits.modules.etiquetasModule.adapter.EtiquetasAdapter
+import com.pruden.habits.modules.etiquetasModule.metodos.dialogGestionarEtiquetas
 import com.pruden.habits.modules.etiquetasModule.viewModel.PorEtiquetasViewModel
 import com.pruden.habits.modules.mainModule.metodos.dialogoAgregarEtiqueta
 
@@ -192,7 +193,7 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
     }
 
     private fun configurarRecyclerEtiquetas() {
-        etiquetasAdapter = EtiquetasAdapter(etiquetasViewModel){
+        etiquetasAdapter = EtiquetasAdapter(etiquetasViewModel, false, null, mutableListOf()){
             cargarHabitosMVVM()
         }
         linearLayoutEtiquetas = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
@@ -211,8 +212,10 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
     }
 
 
-    override fun onLongClickListenerHabito(habito: HabitoEntity) {
-        //mostrarDialogoDesarchivar(habito, requireContext(), archivarViewModel, resources)
+    override fun onLongClickListenerHabitoEntity(habitoEntity: HabitoEntity, habito: Habito) {
+        dialogGestionarEtiquetas(requireContext(), etiquetasViewModel, habito, resources){
+            cargarHabitosMVVM()
+        }
     }
 
     override fun onClickHabito(habito: Habito) {

@@ -97,7 +97,7 @@ class HabitoAdapter (
             sincronizadorDeScrolls.addRecyclerView(binding.recyclerDataHabitos)
 
             binding.contendorNombreHabito.setOnLongClickListener {
-                listenerHabito.onLongClickListenerHabito(
+                listenerHabito.onLongClickListenerHabitoEntity(
                     HabitoEntity(
                         nombre = habito.nombre,
                         objetivo = habito.objetivo,
@@ -106,7 +106,7 @@ class HabitoAdapter (
                         color = habito.colorHabito,
                         archivado = habito.archivado,
                         posicion = habito.posicion
-                    )
+                    ), habito
                 )
                 true
             }

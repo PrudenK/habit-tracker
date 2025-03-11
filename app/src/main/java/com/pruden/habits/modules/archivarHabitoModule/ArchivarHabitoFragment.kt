@@ -157,8 +157,8 @@ class ArchivarHabitoFragment : Fragment(), OnClickHabito {
         configurarRecyclerFechasCommon(fechasAdapter,binding.recyclerFechas, sincronizadorDeScrolls, binding.auxiliar, requireContext())
     }
 
-    override fun onLongClickListenerHabito(habito: HabitoEntity) {
-        mostrarDialogoDesarchivar(habito, requireContext(), archivarViewModel, resources)
+    override fun onLongClickListenerHabitoEntity(habitoEntity: HabitoEntity, habito: Habito) {
+        mostrarDialogoDesarchivar(habitoEntity, requireContext(), archivarViewModel, resources)
     }
 
     override fun onClickHabito(habito: Habito) {

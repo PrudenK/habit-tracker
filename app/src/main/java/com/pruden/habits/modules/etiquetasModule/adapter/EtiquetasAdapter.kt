@@ -14,12 +14,16 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.pruden.habits.R
+import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.databinding.ItemEtiquetaBinding
 import com.pruden.habits.modules.etiquetasModule.viewModel.PorEtiquetasViewModel
 
 class EtiquetasAdapter (
     private val etiquetasViewModel: PorEtiquetasViewModel,
+    private val estamosEnGestion: Boolean = false,
+    private val habito: Habito?,
+    private val listaEtiuetasAdd: MutableList<String>,
     private val onEtiquetaSeleccionada: () -> Unit
 ): ListAdapter<EtiquetaEntity, RecyclerView.ViewHolder>(EtiquetaEntityDiffCallback()) {
 
@@ -62,22 +66,41 @@ class EtiquetasAdapter (
                 val font = ResourcesCompat.getFont(binding.chipGroup.context, R.font.subtitulos)
                 typeface = Typeface.create(font, Typeface.BOLD)
 
-                alpha = if (isChecked) 1f else 0.5f
+                if(!estamosEnGestion){
+                    isChecked = etiqueta.seleccionada
+                    alpha = if (isChecked) 1f else 0.5f
 
-                isChecked = etiqueta.seleccionada
-                alpha = if (isChecked) 1f else 0.5f
+                    setOnCheckedChangeListener { _, isChecked ->
+                        if (isChecked) {
+                            etiquetasViewModel.cambiarSelecionEtiqueta(true, etiqueta.nombreEtiquta)
+                        } else {
+                            etiquetasViewModel.cambiarSelecionEtiqueta(false, etiqueta.nombreEtiquta)
+                        }
 
-                setOnCheckedChangeListener { _, isChecked ->
-                    if (isChecked) {
-                        etiquetasViewModel.cambiarSelecionEtiqueta(true, etiqueta.nombreEtiquta)
-                    } else {
-                        etiquetasViewModel.cambiarSelecionEtiqueta(false, etiqueta.nombreEtiquta)
+                        onEtiquetaSeleccionada.invoke()
+
+                        alpha = if (isChecked) 1f else 0.5f
                     }
-
-                    onEtiquetaSeleccionada.invoke()
+                }else{
+                    isChecked = habito!!.listaEtiquetas.contains(etiqueta.nombreEtiquta)
 
                     alpha = if (isChecked) 1f else 0.5f
+
+
+                    setOnCheckedChangeListener { _, isChecked ->
+                        if (isChecked) {
+                            listaEtiuetasAdd.add(etiqueta.nombreEtiquta)
+                        } else {
+                            listaEtiuetasAdd.remove(etiqueta.nombreEtiquta)
+                        }
+
+                        //onEtiquetaSeleccionada.invoke()
+
+                        alpha = if (isChecked) 1f else 0.5f
+                    }
+
                 }
+
             }
 
             binding.chipGroup.addView(chip)

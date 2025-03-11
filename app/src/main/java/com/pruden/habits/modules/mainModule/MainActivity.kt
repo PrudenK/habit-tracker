@@ -185,8 +185,8 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
         configurarRecyclerFechasCommon(fechasAdapter,mBinding.recyclerFechas, sincronizadorDeScrolls, mBinding.auxiliar, this)
     }
 
-    override fun onLongClickListenerHabito(habito: HabitoEntity) {
-        dialogoOnLongClickHabito(this, mainViewModel, habitosAdapter, habito, resources, this)
+    override fun onLongClickListenerHabitoEntity(habitoEntity: HabitoEntity, habito: Habito) {
+        dialogoOnLongClickHabito(this, mainViewModel, habitosAdapter, habitoEntity, resources, this)
     }
 
     override fun onClickHabito(habito: Habito) {
