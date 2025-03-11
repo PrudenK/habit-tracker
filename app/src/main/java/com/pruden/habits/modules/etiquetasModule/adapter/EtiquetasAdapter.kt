@@ -16,14 +16,12 @@ import com.google.android.material.chip.Chip
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.databinding.ItemEtiquetaBinding
+import com.pruden.habits.modules.etiquetasModule.viewModel.PorEtiquetasViewModel
 
 class EtiquetasAdapter (
-    private val onFilterChanged: (Set<String>) -> Unit
-
+    private val etiquetasViewModel: PorEtiquetasViewModel,
+    private val onEtiquetaSeleccionada: () -> Unit
 ): ListAdapter<EtiquetaEntity, RecyclerView.ViewHolder>(EtiquetaEntityDiffCallback()) {
-
-    private val selectedEtiquetas = mutableSetOf<String>()
-
 
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
         val binding = ItemEtiquetaBinding.bind(view)
@@ -66,13 +64,17 @@ class EtiquetasAdapter (
 
                 alpha = if (isChecked) 1f else 0.5f
 
+                isChecked = etiqueta.seleccionada
+                alpha = if (isChecked) 1f else 0.5f
+
                 setOnCheckedChangeListener { _, isChecked ->
                     if (isChecked) {
-                        selectedEtiquetas.add(etiqueta.nombreEtiquta)
+                        etiquetasViewModel.cambiarSelecionEtiqueta(true, etiqueta.nombreEtiquta)
                     } else {
-                        selectedEtiquetas.remove(etiqueta.nombreEtiquta)
+                        etiquetasViewModel.cambiarSelecionEtiqueta(false, etiqueta.nombreEtiquta)
                     }
-                    onFilterChanged(selectedEtiquetas)
+
+                    onEtiquetaSeleccionada.invoke()
 
                     alpha = if (isChecked) 1f else 0.5f
                 }

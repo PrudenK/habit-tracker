@@ -3,7 +3,6 @@ package com.pruden.habits.common.baseDatos.DAO
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
 
@@ -11,7 +10,6 @@ import com.pruden.habits.common.clases.entities.EtiquetaEntity
 interface EtiquetaDao {
     @Insert
     suspend fun insertarEtiqueta(etiqueta: EtiquetaEntity)
-
 
     @Query("Select * From Etiqueta")
     fun obtenerTodasLasEtiquetasConLiveData(): LiveData<List<EtiquetaEntity>>
@@ -24,4 +22,7 @@ interface EtiquetaDao {
 
     @Query("DELETE FROM Etiqueta WHERE nombreEtiquta = :nombreEtiqueta")
     suspend fun eliminarEtiqueta(nombreEtiqueta: String)
+
+    @Query("Update Etiqueta set seleccionada = :bool where nombreEtiquta = :nombre")
+    suspend fun cambiarSelecionEtiqueta(bool: Boolean, nombre: String)
 }

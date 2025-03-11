@@ -6,6 +6,8 @@ import com.pruden.habits.modules.etiquetasModule.model.PorEtiquetasInteractor
 class PorEtiquetasViewModel: ViewModel() {
     private val interactor = PorEtiquetasInteractor()
 
-
+    fun cambiarSelecionEtiqueta(bool: Boolean, nombre : String){
+        interactor.cambiarSelecionEtiqueta(bool, nombre)
+    }
 
 }

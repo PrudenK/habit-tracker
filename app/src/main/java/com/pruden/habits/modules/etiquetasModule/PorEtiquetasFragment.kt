@@ -32,6 +32,7 @@ import com.pruden.habits.modules.mainModule.adapters.HabitoAdapter
 import com.pruden.habits.modules.mainModule.adapters.listeners.OnClickHabito
 import com.pruden.habits.modules.mainModule.viewModel.MainViewModel
 import com.pruden.habits.modules.etiquetasModule.adapter.EtiquetasAdapter
+import com.pruden.habits.modules.etiquetasModule.viewModel.PorEtiquetasViewModel
 
 class PorEtiquetasFragment : Fragment(), OnClickHabito {
     private lateinit var binding: FragmentPorEtiquetasBinding
@@ -46,7 +47,7 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
 
     private val sincronizadorDeScrolls = SincronizadorDeScrolls()
 
-    private lateinit var etiquetasViewModel: ArchivarViewModel
+    private lateinit var etiquetasViewModel: PorEtiquetasViewModel
     private lateinit var mainViewModel: MainViewModel
 
     private var listaHabitosFiltrados: MutableList<Habito> = mutableListOf()
@@ -55,7 +56,7 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        etiquetasViewModel = ViewModelProvider(requireActivity())[ArchivarViewModel::class.java]
+        etiquetasViewModel = ViewModelProvider(requireActivity())[PorEtiquetasViewModel::class.java]
         mainViewModel = ViewModelProvider(requireActivity())[MainViewModel::class.java]
     }
 
@@ -141,7 +142,6 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
         }
     }
 
-    private val selectedEtiquetas = mutableSetOf<String>()
 
     private fun cargarHabitosMVVM(){
         mainViewModel.getAllHabitosConDatos().observe(viewLifecycleOwner) { lista ->
@@ -150,16 +150,18 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
             listaArchivados = lista.toMutableList()
             binding.progressBarEtiquetas.visibility = View.VISIBLE
 
-            val incluirTodos = "Todos" in selectedEtiquetas
-            val incluirArchivados = "Archivados" in selectedEtiquetas
+            val listaEtiquetasSelecoinas = listaHabitosEtiquetas.filter { it.seleccionada }.map { it.nombreEtiquta }
+
+            val incluirTodos = "Todos" in listaEtiquetasSelecoinas
+            val incluirArchivados = "Archivados" in listaEtiquetasSelecoinas
 
             val nuevaLista = when {
                 incluirTodos && incluirArchivados -> listaArchivados.toMutableList()
                 incluirTodos -> listaArchivados.filter { !it.archivado }.toMutableList()
                 incluirArchivados -> listaArchivados.filter { it.archivado }.toMutableList()
-                selectedEtiquetas.isEmpty() -> listaArchivados.toMutableList()
+                listaEtiquetasSelecoinas.isEmpty() -> listaArchivados.toMutableList()
                 else -> listaArchivados.filter { habito ->
-                    habito.listaEtiquetas.any { it in selectedEtiquetas }
+                    habito.listaEtiquetas.any { i -> i in listaEtiquetasSelecoinas }
                 }.toMutableList()
             }
 
@@ -186,9 +188,7 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito {
     }
 
     private fun configurarRecyclerEtiquetas() {
-        etiquetasAdapter = EtiquetasAdapter{ etiquetasSeleccionadas ->
-            selectedEtiquetas.clear()
-            selectedEtiquetas.addAll(etiquetasSeleccionadas)
+        etiquetasAdapter = EtiquetasAdapter(etiquetasViewModel){
             cargarHabitosMVVM()
         }
         linearLayoutEtiquetas = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
