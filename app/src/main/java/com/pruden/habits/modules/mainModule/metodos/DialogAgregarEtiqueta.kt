@@ -70,15 +70,19 @@ fun dialogoAgregarEtiqueta(
         if(listaHabitosEtiquetas.map { it.nombreEtiquta.lowercase() }.toMutableList().contains(nombreEtiqueta.lowercase())){
             makeToast("Ese nombre de etiqueta ya existe", context)
         }else{
-            if(colorEtiqueta == -1){
-                makeToast("El blanco no es un color", context)
-            }else{
-                mainViewModel.insertarEtiqueta(EtiquetaEntity(nombreEtiqueta, colorEtiqueta, false))
+            if(nombreEtiqueta.isBlank()){
+                makeToast("No puedes dejar el nombre en blanco", context)
+            }else {
+                if(colorEtiqueta == -1){
+                    makeToast("El blanco no es un color", context)
+                }else{
+                    mainViewModel.insertarEtiqueta(EtiquetaEntity(nombreEtiqueta, colorEtiqueta, false))
 
-                makeToast("Eiqueta: $nombreEtiqueta creada con éxito", context)
+                    makeToast("Eiqueta: $nombreEtiqueta creada con éxito", context)
 
-                onTerminar()
-                dialogo.dismiss()
+                    onTerminar()
+                    dialogo.dismiss()
+                }
             }
         }
     }

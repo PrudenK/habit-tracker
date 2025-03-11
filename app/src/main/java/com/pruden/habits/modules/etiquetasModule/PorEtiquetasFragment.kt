@@ -186,8 +186,6 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito, OnLongClickEtiqueta {
                 }.toMutableList()
             }
 
-
-
             if (listaHabitosFiltrados.isEmpty() || listaHabitosFiltrados.size != nuevaLista.size) {
                 listaHabitosFiltrados = nuevaLista.sortedBy { it.posicion }.toMutableList()
                 actualizarPagina()
