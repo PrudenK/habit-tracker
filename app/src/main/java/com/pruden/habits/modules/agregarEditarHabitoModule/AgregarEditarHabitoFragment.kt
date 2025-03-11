@@ -1,9 +1,7 @@
 package com.pruden.habits.modules.agregarEditarHabitoModule
 
-import android.app.Dialog
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -21,16 +19,12 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.pruden.habits.HabitosApplication.Companion.listaHabitos
-import com.pruden.habits.common.elementos.ColorPickerView
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.HabitoEntity
+import com.pruden.habits.common.metodos.General.dialogoColorPicker
 import com.pruden.habits.databinding.FragmentAgregarHabitoBinding
 import com.pruden.habits.modules.agregarEditarHabitoModule.viewModel.AgregarEditarHabitoViewModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
 @Suppress("DEPRECATION")
 class AgregarEditarHabitoFragment : Fragment() {
@@ -280,21 +274,6 @@ class AgregarEditarHabitoFragment : Fragment() {
         spinner.adapter = adaptador
     }
 
-    private fun dialogoColorPicker(onColorSelected: (Int) -> Unit) {
-        val dialog = Dialog(requireContext())
-        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-
-        dialog.setContentView(R.layout.dialog_color_picker)
-        val colorPickerView = dialog.findViewById<ColorPickerView>(R.id.colorPickerView)
-
-        colorPickerView.setOnColorSelectedListener { colorPicker ->
-            onColorSelected(colorPicker)
-            dialog.dismiss()
-        }
-
-        dialog.show()
-    }
-
     private fun colorHabito(imagenColorNum: ImageView){
         val drawable = imagenColorNum.background as LayerDrawable
         val capaInterna = drawable.findDrawableByLayerId(R.id.interna)
@@ -303,7 +282,7 @@ class AgregarEditarHabitoFragment : Fragment() {
 
         imagenColorNum.setOnClickListener{
 
-            dialogoColorPicker { color ->
+            dialogoColorPicker(requireContext()) { color ->
                 colorHabito = color
                 capaInterna.setTint(color)
             }

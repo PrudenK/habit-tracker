@@ -1,7 +1,6 @@
 package com.pruden.habits.modules.mainModule.metodos
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.Context
 import android.content.res.ColorStateList
 import android.content.res.Resources
@@ -9,21 +8,16 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.LayerDrawable
 import android.view.LayoutInflater
-import android.view.View
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.core.content.ContextCompat
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.pruden.habits.HabitosApplication.Companion.listaHabitosEtiquetas
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
-import com.pruden.habits.common.elementos.ColorPickerView
 import com.pruden.habits.common.metodos.Dialogos.makeToast
-import com.pruden.habits.modules.mainModule.MainActivity
+import com.pruden.habits.common.metodos.General.dialogoColorPicker
 import com.pruden.habits.modules.mainModule.viewModel.MainViewModel
 
 fun dialogoAgregarEtiqueta(
@@ -91,19 +85,4 @@ fun dialogoAgregarEtiqueta(
     dialogo.show()
 
     ajustarDialogo(resources, dialogo, 0.85f)
-}
-
-private fun dialogoColorPicker(context: Context, onColorSelected: (Int) -> Unit) {
-    val dialog = Dialog(context)
-    dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-
-    dialog.setContentView(R.layout.dialog_color_picker)
-    val colorPickerView = dialog.findViewById<ColorPickerView>(R.id.colorPickerView)
-
-    colorPickerView.setOnColorSelectedListener { colorPicker ->
-        onColorSelected(colorPicker)
-        dialog.dismiss()
-    }
-
-    dialog.show()
 }
