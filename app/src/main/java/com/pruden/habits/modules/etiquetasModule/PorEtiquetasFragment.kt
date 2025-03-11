@@ -27,7 +27,6 @@ import com.pruden.habits.common.metodos.Fragments.cargarFragment
 import com.pruden.habits.common.metodos.General.cargarScrollFechaCommon
 import com.pruden.habits.common.metodos.General.configurarRecyclerFechasCommon
 import com.pruden.habits.databinding.FragmentPorEtiquetasBinding
-import com.pruden.habits.modules.archivarHabitoModule.viewModel.ArchivarViewModel
 import com.pruden.habits.modules.estadisticasHabito.EstadisticasFragment
 import com.pruden.habits.modules.mainModule.adapters.FechaAdapter
 import com.pruden.habits.modules.mainModule.adapters.HabitoAdapter
@@ -36,7 +35,7 @@ import com.pruden.habits.modules.mainModule.viewModel.MainViewModel
 import com.pruden.habits.modules.etiquetasModule.adapter.EtiquetasAdapter
 import com.pruden.habits.modules.etiquetasModule.adapter.OnLongClickEtiqueta
 import com.pruden.habits.modules.etiquetasModule.metodos.dialogGestionarEtiquetas
-import com.pruden.habits.modules.etiquetasModule.metodos.dialogoBorrarEtiqueta
+import com.pruden.habits.modules.etiquetasModule.metodos.dialogoModificarEtiqueta
 import com.pruden.habits.modules.etiquetasModule.viewModel.PorEtiquetasViewModel
 import com.pruden.habits.modules.mainModule.metodos.dialogoAgregarEtiqueta
 
@@ -284,7 +283,7 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito, OnLongClickEtiqueta {
     }
 
     override fun onLongClickEtiqueta(etiquetaEntity: EtiquetaEntity) {
-        dialogoBorrarEtiqueta(requireContext(), etiquetasViewModel, resources, etiquetaEntity, etiquetasAdapter){
+        dialogoModificarEtiqueta(requireContext(), etiquetasViewModel, resources, etiquetaEntity, etiquetasAdapter){
             cargarHabitosMVVM()
         }
     }
