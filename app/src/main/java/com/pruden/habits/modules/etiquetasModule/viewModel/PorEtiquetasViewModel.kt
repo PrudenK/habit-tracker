@@ -19,8 +19,8 @@ class PorEtiquetasViewModel: ViewModel() {
     }
 
     fun actualizarEtiquetasDeUnHabito(habito: Habito, listaTodas : MutableList<String>,
-                                      listaSelecionadas: MutableList<String>){
-        interactor.actualizarEtiquetasDeUnHabito(habito,listaTodas, listaSelecionadas)
+                                      listaSelecionadas: MutableList<String>, onComplete: () -> Unit){
+        interactor.actualizarEtiquetasDeUnHabito(habito,listaTodas, listaSelecionadas, onComplete)
     }
 
     fun borrarEtiqueta(etiquetaEntity: EtiquetaEntity){

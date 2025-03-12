@@ -7,6 +7,7 @@ import com.pruden.habits.common.clases.entities.HabitoEtiquetaEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class PorEtiquetasInteractor {
     fun cambiarSelecionEtiqueta(bool: Boolean, nombre: String){
@@ -14,16 +15,28 @@ class PorEtiquetasInteractor {
             HabitosApplication.database.etiquetaDao().cambiarSelecionEtiqueta(bool, nombre)
         }
     }
-
-    fun actualizarEtiquetasDeUnHabito(habito: Habito,  listaTodas : MutableList<String>,
-                                      listaSelecionadas: MutableList<String>){
+    fun actualizarEtiquetasDeUnHabito(
+        habito: Habito,
+        listaTodas: MutableList<String>,
+        listaSelecionadas: MutableList<String>,
+        onTerminar: () -> Unit
+    ) {
         CoroutineScope(Dispatchers.IO).launch {
-            val relacionesAInsertar = listaSelecionadas.map { etiqueta ->
-                HabitoEtiquetaEntity(habito.nombre, etiqueta)
+            val relacionesAInsertar = mutableListOf<HabitoEtiquetaEntity>()
+            val relacionesABorrar = mutableListOf<HabitoEtiquetaEntity>()
+
+            for (etiqueta in listaSelecionadas) {
+                if (!habito.listaEtiquetas.contains(etiqueta)) {
+                    habito.listaEtiquetas.add(etiqueta)
+                    relacionesAInsertar.add(HabitoEtiquetaEntity(habito.nombre, etiqueta))
+                }
             }
 
-            val relacionesABorrar = listaTodas.filter { it !in listaSelecionadas }.map { etiqueta ->
-                HabitoEtiquetaEntity(habito.nombre, etiqueta)
+            for (etiqueta in listaTodas) {
+                if (!listaSelecionadas.contains(etiqueta)) {
+                    habito.listaEtiquetas.remove(etiqueta)
+                    relacionesABorrar.add(HabitoEtiquetaEntity(habito.nombre, etiqueta))
+                }
             }
 
             if (relacionesAInsertar.isNotEmpty()) {
@@ -33,8 +46,13 @@ class PorEtiquetasInteractor {
             if (relacionesABorrar.isNotEmpty()) {
                 HabitosApplication.database.habitoEtiquetaDao().borrarRelaciones(relacionesABorrar)
             }
+
+            withContext(Dispatchers.Main) {
+                onTerminar()
+            }
         }
     }
+
 
     fun borrarEtiqueta(etiquetaEntity: EtiquetaEntity){
         CoroutineScope(Dispatchers.IO).launch {

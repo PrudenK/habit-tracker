@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
 import androidx.recyclerview.widget.GridLayoutManager
@@ -40,6 +41,8 @@ fun dialogGestionarEtiquetas(
         onRecargarUI()
     }
 
+    Log.d("Etiquetas", habito.listaEtiquetas.toString())
+
     recyclerEtiquetas.apply {
         adapter = etiquetaAdapter
         layoutManager = GridLayoutManager(context,2, GridLayoutManager.HORIZONTAL, false)
@@ -56,9 +59,14 @@ fun dialogGestionarEtiquetas(
 
     btnGuardar.setOnClickListener {
         etiquetaViewModel.actualizarEtiquetasDeUnHabito(habito,
-            listaSoloEtiquetas.map { it.nombreEtiquta }.toMutableList(), listaEtiquetasDelHabito)
+            listaSoloEtiquetas.map { it.nombreEtiquta }.toMutableList(), listaEtiquetasDelHabito){
 
+            Log.d("Etiquetas", habito.listaEtiquetas.toString())
+
+        }
         dialogo.dismiss()
+
+
     }
 
     dialogo.show()
