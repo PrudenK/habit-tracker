@@ -1,15 +1,16 @@
 package com.pruden.habits.modules.mainModule.metodos
 
-import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.util.Log
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Button
+import com.pruden.habits.HabitosApplication.Companion.listaHabitos
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.metodos.Dialogos.dialogoMoverHabito
@@ -53,11 +54,31 @@ fun dialogoOnLongClickHabito(
         }
 
         buttonAccept.setOnClickListener {
+            val posicionEliminada = habito.posicion
+
             mainViewModel.borrarHabito(habito)
-            habitosAdapter.deleteHabito(habito)
+
+            val listaHabitosAux = listaHabitos.filter { !it.archivado }.toMutableList()
+
+            listaHabitosAux.removeIf { it.nombre == habito.nombre }
+
+            //Log.d("Posiciones antes", listaHabitosAux.filter { it.posicion > posicionEliminada }.map { it.posicion.toString() + " "+it.nombre }.toString())
+            listaHabitosAux.filter { it.posicion > posicionEliminada }.forEach { it.posicion -= 1 }
+            //Log.d("Posiciones despues", listaHabitosAux.filter { it.posicion > posicionEliminada }.map { it.posicion.toString() + " "+it.nombre }.toString())
+
+            val listaHabitoEntity = listaHabitosAux.map {
+                HabitoEntity(it.nombre, it.objetivo, it.tipoNumerico, it.unidad, it.colorHabito, it.archivado, it.posicion)
+            }.toMutableList()
+
+            mainViewModel.actualizarPosicionesHabitos(listaHabitoEntity) {
+                activity.actualizarPagina(true)
+            }
+
+            habitosAdapter.submitList(listaHabitosAux)
 
             dialogBorrar.dismiss()
         }
+
 
         dialogBorrar.show()
         dialogoOpciones.hide()
