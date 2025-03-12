@@ -21,6 +21,7 @@ import com.pruden.habits.HabitosApplication.Companion.listaHabitos
 import com.pruden.habits.HabitosApplication.Companion.listaHabitosEtiquetas
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
+import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.metodos.Dialogos.makeToast
 import com.pruden.habits.common.metodos.General.dialogoColorPicker
 import com.pruden.habits.modules.etiquetasModule.adapter.EtiquetasAdapter
@@ -56,6 +57,7 @@ fun dialogoModificarEtiqueta(
         dialogOpciones.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         var posicion = etiqueta.posicion
+        var posicionOrginal = etiqueta.posicion
 
         buttonEditarOpciones.setOnClickListener {
 
@@ -108,6 +110,19 @@ fun dialogoModificarEtiqueta(
             }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
             imgColorPicker.setOnClickListener {
                 dialogoColorPicker(context) { color ->
                     colorEtiqueta = color
@@ -120,9 +135,36 @@ fun dialogoModificarEtiqueta(
             }
 
             btnGuardar.setOnClickListener {
+
+                if(posicionOrginal != posicion){
+                    etiqueta.posicion = posicion
+
+                    val etiquetaModificada = listaHabitosEtiquetas.find { it.nombreEtiquta == etiqueta.nombreEtiquta }!!
+                    listaHabitosEtiquetas.remove(etiquetaModificada)
+                    listaHabitosEtiquetas.add(posicion-1, etiquetaModificada)
+
+                    val nuevaLista = listaHabitosEtiquetas.toList()
+                    nuevaLista.forEachIndexed { index, h ->
+                        h.posicion = index + 1
+                    }
+
+                    val listaEtiquetaEntity = listaHabitosEtiquetas.map {
+                        EtiquetaEntity(it.nombreEtiquta, it.colorEtiqueta, it.seleccionada, it.posicion)
+                    }.toMutableList()
+
+
+                    viewModel.actualizarPosicionesEtiquetas(listaEtiquetaEntity){
+
+                    }
+                }
+
+
+
                 contenedor.visibility = View.GONE
                 progressBar.visibility = View.VISIBLE
                 tvProgressBar.visibility = View.VISIBLE
+
+
 
                 val nombreEtiqueta = editTextNombreEtiqeta.text.toString()
 
@@ -144,7 +186,7 @@ fun dialogoModificarEtiqueta(
                         makeToast("No puedes dejar el nombre en blanco", context)
                     }else {
 
-                        viewModel.updateEtiquetaCompleta(nombreAntiguo,  EtiquetaEntity(nombreEtiqueta, colorEtiqueta, etiqueta.seleccionada, 777)){
+                        viewModel.updateEtiquetaCompleta(nombreAntiguo,  EtiquetaEntity(nombreEtiqueta, colorEtiqueta, etiqueta.seleccionada, posicion)){
                             etiquetasAdapter.notifyDataSetChanged()
                             onRecargarUI.invoke()
                             dialogo.dismiss()

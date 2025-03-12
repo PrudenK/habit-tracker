@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.pruden.habits.HabitosApplication
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
+import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.modules.etiquetasModule.model.PorEtiquetasInteractor
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -53,5 +54,9 @@ class PorEtiquetasViewModel: ViewModel() {
             }
             onComplete()
         }
+    }
+
+    fun actualizarPosicionesEtiquetas(listaEtiquetas: MutableList<EtiquetaEntity>, callback: () -> Unit){
+        interactor.actualizarPosicionesEtiquetas(listaEtiquetas, callback)
     }
 }
