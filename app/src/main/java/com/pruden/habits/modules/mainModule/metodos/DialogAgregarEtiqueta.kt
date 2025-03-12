@@ -8,8 +8,10 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.LayerDrawable
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -44,6 +46,9 @@ fun dialogoAgregarEtiqueta(
     val capaInterna = drawable.findDrawableByLayerId(R.id.interna)
     capaInterna.setTint(ContextCompat.getColor(context, R.color.white))
 
+
+    val contenedorPosicion = dialogoView.findViewById<ConstraintLayout>(R.id.contenedor_posicion_mod_etiqueta)
+    contenedorPosicion.visibility = View.GONE
 
     dialogo.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
