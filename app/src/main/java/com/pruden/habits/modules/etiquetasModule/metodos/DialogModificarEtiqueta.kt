@@ -109,20 +109,6 @@ fun dialogoModificarEtiqueta(
                 }
             }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             imgColorPicker.setOnClickListener {
                 dialogoColorPicker(context) { color ->
                     colorEtiqueta = color
@@ -220,14 +206,27 @@ fun dialogoModificarEtiqueta(
             }
 
             buttonAccept.setOnClickListener {
+                val posicionEliminada = etiqueta.posicion
+
                 viewModel.borrarEtiqueta(etiqueta)
+
+                val listaEtiquetasAux = listaHabitosEtiquetas.toMutableList()
+
+                listaEtiquetasAux.removeIf{it.nombreEtiquta == etiqueta.nombreEtiquta}
+
+                listaEtiquetasAux.filter { it.posicion > posicionEliminada }.forEach{it.posicion -=1}
+
+                val listaEtiquetasEntity = listaEtiquetasAux.map {
+                    EtiquetaEntity(it.nombreEtiquta, it.colorEtiqueta, it.seleccionada, it.posicion)
+                }.toMutableList()
+
+
                 listaHabitosEtiquetas.remove(etiqueta)
-                etiquetasAdapter.notifyDataSetChanged()
-
-                onRecargarUI.invoke()
-
-
-                dialogBorrar.dismiss()
+                viewModel.actualizarPosicionesEtiquetas(listaEtiquetasEntity){
+                    etiquetasAdapter.notifyDataSetChanged()
+                    onRecargarUI.invoke()
+                    dialogBorrar.dismiss()
+                }
             }
             dialogOpciones.hide()
 
