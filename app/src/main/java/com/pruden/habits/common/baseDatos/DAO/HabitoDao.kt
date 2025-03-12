@@ -23,85 +23,54 @@ interface HabitoDao {
 
     @Query("""
     SELECT 
-           H.nombre, 
-           H.objetivo, 
-           H.tipoNumerico, 
-           H.unidad, 
-           H.color as colorHabito,
-           H.archivado,
-           H.posicion,
-           '[' || GROUP_CONCAT(D.valorCampo) || ']' AS listaValores, 
-           '[' || GROUP_CONCAT('"' || IFNULL(D.notas, '') || '"') || ']' AS listaNotas,
-           '[' || GROUP_CONCAT('"' || D.fecha || '"') || ']' AS listaFechas,
-           '[' || GROUP_CONCAT(DISTINCT '"' || HE.nombreEtiqueta || '"') || ']' AS listaEtiquetas
+        H.nombre, 
+        H.objetivo, 
+        H.tipoNumerico, 
+        H.unidad, 
+        H.color as colorHabito,
+        H.archivado,
+        H.posicion,
+        (SELECT '[' || GROUP_CONCAT(D.valorCampo) || ']' 
+         FROM DataHabitos AS D 
+         WHERE D.nombre = H.nombre) AS listaValores,
+        (SELECT '[' || GROUP_CONCAT('"' || IFNULL(D.notas, '') || '"') || ']' 
+         FROM DataHabitos AS D 
+         WHERE D.nombre = H.nombre) AS listaNotas,
+        (SELECT '[' || GROUP_CONCAT('"' || D.fecha || '"') || ']' 
+         FROM DataHabitos AS D 
+         WHERE D.nombre = H.nombre) AS listaFechas,
+        (SELECT '[' || GROUP_CONCAT(DISTINCT '"' || HE.nombreEtiqueta || '"') || ']' 
+         FROM HabitoEtiqueta AS HE 
+         WHERE HE.nombreHabito = H.nombre) AS listaEtiquetas
     FROM Habitos AS H
-    LEFT JOIN DataHabitos AS D ON H.nombre = D.nombre
-    LEFT JOIN HabitoEtiqueta AS HE ON H.nombre = HE.nombreHabito
-    GROUP BY H.nombre
-""")
-    suspend fun obtenerHabitosConValores(): MutableList<Habito>
-
-    @Query("""
-    SELECT 
-           H.nombre, 
-           H.objetivo, 
-           H.tipoNumerico, 
-           H.unidad, 
-           H.color as colorHabito,
-           H.archivado,
-           H.posicion,
-           '[' || GROUP_CONCAT(D.valorCampo) || ']' AS listaValores, 
-           '[' || GROUP_CONCAT('"' || IFNULL(D.notas, '') || '"') || ']' AS listaNotas,
-           '[' || GROUP_CONCAT('"' || D.fecha || '"') || ']' AS listaFechas,
-           '[' || GROUP_CONCAT(DISTINCT '"' || HE.nombreEtiqueta || '"') || ']' AS listaEtiquetas
-    FROM Habitos AS H
-    LEFT JOIN DataHabitos AS D ON H.nombre = D.nombre
-    LEFT JOIN HabitoEtiqueta AS HE ON H.nombre = HE.nombreHabito
-    GROUP BY H.nombre
 """)
     fun obtenerHabitosConLiveData(): LiveData<List<Habito>>
 
     @Query("""
     SELECT 
-           H.nombre, 
-           H.objetivo, 
-           H.tipoNumerico, 
-           H.unidad, 
-           H.color as colorHabito,
-           H.posicion,
-           H.archivado,
-           '[' || GROUP_CONCAT(D.valorCampo) || ']' AS listaValores, 
-           '[' || GROUP_CONCAT('"' || IFNULL(D.notas, '') || '"') || ']' AS listaNotas,
-           '[' || GROUP_CONCAT('"' || D.fecha || '"') || ']' AS listaFechas,
-           '[' || GROUP_CONCAT(DISTINCT '"' || HE.nombreEtiqueta || '"') || ']' AS listaEtiquetas
+        H.nombre, 
+        H.objetivo, 
+        H.tipoNumerico, 
+        H.unidad, 
+        H.color as colorHabito,
+        H.posicion,
+        H.archivado,
+        (SELECT '[' || GROUP_CONCAT(D.valorCampo) || ']' 
+         FROM DataHabitos AS D 
+         WHERE D.nombre = H.nombre) AS listaValores,
+        (SELECT '[' || GROUP_CONCAT('"' || IFNULL(D.notas, '') || '"') || ']' 
+         FROM DataHabitos AS D 
+         WHERE D.nombre = H.nombre) AS listaNotas,
+        (SELECT '[' || GROUP_CONCAT('"' || D.fecha || '"') || ']' 
+         FROM DataHabitos AS D 
+         WHERE D.nombre = H.nombre) AS listaFechas,
+        (SELECT '[' || GROUP_CONCAT(DISTINCT '"' || HE.nombreEtiqueta || '"') || ']' 
+         FROM HabitoEtiqueta AS HE 
+         WHERE HE.nombreHabito = H.nombre) AS listaEtiquetas
     FROM Habitos AS H
-    LEFT JOIN DataHabitos AS D ON H.nombre = D.nombre
-    LEFT JOIN HabitoEtiqueta AS HE ON H.nombre = HE.nombreHabito
     WHERE H.archivado = 1
-    GROUP BY H.nombre
 """)
     fun obtenerHabitosConLiveDataArchivados(): LiveData<List<Habito>>
-
-    @Query("""
-    SELECT 
-           H.nombre, 
-           H.objetivo, 
-           H.tipoNumerico, 
-           H.unidad, 
-           H.color as colorHabito,
-           H.posicion,
-           H.archivado,
-           '[' || GROUP_CONCAT(D.valorCampo) || ']' AS listaValores, 
-           '[' || GROUP_CONCAT('"' || IFNULL(D.notas, '') || '"') || ']' AS listaNotas,
-           '[' || GROUP_CONCAT('"' || D.fecha || '"') || ']' AS listaFechas,
-           '[' || GROUP_CONCAT(DISTINCT '"' || HE.nombreEtiqueta || '"') || ']' AS listaEtiquetas
-    FROM Habitos AS H
-    LEFT JOIN DataHabitos AS D ON H.nombre = D.nombre
-    LEFT JOIN HabitoEtiqueta AS HE ON H.nombre = HE.nombreHabito
-    WHERE H.nombre = :nombre
-    GROUP BY H.nombre
-""")
-    suspend fun obtenerHabitoConValoresPorNombre(nombre: String): Habito
 
     @Query("Select nombre from habitos")
     suspend fun obtenerTdosLosNombres(): MutableList<String>

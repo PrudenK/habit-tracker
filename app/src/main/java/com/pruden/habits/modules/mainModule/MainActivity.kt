@@ -121,6 +121,11 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
 
     private fun cargarLiveDataHabitos(){
         mainViewModel.getAllHabitosConDatos().observe(this) { nuevaLista ->
+            for(hab in listaHabitos){
+                Log.d("HolaaaSizeMain", hab.listaValores.size.toString() +" "+ hab.nombre)
+            }
+
+
             listaHabitos = nuevaLista.toMutableList().sortedBy { it.posicion }.toMutableList()
 
             if (nuevaLista == listaHabitos) return@observe
@@ -133,6 +138,10 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
                 actualizarPagina()
             } else {
                 listaCompletaHabitos = listaFiltrada.toMutableList()
+            }
+
+            for(hab in listaHabitos){
+                Log.d("HolaaaSizeMain", hab.listaValores.size.toString() +" "+ hab.nombre)
             }
 
             mBinding.progressBar.visibility = View.GONE

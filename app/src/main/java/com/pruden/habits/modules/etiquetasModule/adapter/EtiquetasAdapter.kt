@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Typeface
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -84,6 +85,10 @@ class EtiquetasAdapter (
                     }
                 }else{
                     isChecked = habito!!.listaEtiquetas.contains(etiqueta.nombreEtiquta)
+
+                    if(habito.nombre == "Correr"){
+                        Log.d("Holaa", isChecked.toString()+ " "+ habito.listaEtiquetas)
+                    }
 
                     alpha = if (isChecked) 1f else 0.5f
 

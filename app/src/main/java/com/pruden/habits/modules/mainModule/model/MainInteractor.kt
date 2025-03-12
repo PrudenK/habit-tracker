@@ -19,14 +19,6 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class MainInteractor {
-    fun getHabitoPorNombre(nombre: String, callback: (Habito) -> Unit){
-        CoroutineScope(Dispatchers.IO).launch {
-            val habito = HabitosApplication.database.habitoDao().obtenerHabitoConValoresPorNombre(nombre)
-            withContext(Dispatchers.Main){
-                callback(habito)
-            }
-        }
-    }
 
     suspend fun sincronizarRegistrosFaltantes() {
         val listaNombresHabitos = HabitosApplication.database.habitoDao().obtenerTdosLosNombres()

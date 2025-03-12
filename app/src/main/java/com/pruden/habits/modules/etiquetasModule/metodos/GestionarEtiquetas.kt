@@ -58,7 +58,6 @@ fun dialogGestionarEtiquetas(
         etiquetaViewModel.actualizarEtiquetasDeUnHabito(habito,
             listaSoloEtiquetas.map { it.nombreEtiquta }.toMutableList(), listaEtiquetasDelHabito)
 
-
         dialogo.dismiss()
     }
 

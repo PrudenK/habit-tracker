@@ -156,6 +156,9 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito, OnLongClickEtiqueta {
         mainViewModel.getAllHabitosConDatos().observe(viewLifecycleOwner) { lista ->
             if (!isAdded || activity == null) return@observe
 
+            Log.d("holaaa45", lista[0].listaEtiquetas.toString())
+
+
             listaArchivados = lista.toMutableList()
             binding.progressBarEtiquetas.visibility = View.VISIBLE
 
@@ -194,6 +197,11 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito, OnLongClickEtiqueta {
             }
 
             Log.d("Listaaa", listaHabitosEtiquetas.map{it.nombreEtiquta}.toString())
+
+            for(hab in listaHabitosFiltrados){
+                Log.d("HolaaaSize", hab.listaValores.size.toString() +" "+ hab.nombre)
+            }
+
 
             binding.progressBarEtiquetas.visibility = View.GONE
         }

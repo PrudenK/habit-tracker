@@ -23,12 +23,6 @@ class MainViewModel: ViewModel() {
         interactor.borrarHabito(habitoEntity)
     }
 
-    fun getHabitoPorNombre(nombre: String, callback: (Habito) -> Unit){
-        interactor.getHabitoPorNombre(nombre){
-            callback(it)
-        }
-    }
-
     fun archivarHabito(habitoEntity: HabitoEntity){
         interactor.archivarHabito(habitoEntity)
     }
