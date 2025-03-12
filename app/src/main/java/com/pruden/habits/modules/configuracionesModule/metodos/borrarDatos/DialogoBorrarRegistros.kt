@@ -2,6 +2,7 @@ package com.pruden.habits.modules.configuracionesModule.metodos.borrarDatos
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
@@ -10,11 +11,13 @@ import android.widget.TextView
 import com.pruden.habits.modules.mainModule.MainActivity
 import com.pruden.habits.R
 import com.pruden.habits.modules.configuracionesModule.viewModel.ConfiguracionesViewModel
+import com.pruden.habits.modules.mainModule.metodos.ajustarDialogo
 
 fun borrarTodosLosRegistros(
     contexto: Context,
     main: MainActivity,
-    viewModel: ConfiguracionesViewModel
+    viewModel: ConfiguracionesViewModel,
+    resources: Resources
 ){
     val dialogView = LayoutInflater.from(contexto).inflate(R.layout.dialog_borrar_habito, null)
     val dialog = AlertDialog.Builder(contexto).setView(dialogView).create()
@@ -44,4 +47,6 @@ fun borrarTodosLosRegistros(
     }
 
     dialog.show()
+
+    ajustarDialogo(resources, dialog, 0.9f)
 }

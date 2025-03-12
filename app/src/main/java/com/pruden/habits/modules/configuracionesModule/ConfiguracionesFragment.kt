@@ -122,7 +122,7 @@ class ConfiguracionesFragment : Fragment() {
 
     private fun borrarTodosLosDatosFragment(){
         binding.borrarTodosLosHabitosFragment.setOnClickListener {
-            borrarTodosLosDatos(requireContext(),main, viewModel)
+            borrarTodosLosDatos(requireContext(),main, viewModel,resources)
         }
     }
 
@@ -134,7 +134,7 @@ class ConfiguracionesFragment : Fragment() {
 
     private fun borrarTodosLosRegistrosFragment(){
         binding.borrarTodosLosRegistrosFragment.setOnClickListener {
-            borrarTodosLosRegistros(requireContext(), main, viewModel)
+            borrarTodosLosRegistros(requireContext(), main, viewModel, resources)
         }
     }
 
