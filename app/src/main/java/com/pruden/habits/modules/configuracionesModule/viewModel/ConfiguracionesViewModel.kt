@@ -101,6 +101,12 @@ class ConfiguracionesViewModel: ViewModel() {
         }
     }
 
+    fun borrarTodasLasEtiquetas(onComplete: () -> Unit){
+        interactor.borrarTodasLasEtiquetas {
+            onComplete()
+        }
+    }
+
     fun insertarHabito(habitoEntity: HabitoEntity){
         interactor.insertarHabito(habitoEntity)
     }

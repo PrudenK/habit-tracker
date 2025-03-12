@@ -23,6 +23,7 @@ import com.pruden.habits.modules.configuracionesModule.metodos.borrarDatos.borra
 import com.pruden.habits.common.metodos.Dialogos.makeToast
 import com.pruden.habits.modules.configuracionesModule.metodos.importarDatos.leerCsvDesdeUri
 import com.pruden.habits.databinding.FragmentConfiguracionesBinding
+import com.pruden.habits.modules.configuracionesModule.metodos.borrarDatos.borrarTodasLasEtiquetasDialog
 import com.pruden.habits.modules.configuracionesModule.metodos.modifcarFechaInicio.mostrarDatePicker
 import com.pruden.habits.modules.configuracionesModule.viewModel.ConfiguracionesViewModel
 
@@ -61,7 +62,7 @@ class ConfiguracionesFragment : Fragment() {
         exportarCopiaDeSeguridad()
         importarCopiaSeguridad()
         datePickerFechaInicio()
-
+        borrarTodasLasEtiquetas()
 
         binding.fechaIncioRegistrosHabitos.text = "Fecha inicio de los registros: ${Constantes.FECHA_INICIO}"
 
@@ -159,6 +160,12 @@ class ConfiguracionesFragment : Fragment() {
         binding.fechaIncioRegistrosHabitos.setOnClickListener {
             mostrarDatePicker(requireContext(), binding, resources, viewModel)
             fechasCambiadas = true
+        }
+    }
+
+    private fun borrarTodasLasEtiquetas(){
+        binding.borrarTodasLasEtiquetasFragment.setOnClickListener {
+            borrarTodasLasEtiquetasDialog(requireContext(), main, viewModel, resources)
         }
     }
 

@@ -45,4 +45,7 @@ interface EtiquetaDao {
 
     @Query("DELETE FROM Etiqueta WHERE nombreEtiquta = :etiqueta")
     suspend fun eliminarEtiquetaPorNombre(etiqueta: String)
+
+    @Query("Delete from etiqueta")
+    suspend fun borrarTodasLasEtiquetas()
 }

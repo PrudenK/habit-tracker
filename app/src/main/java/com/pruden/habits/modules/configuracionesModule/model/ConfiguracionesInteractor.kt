@@ -64,6 +64,15 @@ class ConfiguracionesInteractor {
         }
     }
 
+    fun borrarTodasLasEtiquetas(onComplete: () -> Unit){
+        CoroutineScope(Dispatchers.IO).launch {
+            HabitosApplication.database.etiquetaDao().borrarTodasLasEtiquetas()
+            withContext(Dispatchers.Main){
+                onComplete()
+            }
+        }
+    }
+
     fun insertarHabito(habitoEntity: HabitoEntity){
         CoroutineScope(Dispatchers.IO).launch {
             HabitosApplication.database.habitoDao().insertHabito(habitoEntity)
