@@ -26,6 +26,7 @@ import com.pruden.habits.modules.mainModule.adapters.HabitoAdapter
 import com.pruden.habits.modules.mainModule.adapters.listeners.OnClickHabito
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.elementos.SincronizadorDeScrolls
+import com.pruden.habits.common.metodos.Dialogos.makeToast
 import com.pruden.habits.common.metodos.Fragments.cargarFragment
 import com.pruden.habits.common.metodos.General.cargarScrollFechaCommon
 import com.pruden.habits.common.metodos.General.configurarRecyclerFechasCommon
@@ -276,11 +277,19 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
                         true
                     }
                     R.id.menu_etiquetas->{
-                        cargarFragment(this, PorEtiquetasFragment())
+                        if(listaHabitos.size > 0){
+                            cargarFragment(this, PorEtiquetasFragment())
+                        }else{
+                            makeToast("Si no hay hábitos no hay etiquetas", this)
+                        }
                         true
                     }
                     R.id.menu_agreagar_etiquetas->{
-                        dialogoAgregarEtiqueta(this, resources, mainViewModel){}
+                        if(listaHabitos.size > 0){
+                            dialogoAgregarEtiqueta(this, resources, mainViewModel){}
+                        }else{
+                            makeToast("Si no hay hábitos no hay etiquetas", this)
+                        }
                         true
                     }
                     R.id.menu_tutorial->{
