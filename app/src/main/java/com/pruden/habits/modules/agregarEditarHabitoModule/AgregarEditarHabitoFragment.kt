@@ -157,7 +157,7 @@ class AgregarEditarHabitoFragment : Fragment() {
                     val posicion = if(editar){
                         habitoEditar!!.posicion
                     }else{
-                        nombresDeHabitosDB.size
+                        listaHabitos.filter { !it.archivado }.size +1
                     }
 
                     if(numerico){
