@@ -70,7 +70,7 @@ fun dialogoAgregarEtiqueta(
                 if(colorEtiqueta == -1){
                     makeToast("El blanco no es un color", context)
                 }else{
-                    mainViewModel.insertarEtiqueta(EtiquetaEntity(nombreEtiqueta, colorEtiqueta, false))
+                    mainViewModel.insertarEtiqueta(EtiquetaEntity(nombreEtiqueta, colorEtiqueta, false, 777))
 
                     makeToast("Eiqueta: $nombreEtiqueta creada con éxito", context)
 

@@ -32,7 +32,7 @@ class PorEtiquetasViewModel: ViewModel() {
             withContext(Dispatchers.IO) {
                 HabitosApplication.database.etiquetaDao().updateEtiquetaSimple(etiquetaEntity)
 
-                val dummyEtiqueta = EtiquetaEntity("a´dslkjfalj190u190jafsdlkj31pjñlz´xcvads", -123451, false)
+                val dummyEtiqueta = EtiquetaEntity("a´dslkjfalj190u190jafsdlkj31pjñlz´xcvads", -123451, false, 777)
                 HabitosApplication.database.etiquetaDao().insertarEtiqueta(dummyEtiqueta)
                 HabitosApplication.database.etiquetaDao().eliminarEtiqueta(dummyEtiqueta)
             }
@@ -47,7 +47,7 @@ class PorEtiquetasViewModel: ViewModel() {
                 HabitosApplication.database.etiquetaDao().actualizarEtiquetaConNuevoNombre(nombreAntiguo, etiquetaEntity)
                 delay(300)
 
-                val dummyEtiqueta = EtiquetaEntity("a´dslkjfalj190u190jafsdlkj31pjñlz´xcvads", -123451, false)
+                val dummyEtiqueta = EtiquetaEntity("a´dslkjfalj190u190jafsdlkj31pjñlz´xcvads", -123451, false, 777)
                 HabitosApplication.database.etiquetaDao().insertarEtiqueta(dummyEtiqueta)
                 HabitosApplication.database.etiquetaDao().eliminarEtiqueta(dummyEtiqueta)
             }

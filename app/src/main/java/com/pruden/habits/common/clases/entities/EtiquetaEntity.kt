@@ -7,5 +7,6 @@ import androidx.room.PrimaryKey
 data class EtiquetaEntity(
     @PrimaryKey var nombreEtiquta: String,
     var colorEtiqueta: Int,
-    var seleccionada: Boolean
+    var seleccionada: Boolean,
+    var posicion: Int
 )

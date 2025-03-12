@@ -106,7 +106,7 @@ fun dialogoModificarEtiqueta(
                 if(listaHabitosEtiquetas.map { it.nombreEtiquta.lowercase() }.toMutableList().contains(nombreEtiqueta.lowercase())){
                     if(nombreEtiqueta == nombreAntiguo){
 
-                        val etiquetaMod = EtiquetaEntity(nombreEtiqueta, colorEtiqueta, etiqueta.seleccionada)
+                        val etiquetaMod = EtiquetaEntity(nombreEtiqueta, colorEtiqueta, etiqueta.seleccionada, 777)
 
                         viewModel.updateEtiquetaSimple(etiquetaMod){
                             etiquetasAdapter.notifyDataSetChanged()
@@ -121,7 +121,7 @@ fun dialogoModificarEtiqueta(
                         makeToast("No puedes dejar el nombre en blanco", context)
                     }else {
 
-                        viewModel.updateEtiquetaCompleta(nombreAntiguo,  EtiquetaEntity(nombreEtiqueta, colorEtiqueta, etiqueta.seleccionada)){
+                        viewModel.updateEtiquetaCompleta(nombreAntiguo,  EtiquetaEntity(nombreEtiqueta, colorEtiqueta, etiqueta.seleccionada, 777)){
                             etiquetasAdapter.notifyDataSetChanged()
                             onRecargarUI.invoke()
                             dialogo.dismiss()

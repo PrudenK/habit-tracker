@@ -38,7 +38,7 @@ class HabitosApplication : Application(){
             HabitosDatabase::class.java,
             "HabitosDatabase"
         )
-           // .addMigrations(MIGRATION_6_7)
+            .addMigrations(MIGRATION_7_8)
           //  .fallbackToDestructiveMigration()
             .build()
 
@@ -120,4 +120,10 @@ class HabitosApplication : Application(){
         }
     }
 
+    val MIGRATION_7_8 = object : Migration(7, 8) {
+        override fun migrate(database: SupportSQLiteDatabase) {
+            // 🔹 Agregar la nueva columna 'posicion' con un valor por defecto de 0
+            database.execSQL("ALTER TABLE Etiqueta ADD COLUMN posicion INTEGER NOT NULL DEFAULT 0")
+        }
+    }
 }
