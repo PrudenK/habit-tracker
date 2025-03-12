@@ -135,7 +135,7 @@ class AgregarEditarHabitoFragment : Fragment() {
         return when (item.itemId) {
             android.R.id.home -> {
                 if(editar){
-                    parentFragmentManager.setFragmentResult("actualizar_habitos", Bundle())
+                    parentFragmentManager.setFragmentResult("actualizar_habitos_main", Bundle())
                 }
                 activity?.onBackPressed()
                 true
@@ -210,7 +210,7 @@ class AgregarEditarHabitoFragment : Fragment() {
                                 Snackbar.make(binding.root, "Hábito añadido con éxito", Snackbar.LENGTH_SHORT).show()
                                 binding.progressBarAgregar.visibility = View.GONE
                                 binding.agregandoHabito.visibility = View.GONE
-                                parentFragmentManager.setFragmentResult("actualizar_habitos", Bundle())
+                                parentFragmentManager.setFragmentResult("actualizar_habitos_main", Bundle())
 
                                 activity?.onBackPressed()
                             }
