@@ -101,8 +101,6 @@ class ConfiguracionesFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-
         return when (item.itemId) {
             android.R.id.home -> {
                 if(fechasCambiadas){
@@ -166,6 +164,12 @@ class ConfiguracionesFragment : Fragment() {
     private fun borrarTodasLasEtiquetas(){
         binding.borrarTodasLasEtiquetasFragment.setOnClickListener {
             borrarTodasLasEtiquetasDialog(requireContext(), main, viewModel, resources)
+        }
+    }
+
+    private fun exportarSoloLasEtiquetas(){
+        binding.exportarSoloLasEtiquetasFragment.setOnClickListener {
+
         }
     }
 

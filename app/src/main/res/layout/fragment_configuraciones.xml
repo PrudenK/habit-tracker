@@ -172,6 +172,21 @@
 
                     />
 
+                <TextView
+                    android:id="@+id/exportar_solo_las_etiquetas_fragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Exportar solo las etiquetas"
+                    android:textSize="@dimen/text_16"
+                    android:paddingVertical="8dp"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:background="?attr/selectableItemBackground"
+                    android:textColor="@color/click_button"
+
+                    />
+
+
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
