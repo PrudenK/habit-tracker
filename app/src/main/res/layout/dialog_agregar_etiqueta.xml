@@ -122,7 +122,7 @@
 
 
             <TextView
-                android:id="@+id/posicion_picker"
+                android:id="@+id/posicion_picker_edit_etiqueta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -142,23 +142,23 @@
                 />
 
             <ImageView
-                android:id="@+id/restar_posicion_area"
+                android:id="@+id/restar_posicion_area_edit_etiqueta"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
 
-                app:layout_constraintBottom_toBottomOf="@+id/posicion_picker"
-                app:layout_constraintEnd_toStartOf="@+id/posicion_picker"
+                app:layout_constraintBottom_toBottomOf="@+id/posicion_picker_edit_etiqueta"
+                app:layout_constraintEnd_toStartOf="@+id/posicion_picker_edit_etiqueta"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/sumar_posicion_area"
+                android:id="@+id/sumar_posicion_area_edit_etiqueta"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
 
-                app:layout_constraintBottom_toBottomOf="@+id/posicion_picker"
+                app:layout_constraintBottom_toBottomOf="@+id/posicion_picker_edit_etiqueta"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/posicion_picker"
+                app:layout_constraintStart_toEndOf="@+id/posicion_picker_edit_etiqueta"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
@@ -169,9 +169,9 @@
                 android:clickable="false"
 
                 android:src="@drawable/ic_remove"
-                app:layout_constraintBottom_toBottomOf="@+id/posicion_picker"
-                app:layout_constraintEnd_toStartOf="@+id/posicion_picker"
-                app:layout_constraintTop_toTopOf="@+id/posicion_picker"
+                app:layout_constraintBottom_toBottomOf="@+id/posicion_picker_edit_etiqueta"
+                app:layout_constraintEnd_toStartOf="@+id/posicion_picker_edit_etiqueta"
+                app:layout_constraintTop_toTopOf="@+id/posicion_picker_edit_etiqueta"
                 app:tint="@color/lightGrayColor" />
 
             <ImageView
@@ -182,9 +182,9 @@
                 android:clickable="false"
 
                 android:src="@drawable/ic_add"
-                app:layout_constraintBottom_toBottomOf="@+id/posicion_picker"
-                app:layout_constraintStart_toEndOf="@+id/posicion_picker"
-                app:layout_constraintTop_toTopOf="@+id/posicion_picker"
+                app:layout_constraintBottom_toBottomOf="@+id/posicion_picker_edit_etiqueta"
+                app:layout_constraintStart_toEndOf="@+id/posicion_picker_edit_etiqueta"
+                app:layout_constraintTop_toTopOf="@+id/posicion_picker_edit_etiqueta"
 
                 app:tint="@color/lightGrayColor" />
 

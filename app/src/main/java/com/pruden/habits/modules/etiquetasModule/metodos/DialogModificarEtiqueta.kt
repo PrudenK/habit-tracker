@@ -17,6 +17,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.pruden.habits.HabitosApplication.Companion.listaHabitos
 import com.pruden.habits.HabitosApplication.Companion.listaHabitosEtiquetas
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
@@ -54,8 +55,10 @@ fun dialogoModificarEtiqueta(
 
         dialogOpciones.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
+        var posicion = etiqueta.posicion
 
         buttonEditarOpciones.setOnClickListener {
+
             var colorEtiqueta = etiqueta.colorEtiqueta
             val nombreAntiguo = etiqueta.nombreEtiquta
 
@@ -84,6 +87,26 @@ fun dialogoModificarEtiqueta(
             val progressBar = dialogoView.findViewById<ProgressBar>(R.id.progress_bar_modificar_etiqueta)
             val tvProgressBar = dialogoView.findViewById<TextView>(R.id.texto_progress_bar_modificar_etiqueta)
 
+            val tvPosicion = dialogoView.findViewById<TextView>(R.id.posicion_picker_edit_etiqueta)
+            val imgSumar = dialogoView.findViewById<ImageView>(R.id.sumar_posicion_area_edit_etiqueta)
+            val imgRestar = dialogoView.findViewById<ImageView>(R.id.restar_posicion_area_edit_etiqueta)
+
+            tvPosicion.text = posicion.toString()
+
+            imgSumar.setOnClickListener {
+                if(posicion < listaHabitosEtiquetas.size){
+                    posicion++
+                    tvPosicion.text = posicion.toString()
+                }
+            }
+
+            imgRestar.setOnClickListener {
+                if(posicion > 3){
+                    posicion--
+                    tvPosicion.text = posicion.toString()
+                }
+            }
+
 
             imgColorPicker.setOnClickListener {
                 dialogoColorPicker(context) { color ->
@@ -106,7 +129,7 @@ fun dialogoModificarEtiqueta(
                 if(listaHabitosEtiquetas.map { it.nombreEtiquta.lowercase() }.toMutableList().contains(nombreEtiqueta.lowercase())){
                     if(nombreEtiqueta == nombreAntiguo){
 
-                        val etiquetaMod = EtiquetaEntity(nombreEtiqueta, colorEtiqueta, etiqueta.seleccionada, 777)
+                        val etiquetaMod = EtiquetaEntity(nombreEtiqueta, colorEtiqueta, etiqueta.seleccionada, posicion)
 
                         viewModel.updateEtiquetaSimple(etiquetaMod){
                             etiquetasAdapter.notifyDataSetChanged()
