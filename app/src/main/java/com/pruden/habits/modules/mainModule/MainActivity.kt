@@ -128,7 +128,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
 
             listaHabitos = nuevaLista.toMutableList().sortedBy { it.posicion }.toMutableList()
 
-            if (nuevaLista == listaHabitos) return@observe
+//            if (nuevaLista == listaHabitos) return@observe
             if (nuevaLista.any { it.listaValores.isEmpty() }) return@observe
 
             val listaFiltrada = nuevaLista.filter { !it.archivado }.sortedBy { it.posicion }
