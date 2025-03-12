@@ -147,7 +147,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
             }
             listaHabitosEtiquetas.clear()
             listaHabitosEtiquetas.addAll(nuevaLista)
-            Log.d("Listaaa123", nuevaLista.map { it.nombreEtiquta }.toString())
+            Log.d("Listaaa1234", nuevaLista.map { it.nombreEtiquta+" "+it.seleccionada }.toString())
         }
     }
 

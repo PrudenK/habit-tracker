@@ -7,6 +7,7 @@ import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.modules.etiquetasModule.model.PorEtiquetasInteractor
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -30,8 +31,12 @@ class PorEtiquetasViewModel: ViewModel() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 HabitosApplication.database.etiquetaDao().updateEtiquetaSimple(etiquetaEntity)
-            }
 
+                val dummyEtiqueta = EtiquetaEntity("a´dslkjfalj190u190jafsdlkj31pjñlz´xcvads", -123451, false)
+                HabitosApplication.database.etiquetaDao().insertarEtiqueta(dummyEtiqueta)
+                HabitosApplication.database.etiquetaDao().eliminarEtiqueta(dummyEtiqueta)
+            }
+            //delay(300)
             onComplete()
         }
     }
@@ -40,8 +45,12 @@ class PorEtiquetasViewModel: ViewModel() {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 HabitosApplication.database.etiquetaDao().actualizarEtiquetaConNuevoNombre(nombreAntiguo, etiquetaEntity)
-            }
+                delay(300)
 
+                val dummyEtiqueta = EtiquetaEntity("a´dslkjfalj190u190jafsdlkj31pjñlz´xcvads", -123451, false)
+                HabitosApplication.database.etiquetaDao().insertarEtiqueta(dummyEtiqueta)
+                HabitosApplication.database.etiquetaDao().eliminarEtiqueta(dummyEtiqueta)
+            }
             onComplete()
         }
     }

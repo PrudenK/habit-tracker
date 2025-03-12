@@ -8,9 +8,12 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.graphics.drawable.LayerDrawable
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -77,6 +80,11 @@ fun dialogoModificarEtiqueta(
 
             dialogo.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
+            val contenedor = dialogoView.findViewById<ConstraintLayout>(R.id.contenedor_modificar_etiqueta)
+            val progressBar = dialogoView.findViewById<ProgressBar>(R.id.progress_bar_modificar_etiqueta)
+            val tvProgressBar = dialogoView.findViewById<TextView>(R.id.texto_progress_bar_modificar_etiqueta)
+
+
             imgColorPicker.setOnClickListener {
                 dialogoColorPicker(context) { color ->
                     colorEtiqueta = color
@@ -89,18 +97,18 @@ fun dialogoModificarEtiqueta(
             }
 
             btnGuardar.setOnClickListener {
-                val nombreEtiqueta = editTextNombreEtiqeta.text.toString()
+                contenedor.visibility = View.GONE
+                progressBar.visibility = View.VISIBLE
+                tvProgressBar.visibility = View.VISIBLE
 
+                val nombreEtiqueta = editTextNombreEtiqeta.text.toString()
 
                 if(listaHabitosEtiquetas.map { it.nombreEtiquta.lowercase() }.toMutableList().contains(nombreEtiqueta.lowercase())){
                     if(nombreEtiqueta == nombreAntiguo){
 
+                        val etiquetaMod = EtiquetaEntity(nombreEtiqueta, colorEtiqueta, etiqueta.seleccionada)
 
-                        etiqueta.nombreEtiquta = nombreEtiqueta
-                        etiqueta.colorEtiqueta = colorEtiqueta
-
-
-                        viewModel.updateEtiquetaSimple(etiqueta){
+                        viewModel.updateEtiquetaSimple(etiquetaMod){
                             etiquetasAdapter.notifyDataSetChanged()
                             onRecargarUI.invoke()
                             dialogo.dismiss()
@@ -113,11 +121,8 @@ fun dialogoModificarEtiqueta(
                         makeToast("No puedes dejar el nombre en blanco", context)
                     }else {
 
-                        etiqueta.nombreEtiquta = nombreEtiqueta
-                        etiqueta.colorEtiqueta = colorEtiqueta
-
-                        viewModel.updateEtiquetaCompleta(nombreAntiguo, etiqueta){
-                            etiquetasAdapter.submitList(listaHabitosEtiquetas.toList())
+                        viewModel.updateEtiquetaCompleta(nombreAntiguo,  EtiquetaEntity(nombreEtiqueta, colorEtiqueta, etiqueta.seleccionada)){
+                            etiquetasAdapter.notifyDataSetChanged()
                             onRecargarUI.invoke()
                             dialogo.dismiss()
                         }

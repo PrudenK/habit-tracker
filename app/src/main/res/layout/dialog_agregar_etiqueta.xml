@@ -7,76 +7,111 @@
     android:padding="16dp"
     android:background="@drawable/background_dialogo_opciones">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_nombre_etiqueta"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:hint="Nombre de la etiqueta"
-        app:endIconMode="clear_text"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+
+    <ProgressBar
+        android:id="@+id/progress_bar_modificar_etiqueta"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:boxStrokeColor="@color/light_gray"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:boxStrokeWidth="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+        android:visibility="gone"
 
-        >
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_notas_numerico_calendar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLines="1"
-            android:textColor="@android:color/white"
-            android:textCursorDrawable="@null" />
-    </com.google.android.material.textfield.TextInputLayout>
+        />
 
     <TextView
-        android:id="@+id/titulo_color_etiqueta"
+        android:id="@+id/texto_progress_bar_modificar_etiqueta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Elige el color de la etiqueta"
-        android:textSize="18sp"
-        app:layout_constraintTop_toBottomOf="@id/til_nombre_etiqueta"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="10dp"
-        app:layout_constraintTop_toTopOf="@id/img_color_etiqueta_num"
-        app:layout_constraintBottom_toBottomOf="@id/img_color_etiqueta_num"
+        android:text="¡Modificando etiqueta...!"
         android:textColor="@color/lightGrayColor"
-        />
-
-    <ImageView
-        android:id="@+id/img_color_etiqueta_num"
-        android:layout_width="45dp"
-        android:layout_height="45dp"
-        app:layout_constraintTop_toBottomOf="@id/til_nombre_etiqueta"
-        app:layout_constraintStart_toEndOf="@id/titulo_color_etiqueta"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="20dp"
-        android:background="@drawable/borde_negro"
-        />
-
-    <Button
-        android:id="@+id/button_cancelar_agregar_etiqueta"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="Cancelar"
-        app:layout_constraintTop_toBottomOf="@id/img_color_etiqueta_num"
+        android:textStyle="bold"
+        android:textSize="@dimen/text_20"
+        android:fontFamily="@font/encabezados"
+        app:layout_constraintBottom_toTopOf="@id/progress_bar_modificar_etiqueta"
         app:layout_constraintStart_toStartOf="parent"
-        android:textSize="@dimen/text_18"
-        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="10dp"
+        android:visibility="gone"
         />
 
-    <Button
-        android:id="@+id/button_guardar_agreagr_etiqueta"
-        android:layout_width="130dp"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contenedor_modificar_etiqueta"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Guardar"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_color_etiqueta_num"
-        android:textSize="@dimen/text_18"
-        android:layout_marginTop="20dp"
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_nombre_etiqueta"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:hint="Nombre de la etiqueta"
+            app:endIconMode="clear_text"
+            app:boxStrokeColor="@color/light_gray"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:boxStrokeWidth="1dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_notas_numerico_calendar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textColor="@android:color/white"
+                android:textCursorDrawable="@null"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/titulo_color_etiqueta"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Elige el color de la etiqueta"
+            android:textSize="18sp"
+            android:textColor="@color/lightGrayColor"
+            android:layout_marginStart="10dp"
+            app:layout_constraintTop_toTopOf="@id/img_color_etiqueta_num"
+            app:layout_constraintBottom_toBottomOf="@id/img_color_etiqueta_num"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <ImageView
+            android:id="@+id/img_color_etiqueta_num"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/borde_negro"
+            app:layout_constraintTop_toBottomOf="@id/til_nombre_etiqueta"
+            app:layout_constraintStart_toEndOf="@id/titulo_color_etiqueta"/>
+
+        <Button
+            android:id="@+id/button_cancelar_agregar_etiqueta"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="Cancelar"
+            android:textSize="@dimen/text_18"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintTop_toBottomOf="@id/img_color_etiqueta_num"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <Button
+            android:id="@+id/button_guardar_agreagr_etiqueta"
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="Guardar"
+            android:textSize="@dimen/text_18"
+            android:layout_marginTop="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_color_etiqueta_num"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
