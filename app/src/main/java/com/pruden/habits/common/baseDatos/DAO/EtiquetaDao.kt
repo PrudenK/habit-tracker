@@ -18,7 +18,7 @@ interface EtiquetaDao {
     @Update
     suspend fun updateEtiquetaSimple(etiqueta: EtiquetaEntity)
 
-    @Query("Select * From Etiqueta")
+    @Query("Select * From Etiqueta order by posicion asc")
     fun obtenerTodasLasEtiquetasConLiveData(): LiveData<List<EtiquetaEntity>>
 
     @Query("SELECT * FROM Etiqueta WHERE nombreEtiquta = :nombreEtiqueta")
