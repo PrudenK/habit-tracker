@@ -8,7 +8,12 @@ import java.util.Locale
 object Constantes {
     const val CABECERA_HABITOS_CSV = "nombre,objetivo,tipoNumerico,unidad,color,archivado,posicion"
     const val CABECERA_ETIQUETAS_CSV = "nombre,color,seleccionado,posicion"
+    const val CABECERA_HABITOS_ETQUETAS_CSV = "habito,etiqueta"
+
     const val COMIENZAN_DATA_HABITOS = "COMIENZAN_DATA_HABITOS"
+    const val COMIENZAN_ETIQUETAS = "COMIENZAN_ETIQUETAS"
+    const val COMIENZAN_HABITOS_ETIQUETAS = "COMIENZAN_HABITOS_ETIQUETAS"
+
     const val CANTIDAD_DIFF_HABITO_ARCHIVADO = 99999999
 
     const val SHARED_CONFIGURACIONES = "Configuraciones"

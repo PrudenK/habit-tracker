@@ -29,7 +29,8 @@ interface HabitoEtiquetaDao {
     @Query("DELETE FROM HabitoEtiqueta WHERE nombreHabito = :nombreHabito AND nombreEtiqueta = :nombreEtiqueta")
     suspend fun eliminarRelacion(nombreHabito: String, nombreEtiqueta: String)
 
-
+    @Query("Select * from HabitoEtiqueta")
+    suspend fun obtenerTodosLosHabitosEtiquetas(): MutableList<HabitoEtiquetaEntity>
 
 }
 /*

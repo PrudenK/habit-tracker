@@ -72,6 +72,8 @@ class ConfiguracionesViewModel: ViewModel() {
     fun exportarCopiaSeguridad(context: Context){
         viewModelScope.launch(Dispatchers.IO) {
             val habitos = interactor.obtenerTodosLosHabitos()
+            val etiquetas = interactor.obtenerTodasLasEtiquetass()
+            val habitosEtiquetas = interactor.obtenerTodosLosHabitosEtiquetass()
             val hashMapDataHabitos = interactor.procesarHashMapDataHabitos(
                 devolverIdCabecera(
                     devolverCabeceraDataHabitos(habitos)
@@ -79,7 +81,7 @@ class ConfiguracionesViewModel: ViewModel() {
             )
             if(habitos.isNotEmpty()){
                 withContext(Dispatchers.Main) {
-                    exportarDatos.exportarCopiaDeSeguridadCSV(context, habitos, hashMapDataHabitos)
+                    exportarDatos.exportarCopiaDeSeguridadCSV(context, habitos, etiquetas, habitosEtiquetas, hashMapDataHabitos)
                 }
             }else{
                 withContext(Dispatchers.Main) {

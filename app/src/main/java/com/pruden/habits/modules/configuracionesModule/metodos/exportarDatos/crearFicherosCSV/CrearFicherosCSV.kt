@@ -5,6 +5,7 @@ import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.Constantes
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
+import com.pruden.habits.common.clases.entities.HabitoEtiquetaEntity
 import com.pruden.habits.common.metodos.fechas.obtenerFechaActual
 import com.pruden.habits.modules.configuracionesModule.metodos.exportarDatos.devolverCabeceraCopiaDeSeguridadData
 import com.pruden.habits.modules.configuracionesModule.metodos.exportarDatos.devolverCabeceraDataHabitos
@@ -82,26 +83,23 @@ class CrearFicherosCSV {
 
     fun crearFicheroCopiaSeguridad(
         habitos: MutableList<HabitoEntity>,
+        etiquetas: MutableList<EtiquetaEntity>,
+        habitosEtiquetas: MutableList<HabitoEtiquetaEntity>,
         contexto: Context,
         hashMapDataHabitos: HashMap<String, MutableList<DataHabitoEntity>>
     ): File {
         val stringBuilder = StringBuilder()
         stringBuilder.append(devolverContenidoHabitosCSV(habitos).toString())
+
+        stringBuilder.append(Constantes.COMIENZAN_ETIQUETAS+"\n")
+        stringBuilder.append(devolverContenidosEtiquetasCSV(etiquetas))
+
+        stringBuilder.append(Constantes.COMIENZAN_HABITOS_ETIQUETAS+"\n")
+        stringBuilder.append(devolverContenidosHabitosEtiquetasCSV(habitosEtiquetas))
+
         stringBuilder.append(Constantes.COMIENZAN_DATA_HABITOS+"\n")
-
         stringBuilder.append(devolverCabeceraCopiaDeSeguridadData(habitos) +"\n")
-
-        val listaNombres = devolverIdCabecera(devolverCabeceraDataHabitos(habitos))
-
-        val numRegistros = hashMapDataHabitos[listaNombres[0]]!!.size-1
-
-        for(i in 0..numRegistros){
-            var linea = hashMapDataHabitos[listaNombres[0]]!![i].fecha
-            for(id in listaNombres){
-                linea+= ","+ hashMapDataHabitos[id]!![i].valorCampo+","+hashMapDataHabitos[id]!![i].notas
-            }
-            stringBuilder.append(linea+"\n")
-        }
+        stringBuilder.append(devolverDataHabitosCopiaSeguridadCSV(habitos, hashMapDataHabitos))
 
         val copiaSeguridad = File(contexto.filesDir, "Copia_de_seguridad_${obtenerFechaActual()}.csv")
         copiaSeguridad.writeText(stringBuilder.toString())

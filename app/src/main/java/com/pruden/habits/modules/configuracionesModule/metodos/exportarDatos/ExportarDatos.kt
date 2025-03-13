@@ -4,6 +4,7 @@ import android.content.Context
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
+import com.pruden.habits.common.clases.entities.HabitoEtiquetaEntity
 import com.pruden.habits.modules.configuracionesModule.metodos.exportarDatos.crearFicherosCSV.CrearFicherosCSV
 
 class ExportarDatos{
@@ -38,9 +39,17 @@ class ExportarDatos{
         descargarZip(contexto, zip)
     }
 
-    fun exportarCopiaDeSeguridadCSV(contexto : Context, habitos: MutableList<HabitoEntity>,
-                                    hashMapDataHabitos: HashMap<String, MutableList<DataHabitoEntity>>){
-        val copiaSeguridad = ficheroProvider.crearFicheroCopiaSeguridad(habitos, contexto, hashMapDataHabitos)
+    fun exportarCopiaDeSeguridadCSV(
+        contexto : Context,
+        habitos: MutableList<HabitoEntity>,
+        etiquetas: MutableList<EtiquetaEntity>,
+        habitosEtiquetas: MutableList<HabitoEtiquetaEntity>,
+        hashMapDataHabitos: HashMap<String, MutableList<DataHabitoEntity>>
+
+    ){
+        val copiaSeguridad = ficheroProvider.crearFicheroCopiaSeguridad(
+            habitos, etiquetas, habitosEtiquetas,  contexto, hashMapDataHabitos)
+
         descargarCSVFile(contexto, copiaSeguridad)
     }
 

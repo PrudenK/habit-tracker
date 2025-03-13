@@ -2,7 +2,12 @@ package com.pruden.habits.modules.configuracionesModule.metodos.exportarDatos.cr
 
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.Constantes
+import com.pruden.habits.common.clases.auxClass.HabitosEtiqueta
+import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
+import com.pruden.habits.common.clases.entities.HabitoEtiquetaEntity
+import com.pruden.habits.modules.configuracionesModule.metodos.exportarDatos.devolverCabeceraDataHabitos
+import com.pruden.habits.modules.configuracionesModule.metodos.exportarDatos.devolverIdCabecera
 
 fun devolverContenidoHabitosCSV(habitos: MutableList<HabitoEntity>): java.lang.StringBuilder{
     val stringBuilder = StringBuilder()
@@ -16,6 +21,27 @@ fun devolverContenidoHabitosCSV(habitos: MutableList<HabitoEntity>): java.lang.S
     return stringBuilder
 }
 
+fun devolverDataHabitosCopiaSeguridadCSV(
+    habitos: MutableList<HabitoEntity>,
+    hashMapDataHabitos: HashMap<String, MutableList<DataHabitoEntity>>
+): java.lang.StringBuilder {
+    val stringBuilder = StringBuilder()
+
+    val listaNombres = devolverIdCabecera(devolverCabeceraDataHabitos(habitos))
+
+    val numRegistros = hashMapDataHabitos[listaNombres[0]]!!.size-1
+
+    for(i in 0..numRegistros){
+        var linea = hashMapDataHabitos[listaNombres[0]]!![i].fecha
+        for(id in listaNombres){
+            linea+= ","+ hashMapDataHabitos[id]!![i].valorCampo+","+hashMapDataHabitos[id]!![i].notas
+        }
+        stringBuilder.append(linea+"\n")
+    }
+
+    return stringBuilder
+}
+
 fun devolverContenidosEtiquetasCSV(etiquetas: MutableList<EtiquetaEntity>): java.lang.StringBuilder{
     val stringBuilder = StringBuilder()
     stringBuilder.append(Constantes.CABECERA_ETIQUETAS_CSV+"\n")
@@ -23,6 +49,18 @@ fun devolverContenidosEtiquetasCSV(etiquetas: MutableList<EtiquetaEntity>): java
     for(etiqueta in etiquetas){
         with(etiqueta){
             stringBuilder.append("$nombreEtiquta,$colorEtiqueta,$seleccionada,$posicion\n")
+        }
+    }
+    return stringBuilder
+}
+
+fun devolverContenidosHabitosEtiquetasCSV(habitosEtiquetas: MutableList<HabitoEtiquetaEntity>): java.lang.StringBuilder{
+    val stringBuilder = StringBuilder()
+    stringBuilder.append(Constantes.CABECERA_HABITOS_ETQUETAS_CSV+"\n")
+
+    for(habEt in habitosEtiquetas){
+        with(habEt){
+            stringBuilder.append("$nombreHabito,$nombreEtiqueta\n")
         }
     }
     return stringBuilder
