@@ -146,9 +146,6 @@ fun dialogoModificarEtiqueta(
 
 
 
-                contenedor.visibility = View.GONE
-                progressBar.visibility = View.VISIBLE
-                tvProgressBar.visibility = View.VISIBLE
 
 
 
@@ -158,6 +155,10 @@ fun dialogoModificarEtiqueta(
                     if(nombreEtiqueta == nombreAntiguo){
 
                         val etiquetaMod = EtiquetaEntity(nombreEtiqueta, colorEtiqueta, etiqueta.seleccionada, posicion)
+
+                        contenedor.visibility = View.GONE
+                        progressBar.visibility = View.VISIBLE
+                        tvProgressBar.visibility = View.VISIBLE
 
                         viewModel.updateEtiquetaSimple(etiquetaMod){
                             etiquetasAdapter.notifyDataSetChanged()
@@ -171,11 +172,18 @@ fun dialogoModificarEtiqueta(
                     if(nombreEtiqueta.isBlank()){
                         makeToast("No puedes dejar el nombre en blanco", context)
                     }else {
+                        if(nombreEtiqueta.lowercase() == "fecha"){
+                            makeToast("La palabra fecha está reservada", context)
+                        }else{
+                            contenedor.visibility = View.GONE
+                            progressBar.visibility = View.VISIBLE
+                            tvProgressBar.visibility = View.VISIBLE
 
-                        viewModel.updateEtiquetaCompleta(nombreAntiguo,  EtiquetaEntity(nombreEtiqueta, colorEtiqueta, etiqueta.seleccionada, posicion)){
-                            etiquetasAdapter.notifyDataSetChanged()
-                            onRecargarUI.invoke()
-                            dialogo.dismiss()
+                            viewModel.updateEtiquetaCompleta(nombreAntiguo,  EtiquetaEntity(nombreEtiqueta, colorEtiqueta, etiqueta.seleccionada, posicion)){
+                                etiquetasAdapter.notifyDataSetChanged()
+                                onRecargarUI.invoke()
+                                dialogo.dismiss()
+                            }
                         }
                     }
                 }

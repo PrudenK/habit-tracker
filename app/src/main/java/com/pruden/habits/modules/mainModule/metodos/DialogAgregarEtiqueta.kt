@@ -72,15 +72,19 @@ fun dialogoAgregarEtiqueta(
             if(nombreEtiqueta.isBlank()){
                 makeToast("No puedes dejar el nombre en blanco", context)
             }else {
-                if(colorEtiqueta == -1){
-                    makeToast("El blanco no es un color", context)
+                if(nombreEtiqueta.lowercase() == "fecha"){
+                    makeToast("La palabra fecha está reservada", context)
                 }else{
-                    mainViewModel.insertarEtiqueta(EtiquetaEntity(nombreEtiqueta, colorEtiqueta, false, listaHabitosEtiquetas.size+1))
+                    if(colorEtiqueta == -1){
+                        makeToast("El blanco no es un color", context)
+                    }else{
+                        mainViewModel.insertarEtiqueta(EtiquetaEntity(nombreEtiqueta, colorEtiqueta, false, listaHabitosEtiquetas.size+1))
 
-                    makeToast("Eiqueta: $nombreEtiqueta creada con éxito", context)
+                        makeToast("Eiqueta: $nombreEtiqueta creada con éxito", context)
 
-                    onTerminar()
-                    dialogo.dismiss()
+                        onTerminar()
+                        dialogo.dismiss()
+                    }
                 }
             }
         }
