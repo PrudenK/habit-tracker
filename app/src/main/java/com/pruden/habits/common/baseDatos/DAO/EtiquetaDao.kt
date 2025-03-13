@@ -15,6 +15,9 @@ interface EtiquetaDao {
     @Insert
     suspend fun insertarEtiqueta(etiqueta: EtiquetaEntity)
 
+    @Insert
+    suspend fun insertarListaDeEtiquetas(listaEtiquetas: List<EtiquetaEntity>)
+
     @Update
     suspend fun updateEtiquetaSimple(etiqueta: EtiquetaEntity)
 

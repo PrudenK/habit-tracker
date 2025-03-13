@@ -1,5 +1,6 @@
 package com.pruden.habits.modules.configuracionesModule.model
 
+import android.provider.ContactsContract.RawContacts.Data
 import com.pruden.habits.HabitosApplication
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
@@ -105,9 +106,34 @@ class ConfiguracionesInteractor {
         }
     }
 
-    fun insertarListaDeDataHabitos(fechas: List<String>, habitos: MutableList<Habito>){
+    fun insertarListaDeDataHabitosConFechas(fechas: List<String>, habitos: MutableList<Habito>){
         CoroutineScope(Dispatchers.IO).launch {
             HabitosApplication.database.dataHabitoDao().insertarListaDataHabitoTransaction(fechas, habitos)
         }
     }
+
+    fun insertarListaHabitosEtiquetas(habitoEtiquetaLista: MutableList<HabitoEtiquetaEntity>){
+        CoroutineScope(Dispatchers.IO).launch {
+            HabitosApplication.database.habitoEtiquetaDao().insertarRelaciones(habitoEtiquetaLista)
+        }
+    }
+
+    fun insertarListaDeHabitos(listaHabitos: MutableList<HabitoEntity>){
+        CoroutineScope(Dispatchers.IO).launch {
+            HabitosApplication.database.habitoDao().insertListaDeHabitos(listaHabitos)
+        }
+    }
+
+    fun insertarListaDeEtiquetas(listaEtiquetas: MutableList<EtiquetaEntity>){
+        CoroutineScope(Dispatchers.IO).launch {
+            HabitosApplication.database.etiquetaDao().insertarListaDeEtiquetas(listaEtiquetas)
+        }
+    }
+
+    fun insertarListaDeDataHabitos(listaDataHabitos: MutableList<DataHabitoEntity>){
+        CoroutineScope(Dispatchers.IO).launch {
+            HabitosApplication.database.dataHabitoDao().insertarListaDataHabito(listaDataHabitos)
+        }
+    }
+
 }

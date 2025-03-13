@@ -140,7 +140,7 @@ fun mostrarDatePicker(
                     CoroutineScope(Dispatchers.IO).launch { //TODO optimizar en un futuro
                         val fechasDiff = obtenerFechasEntre(fechaNueva, fechaAntiguaInicio)
 
-                        viewModel.insertarListaDataHabitos(fechasDiff, listaHabitos)
+                        viewModel.insertarListaDataHabitosConFechas(fechasDiff, listaHabitos)
 
                         delay((0.7* fechasDiff.size).toLong())
 

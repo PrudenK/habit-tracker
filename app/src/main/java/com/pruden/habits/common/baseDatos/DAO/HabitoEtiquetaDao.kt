@@ -32,6 +32,7 @@ interface HabitoEtiquetaDao {
     @Query("Select * from HabitoEtiqueta")
     suspend fun obtenerTodosLosHabitosEtiquetas(): MutableList<HabitoEtiquetaEntity>
 
+
 }
 /*
         SELECT

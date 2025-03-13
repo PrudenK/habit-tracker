@@ -5,7 +5,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
+import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
+import com.pruden.habits.common.clases.entities.HabitoEtiquetaEntity
 import com.pruden.habits.common.metodos.Dialogos.makeToast
 import com.pruden.habits.modules.configuracionesModule.metodos.exportarDatos.devolverCabeceraDataHabitos
 import com.pruden.habits.modules.configuracionesModule.metodos.exportarDatos.devolverIdCabecera
@@ -136,7 +138,27 @@ class ConfiguracionesViewModel: ViewModel() {
         interactor.eliminarDataHabitosAnteriroresA(fechaLimite)
     }
 
-    fun insertarListaDataHabitos(fechas: List<String>, habitos: MutableList<Habito>){
-        interactor.insertarListaDeDataHabitos(fechas, habitos)
+    fun insertarListaDataHabitosConFechas(fechas: List<String>, habitos: MutableList<Habito>){
+        interactor.insertarListaDeDataHabitosConFechas(fechas, habitos)
     }
+
+
+
+
+    fun insertarListaHabitosEtiquetas(habitoEtiquetaLista: MutableList<HabitoEtiquetaEntity>){
+        interactor.insertarListaHabitosEtiquetas(habitoEtiquetaLista)
+    }
+
+    fun insertarListaDeHabitos(listaHabitos: MutableList<HabitoEntity>){
+        interactor.insertarListaDeHabitos(listaHabitos)
+    }
+
+    fun insertarListaEtiquetas(listaEtiquetas: MutableList<EtiquetaEntity>){
+        interactor.insertarListaDeEtiquetas(listaEtiquetas)
+    }
+
+    fun insertarListaDataHabitos(listaDataHabitos: MutableList<DataHabitoEntity>){
+        interactor.insertarListaDeDataHabitos(listaDataHabitos)
+    }
+
 }
