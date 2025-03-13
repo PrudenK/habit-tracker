@@ -21,6 +21,9 @@ interface EtiquetaDao {
     @Query("Select * From Etiqueta order by posicion asc")
     fun obtenerTodasLasEtiquetasConLiveData(): LiveData<List<EtiquetaEntity>>
 
+    @Query("Select * From Etiqueta order by posicion asc")
+    fun obtenerTodasLasEtiquetas(): MutableList<EtiquetaEntity>
+
     @Query("SELECT * FROM Etiqueta WHERE nombreEtiquta = :nombreEtiqueta")
     suspend fun obtenerEtiquetaPorNombre(nombreEtiqueta: String): EtiquetaEntity
 

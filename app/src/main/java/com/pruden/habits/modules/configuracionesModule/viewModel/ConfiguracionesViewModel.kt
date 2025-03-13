@@ -89,6 +89,21 @@ class ConfiguracionesViewModel: ViewModel() {
         }
     }
 
+    fun exportarSolasEtiquetasCSV(context: Context) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val etiquetas = interactor.obtenerTodasLasEtiquetass()
+            if(etiquetas.isNotEmpty()){
+                withContext(Dispatchers.Main) {
+                    exportarDatos.exportarEtiquetasCSV(context, etiquetas)
+                }
+            }else{
+                withContext(Dispatchers.Main) {
+                    makeToast("No hay etiquetas que exportar", context)
+                }
+            }
+        }
+    }
+
     fun borrarTodosLosRegistros(onComplete: ()->Unit){
         interactor.borrarTodosLosRegistros {
             onComplete()

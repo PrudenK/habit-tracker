@@ -7,6 +7,7 @@ import java.util.Locale
 
 object Constantes {
     const val CABECERA_HABITOS_CSV = "nombre,objetivo,tipoNumerico,unidad,color,archivado,posicion"
+    const val CABECERA_ETIQUETAS_CSV = "nombre,color,seleccionado,posicion"
     const val COMIENZAN_DATA_HABITOS = "COMIENZAN_DATA_HABITOS"
     const val CANTIDAD_DIFF_HABITO_ARCHIVADO = 99999999
 

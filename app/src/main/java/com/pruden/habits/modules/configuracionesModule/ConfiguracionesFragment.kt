@@ -63,6 +63,7 @@ class ConfiguracionesFragment : Fragment() {
         importarCopiaSeguridad()
         datePickerFechaInicio()
         borrarTodasLasEtiquetas()
+        exportarSoloLasEtiquetas()
 
         binding.fechaIncioRegistrosHabitos.text = "Fecha inicio de los registros: ${Constantes.FECHA_INICIO}"
 
@@ -169,7 +170,7 @@ class ConfiguracionesFragment : Fragment() {
 
     private fun exportarSoloLasEtiquetas(){
         binding.exportarSoloLasEtiquetasFragment.setOnClickListener {
-
+            viewModel.exportarSolasEtiquetasCSV(requireContext())
         }
     }
 

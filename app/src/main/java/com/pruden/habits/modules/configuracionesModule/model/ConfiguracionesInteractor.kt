@@ -3,6 +3,7 @@ package com.pruden.habits.modules.configuracionesModule.model
 import com.pruden.habits.HabitosApplication
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
+import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -21,6 +22,12 @@ class ConfiguracionesInteractor {
     suspend fun obtenerDataHabitos(): MutableList<DataHabitoEntity>{
         return withContext(Dispatchers.IO){
             HabitosApplication.database.dataHabitoDao().obtenerTodoDataHabitos()
+        }
+    }
+
+    suspend fun obtenerTodasLasEtiquetass(): MutableList<EtiquetaEntity> {
+        return withContext(Dispatchers.IO) {
+            HabitosApplication.database.etiquetaDao().obtenerTodasLasEtiquetas()
         }
     }
 
