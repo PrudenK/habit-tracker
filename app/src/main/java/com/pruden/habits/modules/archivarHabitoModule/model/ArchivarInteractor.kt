@@ -29,15 +29,15 @@ class ArchivarInteractor {
         return result
     }
 
-    fun desarchivarHabito(habito: String){
+    fun desarchivarHabito(habito: String, incremento: Int = 0){
         CoroutineScope(Dispatchers.IO).launch {
-            HabitosApplication.database.habitoDao().alternarArchivado(false, habito, listaHabitos.filter { !it.archivado }.size +1)
+            HabitosApplication.database.habitoDao().alternarArchivado(false, habito, listaHabitos.filter { !it.archivado }.size +1 + incremento)
         }
     }
 
     fun desarchivarTodosHabitos(){
-        for(habito in listaArchivados){
-            desarchivarHabito(habito.nombre)
+        for((k, habito) in listaArchivados.withIndex()){
+            desarchivarHabito(habito.nombre, k)
         }
     }
 }
