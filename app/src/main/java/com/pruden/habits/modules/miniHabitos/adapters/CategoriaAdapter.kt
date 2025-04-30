@@ -16,7 +16,8 @@ import com.pruden.habits.common.clases.entities.CategoriaEntity
 
 class CategoriaAdapter(
     private val categorias: MutableList<CategoriaEntity>,
-    private val accionAgregarCategoria: () -> Unit
+    private val accionAgregarCategoria: () -> Unit,
+    private val onChipSelected: (CategoriaEntity?) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val CATEGORIA = 0
@@ -89,10 +90,12 @@ class CategoriaAdapter(
             chip.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     posicionSeleccionada = position
+                    onChipSelected(categoria)  // Llamar al callback para pasar el chip seleccionado
                     notifyDataSetChanged()
                 } else {
                     if (posicionSeleccionada == position) {
                         posicionSeleccionada = -1
+                        onChipSelected(null)
                     }
                 }
 

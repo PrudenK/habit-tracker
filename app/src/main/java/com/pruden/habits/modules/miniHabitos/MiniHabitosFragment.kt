@@ -28,6 +28,7 @@ class MiniHabitosFragment : Fragment() {
     private val categorias = mutableListOf<CategoriaEntity>()
     private val miniHabitos = mutableListOf<MiniHabitoEntity>()
     private lateinit var recyclerMiniHabitos: RecyclerView
+    private var categoriaSeleccionada: CategoriaEntity? = null
 
 
     private lateinit var miniHabitosViewModel: MiniHabitosViewModel
@@ -108,8 +109,15 @@ class MiniHabitosFragment : Fragment() {
         recyclerCategorias = binding.recyclerChipsCategorias
         recyclerCategorias.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
-        val adapter = CategoriaAdapter(categorias) {
+        val adapter = CategoriaAdapter(categorias, {
             dialogoAgregarCategoria(requireContext(), recyclerCategorias, categorias, resources, miniHabitosViewModel)
+        }) { categoria ->
+            if(categoria != null){
+                binding.nombreMiniHabito.text = categoria.nombre
+            }else{
+                binding.nombreMiniHabito.text = "No has seleccionado ninguna categoría"
+            }
+            categoriaSeleccionada = categoria
         }
 
         recyclerCategorias.adapter = adapter
