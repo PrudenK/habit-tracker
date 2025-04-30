@@ -39,7 +39,7 @@ fun dialogoAgregarEtiqueta(
     val tilNombreEtiqueta = dialogoView.findViewById<TextInputLayout>(R.id.til_nombre_etiqueta)
     tilNombreEtiqueta.defaultHintTextColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.lightGrayColor))
 
-    val editTextNombreEtiqeta = dialogoView.findViewById<TextInputEditText>(R.id.input_notas_numerico_calendar)
+    val editTextNombreEtiqeta = dialogoView.findViewById<TextInputEditText>(R.id.input_agregar_etiqueta)
 
     val imgColorPicker = dialogoView.findViewById<ImageView>(R.id.img_color_etiqueta_num)
     val drawable = imgColorPicker.background as LayerDrawable

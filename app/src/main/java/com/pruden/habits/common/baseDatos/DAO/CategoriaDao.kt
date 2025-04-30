@@ -1,5 +1,6 @@
 package com.pruden.habits.common.baseDatos.DAO
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -15,5 +16,5 @@ interface CategoriaDao {
     suspend fun deleteCategoria(categoriaEntity: CategoriaEntity)
 
     @Query("Select * from categoria")
-    suspend fun obtenerTodasLasCategorias(): MutableList<CategoriaEntity>
+    fun obtenerTodasLasCategorias(): LiveData<MutableList<CategoriaEntity>>
 }

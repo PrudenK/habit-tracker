@@ -7,9 +7,10 @@ import android.widget.Button
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.pruden.habits.R
+import com.pruden.habits.common.clases.entities.CategoriaEntity
 
 class CategoriaAdapter(
-    private val categorias: MutableList<String>,
+    private val categorias: MutableList<CategoriaEntity>,
     private val accionAgregarCategoria: () -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -53,8 +54,8 @@ class CategoriaAdapter(
     inner class CategoriaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val chip: Chip = itemView.findViewById(R.id.chip)
 
-        fun bind(chipText: String) {
-            chip.text = chipText
+        fun bind(categoria: CategoriaEntity) {
+            chip.text = categoria.nombre
         }
     }
 
@@ -67,5 +68,11 @@ class CategoriaAdapter(
                 onAddChip()
             }
         }
+    }
+
+    fun updateCategorias(newCategorias: List<CategoriaEntity>) {
+        categorias.clear()
+        categorias.addAll(newCategorias)
+        notifyDataSetChanged()
     }
 }

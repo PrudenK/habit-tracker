@@ -20,15 +20,19 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.pruden.habits.HabitosApplication.Companion.listaHabitosEtiquetas
 import com.pruden.habits.R
+import com.pruden.habits.common.clases.entities.CategoriaEntity
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
+import com.pruden.habits.common.metodos.Dialogos.makeToast
 import com.pruden.habits.common.metodos.General.dialogoColorPicker
 import com.pruden.habits.modules.mainModule.metodos.ajustarDialogo
+import com.pruden.habits.modules.miniHabitos.viewModel.MiniHabitosViewModel
 
 fun dialogoAgregarCategoria(
     context: Context,
     recyclerCategorias: RecyclerView,
-    categorias: MutableList<String>,
-    resources: Resources
+    categorias: MutableList<CategoriaEntity>,
+    resources: Resources,
+    miniHabitosViewModel: MiniHabitosViewModel
 ) {
     var colorCategoria = -1
 
@@ -49,6 +53,8 @@ fun dialogoAgregarCategoria(
 
     dialogo.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
+    val editeTextNombre = dialogoView.findViewById<TextInputEditText>(R.id.input_agregar_etiqueta)
+
     val imgColorPicker = dialogoView.findViewById<ImageView>(R.id.img_color_etiqueta_num)
     val drawable = imgColorPicker.background as LayerDrawable
     val capaInterna = drawable.findDrawableByLayerId(R.id.interna)
@@ -66,7 +72,22 @@ fun dialogoAgregarCategoria(
     }
 
     btnGuardar.setOnClickListener {
-        
+
+        val nombreCat = editeTextNombre.text.toString()
+
+        val categoria = CategoriaEntity(
+            nombre = nombreCat,
+            color = colorCategoria,
+            2
+        )
+
+        miniHabitosViewModel.insertarCategoria(categoria)
+
+        categorias.clear()
+        categorias.addAll(miniHabitosViewModel.categorias.value!!.toMutableList())
+        recyclerCategorias.adapter?.notifyDataSetChanged()
+
+        dialogo.dismiss()
     }
 
 

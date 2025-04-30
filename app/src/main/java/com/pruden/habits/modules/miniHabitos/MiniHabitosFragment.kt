@@ -10,21 +10,28 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.R
+import com.pruden.habits.common.clases.entities.CategoriaEntity
 import com.pruden.habits.databinding.FragmentMiniHabitosBinding
 import com.pruden.habits.modules.miniHabitos.adapters.CategoriaAdapter
 import com.pruden.habits.modules.miniHabitos.metodos.dialogoAgregarCategoria
+import com.pruden.habits.modules.miniHabitos.viewModel.MiniHabitosViewModel
 
 class MiniHabitosFragment : Fragment() {
     private lateinit var binding: FragmentMiniHabitosBinding
     private lateinit var recyclerCategorias: RecyclerView
-    private val categorias = mutableListOf<String>()
+    private val categorias = mutableListOf<CategoriaEntity>()
+
+    private lateinit var miniHabitosViewModel: MiniHabitosViewModel
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        miniHabitosViewModel = ViewModelProvider(requireActivity())[MiniHabitosViewModel::class.java]
     }
 
     override fun onCreateView(
@@ -56,6 +63,12 @@ class MiniHabitosFragment : Fragment() {
 
         // Carga de otras funciones
         setUpRecyclerCategorias()
+
+        miniHabitosViewModel.categorias.observe(viewLifecycleOwner) { categoriasActualizadas ->
+            categorias.clear()
+            categorias.addAll(categoriasActualizadas)
+            recyclerCategorias.adapter?.notifyDataSetChanged()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -89,10 +102,9 @@ class MiniHabitosFragment : Fragment() {
         recyclerCategorias.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         val adapter = CategoriaAdapter(categorias) {
-            dialogoAgregarCategoria(requireContext(), recyclerCategorias, categorias, resources)
+            dialogoAgregarCategoria(requireContext(), recyclerCategorias, categorias, resources, miniHabitosViewModel)
         }
 
         recyclerCategorias.adapter = adapter
     }
-
 }
