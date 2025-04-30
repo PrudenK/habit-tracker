@@ -1,0 +1,11 @@
+<Button android:id="@+id/btn_agregar_mini_habito"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:text="+"
+    android:textSize="@dimen/text_20"
+    android:backgroundTint="@color/boton_agregar"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginBottom="8dp"
+    />

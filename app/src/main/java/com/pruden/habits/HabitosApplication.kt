@@ -38,8 +38,9 @@ class HabitosApplication : Application(){
             HabitosDatabase::class.java,
             "HabitosDatabase"
         )
-            .addMigrations(MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8, MIGRATION_8_9)
-          //  .fallbackToDestructiveMigration()
+            //.addMigrations(MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8, MIGRATION_8_9, MIGRATION_9_10)
+            //.fallbackToDestructiveMigration()
+
             .build()
 
         listaFechas = generateLastDates()
@@ -127,7 +128,7 @@ class HabitosApplication : Application(){
         }
     }
 
-    // Mini hábitos
+    ////////////// MINI HÁBITOS
 
     val MIGRATION_8_9 = object : Migration(8, 9) {
         override fun migrate(database: SupportSQLiteDatabase) {
@@ -153,5 +154,6 @@ class HabitosApplication : Application(){
         """.trimIndent())
         }
     }
+
 
 }

@@ -19,6 +19,5 @@ data class MiniHabitoEntity(
     @PrimaryKey val id: String, // Nombre + Categoríaç
     var categoria: String,
     var nombre: String,
-    var tipo: Boolean,
-    var valor: Int
+    var cumplido: Boolean
 )

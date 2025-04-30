@@ -15,8 +15,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.entities.CategoriaEntity
+import com.pruden.habits.common.clases.entities.MiniHabitoEntity
 import com.pruden.habits.databinding.FragmentMiniHabitosBinding
 import com.pruden.habits.modules.miniHabitos.adapters.CategoriaAdapter
+import com.pruden.habits.modules.miniHabitos.adapters.MiniHabitoAdapter
 import com.pruden.habits.modules.miniHabitos.metodos.dialogoAgregarCategoria
 import com.pruden.habits.modules.miniHabitos.viewModel.MiniHabitosViewModel
 
@@ -24,6 +26,9 @@ class MiniHabitosFragment : Fragment() {
     private lateinit var binding: FragmentMiniHabitosBinding
     private lateinit var recyclerCategorias: RecyclerView
     private val categorias = mutableListOf<CategoriaEntity>()
+    private val miniHabitos = mutableListOf<MiniHabitoEntity>()
+    private lateinit var recyclerMiniHabitos: RecyclerView
+
 
     private lateinit var miniHabitosViewModel: MiniHabitosViewModel
 
@@ -63,6 +68,8 @@ class MiniHabitosFragment : Fragment() {
 
         // Carga de otras funciones
         setUpRecyclerCategorias()
+
+        setUpRecyclerViewMiniHabitos()
 
         miniHabitosViewModel.categorias.observe(viewLifecycleOwner) { categoriasActualizadas ->
             categorias.clear()
@@ -106,5 +113,24 @@ class MiniHabitosFragment : Fragment() {
         }
 
         recyclerCategorias.adapter = adapter
+    }
+
+    private fun setUpRecyclerViewMiniHabitos() {
+        recyclerMiniHabitos = binding.recyclerMiniHabitos
+        recyclerMiniHabitos.layoutManager = LinearLayoutManager(context)
+
+        val adapter = MiniHabitoAdapter(miniHabitos) { categoria ->
+            /*val nuevoMiniHabito = MiniHabitoEntity(
+                id = "nuevoId",
+                categoria = categoria,
+                nombre = "Nuevo Mini Hábito",
+                cumplido = false
+            )
+
+             */
+            //miniHabitosViewModel.insertarMiniHabito(nuevoMiniHabito)
+        }
+
+        recyclerMiniHabitos.adapter = adapter
     }
 }
