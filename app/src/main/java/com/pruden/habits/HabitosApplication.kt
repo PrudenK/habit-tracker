@@ -38,7 +38,7 @@ class HabitosApplication : Application(){
             HabitosDatabase::class.java,
             "HabitosDatabase"
         )
-           // .addMigrations(MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8)
+            .addMigrations(MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8, MIGRATION_8_9)
           //  .fallbackToDestructiveMigration()
             .build()
 
@@ -126,4 +126,32 @@ class HabitosApplication : Application(){
             database.execSQL("ALTER TABLE Etiqueta ADD COLUMN posicion INTEGER NOT NULL DEFAULT 0")
         }
     }
+
+    // Mini hábitos
+
+    val MIGRATION_8_9 = object : Migration(8, 9) {
+        override fun migrate(database: SupportSQLiteDatabase) {
+            // Crear la tabla 'Categoria'
+            database.execSQL("""
+            CREATE TABLE Categoria (
+                nombre TEXT NOT NULL PRIMARY KEY,
+                color INTEGER NOT NULL,
+                posicion INTEGER NOT NULL
+            )
+        """.trimIndent())
+
+            // Crear la tabla 'MiniHabito'
+            database.execSQL("""
+            CREATE TABLE MiniHabito (
+                id TEXT NOT NULL PRIMARY KEY,
+                categoria TEXT NOT NULL,
+                nombre TEXT NOT NULL,
+                tipo INTEGER NOT NULL,
+                valor INTEGER NOT NULL,
+                FOREIGN KEY (categoria) REFERENCES Categoria(nombre) ON DELETE CASCADE
+            )
+        """.trimIndent())
+        }
+    }
+
 }

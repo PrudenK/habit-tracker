@@ -7,13 +7,16 @@ import com.pruden.habits.common.baseDatos.DAO.DataHabitoDao
 import com.pruden.habits.common.baseDatos.DAO.EtiquetaDao
 import com.pruden.habits.common.baseDatos.DAO.HabitoDao
 import com.pruden.habits.common.baseDatos.DAO.HabitoEtiquetaDao
+import com.pruden.habits.common.clases.entities.CategoriaEntity
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEtiquetaEntity
+import com.pruden.habits.common.clases.entities.MiniHabitoEntity
 
 @Database(entities =  [HabitoEntity::class, DataHabitoEntity::class,
-    EtiquetaEntity::class, HabitoEtiquetaEntity::class], version = 8)
+    EtiquetaEntity::class, HabitoEtiquetaEntity::class, CategoriaEntity::class,
+    MiniHabitoEntity::class], version = 9)
 @TypeConverters(Converters::class)
 abstract class HabitosDatabase : RoomDatabase(){
     abstract fun habitoDao(): HabitoDao
