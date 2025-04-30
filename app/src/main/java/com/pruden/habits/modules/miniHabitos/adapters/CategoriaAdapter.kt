@@ -22,6 +22,8 @@ class CategoriaAdapter(
     private val CATEGORIA = 0
     private val BOTON_AGREGAR_CATEGORIA = 1
 
+    private var posicionSeleccionada = -1
+
     override fun getItemCount() = categorias.size + 1
 
     override fun getItemViewType(position: Int): Int {
@@ -81,10 +83,19 @@ class CategoriaAdapter(
 
             chip.isCheckable = true
             chip.isClickable = true
-            chip.isChecked = false
+            chip.isChecked = position == posicionSeleccionada
             chip.alpha = if (chip.isChecked) 1f else 0.5f
 
             chip.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    posicionSeleccionada = position
+                    notifyDataSetChanged()
+                } else {
+                    if (posicionSeleccionada == position) {
+                        posicionSeleccionada = -1
+                    }
+                }
+
                 chip.alpha = if (isChecked) 1f else 0.5f
             }
         }
