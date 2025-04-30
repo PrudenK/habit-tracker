@@ -119,7 +119,7 @@ class CategoriaAdapter(
 
     fun updateCategorias(newCategorias: List<CategoriaEntity>) {
         categorias.clear()
-        categorias.addAll(newCategorias)
+        categorias.addAll(newCategorias.sortedBy { it.posicion })
         notifyDataSetChanged()
     }
 }

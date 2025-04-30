@@ -66,7 +66,7 @@ class MiniHabitosFragment : Fragment() {
 
         miniHabitosViewModel.categorias.observe(viewLifecycleOwner) { categoriasActualizadas ->
             categorias.clear()
-            categorias.addAll(categoriasActualizadas)
+            categorias.addAll(categoriasActualizadas.sortedBy { it.posicion })
             recyclerCategorias.adapter?.notifyDataSetChanged()
         }
     }

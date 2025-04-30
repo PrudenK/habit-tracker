@@ -78,13 +78,13 @@ fun dialogoAgregarCategoria(
         val categoria = CategoriaEntity(
             nombre = nombreCat,
             color = colorCategoria,
-            2
+            miniHabitosViewModel.categorias.value!!.toMutableList().size + 1
         )
 
         miniHabitosViewModel.insertarCategoria(categoria)
 
         categorias.clear()
-        categorias.addAll(miniHabitosViewModel.categorias.value!!.toMutableList())
+        categorias.addAll(miniHabitosViewModel.categorias.value!!.toMutableList().sortedBy { it.posicion })
         recyclerCategorias.adapter?.notifyDataSetChanged()
 
         dialogo.dismiss()
