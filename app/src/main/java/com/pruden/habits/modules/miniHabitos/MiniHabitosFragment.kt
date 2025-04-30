@@ -10,13 +10,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.R
 import com.pruden.habits.databinding.FragmentMiniHabitosBinding
+import com.pruden.habits.modules.miniHabitos.adapters.CategoriaAdapter
+import com.pruden.habits.modules.miniHabitos.metodos.dialogoAgregarCategoria
 
 class MiniHabitosFragment : Fragment() {
-
     private lateinit var binding: FragmentMiniHabitosBinding
-
+    private lateinit var recyclerCategorias: RecyclerView
+    private val categorias = mutableListOf<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +53,9 @@ class MiniHabitosFragment : Fragment() {
         (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(back)
 
         setHasOptionsMenu(true)
+
+        // Carga de otras funciones
+        setUpRecyclerCategorias()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -75,6 +82,17 @@ class MiniHabitosFragment : Fragment() {
 
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun setUpRecyclerCategorias(){
+        recyclerCategorias = binding.recyclerChipsCategorias
+        recyclerCategorias.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
+        val adapter = CategoriaAdapter(categorias) {
+            dialogoAgregarCategoria(requireContext(), recyclerCategorias, categorias)
+        }
+
+        recyclerCategorias.adapter = adapter
     }
 
 }

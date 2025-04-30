@@ -34,7 +34,7 @@
         >
 
         <TextView
-            android:id="@+id/titulo_tool_bar_etiquetas"
+            android:id="@+id/titulo_tool_bar_mini_habitos"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
