@@ -292,6 +292,11 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
                         }
                         true
                     }
+                    R.id.mini_habitos->{
+
+                        true
+                    }
+
                     R.id.menu_tutorial->{
 
                         true

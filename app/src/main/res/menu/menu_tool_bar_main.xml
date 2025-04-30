@@ -26,6 +26,12 @@
         />
 
     <item
+        android:id="@+id/mini_habitos"
+        android:title="Mini hábitos"
+        android:icon="@drawable/ic_minihabitos"
+        />
+
+    <item
         android:id="@+id/menu_tutorial"
         android:title="Ver tutorial"
         android:icon="@drawable/ic_tutorial"
