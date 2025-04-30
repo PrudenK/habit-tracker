@@ -39,6 +39,7 @@ import com.pruden.habits.modules.mainModule.metodos.dialogoAgregarEtiqueta
 import com.pruden.habits.modules.mainModule.metodos.dialogoOnLongClickHabito
 import com.pruden.habits.modules.mainModule.viewModel.MainViewModel
 import com.pruden.habits.modules.etiquetasModule.PorEtiquetasFragment
+import com.pruden.habits.modules.miniHabitos.MiniHabitosFragment
 
 
 class MainActivity : AppCompatActivity(), OnClickHabito {
@@ -293,7 +294,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
                         true
                     }
                     R.id.mini_habitos->{
-
+                        cargarFragment(this, MiniHabitosFragment())
                         true
                     }
 
