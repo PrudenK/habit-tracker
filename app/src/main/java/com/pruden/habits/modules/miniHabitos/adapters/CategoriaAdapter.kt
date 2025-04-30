@@ -1,9 +1,14 @@
 package com.pruden.habits.modules.miniHabitos.adapters
 
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.graphics.Typeface
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.pruden.habits.R
@@ -42,6 +47,8 @@ class CategoriaAdapter(
             CATEGORIA -> {
                 val categoriaViewHolder = holder as CategoriaViewHolder
                 categoriaViewHolder.bind(categorias[position])
+
+
             }
             BOTON_AGREGAR_CATEGORIA -> {
                 val agregarBotonViewHolder = holder as AgregarBotonViewHolder
@@ -50,12 +57,41 @@ class CategoriaAdapter(
         }
     }
 
-    // ViewHolder para los chips
     inner class CategoriaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val chip: Chip = itemView.findViewById(R.id.chip)
 
         fun bind(categoria: CategoriaEntity) {
-            chip.text = categoria.nombre
+            chip.text = if (categoria.nombre.length > 12) {
+                categoria.nombre.substring(0, 12) + "..."
+            }else {
+                categoria.nombre
+            }
+
+            chip.chipBackgroundColor = ColorStateList.valueOf(categoria.color)
+
+            chip.setTextColor(
+                ContextCompat.getColor(
+                    itemView.context,
+                    if (isColorDark(categoria.color)) R.color.lightGrayColor else R.color.dark_background
+                )
+            )
+
+            val font = ResourcesCompat.getFont(itemView.context, R.font.subtitulos)
+            chip.typeface = Typeface.create(font, Typeface.BOLD)
+
+            chip.isCheckable = true
+            chip.isClickable = true
+            chip.isChecked = false
+            chip.alpha = if (chip.isChecked) 1f else 0.5f
+
+            chip.setOnCheckedChangeListener { _, isChecked ->
+                chip.alpha = if (isChecked) 1f else 0.5f
+            }
+        }
+
+        private fun isColorDark(color: Int): Boolean {
+            val darkness = 1 - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255
+            return darkness >= 0.5
         }
     }
 

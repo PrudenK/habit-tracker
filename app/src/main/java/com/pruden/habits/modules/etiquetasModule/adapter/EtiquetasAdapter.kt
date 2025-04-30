@@ -86,10 +86,6 @@ class EtiquetasAdapter (
                 }else{
                     isChecked = habito!!.listaEtiquetas.contains(etiqueta.nombreEtiquta)
 
-                    if(habito.nombre == "Correr"){
-                        Log.d("Holaa", isChecked.toString()+ " "+ habito.listaEtiquetas)
-                    }
-
                     alpha = if (isChecked) 1f else 0.5f
 
 
@@ -99,8 +95,6 @@ class EtiquetasAdapter (
                         } else {
                             listaEtiuetasAdd.remove(etiqueta.nombreEtiquta)
                         }
-
-                        //onEtiquetaSeleccionada.invoke()
 
                         alpha = if (isChecked) 1f else 0.5f
                     }
@@ -125,7 +119,7 @@ class EtiquetasAdapter (
         override fun areContentsTheSame(oldItem: EtiquetaEntity, newItem: EtiquetaEntity) = oldItem == newItem
     }
 
-    fun isColorDark(color: Int): Boolean {
+    private fun isColorDark(color: Int): Boolean {
         val darkness = 1 - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255
         return darkness >= 0.5 // Si el valor es >= 0.5, el color es oscuro
     }
