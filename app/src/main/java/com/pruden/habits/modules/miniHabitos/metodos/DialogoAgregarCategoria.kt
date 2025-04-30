@@ -72,22 +72,36 @@ fun dialogoAgregarCategoria(
     }
 
     btnGuardar.setOnClickListener {
-
         val nombreCat = editeTextNombre.text.toString()
 
-        val categoria = CategoriaEntity(
-            nombre = nombreCat,
-            color = colorCategoria,
-            miniHabitosViewModel.categorias.value!!.toMutableList().size + 1
-        )
+        if (nombreCat.isBlank()) {
+            makeToast("No puedes dejar el nombre en blanco", context)
+        }
+        else if (miniHabitosViewModel.categorias.value!!.any { it.nombre.equals(nombreCat, ignoreCase = true) }) {
+            makeToast("Ese nombre de categoría ya existe", context)
+        }
+        else if (nombreCat.equals("fecha", ignoreCase = true)) {
+            makeToast("La palabra 'fecha' está reservada", context)
+        }
+        else if (colorCategoria == -1) {
+            makeToast("El blanco no es un color válido", context)
+        }
+        else {
+            val categoria = CategoriaEntity(
+                nombre = nombreCat,
+                color = colorCategoria,
+                posicion = miniHabitosViewModel.categorias.value!!.size + 1 // Asignamos una nueva posición
+            )
 
-        miniHabitosViewModel.insertarCategoria(categoria)
+            miniHabitosViewModel.insertarCategoria(categoria)
 
-        categorias.clear()
-        categorias.addAll(miniHabitosViewModel.categorias.value!!.toMutableList().sortedBy { it.posicion })
-        recyclerCategorias.adapter?.notifyDataSetChanged()
+            categorias.clear()
+            categorias.addAll(miniHabitosViewModel.categorias.value!!.sortedBy { it.posicion })
+            recyclerCategorias.adapter?.notifyDataSetChanged()
 
-        dialogo.dismiss()
+            makeToast("Categoría: $nombreCat creada con éxito", context)
+            dialogo.dismiss()
+        }
     }
 
 
