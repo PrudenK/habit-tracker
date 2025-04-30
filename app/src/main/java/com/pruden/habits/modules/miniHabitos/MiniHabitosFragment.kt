@@ -89,7 +89,7 @@ class MiniHabitosFragment : Fragment() {
         recyclerCategorias.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         val adapter = CategoriaAdapter(categorias) {
-            dialogoAgregarCategoria(requireContext(), recyclerCategorias, categorias)
+            dialogoAgregarCategoria(requireContext(), recyclerCategorias, categorias, resources)
         }
 
         recyclerCategorias.adapter = adapter

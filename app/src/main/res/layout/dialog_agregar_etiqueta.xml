@@ -76,7 +76,7 @@
             android:id="@+id/titulo_color_etiqueta"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Elige el color de la etiqueta"
+            android:text="Elige el color de la categoría"
             android:textSize="18sp"
             android:textColor="@color/lightGrayColor"
             app:layout_constraintTop_toTopOf="@id/img_color_etiqueta_num"
