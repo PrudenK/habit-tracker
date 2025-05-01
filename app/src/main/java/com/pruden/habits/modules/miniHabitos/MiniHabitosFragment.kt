@@ -161,6 +161,18 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
     }
 
     override fun onLongClickMiniHabito(miniHabitoEntity: MiniHabitoEntity) {
+        dialogoBorrarElementoComun("¿Estás seguro de qué quieres borrar este mini hábito?"){
+            miniHabitosViewModel.eliminarMiniHabito(miniHabitoEntity)
+        }
+    }
+
+    override fun onLongClickCategoria(categoriaEntity: CategoriaEntity) {
+        dialogoBorrarElementoComun("¿Estás seguro de qué quieres borrar esta categoría?"){
+            miniHabitosViewModel.eliminarCategoria(categoriaEntity)
+        }
+    }
+
+    private fun dialogoBorrarElementoComun(texto: String, onBorrarDatos: () -> Unit){
         val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_borrar_habito, null)
         val dialogBorrar = AlertDialog.Builder(context).setView(dialogView).create()
 
@@ -168,7 +180,7 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
         val buttonAccept = dialogView.findViewById<Button>(R.id.button_acceptar_borrar_habito)
         val textSubtitulo = dialogView.findViewById<TextView>(R.id.dialog_mensaje_borrar)
 
-        textSubtitulo.text = "¿Estás seguro de qué quieres borrar este mini hábito?"
+        textSubtitulo.text = texto
 
         dialogBorrar.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
@@ -177,7 +189,7 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
         }
 
         buttonAccept.setOnClickListener {
-            miniHabitosViewModel.eliminarMiniHabito(miniHabitoEntity)
+            onBorrarDatos()
 
             dialogBorrar.dismiss()
         }
@@ -185,9 +197,5 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
         dialogBorrar.show()
 
         ajustarDialogo(resources, dialogBorrar, 0.75f)
-    }
-
-    override fun onLongClickCategoria(categoriaEntity: CategoriaEntity) {
-        miniHabitosViewModel.eliminarCategoria(categoriaEntity)
     }
 }
