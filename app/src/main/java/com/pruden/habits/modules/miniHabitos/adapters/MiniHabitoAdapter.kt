@@ -77,7 +77,6 @@ class MiniHabitoAdapter(
         }
     }
 
-    // Función para actualizar los mini hábitos
     fun updateMiniHabitos(newMiniHabitos: List<MiniHabitoEntity>) {
         miniHabitos.clear()
         miniHabitos.addAll(newMiniHabitos)

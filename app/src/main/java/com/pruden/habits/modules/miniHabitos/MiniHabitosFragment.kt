@@ -125,6 +125,12 @@ class MiniHabitosFragment : Fragment() {
                 miniHabitos.addAll(miniHabitosFiltrados)
                 miniHabitosAdapter.notifyDataSetChanged()
             }
+
+            if(categoria == null){
+                recyclerMiniHabitos.visibility = View.GONE
+            }else{
+                recyclerMiniHabitos.visibility = View.VISIBLE
+            }
         }
 
         recyclerCategorias.adapter = adapter
