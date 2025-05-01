@@ -18,21 +18,20 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.pruden.habits.HabitosApplication.Companion.listaHabitos
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.entities.CategoriaEntity
-import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.clases.entities.MiniHabitoEntity
 import com.pruden.habits.databinding.FragmentMiniHabitosBinding
 import com.pruden.habits.modules.mainModule.metodos.ajustarDialogo
 import com.pruden.habits.modules.miniHabitos.adapters.CategoriaAdapter
 import com.pruden.habits.modules.miniHabitos.adapters.MiniHabitoAdapter
+import com.pruden.habits.modules.miniHabitos.adapters.OnClickCategoria
 import com.pruden.habits.modules.miniHabitos.adapters.OnClickMiniHabito
 import com.pruden.habits.modules.miniHabitos.metodos.dialogoAgregarCategoria
 import com.pruden.habits.modules.miniHabitos.metodos.dialogoAgregarMiniHabito
 import com.pruden.habits.modules.miniHabitos.viewModel.MiniHabitosViewModel
 
-class MiniHabitosFragment : Fragment(), OnClickMiniHabito {
+class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
     private lateinit var binding: FragmentMiniHabitosBinding
     private lateinit var recyclerCategorias: RecyclerView
     private val categorias = mutableListOf<CategoriaEntity>()
@@ -121,7 +120,7 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito {
         recyclerCategorias = binding.recyclerChipsCategorias
         recyclerCategorias.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
-        val adapter = CategoriaAdapter(categorias, {
+        val adapter = CategoriaAdapter(this, categorias,{
             dialogoAgregarCategoria(requireContext(), recyclerCategorias, categorias, resources, miniHabitosViewModel)
         }) { categoria ->
             categoriaSeleccionada = categoria
@@ -186,5 +185,9 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito {
         dialogBorrar.show()
 
         ajustarDialogo(resources, dialogBorrar, 0.75f)
+    }
+
+    override fun onLongClickCategoria(categoriaEntity: CategoriaEntity) {
+        miniHabitosViewModel.eliminarCategoria(categoriaEntity)
     }
 }

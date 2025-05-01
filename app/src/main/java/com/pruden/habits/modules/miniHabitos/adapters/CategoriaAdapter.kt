@@ -15,6 +15,7 @@ import com.pruden.habits.R
 import com.pruden.habits.common.clases.entities.CategoriaEntity
 
 class CategoriaAdapter(
+    private val listener: OnClickCategoria,
     private val categorias: MutableList<CategoriaEntity>,
     private val accionAgregarCategoria: () -> Unit,
     private val onChipSelected: (CategoriaEntity?) -> Unit
@@ -100,6 +101,11 @@ class CategoriaAdapter(
                 }
 
                 chip.alpha = if (isChecked) 1f else 0.5f
+            }
+
+            chip.setOnLongClickListener {
+                listener.onLongClickCategoria(categoria)
+                true
             }
         }
 
