@@ -12,21 +12,21 @@ import com.pruden.habits.common.clases.entities.MiniHabitoEntity
 
 class MiniHabitoAdapter(
     private val miniHabitos: MutableList<MiniHabitoEntity>,
-    private val accionAgregarMiniHabito: (categoria: String) -> Unit
+    private val accionAgregarMiniHabito: () -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private val CATEGORIA = 0
+    private val MINI_HABITO = 0
     private val BOTON_AGREGAR_MINIHABITO = 1
 
     override fun getItemCount() = miniHabitos.size + 1
 
     override fun getItemViewType(position: Int): Int {
-        return if (position == miniHabitos.size) BOTON_AGREGAR_MINIHABITO else CATEGORIA
+        return if (position == miniHabitos.size) BOTON_AGREGAR_MINIHABITO else MINI_HABITO
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
-            CATEGORIA -> {
+            MINI_HABITO -> {
                 val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_mini_habito, parent, false)
                 MiniHabitoViewHolder(itemView)
             }
@@ -40,14 +40,14 @@ class MiniHabitoAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
-            CATEGORIA -> {
+            MINI_HABITO -> {
                 val miniHabitoViewHolder = holder as MiniHabitoViewHolder
                 miniHabitoViewHolder.bind(miniHabitos[position])
             }
             BOTON_AGREGAR_MINIHABITO -> {
                 val agregarMiniHabitoViewHolder = holder as AgregarMiniHabitoViewHolder
-                agregarMiniHabitoViewHolder.bind { categoria ->
-                    accionAgregarMiniHabito(categoria)  // Acciona la función para añadir un nuevo mini hábito
+                agregarMiniHabitoViewHolder.bind {
+                    accionAgregarMiniHabito()
                 }
             }
         }
@@ -60,7 +60,6 @@ class MiniHabitoAdapter(
 
         fun bind(miniHabito: MiniHabitoEntity) {
             tituloMiniHabito.text = miniHabito.nombre
-
 
 
         }

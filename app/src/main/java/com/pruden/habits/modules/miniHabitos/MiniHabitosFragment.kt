@@ -20,6 +20,7 @@ import com.pruden.habits.databinding.FragmentMiniHabitosBinding
 import com.pruden.habits.modules.miniHabitos.adapters.CategoriaAdapter
 import com.pruden.habits.modules.miniHabitos.adapters.MiniHabitoAdapter
 import com.pruden.habits.modules.miniHabitos.metodos.dialogoAgregarCategoria
+import com.pruden.habits.modules.miniHabitos.metodos.dialogoAgregarMiniHabito
 import com.pruden.habits.modules.miniHabitos.viewModel.MiniHabitosViewModel
 
 class MiniHabitosFragment : Fragment() {
@@ -77,6 +78,12 @@ class MiniHabitosFragment : Fragment() {
             categorias.addAll(categoriasActualizadas.sortedBy { it.posicion })
             recyclerCategorias.adapter?.notifyDataSetChanged()
         }
+
+        miniHabitosViewModel.miniHabitos.observe(viewLifecycleOwner){ miniHabitosActualizados ->
+            miniHabitos.clear()
+            miniHabitos.addAll(miniHabitosActualizados)
+            recyclerMiniHabitos.adapter?.notifyDataSetChanged()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -127,7 +134,12 @@ class MiniHabitosFragment : Fragment() {
         recyclerMiniHabitos = binding.recyclerMiniHabitos
         recyclerMiniHabitos.layoutManager = LinearLayoutManager(context)
 
-        val adapter = MiniHabitoAdapter(miniHabitos) { categoria ->
+        val adapter = MiniHabitoAdapter(miniHabitos) {
+            dialogoAgregarMiniHabito(requireContext(), recyclerMiniHabitos,
+                binding.nombreMiniHabito.text.toString(), resources, miniHabitosViewModel, miniHabitos)
+
+
+
             /*val nuevoMiniHabito = MiniHabitoEntity(
                 id = "nuevoId",
                 categoria = categoria,

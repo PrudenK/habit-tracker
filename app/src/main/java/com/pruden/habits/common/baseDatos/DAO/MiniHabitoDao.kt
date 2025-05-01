@@ -1,5 +1,6 @@
 package com.pruden.habits.common.baseDatos.DAO
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
@@ -16,5 +17,5 @@ interface MiniHabitoDao {
     suspend fun deleteMiniHabito(miniHabitoEntity: MiniHabitoEntity)
 
     @Query("Select * from minihabito")
-    suspend fun obtenerTodosLosMiniHabitos(): MutableList<MiniHabitoEntity>
+    fun obtenerTodosLosMiniHabitos(): LiveData<MutableList<MiniHabitoEntity>>
 }
