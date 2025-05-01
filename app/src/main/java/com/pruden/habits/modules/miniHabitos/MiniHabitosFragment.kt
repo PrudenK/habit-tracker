@@ -169,6 +169,7 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
     override fun onLongClickCategoria(categoriaEntity: CategoriaEntity) {
         dialogoBorrarElementoComun("¿Estás seguro de qué quieres borrar esta categoría?"){
             miniHabitosViewModel.eliminarCategoria(categoriaEntity)
+            binding.nombreMiniHabito.text = "Selecciona una categoría"
         }
     }
 
