@@ -28,5 +28,6 @@
     <color name="gris_clarito_tipo_titulo">#3FDDE8ED</color>
 
     <color name="boton_agregar">#CD666464</color>
+    <color name="fondo_mini_habito">#2E2E2E</color>
 
 </resources>

@@ -1,11 +1,13 @@
 package com.pruden.habits.modules.miniHabitos.adapters
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.entities.MiniHabitoEntity
@@ -18,6 +20,8 @@ class MiniHabitoAdapter(
     private val MINI_HABITO = 0
     private val BOTON_AGREGAR_MINIHABITO = 1
 
+    private lateinit var context: Context
+
     override fun getItemCount() = miniHabitos.size + 1
 
     override fun getItemViewType(position: Int): Int {
@@ -25,6 +29,8 @@ class MiniHabitoAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        context = parent.context
+
         return when (viewType) {
             MINI_HABITO -> {
                 val itemView = LayoutInflater.from(parent.context).inflate(R.layout.item_mini_habito, parent, false)
@@ -61,6 +67,13 @@ class MiniHabitoAdapter(
         fun bind(miniHabito: MiniHabitoEntity) {
             tituloMiniHabito.text = miniHabito.nombre
 
+            if (miniHabito.cumplido){
+                imagenCheck.setImageResource(R.drawable.ic_check)
+            }else{
+                imagenCheck.setImageResource(R.drawable.ic_no_check)
+            }
+            imagenCheck.setColorFilter(ContextCompat.getColor(context, R.color.lightGrayColor),
+                android.graphics.PorterDuff.Mode.SRC_IN)
 
         }
     }

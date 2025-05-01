@@ -1,6 +1,6 @@
 <Button android:id="@+id/btn_agregar_mini_habito"
     android:layout_width="match_parent"
-    android:layout_height="50dp"
+    android:layout_height="45dp"
     android:text="+"
     android:textSize="@dimen/text_20"
     android:backgroundTint="@color/boton_agregar"
