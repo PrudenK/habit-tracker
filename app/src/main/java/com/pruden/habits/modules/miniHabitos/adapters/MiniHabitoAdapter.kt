@@ -1,6 +1,7 @@
 package com.pruden.habits.modules.miniHabitos.adapters
 
 import android.content.Context
+import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -69,8 +70,11 @@ class MiniHabitoAdapter(
 
             if (miniHabito.cumplido){
                 imagenCheck.setImageResource(R.drawable.ic_check)
+                tituloMiniHabito.paintFlags = tituloMiniHabito.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
             }else{
                 imagenCheck.setImageResource(R.drawable.ic_no_check)
+                tituloMiniHabito.paintFlags = tituloMiniHabito.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+
             }
             imagenCheck.setColorFilter(ContextCompat.getColor(context, R.color.lightGrayColor),
                 android.graphics.PorterDuff.Mode.SRC_IN)

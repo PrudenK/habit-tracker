@@ -15,14 +15,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:text="90g de avena"
+        android:text="90g de avena adsfñĺadfadsfda"
         android:textColor="@color/lightGrayColor"
-        android:textSize="@dimen/text_16"
+        android:textSize="@dimen/text_20"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imagen_check_mini_habito"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:paddingEnd="50dp"
+        android:maxLength="25"
+        android:ellipsize="end"
+        android:maxLines="1"
         />
 
     <ImageView
