@@ -55,7 +55,6 @@ fun dialogoAgregarMiniHabito(
 
     btnGuardar.setOnClickListener {
         val miniHabito = MiniHabitoEntity(
-            id = "${categoria}_${editeTextNombre.text}",
             categoria = categoria,
             nombre = editeTextNombre.text.toString(),
             cumplido = false

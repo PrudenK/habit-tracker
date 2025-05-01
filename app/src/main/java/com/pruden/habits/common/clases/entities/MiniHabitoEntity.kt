@@ -13,11 +13,11 @@ import androidx.room.PrimaryKey
             childColumns = ["categoria"],
             onDelete = ForeignKey.CASCADE
         )
-    ]
+    ],
+    primaryKeys = ["nombre", "categoria"]
 )
 data class MiniHabitoEntity(
-    @PrimaryKey val id: String, // Nombre + Categoríaç
-    var categoria: String,
-    var nombre: String,
+    val nombre: String,
+    val categoria: String,
     var cumplido: Boolean
 )

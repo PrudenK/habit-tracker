@@ -2,7 +2,6 @@ package com.pruden.habits.modules.miniHabitos.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import com.pruden.habits.HabitosApplication
 import com.pruden.habits.common.clases.entities.CategoriaEntity
 import com.pruden.habits.common.clases.entities.MiniHabitoEntity
 import com.pruden.habits.modules.miniHabitos.model.MiniHabitosInteractor
@@ -12,7 +11,6 @@ class MiniHabitosViewModel : ViewModel() {
 
     val categorias: LiveData<MutableList<CategoriaEntity>> = interactor.obtenerCategorias()
     val miniHabitos: LiveData<MutableList<MiniHabitoEntity>> = interactor.obtenerMiniHabitos()
-
 
     fun insertarCategoria(categoriaEntity: CategoriaEntity) {
         interactor.insertarCategoria(categoriaEntity)
