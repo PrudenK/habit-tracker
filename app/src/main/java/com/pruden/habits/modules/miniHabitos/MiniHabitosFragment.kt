@@ -20,11 +20,12 @@ import com.pruden.habits.common.clases.entities.MiniHabitoEntity
 import com.pruden.habits.databinding.FragmentMiniHabitosBinding
 import com.pruden.habits.modules.miniHabitos.adapters.CategoriaAdapter
 import com.pruden.habits.modules.miniHabitos.adapters.MiniHabitoAdapter
+import com.pruden.habits.modules.miniHabitos.adapters.OnClickMiniHabito
 import com.pruden.habits.modules.miniHabitos.metodos.dialogoAgregarCategoria
 import com.pruden.habits.modules.miniHabitos.metodos.dialogoAgregarMiniHabito
 import com.pruden.habits.modules.miniHabitos.viewModel.MiniHabitosViewModel
 
-class MiniHabitosFragment : Fragment() {
+class MiniHabitosFragment : Fragment(), OnClickMiniHabito {
     private lateinit var binding: FragmentMiniHabitosBinding
     private lateinit var recyclerCategorias: RecyclerView
     private val categorias = mutableListOf<CategoriaEntity>()
@@ -140,11 +141,16 @@ class MiniHabitosFragment : Fragment() {
         recyclerMiniHabitos = binding.recyclerMiniHabitos
         recyclerMiniHabitos.layoutManager = LinearLayoutManager(context)
 
-        miniHabitosAdapter = MiniHabitoAdapter(miniHabitos) {
+        miniHabitosAdapter = MiniHabitoAdapter(miniHabitos, this) {
             dialogoAgregarMiniHabito(requireContext(), recyclerMiniHabitos,
                 binding.nombreMiniHabito.text.toString(), resources, miniHabitosViewModel, miniHabitos)
         }
 
         recyclerMiniHabitos.adapter = miniHabitosAdapter
+    }
+
+    override fun onClickMiniHabito(miniHabitoEntity: MiniHabitoEntity) {
+        miniHabitoEntity.cumplido = !miniHabitoEntity.cumplido
+        miniHabitosViewModel.actualizarMiniHabito(miniHabitoEntity)
     }
 }

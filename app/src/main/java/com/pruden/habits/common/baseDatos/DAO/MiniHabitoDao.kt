@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.pruden.habits.common.clases.entities.CategoriaEntity
 import com.pruden.habits.common.clases.entities.MiniHabitoEntity
 
@@ -18,4 +19,7 @@ interface MiniHabitoDao {
 
     @Query("Select * from minihabito")
     fun obtenerTodosLosMiniHabitos(): LiveData<MutableList<MiniHabitoEntity>>
+
+    @Update
+    suspend fun actualizarMiniHabito(miniHabitoEntity: MiniHabitoEntity)
 }

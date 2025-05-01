@@ -23,5 +23,9 @@ class MiniHabitosViewModel : ViewModel() {
     fun insertarMiniHabito(miniHabitoEntity: MiniHabitoEntity){
         interactor.insetarMiniHabito(miniHabitoEntity)
     }
+
+    fun actualizarMiniHabito(miniHabitoEntity: MiniHabitoEntity){
+        interactor.actualizarMiniHabito(miniHabitoEntity)
+    }
 }
 

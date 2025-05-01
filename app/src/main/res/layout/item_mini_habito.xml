@@ -6,9 +6,11 @@
     android:layout_marginHorizontal="32dp"
     android:layout_marginTop="8dp"
     android:layout_marginBottom="8dp"
-    android:background="@drawable/fondo_item_mini_habito">
-
+    android:background="@drawable/fondo_item_mini_habito"
+    android:id="@+id/contenedor_item_mini_habito"
     >
+
+
 
     <TextView
         android:id="@+id/titutlo_mini_habito"

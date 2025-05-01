@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.R
@@ -15,6 +16,7 @@ import com.pruden.habits.common.clases.entities.MiniHabitoEntity
 
 class MiniHabitoAdapter(
     private val miniHabitos: MutableList<MiniHabitoEntity>,
+    private val listener: OnClickMiniHabito,
     private val accionAgregarMiniHabito: () -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -64,6 +66,7 @@ class MiniHabitoAdapter(
     inner class MiniHabitoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val tituloMiniHabito: TextView = itemView.findViewById(R.id.titutlo_mini_habito)
         private val imagenCheck: ImageView = itemView.findViewById(R.id.imagen_check_mini_habito)
+        private val contenedor: ConstraintLayout = itemView.findViewById(R.id.contenedor_item_mini_habito)
 
         fun bind(miniHabito: MiniHabitoEntity) {
             tituloMiniHabito.text = miniHabito.nombre
@@ -79,6 +82,9 @@ class MiniHabitoAdapter(
             imagenCheck.setColorFilter(ContextCompat.getColor(context, R.color.lightGrayColor),
                 android.graphics.PorterDuff.Mode.SRC_IN)
 
+            contenedor.setOnClickListener {
+                listener.onClickMiniHabito(miniHabito)
+            }
         }
     }
 

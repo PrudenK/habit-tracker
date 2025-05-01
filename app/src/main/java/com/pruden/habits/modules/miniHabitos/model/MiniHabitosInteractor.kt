@@ -27,6 +27,12 @@ class MiniHabitosInteractor {
         }
     }
 
+    fun actualizarMiniHabito(miniHabitoEntity: MiniHabitoEntity) {
+        CoroutineScope(Dispatchers.IO).launch {
+            HabitosApplication.database.miniHabitoDao().actualizarMiniHabito(miniHabitoEntity)
+        }
+    }
+
     fun obtenerCategorias(): LiveData<MutableList<CategoriaEntity>> {
         return HabitosApplication.database.categoriaDao().obtenerTodasLasCategorias()
     }
