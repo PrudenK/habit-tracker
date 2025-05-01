@@ -1,5 +1,8 @@
 package com.pruden.habits.modules.miniHabitos
 
+import android.app.AlertDialog
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,15 +11,20 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.pruden.habits.HabitosApplication.Companion.listaHabitos
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.entities.CategoriaEntity
+import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.clases.entities.MiniHabitoEntity
 import com.pruden.habits.databinding.FragmentMiniHabitosBinding
+import com.pruden.habits.modules.mainModule.metodos.ajustarDialogo
 import com.pruden.habits.modules.miniHabitos.adapters.CategoriaAdapter
 import com.pruden.habits.modules.miniHabitos.adapters.MiniHabitoAdapter
 import com.pruden.habits.modules.miniHabitos.adapters.OnClickMiniHabito
@@ -154,6 +162,29 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito {
     }
 
     override fun onLongClickMiniHabito(miniHabitoEntity: MiniHabitoEntity) {
-        miniHabitosViewModel.eliminarMiniHabito(miniHabitoEntity)
+        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_borrar_habito, null)
+        val dialogBorrar = AlertDialog.Builder(context).setView(dialogView).create()
+
+        val buttonCancel = dialogView.findViewById<Button>(R.id.button_cancelar_borrar_habito)
+        val buttonAccept = dialogView.findViewById<Button>(R.id.button_acceptar_borrar_habito)
+        val textSubtitulo = dialogView.findViewById<TextView>(R.id.dialog_mensaje_borrar)
+
+        textSubtitulo.text = "¿Estás seguro de qué quieres borrar este mini hábito?"
+
+        dialogBorrar.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+
+        buttonCancel.setOnClickListener {
+            dialogBorrar.dismiss()
+        }
+
+        buttonAccept.setOnClickListener {
+            miniHabitosViewModel.eliminarMiniHabito(miniHabitoEntity)
+
+            dialogBorrar.dismiss()
+        }
+
+        dialogBorrar.show()
+
+        ajustarDialogo(resources, dialogBorrar, 0.75f)
     }
 }
