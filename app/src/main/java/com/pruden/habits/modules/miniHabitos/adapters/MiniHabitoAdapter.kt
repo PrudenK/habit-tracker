@@ -85,6 +85,11 @@ class MiniHabitoAdapter(
             contenedor.setOnClickListener {
                 listener.onClickMiniHabito(miniHabito)
             }
+
+            contenedor.setOnLongClickListener {
+                listener.onLongClickMiniHabito(miniHabito)
+                true
+            }
         }
     }
 

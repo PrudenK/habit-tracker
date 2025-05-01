@@ -33,6 +33,12 @@ class MiniHabitosInteractor {
         }
     }
 
+    fun eliminarMiniHabito(miniHabitoEntity: MiniHabitoEntity) {
+        CoroutineScope(Dispatchers.IO).launch {
+            HabitosApplication.database.miniHabitoDao().deleteMiniHabito(miniHabitoEntity)
+        }
+    }
+
     fun obtenerCategorias(): LiveData<MutableList<CategoriaEntity>> {
         return HabitosApplication.database.categoriaDao().obtenerTodasLasCategorias()
     }
