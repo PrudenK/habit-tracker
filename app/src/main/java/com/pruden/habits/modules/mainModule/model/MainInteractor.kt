@@ -38,6 +38,9 @@ class MainInteractor {
                 )
             }
         }
+        if(fechas.isNotEmpty()){
+            HabitosApplication.database.miniHabitoDao().reiniciarValores()
+        }
     }
 
     fun borrarHabito(habitoEntity: HabitoEntity){
