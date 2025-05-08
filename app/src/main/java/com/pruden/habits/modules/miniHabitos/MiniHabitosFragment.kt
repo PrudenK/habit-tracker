@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -43,6 +44,9 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
 
     private lateinit var miniHabitosViewModel: MiniHabitosViewModel
 
+    private var categoriasCargadas = false
+    private var miniHabitosCargados = false
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         miniHabitosViewModel = ViewModelProvider(requireActivity())[MiniHabitosViewModel::class.java]
@@ -79,15 +83,24 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
             categorias.clear()
             categorias.addAll(categoriasActualizadas.sortedBy { it.posicion })
             recyclerCategorias.adapter?.notifyDataSetChanged()
+            categoriasCargadas = true
+            intentarSeleccionarPrimeraCategoria()
         }
 
+
+
         miniHabitosViewModel.miniHabitos.observe(viewLifecycleOwner) { miniHabitosActualizados ->
+            miniHabitosCargados = true
+
             if (categoriaSeleccionada != null) {
                 miniHabitos.clear()
                 miniHabitos.addAll(miniHabitosActualizados.filter { it.categoria == categoriaSeleccionada?.nombre })
+                miniHabitosAdapter.notifyDataSetChanged()
             }
-            recyclerMiniHabitos.adapter?.notifyDataSetChanged()
+
+            intentarSeleccionarPrimeraCategoria()
         }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -199,4 +212,21 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
 
         ajustarDialogo(resources, dialogBorrar, 0.75f)
     }
+
+    private fun intentarSeleccionarPrimeraCategoria() {
+        if (categoriaSeleccionada == null && categoriasCargadas && miniHabitosCargados && categorias.isNotEmpty()) {
+            val primera = categorias.first()
+            categoriaSeleccionada = primera
+            binding.nombreMiniHabito.text = primera.nombre
+
+            miniHabitosViewModel.miniHabitos.value?.let {
+                val miniHabitosFiltrados = it.filter { it.categoria == primera.nombre }
+                miniHabitos.clear()
+                miniHabitos.addAll(miniHabitosFiltrados)
+                miniHabitosAdapter.notifyDataSetChanged()
+                recyclerMiniHabitos.visibility = View.VISIBLE
+            }
+        }
+    }
+
 }
