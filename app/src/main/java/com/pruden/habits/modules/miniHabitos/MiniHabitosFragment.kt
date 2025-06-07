@@ -189,7 +189,7 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
             CoroutineScope(Dispatchers.Main).launch {
                 miniHabitosViewModel.eliminarCategoria(categoriaEntity)
 
-                if(binding.nombreMiniHabito.text == categoriaEntity.nombre){
+                if(binding.nombreMiniHabito.text == categoriaEntity.nombre || categoriaSeleccionada == null){
                     delay(50)
                     categoriaSeleccionada = null
 
