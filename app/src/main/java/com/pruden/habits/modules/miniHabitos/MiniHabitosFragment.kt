@@ -31,6 +31,10 @@ import com.pruden.habits.modules.miniHabitos.adapters.OnClickMiniHabito
 import com.pruden.habits.modules.miniHabitos.metodos.dialogoAgregarCategoria
 import com.pruden.habits.modules.miniHabitos.metodos.dialogoAgregarMiniHabito
 import com.pruden.habits.modules.miniHabitos.viewModel.MiniHabitosViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 
 class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
     private lateinit var binding: FragmentMiniHabitosBinding
@@ -181,8 +185,19 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
 
     override fun onLongClickCategoria(categoriaEntity: CategoriaEntity) {
         dialogoBorrarElementoComun("¿Estás seguro de qué quieres borrar esta categoría?"){
-            miniHabitosViewModel.eliminarCategoria(categoriaEntity)
-            binding.nombreMiniHabito.text = "Selecciona una categoría"
+
+            CoroutineScope(Dispatchers.Main).launch {
+                miniHabitosViewModel.eliminarCategoria(categoriaEntity)
+
+                if(binding.nombreMiniHabito.text == categoriaEntity.nombre){
+                    delay(50)
+                    categoriaSeleccionada = null
+
+                    binding.nombreMiniHabito.text = "Selecciona una categoría"
+
+                    recyclerMiniHabitos.visibility = View.GONE
+                }
+            }
         }
     }
 

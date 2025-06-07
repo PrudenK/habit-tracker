@@ -24,7 +24,16 @@ class CategoriaAdapter(
     private val CATEGORIA = 0
     private val BOTON_AGREGAR_CATEGORIA = 1
 
-    private var posicionSeleccionada = -1
+    private var posicionSeleccionada = 0
+
+
+    // Para que la primera categoría salga seleccionada
+    init {
+        if (categorias.isNotEmpty()) {
+            onChipSelected(categorias[0])
+        }
+    }
+
 
     override fun getItemCount() = categorias.size + 1
 
@@ -48,16 +57,8 @@ class CategoriaAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
-            CATEGORIA -> {
-                val categoriaViewHolder = holder as CategoriaViewHolder
-                categoriaViewHolder.bind(categorias[position])
-
-
-            }
-            BOTON_AGREGAR_CATEGORIA -> {
-                val agregarBotonViewHolder = holder as AgregarBotonViewHolder
-                agregarBotonViewHolder.bind(accionAgregarCategoria)
-            }
+            CATEGORIA -> (holder as CategoriaViewHolder).bind(categorias[position])
+            BOTON_AGREGAR_CATEGORIA -> (holder as AgregarBotonViewHolder).bind(accionAgregarCategoria)
         }
     }
 
@@ -67,7 +68,7 @@ class CategoriaAdapter(
         fun bind(categoria: CategoriaEntity) {
             chip.text = if (categoria.nombre.length > 12) {
                 categoria.nombre.substring(0, 12) + "..."
-            }else {
+            } else {
                 categoria.nombre
             }
 
@@ -85,21 +86,20 @@ class CategoriaAdapter(
 
             chip.isCheckable = true
             chip.isClickable = true
-            chip.isChecked = position == posicionSeleccionada
+            chip.isChecked = adapterPosition == posicionSeleccionada
             chip.alpha = if (chip.isChecked) 1f else 0.5f
 
             chip.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
-                    posicionSeleccionada = position
-                    onChipSelected(categoria)  // Llamar al callback para pasar el chip seleccionado
+                    posicionSeleccionada = adapterPosition
+                    onChipSelected(categoria)
                     notifyDataSetChanged()
                 } else {
-                    if (posicionSeleccionada == position) {
+                    if (posicionSeleccionada == adapterPosition) {
                         posicionSeleccionada = -1
                         onChipSelected(null)
                     }
                 }
-
                 chip.alpha = if (isChecked) 1f else 0.5f
             }
 
@@ -115,20 +115,17 @@ class CategoriaAdapter(
         }
     }
 
-    // ViewHolder para el botón "+"
     inner class AgregarBotonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val addButton: Button = itemView.findViewById(R.id.addButton)
-
         fun bind(onAddChip: () -> Unit) {
-            addButton.setOnClickListener {
-                onAddChip()
-            }
+            addButton.setOnClickListener { onAddChip() }
         }
     }
 
     fun updateCategorias(newCategorias: List<CategoriaEntity>) {
         categorias.clear()
         categorias.addAll(newCategorias.sortedBy { it.posicion })
+        posicionSeleccionada = if (categorias.isNotEmpty()) 0 else -1
         notifyDataSetChanged()
     }
 }
