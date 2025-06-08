@@ -50,6 +50,7 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
 
     private var categoriasCargadas = false
     private var miniHabitosCargados = false
+    private var miniHabitosActualizadosGlobal: List<MiniHabitoEntity>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -95,21 +96,29 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
                 if (cat.seleccionada){
                     categoriaSeleccionada = cat
                     binding.nombreMiniHabito.text = cat.nombre
+                    break
                 }
             }
+
+            intentarCargarMiniHabitos()
+
         }
 
-        miniHabitosViewModel.miniHabitos.observe(viewLifecycleOwner) { miniHabitosActualizados ->
+        miniHabitosViewModel.miniHabitos.observe(viewLifecycleOwner) { nuevosMiniHabitos ->
+            miniHabitosActualizadosGlobal = nuevosMiniHabitos
             miniHabitosCargados = true
-
-            if (categoriaSeleccionada != null) {
-                miniHabitos.clear()
-                miniHabitos.addAll(miniHabitosActualizados.filter { it.categoria == categoriaSeleccionada?.nombre })
-                miniHabitosAdapter.notifyDataSetChanged()
-                recyclerMiniHabitos.visibility = View.VISIBLE
-            }
+            intentarCargarMiniHabitos()
         }
 
+    }
+
+    private fun intentarCargarMiniHabitos() {
+        if (categoriasCargadas && miniHabitosCargados && categoriaSeleccionada != null && miniHabitosActualizadosGlobal != null) {
+            miniHabitos.clear()
+            miniHabitos.addAll(miniHabitosActualizadosGlobal!!.filter { it.categoria == categoriaSeleccionada?.nombre })
+            miniHabitosAdapter.notifyDataSetChanged()
+            recyclerMiniHabitos.visibility = View.VISIBLE
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -146,26 +155,7 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
             dialogoAgregarCategoria(requireContext(), recyclerCategorias, categorias,
                 resources, miniHabitosViewModel){ categoria ->
 
-                categoriaSeleccionada = categoria
-                binding.nombreMiniHabito.text = categoria.nombre
-
-                for(cat in categorias){
-                    cat.seleccionada = false
-                }
-
-                categoriaSeleccionada?.seleccionada = true
-
-                recyclerCategorias.adapter?.notifyDataSetChanged()
-
-                // Agregar miniHabitos
-                miniHabitosViewModel.miniHabitos.value?.let {
-                    val miniHabitosFiltrados = it.filter { it.categoria == categoria.nombre }
-                    miniHabitos.clear()
-                    miniHabitos.addAll(miniHabitosFiltrados)
-                    miniHabitosAdapter.notifyDataSetChanged()
-                }
-
-                recyclerMiniHabitos.visibility = View.VISIBLE
+                // Revisar solamente tema de la posición
 
             }
         }) { categoria ->

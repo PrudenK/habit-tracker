@@ -85,7 +85,9 @@ class CategoriaAdapter(
                 if (isChecked) {
                     posicionSeleccionada = adapterPosition
                     onChipSelected(categoria)
-                    notifyDataSetChanged()
+                    itemView.post {
+                        notifyDataSetChanged()
+                    }
 
                 } else {
                     if (posicionSeleccionada == adapterPosition) {
