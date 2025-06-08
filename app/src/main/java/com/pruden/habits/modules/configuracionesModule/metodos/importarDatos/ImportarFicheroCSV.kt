@@ -9,8 +9,10 @@ import com.pruden.habits.HabitosApplication.Companion.sharedConfiguraciones
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.Constantes
+import com.pruden.habits.common.clases.entities.CategoriaEntity
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.common.clases.entities.HabitoEtiquetaEntity
+import com.pruden.habits.common.clases.entities.MiniHabitoEntity
 import com.pruden.habits.common.metodos.Dialogos.makeToast
 import com.pruden.habits.common.metodos.fechas.obtenerFechaActual
 import com.pruden.habits.common.metodos.fechas.obtenerFechasEntre
@@ -40,7 +42,8 @@ import java.io.InputStreamReader
         val listaDataHabito = mutableListOf<DataHabitoEntity>()
         val listaHabitosEtiquetas = mutableListOf<HabitoEtiquetaEntity>()
         val listaEtiquetas = mutableListOf<EtiquetaEntity>()
-
+        val listaCategorias = mutableListOf<CategoriaEntity>()
+        val listaMiniHabitos = mutableListOf<MiniHabitoEntity>()
 
 
         val indice = contenidoCsv.indexOfFirst { it.startsWith("Fecha") }
@@ -60,9 +63,12 @@ import java.io.InputStreamReader
                 return
             }
 
-            var comienzanDataHabitos = false
             var comienzanEtiquetas = false
             var comienzanHabitosEtiquetas = false
+            var comienzanCategorias = false
+            var comienzanMiniHabitos = false
+            var comienzanDataHabitos = false
+
             var primeraFecha = false
 
             if(contenidoCsv.any { it.trimEnd(',') == Constantes.COMIENZAN_DATA_HABITOS }){
@@ -73,18 +79,39 @@ import java.io.InputStreamReader
                             Constantes.COMIENZAN_ETIQUETAS -> {
                                 comienzanEtiquetas = true
                                 comienzanHabitosEtiquetas = false
+                                comienzanCategorias = false
+                                comienzanMiniHabitos = false
                                 comienzanDataHabitos = false
                             }
                             Constantes.COMIENZAN_HABITOS_ETIQUETAS -> {
-                                comienzanHabitosEtiquetas = true
                                 comienzanEtiquetas = false
+                                comienzanHabitosEtiquetas = true
+                                comienzanCategorias = false
+                                comienzanMiniHabitos = false
+                                comienzanDataHabitos = false
+                            }
+                            Constantes.COMIENZAN_CATEGORIAS ->{
+                                comienzanEtiquetas = false
+                                comienzanHabitosEtiquetas = false
+                                comienzanCategorias = true
+                                comienzanMiniHabitos = false
+                                comienzanDataHabitos = false
+                            }
+                            Constantes.COMIENZAN_MINI_HABITOS_CATEGORIA -> {
+                                comienzanEtiquetas = false
+                                comienzanHabitosEtiquetas = false
+                                comienzanCategorias = false
+                                comienzanMiniHabitos = true
                                 comienzanDataHabitos = false
                             }
                             Constantes.COMIENZAN_DATA_HABITOS -> {
-                                comienzanDataHabitos = true
                                 comienzanEtiquetas = false
                                 comienzanHabitosEtiquetas = false
+                                comienzanCategorias = false
+                                comienzanMiniHabitos = false
+                                comienzanDataHabitos = true
                             }
+
                         }
 
                         when{
@@ -132,6 +159,20 @@ import java.io.InputStreamReader
                                 }
                             }
 
+                            comienzanCategorias->{
+                                if(linea != Constantes.COMIENZAN_CATEGORIAS && linea != Constantes.CABECERA_CATEGORIAS_CSV){
+                                    val c = linea.split(",")
+                                    listaCategorias.add(CategoriaEntity(c[0], c[1].toInt(), c[2].toInt(), c[3].toBoolean()))
+                                }
+                            }
+
+                            comienzanMiniHabitos->{
+                                if(linea != Constantes.COMIENZAN_MINI_HABITOS_CATEGORIA && linea != Constantes.CABECERA_MINI_HABITO_CATEGORIA_CSV){
+                                    val mi = linea.split(",")
+                                    listaMiniHabitos.add(MiniHabitoEntity(mi[0], mi[1],false, mi[2].toInt()))
+                                }
+                            }
+
                             else->{
                                 val h = linea.split(",")
                                 val habito = HabitoEntity(h[0], h[1], h[2].toBoolean(), h[3], h[4].toInt(), h[5].toBoolean(), h[6].toInt())
@@ -153,15 +194,19 @@ import java.io.InputStreamReader
                     viewModel.viewModelScope.launch {
                         val job1 = async { viewModel.insertarListaDeHabitos(listaHabitosEntity) }
                         val job2 = async { viewModel.insertarListaEtiquetas(listaEtiquetas) }
+                        val job3 = async { viewModel.insertarListaCategorias(listaCategorias) }
 
                         job1.await()
                         job2.await()
-
-                        val job3 = async { viewModel.insertarListaDataHabitos(listaDataHabito) }
-                        val job4 = async { viewModel.insertarListaHabitosEtiquetas(listaHabitosEtiquetas) }
-
                         job3.await()
-                        job4.await()
+
+                        val job1b = async { viewModel.insertarListaDataHabitos(listaDataHabito) }
+                        val job2b = async { viewModel.insertarListaHabitosEtiquetas(listaHabitosEtiquetas) }
+                        val job3b = async { viewModel.insertarListaMiniHabitos(listaMiniHabitos) }
+
+                        job1b.await()
+                        job2b.await()
+                        job3b.await()
                     }
 
                 }

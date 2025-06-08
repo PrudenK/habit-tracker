@@ -161,4 +161,16 @@ class ConfiguracionesInteractor {
         }
     }
 
+    fun insertarListaDeCategorias(listaCategorias: MutableList<CategoriaEntity>){
+        CoroutineScope(Dispatchers.IO).launch {
+            HabitosApplication.database.categoriaDao().insertarListaCategoria(listaCategorias)
+        }
+    }
+
+    fun insertarListaMiniHabitos(listaMiniHabitos: MutableList<MiniHabitoEntity>){
+        CoroutineScope(Dispatchers.IO).launch {
+            HabitosApplication.database.miniHabitoDao().insertarListaMiniHabito(listaMiniHabitos)
+        }
+    }
+
 }

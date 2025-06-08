@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
+import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import androidx.room.Update
 import com.pruden.habits.common.clases.entities.CategoriaEntity
@@ -12,6 +13,9 @@ import com.pruden.habits.common.clases.entities.CategoriaEntity
 interface CategoriaDao {
     @Insert
     suspend fun insertarCategoria(categoriaEntity: CategoriaEntity)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertarListaCategoria(listaCategorais: List<CategoriaEntity>)
 
     @Delete
     suspend fun deleteCategoria(categoriaEntity: CategoriaEntity)

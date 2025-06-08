@@ -173,4 +173,12 @@ class ConfiguracionesViewModel: ViewModel() {
         interactor.insertarListaDeDataHabitos(listaDataHabitos)
     }
 
+    fun insertarListaCategorias(listaCategorias: MutableList<CategoriaEntity>){
+        interactor.insertarListaDeCategorias(listaCategorias)
+    }
+
+    fun insertarListaMiniHabitos(listaMiniHabitos: MutableList<MiniHabitoEntity>){
+        interactor.insertarListaMiniHabitos(listaMiniHabitos)
+    }
+
 }
