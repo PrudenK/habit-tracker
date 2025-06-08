@@ -24,4 +24,7 @@ interface CategoriaDao {
 
     @Update
     suspend fun actualizarCategoria(categorias: List<CategoriaEntity>)
+
+    @Query("Delete from categoria")
+    suspend fun borrarTodasLasCategorias()
 }

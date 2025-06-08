@@ -247,6 +247,20 @@
                     />
 
                 <TextView
+                    android:id="@+id/borrar_todos_los_datos_fragment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Borrar todos los datos"
+                    android:textSize="@dimen/text_16"
+                    android:paddingVertical="8dp"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:background="?attr/selectableItemBackground"
+                    android:textColor="@color/click_button"
+
+                    />
+
+                <TextView
                     android:id="@+id/borrar_todos_los_habitos_fragment"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

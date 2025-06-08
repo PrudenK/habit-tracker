@@ -18,12 +18,13 @@ import androidx.lifecycle.ViewModelProvider
 import com.pruden.habits.modules.mainModule.MainActivity
 import com.pruden.habits.R
 import com.pruden.habits.common.Constantes
-import com.pruden.habits.modules.configuracionesModule.metodos.borrarDatos.borrarTodosLosDatos
+import com.pruden.habits.modules.configuracionesModule.metodos.borrarDatos.borrarTodosLosHabitos
 import com.pruden.habits.modules.configuracionesModule.metodos.borrarDatos.borrarTodosLosRegistros
 import com.pruden.habits.common.metodos.Dialogos.makeToast
 import com.pruden.habits.modules.configuracionesModule.metodos.importarDatos.leerCsvDesdeUri
 import com.pruden.habits.databinding.FragmentConfiguracionesBinding
 import com.pruden.habits.modules.configuracionesModule.metodos.borrarDatos.borrarTodasLasEtiquetasDialog
+import com.pruden.habits.modules.configuracionesModule.metodos.borrarDatos.borrarTodosLosDatos
 import com.pruden.habits.modules.configuracionesModule.metodos.modifcarFechaInicio.mostrarDatePicker
 import com.pruden.habits.modules.configuracionesModule.viewModel.ConfiguracionesViewModel
 
@@ -55,6 +56,7 @@ class ConfiguracionesFragment : Fragment() {
         main = activity as MainActivity
 
         borrarTodosLosDatosFragment()
+        borrarTodosLosHabitosFragment()
         borrarTodosLosRegistrosFragment()
         exportartTodosLosDatosCSV()
         exportarSoloLosHabitos()
@@ -120,8 +122,14 @@ class ConfiguracionesFragment : Fragment() {
     }
 
     private fun borrarTodosLosDatosFragment(){
-        binding.borrarTodosLosHabitosFragment.setOnClickListener {
+        binding.borrarTodosLosDatosFragment.setOnClickListener {
             borrarTodosLosDatos(requireContext(),main, viewModel,resources)
+        }
+    }
+
+    private fun borrarTodosLosHabitosFragment(){
+        binding.borrarTodosLosHabitosFragment.setOnClickListener {
+            borrarTodosLosHabitos(requireContext(),main, viewModel,resources)
         }
     }
 

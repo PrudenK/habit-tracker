@@ -93,6 +93,17 @@ class ConfiguracionesInteractor {
         }
     }
 
+    fun borrarTodosLosDatos(onComplete: () -> Unit){
+        CoroutineScope(Dispatchers.IO).launch {
+            HabitosApplication.database.habitoDao().borrarTodosLosHabitos()
+            HabitosApplication.database.etiquetaDao().borrarTodasLasEtiquetas()
+            HabitosApplication.database.categoriaDao().borrarTodasLasCategorias()
+            withContext(Dispatchers.Main){
+                onComplete()
+            }
+        }
+    }
+
     fun borrarTodasLasEtiquetas(onComplete: () -> Unit){
         CoroutineScope(Dispatchers.IO).launch {
             HabitosApplication.database.etiquetaDao().borrarTodasLasEtiquetas()

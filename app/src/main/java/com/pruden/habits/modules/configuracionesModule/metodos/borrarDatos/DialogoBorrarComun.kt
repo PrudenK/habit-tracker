@@ -13,12 +13,26 @@ import com.pruden.habits.modules.configuracionesModule.viewModel.Configuraciones
 import com.pruden.habits.modules.mainModule.MainActivity
 import com.pruden.habits.modules.mainModule.metodos.ajustarDialogo
 
+
 fun borrarTodosLosDatos(contexto: Context, main: MainActivity, viewModel: ConfiguracionesViewModel, resources: Resources) {
     mostrarDialogoBorrar(
         contexto,
         resources,
+        titulo = "¡Borrar todos los datos!",
+        mensaje = "Estás a punto de borrar TODOS TUS DATOS..."
+    ) {
+        viewModel.borrarTodosLosDatos {
+            main.actualizarDespuesDeBorrarTodosLosDatos()
+        }
+    }
+}
+
+fun borrarTodosLosHabitos(contexto: Context, main: MainActivity, viewModel: ConfiguracionesViewModel, resources: Resources) {
+    mostrarDialogoBorrar(
+        contexto,
+        resources,
         titulo = "¡Borrar todos los hábitos!",
-        mensaje = "Estás a punto de borrar todos tus datos..."
+        mensaje = "Estás a punto de borrar todos tus hábitos..."
     ) {
         viewModel.borrarTodosLosHabitos {
             main.actualizarDespuesDeBorrarTodosLosDatos()

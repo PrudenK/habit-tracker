@@ -126,6 +126,12 @@ class ConfiguracionesViewModel: ViewModel() {
         }
     }
 
+    fun borrarTodosLosDatos(onComplete: () -> Unit){
+        interactor.borrarTodosLosDatos{
+            onComplete()
+        }
+    }
+
     fun borrarTodasLasEtiquetas(onComplete: () -> Unit){
         interactor.borrarTodasLasEtiquetas {
             onComplete()
