@@ -6,6 +6,7 @@ import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEtiquetaEntity
+import com.pruden.habits.common.clases.entities.MiniHabitoEntity
 import com.pruden.habits.modules.configuracionesModule.metodos.exportarDatos.crearFicherosCSV.CrearFicherosCSV
 
 class ExportarDatos{
@@ -52,9 +53,10 @@ class ExportarDatos{
         habitosEtiquetas: MutableList<HabitoEtiquetaEntity>,
         hashMapDataHabitos: HashMap<String, MutableList<DataHabitoEntity>>,
         categorias: MutableList<CategoriaEntity>,
+        miniHabitos: MutableList<MiniHabitoEntity>
     ){
         val copiaSeguridad = ficheroProvider.crearFicheroCopiaSeguridad(
-            habitos, etiquetas, habitosEtiquetas, categorias,  contexto, hashMapDataHabitos)
+            habitos, etiquetas, habitosEtiquetas, categorias,  contexto, hashMapDataHabitos, miniHabitos)
 
         descargarCSVFile(contexto, copiaSeguridad)
     }

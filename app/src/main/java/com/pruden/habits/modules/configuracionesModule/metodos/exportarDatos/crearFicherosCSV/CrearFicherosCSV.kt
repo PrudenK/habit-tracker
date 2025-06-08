@@ -7,6 +7,7 @@ import com.pruden.habits.common.Constantes
 import com.pruden.habits.common.clases.entities.CategoriaEntity
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.common.clases.entities.HabitoEtiquetaEntity
+import com.pruden.habits.common.clases.entities.MiniHabitoEntity
 import com.pruden.habits.common.metodos.fechas.obtenerFechaActual
 import com.pruden.habits.modules.configuracionesModule.metodos.exportarDatos.devolverCabeceraCopiaDeSeguridadData
 import com.pruden.habits.modules.configuracionesModule.metodos.exportarDatos.devolverCabeceraDataHabitos
@@ -88,7 +89,8 @@ class CrearFicherosCSV {
         habitosEtiquetas: MutableList<HabitoEtiquetaEntity>,
         categorias: MutableList<CategoriaEntity>,
         contexto: Context,
-        hashMapDataHabitos: HashMap<String, MutableList<DataHabitoEntity>>
+        hashMapDataHabitos: HashMap<String, MutableList<DataHabitoEntity>>,
+        miniHabitos: MutableList<MiniHabitoEntity>
     ): File {
         val stringBuilder = StringBuilder()
         stringBuilder.append(devolverContenidoHabitosCSV(habitos).toString())
@@ -102,6 +104,8 @@ class CrearFicherosCSV {
         stringBuilder.append(Constantes.COMIENZAN_CATEGORIAS+"\n")
         stringBuilder.append(devolverCategoriasCSV(categorias))
 
+        stringBuilder.append(Constantes.COMIENZAN_MINI_HABITOS_CATEGORIA+"\n")
+        stringBuilder.append(devolverMiniHabitosCSV(miniHabitos))
 
         stringBuilder.append(Constantes.COMIENZAN_DATA_HABITOS+"\n")
         stringBuilder.append(devolverCabeceraCopiaDeSeguridadData(habitos) +"\n")

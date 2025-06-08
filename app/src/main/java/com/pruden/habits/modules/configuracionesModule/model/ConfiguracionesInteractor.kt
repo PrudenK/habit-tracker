@@ -8,6 +8,7 @@ import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEtiquetaEntity
+import com.pruden.habits.common.clases.entities.MiniHabitoEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -43,6 +44,12 @@ class ConfiguracionesInteractor {
     suspend fun obtenerTodasLasCategorias(): MutableList<CategoriaEntity>{
         return withContext(Dispatchers.IO) {
             HabitosApplication.database.categoriaDao().obtenerTodasLasCategoriasSuspend()
+        }
+    }
+
+    suspend fun obtenerTodosLosMiniHabitos(): MutableList<MiniHabitoEntity>{
+        return withContext(Dispatchers.IO) {
+            HabitosApplication.database.miniHabitoDao().obtenerTodosLosMiniHabitodSuspend()
         }
     }
 

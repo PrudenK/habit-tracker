@@ -20,6 +20,9 @@ interface MiniHabitoDao {
     @Query("Select * from minihabito")
     fun obtenerTodosLosMiniHabitos(): LiveData<MutableList<MiniHabitoEntity>>
 
+    @Query("Select * from minihabito order by categoria, posicion")
+    fun obtenerTodosLosMiniHabitodSuspend(): MutableList<MiniHabitoEntity>
+
     @Update
     suspend fun actualizarMiniHabito(miniHabitoEntity: MiniHabitoEntity)
 

@@ -10,11 +10,13 @@ object Constantes {
     const val CABECERA_ETIQUETAS_CSV = "nombre,color,seleccionado,posicion"
     const val CABECERA_HABITOS_ETQUETAS_CSV = "habito,etiqueta"
     const val CABECERA_CATEGORIAS_CSV = "nombre,color,posicion,seleccionada"
+    const val CABECERA_MINI_HABITO_CATEGORIA_CSV = "nombre,categoria,posicion"
 
     const val COMIENZAN_DATA_HABITOS = "COMIENZAN_DATA_HABITOS"
     const val COMIENZAN_ETIQUETAS = "COMIENZAN_ETIQUETAS"
     const val COMIENZAN_HABITOS_ETIQUETAS = "COMIENZAN_HABITOS_ETIQUETAS"
     const val COMIENZAN_CATEGORIAS = "COMIENZAN_CATEGORIAS"
+    const val COMIENZAN_MINI_HABITOS_CATEGORIA = "COMIENZAN_MINI_HABITOS"
 
     const val CANTIDAD_DIFF_HABITO_ARCHIVADO = 99999999
 

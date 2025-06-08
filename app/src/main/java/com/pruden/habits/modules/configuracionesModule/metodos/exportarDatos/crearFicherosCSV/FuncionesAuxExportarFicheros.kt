@@ -7,6 +7,7 @@ import com.pruden.habits.common.clases.entities.CategoriaEntity
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.common.clases.entities.HabitoEtiquetaEntity
+import com.pruden.habits.common.clases.entities.MiniHabitoEntity
 import com.pruden.habits.modules.configuracionesModule.metodos.exportarDatos.devolverCabeceraDataHabitos
 import com.pruden.habits.modules.configuracionesModule.metodos.exportarDatos.devolverIdCabecera
 
@@ -74,6 +75,18 @@ fun devolverCategoriasCSV(categorias: MutableList<CategoriaEntity>): java.lang.S
     for(cat in categorias){
         with(cat){
             stringBuilder.append("$nombre,$color,$posicion,$seleccionada\n")
+        }
+    }
+    return stringBuilder
+}
+
+fun devolverMiniHabitosCSV(miniHabitos: MutableList<MiniHabitoEntity>): java.lang.StringBuilder{
+    val stringBuilder = StringBuilder()
+    stringBuilder.append(Constantes.CABECERA_MINI_HABITO_CATEGORIA_CSV+"\n")
+
+    for(mh in miniHabitos){
+        with(mh){
+            stringBuilder.append("$nombre,$categoria,$posicion\n")
         }
     }
     return stringBuilder

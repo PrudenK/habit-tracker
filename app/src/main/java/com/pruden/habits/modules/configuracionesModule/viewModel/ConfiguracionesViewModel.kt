@@ -9,6 +9,7 @@ import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEtiquetaEntity
+import com.pruden.habits.common.clases.entities.MiniHabitoEntity
 import com.pruden.habits.common.metodos.Dialogos.makeToast
 import com.pruden.habits.modules.configuracionesModule.metodos.exportarDatos.devolverCabeceraDataHabitos
 import com.pruden.habits.modules.configuracionesModule.metodos.exportarDatos.devolverIdCabecera
@@ -83,11 +84,12 @@ class ConfiguracionesViewModel: ViewModel() {
                 )
             )
             val categorias = interactor.obtenerTodasLasCategorias()
+            val miniHabitos = interactor.obtenerTodosLosMiniHabitos()
 
             if(habitos.isNotEmpty()){
                 withContext(Dispatchers.Main) {
                     exportarDatos.exportarCopiaDeSeguridadCSV(context, habitos, etiquetas,
-                        habitosEtiquetas, hashMapDataHabitos, categorias)
+                        habitosEtiquetas, hashMapDataHabitos, categorias, miniHabitos)
                 }
             }else{
                 withContext(Dispatchers.Main) {
