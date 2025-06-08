@@ -4,5 +4,5 @@ import com.pruden.habits.common.clases.entities.MiniHabitoEntity
 
 interface OnClickMiniHabito {
     fun onClickMiniHabito(miniHabitoEntity: MiniHabitoEntity)
-    fun onLongClickMiniHabito(miniHabitoEntity: MiniHabitoEntity)
+    fun onBorrarMiniHabito(miniHabitoEntity: MiniHabitoEntity)
 }

@@ -248,14 +248,10 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
         miniHabitosViewModel.actualizarMiniHabito(miniHabitoEntity)
     }
 
-    override fun onLongClickMiniHabito(miniHabitoEntity: MiniHabitoEntity) {
-        /*
-
+    override fun onBorrarMiniHabito(miniHabitoEntity: MiniHabitoEntity) {
         dialogoBorrarElementoComun("¿Estás seguro de qué quieres borrar este mini hábito?"){
             miniHabitosViewModel.eliminarMiniHabito(miniHabitoEntity)
         }
-
-         */
     }
 
     override fun onLongClickCategoria(categoriaEntity: CategoriaEntity) {

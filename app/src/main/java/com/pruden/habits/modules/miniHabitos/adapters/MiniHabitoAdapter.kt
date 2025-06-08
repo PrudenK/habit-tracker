@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.entities.MiniHabitoEntity
 
@@ -66,6 +67,7 @@ class MiniHabitoAdapter(
     inner class MiniHabitoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val tituloMiniHabito: TextView = itemView.findViewById(R.id.titutlo_mini_habito)
         private val imagenCheck: ImageView = itemView.findViewById(R.id.imagen_check_mini_habito)
+        private val imagenBorrarMiniHabito: ImageView = itemView.findViewById(R.id.img_eliminar_mini_habito)
         private val contenedor: ConstraintLayout = itemView.findViewById(R.id.contenedor_item_mini_habito)
 
         fun bind(miniHabito: MiniHabitoEntity) {
@@ -86,9 +88,12 @@ class MiniHabitoAdapter(
                 listener.onClickMiniHabito(miniHabito)
             }
 
-            contenedor.setOnLongClickListener {
-                listener.onLongClickMiniHabito(miniHabito)
-                true
+            imagenBorrarMiniHabito.setImageResource(R.drawable.ic_basura)
+            imagenBorrarMiniHabito.setColorFilter(ContextCompat.getColor(context, R.color.lightGrayColor),
+                android.graphics.PorterDuff.Mode.SRC_IN)
+
+            imagenBorrarMiniHabito.setOnClickListener {
+                listener.onBorrarMiniHabito(miniHabito)
             }
         }
     }
