@@ -88,13 +88,16 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
             categorias.addAll(categoriasActualizadas.sortedBy { it.posicion })
             recyclerCategorias.adapter?.notifyDataSetChanged()
             categoriasCargadas = true
-            intentarSeleccionarPrimeraCategoria()
 
             Log.d("CATTTTT", "-----------------------")
 
+            for(cat in categoriasActualizadas){
+                if (cat.seleccionada){
+                    categoriaSeleccionada = cat
+                    binding.nombreMiniHabito.text = cat.nombre
+                }
+            }
         }
-
-
 
         miniHabitosViewModel.miniHabitos.observe(viewLifecycleOwner) { miniHabitosActualizados ->
             miniHabitosCargados = true
@@ -103,9 +106,8 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
                 miniHabitos.clear()
                 miniHabitos.addAll(miniHabitosActualizados.filter { it.categoria == categoriaSeleccionada?.nombre })
                 miniHabitosAdapter.notifyDataSetChanged()
+                recyclerMiniHabitos.visibility = View.VISIBLE
             }
-
-            intentarSeleccionarPrimeraCategoria()
         }
 
     }
@@ -140,12 +142,20 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
         recyclerCategorias = binding.recyclerChipsCategorias
         recyclerCategorias.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
-        val adapter = CategoriaAdapter(binding,this, categorias,{
+        val adapter = CategoriaAdapter(this, categorias,{
             dialogoAgregarCategoria(requireContext(), recyclerCategorias, categorias,
                 resources, miniHabitosViewModel){ categoria ->
 
                 categoriaSeleccionada = categoria
                 binding.nombreMiniHabito.text = categoria.nombre
+
+
+
+                for(cat in categorias){
+                    cat.seleccionada = false
+                }
+
+                categoriaSeleccionada?.seleccionada = true
 
                 recyclerCategorias.adapter?.notifyDataSetChanged()
 
@@ -163,6 +173,12 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
         }) { categoria ->
             categoriaSeleccionada = categoria
             binding.nombreMiniHabito.text = categoria?.nombre ?: "Selecciona una categoría"
+
+            for(cat in categorias){
+                cat.seleccionada = false
+            }
+
+            categoriaSeleccionada?.seleccionada = true
 
             miniHabitosViewModel.miniHabitos.value?.let {
                 val miniHabitosFiltrados = it.filter { it.categoria == categoria?.nombre }
@@ -248,21 +264,4 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
 
         ajustarDialogo(resources, dialogBorrar, 0.75f)
     }
-
-    private fun intentarSeleccionarPrimeraCategoria() {
-        if (categoriaSeleccionada == null && categoriasCargadas && miniHabitosCargados && categorias.isNotEmpty()) {
-            val primera = categorias.first()
-            categoriaSeleccionada = primera
-            binding.nombreMiniHabito.text = primera.nombre
-
-            miniHabitosViewModel.miniHabitos.value?.let {
-                val miniHabitosFiltrados = it.filter { it.categoria == primera.nombre }
-                miniHabitos.clear()
-                miniHabitos.addAll(miniHabitosFiltrados)
-                miniHabitosAdapter.notifyDataSetChanged()
-                recyclerMiniHabitos.visibility = View.VISIBLE
-            }
-        }
-    }
-
 }

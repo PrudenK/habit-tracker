@@ -14,10 +14,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.entities.CategoriaEntity
-import com.pruden.habits.databinding.FragmentMiniHabitosBinding
 
 class CategoriaAdapter(
-    private val bindingFragment: FragmentMiniHabitosBinding,
     private val listener: OnClickCategoria,
     private val categorias: MutableList<CategoriaEntity>,
     private val accionAgregarCategoria: () -> Unit,
@@ -28,15 +26,6 @@ class CategoriaAdapter(
     private val BOTON_AGREGAR_CATEGORIA = 1
 
     private var posicionSeleccionada = 0
-
-
-    // Para que la primera categoría salga seleccionada
-    init {
-        if (categorias.isNotEmpty()) {
-            onChipSelected(categorias[0])
-        }
-    }
-
 
     override fun getItemCount() = categorias.size + 1
 
@@ -89,16 +78,14 @@ class CategoriaAdapter(
             chip.isCheckable = true
             chip.isClickable = true
 
-            chip.isChecked = categoria.nombre == bindingFragment.nombreMiniHabito.text
+            chip.isChecked = categoria.seleccionada
             chip.alpha = if (chip.isChecked) 1f else 0.5f
 
             chip.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     posicionSeleccionada = adapterPosition
                     onChipSelected(categoria)
-                    itemView.post {
-                        notifyDataSetChanged()
-                    }
+                    notifyDataSetChanged()
 
                 } else {
                     if (posicionSeleccionada == adapterPosition) {
