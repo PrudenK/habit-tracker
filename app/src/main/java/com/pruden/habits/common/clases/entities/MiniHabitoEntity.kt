@@ -19,5 +19,6 @@ import androidx.room.PrimaryKey
 data class MiniHabitoEntity(
     val nombre: String,
     val categoria: String,
-    var cumplido: Boolean
+    var cumplido: Boolean,
+    var posicion: Int
 )

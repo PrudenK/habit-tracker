@@ -18,7 +18,6 @@ import com.pruden.habits.R
 import com.pruden.habits.common.clases.entities.MiniHabitoEntity
 import com.pruden.habits.common.metodos.Dialogos.makeToast
 import com.pruden.habits.modules.mainModule.metodos.ajustarDialogo
-import com.pruden.habits.modules.miniHabitos.adapters.MiniHabitoAdapter
 import com.pruden.habits.modules.miniHabitos.viewModel.MiniHabitosViewModel
 
 fun dialogoAgregarMiniHabito(
@@ -57,7 +56,8 @@ fun dialogoAgregarMiniHabito(
         val miniHabito = MiniHabitoEntity(
             categoria = categoria,
             nombre = editeTextNombre.text.toString(),
-            cumplido = false
+            cumplido = false,
+            posicion = miniHabitosViewModel.miniHabitos.value!!.filter { it.categoria == categoria }.size
         )
 
         miniHabitosViewModel.insertarMiniHabito(miniHabito)

@@ -38,7 +38,7 @@ class HabitosApplication : Application(){
             HabitosDatabase::class.java,
             "HabitosDatabase"
         )
-            //.addMigrations(MIGRATION_10_11)
+            //.addMigrations(MIGRATION_10_11, MIGRATION_11_12)
             //.fallbackToDestructiveMigration()
 
             .build()
@@ -161,6 +161,15 @@ class HabitosApplication : Application(){
         override fun migrate(database: SupportSQLiteDatabase) {
             // Añade la columna con valor por defecto (por ejemplo, false)
             database.execSQL("ALTER TABLE Categoria ADD COLUMN seleccionada INTEGER NOT NULL DEFAULT 0")
+        }
+    }
+
+    // CAMPO POSICIÓN PARA LOS MINIHABITOS
+
+    val MIGRATION_11_12 = object : Migration(11, 12) {
+        override fun migrate(database: SupportSQLiteDatabase) {
+            // Añadir la nueva columna con valor por defecto 0
+            database.execSQL("ALTER TABLE MiniHabito ADD COLUMN posicion INTEGER NOT NULL DEFAULT 0")
         }
     }
 
