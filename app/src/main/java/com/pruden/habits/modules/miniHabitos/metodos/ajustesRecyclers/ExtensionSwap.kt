@@ -1,4 +1,4 @@
-package com.pruden.habits.modules.miniHabitos.metodos
+package com.pruden.habits.modules.miniHabitos.metodos.ajustesRecyclers
 
 fun <T> MutableList<T>.swap(index1: Int, index2: Int) {
     val temp = this[index1]

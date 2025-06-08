@@ -1,10 +1,6 @@
 package com.pruden.habits.modules.miniHabitos
 
-import android.app.AlertDialog
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -12,26 +8,27 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.entities.CategoriaEntity
 import com.pruden.habits.common.clases.entities.MiniHabitoEntity
 import com.pruden.habits.databinding.FragmentMiniHabitosBinding
-import com.pruden.habits.modules.mainModule.metodos.ajustarDialogo
 import com.pruden.habits.modules.miniHabitos.adapters.CategoriaAdapter
 import com.pruden.habits.modules.miniHabitos.adapters.MiniHabitoAdapter
 import com.pruden.habits.modules.miniHabitos.adapters.OnClickCategoria
 import com.pruden.habits.modules.miniHabitos.adapters.OnClickMiniHabito
+import com.pruden.habits.modules.miniHabitos.metodos.ajustesRecyclers.habilitarCambiarPosicionMiniHabitos
+import com.pruden.habits.modules.miniHabitos.metodos.cargarCategoriasDesdeViewModel
+import com.pruden.habits.modules.miniHabitos.metodos.cargarMiniHabitosDesdeViewModel
+import com.pruden.habits.modules.miniHabitos.metodos.categorias.cambiarDeCategoria
 import com.pruden.habits.modules.miniHabitos.metodos.dialogoAgregarCategoria
 import com.pruden.habits.modules.miniHabitos.metodos.dialogoAgregarMiniHabito
-import com.pruden.habits.modules.miniHabitos.metodos.swap
+import com.pruden.habits.modules.miniHabitos.metodos.dialogoBorrarElementoComun
+import com.pruden.habits.modules.miniHabitos.metodos.intentarCargarMiniHabitos
 import com.pruden.habits.modules.miniHabitos.viewModel.MiniHabitosViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -40,19 +37,23 @@ import kotlinx.coroutines.launch
 
 class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
     private lateinit var binding: FragmentMiniHabitosBinding
-    private lateinit var recyclerCategorias: RecyclerView
-    private val categorias = mutableListOf<CategoriaEntity>()
-    private val miniHabitos = mutableListOf<MiniHabitoEntity>()
-    private lateinit var recyclerMiniHabitos: RecyclerView
-    private var categoriaSeleccionada: CategoriaEntity? = null
+    private lateinit var miniHabitosViewModel: MiniHabitosViewModel
 
+
+    private lateinit var recyclerCategorias: RecyclerView
+    private lateinit var recyclerMiniHabitos: RecyclerView
     private lateinit var miniHabitosAdapter: MiniHabitoAdapter
 
-    private lateinit var miniHabitosViewModel: MiniHabitosViewModel
+
+    private val categorias = mutableListOf<CategoriaEntity>()
+    private val miniHabitos = mutableListOf<MiniHabitoEntity>()
+    private var miniHabitosActualizadosGlobal: List<MiniHabitoEntity>? = null
+    private var categoriaSeleccionada: CategoriaEntity? = null
+
 
     private var categoriasCargadas = false
     private var miniHabitosCargados = false
-    private var miniHabitosActualizadosGlobal: List<MiniHabitoEntity>? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -86,41 +87,33 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
         setUpRecyclerCategorias()
         setUpRecyclerViewMiniHabitos()
 
-        miniHabitosViewModel.categorias.observe(viewLifecycleOwner) { categoriasActualizadas ->
-            categorias.clear()
-            categorias.addAll(categoriasActualizadas.sortedBy { it.posicion })
-            recyclerCategorias.adapter?.notifyDataSetChanged()
-            categoriasCargadas = true
-
-            Log.d("CATTTTT", "-----------------------")
-
-            for(cat in categoriasActualizadas){
-                if (cat.seleccionada){
-                    categoriaSeleccionada = cat
-                    binding.nombreMiniHabito.text = cat.nombre
-                    break
-                }
-            }
-
-            intentarCargarMiniHabitos()
-
-        }
-
-        miniHabitosViewModel.miniHabitos.observe(viewLifecycleOwner) { nuevosMiniHabitos ->
-            miniHabitosActualizadosGlobal = nuevosMiniHabitos.sortedBy { it.posicion }
-            miniHabitosCargados = true
-            intentarCargarMiniHabitos()
-        }
-
+        cargarViewModels()
     }
 
-    private fun intentarCargarMiniHabitos() {
-        if (categoriasCargadas && miniHabitosCargados && categoriaSeleccionada != null && miniHabitosActualizadosGlobal != null) {
-            miniHabitos.clear()
-            miniHabitos.addAll(miniHabitosActualizadosGlobal!!.filter { it.categoria == categoriaSeleccionada?.nombre })
-            miniHabitosAdapter.notifyDataSetChanged()
-            recyclerMiniHabitos.visibility = View.VISIBLE
+    private fun cargarViewModels(){
+        val intentarCargar = { intentarCargarMiniHabitos(categoriasCargadas, miniHabitosCargados,
+            categoriaSeleccionada, miniHabitosActualizadosGlobal, miniHabitos, miniHabitosAdapter,
+            recyclerMiniHabitos)
         }
+
+        cargarCategoriasDesdeViewModel(
+            viewModel = miniHabitosViewModel,
+            lifecycleOwner = viewLifecycleOwner,
+            categorias = categorias,
+            recyclerCategorias = recyclerCategorias,
+            setTextoCabecera = { binding.nombreMiniHabito.text = it },
+            setCategoriaSeleccionada = { categoriaSeleccionada = it },
+            marcarCategoriasCargadas = { categoriasCargadas = true },
+            intentarCargarMiniHabitos = { intentarCargar() }
+        )
+
+        cargarMiniHabitosDesdeViewModel(
+            viewModel = miniHabitosViewModel,
+            lifecycleOwner = viewLifecycleOwner,
+            setMiniHabitosActualizados = { miniHabitosActualizadosGlobal = it },
+            marcarHabitosCargados = { miniHabitosCargados = true },
+            intentarCargarMiniHabitos = { intentarCargar() }
+        )
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -161,30 +154,9 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
 
             }
         }) { categoria ->
-            categoriaSeleccionada = categoria
-            binding.nombreMiniHabito.text = categoria?.nombre ?: "Selecciona una categoría"
-
-            for(cat in categorias){
-                cat.seleccionada = false
-            }
-
-            categoriaSeleccionada?.seleccionada = true
-
-            miniHabitosViewModel.actualizarCategorias(categorias)
-
-            miniHabitosViewModel.miniHabitos.value?.let {
-                val miniHabitosFiltrados = it.filter { it.categoria == categoria?.nombre }
-                    .sortedBy { it.posicion }
-                miniHabitos.clear()
-                miniHabitos.addAll(miniHabitosFiltrados)
-                miniHabitosAdapter.notifyDataSetChanged()
-            }
-
-            if(categoria == null){
-                recyclerMiniHabitos.visibility = View.GONE
-            }else{
-                recyclerMiniHabitos.visibility = View.VISIBLE
-            }
+            cambiarDeCategoria(categoria, categorias, miniHabitosViewModel, miniHabitos,
+                miniHabitosAdapter, binding.nombreMiniHabito, recyclerMiniHabitos
+            )
         }
 
         recyclerCategorias.adapter = adapter
@@ -201,46 +173,7 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
 
         recyclerMiniHabitos.adapter = miniHabitosAdapter
 
-
-
-        val callback = object : ItemTouchHelper.SimpleCallback(
-            ItemTouchHelper.UP or ItemTouchHelper.DOWN, 0
-        ) {
-            override fun onMove(
-                recyclerView: RecyclerView,
-                viewHolder: RecyclerView.ViewHolder,
-                target: RecyclerView.ViewHolder
-            ): Boolean {
-                val from = viewHolder.adapterPosition
-                val to = target.adapterPosition
-
-                // Evitar mover el botón final
-                if (from >= miniHabitos.size || to >= miniHabitos.size) return false
-
-                miniHabitos.swap(from, to)
-                miniHabitosAdapter.notifyItemMoved(from, to)
-                return true
-            }
-
-            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-                // No se usa
-            }
-
-            override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
-                super.clearView(recyclerView, viewHolder)
-
-                // Reasignar posiciones y actualizar en DB
-                miniHabitos.forEachIndexed { index, habito ->
-                    habito.posicion = index
-                }
-                miniHabitosViewModel.actualizarListaMiniHabito(miniHabitos)
-            }
-        }
-
-        ItemTouchHelper(callback).attachToRecyclerView(recyclerMiniHabitos)
-
-
-
+        habilitarCambiarPosicionMiniHabitos(miniHabitos, miniHabitosAdapter, miniHabitosViewModel, recyclerMiniHabitos)
     }
 
     override fun onClickMiniHabito(miniHabitoEntity: MiniHabitoEntity) {
@@ -249,13 +182,15 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
     }
 
     override fun onBorrarMiniHabito(miniHabitoEntity: MiniHabitoEntity) {
-        dialogoBorrarElementoComun("¿Estás seguro de qué quieres borrar este mini hábito?"){
+        dialogoBorrarElementoComun("¿Estás seguro de qué quieres borrar este mini hábito?",
+            requireContext(), resources){
             miniHabitosViewModel.eliminarMiniHabito(miniHabitoEntity)
         }
     }
 
     override fun onLongClickCategoria(categoriaEntity: CategoriaEntity) {
-        dialogoBorrarElementoComun("¿Estás seguro de qué quieres borrar esta categoría?"){
+        dialogoBorrarElementoComun("¿Estás seguro de qué quieres borrar esta categoría?",
+            requireContext(), resources){
 
             CoroutineScope(Dispatchers.Main).launch {
                 miniHabitosViewModel.eliminarCategoria(categoriaEntity)
@@ -270,32 +205,5 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
                 }
             }
         }
-    }
-
-    private fun dialogoBorrarElementoComun(texto: String, onBorrarDatos: () -> Unit){
-        val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_borrar_habito, null)
-        val dialogBorrar = AlertDialog.Builder(context).setView(dialogView).create()
-
-        val buttonCancel = dialogView.findViewById<Button>(R.id.button_cancelar_borrar_habito)
-        val buttonAccept = dialogView.findViewById<Button>(R.id.button_acceptar_borrar_habito)
-        val textSubtitulo = dialogView.findViewById<TextView>(R.id.dialog_mensaje_borrar)
-
-        textSubtitulo.text = texto
-
-        dialogBorrar.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-        buttonCancel.setOnClickListener {
-            dialogBorrar.dismiss()
-        }
-
-        buttonAccept.setOnClickListener {
-            onBorrarDatos()
-
-            dialogBorrar.dismiss()
-        }
-
-        dialogBorrar.show()
-
-        ajustarDialogo(resources, dialogBorrar, 0.75f)
     }
 }

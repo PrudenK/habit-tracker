@@ -98,8 +98,6 @@ class CategoriaAdapter(
                 chip.alpha = if (isChecked) 1f else 0.5f
             }
 
-            Log.d("CATTTTT", categoria.toString() + " "+ chip.isChecked)
-
             chip.setOnLongClickListener {
                 listener.onLongClickCategoria(categoria)
                 true
