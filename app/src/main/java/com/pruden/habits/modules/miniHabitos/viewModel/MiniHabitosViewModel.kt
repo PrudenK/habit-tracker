@@ -20,6 +20,10 @@ class MiniHabitosViewModel : ViewModel() {
         interactor.eliminarCategoria(categoriaEntity)
     }
 
+    fun actualizarCategorias(categorias: List<CategoriaEntity>) {
+        interactor.actualizarCategoria(categorias)
+    }
+
     fun insertarMiniHabito(miniHabitoEntity: MiniHabitoEntity){
         interactor.insetarMiniHabito(miniHabitoEntity)
     }

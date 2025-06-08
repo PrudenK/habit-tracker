@@ -149,8 +149,6 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
                 categoriaSeleccionada = categoria
                 binding.nombreMiniHabito.text = categoria.nombre
 
-
-
                 for(cat in categorias){
                     cat.seleccionada = false
                 }
@@ -179,6 +177,8 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
             }
 
             categoriaSeleccionada?.seleccionada = true
+
+            miniHabitosViewModel.actualizarCategorias(categorias)
 
             miniHabitosViewModel.miniHabitos.value?.let {
                 val miniHabitosFiltrados = it.filter { it.categoria == categoria?.nombre }

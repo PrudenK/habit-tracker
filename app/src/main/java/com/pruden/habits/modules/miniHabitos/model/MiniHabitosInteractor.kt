@@ -21,6 +21,12 @@ class MiniHabitosInteractor {
         }
     }
 
+    fun actualizarCategoria(categorias: List<CategoriaEntity>){
+        CoroutineScope(Dispatchers.IO).launch {
+            HabitosApplication.database.categoriaDao().actualizarCategoria(categorias)
+        }
+    }
+
     fun insetarMiniHabito(miniHabitoEntity: MiniHabitoEntity){
         CoroutineScope(Dispatchers.IO).launch {
             HabitosApplication.database.miniHabitoDao().insertarMiniHabito(miniHabitoEntity)

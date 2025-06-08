@@ -5,6 +5,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Update
 import com.pruden.habits.common.clases.entities.CategoriaEntity
 
 @Dao
@@ -17,4 +18,7 @@ interface CategoriaDao {
 
     @Query("Select * from categoria")
     fun obtenerTodasLasCategorias(): LiveData<MutableList<CategoriaEntity>>
+
+    @Update
+    suspend fun actualizarCategoria(categorias: List<CategoriaEntity>)
 }
