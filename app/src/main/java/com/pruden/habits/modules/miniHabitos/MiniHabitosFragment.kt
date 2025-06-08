@@ -17,6 +17,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.R
@@ -30,6 +31,7 @@ import com.pruden.habits.modules.miniHabitos.adapters.OnClickCategoria
 import com.pruden.habits.modules.miniHabitos.adapters.OnClickMiniHabito
 import com.pruden.habits.modules.miniHabitos.metodos.dialogoAgregarCategoria
 import com.pruden.habits.modules.miniHabitos.metodos.dialogoAgregarMiniHabito
+import com.pruden.habits.modules.miniHabitos.metodos.swap
 import com.pruden.habits.modules.miniHabitos.viewModel.MiniHabitosViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -105,7 +107,7 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
         }
 
         miniHabitosViewModel.miniHabitos.observe(viewLifecycleOwner) { nuevosMiniHabitos ->
-            miniHabitosActualizadosGlobal = nuevosMiniHabitos
+            miniHabitosActualizadosGlobal = nuevosMiniHabitos.sortedBy { it.posicion }
             miniHabitosCargados = true
             intentarCargarMiniHabitos()
         }
@@ -172,6 +174,7 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
 
             miniHabitosViewModel.miniHabitos.value?.let {
                 val miniHabitosFiltrados = it.filter { it.categoria == categoria?.nombre }
+                    .sortedBy { it.posicion }
                 miniHabitos.clear()
                 miniHabitos.addAll(miniHabitosFiltrados)
                 miniHabitosAdapter.notifyDataSetChanged()
@@ -197,6 +200,47 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
         }
 
         recyclerMiniHabitos.adapter = miniHabitosAdapter
+
+
+
+        val callback = object : ItemTouchHelper.SimpleCallback(
+            ItemTouchHelper.UP or ItemTouchHelper.DOWN, 0
+        ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                val from = viewHolder.adapterPosition
+                val to = target.adapterPosition
+
+                // Evitar mover el botón final
+                if (from >= miniHabitos.size || to >= miniHabitos.size) return false
+
+                miniHabitos.swap(from, to)
+                miniHabitosAdapter.notifyItemMoved(from, to)
+                return true
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                // No se usa
+            }
+
+            override fun clearView(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder) {
+                super.clearView(recyclerView, viewHolder)
+
+                // Reasignar posiciones y actualizar en DB
+                miniHabitos.forEachIndexed { index, habito ->
+                    habito.posicion = index
+                }
+                miniHabitosViewModel.actualizarListaMiniHabito(miniHabitos)
+            }
+        }
+
+        ItemTouchHelper(callback).attachToRecyclerView(recyclerMiniHabitos)
+
+
+
     }
 
     override fun onClickMiniHabito(miniHabitoEntity: MiniHabitoEntity) {
@@ -205,9 +249,13 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
     }
 
     override fun onLongClickMiniHabito(miniHabitoEntity: MiniHabitoEntity) {
+        /*
+
         dialogoBorrarElementoComun("¿Estás seguro de qué quieres borrar este mini hábito?"){
             miniHabitosViewModel.eliminarMiniHabito(miniHabitoEntity)
         }
+
+         */
     }
 
     override fun onLongClickCategoria(categoriaEntity: CategoriaEntity) {

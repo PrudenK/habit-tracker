@@ -39,6 +39,12 @@ class MiniHabitosInteractor {
         }
     }
 
+    fun actualizarListaMiniHabitos(lista: MutableList<MiniHabitoEntity>){
+        CoroutineScope(Dispatchers.IO).launch {
+            HabitosApplication.database.miniHabitoDao().actualizarListaMiniHabitos(lista)
+        }
+    }
+
     fun eliminarMiniHabito(miniHabitoEntity: MiniHabitoEntity) {
         CoroutineScope(Dispatchers.IO).launch {
             HabitosApplication.database.miniHabitoDao().deleteMiniHabito(miniHabitoEntity)

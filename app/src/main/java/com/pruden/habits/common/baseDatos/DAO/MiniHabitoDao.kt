@@ -23,6 +23,9 @@ interface MiniHabitoDao {
     @Update
     suspend fun actualizarMiniHabito(miniHabitoEntity: MiniHabitoEntity)
 
+    @Update
+    suspend fun actualizarListaMiniHabitos(lista: MutableList<MiniHabitoEntity>)
+
     @Query("UPDATE minihabito SET cumplido = 0")
     suspend fun reiniciarValores()
 }

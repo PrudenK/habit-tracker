@@ -32,6 +32,10 @@ class MiniHabitosViewModel : ViewModel() {
         interactor.actualizarMiniHabito(miniHabitoEntity)
     }
 
+    fun actualizarListaMiniHabito(lista: MutableList<MiniHabitoEntity>){
+        interactor.actualizarListaMiniHabitos(lista)
+    }
+
     fun eliminarMiniHabito(miniHabitoEntity: MiniHabitoEntity) {
         interactor.eliminarMiniHabito(miniHabitoEntity)
     }
