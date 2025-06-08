@@ -89,6 +89,9 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
             recyclerCategorias.adapter?.notifyDataSetChanged()
             categoriasCargadas = true
             intentarSeleccionarPrimeraCategoria()
+
+            Log.d("CATTTTT", "-----------------------")
+
         }
 
 
@@ -137,8 +140,26 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
         recyclerCategorias = binding.recyclerChipsCategorias
         recyclerCategorias.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
-        val adapter = CategoriaAdapter(this, categorias,{
-            dialogoAgregarCategoria(requireContext(), recyclerCategorias, categorias, resources, miniHabitosViewModel)
+        val adapter = CategoriaAdapter(binding,this, categorias,{
+            dialogoAgregarCategoria(requireContext(), recyclerCategorias, categorias,
+                resources, miniHabitosViewModel){ categoria ->
+
+                categoriaSeleccionada = categoria
+                binding.nombreMiniHabito.text = categoria.nombre
+
+                recyclerCategorias.adapter?.notifyDataSetChanged()
+
+                // Agregar miniHabitos
+                miniHabitosViewModel.miniHabitos.value?.let {
+                    val miniHabitosFiltrados = it.filter { it.categoria == categoria.nombre }
+                    miniHabitos.clear()
+                    miniHabitos.addAll(miniHabitosFiltrados)
+                    miniHabitosAdapter.notifyDataSetChanged()
+                }
+
+                recyclerMiniHabitos.visibility = View.VISIBLE
+
+            }
         }) { categoria ->
             categoriaSeleccionada = categoria
             binding.nombreMiniHabito.text = categoria?.nombre ?: "Selecciona una categoría"

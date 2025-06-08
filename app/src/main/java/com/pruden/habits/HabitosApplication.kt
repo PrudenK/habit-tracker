@@ -38,7 +38,7 @@ class HabitosApplication : Application(){
             HabitosDatabase::class.java,
             "HabitosDatabase"
         )
-            //.addMigrations(MIGRATION_5_6, MIGRATION_6_7, MIGRATION_7_8, MIGRATION_8_9)
+            //.addMigrations(MIGRATION_10_11)
             //.fallbackToDestructiveMigration()
 
             .build()
@@ -154,6 +154,16 @@ class HabitosApplication : Application(){
         """.trimIndent())
         }
     }
+
+    // Seleccionado en categoría
+
+    val MIGRATION_10_11 = object : Migration(10, 11) {
+        override fun migrate(database: SupportSQLiteDatabase) {
+            // Añade la columna con valor por defecto (por ejemplo, false)
+            database.execSQL("ALTER TABLE Categoria ADD COLUMN seleccionada INTEGER NOT NULL DEFAULT 0")
+        }
+    }
+
 
 
 }

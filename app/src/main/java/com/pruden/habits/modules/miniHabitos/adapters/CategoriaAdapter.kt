@@ -3,6 +3,7 @@ package com.pruden.habits.modules.miniHabitos.adapters
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Typeface
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,8 +14,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.entities.CategoriaEntity
+import com.pruden.habits.databinding.FragmentMiniHabitosBinding
 
 class CategoriaAdapter(
+    private val bindingFragment: FragmentMiniHabitosBinding,
     private val listener: OnClickCategoria,
     private val categorias: MutableList<CategoriaEntity>,
     private val accionAgregarCategoria: () -> Unit,
@@ -61,7 +64,6 @@ class CategoriaAdapter(
             BOTON_AGREGAR_CATEGORIA -> (holder as AgregarBotonViewHolder).bind(accionAgregarCategoria)
         }
     }
-
     inner class CategoriaViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val chip: Chip = itemView.findViewById(R.id.chip)
 
@@ -86,14 +88,18 @@ class CategoriaAdapter(
 
             chip.isCheckable = true
             chip.isClickable = true
-            chip.isChecked = adapterPosition == posicionSeleccionada
+
+            chip.isChecked = categoria.nombre == bindingFragment.nombreMiniHabito.text
             chip.alpha = if (chip.isChecked) 1f else 0.5f
 
             chip.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     posicionSeleccionada = adapterPosition
                     onChipSelected(categoria)
-                    notifyDataSetChanged()
+                    itemView.post {
+                        notifyDataSetChanged()
+                    }
+
                 } else {
                     if (posicionSeleccionada == adapterPosition) {
                         posicionSeleccionada = -1
@@ -103,17 +109,21 @@ class CategoriaAdapter(
                 chip.alpha = if (isChecked) 1f else 0.5f
             }
 
+            Log.d("CATTTTT", categoria.toString() + " "+ chip.isChecked)
+
             chip.setOnLongClickListener {
                 listener.onLongClickCategoria(categoria)
                 true
             }
         }
 
+
         private fun isColorDark(color: Int): Boolean {
             val darkness = 1 - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) / 255
             return darkness >= 0.5
         }
     }
+
 
     inner class AgregarBotonViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val addButton: Button = itemView.findViewById(R.id.addButton)

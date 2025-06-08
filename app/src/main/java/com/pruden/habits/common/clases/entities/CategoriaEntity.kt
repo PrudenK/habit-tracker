@@ -7,5 +7,6 @@ import androidx.room.PrimaryKey
 data class CategoriaEntity(
     @PrimaryKey var nombre: String,
     var color: Int,
-    var posicion: Int
+    var posicion: Int,
+    var seleccionada: Boolean
 )
