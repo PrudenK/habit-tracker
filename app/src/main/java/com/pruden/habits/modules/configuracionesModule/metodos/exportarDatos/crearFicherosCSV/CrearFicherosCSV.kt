@@ -4,6 +4,7 @@ import android.content.Context
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.Constantes
+import com.pruden.habits.common.clases.entities.CategoriaEntity
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.common.clases.entities.HabitoEtiquetaEntity
 import com.pruden.habits.common.metodos.fechas.obtenerFechaActual
@@ -85,6 +86,7 @@ class CrearFicherosCSV {
         habitos: MutableList<HabitoEntity>,
         etiquetas: MutableList<EtiquetaEntity>,
         habitosEtiquetas: MutableList<HabitoEtiquetaEntity>,
+        categorias: MutableList<CategoriaEntity>,
         contexto: Context,
         hashMapDataHabitos: HashMap<String, MutableList<DataHabitoEntity>>
     ): File {
@@ -96,6 +98,10 @@ class CrearFicherosCSV {
 
         stringBuilder.append(Constantes.COMIENZAN_HABITOS_ETIQUETAS+"\n")
         stringBuilder.append(devolverContenidosHabitosEtiquetasCSV(habitosEtiquetas))
+
+        stringBuilder.append(Constantes.COMIENZAN_CATEGORIAS+"\n")
+        stringBuilder.append(devolverCategoriasCSV(categorias))
+
 
         stringBuilder.append(Constantes.COMIENZAN_DATA_HABITOS+"\n")
         stringBuilder.append(devolverCabeceraCopiaDeSeguridadData(habitos) +"\n")

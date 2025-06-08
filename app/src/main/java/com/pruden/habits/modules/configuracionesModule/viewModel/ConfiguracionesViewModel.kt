@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pruden.habits.common.clases.data.Habito
+import com.pruden.habits.common.clases.entities.CategoriaEntity
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
@@ -81,9 +82,12 @@ class ConfiguracionesViewModel: ViewModel() {
                     devolverCabeceraDataHabitos(habitos)
                 )
             )
+            val categorias = interactor.obtenerTodasLasCategorias()
+
             if(habitos.isNotEmpty()){
                 withContext(Dispatchers.Main) {
-                    exportarDatos.exportarCopiaDeSeguridadCSV(context, habitos, etiquetas, habitosEtiquetas, hashMapDataHabitos)
+                    exportarDatos.exportarCopiaDeSeguridadCSV(context, habitos, etiquetas,
+                        habitosEtiquetas, hashMapDataHabitos, categorias)
                 }
             }else{
                 withContext(Dispatchers.Main) {

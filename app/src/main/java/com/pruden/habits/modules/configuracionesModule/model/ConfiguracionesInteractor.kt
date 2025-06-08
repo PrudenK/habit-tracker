@@ -3,6 +3,7 @@ package com.pruden.habits.modules.configuracionesModule.model
 import android.provider.ContactsContract.RawContacts.Data
 import com.pruden.habits.HabitosApplication
 import com.pruden.habits.common.clases.data.Habito
+import com.pruden.habits.common.clases.entities.CategoriaEntity
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
@@ -36,6 +37,12 @@ class ConfiguracionesInteractor {
     suspend fun obtenerTodosLosHabitosEtiquetass(): MutableList<HabitoEtiquetaEntity> {
         return withContext(Dispatchers.IO) {
             HabitosApplication.database.habitoEtiquetaDao().obtenerTodosLosHabitosEtiquetas()
+        }
+    }
+
+    suspend fun obtenerTodasLasCategorias(): MutableList<CategoriaEntity>{
+        return withContext(Dispatchers.IO) {
+            HabitosApplication.database.categoriaDao().obtenerTodasLasCategoriasSuspend()
         }
     }
 

@@ -3,7 +3,6 @@ package com.pruden.habits.modules.miniHabitos.adapters
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Typeface
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

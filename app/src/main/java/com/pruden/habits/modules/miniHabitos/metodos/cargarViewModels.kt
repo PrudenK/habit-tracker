@@ -7,7 +7,6 @@ import com.pruden.habits.common.clases.entities.CategoriaEntity
 import com.pruden.habits.common.clases.entities.MiniHabitoEntity
 import com.pruden.habits.modules.miniHabitos.adapters.MiniHabitoAdapter
 import com.pruden.habits.modules.miniHabitos.viewModel.MiniHabitosViewModel
-import android.widget.TextView
 
 fun cargarCategoriasDesdeViewModel(
     viewModel: MiniHabitosViewModel,

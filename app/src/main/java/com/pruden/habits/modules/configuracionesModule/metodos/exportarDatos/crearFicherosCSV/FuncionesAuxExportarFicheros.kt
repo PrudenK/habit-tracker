@@ -3,6 +3,7 @@ package com.pruden.habits.modules.configuracionesModule.metodos.exportarDatos.cr
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.Constantes
 import com.pruden.habits.common.clases.auxClass.HabitosEtiqueta
+import com.pruden.habits.common.clases.entities.CategoriaEntity
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.common.clases.entities.HabitoEtiquetaEntity
@@ -61,6 +62,18 @@ fun devolverContenidosHabitosEtiquetasCSV(habitosEtiquetas: MutableList<HabitoEt
     for(habEt in habitosEtiquetas){
         with(habEt){
             stringBuilder.append("$nombreHabito,$nombreEtiqueta\n")
+        }
+    }
+    return stringBuilder
+}
+
+fun devolverCategoriasCSV(categorias: MutableList<CategoriaEntity>): java.lang.StringBuilder{
+    val stringBuilder = StringBuilder()
+    stringBuilder.append(Constantes.CABECERA_CATEGORIAS_CSV+"\n")
+
+    for(cat in categorias){
+        with(cat){
+            stringBuilder.append("$nombre,$color,$posicion,$seleccionada\n")
         }
     }
     return stringBuilder

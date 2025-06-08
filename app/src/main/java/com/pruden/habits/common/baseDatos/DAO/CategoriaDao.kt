@@ -19,6 +19,9 @@ interface CategoriaDao {
     @Query("Select * from categoria")
     fun obtenerTodasLasCategorias(): LiveData<MutableList<CategoriaEntity>>
 
+    @Query("Select * from categoria order by posicion asc ")
+    fun obtenerTodasLasCategoriasSuspend(): MutableList<CategoriaEntity>
+
     @Update
     suspend fun actualizarCategoria(categorias: List<CategoriaEntity>)
 }

@@ -1,6 +1,7 @@
 package com.pruden.habits.modules.configuracionesModule.metodos.exportarDatos
 
 import android.content.Context
+import com.pruden.habits.common.clases.entities.CategoriaEntity
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
@@ -39,22 +40,22 @@ class ExportarDatos{
         descargarZip(contexto, zip)
     }
 
+    fun exportarEtiquetasCSV(contexto: Context, etiquetas: MutableList<EtiquetaEntity>){
+        val etiquetasCSV = ficheroProvider.crearFicheroEtiquetasCSV(etiquetas, contexto)
+        descargarCSVFile(contexto, etiquetasCSV)
+    }
+
     fun exportarCopiaDeSeguridadCSV(
         contexto : Context,
         habitos: MutableList<HabitoEntity>,
         etiquetas: MutableList<EtiquetaEntity>,
         habitosEtiquetas: MutableList<HabitoEtiquetaEntity>,
-        hashMapDataHabitos: HashMap<String, MutableList<DataHabitoEntity>>
-
+        hashMapDataHabitos: HashMap<String, MutableList<DataHabitoEntity>>,
+        categorias: MutableList<CategoriaEntity>,
     ){
         val copiaSeguridad = ficheroProvider.crearFicheroCopiaSeguridad(
-            habitos, etiquetas, habitosEtiquetas,  contexto, hashMapDataHabitos)
+            habitos, etiquetas, habitosEtiquetas, categorias,  contexto, hashMapDataHabitos)
 
         descargarCSVFile(contexto, copiaSeguridad)
-    }
-
-    fun exportarEtiquetasCSV(contexto: Context, etiquetas: MutableList<EtiquetaEntity>){
-        val etiquetasCSV = ficheroProvider.crearFicheroEtiquetasCSV(etiquetas, contexto)
-        descargarCSVFile(contexto, etiquetasCSV)
     }
 }
