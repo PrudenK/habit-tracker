@@ -285,14 +285,6 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
                         }
                         true
                     }
-                    R.id.menu_agreagar_etiquetas->{
-                        if(listaHabitos.size > 0){
-                            dialogoAgregarEtiqueta(this, resources, mainViewModel){}
-                        }else{
-                            makeToast("Si no hay hábitos no hay etiquetas", this)
-                        }
-                        true
-                    }
                     R.id.mini_habitos->{
                         cargarFragment(this, MiniHabitosFragment())
                         true
