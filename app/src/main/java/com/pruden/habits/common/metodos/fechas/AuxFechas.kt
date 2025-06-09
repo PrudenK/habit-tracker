@@ -1,7 +1,8 @@
 package com.pruden.habits.common.metodos.fechas
 
-import android.util.Log
+import com.pruden.habits.HabitosApplication.Companion.sharedConfiguraciones
 import com.pruden.habits.common.Constantes
+import com.pruden.habits.common.Constantes.SHARED_FECHA_INICIO
 import com.pruden.habits.common.clases.data.Fecha
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -12,7 +13,14 @@ fun generateLastDates(): MutableList<Fecha> {
     val dates = mutableListOf<Fecha>()
     val calendar = Calendar.getInstance()
 
-    calendar.set(2023, Calendar.JANUARY, 1)
+    Constantes.FECHA_INICIO = sharedConfiguraciones.getString(SHARED_FECHA_INICIO, "2025-01-01")!!
+
+    val fecha = Constantes.FECHA_INICIO.split("-")
+    val yearInit = fecha[0].toInt()
+    val mesInit = fecha[1].toInt() - 1
+    val diaInit = fecha[2].toInt()
+
+    calendar.set(yearInit, mesInit, diaInit)
 
     val today = Calendar.getInstance()
 

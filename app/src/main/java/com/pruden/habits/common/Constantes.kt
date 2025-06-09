@@ -26,7 +26,7 @@ object Constantes {
 
 
     const val SHARED_FECHA_INICIO = "fecha_inicio"
-    var FECHA_INICIO = sharedConfiguraciones.getString(SHARED_FECHA_INICIO, "2025-01-01")!!
+    var FECHA_INICIO =  "2025-01-01"
     var FECHA_INICIO_PARA_DIFF = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).let { formato ->
         Calendar.getInstance().apply {
             time = formato.parse(FECHA_INICIO)!!

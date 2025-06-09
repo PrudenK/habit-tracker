@@ -43,9 +43,11 @@ class HabitosApplication : Application(){
 
             .build()
 
-        listaFechas = generateLastDates()
 
         sharedConfiguraciones = getSharedPreferences(Constantes.SHARED_CONFIGURACIONES, MODE_PRIVATE)
+
+        listaFechas = generateLastDates()
+
     }
 
     val MIGRATION_1_2 = object : Migration(1, 2) {
