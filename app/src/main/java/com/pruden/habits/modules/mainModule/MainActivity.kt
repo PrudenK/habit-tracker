@@ -45,7 +45,7 @@ import com.pruden.habits.modules.miniHabitos.MiniHabitosFragment
 class MainActivity : AppCompatActivity(), OnClickHabito {
     private lateinit var mBinding: ActivityMainBinding
 
-    private lateinit var fechasAdapter: FechaAdapter
+    lateinit var fechasAdapter: FechaAdapter
 
     private lateinit var linearLayoutHabitos: RecyclerView.LayoutManager
     private lateinit var habitosAdapter: HabitoAdapter

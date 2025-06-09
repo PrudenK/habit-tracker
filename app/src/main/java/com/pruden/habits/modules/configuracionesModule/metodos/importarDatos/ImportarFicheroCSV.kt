@@ -1,10 +1,12 @@
 package com.pruden.habits.modules.configuracionesModule.metodos.importarDatos
 
+import android.app.Activity
 import android.content.Context
 import android.net.Uri
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.viewModelScope
+import com.pruden.habits.HabitosApplication.Companion.listaFechas
 import com.pruden.habits.HabitosApplication.Companion.sharedConfiguraciones
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
@@ -14,16 +16,18 @@ import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.common.clases.entities.HabitoEtiquetaEntity
 import com.pruden.habits.common.clases.entities.MiniHabitoEntity
 import com.pruden.habits.common.metodos.Dialogos.makeToast
+import com.pruden.habits.common.metodos.fechas.generateLastDates
 import com.pruden.habits.common.metodos.fechas.obtenerFechaActual
 import com.pruden.habits.common.metodos.fechas.obtenerFechasEntre
 import com.pruden.habits.databinding.FragmentConfiguracionesBinding
 import com.pruden.habits.modules.configuracionesModule.viewModel.ConfiguracionesViewModel
+import com.pruden.habits.modules.mainModule.MainActivity
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
- fun leerCsvDesdeUri(uri: Uri, context: Context, viewModel: ConfiguracionesViewModel, binding: FragmentConfiguracionesBinding) {
+ fun leerCsvDesdeUri(uri: Uri, context: Context, viewModel: ConfiguracionesViewModel, binding: FragmentConfiguracionesBinding, main: MainActivity) {
     try {
 
         val inputStream = context.contentResolver.openInputStream(uri)
@@ -126,6 +130,12 @@ import java.io.InputStreamReader
                                             Constantes.FECHA_INICIO = fecha
                                             primeraFecha = true
                                             binding.fechaIncioRegistrosHabitos.text = "Fecha inicio de los registros: ${Constantes.FECHA_INICIO}"
+
+
+                                            Log.d("TTTTT", "adfadfa")
+                                            listaFechas = generateLastDates()
+                                            main.fechasAdapter.submitList(listaFechas)
+                                            Log.d("TTTTT", "adfadfa")
                                         }else{
                                             makeToast("Error al importar la fecha mínima soportada es ${Constantes.FECHA_MINIMA_SOPORTADA}", context)
                                             return
@@ -222,7 +232,9 @@ import java.io.InputStreamReader
             return
         }
 
-        Toast.makeText(context, "Archivo CSV importado correctamente", Toast.LENGTH_SHORT).show()
+        if ((context as? Activity)?.isFinishing == false) {
+            Toast.makeText(context.applicationContext, "Archivo CSV importado correctamente", Toast.LENGTH_SHORT).show()
+        }
 
     } catch (e: Exception) {
         e.printStackTrace()
