@@ -1,6 +1,7 @@
 package com.pruden.habits.modules.configuracionesModule.viewModel
 
 import android.content.Context
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.pruden.habits.HabitosApplication
@@ -153,15 +154,30 @@ class ConfiguracionesViewModel: ViewModel() {
         categorias: List<CategoriaEntity>,
         dataHabitos: List<DataHabitoEntity>,
         habitosEtiquetas: List<HabitoEtiquetaEntity>,
-        miniHabitos: List<MiniHabitoEntity>
+        miniHabitos: List<MiniHabitoEntity>,
+        onResult: (success: Boolean) -> Unit
     ) = viewModelScope.launch(Dispatchers.IO) {
-        HabitosApplication.database.runInTransaction {
-            HabitosApplication.database.habitoDao().insertListaDeHabitosNS(habitos)
-            HabitosApplication.database.etiquetaDao().insertarListaDeEtiquetasNS(etiquetas)
-            HabitosApplication.database.categoriaDao().insertarListaCategoriaNS(categorias)
-            HabitosApplication.database.dataHabitoDao().insertarListaDataHabitoNS(dataHabitos)
-            HabitosApplication.database.habitoEtiquetaDao().insertarRelacionesNS(habitosEtiquetas)
-            HabitosApplication.database.miniHabitoDao().insertarListaMiniHabitoNS(miniHabitos)
+        try {
+            HabitosApplication.database.runInTransaction {
+                HabitosApplication.database.habitoDao().insertListaDeHabitosNS(habitos)
+                HabitosApplication.database.etiquetaDao().insertarListaDeEtiquetasNS(etiquetas)
+                HabitosApplication.database.categoriaDao().insertarListaCategoriaNS(categorias)
+                HabitosApplication.database.dataHabitoDao().insertarListaDataHabitoNS(dataHabitos)
+                HabitosApplication.database.habitoEtiquetaDao().insertarRelacionesNS(habitosEtiquetas)
+                HabitosApplication.database.miniHabitoDao().insertarListaMiniHabitoNS(miniHabitos)
+            }
+            withContext(Dispatchers.Main) { onResult(true) }
+        } catch (e: Exception) {
+            withContext(Dispatchers.Main) {
+                Toast.makeText(
+                    HabitosApplication.contexto,
+                    "Error al importar: Datos duplicados",
+                    Toast.LENGTH_LONG
+                ).show()
+                onResult(false)
+            }
         }
     }
+
+
 }

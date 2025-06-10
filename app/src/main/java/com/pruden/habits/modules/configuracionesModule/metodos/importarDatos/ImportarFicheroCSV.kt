@@ -128,11 +128,8 @@ import java.io.InputStreamReader
                                             primeraFecha = true
                                             binding.fechaIncioRegistrosHabitos.text = "Fecha inicio de los registros: ${Constantes.FECHA_INICIO}"
 
-
-                                            Log.d("TTTTT", "adfadfa")
                                             listaFechas = generateLastDates()
                                             main.fechasAdapter.submitList(listaFechas)
-                                            Log.d("TTTTT", "adfadfa")
                                         }else{
                                             makeToast("Error al importar la fecha mínima soportada es ${Constantes.FECHA_MINIMA_SOPORTADA}", context)
                                             return
@@ -205,26 +202,23 @@ import java.io.InputStreamReader
                         listaDataHabito,
                         listaHabitosEtiquetas,
                         listaMiniHabitos
-                    )
-
-
+                    ) { success ->
+                        if (success && (context as? Activity)?.isFinishing == false) {
+                            Toast.makeText(context.applicationContext, "Archivo CSV importado correctamente", Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
 
 
             }else{
-                makeToast("Fichero no válido_1", context)
+                makeToast("Error al importar: no hay hábitos", context)
                 return
             }
 
         }else{
-            makeToast("Fichero no válido_2", context)
+            makeToast("Error al importar: no tiene fechas", context)
             return
         }
-
-        if ((context as? Activity)?.isFinishing == false) {
-            Toast.makeText(context.applicationContext, "Archivo CSV importado correctamente", Toast.LENGTH_SHORT).show()
-        }
-
     } catch (e: Exception) {
         e.printStackTrace()
         Toast.makeText(context, "Error al leer el archivo", Toast.LENGTH_SHORT).show()

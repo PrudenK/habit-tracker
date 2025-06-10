@@ -1,6 +1,7 @@
 package com.pruden.habits
 
 import android.app.Application
+import android.content.Context
 import android.content.SharedPreferences
 import android.graphics.Color
 import androidx.room.Room
@@ -18,6 +19,8 @@ import com.pruden.habits.common.metodos.fechas.generateLastDates
 class HabitosApplication : Application(){
     companion object{
         lateinit var database: HabitosDatabase
+        lateinit var contexto: Context
+
         var listaHabitos = mutableListOf<Habito>()
         var listaArchivados = mutableListOf<Habito>()
         var listaFechas = mutableListOf<Fecha>()
@@ -30,6 +33,8 @@ class HabitosApplication : Application(){
 
     override fun onCreate(){
         super.onCreate()
+
+        contexto = applicationContext
 
         this.deleteDatabase("HabitosDatabase")
 
