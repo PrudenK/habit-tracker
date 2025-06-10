@@ -27,7 +27,6 @@
     <string name="borrar_solo_los_registros">Delete only records</string>
     <string name="borrar_todas_las_etiquetas">Delete all tags</string>
 
-
     <!-- Diálogos configuración -->
     <string name="titulo_borrar_todos_datos">Delete all data!</string>
     <string name="mensaje_borrar_todos_datos">You are about to delete ALL YOUR DATA…</string>
@@ -37,10 +36,6 @@
     <string name="mensaje_borrar_todos_registros">You are about to delete all records…</string>
     <string name="titulo_borrar_todas_etiquetas">Delete all tags!</string>
     <string name="mensaje_borrar_todas_etiquetas">You are about to delete all your tags…</string>
-
-
-
-
 
     <!-- Titulos ficheros generados en configuraciones-->
     <string name="error_fecha_mayor_hoy">The file date is greater than today, it is not valid</string>
@@ -63,12 +58,10 @@
     <string name="texto_advertencia_cambio_de_fechas">If you change the habits\' start date, all habits will be modified so the oldest date will be the one you set. If the new date is older, records will be added. If it\'s newer, records up to that date will be deleted.</string>
     <string name="cambiar_fecha">Change date</string>
 
-
     <!-- Main -->
     <string name="anterior">Previous</string>
     <string name="pagina_num">Page %1$s</string>
     <string name="siguiente">Next</string>
-
 
     <!-- Diálogos Main -->
     <string name="que_quieres_hacer">What to do?</string>
@@ -83,6 +76,11 @@
     <string name="confirmacion">Confirmation</string>
     <string name="estas_seguro_de_que_quieres_borrar_este_habito">Are you sure you want to delete this habit?</string>
     <string name="cancelar">Cancel</string>
+    <string name="agregar_etiqueta">Add tag</string>
+    <string name="informacion">Information</string>
+    <string name="guardar_configuraciones">Save settings</string>
+    <string name="notas">Notes</string>
+    <string name="cantidad">Value</string>
 
     <!-- Archivados -->
     <string name="archivados">Archived</string>
@@ -162,16 +160,7 @@
     <string name="gestionar_etiquetas">Manage tags</string>
     <string name="todos">All</string>
 
-
-
-
-
-
-
-
-
     <!-- Menu de opciones -->
     <string name="ver_tutorial">View tutorial</string>
-
 
 </resources>

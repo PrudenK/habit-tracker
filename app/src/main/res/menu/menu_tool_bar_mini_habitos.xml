@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/informacion"
-        android:title="Información"
+        android:title="@string/informacion"
         android:icon="@drawable/ic_interrogacion"
         app:showAsAction="ifRoom"
         />

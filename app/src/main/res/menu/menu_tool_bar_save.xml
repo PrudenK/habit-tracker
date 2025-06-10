@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/gurdar_config"
-        android:title="Guardar configuraciones"
+        android:title="@string/guardar_configuraciones"
         android:icon="@drawable/ic_save"
         app:showAsAction="ifRoom"
         />

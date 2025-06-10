@@ -58,8 +58,6 @@
     <string name="texto_advertencia_cambio_de_fechas">Si cambias la fecha de inicio de los hábitos se modificarán los hábitos de manera que la fecha más antigua será la que pongas. Si la nueva fecha es más antigua se añadirán registros pero si es más reciente borrarás los registros hasta esa fecha.</string>
     <string name="cambiar_fecha">Cambiar fecha</string>
 
-
-
     <!-- Main -->
     <string name="anterior">Anterior</string>
     <string name="pagina_num">Página %1$s</string>
@@ -78,6 +76,11 @@
     <string name="confirmacion">Confirmación</string>
     <string name="estas_seguro_de_que_quieres_borrar_este_habito">¿Estás seguro de qué quieres borrar este hábito?</string>
     <string name="cancelar">Cancelar</string>
+    <string name="agregar_etiqueta">Agregar Etiqueta</string>
+    <string name="informacion">Información</string>
+    <string name="guardar_configuraciones">Guardar configuraciones</string>
+    <string name="notas">Notas</string>
+    <string name="cantidad">Cantidad</string>
 
     <!-- Archivados -->
     <string name="archivados">Archivados</string>
@@ -156,12 +159,6 @@
     <string name="elige_el_color_de_la_etiqueta">Elige el color de la etiqueta</string>
     <string name="gestionar_etiquetas">Gestionar etiquetas</string>
     <string name="todos">Todos</string>
-
-
-
-
-
-
 
     <!-- Menu de opciones -->
     <string name="ver_tutorial">Ver tutorial</string>

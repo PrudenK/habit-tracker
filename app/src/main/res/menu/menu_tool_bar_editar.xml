@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/editar_habito"
-        android:title="Editar hábito"
+        android:title="@string/editar_habito"
         android:icon="@drawable/ic_editar"
         app:showAsAction="ifRoom"
         />

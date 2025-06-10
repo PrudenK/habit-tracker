@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/agregar_etiqueta_fragment"
-        android:title="Agregar Etiqueta"
+        android:title="@string/agregar_etiqueta"
         android:icon="@drawable/ic_agregar_etiqueta"
         app:showAsAction="ifRoom"
         />
