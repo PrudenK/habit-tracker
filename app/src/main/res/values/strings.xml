@@ -162,5 +162,6 @@
 
     <!-- Menu de opciones -->
     <string name="ver_tutorial">View tutorial</string>
+    <string name="elige_tu_idioma">Elige tu idioma</string>
 
 </resources>

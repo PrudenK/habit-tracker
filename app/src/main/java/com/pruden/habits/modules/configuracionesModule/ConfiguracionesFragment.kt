@@ -194,7 +194,7 @@ class ConfiguracionesFragment : Fragment() {
 
     private fun cambiarIdioma(){
         binding.cambiarIdioma.setOnClickListener {
-            dialogoCambiarIdiomas(binding, requireContext(), requireActivity())
+            dialogoCambiarIdiomas(binding, requireContext(), requireActivity(), resources)
         }
     }
 
