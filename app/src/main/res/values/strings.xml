@@ -64,6 +64,20 @@
     <string name="calendario_de_objetivos">Goal calendar</string>
     <string name="racha_actual">Current streak</string>
     <string name="mejores_rachas">Best streaks</string>
+    <string name="periodo_dia">Day</string>
+    <string name="periodo_semana">Week</string>
+    <string name="periodo_mes">Month</string>
+    <string name="periodo_ano">Year</string>
+    <string name="sin_datos">No data</string>
+    <string name="unidades_checks">Checks</string>
+    <string name="no_tienes_una_racha_activa">You don\'t have an active streak</string>
+    <string name="desde_hasta_ayer">From %1$s until yesterday</string>
+    <string name="desde_hasta_hoy">From %1$s until today</string>
+    <string name="desde_hasta">From %1$s to %2$s</string>
+
+
+
+
 
     <!-- Mini hábitos -->
     <string name="mini_habitos">Mini habits</string>

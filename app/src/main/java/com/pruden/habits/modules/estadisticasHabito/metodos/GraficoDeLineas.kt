@@ -29,51 +29,79 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.Locale
-import kotlin.concurrent.timer
 
 fun cargarSpinnerGraficoDeLineas(
     context: Context,
     binding: FragmentEstadisticasBinding,
     habito: Habito,
     formatoFechaOriginal: SimpleDateFormat,
-    foramtoFecha_dd: SimpleDateFormat
-){
-    actualizarGraficoDeLineas("Mes", binding, habito, formatoFechaOriginal, foramtoFecha_dd)
+    formatoFecha_dd: SimpleDateFormat
+) {
+    actualizarGraficoDeLineas(
+        context,
+        context.getString(R.string.periodo_mes),
+        "Mes",
+        binding,
+        habito,
+        formatoFechaOriginal,
+        formatoFecha_dd
+    )
 
-    val opciones = arrayOf("Día", "Semana", "Mes", "Año")
+    val opciones = arrayOf(
+        context.getString(R.string.periodo_dia),
+        context.getString(R.string.periodo_semana),
+        context.getString(R.string.periodo_mes),
+        context.getString(R.string.periodo_ano)
+    )
     val adapter = ArrayAdapter(context, R.layout.spinner_item, opciones)
     adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
     binding.spinnerEstaLineChart.adapter = adapter
     binding.spinnerEstaLineChart.setSelection(2)
 
-    binding.spinnerEstaLineChart.onItemSelectedListener =
-        object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                val opcionSeleccionada = parent?.getItemAtPosition(position).toString()
+    // Mapa para asociar valores traducidos con valores internos
+    val periodoValueMap = mapOf(
+        context.getString(R.string.periodo_dia) to "Día",
+        context.getString(R.string.periodo_semana) to "Semana",
+        context.getString(R.string.periodo_mes) to "Mes",
+        context.getString(R.string.periodo_ano) to "Año"
+    )
 
-                binding.lineChart.onTouchEvent(MotionEvent.obtain(
-                    0, 0, MotionEvent.ACTION_DOWN, 0f, 0f, 0))
-                binding.lineChart.onTouchEvent(MotionEvent.obtain(
-                    0, 0, MotionEvent.ACTION_UP, 0f, 0f, 0))
-                binding.lineChart.highlightValues(null)
+    binding.spinnerEstaLineChart.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        override fun onItemSelected(
+            parent: AdapterView<*>?,
+            view: View?,
+            position: Int,
+            id: Long
+        ) {
+            val opcionSeleccionadaTraducida = parent?.getItemAtPosition(position).toString()
+            val opcionSeleccionadaInterna = periodoValueMap[opcionSeleccionadaTraducida] ?: opcionSeleccionadaTraducida
 
-                actualizarGraficoDeLineas(opcionSeleccionada, binding, habito, formatoFechaOriginal, foramtoFecha_dd)
-            }
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            binding.lineChart.onTouchEvent(MotionEvent.obtain(0, 0, MotionEvent.ACTION_DOWN, 0f, 0f, 0))
+            binding.lineChart.onTouchEvent(MotionEvent.obtain(0, 0, MotionEvent.ACTION_UP, 0f, 0f, 0))
+            binding.lineChart.highlightValues(null)
+
+            actualizarGraficoDeLineas(
+                context,
+                opcionSeleccionadaTraducida,
+                opcionSeleccionadaInterna,
+                binding,
+                habito,
+                formatoFechaOriginal,
+                formatoFecha_dd
+            )
         }
+        override fun onNothingSelected(parent: AdapterView<*>?) {}
+    }
 }
 
 private fun actualizarGraficoDeLineas(
-    opcion: String,
+    context: Context,
+    tiempoTraducido: String,
+    tiempoInterno: String,
     binding: FragmentEstadisticasBinding,
     habito: Habito,
     formatoFechaOriginal: SimpleDateFormat,
-    foramtoFecha_dd: SimpleDateFormat
+    formatoFecha_dd: SimpleDateFormat
 ) {
     CoroutineScope(Dispatchers.IO).launch {
         val xValues: MutableList<String>
@@ -83,12 +111,12 @@ private fun actualizarGraficoDeLineas(
         var espacio = 0.3f
         var fechaTexto = ""
 
-        when (opcion) {
+        when (tiempoInterno) {
             "Día" -> {
                 xValues = habito.listaFechas.mapNotNull { fecha ->
                     try {
                         val date = formatoFechaOriginal.parse(fecha)
-                        foramtoFecha_dd.format(date!!)
+                        formatoFecha_dd.format(date!!)
                     } catch (e: Exception) {
                         null
                     }
@@ -99,10 +127,9 @@ private fun actualizarGraficoDeLineas(
 
                 fechaTexto = if (habito.listaFechas.isNotEmpty()) {
                     val ultimaFecha = formatoFechaOriginal.parse(habito.listaFechas.last())
-                    SimpleDateFormat("MMM yyyy", Locale.getDefault()).format(ultimaFecha!!)
-                        .uppercase()
+                    SimpleDateFormat("MMM yyyy", Locale.getDefault()).format(ultimaFecha!!).uppercase()
                 } else {
-                    "Sin datos"
+                    context.getString(R.string.sin_datos)
                 }
             }
             "Semana" -> {
@@ -112,13 +139,12 @@ private fun actualizarGraficoDeLineas(
                 barras = 4f
                 espacio = 0.2f
 
-
                 formatoFechaArriba = "MMM yyyy"
 
                 fechaTexto = if (xValues.isNotEmpty()) {
                     xValues.last().split(" ").last().uppercase().replace("@", " ")
                 } else {
-                    "Sin datos"
+                    context.getString(R.string.sin_datos)
                 }
             }
             "Mes" -> {
@@ -131,7 +157,7 @@ private fun actualizarGraficoDeLineas(
                 fechaTexto = if (xValues.isNotEmpty()) {
                     xValues.last().split("@")[1]
                 } else {
-                    "Sin datos"
+                    context.getString(R.string.sin_datos)
                 }
             }
             "Año" -> {
@@ -140,23 +166,41 @@ private fun actualizarGraficoDeLineas(
                 yValues = datosAnuales.values.map { it.toString() }.toMutableList()
                 barras = 5f
 
+                fechaTexto = if (xValues.isNotEmpty()) {
+                    xValues.last()
+                } else {
+                    context.getString(R.string.sin_datos)
+                }
             }
             else -> return@launch
         }
 
         withContext(Dispatchers.Main) {
             binding.textoFechaLineChart.text = fechaTexto
-            cargarGraficoDeLineas(xValues, yValues, opcion, formatoFechaArriba, barras, espacio,
-                    binding, habito, formatoFechaOriginal)
+            cargarGraficoDeLineas(
+                context,
+                xValues,
+                yValues,
+                tiempoTraducido,
+                tiempoInterno,
+                formatoFechaArriba,
+                barras,
+                espacio,
+                binding,
+                habito,
+                formatoFechaOriginal
+            )
             binding.lineChart.resetViewPortOffsets()
         }
     }
 }
 
 private fun cargarGraficoDeLineas(
-    xValues : MutableList<String>,
+    context: Context,
+    xValues: MutableList<String>,
     yValues: MutableList<String>,
-    tiempo: String,
+    tiempoTraducido: String,
+    tiempoInterno: String,
     formatoFechaArriba: String,
     barras: Float,
     espacio: Float,
@@ -178,11 +222,11 @@ private fun cargarGraficoDeLineas(
     }
 
     var unidad = habito.unidad.toString().take(5).lowercase().replaceFirstChar { it.uppercase() }
-    if(unidad == "Null"){
-        unidad = "Checks"
+    if (unidad == "Null") {
+        unidad = context.getString(R.string.unidades_checks)
     }
 
-    val dataSet = LineDataSet(entries, "$unidad x $tiempo").apply {
+    val dataSet = LineDataSet(entries, "$unidad x $tiempoTraducido").apply {
         color = habito.colorHabito
         setCircleColor(Color.WHITE)
         circleRadius = 5f
@@ -204,8 +248,6 @@ private fun cargarGraficoDeLineas(
         }
     }
 
-
-
     val lineData = LineData(dataSet)
     lineChart.data = lineData
     lineChart.invalidate()
@@ -223,7 +265,7 @@ private fun cargarGraficoDeLineas(
         spaceMin = espacio
     }
 
-    if(tiempo == "Día" && !habito.tipoNumerico){
+    if (tiempoInterno == "Día" && !habito.tipoNumerico) {
         lineChart.axisLeft.apply {
             axisMinimum = 0f
             axisMaximum = 1f
@@ -244,7 +286,7 @@ private fun cargarGraficoDeLineas(
                 }
             }
         }
-    }else{
+    } else {
         lineChart.axisLeft.apply {
             resetAxisMaximum()
             axisMinimum = 0f
@@ -262,7 +304,6 @@ private fun cargarGraficoDeLineas(
             }
         }
     }
-
 
     lineChart.axisRight.isEnabled = false
 
@@ -282,8 +323,8 @@ private fun cargarGraficoDeLineas(
 
     fun actualizarFechaTexto() {
         val visibleXIndex = lineChart.highestVisibleX.toInt().coerceAtLeast(0).coerceAtMost(xValues.size - 1)
-        textoMesAnio.text = when (tiempo) {
-            "Día" ->{
+        textoMesAnio.text = when (tiempoInterno) {
+            "Día" -> {
                 val newDate = formatoFechaOriginal.parse(habito.listaFechas[visibleXIndex])
                 dateFormatOutputMesFECHA.format(newDate!!).uppercase()
             }

@@ -4,6 +4,7 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.LayerDrawable
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.pruden.habits.R
 import com.pruden.habits.common.clases.auxClass.Racha
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.databinding.FragmentEstadisticasBinding
@@ -28,13 +29,14 @@ fun setUpRecyclerRachas(
 
     adapterRachas.submitList(listaRachas)
 
-    cargarRachaActual(habito, binding, listaRachas)
+    cargarRachaActual(habito, binding, listaRachas, contexto)
 }
 
 private fun cargarRachaActual(
     habito: Habito,
     binding: FragmentEstadisticasBinding,
-    listaRachas: List<Racha>
+    listaRachas: List<Racha>,
+    contexto: Context
 
 ) {
     val valorCondicion = if (habito.objetivo != null && habito.objetivo != "null")
@@ -86,12 +88,13 @@ private fun cargarRachaActual(
     layerDrawableMes.findDrawableByLayerId(android.R.id.progress).setTint(colorConOpacidad)
 
     if(contadorRacha == 0){
-        binding.textoFechaInicioRachaActual.text = "No tienes una racha activa"
+        binding.textoFechaInicioRachaActual.text =
+            contexto.getString(R.string.no_tienes_una_racha_activa)
     }else{
         if(primerRegistroNoCumplido){
-            binding.textoFechaInicioRachaActual.text = "Desde $fechaInicio hasta ayer"
+            binding.textoFechaInicioRachaActual.text = contexto.getString(R.string.desde_hasta_ayer, fechaInicio)
         }else{
-            binding.textoFechaInicioRachaActual.text = "Desde $fechaInicio hasta hoy"
+            binding.textoFechaInicioRachaActual.text = contexto.getString(R.string.desde_hasta_hoy, fechaInicio)
         }
     }
 }
@@ -100,10 +103,10 @@ private fun calcularTop5Rachas(
     habito: Habito
 ): List<Racha> {
     val valorCondicion = if (habito.objetivo != null && habito.objetivo != "null")
-        habito.objetivo!!.split("@")[0].toFloat() else 1.0f
+        habito.objetivo.split("@")[0].toFloat() else 1.0f
 
     val condicion = if (habito.objetivo != null && habito.objetivo != "null")
-        habito.objetivo!!.split("@")[1] else "Igual a"
+        habito.objetivo.split("@")[1] else "Igual a"
 
     val rachas = mutableListOf<Racha>()
 

@@ -64,6 +64,16 @@
     <string name="calendario_de_objetivos">Calendario de objetivos</string>
     <string name="racha_actual">Racha actual</string>
     <string name="mejores_rachas">Mejores rachas</string>
+    <string name="periodo_dia">Día</string>
+    <string name="periodo_semana">Semana</string>
+    <string name="periodo_mes">Mes</string>
+    <string name="periodo_ano">Año</string>
+    <string name="sin_datos">Sin datos</string>
+    <string name="unidades_checks">Cumplidos</string>
+    <string name="no_tienes_una_racha_activa">No tienes una racha activa</string>
+    <string name="desde_hasta_ayer">Desde %1$s hasta ayer</string>
+    <string name="desde_hasta_hoy">Desde %1$s hasta hoy</string>
+    <string name="desde_hasta">Desde %1$s hasta %2$s</string>
 
     <!-- Mini hábitos -->
     <string name="mini_habitos">Mini hábitos</string>

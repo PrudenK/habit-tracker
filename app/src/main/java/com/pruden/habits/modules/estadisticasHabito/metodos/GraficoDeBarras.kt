@@ -32,49 +32,79 @@ fun cargarSpinnerGraficoDeBarras(
     binding: FragmentEstadisticasBinding,
     habito: Habito,
     formatoFechaOriginal: SimpleDateFormat,
-    foramtoFecha_dd: SimpleDateFormat
-){
-    actualizarGraficoDeBarras("Mes", binding, habito, formatoFechaOriginal, foramtoFecha_dd)
+    formatoFecha_dd: SimpleDateFormat
+) {
+    actualizarGraficoDeBarras(
+        context,
+        context.getString(R.string.periodo_mes),
+        "Mes",
+        binding,
+        habito,
+        formatoFechaOriginal,
+        formatoFecha_dd
+    )
 
-    val opciones = arrayOf("Día", "Semana", "Mes", "Año")
+    val opciones = arrayOf(
+        context.getString(R.string.periodo_dia),
+        context.getString(R.string.periodo_semana),
+        context.getString(R.string.periodo_mes),
+        context.getString(R.string.periodo_ano)
+    )
     val adapter = ArrayAdapter(context, R.layout.spinner_item, opciones)
     adapter.setDropDownViewResource(R.layout.spinner_dropdown_item)
     binding.spinnerEsta.adapter = adapter
     binding.spinnerEsta.setSelection(2)
 
+    // Mapa para asociar valores traducidos con valores internos
+    val periodoValueMap = mapOf(
+        context.getString(R.string.periodo_dia) to "Día",
+        context.getString(R.string.periodo_semana) to "Semana",
+        context.getString(R.string.periodo_mes) to "Mes",
+        context.getString(R.string.periodo_ano) to "Año"
+    )
 
-    binding.spinnerEsta.onItemSelectedListener =
-        object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                val opcionSeleccionada = parent?.getItemAtPosition(position).toString()
+    binding.spinnerEsta.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+        override fun onItemSelected(
+            parent: AdapterView<*>?,
+            view: View?,
+            position: Int,
+            id: Long
+        ) {
+            val opcionSeleccionadaTraducida = parent?.getItemAtPosition(position).toString()
+            val opcionSeleccionadaInterna = periodoValueMap[opcionSeleccionadaTraducida] ?: opcionSeleccionadaTraducida
 
-                // para el scroll
-                binding.graficaBar.onTouchEvent(MotionEvent.obtain(
-                    0, 0, MotionEvent.ACTION_DOWN, 0f, 0f, 0))
-                binding.graficaBar.onTouchEvent(MotionEvent.obtain(
-                    0, 0, MotionEvent.ACTION_UP, 0f, 0f, 0))
-                binding.graficaBar.highlightValues(null)
+            // Para el scroll
+            binding.graficaBar.onTouchEvent(MotionEvent.obtain(
+                0, 0, MotionEvent.ACTION_DOWN, 0f, 0f, 0))
+            binding.graficaBar.onTouchEvent(MotionEvent.obtain(
+                0, 0, MotionEvent.ACTION_UP, 0f, 0f, 0))
+            binding.graficaBar.highlightValues(null)
 
-                actualizarGraficoDeBarras(opcionSeleccionada, binding, habito, formatoFechaOriginal, foramtoFecha_dd)
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                // No hacer nada si no se selecciona nada
-            }
+            actualizarGraficoDeBarras(
+                context,
+                opcionSeleccionadaTraducida,
+                opcionSeleccionadaInterna,
+                binding,
+                habito,
+                formatoFechaOriginal,
+                formatoFecha_dd
+            )
         }
+
+        override fun onNothingSelected(parent: AdapterView<*>?) {
+            // No hacer nada si no se selecciona nada
+        }
+    }
 }
 
 private fun actualizarGraficoDeBarras(
-    opcion: String,
+    context: Context,
+    tiempoTraducido: String,
+    tiempoInterno: String,
     binding: FragmentEstadisticasBinding,
     habito: Habito,
     formatoFechaOriginal: SimpleDateFormat,
-    foramtoFecha_dd: SimpleDateFormat
+    formatoFecha_dd: SimpleDateFormat
 ) {
     CoroutineScope(Dispatchers.IO).launch {
         val xValues: MutableList<String>
@@ -84,12 +114,12 @@ private fun actualizarGraficoDeBarras(
         var tama = 0.7f
         var fechaTexto = ""
 
-        when (opcion) {
+        when (tiempoInterno) {
             "Día" -> {
                 xValues = habito.listaFechas.mapNotNull { fecha ->
                     try {
                         val date = formatoFechaOriginal.parse(fecha)
-                        foramtoFecha_dd.format(date!!)
+                        formatoFecha_dd.format(date!!)
                     } catch (e: Exception) {
                         null
                     }
@@ -104,7 +134,7 @@ private fun actualizarGraficoDeBarras(
                     SimpleDateFormat("MMM yyyy", Locale.getDefault()).format(ultimaFecha!!)
                         .uppercase()
                 } else {
-                    "Sin datos"
+                    context.getString(R.string.sin_datos)
                 }
             }
 
@@ -120,7 +150,7 @@ private fun actualizarGraficoDeBarras(
                 fechaTexto = if (xValues.isNotEmpty()) {
                     xValues.last().split(" ").last().uppercase().replace("@", " ")
                 } else {
-                    "Sin datos"
+                    context.getString(R.string.sin_datos)
                 }
             }
 
@@ -136,7 +166,7 @@ private fun actualizarGraficoDeBarras(
                 fechaTexto = if (xValues.isNotEmpty()) {
                     xValues.last().split("@")[1]
                 } else {
-                    "Sin datos"
+                    context.getString(R.string.sin_datos)
                 }
             }
 
@@ -148,28 +178,42 @@ private fun actualizarGraficoDeBarras(
                 barras = 5f
                 tama = 0.7f
 
+                fechaTexto = if (xValues.isNotEmpty()) {
+                    xValues.last()
+                } else {
+                    context.getString(R.string.sin_datos)
+                }
             }
 
             else -> return@launch
         }
 
         withContext(Dispatchers.Main) {
-
             binding.textoMesAnio.text = fechaTexto
-
-            cargarGraficoDeBarras(xValues, yValues, opcion, formatoFechaArriba,
-                barras, tama, binding, habito, formatoFechaOriginal)
-
+            cargarGraficoDeBarras(
+                context,
+                xValues,
+                yValues,
+                tiempoTraducido,
+                tiempoInterno,
+                formatoFechaArriba,
+                barras,
+                tama,
+                binding,
+                habito,
+                formatoFechaOriginal
+            )
             binding.graficaBar.resetViewPortOffsets()
         }
     }
 }
 
-
 private fun cargarGraficoDeBarras(
-    xValues : MutableList<String>,
+    context: Context,
+    xValues: MutableList<String>,
     yValues: MutableList<String>,
-    tiempo: String,
+    tiempoTraducido: String,
+    tiempoInterno: String,
     formatoFechaArriba: String,
     barras: Float,
     tama: Float,
@@ -187,16 +231,15 @@ private fun cargarGraficoDeBarras(
         try {
             BarEntry(index.toFloat(), value.toFloat())
         } catch (e: Exception) {
-            Log.e("ERROR", "Error al convertir valor en índice $index: $value", e)
             BarEntry(index.toFloat(), 0f) // Evitar crash
         }
     }
 
     var unidad = habito.unidad.toString().take(5).lowercase().replaceFirstChar { it.uppercase() }
-    if(unidad == "Null"){
-        unidad = "Checks"
+    if (unidad == "Null") {
+        unidad = context.getString(R.string.unidades_checks)
     }
-    val dataSet = BarDataSet(entries, "$unidad x $tiempo")
+    val dataSet = BarDataSet(entries, "$unidad x $tiempoTraducido")
     dataSet.notifyDataSetChanged()
     dataSet.color = habito.colorHabito
     dataSet.valueTextSize = 14f
@@ -222,9 +265,7 @@ private fun cargarGraficoDeBarras(
     xAxis.axisLineColor = Color.WHITE
     xAxis.axisLineWidth = 1.5f
 
-
-
-    if (tiempo == "Día" && !habito.tipoNumerico) {
+    if (tiempoInterno == "Día" && !habito.tipoNumerico) {
         barChart.axisLeft.apply {
             axisMinimum = 0f  // Valor mínimo
             axisMaximum = 1f  // Valor máximo
@@ -262,7 +303,6 @@ private fun cargarGraficoDeBarras(
         }
     }
 
-
     val rightAxis = barChart.axisRight
     rightAxis.isEnabled = false
 
@@ -278,16 +318,14 @@ private fun cargarGraficoDeBarras(
     barChart.isDragEnabled = true
     barChart.setScaleEnabled(false)
 
-
-
     barChart.moveViewToX(barChart.xAxis.axisMaximum)
 
     barChart.description.isEnabled = false
 
     fun actualizarFechaTexto() {
         val visibleXIndex = barChart.highestVisibleX.toInt().coerceAtLeast(0).coerceAtMost(xValues.size - 1)
-        textoMesAnio.text = when (tiempo) {
-            "Día" ->{
+        textoMesAnio.text = when (tiempoInterno) {
+            "Día" -> {
                 val newDate = formatoFechaOriginal.parse(habito.listaFechas[visibleXIndex])
                 dateFormatOutputMesFECHA.format(newDate!!).uppercase()
             }
@@ -299,7 +337,6 @@ private fun cargarGraficoDeBarras(
             }
             else -> ""
         }
-
     }
 
     barChart.onChartGestureListener = object : OnChartGestureListener {
@@ -317,5 +354,4 @@ private fun cargarGraficoDeBarras(
 
     binding.graficaBar.notifyDataSetChanged()
     binding.graficaBar.invalidate()
-
 }

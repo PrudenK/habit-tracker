@@ -35,7 +35,7 @@ class RachaAdapter(
 
         with(holder as ViewHolder) {
             binding.textoRachaActualItem.text = racha.duracion.toString()
-            binding.textoFechaInicioRachaActualItem.text = "Desde ${racha.inicio} hasta ${racha.fin}"
+            binding.textoFechaInicioRachaActualItem.text = contexto.getString(R.string.desde_hasta, racha.inicio, racha.fin)
 
             val opacidad = ((racha.duracion.toFloat() / rachaMasLarga) * 255).toInt().coerceIn(0, 255)
 
