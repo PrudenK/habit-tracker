@@ -46,11 +46,13 @@
     <string name="estas_seguro_de_que_quieres_borrar_este_habito">¿Estás seguro de qué quieres borrar este hábito?</string>
     <string name="cancelar">Cancelar</string>
 
-
-
-
     <!-- Archivados -->
     <string name="archivados">Archivados</string>
+    <string name="desarchivar">Desarchivar</string>
+    <string name="quieres_desarchivar_este_habito">¿Quiéres desarchivar este hábito?</string>
+    <string name="desarchivar_todos">Desarchivar todos</string>
+    <string name="quieres_desarchivar_todos_los_habito">¿Quiéres desarchivar todos los hábitos?</string>
+    <string name="desarchivar_habito">Desarchivar hábito</string>
 
     <!-- Agregar hábito -->
     <string name="agregando_tu_habito">¡Agregando tu hábito…!</string>

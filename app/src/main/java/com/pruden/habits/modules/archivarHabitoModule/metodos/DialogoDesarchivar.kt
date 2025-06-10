@@ -28,12 +28,12 @@ fun mostrarDialogoDesarchivar(
     val btnCancelar = dialogView.findViewById<Button>(R.id.button_cancelar_desarchivar)
     val btnDesarchivar = dialogView.findViewById<Button>(R.id.button_desarchivar)
 
-    titulo.text = "Desarchivar"
-    mensaje.text = "¿Quiéres desarchivar este hábito?"
+    titulo.text = context.getString(R.string.desarchivar)
+    mensaje.text = context.getString(R.string.quieres_desarchivar_este_habito)
 
     if(todos){
-        titulo.text = "Desarchivar todos"
-        mensaje.text = "¿Quiéres desarchivar todos los hábito?"
+        titulo.text = context.getString(R.string.desarchivar_todos)
+        mensaje.text = context.getString(R.string.quieres_desarchivar_todos_los_habito)
     }
     btnCancelar.setOnClickListener {
         dialog.dismiss()
