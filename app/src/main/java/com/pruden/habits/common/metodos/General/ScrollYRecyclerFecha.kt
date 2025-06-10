@@ -20,8 +20,9 @@ fun cargarScrollFechaCommon(
             val layoutManager = recyclerView.layoutManager as LinearLayoutManager
             val primeraPosicionVisible = layoutManager.findFirstVisibleItemPosition()
 
-            if (primeraPosicionVisible != RecyclerView.NO_POSITION) {
-                val fechaVisible = fechasAdapter.currentList[primeraPosicionVisible]
+            val listaActual = fechasAdapter.currentList
+            if (primeraPosicionVisible in listaActual.indices) {
+                val fechaVisible = listaActual[primeraPosicionVisible]
                 auxiliar.text = "${fechaVisible.mes.uppercase()} ${fechaVisible.year}"
             }
         }

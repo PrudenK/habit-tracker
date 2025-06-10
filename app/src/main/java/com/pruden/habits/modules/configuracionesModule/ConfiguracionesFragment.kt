@@ -12,6 +12,7 @@ import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
@@ -67,6 +68,14 @@ class ConfiguracionesFragment : Fragment() {
         borrarTodasLasEtiquetas()
         exportarSoloLasEtiquetas()
 
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
+            if (fechasCambiadas) {
+                parentFragmentManager.setFragmentResult("actualizar_habitos_main", Bundle())
+            }
+            isEnabled = false
+            activity?.onBackPressed()
+        }
+
         binding.fechaIncioRegistrosHabitos.text = "Fecha inicio de los registros: ${Constantes.FECHA_INICIO}"
 
         return binding.root
@@ -107,7 +116,7 @@ class ConfiguracionesFragment : Fragment() {
         return when (item.itemId) {
             android.R.id.home -> {
                 if(fechasCambiadas){
-                    parentFragmentManager.setFragmentResult("actualizar_habitos", Bundle())
+                    parentFragmentManager.setFragmentResult("actualizar_habitos_main", Bundle())
                 }
                 activity?.onBackPressed()
                 true
@@ -165,7 +174,7 @@ class ConfiguracionesFragment : Fragment() {
 
     private fun datePickerFechaInicio(){
         binding.fechaIncioRegistrosHabitos.setOnClickListener {
-            mostrarDatePicker(requireContext(), binding, resources, viewModel)
+            mostrarDatePicker(requireContext(), binding, resources, viewModel, main)
             fechasCambiadas = true
         }
     }
