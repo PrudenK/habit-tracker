@@ -5,8 +5,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.HabitosApplication.Companion.listaFechas
+import com.pruden.habits.common.clases.data.Fecha
 import com.pruden.habits.common.elementos.SincronizadorDeScrolls
 import com.pruden.habits.modules.mainModule.adapters.FechaAdapter
+
+var ultimaFechaMostrada: Fecha? = null
 
 fun cargarScrollFechaCommon(
     recyclerFechas: RecyclerView,
@@ -19,11 +22,15 @@ fun cargarScrollFechaCommon(
 
             val layoutManager = recyclerView.layoutManager as LinearLayoutManager
             val primeraPosicionVisible = layoutManager.findFirstVisibleItemPosition()
-
             val listaActual = fechasAdapter.currentList
+
             if (primeraPosicionVisible in listaActual.indices) {
                 val fechaVisible = listaActual[primeraPosicionVisible]
-                auxiliar.text = "${fechaVisible.mes.uppercase()} ${fechaVisible.year}"
+
+                if (fechaVisible != ultimaFechaMostrada) {
+                    auxiliar.text = "${fechaVisible.mes.uppercase()} ${fechaVisible.year}"
+                    ultimaFechaMostrada = fechaVisible
+                }
             }
         }
     })

@@ -160,11 +160,11 @@ fun mostrarDatePicker(
 
                 main.runOnUiThread {
                     listaFechas = generateLastDates()
-                    Log.d("DDDDDD", listaFechas.toString())
-
-                    main.fechasAdapter.submitList(listaFechas)
-
-                    main.actualizarDatosHabitos()
+                    main.fechasAdapter.submitList(listaFechas) {
+                        main.mBinding.recyclerFechas.post {
+                            main.actualizarDatosHabitos()
+                        }
+                    }
                 }
 
                 dialogConfirmar.dismiss()

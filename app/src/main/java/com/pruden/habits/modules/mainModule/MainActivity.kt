@@ -35,7 +35,6 @@ import com.pruden.habits.modules.agregarEditarHabitoModule.AgregarEditarHabitoFr
 import com.pruden.habits.modules.archivarHabitoModule.ArchivarHabitoFragment
 import com.pruden.habits.modules.configuracionesModule.ConfiguracionesFragment
 import com.pruden.habits.modules.estadisticasHabito.EstadisticasFragment
-import com.pruden.habits.modules.mainModule.metodos.dialogoAgregarEtiqueta
 import com.pruden.habits.modules.mainModule.metodos.dialogoOnLongClickHabito
 import com.pruden.habits.modules.mainModule.viewModel.MainViewModel
 import com.pruden.habits.modules.etiquetasModule.PorEtiquetasFragment
@@ -43,7 +42,7 @@ import com.pruden.habits.modules.miniHabitos.MiniHabitosFragment
 
 
 class MainActivity : AppCompatActivity(), OnClickHabito {
-    private lateinit var mBinding: ActivityMainBinding
+    lateinit var mBinding: ActivityMainBinding
 
     lateinit var fechasAdapter: FechaAdapter
 
