@@ -18,8 +18,8 @@ fun borrarTodosLosDatos(contexto: Context, main: MainActivity, viewModel: Config
     mostrarDialogoBorrar(
         contexto,
         resources,
-        titulo = "¡Borrar todos los datos!",
-        mensaje = "Estás a punto de borrar TODOS TUS DATOS..."
+        titulo = resources.getString(R.string.titulo_borrar_todos_datos),
+        mensaje = resources.getString(R.string.mensaje_borrar_todos_datos)
     ) {
         viewModel.borrarTodosLosDatos {
             main.actualizarDespuesDeBorrarTodosLosDatos()
@@ -31,8 +31,8 @@ fun borrarTodosLosHabitos(contexto: Context, main: MainActivity, viewModel: Conf
     mostrarDialogoBorrar(
         contexto,
         resources,
-        titulo = "¡Borrar todos los hábitos!",
-        mensaje = "Estás a punto de borrar todos tus hábitos..."
+        titulo = resources.getString(R.string.titulo_borrar_todos_habitos),
+        mensaje = resources.getString(R.string.mensaje_borrar_todos_habitos)
     ) {
         viewModel.borrarTodosLosHabitos {
             main.actualizarDespuesDeBorrarTodosLosDatos()
@@ -44,8 +44,8 @@ fun borrarTodosLosRegistros(contexto: Context, main: MainActivity, viewModel: Co
     mostrarDialogoBorrar(
         contexto,
         resources,
-        titulo = "¡Borrar todos los registros!",
-        mensaje = "Estás a punto de borrar todos los registros..."
+        titulo = resources.getString(R.string.titulo_borrar_todos_registros),
+        mensaje = resources.getString(R.string.mensaje_borrar_todos_registros)
     ) {
         viewModel.borrarTodosLosRegistros {
             main.runOnUiThread {
@@ -59,8 +59,8 @@ fun borrarTodasLasEtiquetasDialog(contexto: Context, main: MainActivity, viewMod
     mostrarDialogoBorrar(
         contexto,
         resources,
-        titulo = "¡Borrar todas las etiquetas!",
-        mensaje = "Estás a punto de borrar todas tus etiquetas..."
+        titulo = resources.getString(R.string.titulo_borrar_todas_etiquetas),
+        mensaje = resources.getString(R.string.mensaje_borrar_todas_etiquetas)
     ) {
         viewModel.borrarTodasLasEtiquetas{}
     }

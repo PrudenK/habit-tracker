@@ -120,12 +120,11 @@ fun mostrarDatePicker(
 
                 var fechaNueva = String.format("%d-%02d-%02d", yearSeleccionado, mesSeleccionado + 1, diaSeleccionado)
 
-                binding.fechaIncioRegistrosHabitos.text = "Fecha inicio de los registros: $fechaNueva"
+                binding.fechaIncioRegistrosHabitos.text = context.getString(R.string.fecha_inicio_de_los_registros)
 
                 sharedConfiguraciones.edit().putString(Constantes.SHARED_FECHA_INICIO, fechaNueva).apply()
                 Constantes.FECHA_INICIO = fechaNueva
 
-                Log.d("fehcasssads", "$fechaNueva, $fechaAntiguaInicio, ${fechaNueva> fechaAntiguaInicio}")
                 if(fechaNueva > fechaAntiguaInicio){ // Quitar
                     viewModel.eliminarRegistrosAnterioresA(fechaNueva)
                 }else if(fechaNueva < fechaAntiguaInicio){ // Añadir
@@ -139,8 +138,9 @@ fun mostrarDatePicker(
                     binding.scrollViewConfig.visibility = View.GONE
                     binding.progressBarConfiguraciones.visibility = View.VISIBLE
                     binding.textoCargaConfiguracione.visibility = View.VISIBLE
-                    binding.textoCargaConfiguracione.text = "¡Cargando tus registros!"
+                    binding.textoCargaConfiguracione.text = context.getString(R.string.cargando_tus_registros)
 
+                    
                     CoroutineScope(Dispatchers.IO).launch { //TODO optimizar en un futuro
                         val fechasDiff = obtenerFechasEntre(fechaNueva, fechaAntiguaInicio)
 

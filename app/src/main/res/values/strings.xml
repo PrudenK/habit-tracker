@@ -27,6 +27,43 @@
     <string name="borrar_solo_los_registros">Delete only records</string>
     <string name="borrar_todas_las_etiquetas">Delete all tags</string>
 
+
+    <!-- Diálogos configuración -->
+    <string name="titulo_borrar_todos_datos">Delete all data!</string>
+    <string name="mensaje_borrar_todos_datos">You are about to delete ALL YOUR DATA…</string>
+    <string name="titulo_borrar_todos_habitos">Delete all habits!</string>
+    <string name="mensaje_borrar_todos_habitos">You are about to delete all your habits…</string>
+    <string name="titulo_borrar_todos_registros">Delete all records!</string>
+    <string name="mensaje_borrar_todos_registros">You are about to delete all records…</string>
+    <string name="titulo_borrar_todas_etiquetas">Delete all tags!</string>
+    <string name="mensaje_borrar_todas_etiquetas">You are about to delete all your tags…</string>
+
+
+
+
+
+    <!-- Titulos ficheros generados en configuraciones-->
+    <string name="error_fecha_mayor_hoy">The file date is greater than today, it is not valid</string>
+    <string name="error_fecha_minima_soportada">Import error, minimum supported date is %1$s</string>
+    <string name="archivo_csv_importado">CSV file imported successfully</string>
+    <string name="error_importar_sin_habitos">Import error: no habits found</string>
+    <string name="error_importar_sin_fechas">Import error: no dates found</string>
+    <string name="error_leer_archivo">Error reading file</string>
+    <string name="fichero_habitos_csv">Habits_%1$s.csv</string>
+    <string name="habitos_data_csv">Habits_Data_%1$s.csv</string>
+    <string name="habitos_data_package">Habits_Data_%1$s</string>
+    <string name="copia_de_seguridad_csv">Backup_%1$s.csv</string>
+    <string name="etiquetas_csv">Tags_%1$s.csv</string>
+    <string name="datos_habit_tracker_zip">Habit_Tracker_Data_%1$s.zip</string>
+    <string name="datos_habitos_zip">Habits_Data_%1$s.zip</string>
+    <string name="cargando_tus_registros">Loading your records!</string>
+    <string name="no_habr_vuelta_atras">There\'s no going back…</string>
+    <string name="estoy_seguro">I\'m sure</string>
+    <string name="advertencia">Warning</string>
+    <string name="texto_advertencia_cambio_de_fechas">If you change the habits\' start date, all habits will be modified so the oldest date will be the one you set. If the new date is older, records will be added. If it\'s newer, records up to that date will be deleted.</string>
+    <string name="cambiar_fecha">Change date</string>
+
+
     <!-- Main -->
     <string name="anterior">Previous</string>
     <string name="pagina_num">Page %1$s</string>

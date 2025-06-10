@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Toast
 import com.pruden.habits.HabitosApplication.Companion.listaFechas
 import com.pruden.habits.HabitosApplication.Companion.sharedConfiguraciones
+import com.pruden.habits.R
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.Constantes
@@ -60,7 +61,7 @@ import java.io.InputStreamReader
 
 
             if(fechaFin > obtenerFechaActual()){
-                makeToast("La fecha del fichero es mayor que la de hoy, no es válido", context)
+                makeToast(context.getString(R.string.error_fecha_mayor_hoy), context)
                 return
             }
 
@@ -126,12 +127,12 @@ import java.io.InputStreamReader
                                             sharedConfiguraciones.edit().putString(Constantes.SHARED_FECHA_INICIO, fecha).apply()
                                             Constantes.FECHA_INICIO = fecha
                                             primeraFecha = true
-                                            binding.fechaIncioRegistrosHabitos.text = "Fecha inicio de los registros: ${Constantes.FECHA_INICIO}"
+                                            binding.fechaIncioRegistrosHabitos.text = context.getString(R.string.fecha_inicio_de_los_registros)
 
                                             listaFechas = generateLastDates()
                                             main.fechasAdapter.submitList(listaFechas)
                                         }else{
-                                            makeToast("Error al importar la fecha mínima soportada es ${Constantes.FECHA_MINIMA_SOPORTADA}", context)
+                                            makeToast(context.getString(R.string.error_fecha_minima_soportada, Constantes.FECHA_MINIMA_SOPORTADA), context)
                                             return
                                         }
 
@@ -202,23 +203,23 @@ import java.io.InputStreamReader
                         listaMiniHabitos
                     ) { success ->
                         if (success && (context as? Activity)?.isFinishing == false) {
-                            Toast.makeText(context.applicationContext, "Archivo CSV importado correctamente", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(context.applicationContext, context.getString(R.string.archivo_csv_importado), Toast.LENGTH_SHORT).show()
                         }
                     }
                 }
 
 
             }else{
-                makeToast("Error al importar: no hay hábitos", context)
+                makeToast(context.getString(R.string.error_importar_sin_habitos), context)
                 return
             }
 
         }else{
-            makeToast("Error al importar: no tiene fechas", context)
+            makeToast(context.getString(R.string.error_importar_sin_fechas), context)
             return
         }
     } catch (e: Exception) {
         e.printStackTrace()
-        Toast.makeText(context, "Error al leer el archivo", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, context.getString(R.string.error_leer_archivo), Toast.LENGTH_SHORT).show()
     }
 }

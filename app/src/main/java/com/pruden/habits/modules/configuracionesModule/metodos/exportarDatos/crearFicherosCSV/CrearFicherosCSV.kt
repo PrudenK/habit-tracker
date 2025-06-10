@@ -1,6 +1,7 @@
 package com.pruden.habits.modules.configuracionesModule.metodos.exportarDatos.crearFicherosCSV
 
 import android.content.Context
+import com.pruden.habits.R
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.Constantes
@@ -18,7 +19,7 @@ import java.util.Locale
 
 class CrearFicherosCSV {
     fun crearFicheroHabitosCSV(habitos : MutableList<HabitoEntity>, contexto: Context) : File {
-        val csvHabitos = File(contexto.filesDir, "Habitos_${obtenerFechaActual()}.csv")
+        val csvHabitos = File(contexto.filesDir, contexto.getString(R.string.fichero_habitos_csv, obtenerFechaActual()))
         csvHabitos.writeText(devolverContenidoHabitosCSV(habitos).toString())
 
         return csvHabitos
@@ -45,7 +46,7 @@ class CrearFicherosCSV {
             stringBuilder.append(linea+"\n")
         }
 
-        val csvHabitos = File(contexto.filesDir, "Habitos_Data_${obtenerFechaActual()}.csv")
+        val csvHabitos = File(contexto.filesDir, contexto.getString(R.string.habitos_data_csv, obtenerFechaActual()))
         csvHabitos.writeText(stringBuilder.toString())
 
         return csvHabitos
@@ -58,7 +59,7 @@ class CrearFicherosCSV {
     ): File {
         val dateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
 
-        val directorio = File(contexto.filesDir, "Habitos_Data_${obtenerFechaActual()}").apply {
+        val directorio = File(contexto.filesDir, contexto.getString(R.string.habitos_data_package, obtenerFechaActual())).apply {
             if (exists()) {
                 deleteRecursively()
             }
@@ -111,14 +112,14 @@ class CrearFicherosCSV {
         stringBuilder.append(devolverCabeceraCopiaDeSeguridadData(habitos) +"\n")
         stringBuilder.append(devolverDataHabitosCopiaSeguridadCSV(habitos, hashMapDataHabitos))
 
-        val copiaSeguridad = File(contexto.filesDir, "Copia_de_seguridad_${obtenerFechaActual()}.csv")
+        val copiaSeguridad = File(contexto.filesDir, contexto.getString(R.string.copia_de_seguridad_csv, obtenerFechaActual()))
         copiaSeguridad.writeText(stringBuilder.toString())
 
         return copiaSeguridad
     }
 
     fun crearFicheroEtiquetasCSV(etiquetas : MutableList<EtiquetaEntity>, contexto: Context): File{
-        val csvEtiqueta = File(contexto.filesDir, "Etiquetas_${obtenerFechaActual()}.csv")
+        val csvEtiqueta = File(contexto.filesDir, contexto.getString(R.string.etiquetas_csv, obtenerFechaActual()))
         csvEtiqueta.writeText(devolverContenidosEtiquetasCSV(etiquetas).toString())
 
         return csvEtiqueta
