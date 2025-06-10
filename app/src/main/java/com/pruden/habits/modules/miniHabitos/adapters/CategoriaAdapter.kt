@@ -97,6 +97,16 @@ class CategoriaAdapter(
                 chip.alpha = if (isChecked) 1f else 0.5f
             }
 
+            // Para no poder deseleccionar una categoría, me ahorro muchos problemas para algo q no me aporta nada
+            chip.setOnClickListener {
+                if (!chip.isChecked) {
+                    chip.isChecked = true
+                } else {
+                    onChipSelected(categoria)
+                    notifyDataSetChanged()
+                }
+            }
+
             chip.setOnLongClickListener {
                 listener.onLongClickCategoria(categoria)
                 true
