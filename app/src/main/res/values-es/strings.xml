@@ -32,6 +32,23 @@
     <string name="pagina_num">Página %1$s</string>
     <string name="siguiente">Siguiente</string>
 
+    <!-- Diálogos Main -->
+    <string name="que_quieres_hacer">¿Qué quieres hacer?</string>
+    <string name="mover">Mover</string>
+    <string name="archivar">Archivar</string>
+    <string name="editar">Editar</string>
+    <string name="borrar">Borrar</string>
+    <string name="mover_habito">Mover hábito</string>
+    <string name="modifica_la_posicion_de_tu_habito">Modifica la posición de tu hábito</string>
+    <string name="descartar">Descartar</string>
+    <string name="aplicar">Aplicar</string>
+    <string name="confirmacion">Confirmación</string>
+    <string name="estas_seguro_de_que_quieres_borrar_este_habito">¿Estás seguro de qué quieres borrar este hábito?</string>
+    <string name="cancelar">Cancelar</string>
+
+
+
+
     <!-- Archivados -->
     <string name="archivados">Archivados</string>
 
