@@ -18,6 +18,9 @@ interface HabitoDao {
     @Insert
     suspend fun insertListaDeHabitos(listaHabitos: List<HabitoEntity>)
 
+    @Insert
+    fun insertListaDeHabitosNS(listaHabitos: List<HabitoEntity>)
+
     @Update
     suspend fun updateHabito(habitoEntity: HabitoEntity)
 

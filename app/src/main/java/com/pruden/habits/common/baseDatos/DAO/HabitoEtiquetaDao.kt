@@ -17,6 +17,9 @@ interface HabitoEtiquetaDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertarRelaciones(relaciones: List<HabitoEtiquetaEntity>)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertarRelacionesNS(relaciones: List<HabitoEtiquetaEntity>)
+
     @Delete
     suspend fun borrarRelaciones(relaciones: List<HabitoEtiquetaEntity>)
 

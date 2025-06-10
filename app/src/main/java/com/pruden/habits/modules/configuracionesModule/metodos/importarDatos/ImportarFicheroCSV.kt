@@ -5,7 +5,6 @@ import android.content.Context
 import android.net.Uri
 import android.util.Log
 import android.widget.Toast
-import androidx.lifecycle.viewModelScope
 import com.pruden.habits.HabitosApplication.Companion.listaFechas
 import com.pruden.habits.HabitosApplication.Companion.sharedConfiguraciones
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
@@ -22,8 +21,6 @@ import com.pruden.habits.common.metodos.fechas.obtenerFechasEntre
 import com.pruden.habits.databinding.FragmentConfiguracionesBinding
 import com.pruden.habits.modules.configuracionesModule.viewModel.ConfiguracionesViewModel
 import com.pruden.habits.modules.mainModule.MainActivity
-import kotlinx.coroutines.async
-import kotlinx.coroutines.launch
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
@@ -201,23 +198,15 @@ import java.io.InputStreamReader
                         }
                     }
 
-                    viewModel.viewModelScope.launch {
-                        val job1 = async { viewModel.insertarListaDeHabitos(listaHabitosEntity) }
-                        val job2 = async { viewModel.insertarListaEtiquetas(listaEtiquetas) }
-                        val job3 = async { viewModel.insertarListaCategorias(listaCategorias) }
+                    viewModel.importarTodoCopiaSeguridad(
+                        listaHabitosEntity,
+                        listaEtiquetas,
+                        listaCategorias,
+                        listaDataHabito,
+                        listaHabitosEtiquetas,
+                        listaMiniHabitos
+                    )
 
-                        job1.await()
-                        job2.await()
-                        job3.await()
-
-                        val job1b = async { viewModel.insertarListaDataHabitos(listaDataHabito) }
-                        val job2b = async { viewModel.insertarListaHabitosEtiquetas(listaHabitosEtiquetas) }
-                        val job3b = async { viewModel.insertarListaMiniHabitos(listaMiniHabitos) }
-
-                        job1b.await()
-                        job2b.await()
-                        job3b.await()
-                    }
 
                 }
 

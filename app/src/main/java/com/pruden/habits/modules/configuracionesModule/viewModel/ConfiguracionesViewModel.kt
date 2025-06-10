@@ -3,6 +3,7 @@ package com.pruden.habits.modules.configuracionesModule.viewModel
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.pruden.habits.HabitosApplication
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.CategoriaEntity
 import com.pruden.habits.common.clases.entities.DataHabitoEntity
@@ -138,14 +139,6 @@ class ConfiguracionesViewModel: ViewModel() {
         }
     }
 
-    fun insertarHabito(habitoEntity: HabitoEntity){
-        interactor.insertarHabito(habitoEntity)
-    }
-
-    fun insertarDataHabito(dataHabitoEntity: DataHabitoEntity){
-        interactor.insertarDataHabito(dataHabitoEntity)
-    }
-
     fun eliminarRegistrosAnterioresA(fechaLimite: String){
         interactor.eliminarDataHabitosAnteriroresA(fechaLimite)
     }
@@ -154,31 +147,21 @@ class ConfiguracionesViewModel: ViewModel() {
         interactor.insertarListaDeDataHabitosConFechas(fechas, habitos)
     }
 
-
-
-
-    fun insertarListaHabitosEtiquetas(habitoEtiquetaLista: MutableList<HabitoEtiquetaEntity>){
-        interactor.insertarListaHabitosEtiquetas(habitoEtiquetaLista)
+    fun importarTodoCopiaSeguridad(
+        habitos: List<HabitoEntity>,
+        etiquetas: List<EtiquetaEntity>,
+        categorias: List<CategoriaEntity>,
+        dataHabitos: List<DataHabitoEntity>,
+        habitosEtiquetas: List<HabitoEtiquetaEntity>,
+        miniHabitos: List<MiniHabitoEntity>
+    ) = viewModelScope.launch(Dispatchers.IO) {
+        HabitosApplication.database.runInTransaction {
+            HabitosApplication.database.habitoDao().insertListaDeHabitosNS(habitos)
+            HabitosApplication.database.etiquetaDao().insertarListaDeEtiquetasNS(etiquetas)
+            HabitosApplication.database.categoriaDao().insertarListaCategoriaNS(categorias)
+            HabitosApplication.database.dataHabitoDao().insertarListaDataHabitoNS(dataHabitos)
+            HabitosApplication.database.habitoEtiquetaDao().insertarRelacionesNS(habitosEtiquetas)
+            HabitosApplication.database.miniHabitoDao().insertarListaMiniHabitoNS(miniHabitos)
+        }
     }
-
-    fun insertarListaDeHabitos(listaHabitos: MutableList<HabitoEntity>){
-        interactor.insertarListaDeHabitos(listaHabitos)
-    }
-
-    fun insertarListaEtiquetas(listaEtiquetas: MutableList<EtiquetaEntity>){
-        interactor.insertarListaDeEtiquetas(listaEtiquetas)
-    }
-
-    fun insertarListaDataHabitos(listaDataHabitos: MutableList<DataHabitoEntity>){
-        interactor.insertarListaDeDataHabitos(listaDataHabitos)
-    }
-
-    fun insertarListaCategorias(listaCategorias: MutableList<CategoriaEntity>){
-        interactor.insertarListaDeCategorias(listaCategorias)
-    }
-
-    fun insertarListaMiniHabitos(listaMiniHabitos: MutableList<MiniHabitoEntity>){
-        interactor.insertarListaMiniHabitos(listaMiniHabitos)
-    }
-
 }

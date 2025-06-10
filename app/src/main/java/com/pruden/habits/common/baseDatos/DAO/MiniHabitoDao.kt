@@ -17,6 +17,9 @@ interface MiniHabitoDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertarListaMiniHabito(listaMiniHabitos: List<MiniHabitoEntity>)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertarListaMiniHabitoNS(listaMiniHabitos: List<MiniHabitoEntity>)
+
     @Delete
     suspend fun deleteMiniHabito(miniHabitoEntity: MiniHabitoEntity)
 

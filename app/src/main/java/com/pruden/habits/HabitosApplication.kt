@@ -31,7 +31,7 @@ class HabitosApplication : Application(){
     override fun onCreate(){
         super.onCreate()
 
-        //this.deleteDatabase("HabitosDatabase")
+        this.deleteDatabase("HabitosDatabase")
 
         database = Room.databaseBuilder(
             this,

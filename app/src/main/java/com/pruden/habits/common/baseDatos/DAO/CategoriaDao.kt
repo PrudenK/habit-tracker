@@ -17,6 +17,9 @@ interface CategoriaDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertarListaCategoria(listaCategorais: List<CategoriaEntity>)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertarListaCategoriaNS(listaCategorais: List<CategoriaEntity>)
+
     @Delete
     suspend fun deleteCategoria(categoriaEntity: CategoriaEntity)
 
