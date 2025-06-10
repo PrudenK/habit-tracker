@@ -41,6 +41,21 @@
     <string name="elige_el_tipo_de_habito">Choose the type of habit</string>
     <string name="numerico">Numeric</string>
     <string name="booleano">Yes or No</string>
+    <string name="editar_habito">Edit habit</string>
+    <string name="error_palabra_fecha_reservada">The word fecha is reserved</string>
+    <string name="error_habito_duplicado">You already have a habit with that name</string>
+    <string name="exito_habito_editado">Habit edited successfully</string>
+    <string name="exito_habito_anadido">Habit added successfully</string>
+    <string name="error_campos_vacios">Fields cannot be empty</string>
+    <string name="error_color_invalido">White is not a valid color</string>
+    <string name="spinner_mas_de">More than</string>
+    <string name="spinner_igual_a">Equal to</string>
+    <string name="spinner_menos_de">Less than</string>
+    <string name="escribe_el_nombre_de_tu_habito">Enter the name of your habit.</string>
+    <string name="elige_el_color_del_habito">Choose the color of the habit</string>
+    <string name="unidades_agregra_habito">Units (e.g., pages, km, hours…)</string>
+    <string name="tu_objetivo_diario">Your daily goal</string>
+    <string name="error">Error</string>
 
     <!-- Estadísticas -->
     <string name="objetivo_semanal">Weekly goal</string>
@@ -56,6 +71,9 @@
 
     <!-- Por etiquetas -->
     <string name="por_etiquetas">Filter by tags</string>
+
+    <!-- Menu de opciones -->
+    <string name="ver_tutorial">View tutorial</string>
 
 
 </resources>

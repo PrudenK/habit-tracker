@@ -3,31 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/menu_configuraciones"
-        android:title="Configuraciones"
+        android:title="@string/configuraciones"
         android:icon="@drawable/ic_configuraciones"
         />
 
     <item
         android:id="@+id/menu_agregar"
-        android:title="Agregar hábito"
+        android:title="@string/agregar_habito"
         android:icon="@drawable/ic_add"
         />
 
     <item
         android:id="@+id/menu_etiquetas"
-        android:title="Por etiquetas"
+        android:title="@string/por_etiquetas"
         android:icon="@drawable/ic_etiqueta"
         />
 
     <item
         android:id="@+id/mini_habitos"
-        android:title="Mini hábitos"
+        android:title="@string/mini_habitos"
         android:icon="@drawable/ic_minihabitos"
         />
 
     <item
         android:id="@+id/menu_tutorial"
-        android:title="Ver tutorial"
+        android:title="@string/ver_tutorial"
         android:icon="@drawable/ic_tutorial"
         />
 

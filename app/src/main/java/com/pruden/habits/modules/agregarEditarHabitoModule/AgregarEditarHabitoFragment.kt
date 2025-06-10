@@ -45,9 +45,17 @@ class AgregarEditarHabitoFragment : Fragment() {
     private var editarNumerico = false
     private var habitoEditar: Habito? = null
 
+    // Mapa para traducir valores del Spinner a valores internos en español
+    private val spinnerValueMap: Map<String, String> by lazy {
+        mapOf(
+            getString(R.string.spinner_mas_de) to "Mas de",
+            getString(R.string.spinner_igual_a) to "Igual a",
+            getString(R.string.spinner_menos_de) to "Menos de"
+        )
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
 
         val nombreHabito = arguments?.getString("nombre")
         habitoEditar = listaHabitos.find { it.nombre == nombreHabito }
@@ -114,7 +122,7 @@ class AgregarEditarHabitoFragment : Fragment() {
             binding.numerico.visibility = View.GONE
             binding.booleano.visibility = View.GONE
             binding.ordenar.visibility = View.GONE
-            binding.tituloToolBar.text = "Editar hábito"
+            binding.tituloToolBar.text = getString(R.string.editar_habito)
             cargarValoresDelHabitoEditarEnLaUI()
         }
     }
@@ -162,9 +170,8 @@ class AgregarEditarHabitoFragment : Fragment() {
 
                     if(numerico){
                         nombre = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_numerico).text.toString()
-                        val valorSpinner = vistaDinamicaActual.findViewById<Spinner>(R.id.spinner_opciones).selectedItem.toString()
-
-
+                        val valorSpinnerTraducido = vistaDinamicaActual.findViewById<Spinner>(R.id.spinner_opciones).selectedItem.toString()
+                        val valorSpinner = spinnerValueMap[valorSpinnerTraducido] ?: valorSpinnerTraducido
 
                         val habitoNumerico = HabitoEntity(
                             nombre = nombre,
@@ -187,18 +194,18 @@ class AgregarEditarHabitoFragment : Fragment() {
 
                     if(nombreRepetido){
                         if(campoFecha){
-                            Snackbar.make(binding.root, "La palabra fecha esta reservada", Snackbar.LENGTH_SHORT).show()
+                            Snackbar.make(binding.root, getString(R.string.error_palabra_fecha_reservada), Snackbar.LENGTH_SHORT).show()
                         }else{
-                            Snackbar.make(binding.root, "Ya tienes un hábito con ese nombre", Snackbar.LENGTH_SHORT).show()
+                            Snackbar.make(binding.root, getString(R.string.error_habito_duplicado), Snackbar.LENGTH_SHORT).show()
                         }
                     }else{
                         if(editar){
                             nombresDeHabitosDB.remove(nombre)
 
-                            Snackbar.make(binding.root, "Hábito editado con éxito", Snackbar.LENGTH_SHORT).show()
+                            Snackbar.make(binding.root, getString(R.string.exito_habito_editado), Snackbar.LENGTH_SHORT).show()
 
                         }else{
-                            
+
                             binding.progressBarAgregar.visibility = View.VISIBLE
                             vistaDinamicaActual.visibility = View.GONE
                             binding.ordenar.visibility = View.GONE
@@ -207,7 +214,7 @@ class AgregarEditarHabitoFragment : Fragment() {
                             binding.agregandoHabito.visibility = View.VISIBLE
 
                             fragmentViewModel.agregarRegistrosHabito(nombre){
-                                Snackbar.make(binding.root, "Hábito añadido con éxito", Snackbar.LENGTH_SHORT).show()
+                                Snackbar.make(binding.root, getString(R.string.exito_habito_anadido), Snackbar.LENGTH_SHORT).show()
                                 binding.progressBarAgregar.visibility = View.GONE
                                 binding.agregandoHabito.visibility = View.GONE
                                 parentFragmentManager.setFragmentResult("actualizar_habitos_main", Bundle())
@@ -268,7 +275,11 @@ class AgregarEditarHabitoFragment : Fragment() {
         if (!esNumerico) return
 
         val spinner: Spinner = vistaDinamica.findViewById(R.id.spinner_opciones)
-        val opciones = listOf("Más de", "Igual a", "Menos de")
+        val opciones = listOf(
+            getString(R.string.spinner_mas_de),
+            getString(R.string.spinner_igual_a),
+            getString(R.string.spinner_menos_de)
+        )
         val adaptador = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, opciones)
         adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adaptador
@@ -281,7 +292,6 @@ class AgregarEditarHabitoFragment : Fragment() {
         capaInterna.setTint(ContextCompat.getColor(requireContext(), R.color.white))
 
         imagenColorNum.setOnClickListener{
-
             dialogoColorPicker(requireContext()) { color ->
                 colorHabito = color
                 capaInterna.setTint(color)
@@ -293,7 +303,7 @@ class AgregarEditarHabitoFragment : Fragment() {
         var valido = true
         for(textField in campos){
             if(textField.editText?.text.toString().trim().isEmpty()){
-                textField.error = "Error"
+                textField.error = getString(R.string.error)
                 textField.editText?.requestFocus()
                 valido = false
             }else {
@@ -302,12 +312,12 @@ class AgregarEditarHabitoFragment : Fragment() {
         }
 
         if(!valido){
-            Snackbar.make(binding.root, "No pueden haber campos en blanco", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(binding.root, getString(R.string.error_campos_vacios), Snackbar.LENGTH_SHORT).show()
         }
 
         if(valido){
             if(colorHabito == R.color.white){
-                Snackbar.make(binding.root, "El blanco no es un color", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(binding.root, getString(R.string.error_color_invalido), Snackbar.LENGTH_SHORT).show()
                 valido = false
             }
         }
@@ -330,15 +340,15 @@ class AgregarEditarHabitoFragment : Fragment() {
             val objetivoDiarioEditText = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_objetivo)
 
             val condicionSpinner = habitoEditar!!.objetivo!!.split("@")[1]
-            val posicion = (spinner.adapter as? ArrayAdapter<String>)?.getPosition(condicionSpinner) ?: 0
+            // Mapear el valor interno en español al valor traducido para el Spinner
+            val condicionTraducida = spinnerValueMap.entries.find { it.value == condicionSpinner }?.key ?: condicionSpinner
+            val posicion = (spinner.adapter as? ArrayAdapter<String>)?.getPosition(condicionTraducida) ?: 0
 
             spinner.setSelection(posicion)
 
             nombreEditText.setText(habitoEditar!!.nombre)
             unidadEditText.setText(habitoEditar!!.unidad)
-            nombreEditText.setText(habitoEditar!!.nombre)
             objetivoDiarioEditText.setText(habitoEditar!!.objetivo!!.split("@")[0])
-
         }else{
             val nombreEditText = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_boolean)
             nombreEditText.setText(habitoEditar!!.nombre)

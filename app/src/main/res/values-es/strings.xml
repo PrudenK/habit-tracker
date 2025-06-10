@@ -41,7 +41,21 @@
     <string name="elige_el_tipo_de_habito">Elige el tipo de hábito</string>
     <string name="numerico">Numérico</string>
     <string name="booleano">Si o No</string>
-
+    <string name="editar_habito">Editar hábito</string>
+    <string name="error_palabra_fecha_reservada">La palabra fecha está reservada</string>
+    <string name="error_habito_duplicado">Ya tienes un hábito con ese nombre</string>
+    <string name="exito_habito_editado">Hábito editado con éxito</string>
+    <string name="exito_habito_anadido">Hábito añadido con éxito</string>
+    <string name="error_campos_vacios">No pueden haber campos en blanco</string>
+    <string name="error_color_invalido">El blanco no es un color</string>
+    <string name="spinner_mas_de">Más de</string>
+    <string name="spinner_igual_a">Igual a</string>
+    <string name="spinner_menos_de">Menos de</string>
+    <string name="escribe_el_nombre_de_tu_habito">Escribe el nombre de tu hábito.</string>
+    <string name="elige_el_color_del_habito">Elige el color del hábito</string>
+    <string name="unidades_agregra_habito">Unidades (ej. páginas, km, horas…)</string>
+    <string name="tu_objetivo_diario">Tú objetivo diário</string>
+    <string name="error">Error</string>
 
     <!-- Estadísticas -->
     <string name="objetivo_semanal">Objetivo semanal</string>
@@ -57,6 +71,9 @@
 
     <!-- Por etiquetas -->
     <string name="por_etiquetas">Por etiquetas</string>
+
+    <!-- Menu de opciones -->
+    <string name="ver_tutorial">Ver tutorial</string>
 
 
 </resources>
