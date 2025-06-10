@@ -24,12 +24,19 @@ fun cargarCategoriasDesdeViewModel(
         recyclerCategorias.adapter?.notifyDataSetChanged()
         marcarCategoriasCargadas()
 
+        var encontrada = false
+
         for (cat in categoriasActualizadas) {
             if (cat.seleccionada) {
                 setCategoriaSeleccionada(cat)
                 setTextoCabecera(cat.nombre)
+                encontrada = true
                 break
             }
+        }
+
+        if(!encontrada){
+            setCategoriaSeleccionada(null)
         }
 
         intentarCargarMiniHabitos()
@@ -59,12 +66,14 @@ fun intentarCargarMiniHabitos(
     adapter: MiniHabitoAdapter,
     recyclerView: RecyclerView
 ) {
-    if (categoriasCargadas && miniHabitosCargados && categoriaSeleccionada != null && miniHabitosActualizadosGlobal != null) {
+    if (categoriasCargadas && miniHabitosCargados && categoriaSeleccionada != null && miniHabitosActualizadosGlobal != null && categoriaSeleccionada.seleccionada) {
         miniHabitos.clear()
         miniHabitos.addAll(
             miniHabitosActualizadosGlobal.filter { it.categoria == categoriaSeleccionada.nombre }
         )
         adapter.notifyDataSetChanged()
         recyclerView.visibility = View.VISIBLE
+    }else{
+        recyclerView.visibility = View.GONE
     }
 }
