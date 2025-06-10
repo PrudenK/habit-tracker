@@ -35,8 +35,8 @@ fun dialogoAgregarMiniHabito(
     val btnGuardar = dialogoView.findViewById<Button>(R.id.button_guardar_agreagr_etiqueta)
 
     val nombreCategoria = dialogoView.findViewById<TextInputLayout>(R.id.til_nombre_etiqueta)
-    nombreCategoria.hint = "Nombre del mini hábito"
-
+    nombreCategoria.hint = context.getString(R.string.nombre_del_mini_habito)
+    
     val contenedorPosicion = dialogoView.findViewById<ConstraintLayout>(R.id.contenedor_posicion_mod_etiqueta)
     contenedorPosicion.visibility = View.GONE
     val imgColorPicker = dialogoView.findViewById<ImageView>(R.id.img_color_etiqueta_num)
@@ -66,7 +66,7 @@ fun dialogoAgregarMiniHabito(
         miniHabitos.addAll(miniHabitosViewModel.miniHabitos.value!!)
         recyclerMiniHabitos.adapter?.notifyDataSetChanged()
 
-        makeToast("Mini hábito: ${editeTextNombre.text} creada con éxito", context)
+        makeToast(context.getString(R.string.mini_habito_creado_con_exito, editeTextNombre.text), context)
         dialogo.dismiss()
     }
 

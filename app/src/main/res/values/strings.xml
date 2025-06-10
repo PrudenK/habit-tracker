@@ -98,6 +98,23 @@
     <!-- Mini hábitos -->
     <string name="mini_habitos">Mini habits</string>
     <string name="selecciona_una_categoria">Select a category</string>
+    <string name="borrar_mini_habito">Are you sure you want to delete this mini habit?</string>
+    <string name="borrar_categoria_mini_habito">Are you sure you want to delete this category?</string>
+    <string name="nombre_de_la_categoria">Category name</string>
+    <string name="ponle_un_color_a_la_categoria">Choose a color for the category</string>
+    <string name="guardar">Save</string>
+    <string name="error_nombre_vacio">Name cannot be empty</string>
+    <string name="error_nombre_existente">This category name already exists</string>
+    <string name="error_palabra_reservada">The word \'fecha\' is reserved</string>
+    <string name="nombre_del_mini_habito">Name of the mini habit</string>
+    <string name="mini_habito_creado_con_exito">Mini habit: %1$s created successfully</string>
+    <string name="categoria_creada_exito">Category: %1$s created successfully</string>
+
+
+
+
+
+
 
     <!-- Por etiquetas -->
     <string name="por_etiquetas">Filter by tags</string>

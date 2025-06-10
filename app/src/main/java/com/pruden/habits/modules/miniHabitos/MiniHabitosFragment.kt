@@ -185,14 +185,14 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
     }
 
     override fun onBorrarMiniHabito(miniHabitoEntity: MiniHabitoEntity) {
-        dialogoBorrarElementoComun("¿Estás seguro de qué quieres borrar este mini hábito?",
+        dialogoBorrarElementoComun(getString(R.string.borrar_mini_habito),
             requireContext(), resources){
             miniHabitosViewModel.eliminarMiniHabito(miniHabitoEntity)
         }
     }
 
     override fun onLongClickCategoria(categoriaEntity: CategoriaEntity) {
-        dialogoBorrarElementoComun("¿Estás seguro de qué quieres borrar esta categoría?",
+        dialogoBorrarElementoComun(getString(R.string.borrar_categoria_mini_habito),
             requireContext(), resources){
 
             CoroutineScope(Dispatchers.Main).launch {
@@ -202,7 +202,7 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
                     delay(50)
                     categoriaSeleccionada = null
 
-                    binding.nombreMiniHabito.text = "Selecciona una categoría"
+                    binding.nombreMiniHabito.text = getString(R.string.selecciona_una_categoria)
 
                     recyclerMiniHabitos.visibility = View.GONE
                 }

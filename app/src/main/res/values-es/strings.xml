@@ -66,7 +66,7 @@
     <string name="exito_habito_editado">Hábito editado con éxito</string>
     <string name="exito_habito_anadido">Hábito añadido con éxito</string>
     <string name="error_campos_vacios">No pueden haber campos en blanco</string>
-    <string name="error_color_invalido">El blanco no es un color</string>
+    <string name="error_color_invalido">El blanco no es un color válido</string>
     <string name="spinner_mas_de">Más de</string>
     <string name="spinner_igual_a">Igual a</string>
     <string name="spinner_menos_de">Menos de</string>
@@ -97,6 +97,26 @@
     <!-- Mini hábitos -->
     <string name="mini_habitos">Mini hábitos</string>
     <string name="selecciona_una_categoria">Selecciona una categoría</string>
+    <string name="borrar_mini_habito">¿Estás seguro de qué quieres borrar este mini hábito?</string>
+    <string name="borrar_categoria_mini_habito">¿Estás seguro de qué quieres borrar esta categoría?</string>
+    <string name="nombre_de_la_categoria">Nombre de la categoría</string>
+    <string name="ponle_un_color_a_la_categoria">Ponle un color a la categoría</string>
+    <string name="guardar">Guardar</string>
+    <string name="error_nombre_vacio">No puedes dejar el nombre en blanco</string>
+    <string name="error_nombre_existente">Ese nombre de categoría ya existe</string>
+    <string name="error_palabra_reservada">La palabra \'fecha\' está reservada</string>
+    <string name="nombre_del_mini_habito">Nombre del mini hábito</string>
+    <string name="mini_habito_creado_con_exito">Mini hábito: %1$s creado con éxito</string>
+    <string name="categoria_creada_exito">Categoría: %1$s creada con éxito</string>
+
+
+
+
+
+
+
+
+
 
     <!-- Por etiquetas -->
     <string name="por_etiquetas">Por etiquetas</string>

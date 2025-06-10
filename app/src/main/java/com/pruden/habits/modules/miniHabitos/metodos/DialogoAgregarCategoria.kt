@@ -40,10 +40,10 @@ fun dialogoAgregarCategoria(
     val btnGuardar = dialogoView.findViewById<Button>(R.id.button_guardar_agreagr_etiqueta)
 
     val nombreCategoria = dialogoView.findViewById<TextInputLayout>(R.id.til_nombre_etiqueta)
-    nombreCategoria.hint = "Nombre de la categoría"
+    nombreCategoria.hint = context.getString(R.string.nombre_de_la_categoria)
 
     val tituloColor = dialogoView.findViewById<TextView>(R.id.titulo_color_etiqueta)
-    tituloColor.text = "Ponle un color a la categoría"
+    tituloColor.text = context.getString(R.string.ponle_un_color_a_la_categoria)
 
     val contenedorPosicion = dialogoView.findViewById<ConstraintLayout>(R.id.contenedor_posicion_mod_etiqueta)
     contenedorPosicion.visibility = View.GONE
@@ -72,16 +72,16 @@ fun dialogoAgregarCategoria(
         val nombreCat = editeTextNombre.text.toString()
 
         if (nombreCat.isBlank()) {
-            makeToast("No puedes dejar el nombre en blanco", context)
+            makeToast(context.getString(R.string.error_nombre_vacio), context)
         }
         else if (miniHabitosViewModel.categorias.value!!.any { it.nombre.equals(nombreCat, ignoreCase = true) }) {
-            makeToast("Ese nombre de categoría ya existe", context)
+            makeToast(context.getString(R.string.error_nombre_existente), context)
         }
         else if (nombreCat.equals("fecha", ignoreCase = true)) {
-            makeToast("La palabra 'fecha' está reservada", context)
+            makeToast(context.getString(R.string.error_palabra_reservada), context)
         }
         else if (colorCategoria == -1) {
-            makeToast("El blanco no es un color válido", context)
+            makeToast(context.getString(R.string.error_color_invalido), context)
         }
         else {
             val categoria = CategoriaEntity(
@@ -99,7 +99,7 @@ fun dialogoAgregarCategoria(
 
             onActualizarUI(categoria)
 
-            makeToast("Categoría: $nombreCat creada con éxito", context)
+            makeToast(context.getString(R.string.categoria_creada_exito, nombreCat), context)
             dialogo.dismiss()
         }
     }
