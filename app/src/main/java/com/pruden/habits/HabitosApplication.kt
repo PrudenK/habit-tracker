@@ -36,7 +36,7 @@ class HabitosApplication : Application(){
 
         contexto = applicationContext
 
-        this.deleteDatabase("HabitosDatabase")
+        //this.deleteDatabase("HabitosDatabase")
 
         database = Room.databaseBuilder(
             this,

@@ -93,7 +93,86 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Configuración general"
+                    android:text="Tema"
+                    android:textSize="@dimen/text_24"
+                    android:paddingBottom="8dp"
+                    android:textColor="@color/gray_color"
+                    />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    >
+
+                    <TextView
+                        android:id="@+id/texto_tema"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Tema oscuro"
+                        android:textSize="@dimen/text_16"
+                        android:textColor="@color/click_button" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:id="@+id/switch_tema_oscuro"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:checked="false"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/texto_tema"
+                        android:layout_marginStart="12dp"
+                        />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"
+                    android:layout_marginVertical="16dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Idioma"
+                    android:textSize="@dimen/text_24"
+                    android:paddingBottom="8dp"
+                    android:textColor="@color/gray_color"
+                    />
+
+                <TextView
+                    android:id="@+id/cambiar_idioma"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Idioma actual: Español"
+                    android:textSize="@dimen/text_16"
+                    android:paddingVertical="8dp"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:background="?attr/selectableItemBackground"
+                    android:textColor="@color/click_button"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"
+                    android:layout_marginVertical="16dp" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fechas"
                     android:textSize="@dimen/text_24"
                     android:paddingBottom="8dp"
                     android:textColor="@color/gray_color"
@@ -112,12 +191,27 @@
                     android:textColor="@color/click_button"
                     />
 
+                <TextView
+                    android:id="@+id/formato_de_las_fechas"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Formato actual de las fechas: yyyy-mm-dd"
+                    android:textSize="@dimen/text_16"
+                    android:paddingVertical="8dp"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:background="?attr/selectableItemBackground"
+                    android:textColor="@color/click_button"
+                    />
+
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@android:color/darker_gray"
                     android:layout_marginVertical="16dp" />
+
+
 
                 <TextView
                     android:layout_width="wrap_content"
