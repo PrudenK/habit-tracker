@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Habits</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Fragment Configuraciones -->
+    <string name="configuraciones">Configuraciones</string>
+    <string name="tema">Tema</string>
+    <string name="tema_oscuro">Tema oscuro</string>
+    <string name="idioma">Idioma</string>
+    <string name="idioma_actual">Idioma actual: Español</string>
+    <string name="fechas">Fechas</string>
+    <string name="fecha_inicio_de_los_registros">Fecha inicio de los registros: %1$s</string>
+    <string name="formato_actual_de_las_fechas">Formato actual de las fechas: yyyy-mm-dd</string>
+    <string name="exportar_datos_a_csv">Exportar datos a CSV</string>
+    <string name="exportar_todos_los_datos_a_csv">Exportar todos los datos a CSV</string>
+    <string name="exportar_solo_los_habitos">Exportar solo los hábitos</string>
+    <string name="exportar_solo_los_registros">Exportar solo los registros</string>
+    <string name="exportar_solo_las_etiquetas">Exportar solo las etiquetas</string>
+    <string name="copia_de_seguridad">Copia de seguridad</string>
+    <string name="exportar_copia_de_seguridad">Exportar copia de seguridad (Importable de nuevo)</string>
+    <string name="importar_copia_de_seguridad">Importar copia de seguridad</string>
+    <string name="borrar_datos">Borrar datos</string>
+    <string name="borrar_todos_los_datos">Borrar todos los datos</string>
+    <string name="borrar_todos_los_habitos">Borrar todos los hábitos</string>
+    <string name="borrar_solo_los_registros">Borrar solo los registros</string>
+    <string name="borrar_todas_las_etiquetas">Borrar todas las etiquetas</string>
+
+    <!-- Main -->
+    <string name="anterior">Anterior</string>
+    <string name="pagina_num">Página %1$s</string>
+    <string name="siguiente">Siguiente</string>
+
+    <!-- Archivados -->
+    <string name="archivados">Archivados</string>
+
+    <!-- Agregar hábito -->
+    <string name="agregando_tu_habito">¡Agregando tu hábito…!</string>
+    <string name="agregar_habito">Agregar hábito</string>
+    <string name="elige_el_tipo_de_habito">Elige el tipo de hábito</string>
+    <string name="numerico">Numérico</string>
+    <string name="booleano">Si o No</string>
+
+
+    <!-- Estadísticas -->
+    <string name="objetivo_semanal">Objetivo semanal</string>
+    <string name="objetivo_mensual">Objetivo mensual</string>
+    <string name="objetivo_anual">Objetivo anual</string>
+    <string name="calendario_de_objetivos">Calendario de objetivos</string>
+    <string name="racha_actual">Racha actual</string>
+    <string name="mejores_rachas">Mejores rachas</string>
+
+    <!-- Mini hábitos -->
+    <string name="mini_habitos">Mini hábitos</string>
+    <string name="selecciona_una_categoria">Selecciona una categoría</string>
+
+    <!-- Por etiquetas -->
+    <string name="por_etiquetas">Por etiquetas</string>
+
+
+</resources>

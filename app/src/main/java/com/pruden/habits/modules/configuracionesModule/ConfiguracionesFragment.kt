@@ -26,6 +26,7 @@ import com.pruden.habits.modules.configuracionesModule.metodos.importarDatos.lee
 import com.pruden.habits.databinding.FragmentConfiguracionesBinding
 import com.pruden.habits.modules.configuracionesModule.metodos.borrarDatos.borrarTodasLasEtiquetasDialog
 import com.pruden.habits.modules.configuracionesModule.metodos.borrarDatos.borrarTodosLosDatos
+import com.pruden.habits.modules.configuracionesModule.metodos.idiomas.dialogoCambiarIdiomas
 import com.pruden.habits.modules.configuracionesModule.metodos.modifcarFechaInicio.mostrarDatePicker
 import com.pruden.habits.modules.configuracionesModule.viewModel.ConfiguracionesViewModel
 
@@ -36,7 +37,6 @@ class ConfiguracionesFragment : Fragment() {
     private lateinit var binding : FragmentConfiguracionesBinding
     private lateinit var main: MainActivity
 
-    //MVVM
     private lateinit var viewModel: ConfiguracionesViewModel
 
     private var fechasCambiadas = false
@@ -67,6 +67,7 @@ class ConfiguracionesFragment : Fragment() {
         datePickerFechaInicio()
         borrarTodasLasEtiquetas()
         exportarSoloLasEtiquetas()
+        cambiarIdioma()
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             if (fechasCambiadas) {
@@ -76,7 +77,7 @@ class ConfiguracionesFragment : Fragment() {
             activity?.onBackPressed()
         }
 
-        binding.fechaIncioRegistrosHabitos.text = "Fecha inicio de los registros: ${Constantes.FECHA_INICIO}"
+        binding.fechaIncioRegistrosHabitos.text = getString(R.string.fecha_inicio_de_los_registros, Constantes.FECHA_INICIO)
 
         return binding.root
     }
@@ -188,6 +189,12 @@ class ConfiguracionesFragment : Fragment() {
     private fun exportarSoloLasEtiquetas(){
         binding.exportarSoloLasEtiquetasFragment.setOnClickListener {
             viewModel.exportarSolasEtiquetasCSV(requireContext())
+        }
+    }
+
+    private fun cambiarIdioma(){
+        binding.cambiarIdioma.setOnClickListener {
+            dialogoCambiarIdiomas(binding, requireContext(), requireActivity())
         }
     }
 

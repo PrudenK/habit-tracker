@@ -1,7 +1,6 @@
 package com.pruden.habits.modules.etiquetasModule
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -37,7 +36,6 @@ import com.pruden.habits.modules.etiquetasModule.adapter.OnLongClickEtiqueta
 import com.pruden.habits.modules.etiquetasModule.metodos.dialogGestionarEtiquetas
 import com.pruden.habits.modules.etiquetasModule.metodos.dialogoModificarEtiqueta
 import com.pruden.habits.modules.etiquetasModule.viewModel.PorEtiquetasViewModel
-import com.pruden.habits.modules.mainModule.MainActivity
 import com.pruden.habits.modules.mainModule.metodos.dialogoAgregarEtiqueta
 
 class PorEtiquetasFragment : Fragment(), OnClickHabito, OnLongClickEtiqueta {
@@ -156,9 +154,6 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito, OnLongClickEtiqueta {
         mainViewModel.getAllHabitosConDatos().observe(viewLifecycleOwner) { lista ->
             if (!isAdded || activity == null) return@observe
 
-            Log.d("holaaa45", lista[0].listaEtiquetas.toString())
-
-
             listaArchivados = lista.toMutableList()
             binding.progressBarEtiquetas.visibility = View.VISIBLE
 
@@ -195,13 +190,6 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito, OnLongClickEtiqueta {
             }else{
                 listaHabitosFiltrados = nuevaLista.sortedBy { it.posicion }.toMutableList()
             }
-
-            Log.d("Listaaa", listaHabitosEtiquetas.map{it.nombreEtiquta}.toString())
-
-            for(hab in listaHabitosFiltrados){
-                Log.d("HolaaaSize", hab.listaValores.size.toString() +" "+ hab.nombre)
-            }
-
 
             binding.progressBarEtiquetas.visibility = View.GONE
         }
@@ -268,7 +256,7 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito, OnLongClickEtiqueta {
 
         habitosAdapter.submitList(subLista)
 
-        binding.tvPagina.text = "Página ${paginaActual + 1}"
+        binding.tvPagina.text = getString(R.string.pagina_num, "${paginaActual+1}")
     }
 
 

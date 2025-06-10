@@ -3,17 +3,14 @@ package com.pruden.habits
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import android.graphics.Color
 import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.pruden.habits.common.Constantes
 import com.pruden.habits.common.baseDatos.HabitosDatabase
-import com.pruden.habits.common.clases.auxClass.HabitosEtiqueta
 import com.pruden.habits.common.clases.data.Fecha
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
-import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.common.metodos.fechas.generateLastDates
 
 class HabitosApplication : Application(){
@@ -52,7 +49,6 @@ class HabitosApplication : Application(){
         sharedConfiguraciones = getSharedPreferences(Constantes.SHARED_CONFIGURACIONES, MODE_PRIVATE)
 
         listaFechas = generateLastDates()
-
     }
 
     val MIGRATION_1_2 = object : Migration(1, 2) {

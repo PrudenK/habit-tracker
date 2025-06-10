@@ -1,5 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Habits</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    <!-- Fragment Configuraciones -->
+    <string name="configuraciones">Settings</string>
+    <string name="tema">Theme</string>
+    <string name="tema_oscuro">Dark theme</string>
+    <string name="idioma">Language</string>
+    <string name="idioma_actual">Current language: English</string>
+    <string name="fechas">Dates</string>
+    <string name="fecha_inicio_de_los_registros">Start date of the records: %1$s</string>
+    <string name="formato_actual_de_las_fechas">Current date format: yyyy-mm-dd</string>
+    <string name="exportar_datos_a_csv">Export data to CSV</string>
+    <string name="exportar_todos_los_datos_a_csv">Export all data to CSV</string>
+    <string name="exportar_solo_los_habitos">Export only habits</string>
+    <string name="exportar_solo_los_registros">Export only records</string>
+    <string name="exportar_solo_las_etiquetas">Export only tags</string>
+    <string name="copia_de_seguridad">Backup</string>
+    <string name="exportar_copia_de_seguridad">Export backup (Importable again)</string>
+    <string name="importar_copia_de_seguridad">Import backup</string>
+    <string name="borrar_datos">Delete data</string>
+    <string name="borrar_todos_los_datos">Delete all data</string>
+    <string name="borrar_todos_los_habitos">Delete all habits</string>
+    <string name="borrar_solo_los_registros">Delete only records</string>
+    <string name="borrar_todas_las_etiquetas">Delete all tags</string>
+
+    <!-- Main -->
+    <string name="anterior">Previous</string>
+    <string name="pagina_num">Page %1$s</string>
+    <string name="siguiente">Next</string>
+
+    <!-- Archivados -->
+    <string name="archivados">Archived</string>
+
+    <!-- Agregar hábito -->
+    <string name="agregando_tu_habito">Adding your habit…!</string>
+    <string name="agregar_habito">Add habit</string>
+    <string name="elige_el_tipo_de_habito">Choose the type of habit</string>
+    <string name="numerico">Numeric</string>
+    <string name="booleano">Yes or No</string>
+
+    <!-- Estadísticas -->
+    <string name="objetivo_semanal">Weekly goal</string>
+    <string name="objetivo_mensual">Monthly goal</string>
+    <string name="objetivo_anual">Annual goal</string>
+    <string name="calendario_de_objetivos">Goal calendar</string>
+    <string name="racha_actual">Current streak</string>
+    <string name="mejores_rachas">Best streaks</string>
+
+    <!-- Mini hábitos -->
+    <string name="mini_habitos">Mini habits</string>
+    <string name="selecciona_una_categoria">Select a category</string>
+
+    <!-- Por etiquetas -->
+    <string name="por_etiquetas">Filter by tags</string>
+
+
 </resources>

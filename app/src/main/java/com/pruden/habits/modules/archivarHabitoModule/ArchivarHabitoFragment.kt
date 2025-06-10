@@ -176,7 +176,7 @@ class ArchivarHabitoFragment : Fragment(), OnClickHabito {
 
         habitosAdapter.submitList(subLista)
 
-        binding.tvPagina.text = "Página ${paginaActual + 1}"
+        binding.tvPagina.text = getString(R.string.pagina_num, "${paginaActual+1}")
     }
 
 

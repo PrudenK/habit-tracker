@@ -1,6 +1,8 @@
 package com.pruden.habits.modules.mainModule
 
+import android.content.Context
 import android.content.pm.ActivityInfo
+import android.content.res.Configuration
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -19,6 +21,7 @@ import com.pruden.habits.HabitosApplication.Companion.listaHabitos
 import com.pruden.habits.HabitosApplication.Companion.listaHabitosEtiquetas
 import com.pruden.habits.HabitosApplication.Companion.tamanoPagina
 import com.pruden.habits.R
+import com.pruden.habits.common.Constantes
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.modules.mainModule.adapters.FechaAdapter
@@ -39,6 +42,7 @@ import com.pruden.habits.modules.mainModule.metodos.dialogoOnLongClickHabito
 import com.pruden.habits.modules.mainModule.viewModel.MainViewModel
 import com.pruden.habits.modules.etiquetasModule.PorEtiquetasFragment
 import com.pruden.habits.modules.miniHabitos.MiniHabitosFragment
+import java.util.Locale
 
 
 class MainActivity : AppCompatActivity(), OnClickHabito {
@@ -122,10 +126,6 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
 
     private fun cargarLiveDataHabitos(){
         mainViewModel.getAllHabitosConDatos().observe(this) { nuevaLista ->
-            for(hab in listaHabitos){
-                Log.d("HolaaaSizeMain", hab.listaValores.size.toString() +" "+ hab.nombre)
-            }
-
 
             listaHabitos = nuevaLista.toMutableList().sortedBy { it.posicion }.toMutableList()
 
@@ -141,10 +141,6 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
                 listaCompletaHabitos = listaFiltrada.toMutableList()
             }
 
-            for(hab in listaHabitos){
-                Log.d("HolaaaSizeMain", hab.listaValores.size.toString() +" "+ hab.nombre)
-            }
-
             mBinding.progressBar.visibility = View.GONE
         }
     }
@@ -157,7 +153,6 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
             }
             listaHabitosEtiquetas.clear()
             listaHabitosEtiquetas.addAll(nuevaLista)
-            Log.d("Listaaa1234", nuevaLista.map { it.nombreEtiquta+" "+it.seleccionada }.toString())
         }
     }
 
@@ -179,7 +174,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
 
         habitosAdapter.submitList(subLista)
 
-        mBinding.tvPagina.text = "Página ${paginaActual + 1}"
+        mBinding.tvPagina.text = getString(R.string.pagina_num, "${paginaActual+1}")
     }
 
     private fun configurarRecyclerHabitos() {
@@ -299,5 +294,26 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
             }
             popupMenu.show()
         }
+    }
+
+
+    // PARA CAMBIAR LOS IDIOMAS
+
+    override fun attachBaseContext(newBase: Context) {
+        val prefs = newBase.getSharedPreferences(Constantes.SHARED_CONFIGURACIONES, Context.MODE_PRIVATE)
+        val idioma = prefs.getString("idioma", "es") ?: "es"
+        val contextoActualizado = newBase.aplicarIdioma(idioma)
+        super.attachBaseContext(contextoActualizado)
+    }
+
+    fun Context.aplicarIdioma(idioma: String): Context {
+        val locale = Locale(idioma)
+        Locale.setDefault(locale)
+
+        val config = Configuration(resources.configuration)
+        config.setLocale(locale)
+        config.setLayoutDirection(locale)
+
+        return createConfigurationContext(config)
     }
 }
