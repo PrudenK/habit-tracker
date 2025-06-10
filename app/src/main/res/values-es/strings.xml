@@ -57,6 +57,7 @@
     <string name="advertencia">Advertencía</string>
     <string name="texto_advertencia_cambio_de_fechas">Si cambias la fecha de inicio de los hábitos se modificarán los hábitos de manera que la fecha más antigua será la que pongas. Si la nueva fecha es más antigua se añadirán registros pero si es más reciente borrarás los registros hasta esa fecha.</string>
     <string name="cambiar_fecha">Cambiar fecha</string>
+    <string name="no_selecciono_archivo">No se seleccionó ningún archivo</string>
 
     <!-- Main -->
     <string name="anterior">Anterior</string>

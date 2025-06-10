@@ -194,7 +194,7 @@ class ConfiguracionesFragment : Fragment() {
 
     private fun cambiarIdioma(){
         binding.cambiarIdioma.setOnClickListener {
-            dialogoCambiarIdiomas(binding, requireContext(), requireActivity(), resources)
+            dialogoCambiarIdiomas(requireContext(), requireActivity(), resources)
         }
     }
 
@@ -218,7 +218,7 @@ class ConfiguracionesFragment : Fragment() {
             if (uri != null) {
                 leerCsvDesdeUri(uri, requireContext(), viewModel, binding, main)
             } else {
-                Toast.makeText(requireContext(), "No se seleccionó ningún archivo", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), getString(R.string.no_selecciono_archivo), Toast.LENGTH_SHORT).show()
             }
         }
     }

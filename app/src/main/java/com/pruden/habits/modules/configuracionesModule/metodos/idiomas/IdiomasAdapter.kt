@@ -12,7 +12,7 @@ import com.pruden.habits.common.clases.data.Idioma
 import com.pruden.habits.databinding.ItemIdiomaBinding
 
 class IdiomasAdapter(
-
+    private val listener: OnClickIdioma
 ) : ListAdapter<Idioma, RecyclerView.ViewHolder>(IdiomaDiffCallback()) {
 
     inner class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
@@ -35,6 +35,10 @@ class IdiomasAdapter(
             binding.codigoIdioma.text = idioma.codigo
 
             binding.imagenIdioma.setImageResource(idioma.bandera)
+
+            binding.contenedorIdioma.setOnClickListener {
+                listener.onClickIdioma(idioma)
+            }
         }
     }
 

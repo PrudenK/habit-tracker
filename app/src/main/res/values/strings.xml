@@ -57,6 +57,7 @@
     <string name="advertencia">Warning</string>
     <string name="texto_advertencia_cambio_de_fechas">If you change the habits\' start date, all habits will be modified so the oldest date will be the one you set. If the new date is older, records will be added. If it\'s newer, records up to that date will be deleted.</string>
     <string name="cambiar_fecha">Change date</string>
+    <string name="no_selecciono_archivo">No file was selected</string>
 
     <!-- Main -->
     <string name="anterior">Previous</string>
