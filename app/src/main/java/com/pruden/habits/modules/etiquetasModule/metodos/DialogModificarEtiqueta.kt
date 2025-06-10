@@ -36,9 +36,9 @@ fun dialogoModificarEtiqueta(
     etiquetasAdapter: EtiquetasAdapter,
     onRecargarUI: () -> Unit
 ){
-    if(etiqueta.nombreEtiquta == "Todos" || etiqueta.nombreEtiquta == "Archivados"){
-        makeToast("¡Buen intento pero no!", context)
-    }else{
+    //if(etiqueta.nombreEtiquta == "Todos" || etiqueta.nombreEtiquta == "Archivados"){
+      //  makeToast(context.getString(R.string.buen_intento_pero_no), context)
+    //}else{
         val dialogViewOpciones = LayoutInflater.from(context).inflate(R.layout.dialog_borrar_habito, null)
         val dialogOpciones = AlertDialog.Builder(context).setView(dialogViewOpciones).create()
 
@@ -47,12 +47,12 @@ fun dialogoModificarEtiqueta(
         subtituloOpciones.textSize = 5f
 
         val tituloOpciones = dialogViewOpciones.findViewById<TextView>(R.id.dialog_titulo_borrar)
-        tituloOpciones.text = "¿Qué quieres hacer?"
+        tituloOpciones.text = context.getString(R.string.que_quieres_hacer)
 
         val buttonEditarOpciones = dialogViewOpciones.findViewById<Button>(R.id.button_cancelar_borrar_habito)
         val buttonBorrarOpciones = dialogViewOpciones.findViewById<Button>(R.id.button_acceptar_borrar_habito)
 
-        buttonEditarOpciones.text = "Editar"
+        buttonEditarOpciones.text = context.getString(R.string.editar)
 
         dialogOpciones.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
@@ -73,8 +73,11 @@ fun dialogoModificarEtiqueta(
             val tilNombreEtiqueta = dialogoView.findViewById<TextInputLayout>(R.id.til_nombre_etiqueta)
             tilNombreEtiqueta.defaultHintTextColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.lightGrayColor))
 
-            val editTextNombreEtiqeta = dialogoView.findViewById<TextInputEditText>(R.id.input_notas_numerico_calendar)
+            val editTextNombreEtiqeta = dialogoView.findViewById<TextInputEditText>(R.id.input_agregar_etiqueta)
             editTextNombreEtiqeta.setText(etiqueta.nombreEtiquta)
+
+            val tituloColorEtiqueta = dialogoView.findViewById<TextView>(R.id.titulo_color_etiqueta)
+            tituloColorEtiqueta.text = context.getString(R.string.elige_el_color_de_la_etiqueta)
 
 
             val imgColorPicker = dialogoView.findViewById<ImageView>(R.id.img_color_etiqueta_num)
@@ -166,14 +169,14 @@ fun dialogoModificarEtiqueta(
                             dialogo.dismiss()
                         }
                     }else{
-                        makeToast("Ese nombre de etiqueta ya existe", context)
+                        makeToast(context.getString(R.string.etiqueta_nombre_existe), context)
                     }
                 }else{
                     if(nombreEtiqueta.isBlank()){
-                        makeToast("No puedes dejar el nombre en blanco", context)
+                        makeToast(context.getString(R.string.etiqueta_nombre_vacio), context)
                     }else {
                         if(nombreEtiqueta.lowercase() == "fecha"){
-                            makeToast("La palabra fecha está reservada", context)
+                            makeToast(context.getString(R.string.etiqueta_nombre_reservado), context)
                         }else{
                             contenedor.visibility = View.GONE
                             progressBar.visibility = View.VISIBLE
@@ -207,7 +210,7 @@ fun dialogoModificarEtiqueta(
 
             dialogBorrar.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-            subtitulo.text = "¿Seguro qué quieres borrar la etiqueta?"
+            subtitulo.text = context.getString(R.string.seguro_que_quieres_borrar_la_etiqueta)
 
             buttonCancel.setOnClickListener {
                 dialogBorrar.dismiss()
@@ -249,5 +252,5 @@ fun dialogoModificarEtiqueta(
 
         ajustarDialogo(resources, dialogOpciones, 0.77f)
 
-    }
+    //}
 }

@@ -36,7 +36,7 @@ import com.pruden.habits.modules.etiquetasModule.adapter.OnLongClickEtiqueta
 import com.pruden.habits.modules.etiquetasModule.metodos.dialogGestionarEtiquetas
 import com.pruden.habits.modules.etiquetasModule.metodos.dialogoModificarEtiqueta
 import com.pruden.habits.modules.etiquetasModule.viewModel.PorEtiquetasViewModel
-import com.pruden.habits.modules.mainModule.metodos.dialogoAgregarEtiqueta
+import com.pruden.habits.modules.etiquetasModule.metodos.dialogoAgregarEtiqueta
 
 class PorEtiquetasFragment : Fragment(), OnClickHabito, OnLongClickEtiqueta {
     private lateinit var binding: FragmentPorEtiquetasBinding
@@ -159,12 +159,12 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito, OnLongClickEtiqueta {
 
             val listaEtiquetasSelecoinas = listaHabitosEtiquetas.filter { it.seleccionada }.map { it.nombreEtiquta }
 
-            val incluirTodos = "Todos" in listaEtiquetasSelecoinas
-            val incluirArchivados = "Archivados" in listaEtiquetasSelecoinas
+            //val incluirTodos = "Todos" in listaEtiquetasSelecoinas
+            //val incluirArchivados = "Archivados" in listaEtiquetasSelecoinas
 
             val nuevaLista = when {
-                incluirTodos && incluirArchivados -> listaArchivados.toMutableList()
-
+              //  incluirTodos && incluirArchivados -> listaArchivados.toMutableList()
+                /*
                 incluirTodos -> listaArchivados.filter { !it.archivado }.toMutableList().apply {
                     addAll(listaArchivados.filter { habito ->
                         habito.listaEtiquetas.any { it in listaEtiquetasSelecoinas - "Todos" }
@@ -177,6 +177,7 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito, OnLongClickEtiqueta {
                     })
                 }.distinct().toMutableList()
 
+                 */
                 listaEtiquetasSelecoinas.isEmpty() -> listaArchivados.toMutableList()
 
                 else -> listaArchivados.filter { habito ->

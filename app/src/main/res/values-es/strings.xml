@@ -109,17 +109,26 @@
     <string name="mini_habito_creado_con_exito">Mini hábito: %1$s creado con éxito</string>
     <string name="categoria_creada_exito">Categoría: %1$s creada con éxito</string>
 
-
-
-
-
-
-
-
-
-
     <!-- Por etiquetas -->
     <string name="por_etiquetas">Por etiquetas</string>
+    <string name="etiqueta_nombre_existe">Ese nombre de etiqueta ya existe</string>
+    <string name="etiqueta_nombre_vacio">No puedes dejar el nombre en blanco</string>
+    <string name="etiqueta_nombre_reservado">La palabra fecha está reservada</string>
+    <string name="etiqueta_color_blanco">El blanco no es un color</string>
+    <string name="etiqueta_creada_exito">Etiqueta: %1$s creada con éxito</string>
+    <string name="buen_intento_pero_no">¡Buen intento pero no!</string>
+    <string name="modificando_etiqueta">¡Modificando etiqueta…!</string>
+    <string name="nombre_de_la_etiqueta">Nombre de la etiqueta</string>
+    <string name="seguro_que_quieres_borrar_la_etiqueta">¿Seguro qué quieres borrar la etiqueta?</string>
+    <string name="elige_el_color_de_la_etiqueta">Elige el color de la etiqueta</string>
+    <string name="gestionar_etiquetas">Gestionar etiquetas</string>
+    <string name="todos">Todos</string>
+
+
+
+
+
+
 
     <!-- Menu de opciones -->
     <string name="ver_tutorial">Ver tutorial</string>

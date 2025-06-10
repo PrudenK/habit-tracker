@@ -155,9 +155,7 @@ import java.io.InputStreamReader
                             }
 
                             comienzanEtiquetas->{
-                                if(linea != Constantes.COMIENZAN_ETIQUETAS && linea != Constantes.CABECERA_ETIQUETAS_CSV
-                                    && !linea.startsWith("Todos") && !linea.startsWith( "Archivados")
-                                    ){
+                                if(linea != Constantes.COMIENZAN_ETIQUETAS && linea != Constantes.CABECERA_ETIQUETAS_CSV){
                                     val e = linea.split(",")
                                     listaEtiquetas.add(EtiquetaEntity(e[0], e[1].toInt(), e[2].toBoolean(), e[3].toInt()))
                                 }

@@ -3,9 +3,7 @@ package com.pruden.habits.modules.mainModule
 import android.content.Context
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
-import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.View
 import androidx.activity.enableEdgeToEdge
@@ -23,7 +21,6 @@ import com.pruden.habits.HabitosApplication.Companion.tamanoPagina
 import com.pruden.habits.R
 import com.pruden.habits.common.Constantes
 import com.pruden.habits.common.clases.data.Habito
-import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.modules.mainModule.adapters.FechaAdapter
 import com.pruden.habits.modules.mainModule.adapters.HabitoAdapter
 import com.pruden.habits.modules.mainModule.adapters.listeners.OnClickHabito
@@ -147,10 +144,16 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
 
     private fun cargarLiveDataEtiquetas(){
         mainViewModel.getAllEtiquetasConHabitos().observe(this){ nuevaLista ->
+
+
+            /*
             if(nuevaLista.isEmpty()){
                 mainViewModel.insertarEtiqueta(EtiquetaEntity("Todos", Color.parseColor("#4cecec"), true, 1))
                 mainViewModel.insertarEtiqueta(EtiquetaEntity("Archivados", Color.parseColor("#f7634f"), false, 2))
             }
+             */
+
+
             listaHabitosEtiquetas.clear()
             listaHabitosEtiquetas.addAll(nuevaLista)
         }
@@ -306,7 +309,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
         super.attachBaseContext(contextoActualizado)
     }
 
-    fun Context.aplicarIdioma(idioma: String): Context {
+    private fun Context.aplicarIdioma(idioma: String): Context {
         val locale = Locale(idioma)
         Locale.setDefault(locale)
 

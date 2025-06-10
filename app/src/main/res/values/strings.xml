@@ -110,14 +110,28 @@
     <string name="mini_habito_creado_con_exito">Mini habit: %1$s created successfully</string>
     <string name="categoria_creada_exito">Category: %1$s created successfully</string>
 
-
-
-
-
-
-
     <!-- Por etiquetas -->
     <string name="por_etiquetas">Filter by tags</string>
+    <string name="etiqueta_nombre_existe">That tag name already exists</string>
+    <string name="etiqueta_nombre_vacio">You cannot leave the name blank</string>
+    <string name="etiqueta_nombre_reservado">The word date is reserved</string>
+    <string name="etiqueta_color_blanco">White is not a color</string>
+    <string name="etiqueta_creada_exito">Tag: %1$s created successfully</string>
+    <string name="buen_intento_pero_no">Nice try but no!</string>
+    <string name="modificando_etiqueta">Modifying tag…!</string>
+    <string name="nombre_de_la_etiqueta">Tag name</string>
+    <string name="seguro_que_quieres_borrar_la_etiqueta">Are you sure you want to delete the tag?</string>
+    <string name="elige_el_color_de_la_etiqueta">Choose the tag color</string>
+    <string name="gestionar_etiquetas">Manage tags</string>
+    <string name="todos">All</string>
+
+
+
+
+
+
+
+
 
     <!-- Menu de opciones -->
     <string name="ver_tutorial">View tutorial</string>

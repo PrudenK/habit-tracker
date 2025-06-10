@@ -41,15 +41,12 @@ fun dialogGestionarEtiquetas(
         onRecargarUI()
     }
 
-    Log.d("Etiquetas", habito.listaEtiquetas.toString())
-
     recyclerEtiquetas.apply {
         adapter = etiquetaAdapter
         layoutManager = GridLayoutManager(context,2, GridLayoutManager.HORIZONTAL, false)
     }
 
-    val listaSoloEtiquetas = listaHabitosEtiquetas.filter { it.nombreEtiquta != "Todos"
-            && it.nombreEtiquta != "Archivados"}.toMutableList()
+    val listaSoloEtiquetas = listaHabitosEtiquetas.filter { it.nombreEtiquta != "Todos" && it.nombreEtiquta != "Archivados"}.toMutableList()
 
     etiquetaAdapter.submitList(listaSoloEtiquetas)
 
@@ -60,9 +57,6 @@ fun dialogGestionarEtiquetas(
     btnGuardar.setOnClickListener {
         etiquetaViewModel.actualizarEtiquetasDeUnHabito(habito,
             listaSoloEtiquetas.map { it.nombreEtiquta }.toMutableList(), listaEtiquetasDelHabito){
-
-            Log.d("Etiquetas", habito.listaEtiquetas.toString())
-
         }
         dialogo.dismiss()
 
