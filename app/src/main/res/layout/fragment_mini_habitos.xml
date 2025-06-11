@@ -63,7 +63,7 @@
             android:layout_marginTop="12dp"
             android:gravity="center_horizontal|center_vertical"
             android:text="@string/selecciona_una_categoria"
-            android:textColor="@color/lightGrayColor"
+            android:textColor="@color/tittle_color"
             android:textSize="@dimen/text_24"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -80,7 +80,7 @@ class MiniHabitoAdapter(
                 tituloMiniHabito.paintFlags = tituloMiniHabito.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
 
             }
-            imagenCheck.setColorFilter(ContextCompat.getColor(context, R.color.lightGrayColor),
+            imagenCheck.setColorFilter(ContextCompat.getColor(context, R.color.tittle_color),
                 android.graphics.PorterDuff.Mode.SRC_IN)
 
             contenedor.setOnClickListener {
@@ -88,7 +88,7 @@ class MiniHabitoAdapter(
             }
 
             imagenBorrarMiniHabito.setImageResource(R.drawable.ic_basura)
-            imagenBorrarMiniHabito.setColorFilter(ContextCompat.getColor(context, R.color.lightGrayColor),
+            imagenBorrarMiniHabito.setColorFilter(ContextCompat.getColor(context, R.color.tittle_color),
                 android.graphics.PorterDuff.Mode.SRC_IN)
 
             imagenBorrarMiniHabito.setOnClickListener {

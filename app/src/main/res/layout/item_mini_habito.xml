@@ -28,7 +28,7 @@
         android:layout_height="match_parent"
         android:gravity="center"
         android:text="90g de avena adsfñĺadfadsfda"
-        android:textColor="@color/lightGrayColor"
+        android:textColor="@color/tittle_color"
         android:textSize="@dimen/text_20"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/imagen_check_mini_habito"

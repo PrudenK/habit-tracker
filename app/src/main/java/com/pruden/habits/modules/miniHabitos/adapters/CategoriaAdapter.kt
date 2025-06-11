@@ -67,7 +67,7 @@ class CategoriaAdapter(
             chip.setTextColor(
                 ContextCompat.getColor(
                     itemView.context,
-                    if (isColorDark(categoria.color)) R.color.lightGrayColor else R.color.background
+                    if (isColorDark(categoria.color)) R.color.lightGrayColor else R.color.black
                 )
             )
 

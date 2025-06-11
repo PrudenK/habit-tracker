@@ -41,7 +41,7 @@
 
     <color name="borde_caja_color_picker">#FF000000</color>
 
-    <color name="boton_agregar">#CD666464</color>
-    <color name="fondo_mini_habito">#2E2E2E</color>
+    <color name="boton_agregar_categoria">#CDC5C2C2</color>
+    <color name="fondo_mini_habito">#E7E5E5</color>
 
 </resources>

@@ -3,5 +3,7 @@
     android:layout_height="45dp"
     android:text="+"
     android:textSize="@dimen/text_20"
-    android:backgroundTint="@color/boton_agregar"
-    xmlns:android="http://schemas.android.com/apk/res/android" />
+    android:backgroundTint="@color/boton_agregar_categoria"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:textColor="@color/tittle_color"
+    />
