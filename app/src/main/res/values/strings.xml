@@ -151,6 +151,8 @@
     <string name="nombre_del_mini_habito">Name of the mini habit</string>
     <string name="mini_habito_creado_con_exito">Mini habit: %1$s created successfully</string>
     <string name="categoria_creada_exito">Category: %1$s created successfully</string>
+    <string name="mini_habitos_info_titulo">Mini habits?</string>
+    <string name="mini_habitos_info">Mini habits reset every day and are used to track tasks that aren\'t very important. You can group them into categories.</string>
 
     <!-- Por etiquetas -->
     <string name="por_etiquetas">Filter by tags</string>

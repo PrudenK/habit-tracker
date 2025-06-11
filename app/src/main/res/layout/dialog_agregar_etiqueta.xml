@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/modificando_etiqueta"
-        android:textColor="@color/text_color"
+        android:textColor="@color/tittle_color"
         android:textStyle="bold"
         android:textSize="@dimen/text_20"
         android:fontFamily="@font/encabezados"

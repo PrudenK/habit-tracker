@@ -151,6 +151,8 @@
     <string name="nombre_del_mini_habito">Nombre del mini hábito</string>
     <string name="mini_habito_creado_con_exito">Mini hábito: %1$s creado con éxito</string>
     <string name="categoria_creada_exito">Categoría: %1$s creada con éxito</string>
+    <string name="mini_habitos_info_titulo">¿Mini hábitos?</string>
+    <string name="mini_habitos_info">Los mini hábitos se reinician cada día y son para marcar tareas que no son tan importantes, estos los puedes agrupar en categorías.</string>
 
     <!-- Por etiquetas -->
     <string name="por_etiquetas">Por etiquetas</string>

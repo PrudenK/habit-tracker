@@ -1,7 +1,6 @@
 package com.pruden.habits.modules.miniHabitos
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -26,9 +25,10 @@ import com.pruden.habits.modules.miniHabitos.metodos.ajustesRecyclers.habilitarC
 import com.pruden.habits.modules.miniHabitos.metodos.cargarCategoriasDesdeViewModel
 import com.pruden.habits.modules.miniHabitos.metodos.cargarMiniHabitosDesdeViewModel
 import com.pruden.habits.modules.miniHabitos.metodos.categorias.cambiarDeCategoria
-import com.pruden.habits.modules.miniHabitos.metodos.dialogoAgregarCategoria
-import com.pruden.habits.modules.miniHabitos.metodos.dialogoAgregarMiniHabito
-import com.pruden.habits.modules.miniHabitos.metodos.dialogoBorrarElementoComun
+import com.pruden.habits.modules.miniHabitos.metodos.dialogos.dialogoAgregarCategoria
+import com.pruden.habits.modules.miniHabitos.metodos.dialogos.dialogoAgregarMiniHabito
+import com.pruden.habits.modules.miniHabitos.metodos.dialogos.dialogoBorrarElementoComun
+import com.pruden.habits.modules.miniHabitos.metodos.dialogos.mostrarDialogInformacionMiniHabitos
 import com.pruden.habits.modules.miniHabitos.metodos.intentarCargarMiniHabitos
 import com.pruden.habits.modules.miniHabitos.viewModel.MiniHabitosViewModel
 import kotlinx.coroutines.CoroutineScope
@@ -136,8 +136,7 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
                 true
             }
             R.id.informacion ->{
-                Log.d("TTTTTT", categoriaSeleccionada.toString())
-
+                mostrarDialogInformacionMiniHabitos(requireContext(), resources)
                 true
             }
 

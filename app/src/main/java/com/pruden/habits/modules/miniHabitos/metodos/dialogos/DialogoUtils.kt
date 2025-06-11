@@ -1,4 +1,4 @@
-package com.pruden.habits.modules.miniHabitos.metodos
+package com.pruden.habits.modules.miniHabitos.metodos.dialogos
 
 import android.app.AlertDialog
 import android.content.Context
