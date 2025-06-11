@@ -14,8 +14,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
+import com.pruden.habits.HabitosApplication
 import com.pruden.habits.modules.mainModule.MainActivity
 import com.pruden.habits.R
 import com.pruden.habits.common.Constantes
@@ -68,6 +70,8 @@ class ConfiguracionesFragment : Fragment() {
         borrarTodasLasEtiquetas()
         exportarSoloLasEtiquetas()
         cambiarIdioma()
+        cambiarTemas()
+
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             if (fechasCambiadas) {
@@ -195,6 +199,26 @@ class ConfiguracionesFragment : Fragment() {
     private fun cambiarIdioma(){
         binding.cambiarIdioma.setOnClickListener {
             dialogoCambiarIdiomas(requireContext(), requireActivity(), resources)
+        }
+    }
+
+    private fun cambiarTemas(){
+        binding.switchTemaOscuro.isChecked = HabitosApplication.temaOscuro
+        binding.switchTemaOscuro.setOnClickListener{
+            HabitosApplication.temaOscuro = binding.switchTemaOscuro.isChecked
+            HabitosApplication.sharedConfiguraciones.edit().putBoolean("modoOscuro",
+                HabitosApplication.temaOscuro).apply()
+
+
+            AppCompatDelegate.setDefaultNightMode(
+                if (HabitosApplication.temaOscuro) {
+                    AppCompatDelegate.MODE_NIGHT_YES
+                }
+                else {
+                    AppCompatDelegate.MODE_NIGHT_NO
+                }
+            )
+
         }
     }
 

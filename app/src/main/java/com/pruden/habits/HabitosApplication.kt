@@ -3,6 +3,7 @@ package com.pruden.habits
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
@@ -26,6 +27,8 @@ class HabitosApplication : Application(){
         val formatoFecha = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault())
 
         var listaHabitosEtiquetas = mutableListOf<EtiquetaEntity>()
+
+        var temaOscuro = false
     }
 
     override fun onCreate(){
@@ -48,7 +51,17 @@ class HabitosApplication : Application(){
 
         sharedConfiguraciones = getSharedPreferences(Constantes.SHARED_CONFIGURACIONES, MODE_PRIVATE)
 
+        cargarTemas()
+
         listaFechas = generateLastDates()
+    }
+
+    private fun cargarTemas(){
+        temaOscuro = sharedConfiguraciones.getBoolean("modoOscuro", false)
+
+        AppCompatDelegate.setDefaultNightMode(
+            if (temaOscuro) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO
+        )
     }
 
     val MIGRATION_1_2 = object : Migration(1, 2) {
