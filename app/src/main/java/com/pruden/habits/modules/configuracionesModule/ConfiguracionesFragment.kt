@@ -98,7 +98,7 @@ class ConfiguracionesFragment : Fragment() {
         }
 
         val back = ContextCompat.getDrawable(requireContext(), R.drawable.ic_back)
-        back?.setTint(ContextCompat.getColor(requireContext(), R.color.lightGrayColor))
+        back?.setTint(ContextCompat.getColor(requireContext(), R.color.tittle_color))
         (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(back)
 
         setHasOptionsMenu(true)
@@ -111,7 +111,7 @@ class ConfiguracionesFragment : Fragment() {
         val item = menu.findItem(R.id.gurdar_config)
         val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_save)
 
-        drawable?.setTint(ContextCompat.getColor(requireContext(), R.color.lightGrayColor))
+        drawable?.setTint(ContextCompat.getColor(requireContext(), R.color.tittle_color))
         item.icon = drawable
 
         super.onCreateOptionsMenu(menu, inflater)
