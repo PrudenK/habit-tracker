@@ -62,7 +62,7 @@
 
     <!-- Main -->
     <string name="anterior">Anterior</string>
-    <string name="pagina_num">Página %1$s</string>
+    <string name="pagina_num">Pág. %1$s</string>
     <string name="siguiente">Siguiente</string>
 
     <!-- Diálogos Main -->
