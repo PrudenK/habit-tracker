@@ -404,6 +404,55 @@
                     android:background="@android:color/darker_gray"
                     android:layout_marginVertical="16dp" />
 
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/creador"
+                    android:textSize="@dimen/text_24"
+                    android:paddingBottom="4dp"
+                    android:textColor="@color/tittle_color"
+                    />
+
+                <TextView
+                    android:id="@+id/ir_al_gmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ir_al_gmail"
+                    android:textSize="@dimen/text_16"
+                    android:paddingVertical="8dp"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:background="?attr/selectableItemBackground"
+                    android:textColor="@color/click_button"
+                    android:drawableEnd="@drawable/ic_gmail"
+                    android:drawablePadding="15dp"
+                    android:drawableTint="@color/tittle_color"
+                    />
+
+                <TextView
+                    android:id="@+id/ir_al_github"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/github"
+                    android:textSize="@dimen/text_16"
+                    android:paddingVertical="8dp"
+                    android:focusable="true"
+                    android:clickable="true"
+                    android:background="?attr/selectableItemBackground"
+                    android:textColor="@color/click_button"
+                    android:drawableEnd="@drawable/github"
+                    android:drawablePadding="15dp"
+                    android:drawableTint="@color/tittle_color"
+                    />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@android:color/darker_gray"
+                    android:layout_marginVertical="16dp" />
+
+
             </LinearLayout>
         </ScrollView>
 

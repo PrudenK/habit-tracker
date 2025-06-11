@@ -27,6 +27,11 @@
     <string name="borrar_solo_los_registros">Delete only records</string>
     <string name="borrar_todas_las_etiquetas">Delete all tags</string>
     <string name="elige_tu_idioma">Choose your language</string>
+    <string name="github">HabitTracker on GitHub</string>
+    <string name="creador">Contact the creator</string>
+    <string name="ir_al_gmail">Contact by Gmail</string>
+    <string name="enviar_correo_con">Send email with…</string>
+    <string name="no_app_correo">No email app found</string>
 
     <!-- Diálogos configuración -->
     <string name="titulo_borrar_todos_datos">Delete all data!</string>

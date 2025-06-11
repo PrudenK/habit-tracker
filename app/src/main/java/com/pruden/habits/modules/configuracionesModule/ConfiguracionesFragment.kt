@@ -1,6 +1,7 @@
 package com.pruden.habits.modules.configuracionesModule
 
 import android.app.Activity.RESULT_OK
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -71,7 +72,8 @@ class ConfiguracionesFragment : Fragment() {
         exportarSoloLasEtiquetas()
         cambiarIdioma()
         cambiarTemas()
-
+        irAGitHub()
+        irAGmail()
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             if (fechasCambiadas) {
@@ -199,6 +201,27 @@ class ConfiguracionesFragment : Fragment() {
     private fun cambiarIdioma(){
         binding.cambiarIdioma.setOnClickListener {
             dialogoCambiarIdiomas(requireContext(), requireActivity(), resources)
+        }
+    }
+
+    private fun irAGitHub(){
+        binding.irAlGithub.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/PrudenK/Habit-Tracker"))
+            startActivity(intent)
+        }
+    }
+
+    private fun irAGmail() {
+        binding.irAlGmail.setOnClickListener {
+            val emailIntent = Intent(Intent.ACTION_SENDTO).apply {
+                data = Uri.parse("mailto:${Constantes.GMAIL}")
+            }
+
+            try {
+                startActivity(Intent.createChooser(emailIntent, getString(R.string.enviar_correo_con)))
+            } catch (e: ActivityNotFoundException) {
+                startActivity(Intent.createChooser(emailIntent, getString(R.string.enviar_correo_con)))
+            }
         }
     }
 

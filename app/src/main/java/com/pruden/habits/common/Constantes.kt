@@ -1,6 +1,5 @@
 package com.pruden.habits.common
 
-import com.pruden.habits.HabitosApplication.Companion.sharedConfiguraciones
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -34,4 +33,6 @@ object Constantes {
         }.let { formato.format(it.time) }
     }
 
+
+    const val GMAIL = "prudencosta@gmail.com"
 }

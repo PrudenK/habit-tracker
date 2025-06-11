@@ -27,6 +27,11 @@
     <string name="borrar_solo_los_registros">Borrar solo los registros</string>
     <string name="borrar_todas_las_etiquetas">Borrar todas las etiquetas</string>
     <string name="elige_tu_idioma">Elige tu idioma</string>
+    <string name="github">HabitTracker en Github</string>
+    <string name="creador">Contacta al creador</string>
+    <string name="ir_al_gmail">Contactar por gmail</string>
+    <string name="enviar_correo_con">Enviar correo con…</string>
+    <string name="no_app_correo">No se encontró una app de correo</string>
 
     <!-- Diálogos configuración -->
     <string name="titulo_borrar_todos_datos">¡Borrar todos los datos!</string>
