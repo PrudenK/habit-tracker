@@ -61,7 +61,7 @@ class EtiquetasAdapter (
                 setTextColor(
                     ContextCompat.getColor(
                         binding.chipGroup.context,
-                        if (isColorDark(etiqueta.colorEtiqueta)) R.color.lightGrayColor else R.color.background
+                        if (isColorDark(etiqueta.colorEtiqueta)) R.color.lightGrayColor else R.color.black
                     )
                 )
                 val font = ResourcesCompat.getFont(binding.chipGroup.context, R.font.subtitulos)
