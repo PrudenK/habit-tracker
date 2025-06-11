@@ -17,10 +17,13 @@
 
 
     <color name="tittle_color">#242323</color>
+    <color name="tittle_color_50">#80242323</color>
+
     <color name="tittle_color_second">#181717</color>
 
 
     <color name="menu_color">#E6E2E2</color>
+    <color name="habito_cumplido_calendario">#101010</color>
 
 
     <color name="background">#F0F0F0</color>

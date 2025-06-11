@@ -8,6 +8,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.core.content.ContextCompat
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
@@ -74,10 +75,8 @@ fun cargarSpinnerGraficoDeBarras(
             val opcionSeleccionadaInterna = periodoValueMap[opcionSeleccionadaTraducida] ?: opcionSeleccionadaTraducida
 
             // Para el scroll
-            binding.graficaBar.onTouchEvent(MotionEvent.obtain(
-                0, 0, MotionEvent.ACTION_DOWN, 0f, 0f, 0))
-            binding.graficaBar.onTouchEvent(MotionEvent.obtain(
-                0, 0, MotionEvent.ACTION_UP, 0f, 0f, 0))
+            binding.graficaBar.onTouchEvent(MotionEvent.obtain(0, 0, MotionEvent.ACTION_DOWN, 0f, 0f, 0))
+            binding.graficaBar.onTouchEvent(MotionEvent.obtain(0, 0, MotionEvent.ACTION_UP, 0f, 0f, 0))
             binding.graficaBar.highlightValues(null)
 
             actualizarGraficoDeBarras(
@@ -243,7 +242,7 @@ private fun cargarGraficoDeBarras(
     dataSet.notifyDataSetChanged()
     dataSet.color = habito.colorHabito
     dataSet.valueTextSize = 14f
-    dataSet.valueTextColor = Color.WHITE
+    dataSet.valueTextColor = ContextCompat.getColor(context, R.color.tittle_color)
     dataSet.valueTypeface = Typeface.DEFAULT_BOLD
     dataSet.valueFormatter = object : ValueFormatter() {
         override fun getFormattedValue(value: Float): String {
@@ -261,8 +260,8 @@ private fun cargarGraficoDeBarras(
     xAxis.setDrawGridLines(false)
     xAxis.granularity = 1f
     xAxis.textSize = 14f
-    xAxis.textColor = Color.WHITE
-    xAxis.axisLineColor = Color.WHITE
+    xAxis.textColor = ContextCompat.getColor(context, R.color.tittle_color)
+    xAxis.axisLineColor = ContextCompat.getColor(context, R.color.tittle_color)
     xAxis.axisLineWidth = 1.5f
 
     if (tiempoInterno == "Día" && !habito.tipoNumerico) {
@@ -272,10 +271,10 @@ private fun cargarGraficoDeBarras(
             granularity = 1f  // Paso entre valores (solo permite 0 y 1)
             labelCount = 2     // Solo 2 etiquetas (0 y 1)
             textSize = 14f
-            textColor = Color.WHITE
-            axisLineColor = Color.WHITE
+            textColor = ContextCompat.getColor(context, R.color.tittle_color)
+            axisLineColor = ContextCompat.getColor(context, R.color.tittle_color)
             axisLineWidth = 1.5f
-            gridColor = Color.argb(50, 255, 255, 255)
+            gridColor = ContextCompat.getColor(context, R.color.tittle_color_50)
             valueFormatter = object : ValueFormatter() {
                 override fun getFormattedValue(value: Float): String {
                     return when (value) {
@@ -294,7 +293,7 @@ private fun cargarGraficoDeBarras(
             granularity = 0f
             labelCount = 6
             textSize = 14f
-            textColor = Color.WHITE
+            textColor = ContextCompat.getColor(context, R.color.tittle_color)
             valueFormatter = object : ValueFormatter() {
                 override fun getFormattedValue(value: Float): String {
                     return formatearNumero(value)
@@ -308,7 +307,7 @@ private fun cargarGraficoDeBarras(
 
     val legend = barChart.legend
     legend.textSize = 14f
-    legend.textColor = Color.WHITE
+    legend.textColor = ContextCompat.getColor(context, R.color.tittle_color)
     legend.typeface = Typeface.DEFAULT_BOLD
 
     // Configurar visibilidad y tamaño de barras

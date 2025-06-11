@@ -10,6 +10,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.core.content.ContextCompat
 import com.github.mikephil.charting.charts.LineChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
@@ -228,12 +229,12 @@ private fun cargarGraficoDeLineas(
 
     val dataSet = LineDataSet(entries, "$unidad x $tiempoTraducido").apply {
         color = habito.colorHabito
-        setCircleColor(Color.WHITE)
+        setCircleColor(ContextCompat.getColor(context, R.color.tittle_color))
         circleRadius = 5f
         setDrawCircleHole(false)
         setDrawValues(true)
         valueTextSize = 14f
-        valueTextColor = Color.WHITE
+        valueTextColor = ContextCompat.getColor(context, R.color.tittle_color)
         valueTypeface = Typeface.DEFAULT_BOLD
         enableDashedLine(10f, 5f, 0f)
         setDrawFilled(true)
@@ -258,8 +259,8 @@ private fun cargarGraficoDeLineas(
         setDrawGridLines(false)
         granularity = 1f
         textSize = 14f
-        textColor = Color.WHITE
-        axisLineColor = Color.WHITE
+        textColor = ContextCompat.getColor(context, R.color.tittle_color)
+        axisLineColor = ContextCompat.getColor(context, R.color.tittle_color)
         axisLineWidth = 1.5f
         spaceMax = espacio
         spaceMin = espacio
@@ -272,8 +273,8 @@ private fun cargarGraficoDeLineas(
             granularity = 1f
             labelCount = 2
             textSize = 14f
-            textColor = Color.WHITE
-            axisLineColor = Color.WHITE
+            textColor = ContextCompat.getColor(context, R.color.tittle_color)
+            axisLineColor = ContextCompat.getColor(context, R.color.tittle_color)
             axisLineWidth = 1.5f
             gridColor = Color.argb(50, 255, 255, 255)
             valueFormatter = object : ValueFormatter() {
@@ -291,12 +292,12 @@ private fun cargarGraficoDeLineas(
             resetAxisMaximum()
             axisMinimum = 0f
             textSize = 14f
-            textColor = Color.WHITE
-            axisLineColor = Color.WHITE
+            textColor = ContextCompat.getColor(context, R.color.tittle_color)
+            axisLineColor = ContextCompat.getColor(context, R.color.tittle_color)
             axisLineWidth = 1.5f
             granularity = 0f
             labelCount = 6
-            gridColor = Color.argb(50, 255, 255, 255)
+            gridColor = ContextCompat.getColor(context, R.color.tittle_color_50)
             valueFormatter = object : ValueFormatter() {
                 override fun getFormattedValue(value: Float): String {
                     return formatearNumero(value)
@@ -309,7 +310,7 @@ private fun cargarGraficoDeLineas(
 
     lineChart.legend.apply {
         textSize = 14f
-        textColor = Color.WHITE
+        textColor = ContextCompat.getColor(context, R.color.tittle_color)
         typeface = Typeface.DEFAULT_BOLD
     }
 

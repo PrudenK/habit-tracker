@@ -19,8 +19,10 @@
 
 
     <color name="tittle_color">#CCCBCB</color>
+    <color name="tittle_color_50">#80CCCBCB</color>
 
     <color name="habito_no_cumplido">#999696</color>
+    <color name="habito_cumplido_calendario">#101010</color>
     <color name="menu_color">#313030</color>
 
 

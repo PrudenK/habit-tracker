@@ -94,7 +94,7 @@ class EstadisticasFragment : Fragment(), OnClikCalendario {
         }
 
         val back = ContextCompat.getDrawable(requireContext(), R.drawable.ic_back)
-        back?.setTint(ContextCompat.getColor(requireContext(), R.color.lightGrayColor))
+        back?.setTint(ContextCompat.getColor(requireContext(), R.color.tittle_color))
         (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(back)
 
         setHasOptionsMenu(true)

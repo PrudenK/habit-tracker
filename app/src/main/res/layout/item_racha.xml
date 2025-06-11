@@ -39,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Desde 2023-03-03 hasta hoy"
-        android:textColor="@color/lightGrayColor"
+        android:textColor="@color/tittle_color"
         android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@id/frame_racha_actual_item"
         app:layout_constraintStart_toStartOf="@id/frame_racha_actual_item"
