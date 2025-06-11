@@ -1,5 +1,6 @@
 package com.pruden.habits.modules.agregarEditarHabitoModule
 
+import android.content.res.ColorStateList
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -99,22 +100,22 @@ class AgregarEditarHabitoFragment : Fragment() {
         }
 
         val back = ContextCompat.getDrawable(requireContext(), R.drawable.ic_back)
-        back?.setTint(ContextCompat.getColor(requireContext(), R.color.lightGrayColor))
+        back?.setTint(ContextCompat.getColor(requireContext(), R.color.tittle_color))
         (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(back)
 
         setHasOptionsMenu(true)
 
         binding.numerico.setOnClickListener {
             colorHabito = R.color.white
-            binding.booleano.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.background))
-            binding.numerico.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.gris_clarito_tipo))
+            binding.booleano.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.contenedor_subtitulo_no_seleccionado))
+            binding.numerico.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.contenedor_subtitulo))
             cargarContenedorDinamico(R.layout.layout_numerico)
         }
 
         binding.booleano.setOnClickListener {
             colorHabito = R.color.white
-            binding.numerico.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.background))
-            binding.booleano.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.gris_clarito_tipo))
+            binding.numerico.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.contenedor_subtitulo_no_seleccionado))
+            binding.booleano.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.contenedor_subtitulo))
             cargarContenedorDinamico(R.layout.layout_booleano)
         }
 
@@ -133,7 +134,7 @@ class AgregarEditarHabitoFragment : Fragment() {
         val item = menu.findItem(R.id.guardar_habito)
         val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_check)
 
-        drawable?.setTint(ContextCompat.getColor(requireContext(), R.color.lightGrayColor))
+        drawable?.setTint(ContextCompat.getColor(requireContext(), R.color.tittle_color))
         item.icon = drawable
 
         super.onCreateOptionsMenu(menu, inflater)

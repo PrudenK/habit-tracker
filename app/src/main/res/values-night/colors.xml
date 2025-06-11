@@ -33,8 +33,12 @@
 
 
     <color name="click_button">#8BB7CC</color>
-    <color name="gris_clarito_tipo">#19F4EEEE</color>
-    <color name="gris_clarito_tipo_titulo">#3FDDE8ED</color>
+    <color name="contenedor_subtitulo">#19F4EEEE</color>
+    <color name="contenedor_subtitulo_no_seleccionado">#19383838</color>
+    <color name="contenedor_titulo">#3FDDE8ED</color>
+
+    <color name="borde_caja_color_picker">#FFFFFFFF</color>
+
 
     <color name="boton_agregar">#CD666464</color>
     <color name="fondo_mini_habito">#2E2E2E</color>

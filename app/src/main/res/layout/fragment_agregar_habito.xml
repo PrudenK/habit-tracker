@@ -91,7 +91,7 @@
             android:layout_marginEnd="12dp"
             android:padding="8dp"
             android:textColor="@color/tittle_color"
-            android:background="@color/gris_clarito_tipo_titulo"
+            android:background="@color/contenedor_titulo"
             android:fontFamily="@font/subtitulos"
             />
 
@@ -110,7 +110,7 @@
             android:padding="6dp"
             android:textColor="@color/tittle_color"
             android:textSize="@dimen/text_20"
-            android:background="@color/gris_clarito_tipo"
+            android:background="@color/contenedor_subtitulo"
             android:fontFamily="@font/subtitulos"
 
             />

@@ -15,9 +15,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_margin="12dp"
-        app:hintTextColor="@color/lightGrayColor"
-        app:boxStrokeColor="@color/secondary"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:hintTextColor="@color/hint_color"
+        app:boxStrokeColor="@color/border_color"
         app:boxStrokeWidth="1dp"
         app:boxStrokeWidthFocused="2dp"
         >
@@ -29,7 +28,7 @@
             android:inputType="text"
             android:maxLines="1"
             android:maxLength="40"
-            android:textColor="@color/lightGrayColor"
+            android:textColor="@color/tittle_color"
             android:textCursorDrawable="@null"
             />
     </com.google.android.material.textfield.TextInputLayout>
