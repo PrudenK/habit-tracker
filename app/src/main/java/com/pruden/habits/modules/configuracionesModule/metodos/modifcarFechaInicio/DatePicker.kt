@@ -120,7 +120,7 @@ fun mostrarDatePicker(
 
                 var fechaNueva = String.format("%d-%02d-%02d", yearSeleccionado, mesSeleccionado + 1, diaSeleccionado)
 
-                binding.fechaIncioRegistrosHabitos.text = context.getString(R.string.fecha_inicio_de_los_registros)
+                binding.fechaIncioRegistrosHabitos.text = context.getString(R.string.fecha_inicio_de_los_registros, fechaNueva)
 
                 sharedConfiguraciones.edit().putString(Constantes.SHARED_FECHA_INICIO, fechaNueva).apply()
                 Constantes.FECHA_INICIO = fechaNueva

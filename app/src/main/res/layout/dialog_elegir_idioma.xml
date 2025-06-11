@@ -19,7 +19,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         android:text="@string/elige_tu_idioma"
         android:gravity="center"
-        android:textColor="@color/lightGrayColor"
+        android:textColor="@color/tittle_color"
         android:textSize="@dimen/text_26"
         android:fontFamily="@font/encabezados"
         android:paddingHorizontal="6dp"
