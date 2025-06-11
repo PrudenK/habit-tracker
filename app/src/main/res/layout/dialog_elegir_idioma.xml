@@ -20,10 +20,9 @@
         android:text="@string/elige_tu_idioma"
         android:gravity="center"
         android:textColor="@color/lightGrayColor"
-        android:textSize="@dimen/text_28"
+        android:textSize="@dimen/text_26"
         android:fontFamily="@font/encabezados"
-        android:layout_marginStart="8dp"
-        android:padding="6dp"
+        android:paddingHorizontal="6dp"
         />
 
 

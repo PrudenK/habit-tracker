@@ -35,7 +35,7 @@ fun dialogoCambiarIdiomas(
         Idioma("Français", "FR", R.mipmap.ic_francia_foreground),
         Idioma("Deutsch", "DE", R.mipmap.ic_ale),
         Idioma("Italiano", "IT", R.mipmap.ic_italia_foreground)
-    )
+    ).sortedBy { it.nombre }
 
     val layout = LinearLayoutManager(context)
     val adapterIdiomas = IdiomasAdapter(object : OnClickIdioma {
@@ -60,5 +60,5 @@ fun dialogoCambiarIdiomas(
 
     dialogoIdiomas.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     dialogoIdiomas.show()
-    ajustarDialogo(resources, dialogoIdiomas, 0.7f)
+    ajustarDialogo(resources, dialogoIdiomas, 0.75f)
 }

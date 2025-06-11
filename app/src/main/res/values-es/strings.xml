@@ -26,6 +26,7 @@
     <string name="borrar_todos_los_habitos">Borrar todos los hábitos</string>
     <string name="borrar_solo_los_registros">Borrar solo los registros</string>
     <string name="borrar_todas_las_etiquetas">Borrar todas las etiquetas</string>
+    <string name="elige_tu_idioma">Elige tu idioma</string>
 
     <!-- Diálogos configuración -->
     <string name="titulo_borrar_todos_datos">¡Borrar todos los datos!</string>
@@ -163,7 +164,6 @@
 
     <!-- Menu de opciones -->
     <string name="ver_tutorial">Ver tutorial</string>
-    <string name="elige_tu_idioma">Elige tu idioma</string>
 
 
 </resources>

@@ -112,31 +112,36 @@
 
             <Button
                 android:id="@+id/btnAnterior"
-                android:layout_width="wrap_content"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:text="@string/anterior"
                 android:drawableLeft="@drawable/ic_anterior"
                 android:drawableTint="@color/white"
-                android:visibility="visible"/>
+                android:visibility="visible"
+                android:textSize="@dimen/text_14"
+                />
 
             <TextView
                 android:id="@+id/tvPagina"
-                android:layout_width="wrap_content"
+                android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:text="@string/pagina_num"
                 android:textSize="18sp"
+                android:gravity="center"
                 android:padding="16dp"
                 android:textColor="@color/white"
                 />
 
             <Button
                 android:id="@+id/btnSiguiente"
-                android:layout_width="wrap_content"
+                android:layout_width="140dp"
                 android:layout_height="wrap_content"
                 android:text="@string/siguiente"
                 android:drawableRight="@drawable/ic_siguiente"
                 android:drawableTint="@color/white"
-                android:visibility="visible"/>
+                android:visibility="visible"
+                android:textSize="@dimen/text_14"
+                />
         </LinearLayout>
 
 
