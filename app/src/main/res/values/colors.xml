@@ -9,7 +9,6 @@
 
 
     <color name="primary">#CCCBCB</color>
-    <color name="menu_color">#A2A2A2</color>
     <color name="secondary">#F4F1F1</color>
     <color name="check">#4CAF50</color>
     <color name="blue_highlight">#3F51B5</color>
@@ -21,6 +20,7 @@
     <color name="tittle_color_second">#181717</color>
 
 
+    <color name="menu_color">#E6E2E2</color>
 
 
     <color name="background">#F0F0F0</color>

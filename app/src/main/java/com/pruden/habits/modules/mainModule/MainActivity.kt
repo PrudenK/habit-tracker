@@ -261,7 +261,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
             for (i in 0 until popupMenu.menu.size()) {
                 val menuItem = popupMenu.menu.getItem(i)
                 val drawable = menuItem.icon
-                drawable?.setTint(ContextCompat.getColor(this, R.color.lightGrayColor))
+                drawable?.setTint(ContextCompat.getColor(this, R.color.tittle_color))
             }
 
             popupMenu.setOnMenuItemClickListener { item ->

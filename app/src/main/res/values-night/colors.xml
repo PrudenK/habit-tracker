@@ -9,7 +9,6 @@
 
 
     <color name="primary">#1E1E1E</color>
-    <color name="menu_color">#313030</color>
     <color name="secondary">#A0A0A0</color>
     <color name="check">#4CAF50</color>
     <color name="blue_highlight">#3F51B5</color>
@@ -22,7 +21,7 @@
     <color name="tittle_color">#CCCBCB</color>
 
     <color name="habito_no_cumplido">#999696</color>
-
+    <color name="menu_color">#313030</color>
 
 
 
