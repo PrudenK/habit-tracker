@@ -70,9 +70,6 @@ fun dialogoModificarEtiqueta(
             val btnCancelar = dialogoView.findViewById<Button>(R.id.button_cancelar_agregar_etiqueta)
             val btnGuardar = dialogoView.findViewById<Button>(R.id.button_guardar_agreagr_etiqueta)
 
-            val tilNombreEtiqueta = dialogoView.findViewById<TextInputLayout>(R.id.til_nombre_etiqueta)
-            tilNombreEtiqueta.defaultHintTextColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.lightGrayColor))
-
             val editTextNombreEtiqeta = dialogoView.findViewById<TextInputEditText>(R.id.input_agregar_etiqueta)
             editTextNombreEtiqeta.setText(etiqueta.nombreEtiquta)
 

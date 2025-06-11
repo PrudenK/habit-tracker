@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/modificando_etiqueta"
-        android:textColor="@color/lightGrayColor"
+        android:textColor="@color/text_color"
         android:textStyle="bold"
         android:textSize="@dimen/text_20"
         android:fontFamily="@font/encabezados"
@@ -54,8 +54,9 @@
             android:layout_height="wrap_content"
             android:hint="@string/nombre_de_la_etiqueta"
             app:endIconMode="clear_text"
-            app:boxStrokeColor="@color/secondary"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            app:hintTextColor="@color/hint_color"
+            app:boxStrokeColor="@color/border_color"
+            android:textColorHint="@color/tittle_color"
             app:boxStrokeWidth="1dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,7 +67,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:textColor="@color/lightGrayColor"
+                android:textColor="@color/tittle_color"
                 android:textCursorDrawable="@null"
                 android:fontFamily="@font/encabezados"
                 />
@@ -78,7 +79,7 @@
             android:layout_height="wrap_content"
             android:text="Elige el color de la categoría"
             android:textSize="18sp"
-            android:textColor="@color/lightGrayColor"
+            android:textColor="@color/tittle_color"
             app:layout_constraintTop_toTopOf="@id/img_color_etiqueta_num"
             app:layout_constraintBottom_toBottomOf="@id/img_color_etiqueta_num"
             app:layout_constraintStart_toStartOf="parent"
@@ -112,7 +113,7 @@
                 android:layout_marginTop="16dp"
                 android:paddingVertical="6dp"
                 android:text="@string/modifica_la_posicion_de_tu_habito"
-                android:textColor="@color/lightGrayColor"
+                android:textColor="@color/tittle_color"
                 android:textSize="@dimen/text_18"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -132,7 +133,7 @@
                 android:paddingVertical="10dp"
                 android:paddingBottom="6dp"
                 android:text="-1"
-                android:textColor="@color/lightGrayColor"
+                android:textColor="@color/tittle_color"
                 android:textSize="@dimen/text_28"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -172,7 +173,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/posicion_picker_edit_etiqueta"
                 app:layout_constraintEnd_toStartOf="@+id/posicion_picker_edit_etiqueta"
                 app:layout_constraintTop_toTopOf="@+id/posicion_picker_edit_etiqueta"
-                app:tint="@color/lightGrayColor" />
+                app:tint="@color/tittle_color" />
 
             <ImageView
                 android:id="@+id/boton_sumar_posicion"
@@ -186,7 +187,7 @@
                 app:layout_constraintStart_toEndOf="@+id/posicion_picker_edit_etiqueta"
                 app:layout_constraintTop_toTopOf="@+id/posicion_picker_edit_etiqueta"
 
-                app:tint="@color/lightGrayColor" />
+                app:tint="@color/tittle_color" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -206,6 +207,8 @@
             app:layout_constraintTop_toBottomOf="@id/contenedor_posicion_mod_etiqueta"
             app:layout_constraintStart_toStartOf="parent"
             android:fontFamily="@font/encabezados"
+            android:textColor="@color/tittle_color"
+            android:backgroundTint="@color/primary"
             />
 
         <Button
@@ -218,6 +221,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/contenedor_posicion_mod_etiqueta"
             android:fontFamily="@font/encabezados"
+            android:textColor="@color/tittle_color"
+            android:backgroundTint="@color/primary"
             />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
