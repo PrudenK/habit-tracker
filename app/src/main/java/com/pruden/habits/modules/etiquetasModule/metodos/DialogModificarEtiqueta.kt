@@ -103,7 +103,7 @@ fun dialogoModificarEtiqueta(
             }
 
             imgRestar.setOnClickListener {
-                if(posicion > 3){
+                if(posicion > 1){
                     posicion--
                     tvPosicion.text = posicion.toString()
                 }

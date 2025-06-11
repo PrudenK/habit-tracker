@@ -113,7 +113,7 @@ class ConfiguracionesFragment : Fragment() {
         val item = menu.findItem(R.id.gurdar_config)
         val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_save)
 
-        drawable?.setTint(ContextCompat.getColor(requireContext(), R.color.tittle_color))
+        drawable?.setTint(ContextCompat.getColor(requireContext(), R.color.background))
         item.icon = drawable
 
         super.onCreateOptionsMenu(menu, inflater)
@@ -130,7 +130,7 @@ class ConfiguracionesFragment : Fragment() {
             }
 
             R.id.gurdar_config -> {
-                makeToast("Configuración guardada", requireContext())
+                //makeToast("Configuración guardada", requireContext())
                 true
             }
             else -> super.onOptionsItemSelected(item)

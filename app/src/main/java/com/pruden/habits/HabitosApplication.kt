@@ -57,7 +57,7 @@ class HabitosApplication : Application(){
     }
 
     private fun cargarTemas(){
-        temaOscuro = sharedConfiguraciones.getBoolean("modoOscuro", false)
+        temaOscuro = sharedConfiguraciones.getBoolean("modoOscuro", true)
 
         AppCompatDelegate.setDefaultNightMode(
             if (temaOscuro) AppCompatDelegate.MODE_NIGHT_YES else AppCompatDelegate.MODE_NIGHT_NO

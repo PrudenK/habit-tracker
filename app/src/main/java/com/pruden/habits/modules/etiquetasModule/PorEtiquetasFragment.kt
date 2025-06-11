@@ -139,7 +139,9 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito, OnLongClickEtiqueta {
             }
             R.id.agregar_etiqueta_fragment ->{
                 dialogoAgregarEtiqueta(requireContext(), resources, mainViewModel){
-                    etiquetasAdapter.notifyDataSetChanged()
+                    binding.recyclerChipsEtiquetas.post {
+                        etiquetasAdapter.notifyDataSetChanged()
+                    }
                 }
 
                 true
