@@ -33,7 +33,7 @@
 
                 app:layout_constraintStart_toStartOf="@+id/til_notas_numerico_calendar"
                 app:layout_constraintTop_toTopOf="parent"
-                android:textColor="@color/lightGrayColor"
+                android:textColor="@color/tittle_color"
                 android:textSize="@dimen/text_22"
                 android:fontFamily="@font/subtitulos"
                 android:paddingBottom="4dp"
@@ -48,8 +48,8 @@
                 app:layout_constraintTop_toBottomOf="@id/fecha_numerico_calendar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:boxStrokeColor="@color/secondary"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:hintTextColor="@color/hint_color"
+                app:boxStrokeColor="@color/border_color"
                 app:boxStrokeWidth="1dp"
 
                 >
@@ -59,7 +59,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLines="2"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/tittle_color"
                     android:textCursorDrawable="@null" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -74,8 +74,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="12dp"
-                app:boxStrokeColor="@color/secondary"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:hintTextColor="@color/hint_color"
+                app:boxStrokeColor="@color/border_color"
                 app:boxStrokeWidth="1dp"
                 >
 
@@ -86,7 +86,7 @@
                     android:maxLines="1"
                     android:maxLength="15"
                     android:inputType="numberDecimal"
-                    android:textColor="@android:color/white"
+                    android:textColor="@color/tittle_color"
                     android:textCursorDrawable="@null"
 
                     />

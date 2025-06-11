@@ -30,7 +30,7 @@
                 app:layout_constraintEnd_toEndOf="@+id/til_notas_bool_calendar"
                 app:layout_constraintStart_toStartOf="@+id/til_notas_bool_calendar"
                 app:layout_constraintTop_toTopOf="parent"
-                android:textColor="@color/lightGrayColor"
+                android:textColor="@color/tittle_color"
                 android:textSize="@dimen/text_22"
                 android:fontFamily="@font/subtitulos"
                 android:paddingBottom="4dp"
@@ -46,8 +46,8 @@
                 app:layout_constraintTop_toBottomOf="@id/fecha_boolean_calendar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:boxStrokeColor="@color/secondary"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                app:hintTextColor="@color/hint_color"
+                app:boxStrokeColor="@color/border_color"
                 app:boxStrokeWidth="1dp"
                 >
 
@@ -56,7 +56,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:maxLines="2"
-                    android:textColor="@color/lightGrayColor"
+                    android:textColor="@color/tittle_color"
                     android:textCursorDrawable="@null"
                     />
             </com.google.android.material.textfield.TextInputLayout>
@@ -71,7 +71,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/check_calendar"
                 app:layout_constraintHorizontal_chainStyle="spread"
-                app:tint="@color/secondary" />
+                app:tint="@color/tittle_color" />
 
             <ImageView
                 android:id="@+id/check_calendar"
@@ -82,7 +82,7 @@
                 app:layout_constraintTop_toBottomOf="@id/til_notas_bool_calendar"
                 app:layout_constraintStart_toEndOf="@id/no_check_calendar"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:tint="@color/secondary"
+                app:tint="@color/tittle_color"
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

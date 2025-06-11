@@ -49,12 +49,12 @@ fun modificarHabitoCalendarEstadisticas(
     fun habitoCumplido(condicion: Boolean){
         if(condicion){
             bindingItemFecha.fechaCalendario.setBackgroundColor(habitoCalendar.colorHabito)
-            bindingItemFecha.fechaCalendario.setTextColor(ContextCompat.getColor(contexto, R.color.primary))
-            ponerNotas(R.color.primary)
+            bindingItemFecha.fechaCalendario.setTextColor(ContextCompat.getColor(contexto, R.color.habito_cumplido_calendario))
+            ponerNotas(R.color.habito_cumplido_calendario)
         }else{
             bindingItemFecha.fechaCalendario.setBackgroundColor(ContextCompat.getColor(contexto, R.color.primary))
-            bindingItemFecha.fechaCalendario.setTextColor(ContextCompat.getColor(contexto, R.color.lightGrayColor))
-            ponerNotas(R.color.lightGrayColor)
+            bindingItemFecha.fechaCalendario.setTextColor(ContextCompat.getColor(contexto, R.color.tittle_color))
+            ponerNotas(R.color.tittle_color)
         }
     }
 
@@ -67,7 +67,6 @@ fun modificarHabitoCalendarEstadisticas(
         val inputNotas = dialog.findViewById<TextInputEditText>(R.id.input_notas_numerico_calendar)
         val inputCantidad = dialog.findViewById<TextInputEditText>(R.id.input_cantidad_numerico_calendar)
         val tilCantidad = dialog.findViewById<TextInputLayout>(R.id.til_cantidad_numerico_calendar)
-        val tilNotas = dialog.findViewById<TextInputLayout>(R.id.til_notas_numerico_calendar)
         val fechaTv = dialog.findViewById<TextView>(R.id.fecha_numerico_calendar)
 
         fechaTv.text = fechaItem.fecha
@@ -77,11 +76,6 @@ fun modificarHabitoCalendarEstadisticas(
         Handler(Looper.getMainLooper()).postDelayed({
             imm.showSoftInput(inputCantidad, InputMethodManager.SHOW_IMPLICIT)
         }, 200)
-
-        val textInputLayouts = listOf(tilCantidad, tilNotas)
-        textInputLayouts.forEach { til ->
-            til.defaultHintTextColor = ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.lightGrayColor))
-        }
 
         if (fechaItem.valor != "0") {
             if(fechaItem.valor == "0.0"){
@@ -126,7 +120,6 @@ fun modificarHabitoCalendarEstadisticas(
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
         val inputNotas = dialog.findViewById<TextInputEditText>(R.id.input_notas_booleano_calendar)
-        val tilNotas = dialog.findViewById<TextInputLayout>(R.id.til_notas_bool_calendar)
         val fechaTV = dialog.findViewById<TextView>(R.id.fecha_boolean_calendar)
 
         fechaTV.text = fechaItem.fecha
@@ -138,8 +131,6 @@ fun modificarHabitoCalendarEstadisticas(
         Handler(Looper.getMainLooper()).postDelayed({
             imm.showSoftInput(inputNotas, InputMethodManager.SHOW_IMPLICIT)
         }, 200)
-
-        tilNotas.defaultHintTextColor = ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.lightGrayColor))
 
         val botonCancelar = dialog.findViewById<ImageView>(R.id.no_check_calendar)
         val botonGuardar = dialog.findViewById<ImageView>(R.id.check_calendar)
