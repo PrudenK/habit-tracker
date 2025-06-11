@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:textSize="18sp"
     android:textColor="@color/lightGrayColor"
-    android:background="@color/dark_gray"
+    android:background="@color/primary"
 
     android:padding="4dp"
     android:drawableEnd="@drawable/ic_drop_down_menu"

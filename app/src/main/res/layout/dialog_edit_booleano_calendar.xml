@@ -46,7 +46,7 @@
                 app:layout_constraintTop_toBottomOf="@id/fecha_boolean_calendar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:boxStrokeColor="@color/light_gray"
+                app:boxStrokeColor="@color/secondary"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 app:boxStrokeWidth="1dp"
                 >
@@ -71,7 +71,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/check_calendar"
                 app:layout_constraintHorizontal_chainStyle="spread"
-                app:tint="@color/light_gray" />
+                app:tint="@color/secondary" />
 
             <ImageView
                 android:id="@+id/check_calendar"
@@ -82,7 +82,7 @@
                 app:layout_constraintTop_toBottomOf="@id/til_notas_bool_calendar"
                 app:layout_constraintStart_toEndOf="@id/no_check_calendar"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:tint="@color/light_gray"
+                app:tint="@color/secondary"
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

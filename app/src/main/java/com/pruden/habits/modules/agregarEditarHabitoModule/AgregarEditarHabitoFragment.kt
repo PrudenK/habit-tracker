@@ -106,14 +106,14 @@ class AgregarEditarHabitoFragment : Fragment() {
 
         binding.numerico.setOnClickListener {
             colorHabito = R.color.white
-            binding.booleano.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.dark_background))
+            binding.booleano.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.background))
             binding.numerico.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.gris_clarito_tipo))
             cargarContenedorDinamico(R.layout.layout_numerico)
         }
 
         binding.booleano.setOnClickListener {
             colorHabito = R.color.white
-            binding.numerico.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.dark_background))
+            binding.numerico.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.background))
             binding.booleano.setBackgroundColor(ContextCompat.getColor(requireContext(),R.color.gris_clarito_tipo))
             cargarContenedorDinamico(R.layout.layout_booleano)
         }

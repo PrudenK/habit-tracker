@@ -1,7 +1,19 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
     <style name="Base.Theme.Habits" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSurface">@color/primary</item>
+        <item name="colorOnSurface">@color/white</item>
+        <item name="android:windowBackground">@color/black</item>
     </style>
+
+    <style name="Theme.Habits.Dark" parent="Base.Theme.Habits" />
+
+    <style name="CustomPopupMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="android:backgroundTint">@color/menu_color</item>
+        <item name="android:textColor">@color/lightGrayColor</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:popupElevation">0dp</item>
+    </style>
+
 </resources>

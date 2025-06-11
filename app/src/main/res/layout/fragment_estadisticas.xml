@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:background="@color/dark_background"
+        android:background="@color/background"
 
         />
 
@@ -21,7 +21,7 @@
         android:id="@+id/toolbar_fragment_esta"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/dark_background"
+        android:background="@color/background"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
@@ -35,7 +35,7 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:textSize="@dimen/text_32"
-            android:textColor="@color/gray_color"
+            android:textColor="@color/tittle_color"
             android:fontFamily="@font/titulos"
             android:layout_marginHorizontal="40dp"/>
     </androidx.appcompat.widget.Toolbar>
@@ -216,7 +216,7 @@
                 android:id="@+id/grafica_bar"
                 android:layout_width="match_parent"
                 android:layout_height="280dp"
-                android:background="@color/dark_gray"
+                android:background="@color/primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textoMesAnio"
@@ -230,7 +230,7 @@
                 android:popupBackground="@color/black"
                 app:layout_constraintBottom_toTopOf="@+id/grafica_bar"
                 app:layout_constraintEnd_toEndOf="@+id/grafica_bar"
-                android:background="@color/dark_gray"
+                android:background="@color/primary"
                  />
 
             <TextView
@@ -252,7 +252,7 @@
                 android:id="@+id/lineChart"
                 android:layout_width="match_parent"
                 android:layout_height="280dp"
-                android:background="@color/dark_gray"
+                android:background="@color/primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/texto_fecha_line_chart"
@@ -266,7 +266,7 @@
                 android:popupBackground="@color/black"
                 app:layout_constraintBottom_toTopOf="@+id/lineChart"
                 app:layout_constraintEnd_toEndOf="@+id/lineChart"
-                android:background="@color/dark_gray"
+                android:background="@color/primary"
                 />
 
             <TextView

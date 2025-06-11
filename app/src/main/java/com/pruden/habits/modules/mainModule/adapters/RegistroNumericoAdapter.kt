@@ -41,10 +41,10 @@ class RegistroNumericoAdapter (
             val typeface = ResourcesCompat.getFont(binding.root.context, R.font.encabezados)
 
             fun noCumplido(){
-                binding.unidad.setTextColor(ContextCompat.getColor(contexto, R.color.gray_color_dark))
+                binding.unidad.setTextColor(ContextCompat.getColor(contexto, R.color.habito_no_cumplido))
                 binding.unidad.setTypeface(typeface, Typeface.NORMAL)
 
-                binding.puntuacion.setTextColor(ContextCompat.getColor(contexto, R.color.gray_color_dark))
+                binding.puntuacion.setTextColor(ContextCompat.getColor(contexto, R.color.habito_no_cumplido))
                 binding.puntuacion.setTypeface(typeface, Typeface.NORMAL)
             }
 

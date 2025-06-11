@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:background="@color/dark_background"
+        android:background="@color/background"
 
         />
 
@@ -27,7 +27,7 @@
             android:id="@+id/toolbar_fragment_confi"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@color/dark_background"
+            android:background="@color/background"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -41,7 +41,7 @@
                 android:gravity="center"
                 android:text="@string/configuraciones"
                 android:textSize="@dimen/text_32"
-                android:textColor="@color/gray_color"
+                android:textColor="@color/tittle_color"
                 android:fontFamily="@font/titulos"
                 />
         </androidx.appcompat.widget.Toolbar>
@@ -96,7 +96,7 @@
                     android:text="@string/tema"
                     android:textSize="@dimen/text_24"
                     android:paddingBottom="8dp"
-                    android:textColor="@color/gray_color"
+                    android:textColor="@color/tittle_color"
                     />
 
                 <androidx.constraintlayout.widget.ConstraintLayout
@@ -146,7 +146,7 @@
                     android:text="@string/idioma"
                     android:textSize="@dimen/text_24"
                     android:paddingBottom="8dp"
-                    android:textColor="@color/gray_color"
+                    android:textColor="@color/tittle_color"
                     />
 
                 <TextView
@@ -175,7 +175,7 @@
                     android:text="@string/fechas"
                     android:textSize="@dimen/text_24"
                     android:paddingBottom="8dp"
-                    android:textColor="@color/gray_color"
+                    android:textColor="@color/tittle_color"
                     />
 
                 <TextView
@@ -222,7 +222,7 @@
                     android:focusable="true"
                     android:clickable="true"
                     android:background="?attr/selectableItemBackground"
-                    android:textColor="@color/gray_color"
+                    android:textColor="@color/tittle_color"
                     />
 
                 <TextView
@@ -293,7 +293,7 @@
                     android:text="@string/copia_de_seguridad"
                     android:textSize="@dimen/text_24"
                     android:paddingBottom="4dp"
-                    android:textColor="@color/gray_color"
+                    android:textColor="@color/tittle_color"
                     />
 
                 <TextView
@@ -335,9 +335,9 @@
                     android:textSize="@dimen/text_24"
                     android:paddingBottom="8dp"
                     android:drawableEnd="@drawable/ic_warning"
-                    android:textColor="@color/gray_color"
+                    android:textColor="@color/tittle_color"
                     android:drawablePadding="8dp"
-                    android:drawableTint="@color/gray_color"
+                    android:drawableTint="@color/tittle_color"
                     />
 
                 <TextView

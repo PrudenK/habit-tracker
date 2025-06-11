@@ -54,7 +54,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/nombre_de_la_etiqueta"
             app:endIconMode="clear_text"
-            app:boxStrokeColor="@color/light_gray"
+            app:boxStrokeColor="@color/secondary"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             app:boxStrokeWidth="1dp"
             app:layout_constraintTop_toTopOf="parent"

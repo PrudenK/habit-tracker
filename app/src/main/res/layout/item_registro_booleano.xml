@@ -15,7 +15,7 @@
         android:clickable="true"
         android:focusable="true"
         android:background="?attr/selectableItemBackground"
-        app:tint="@color/gray_color_dark"
+        app:tint="@color/habito_no_cumplido"
         />
 
     <ImageView

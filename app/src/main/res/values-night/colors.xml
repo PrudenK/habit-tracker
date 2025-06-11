@@ -8,27 +8,26 @@
     <color name="gray_color_dark">#999696</color>
 
 
-    <color name="primary">#CCCBCB</color>
-    <color name="menu_color">#A2A2A2</color>
-    <color name="secondary">#F4F1F1</color>
+    <color name="primary">#1E1E1E</color>
+    <color name="menu_color">#313030</color>
+    <color name="secondary">#A0A0A0</color>
     <color name="check">#4CAF50</color>
     <color name="blue_highlight">#3F51B5</color>
 
-    <color name="text_color">#000000</color>
+    <color name="background">#101010</color>
+
+    <color name="text_color">#FFFFFF</color>
 
 
-    <color name="tittle_color">#242323</color>
-    <color name="tittle_color_second">#181717</color>
+    <color name="tittle_color">#CCCBCB</color>
+
+    <color name="habito_no_cumplido">#999696</color>
 
 
 
 
-    <color name="background">#F0F0F0</color>
 
     <color name="delete_button">#5F2A2A</color>
-
-    <color name="habito_no_cumplido">#3A3A3A</color>
-
 
     <color name="switch_thumb">#FFFFFF</color>
     <color name="switch_track">#555555</color>
@@ -40,5 +39,6 @@
 
     <color name="boton_agregar">#CD666464</color>
     <color name="fondo_mini_habito">#2E2E2E</color>
+
 
 </resources>

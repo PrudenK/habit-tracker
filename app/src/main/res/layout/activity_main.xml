@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".modules.mainModule.MainActivity"
-    android:background="@color/dark_background"
+    android:background="@color/background"
     >
 
     <ProgressBar
@@ -40,7 +40,7 @@
             android:fontFamily="@font/titulos"
             android:gravity="center"
             android:text="Habit tracker"
-            android:textColor="@color/gray_color"
+            android:textColor="@color/tittle_color"
             android:textSize="@dimen/text_32"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -58,7 +58,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/titulo_tool_bar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/gray_color"
+            app:tint="@color/tittle_color"
             />
 
         <ImageView
@@ -72,6 +72,7 @@
             app:layout_constraintBottom_toBottomOf="@id/titulo_tool_bar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/titulo_tool_bar"
+            app:tint="@color/tittle_color"
 
             />
 
@@ -83,12 +84,14 @@
         android:id="@+id/auxiliar"
         android:layout_width="140dp"
         android:layout_height="55dp"
-        android:textColor="@color/white"
+        android:textColor="@color/tittle_color"
+        android:textStyle="bold"
         android:text="FECHA"
         android:textSize="@dimen/text_20"
         android:gravity="center_horizontal|center_vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tool_bar" />
+        app:layout_constraintTop_toBottomOf="@+id/tool_bar"
+        />
 
 
     <androidx.recyclerview.widget.RecyclerView
@@ -103,7 +106,7 @@
         tools:listitem="@layout/item_fecha"
         android:layout_marginEnd="16dp"
 
-        android:background="@color/dark_gray"
+        android:background="@color/primary"
         />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -136,9 +139,12 @@
             android:layout_height="wrap_content"
             android:text="@string/anterior"
             android:drawableLeft="@drawable/ic_anterior"
-            android:drawableTint="@color/white"
+            android:drawableTint="@color/text_color"
             android:visibility="visible"
             android:textSize="@dimen/text_14"
+            android:textColor="@color/text_color"
+            android:backgroundTint="@color/primary"
+
             />
 
         <TextView
@@ -149,7 +155,7 @@
             android:textSize="18sp"
             android:gravity="center"
             android:padding="16dp"
-            android:textColor="@color/white"
+            android:textColor="@color/text_color"
             />
 
         <Button
@@ -158,9 +164,11 @@
             android:layout_height="wrap_content"
             android:text="@string/siguiente"
             android:drawableRight="@drawable/ic_siguiente"
-            android:drawableTint="@color/white"
+            android:drawableTint="@color/text_color"
             android:visibility="visible"
             android:textSize="@dimen/text_14"
+            android:textColor="@color/text_color"
+            android:backgroundTint="@color/primary"
             />
     </LinearLayout>
 

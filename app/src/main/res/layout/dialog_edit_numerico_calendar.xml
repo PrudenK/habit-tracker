@@ -48,7 +48,7 @@
                 app:layout_constraintTop_toBottomOf="@id/fecha_numerico_calendar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:boxStrokeColor="@color/light_gray"
+                app:boxStrokeColor="@color/secondary"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 app:boxStrokeWidth="1dp"
 
@@ -74,7 +74,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginTop="12dp"
-                app:boxStrokeColor="@color/light_gray"
+                app:boxStrokeColor="@color/secondary"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 app:boxStrokeWidth="1dp"
                 >

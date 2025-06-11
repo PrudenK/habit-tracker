@@ -3,7 +3,7 @@
     <style name="Base.Theme.Habits" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/black</item>
         <item name="colorOnPrimary">@color/white</item>
-        <item name="colorSurface">@color/dark_gray</item>
+        <item name="colorSurface">@color/primary</item>
         <item name="colorOnSurface">@color/white</item>
         <item name="android:windowBackground">@color/black</item>
     </style>

@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
 
         calcularTamanoPagina()
 
-        window.navigationBarColor = resources.getColor(R.color.dark_gray) // Color barra móvil
+        window.navigationBarColor = resources.getColor(R.color.primary) // Color barra móvil
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT // Bloquear giro pnatalla
 
         cargarViewModel()

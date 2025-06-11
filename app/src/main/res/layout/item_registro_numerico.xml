@@ -21,7 +21,7 @@
         app:layout_constraintTop_toTopOf="parent"
         android:maxLines="1"
         android:fontFamily="@font/encabezados"
-
+        android:textColor="@color/habito_no_cumplido"
         />
 
     <TextView
@@ -36,6 +36,7 @@
         android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@id/puntuacion"
         android:fontFamily="@font/encabezados"
+        android:textColor="@color/habito_no_cumplido"
         />
 
     <ImageView

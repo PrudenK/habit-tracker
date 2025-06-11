@@ -49,10 +49,10 @@ fun modificarHabitoCalendarEstadisticas(
     fun habitoCumplido(condicion: Boolean){
         if(condicion){
             bindingItemFecha.fechaCalendario.setBackgroundColor(habitoCalendar.colorHabito)
-            bindingItemFecha.fechaCalendario.setTextColor(ContextCompat.getColor(contexto, R.color.dark_gray))
-            ponerNotas(R.color.dark_gray)
+            bindingItemFecha.fechaCalendario.setTextColor(ContextCompat.getColor(contexto, R.color.primary))
+            ponerNotas(R.color.primary)
         }else{
-            bindingItemFecha.fechaCalendario.setBackgroundColor(ContextCompat.getColor(contexto, R.color.dark_gray))
+            bindingItemFecha.fechaCalendario.setBackgroundColor(ContextCompat.getColor(contexto, R.color.primary))
             bindingItemFecha.fechaCalendario.setTextColor(ContextCompat.getColor(contexto, R.color.lightGrayColor))
             ponerNotas(R.color.lightGrayColor)
         }

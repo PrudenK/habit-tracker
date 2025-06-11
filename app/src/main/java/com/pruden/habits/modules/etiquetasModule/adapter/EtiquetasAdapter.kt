@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Typeface
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -62,7 +61,7 @@ class EtiquetasAdapter (
                 setTextColor(
                     ContextCompat.getColor(
                         binding.chipGroup.context,
-                        if (isColorDark(etiqueta.colorEtiqueta)) R.color.lightGrayColor else R.color.dark_background
+                        if (isColorDark(etiqueta.colorEtiqueta)) R.color.lightGrayColor else R.color.background
                     )
                 )
                 val font = ResourcesCompat.getFont(binding.chipGroup.context, R.font.subtitulos)

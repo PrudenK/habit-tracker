@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="centerCrop"
-        android:background="@color/dark_background"
+        android:background="@color/background"
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,7 +26,7 @@
         android:id="@+id/toolbar_fragment_mini_habitos"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/dark_background"
+        android:background="@color/background"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,7 +40,7 @@
             android:gravity="center"
             android:text="@string/mini_habitos"
             android:textSize="@dimen/text_32"
-            android:textColor="@color/gray_color"
+            android:textColor="@color/tittle_color"
             android:fontFamily="@font/titulos"
 
             />
