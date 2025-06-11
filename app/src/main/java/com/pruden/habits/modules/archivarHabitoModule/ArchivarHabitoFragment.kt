@@ -76,7 +76,7 @@ class ArchivarHabitoFragment : Fragment(), OnClickHabito {
         }
 
         val back = ContextCompat.getDrawable(requireContext(), R.drawable.ic_back)
-        back?.setTint(ContextCompat.getColor(requireContext(), R.color.lightGrayColor))
+        back?.setTint(ContextCompat.getColor(requireContext(), R.color.tittle_color))
         (activity as AppCompatActivity).supportActionBar?.setHomeAsUpIndicator(back)
 
         setHasOptionsMenu(true)
@@ -102,7 +102,7 @@ class ArchivarHabitoFragment : Fragment(), OnClickHabito {
         val item = menu.findItem(R.id.desarchivar_todos)
         val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_desarchivar)
 
-        drawable?.setTint(ContextCompat.getColor(requireContext(), R.color.lightGrayColor))
+        drawable?.setTint(ContextCompat.getColor(requireContext(), R.color.tittle_color))
         item.icon = drawable
         super.onCreateOptionsMenu(menu, inflater)
     }
