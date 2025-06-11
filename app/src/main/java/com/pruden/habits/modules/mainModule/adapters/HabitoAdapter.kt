@@ -140,7 +140,7 @@ class HabitoAdapter (
             imm.showSoftInput(inputNotas, InputMethodManager.SHOW_IMPLICIT)
         }, 200)
 
-        tilNotas.defaultHintTextColor = ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.lightGrayColor))
+        tilNotas.defaultHintTextColor = ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.tittle_color))
 
         val botonCancelar = dialog.findViewById<ImageView>(R.id.no_check)
         val botonGuardar = dialog.findViewById<ImageView>(R.id.check)
@@ -227,7 +227,7 @@ class HabitoAdapter (
 
         val textInputLayouts = listOf(tilCantidad, tilNotas)
         textInputLayouts.forEach { til ->
-            til.defaultHintTextColor = ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.lightGrayColor))
+            til.defaultHintTextColor = ColorStateList.valueOf(ContextCompat.getColor(contexto, R.color.tittle_color))
         }
 
         if (habitoData.valorCampo != "0") {

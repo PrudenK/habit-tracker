@@ -2,7 +2,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
-    <solid android:color="#292929"/> <!-- Color de fondo oscuro -->
+    <solid android:color="@color/fondo_dialogos_opciones"/>
     <corners android:radius="20dp"/> <!-- Esquinas redondeadas -->
 
 </shape>

@@ -20,7 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:textColor="@color/white"
+        android:textColor="@color/tittle_color"
         />
 
     <TextView
@@ -34,7 +34,7 @@
         app:layout_constraintTop_toBottomOf="@id/dialog_titulo_mover"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textColor="@color/white"
+        android:textColor="@color/tittle_color"
         android:paddingVertical="6dp"
         />
 
@@ -49,7 +49,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dialog_subitulo_mover"
         android:text="-1"
-        android:textColor="@color/lightGrayColor"
+        android:textColor="@color/tittle_color"
         android:textSize="@dimen/text_28"
         android:paddingVertical="10dp"
         android:paddingBottom="6dp"
@@ -88,7 +88,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/posicion_picker"
         app:layout_constraintEnd_toStartOf="@+id/posicion_picker"
         app:layout_constraintTop_toTopOf="@+id/posicion_picker"
-        app:tint="@color/lightGrayColor" />
+        app:tint="@color/tittle_color" />
 
     <ImageView
         android:id="@+id/boton_sumar_posicion"
@@ -102,7 +102,7 @@
         app:layout_constraintStart_toEndOf="@+id/posicion_picker"
         app:layout_constraintTop_toTopOf="@+id/posicion_picker"
 
-        app:tint="@color/lightGrayColor" />
+        app:tint="@color/tittle_color" />
 
 
     <Button
@@ -114,7 +114,8 @@
         app:layout_constraintTop_toBottomOf="@id/posicion_picker"
         app:layout_constraintStart_toStartOf="parent"
         android:textSize="@dimen/text_18"
-
+        android:textColor="@color/tittle_color"
+        android:backgroundTint="@color/primary"
         />
 
     <Button
@@ -127,6 +128,8 @@
         android:textSize="@dimen/text_18"
         app:layout_constraintStart_toEndOf="@id/button_cancelar_number_picker"
         android:layout_marginStart="16dp"
+        android:textColor="@color/tittle_color"
+        android:backgroundTint="@color/primary"
         />
 
 

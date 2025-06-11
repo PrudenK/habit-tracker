@@ -24,11 +24,13 @@
     <color name="habito_no_cumplido">#999696</color>
     <color name="habito_cumplido_calendario">#101010</color>
     <color name="menu_color">#313030</color>
+    <color name="fondo_dialogos_opciones">#292929</color>
 
 
 
 
-    <color name="delete_button">#5F2A2A</color>
+    <color name="delete_button">#682C2C</color>
+    <color name="text_delete_button">#CCCBCB</color>
 
     <color name="switch_thumb">#FFFFFF</color>
     <color name="switch_track">#555555</color>
