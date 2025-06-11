@@ -128,6 +128,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/texto_tema"
                         android:layout_marginStart="12dp"
+                        app:thumbTint="@color/switch_tema_thumb"
+                        app:trackTint="@color/switch_tema_track"
                         />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -202,6 +204,7 @@
                     android:clickable="true"
                     android:background="?attr/selectableItemBackground"
                     android:textColor="@color/click_button"
+                    android:visibility="gone"
                     />
 
 
