@@ -5,7 +5,7 @@
     android:gravity="center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="@dimen/p_item_tutorial">
 
     <TextView
         android:id="@+id/titulo_diapostiva_tutorial"
@@ -15,7 +15,7 @@
         android:gravity="center"
         android:text=""
         android:textColor="@color/tittle_color"
-        android:textSize="@dimen/text_30"
+        android:textSize="@dimen/text_tama_titulo_tutorial"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -24,8 +24,8 @@
 
     <ImageView
         android:id="@+id/imageSlide"
-        android:layout_width="250dp"
-        android:layout_height="300dp"
+        android:layout_width="@dimen/ancho_imagen_tutorial"
+        android:layout_height="@dimen/altura_imagen_tutorial"
         android:scaleType="fitCenter"
         app:layout_constraintTop_toBottomOf="@id/titulo_diapostiva_tutorial"
         app:layout_constraintStart_toStartOf="parent"
@@ -39,7 +39,7 @@
         android:textAlignment="center"
         android:text="sdfsdf"
         android:textColor="@color/tittle_color"
-        android:textSize="@dimen/text_16"
+        android:textSize="@dimen/subtitulo_tutorial"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageSlide"

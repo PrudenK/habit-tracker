@@ -4,14 +4,14 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:background="@drawable/bg_tutorial_dialog"
-    android:padding="16dp"
+    android:padding="@dimen/p_fragment_tutorial"
     android:gravity="center">
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"/>
+        android:layout_marginBottom="@dimen/m_b_viewpager_tutorial"/>
 
 
 
