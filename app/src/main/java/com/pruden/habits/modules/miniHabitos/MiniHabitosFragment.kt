@@ -58,8 +58,7 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
     private var categoriasCargadas = false
     private var miniHabitosCargados = false
 
-
-    var bloqueoCambioCategoria = false
+    private var bloqueoCambioCategoria = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -155,12 +154,7 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
         recyclerCategorias.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
         val adapter = CategoriaAdapter(this, categorias,{
-            dialogoAgregarCategoria(requireContext(), recyclerCategorias, categorias,
-                resources, miniHabitosViewModel){ categoria ->
-
-                // Revisar solamente tema de la posición
-
-            }
+            dialogoAgregarCategoria(requireContext(), recyclerCategorias, categorias, resources, miniHabitosViewModel)
         }) { categoria ->
             if (!bloqueoCambioCategoria) {
                 cambiarDeCategoria(categoria, categorias, miniHabitosViewModel, miniHabitos,

@@ -28,8 +28,7 @@ fun dialogoAgregarCategoria(
     recyclerCategorias: RecyclerView,
     categorias: MutableList<CategoriaEntity>,
     resources: Resources,
-    miniHabitosViewModel: MiniHabitosViewModel,
-    onActualizarUI: (CategoriaEntity) -> Unit
+    miniHabitosViewModel: MiniHabitosViewModel
 ) {
     var colorCategoria = -1
 
@@ -96,8 +95,6 @@ fun dialogoAgregarCategoria(
             categorias.clear()
             categorias.addAll(miniHabitosViewModel.categorias.value!!.sortedBy { it.posicion })
             recyclerCategorias.adapter?.notifyDataSetChanged()
-
-            onActualizarUI(categoria)
 
             makeToast(context.getString(R.string.categoria_creada_exito, nombreCat), context)
             dialogo.dismiss()
