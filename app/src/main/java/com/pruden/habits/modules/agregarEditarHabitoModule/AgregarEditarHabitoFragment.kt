@@ -281,8 +281,8 @@ class AgregarEditarHabitoFragment : Fragment() {
             getString(R.string.spinner_igual_a),
             getString(R.string.spinner_menos_de)
         )
-        val adaptador = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, opciones)
-        adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        val adaptador = ArrayAdapter(requireContext(), R.layout.spinner_item, opciones)
+        adaptador.setDropDownViewResource(R.layout.spinner_dropdown_item)
         spinner.adapter = adaptador
     }
 

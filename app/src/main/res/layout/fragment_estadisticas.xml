@@ -263,7 +263,7 @@
                 android:id="@+id/spinner_esta_line_chart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:popupBackground="@color/black"
+                android:popupBackground="@color/tittle_color"
                 app:layout_constraintBottom_toTopOf="@+id/lineChart"
                 app:layout_constraintEnd_toEndOf="@+id/lineChart"
                 android:background="@color/primary"

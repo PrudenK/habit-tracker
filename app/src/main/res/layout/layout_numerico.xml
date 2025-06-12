@@ -75,17 +75,18 @@
         <Spinner
             android:id="@+id/spinner_opciones"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.7"
-            android:spinnerMode="dropdown"
-            android:background="@android:drawable/btn_dropdown"
+            android:layout_height="32dp"
+            android:layout_weight="0.5"
+            android:background="@color/background"
+            android:layout_marginEnd="12dp"
+
             />
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_objetivo_num"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="1    "
             android:hint="@string/tu_objetivo_diario"
             app:endIconMode="clear_text"
             app:hintTextColor="@color/hint_color"
