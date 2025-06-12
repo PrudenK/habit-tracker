@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.pruden.habits.HabitosApplication
 import com.pruden.habits.R
+import com.pruden.habits.common.Constantes
 import com.pruden.habits.common.clases.data.Idioma
 import com.pruden.habits.modules.mainModule.metodos.ajustarDialogo
 
@@ -28,14 +29,6 @@ fun dialogoCambiarIdiomas(
     val tituloDialog = dialogoIdiomasView.findViewById<TextView>(R.id.titulo_elegir_idioma)
 
     tituloDialog.text = context.getString(R.string.elige_tu_idioma)
-
-    val listaIdiomas = listOf(
-        Idioma("Español", "ES", R.mipmap.ic_espana),
-        Idioma("English", "EN", R.mipmap.ic_ingles_foreground),
-        Idioma("Français", "FR", R.mipmap.ic_francia_foreground),
-        Idioma("Deutsch", "DE", R.mipmap.ic_ale),
-        Idioma("Italiano", "IT", R.mipmap.ic_italia_foreground)
-    ).sortedBy { it.nombre }
 
     val layout = LinearLayoutManager(context)
     val adapterIdiomas = IdiomasAdapter(object : OnClickIdioma {
@@ -56,7 +49,7 @@ fun dialogoCambiarIdiomas(
         layoutManager = layout
     }
 
-    adapterIdiomas.submitList(listaIdiomas)
+    adapterIdiomas.submitList(Constantes.LISTA_IDIOMAS)
 
     dialogoIdiomas.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     dialogoIdiomas.show()

@@ -1,5 +1,7 @@
 package com.pruden.habits.common
 
+import com.pruden.habits.R
+import com.pruden.habits.common.clases.data.Idioma
 import java.text.SimpleDateFormat
 import java.util.Calendar
 import java.util.Locale
@@ -35,4 +37,14 @@ object Constantes {
 
 
     const val GMAIL = "prudencosta@gmail.com"
+
+    val LISTA_IDIOMAS = listOf(
+        Idioma("Español", "ES", R.mipmap.ic_espana),
+        Idioma("English", "EN", R.mipmap.ic_ingles_foreground),
+        Idioma("Français", "FR", R.mipmap.ic_francia_foreground),
+        Idioma("Deutsch", "DE", R.mipmap.ic_ale),
+        Idioma("Italiano", "IT", R.mipmap.ic_italia_foreground),
+        Idioma("Neerlandés", "NL", R.mipmap.ic_holanda_foreground),
+        Idioma("Portugués", "PT", R.mipmap.ic_portugal_foreground)
+    ).sortedBy { it.nombre }
 }
