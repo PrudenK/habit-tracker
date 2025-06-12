@@ -30,9 +30,4 @@
         android:title="@string/ver_tutorial"
         android:icon="@drawable/ic_tutorial"
         />
-    <item
-        android:id="@+id/licencias"
-        android:title="@string/ver_tutorial"
-        android:icon="@drawable/ic_tutorial"
-        />
 </menu>
