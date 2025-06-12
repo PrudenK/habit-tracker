@@ -76,6 +76,8 @@ fun dialogoModificarEtiqueta(
             val tituloColorEtiqueta = dialogoView.findViewById<TextView>(R.id.titulo_color_etiqueta)
             tituloColorEtiqueta.text = context.getString(R.string.elige_el_color_de_la_etiqueta)
 
+            val textoPosicionEtiqueta = dialogoView.findViewById<TextView>(R.id.dialog_posicion_etiqueta)
+            textoPosicionEtiqueta.text = context.getString(R.string.modifica_la_posicion_de_tu_etiqueta)
 
             val imgColorPicker = dialogoView.findViewById<ImageView>(R.id.img_color_etiqueta_num)
             val drawable = imgColorPicker.background as LayerDrawable

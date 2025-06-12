@@ -14,6 +14,7 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.entities.CategoriaEntity
 import com.pruden.habits.common.metodos.Dialogos.makeToast
@@ -61,12 +62,17 @@ fun dialogoModificarCategoria(
         val btnCancelar = dialogoView.findViewById<Button>(R.id.button_cancelar_agregar_etiqueta)
         val btnGuardar = dialogoView.findViewById<Button>(R.id.button_guardar_agreagr_etiqueta)
 
-        val editTextNombreEtiqeta = dialogoView.findViewById<TextInputEditText>(R.id.input_agregar_etiqueta)
-        editTextNombreEtiqeta.setText(categoria.nombre)
+        val editTextNombreCategoria = dialogoView.findViewById<TextInputEditText>(R.id.input_agregar_etiqueta)
+        editTextNombreCategoria.setText(categoria.nombre)
 
-        val tituloColorEtiqueta = dialogoView.findViewById<TextView>(R.id.titulo_color_etiqueta)
-        tituloColorEtiqueta.text = context.getString(R.string.elige_el_color_de_la_etiqueta)
+        val tituloColorCategoria = dialogoView.findViewById<TextView>(R.id.titulo_color_etiqueta)
+        tituloColorCategoria.text = context.getString(R.string.ponle_un_color_a_la_categoria)
 
+        val hintNombreCategoria = dialogoView.findViewById<TextInputLayout>(R.id.til_nombre_etiqueta)
+        hintNombreCategoria.hint = context.getString(R.string.nombre_de_la_categoria)
+
+        val textoPosicionCategoria = dialogoView.findViewById<TextView>(R.id.dialog_posicion_etiqueta)
+        textoPosicionCategoria.text = context.getString(R.string.modifica_la_posicion_de_tu_categoria)
 
         val imgColorPicker = dialogoView.findViewById<ImageView>(R.id.img_color_etiqueta_num)
         val drawable = imgColorPicker.background as LayerDrawable
@@ -138,7 +144,7 @@ fun dialogoModificarCategoria(
 
 
 
-            val nombreCategoria = editTextNombreEtiqeta.text.toString()
+            val nombreCategoria = editTextNombreCategoria.text.toString()
 
             if(listaCategorias.map { it.nombre.lowercase() }.toMutableList().contains(nombreCategoria.lowercase())){
                 if(nombreCategoria == nombreAntiguo){
@@ -154,11 +160,11 @@ fun dialogoModificarCategoria(
                         dialogo.dismiss()
                     }
                 }else{
-                    makeToast(context.getString(R.string.etiqueta_nombre_existe), context)
+                    makeToast(context.getString(R.string.categoria_nombre_existe), context)
                 }
             }else{
                 if(nombreCategoria.isBlank()){
-                    makeToast(context.getString(R.string.etiqueta_nombre_vacio), context)
+                    makeToast(context.getString(R.string.categoria_nombre_vacio), context)
                 }else {
                     if(nombreCategoria.lowercase() == "fecha"){
                         makeToast(context.getString(R.string.etiqueta_nombre_reservado), context)
@@ -194,7 +200,7 @@ fun dialogoModificarCategoria(
 
         dialogBorrar.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-        subtitulo.text = context.getString(R.string.seguro_que_quieres_borrar_la_etiqueta)
+        subtitulo.text = context.getString(R.string.seguro_que_quieres_borrar_la_categoria)
 
         buttonCancel.setOnClickListener {
             dialogBorrar.dismiss()

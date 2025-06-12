@@ -153,6 +153,11 @@
     <string name="categoria_creada_exito">Category: %1$s created successfully</string>
     <string name="mini_habitos_info_titulo">Mini habits?</string>
     <string name="mini_habitos_info">Mini habits reset every day and are used to track tasks that aren\'t very important. You can group them into categories.</string>
+    <string name="modifica_la_posicion_de_tu_categoria">Edit the position of your category</string>
+    <string name="modifica_la_posicion_de_tu_etiqueta">Edit the position of your tag</string>
+    <string name="categoria_nombre_existe">A category with that name already exists</string>
+    <string name="categoria_nombre_vacio">The category name cannot be empty</string>
+    <string name="seguro_que_quieres_borrar_la_categoria">Are you sure you want to delete the category?</string>
 
     <!-- Por etiquetas -->
     <string name="por_etiquetas">Filter by tags</string>

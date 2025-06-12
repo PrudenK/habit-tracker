@@ -153,6 +153,11 @@
     <string name="categoria_creada_exito">Categoría: %1$s creada con éxito</string>
     <string name="mini_habitos_info_titulo">¿Mini hábitos?</string>
     <string name="mini_habitos_info">Los mini hábitos se reinician cada día y son para marcar tareas que no son tan importantes, estos los puedes agrupar en categorías.</string>
+    <string name="modifica_la_posicion_de_tu_categoria">Modifica la posición de tu categoría</string>
+    <string name="modifica_la_posicion_de_tu_etiqueta">Modifica la posición de tu etiqueta</string>
+    <string name="categoria_nombre_existe">Ya hay una categoría con ese nombre</string>
+    <string name="categoria_nombre_vacio">El nombre de la categoría no puede estar en blanco</string>
+    <string name="seguro_que_quieres_borrar_la_categoria">¿Seguro qué quieres borrar la categoría?</string>
 
     <!-- Por etiquetas -->
     <string name="por_etiquetas">Por etiquetas</string>
@@ -171,6 +176,7 @@
 
     <!-- Menu de opciones -->
     <string name="ver_tutorial">Ver tutorial</string>
+
 
 
 </resources>
