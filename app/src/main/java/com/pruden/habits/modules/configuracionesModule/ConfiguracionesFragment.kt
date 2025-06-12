@@ -227,21 +227,17 @@ class ConfiguracionesFragment : Fragment() {
 
     private fun cambiarTemas(){
         binding.switchTemaOscuro.isChecked = HabitosApplication.temaOscuro
-        binding.switchTemaOscuro.setOnClickListener{
-            HabitosApplication.temaOscuro = binding.switchTemaOscuro.isChecked
-            HabitosApplication.sharedConfiguraciones.edit().putBoolean("modoOscuro",
-                HabitosApplication.temaOscuro).apply()
+        binding.switchTemaOscuro.setOnCheckedChangeListener { _, isChecked ->
+            HabitosApplication.temaOscuro = isChecked
 
+            HabitosApplication.sharedConfiguraciones.edit()
+                .putBoolean("modoOscuro", isChecked)
+                .apply()
 
             AppCompatDelegate.setDefaultNightMode(
-                if (HabitosApplication.temaOscuro) {
-                    AppCompatDelegate.MODE_NIGHT_YES
-                }
-                else {
-                    AppCompatDelegate.MODE_NIGHT_NO
-                }
+                if (isChecked) AppCompatDelegate.MODE_NIGHT_YES
+                else AppCompatDelegate.MODE_NIGHT_NO
             )
-
         }
     }
 

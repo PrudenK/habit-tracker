@@ -72,5 +72,6 @@ dependencies {
     implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
 
+    implementation ("me.relex:circleindicator:2.1.6")
 
 }

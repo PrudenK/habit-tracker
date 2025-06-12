@@ -39,6 +39,7 @@ import com.pruden.habits.modules.mainModule.metodos.dialogoOnLongClickHabito
 import com.pruden.habits.modules.mainModule.viewModel.MainViewModel
 import com.pruden.habits.modules.etiquetasModule.PorEtiquetasFragment
 import com.pruden.habits.modules.miniHabitos.MiniHabitosFragment
+import com.pruden.habits.modules.tutorialModule.TutorialFragment
 import java.util.Locale
 
 
@@ -288,6 +289,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
                     }
 
                     R.id.menu_tutorial->{
+                        TutorialFragment().show(supportFragmentManager, "tutorial")
 
                         true
                     }

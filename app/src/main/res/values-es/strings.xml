@@ -174,9 +174,12 @@
     <string name="gestionar_etiquetas">Gestionar etiquetas</string>
     <string name="todos">Todos</string>
 
-    <!-- Menu de opciones -->
+    <!-- Tutorial -->
     <string name="ver_tutorial">Ver tutorial</string>
-
+    <string name="paso_1_tutorial">Mantén pulsado un hábito para editarlo</string>
+    <string name="paso_1_tutorial_titulo">Editar un hábito</string>
+    <string name="paso_2_tutorial">Mantén pulsados los hábitos de Si o No para añadirles notas.</string>
+    <string name="paso_2_tutorial_titulo">Añadir notas</string>
 
 
 </resources>
