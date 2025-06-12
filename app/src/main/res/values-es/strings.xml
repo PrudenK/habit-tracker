@@ -180,6 +180,8 @@
     <string name="paso_1_tutorial_titulo">Editar un hábito</string>
     <string name="paso_2_tutorial">Mantén pulsados los hábitos de Si o No para añadirles notas.</string>
     <string name="paso_2_tutorial_titulo">Añadir notas</string>
+    <string name="paso_3_tutorial_titulo">Ver estadísticas</string>
+    <string name="paso_3_tutorial">Haz click en el nombre del hábito y podrás ver sus estadísticas.</string>
 
 
 </resources>

@@ -43,7 +43,8 @@ class TutorialFragment : DialogFragment() {
 
         val slides = listOf(
             SlideItem(R.drawable.editar_hab, requireContext().getString(R.string.paso_1_tutorial_titulo) ,requireContext().getString(R.string.paso_1_tutorial)),
-            SlideItem(R.drawable.notas, requireContext().getString(R.string.paso_2_tutorial_titulo), requireContext().getString(R.string.paso_2_tutorial))
+            SlideItem(R.drawable.notas, requireContext().getString(R.string.paso_2_tutorial_titulo), requireContext().getString(R.string.paso_2_tutorial)),
+            SlideItem(R.drawable.estadisticas, requireContext().getString(R.string.paso_3_tutorial_titulo), requireContext().getString(R.string.paso_3_tutorial))
         )
 
         viewPager.adapter = TutorialAdapter(slides)
