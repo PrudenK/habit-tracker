@@ -6,6 +6,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Transaction
 import androidx.room.Update
 import com.pruden.habits.common.clases.entities.CategoriaEntity
 
@@ -34,4 +35,20 @@ interface CategoriaDao {
 
     @Query("Delete from categoria")
     suspend fun borrarTodasLasCategorias()
+
+    @Update
+    suspend fun updateCategoriaSimple(categoriaEntity: CategoriaEntity)
+
+    @Transaction
+    suspend fun actualizarCategoriaConNuevoNombre(categoriaVieja: String, nuevaCategoria: CategoriaEntity) {
+        insertarCategoria(nuevaCategoria)
+        actualizarNombreEnMiniHabitos(categoriaVieja, nuevaCategoria.nombre)
+        eliminarCategoriaPorNombre(categoriaVieja)
+    }
+
+    @Query("UPDATE MiniHabito SET categoria = :nuevoCategoria WHERE categoria = :categoriaVieja")
+    suspend fun actualizarNombreEnMiniHabitos(categoriaVieja: String, nuevoCategoria: String)
+
+    @Query("DELETE FROM Categoria WHERE nombre = :categoria")
+    suspend fun eliminarCategoriaPorNombre(categoria: String)
 }

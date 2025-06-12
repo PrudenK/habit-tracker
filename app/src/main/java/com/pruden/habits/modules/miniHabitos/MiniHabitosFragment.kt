@@ -28,6 +28,7 @@ import com.pruden.habits.modules.miniHabitos.metodos.categorias.cambiarDeCategor
 import com.pruden.habits.modules.miniHabitos.metodos.dialogos.dialogoAgregarCategoria
 import com.pruden.habits.modules.miniHabitos.metodos.dialogos.dialogoAgregarMiniHabito
 import com.pruden.habits.modules.miniHabitos.metodos.dialogos.dialogoBorrarElementoComun
+import com.pruden.habits.modules.miniHabitos.metodos.dialogos.dialogoModificarCategoria
 import com.pruden.habits.modules.miniHabitos.metodos.dialogos.mostrarDialogInformacionMiniHabitos
 import com.pruden.habits.modules.miniHabitos.metodos.intentarCargarMiniHabitos
 import com.pruden.habits.modules.miniHabitos.viewModel.MiniHabitosViewModel
@@ -191,12 +192,10 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
     }
 
     override fun onLongClickCategoria(categoriaEntity: CategoriaEntity) {
-        dialogoBorrarElementoComun(getString(R.string.borrar_categoria_mini_habito),
-            requireContext(), resources){
-
+        dialogoModificarCategoria(
+            requireContext(), miniHabitosViewModel, resources, categoriaEntity, categorias
+        ,{ recyclerCategorias.adapter?.notifyDataSetChanged() }){
             CoroutineScope(Dispatchers.Main).launch {
-                miniHabitosViewModel.eliminarCategoria(categoriaEntity)
-
                 if(binding.nombreMiniHabito.text == categoriaEntity.nombre || categoriaSeleccionada == null){
                     delay(50)
                     categoriaSeleccionada = null
