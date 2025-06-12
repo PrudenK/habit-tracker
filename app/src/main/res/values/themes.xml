@@ -16,4 +16,11 @@
         <item name="android:textStyle">bold</item>
         <item name="android:popupElevation">0dp</item>
     </style>
+
+    <style name="WhiteToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
+        <item name="android:colorControlNormal">@android:color/white</item> <!-- para el ícono de back -->
+    </style>
+
 </resources>

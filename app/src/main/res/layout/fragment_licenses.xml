@@ -10,9 +10,11 @@
         android:id="@+id/licensesToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="#000000"
         android:title="Licencias de código abierto"
-        android:titleTextColor="@color/background" />
+        android:titleTextColor="@color/white"
+        android:theme="@style/WhiteToolbarTheme"
+        />
 
     <WebView
         android:id="@+id/licensesWebView"

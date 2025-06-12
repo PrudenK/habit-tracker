@@ -112,13 +112,6 @@ class ConfiguracionesFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.clear()
-        inflater.inflate(R.menu.menu_tool_bar_save, menu)
-        val item = menu.findItem(R.id.gurdar_config)
-        val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_save)
-
-        drawable?.setTint(ContextCompat.getColor(requireContext(), R.color.background))
-        item.icon = drawable
-
         super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -129,11 +122,6 @@ class ConfiguracionesFragment : Fragment() {
                     parentFragmentManager.setFragmentResult("actualizar_habitos_main", Bundle())
                 }
                 activity?.onBackPressed()
-                true
-            }
-
-            R.id.gurdar_config -> {
-                //makeToast("Configuración guardada", requireContext())
                 true
             }
             else -> super.onOptionsItemSelected(item)
