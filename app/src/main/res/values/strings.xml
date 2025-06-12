@@ -32,6 +32,8 @@
     <string name="ir_al_gmail">Contact by Gmail</string>
     <string name="enviar_correo_con">Send email with…</string>
     <string name="no_app_correo">No email app found</string>
+    <string name="licencias">Licenses</string>
+    <string name="ver_licencias">View app licenses</string>
 
     <!-- Diálogos configuración -->
     <string name="titulo_borrar_todos_datos">Delete all data!</string>
@@ -173,6 +175,7 @@
     <string name="elige_el_color_de_la_etiqueta">Choose the tag color</string>
     <string name="gestionar_etiquetas">Manage tags</string>
     <string name="todos">All</string>
+    <string name="no_habits_no_tags">No tags without habits</string>
 
     <!-- Tutorial -->
     <string name="ver_tutorial">View tutorial</string>
@@ -182,7 +185,6 @@
     <string name="paso_2_tutorial_titulo">Add notes</string>
     <string name="paso_3_tutorial_titulo">View statistics</string>
     <string name="paso_3_tutorial">Click on the habit\'s name to view its statistics.</string>
-
 
 
 </resources>

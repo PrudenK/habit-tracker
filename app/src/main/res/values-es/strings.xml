@@ -32,6 +32,8 @@
     <string name="ir_al_gmail">Contactar por gmail</string>
     <string name="enviar_correo_con">Enviar correo con…</string>
     <string name="no_app_correo">No se encontró una app de correo</string>
+    <string name="licencias">Licencias</string>
+    <string name="ver_licencias">Ver licencias de la App</string>
 
     <!-- Diálogos configuración -->
     <string name="titulo_borrar_todos_datos">¡Borrar todos los datos!</string>
@@ -173,6 +175,7 @@
     <string name="elige_el_color_de_la_etiqueta">Elige el color de la etiqueta</string>
     <string name="gestionar_etiquetas">Gestionar etiquetas</string>
     <string name="todos">Todos</string>
+    <string name="no_habits_no_tags">Si no hay hábitos no hay etiquetas</string>
 
     <!-- Tutorial -->
     <string name="ver_tutorial">Ver tutorial</string>
@@ -182,6 +185,7 @@
     <string name="paso_2_tutorial_titulo">Añadir notas</string>
     <string name="paso_3_tutorial_titulo">Ver estadísticas</string>
     <string name="paso_3_tutorial">Haz click en el nombre del hábito y podrás ver sus estadísticas.</string>
+
 
 
 </resources>

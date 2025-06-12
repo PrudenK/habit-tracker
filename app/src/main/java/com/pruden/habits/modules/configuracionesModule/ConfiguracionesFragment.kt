@@ -25,11 +25,13 @@ import com.pruden.habits.common.Constantes
 import com.pruden.habits.modules.configuracionesModule.metodos.borrarDatos.borrarTodosLosHabitos
 import com.pruden.habits.modules.configuracionesModule.metodos.borrarDatos.borrarTodosLosRegistros
 import com.pruden.habits.common.metodos.Dialogos.makeToast
+import com.pruden.habits.common.metodos.Fragments.cargarFragment
 import com.pruden.habits.modules.configuracionesModule.metodos.importarDatos.leerCsvDesdeUri
 import com.pruden.habits.databinding.FragmentConfiguracionesBinding
 import com.pruden.habits.modules.configuracionesModule.metodos.borrarDatos.borrarTodasLasEtiquetasDialog
 import com.pruden.habits.modules.configuracionesModule.metodos.borrarDatos.borrarTodosLosDatos
 import com.pruden.habits.modules.configuracionesModule.metodos.idiomas.dialogoCambiarIdiomas
+import com.pruden.habits.modules.configuracionesModule.metodos.licencias.LicensesFragment
 import com.pruden.habits.modules.configuracionesModule.metodos.modifcarFechaInicio.mostrarDatePicker
 import com.pruden.habits.modules.configuracionesModule.viewModel.ConfiguracionesViewModel
 
@@ -74,6 +76,7 @@ class ConfiguracionesFragment : Fragment() {
         cambiarTemas()
         irAGitHub()
         irAGmail()
+        verLicencias()
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             if (fechasCambiadas) {
@@ -208,6 +211,12 @@ class ConfiguracionesFragment : Fragment() {
         binding.irAlGithub.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/PrudenK/Habit-Tracker"))
             startActivity(intent)
+        }
+    }
+
+    private fun verLicencias(){
+        binding.verLicencias.setOnClickListener {
+            cargarFragment(requireActivity(), LicensesFragment())
         }
     }
 

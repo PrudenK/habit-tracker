@@ -279,7 +279,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
                         if(listaHabitos.size > 0){
                             cargarFragment(this, PorEtiquetasFragment())
                         }else{
-                            makeToast("Si no hay hábitos no hay etiquetas", this)
+                            makeToast(getString(R.string.no_habits_no_tags), this)
                         }
                         true
                     }
@@ -290,7 +290,6 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
 
                     R.id.menu_tutorial->{
                         TutorialFragment().show(supportFragmentManager, "tutorial")
-
                         true
                     }
 
