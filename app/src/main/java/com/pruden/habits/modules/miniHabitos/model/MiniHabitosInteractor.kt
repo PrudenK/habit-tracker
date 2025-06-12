@@ -3,7 +3,6 @@ package com.pruden.habits.modules.miniHabitos.model
 import androidx.lifecycle.LiveData
 import com.pruden.habits.HabitosApplication
 import com.pruden.habits.common.clases.entities.CategoriaEntity
-import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.common.clases.entities.MiniHabitoEntity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

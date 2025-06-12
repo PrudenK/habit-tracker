@@ -1,6 +1,8 @@
 package com.pruden.habits.modules.miniHabitos
 
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -55,6 +57,9 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
 
     private var categoriasCargadas = false
     private var miniHabitosCargados = false
+
+
+    var bloqueoCambioCategoria = false
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -157,9 +162,11 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
 
             }
         }) { categoria ->
-            cambiarDeCategoria(categoria, categorias, miniHabitosViewModel, miniHabitos,
-                miniHabitosAdapter, binding.nombreMiniHabito, recyclerMiniHabitos
-            )
+            if (!bloqueoCambioCategoria) {
+                cambiarDeCategoria(categoria, categorias, miniHabitosViewModel, miniHabitos,
+                    miniHabitosAdapter, binding.nombreMiniHabito, recyclerMiniHabitos
+                )
+            }
         }
 
         recyclerCategorias.adapter = adapter
@@ -194,17 +201,25 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
     override fun onLongClickCategoria(categoriaEntity: CategoriaEntity) {
         dialogoModificarCategoria(
             requireContext(), miniHabitosViewModel, resources, categoriaEntity, categorias
-        ,{ recyclerCategorias.adapter?.notifyDataSetChanged() }){
-            CoroutineScope(Dispatchers.Main).launch {
-                if(binding.nombreMiniHabito.text == categoriaEntity.nombre || categoriaSeleccionada == null){
-                    delay(50)
-                    categoriaSeleccionada = null
+        ,{
+            Handler(Looper.getMainLooper()).postDelayed({
+                bloqueoCambioCategoria = false
+            }, 100)
+            recyclerCategorias.adapter?.notifyDataSetChanged()
+         },
+            {
+                CoroutineScope(Dispatchers.Main).launch {
+                    if(binding.nombreMiniHabito.text == categoriaEntity.nombre || categoriaSeleccionada == null){
+                        delay(50)
+                        categoriaSeleccionada = null
 
-                    binding.nombreMiniHabito.text = getString(R.string.selecciona_una_categoria)
+                        binding.nombreMiniHabito.text = getString(R.string.selecciona_una_categoria)
 
-                    recyclerMiniHabitos.visibility = View.GONE
+                        recyclerMiniHabitos.visibility = View.GONE
+                    }
                 }
-            }
-        }
+            },
+            setBloqueoCambioCategoria = { bloqueo -> bloqueoCambioCategoria = bloqueo }
+        )
     }
 }

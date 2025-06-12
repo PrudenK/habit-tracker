@@ -29,7 +29,8 @@ fun dialogoModificarCategoria(
     categoria: CategoriaEntity,
     listaCategorias : MutableList<CategoriaEntity>,
     onRecargarUI: () -> Unit,
-    onRecargarAlBorrar: () -> Unit
+    onRecargarAlBorrar: () -> Unit,
+    setBloqueoCambioCategoria: (Boolean) -> Unit
 ){
     val dialogViewOpciones = LayoutInflater.from(context).inflate(R.layout.dialog_borrar_habito, null)
     val dialogOpciones = AlertDialog.Builder(context).setView(dialogViewOpciones).create()
@@ -120,6 +121,8 @@ fun dialogoModificarCategoria(
         btnGuardar.setOnClickListener {
 
             if(posicionOrginal != posicion){
+                setBloqueoCambioCategoria(true)
+
                 categoria.posicion = posicion
 
                 val categoriaModificada = listaCategorias.find { it.nombre == categoria.nombre }!!
