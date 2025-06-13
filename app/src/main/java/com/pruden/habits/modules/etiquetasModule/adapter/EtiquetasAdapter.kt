@@ -55,8 +55,10 @@ class EtiquetasAdapter (
                 chipBackgroundColor = ColorStateList.valueOf(etiqueta.colorEtiqueta)
                 isCheckable = true
                 isClickable = true
-                minWidth = 200
+                minWidth = resources.getDimensionPixelSize(R.dimen.min_ancho_chip_etiqueta)
                 textAlignment = View.TEXT_ALIGNMENT_CENTER
+
+                textSize = resources.getDimension(R.dimen.t_item_chip_etiqueta)
 
                 setTextColor(
                     ContextCompat.getColor(

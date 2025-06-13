@@ -1,7 +1,7 @@
 <com.google.android.material.chip.Chip android:id="@+id/chip"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginEnd="8dp"
+    android:layout_marginEnd="@dimen/m_end_chip_item_categoria"
     app:chipIconVisible="false"
     app:closeIconVisible="false"
     app:chipBackgroundColor="@color/black"

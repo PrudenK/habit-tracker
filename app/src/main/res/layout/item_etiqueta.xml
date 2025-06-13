@@ -7,6 +7,7 @@
     android:orientation="horizontal"
     app:singleSelection="false"
     app:selectionRequired="false"
-    app:chipSpacingHorizontal="8dp"
-    android:layout_marginEnd="16dp"
+    app:chipSpacingHorizontal="@dimen/spacing_h_item_chip_etiqueta"
+    android:layout_marginEnd="@dimen/m_end_item_chip_etiqueta"
+
     />
