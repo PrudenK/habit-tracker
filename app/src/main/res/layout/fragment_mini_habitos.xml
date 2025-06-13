@@ -30,46 +30,54 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-
         >
-
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
         <TextView
             android:id="@+id/titulo_tool_bar_mini_habitos"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/mini_habitos"
-            android:textSize="@dimen/text_32"
+            android:textSize="@dimen/t_titulo_toolbar"
             android:textColor="@color/tittle_color"
             android:fontFamily="@font/titulos"
-
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:padding="@dimen/p_contenedor_main"
             />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.appcompat.widget.Toolbar>
 
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_chips_categorias"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="@dimen/h_recycler_etiquetas"
         app:layout_constraintTop_toBottomOf="@id/toolbar_fragment_mini_habitos"
         android:scrollbars="none"
-        android:layout_marginHorizontal="12dp"
+        android:layout_marginHorizontal="@dimen/m_h_recycler_etiquetas"
         />
 
         <TextView
             android:id="@+id/nombre_mini_habito"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginTop="12dp"
+            android:layout_height="@dimen/h_titulo_categoria"
+            android:layout_marginTop="@dimen/m_top_titulo_categoria"
             android:gravity="center_horizontal|center_vertical"
             android:text="@string/selecciona_una_categoria"
             android:textColor="@color/tittle_color"
-            android:textSize="@dimen/text_24"
+            android:textSize="@dimen/t_titulo_categoria"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recycler_chips_categorias"
             android:background="@drawable/fondo_titulo_mini_habitos"
-            android:layout_marginHorizontal="16dp"
+            android:layout_marginHorizontal="@dimen/m_h_titulo_categoria"
             android:fontFamily="@font/titulos"
 
             />
@@ -85,9 +93,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/nombre_mini_habito"
-            android:layout_marginBottom="60dp"
+            android:layout_marginBottom="@dimen/m_bot_recycler_mini_habitos"
             android:visibility="gone"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/m_top_recycler_mini_habitos"
             />
 
 

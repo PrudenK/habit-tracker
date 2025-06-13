@@ -74,9 +74,6 @@
     <dimen name="m_start_imagen_color_picker">35dp</dimen>
     <dimen name="m_top_imagen_color_picker">12dp</dimen>
 
-    <!-- MiniHabitos -->
-    <dimen name="m_end_chip_item_categoria">4dp</dimen>
-
     <!-- Fragment etiquetas -->
     <dimen name="m_h_recycler_etiquetas">12dp</dimen>
     <dimen name="m_end_item_chip_etiqueta">8dp</dimen>
@@ -85,6 +82,31 @@
     <dimen name="min_ancho_chip_etiqueta">50dp</dimen>
     <dimen name="t_item_chip_etiqueta">6dp</dimen>
     <dimen name="h_recycler_etiquetas">40dp</dimen>
+
+    <!-- Fragment minihabitos -->
+    <dimen name="m_top_titulo_categoria">12dp</dimen>
+    <dimen name="t_titulo_categoria">20sp</dimen>
+    <dimen name="m_top_recycler_mini_habitos">6dp</dimen>
+    <dimen name="m_bot_recycler_mini_habitos">40dp</dimen>
+    <dimen name="m_h_titulo_categoria">16dp</dimen>
+    <dimen name="h_titulo_categoria">32dp</dimen>
+    <dimen name="t_item_mini_habito">16sp</dimen>
+    <dimen name="wh_check_item_habito">32dp</dimen>
+    <dimen name="wh_basura_item_mini_habito">20dp</dimen>
+    <dimen name="m_basura_item_mini_habito">8dp</dimen>
+    <dimen name="m_check_item_habito">8dp</dimen>
+    <dimen name="p_end_nombre_mini_habito">40dp</dimen>
+    <dimen name="p_start_nombre_mini_habito">32dp</dimen>
+    <dimen name="m_h_item_mini_habito">32dp</dimen>
+    <dimen name="m_top_item_mini_habito">6dp</dimen>
+    <dimen name="m_bot_item_mini_habito">6dp</dimen>
+    <dimen name="h_item_mini_habito">40dp</dimen>
+    <dimen name="t_item_agregar_categoria">14sp</dimen>
+    <dimen name="w_item_agregar_categoria">55dp</dimen>
+    <dimen name="h_item_agregar_categoria">40dp</dimen>
+    <dimen name="t_item_agregar_mini_habito">14sp</dimen>
+    <dimen name="h_item_agregar_mini_habito">40dp</dimen>
+    <dimen name="m_end_chip_item_categoria">6dp</dimen>
 
 
 </resources>
