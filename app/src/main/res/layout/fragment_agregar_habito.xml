@@ -46,6 +46,9 @@
         android:visibility="gone"
         />
 
+
+
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -61,6 +64,10 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             >
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
 
             <TextView
                 android:id="@+id/titulo_tool_bar"
@@ -68,11 +75,16 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/agregar_habito"
-                android:textSize="@dimen/text_32"
+                android:textSize="@dimen/t_titulo_toolbar"
                 android:textColor="@color/tittle_color"
                 android:fontFamily="@font/titulos"
-
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:padding="@dimen/p_contenedor_main"
                 />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.appcompat.widget.Toolbar>
 
         <TextView
@@ -84,12 +96,12 @@
             app:layout_constraintTop_toBottomOf="@id/toolbar_fragment"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/m_top_titulo_elegir_tipo_habito"
             android:gravity="center"
-            android:textSize="@dimen/text_26"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
-            android:padding="8dp"
+            android:textSize="@dimen/titulo_elegir_tipo_habito"
+            android:layout_marginHorizontal="@dimen/m_h_titulo_elegir_tipo_habito"
+
+            android:padding="@dimen/p_titulo_tipo_habito"
             android:textColor="@color/tittle_color"
             android:background="@color/contenedor_titulo"
             android:fontFamily="@font/subtitulos"
@@ -104,12 +116,12 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/booleano"
             android:gravity="center"
-            android:layout_marginStart="12dp"
+            android:layout_marginStart="@dimen/m_h_titulo_elegir_tipo_habito"
             android:clickable="true"
             android:focusable="true"
-            android:padding="6dp"
+            android:padding="@dimen/p_subtitulos_tipo_habito"
             android:textColor="@color/tittle_color"
-            android:textSize="@dimen/text_20"
+            android:textSize="@dimen/t_subtitulo_elegir_tipo_habito"
             android:background="@color/contenedor_subtitulo"
             android:fontFamily="@font/subtitulos"
 
@@ -126,12 +138,12 @@
             app:layout_constraintStart_toEndOf="@id/numerico"
             app:layout_constraintEnd_toEndOf="parent"
             android:gravity="center"
-            android:layout_marginEnd="12dp"
+            android:layout_marginEnd="@dimen/m_h_titulo_elegir_tipo_habito"
             android:clickable="true"
             android:focusable="true"
-            android:padding="6dp"
+            android:padding="@dimen/p_subtitulos_tipo_habito"
             android:textColor="@color/tittle_color"
-            android:textSize="@dimen/text_20"
+            android:textSize="@dimen/t_subtitulo_elegir_tipo_habito"
             android:fontFamily="@font/subtitulos"
 
             />
@@ -143,7 +155,7 @@
             app:layout_constraintTop_toBottomOf="@id/booleano"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginTop="16dp" />
+            android:layout_marginTop="@dimen/m_top_layout_aux_tipo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

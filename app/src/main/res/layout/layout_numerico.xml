@@ -15,7 +15,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="12dp"
+        android:layout_margin="@dimen/m_h_titulo_elegir_tipo_habito"
         app:hintTextColor="@color/hint_color"
         app:boxStrokeColor="@color/border_color"
         app:boxStrokeWidth="1dp"
@@ -31,6 +31,7 @@
             android:maxLength="40"
             android:textColor="@color/tittle_color"
             android:textCursorDrawable="@null"
+            android:textSize="@dimen/t_input_comun"
              />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -43,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@id/til_nombre_num"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="12dp"
+        android:layout_margin="@dimen/m_h_titulo_elegir_tipo_habito"
         app:hintTextColor="@color/hint_color"
         app:boxStrokeColor="@color/border_color"
         app:boxStrokeWidth="1dp"
@@ -59,6 +60,7 @@
             android:maxLength="40"
             android:textColor="@color/tittle_color"
             android:textCursorDrawable="@null"
+            android:textSize="@dimen/t_input_comun"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -104,6 +106,7 @@
             android:maxLength="40"
             android:textColor="@color/tittle_color"
             android:textCursorDrawable="@null"
+            android:textSize="@dimen/t_input_comun"
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -114,10 +117,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/elige_el_color_del_habito"
-        android:textSize="18sp"
+        android:textSize="@dimen/t_escoger_color_habito"
         app:layout_constraintTop_toBottomOf="@id/linearLayoutContainer"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="40dp"
+        android:layout_marginStart="@dimen/m_start_escoger_color_habito"
         app:layout_constraintTop_toTopOf="@id/img_color_habito_num"
         app:layout_constraintBottom_toBottomOf="@id/img_color_habito_num"
         android:textColor="@color/tittle_color"
@@ -125,12 +128,12 @@
 
     <ImageView
         android:id="@+id/img_color_habito_num"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="@dimen/wh_imagen_color_picker"
+        android:layout_height="@dimen/wh_imagen_color_picker"
         app:layout_constraintTop_toBottomOf="@id/linearLayoutContainer"
         app:layout_constraintStart_toEndOf="@id/titulo_color_habito"
-        android:layout_marginTop="12dp"
-        android:layout_marginStart="30dp"
+        android:layout_marginTop="@dimen/m_top_imagen_color_picker"
+        android:layout_marginStart="@dimen/m_start_imagen_color_picker"
         android:background="@drawable/borde_negro"
         />
 
