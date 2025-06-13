@@ -24,7 +24,13 @@
         android:background="@color/background"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
 
         <TextView
             android:id="@+id/titulo_tool_bar_esta"
@@ -34,10 +40,19 @@
             android:text="Nombre Hábito adsfsdddfdsafds"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textSize="@dimen/text_32"
+            android:textSize="@dimen/t_titulo_toolbar"
             android:textColor="@color/tittle_color"
             android:fontFamily="@font/titulos"
-            android:layout_marginHorizontal="40dp"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:padding="@dimen/p_contenedor_main"
+
+            />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
     </androidx.appcompat.widget.Toolbar>
 
     <ProgressBar
@@ -56,7 +71,7 @@
         android:layout_height="match_parent"
         android:fillViewport="true"
         android:layout_marginTop="?attr/actionBarSize"
-        android:layout_marginBottom="50dp"
+        android:layout_marginBottom="@dimen/m_bot_scroll_estadis"
         >
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -69,10 +84,10 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toTopOf="parent"
                 android:text="@string/objetivo_semanal"
-                android:textSize="@dimen/text_20"
+                android:textSize="@dimen/t_titulo_objetivos_estadis"
                 android:textColor="@color/tittle_color"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginHorizontal="40dp"
+                android:layout_marginHorizontal="@dimen/m_horizontal_estadis"
                 android:fontFamily="@font/encabezados"
 
                 />
@@ -81,8 +96,8 @@
                 android:id="@+id/frame_semana"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginHorizontal="@dimen/m_horizontal_estadis"
+                android:layout_marginTop="@dimen/m_top_goals_estadis"
                 app:layout_constraintTop_toBottomOf="@id/objetivo_seamana_tv"
 
                 >
@@ -91,7 +106,7 @@
                     android:id="@+id/progress_bar_semana"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
+                    android:layout_height="@dimen/h_p_bar_estadis"
                     android:progressDrawable="@drawable/custom_progress"
                     android:max="70"
                     android:progress="50"/>
@@ -102,7 +117,7 @@
                     android:layout_height="wrap_content"
                     android:text="50/70"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/t_p_bar_estadis"
                     android:textStyle="bold"
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"/>
@@ -114,20 +129,20 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/frame_semana"
                 android:text="@string/objetivo_mensual"
-                android:textSize="@dimen/text_20"
+                android:textSize="@dimen/t_titulo_objetivos_estadis"
                 android:textColor="@color/tittle_color"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginHorizontal="40dp"
+                android:layout_marginHorizontal="@dimen/m_horizontal_estadis"
                 android:fontFamily="@font/encabezados"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/m_top_goals_estadis"
                 />
 
             <FrameLayout
                 android:id="@+id/frame_mensual"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginHorizontal="@dimen/m_horizontal_estadis"
+                android:layout_marginTop="@dimen/m_top_goals_estadis"
                 app:layout_constraintTop_toBottomOf="@id/objetivo_mensual_tv"
                 >
 
@@ -135,7 +150,7 @@
                     android:id="@+id/progress_bar_mes"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
+                    android:layout_height="@dimen/h_p_bar_estadis"
                     android:progressDrawable="@drawable/custom_progress"
                     android:max="70"
                     android:progress="30"/>
@@ -146,7 +161,7 @@
                     android:layout_height="wrap_content"
                     android:text="30/70"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/t_p_bar_estadis"
                     android:textStyle="bold"
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"/>
@@ -159,20 +174,20 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@id/frame_mensual"
                 android:text="@string/objetivo_anual"
-                android:textSize="@dimen/text_20"
+                android:textSize="@dimen/t_titulo_objetivos_estadis"
                 android:textColor="@color/tittle_color"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginHorizontal="40dp"
+                android:layout_marginHorizontal="@dimen/m_horizontal_estadis"
                 android:fontFamily="@font/encabezados"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/m_top_goals_estadis"
                 />
 
             <FrameLayout
                 android:id="@+id/frame_anual"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginHorizontal="@dimen/m_horizontal_estadis"
+                android:layout_marginTop="@dimen/m_top_goals_estadis"
                 app:layout_constraintTop_toBottomOf="@id/objetivo_anual_tv"
                 >
 
@@ -180,7 +195,7 @@
                     android:id="@+id/progress_bar_anual"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
+                    android:layout_height="@dimen/h_p_bar_estadis"
                     android:progressDrawable="@drawable/custom_progress"
                     android:max="70"
                     android:progress="35"/>
@@ -191,7 +206,7 @@
                     android:layout_height="wrap_content"
                     android:text="30/70"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/t_p_bar_estadis"
                     android:textStyle="bold"
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"/>
@@ -204,23 +219,23 @@
                 android:layout_gravity="center"
                 android:text="Fecha"
                 android:textColor="@color/tittle_color"
-                android:textSize="18sp"
+                android:textSize="@dimen/t_fecha_estadis"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/grafica_bar"
                 app:layout_constraintTop_toBottomOf="@+id/frame_anual"
-                android:layout_marginTop="16dp"
-                android:paddingBottom="4dp"
+                android:layout_marginTop="@dimen/m_top_fecha_estadis"
+                android:paddingBottom="@dimen/p_bot_fecha_estadis"
                 />
 
             <com.github.mikephil.charting.charts.BarChart
                 android:id="@+id/grafica_bar"
                 android:layout_width="match_parent"
-                android:layout_height="280dp"
+                android:layout_height="@dimen/h_barchart_estadis"
                 android:background="@color/primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textoMesAnio"
-                android:layout_marginHorizontal="40dp"
+                android:layout_marginHorizontal="@dimen/m_horizontal_estadis"
                 />
 
             <Spinner
@@ -238,25 +253,25 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:paddingBottom="4dp"
+                android:paddingBottom="@dimen/p_bot_fecha_estadis"
                 android:text="Fecha"
                 android:textColor="@color/tittle_color"
-                android:textSize="18sp"
+                android:textSize="@dimen/t_fecha_estadis"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/grafica_bar"
                 app:layout_constraintTop_toBottomOf="@+id/grafica_bar"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/m_top_fecha_estadis"
                 />
 
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/lineChart"
                 android:layout_width="match_parent"
-                android:layout_height="280dp"
+                android:layout_height="@dimen/h_linechart_estadis"
                 android:background="@color/primary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/texto_fecha_line_chart"
-                android:layout_marginHorizontal="40dp"
+                android:layout_marginHorizontal="@dimen/m_horizontal_estadis"
                 />
 
             <Spinner
@@ -278,9 +293,9 @@
                 android:textColor="@color/tittle_color"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:textSize="@dimen/text_28"
+                android:textSize="@dimen/t_titulos_estadis"
                 android:fontFamily="@font/encabezados"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/m_top_calendario_objetivos_texto"
                 />
 
             <TextView
@@ -288,14 +303,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:paddingBottom="4dp"
+                android:paddingBottom="@dimen/p_bot_fecha_estadis"
                 android:text="Fecha"
                 android:textColor="@color/tittle_color"
-                android:textSize="18sp"
+                android:textSize="@dimen/t_fecha_estadis"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/recycler_calendario"
                 app:layout_constraintBottom_toTopOf="@+id/recycler_calendario"
-                android:layout_marginBottom="4dp"
+                android:layout_marginBottom="@dimen/p_bot_fecha_estadis"
 
                 />
 
@@ -306,8 +321,8 @@
                 app:layout_constraintTop_toBottomOf="@id/texto_calendario"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginHorizontal="@dimen/m_horizontal_estadis"
+                android:layout_marginTop="@dimen/m_top_calendario_estadis"
                 />
 
             <TextView
@@ -316,20 +331,20 @@
                 android:layout_height="wrap_content"
                 android:text="@string/racha_actual"
                 android:textColor="@color/tittle_color"
-                android:textSize="@dimen/text_28"
+                android:textSize="@dimen/t_titulos_estadis"
                 android:fontFamily="@font/encabezados"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/recycler_calendario"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/m_top_goals_estadis"
                 />
 
             <FrameLayout
                 android:id="@+id/frame_racha_actual"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginHorizontal="@dimen/m_horizontal_estadis"
+                android:layout_marginTop="@dimen/m_top_goals_estadis"
                 app:layout_constraintTop_toBottomOf="@id/titulo_racha_actual"
 
                 >
@@ -338,7 +353,7 @@
                     android:id="@+id/progress_racha_actual"
                     style="?android:attr/progressBarStyleHorizontal"
                     android:layout_width="match_parent"
-                    android:layout_height="20dp"
+                    android:layout_height="@dimen/h_p_bar_estadis"
                     android:progressDrawable="@drawable/custom_progress"
                     android:max="1"
                     android:progress="1"/>
@@ -349,7 +364,7 @@
                     android:layout_height="wrap_content"
                     android:text="50/70"
                     android:textColor="@color/black"
-                    android:textSize="16sp"
+                    android:textSize="@dimen/t_p_bar_estadis"
                     android:textStyle="bold"
                     android:layout_gravity="center"
                     android:background="@android:color/transparent"/>
@@ -361,10 +376,10 @@
                 android:layout_height="wrap_content"
                 android:text="Desde 2023-03-03 hasta hoy"
                 android:textColor="@color/tittle_color"
-                android:textSize="14sp"
+                android:textSize="@dimen/t_desde_hasta_rachas_estadis"
                 app:layout_constraintTop_toBottomOf="@id/frame_racha_actual"
                 app:layout_constraintStart_toStartOf="@id/frame_racha_actual"
-                android:paddingTop="4dp"
+                android:paddingTop="@dimen/p_top_p_bar_estadis"
                 />
 
             <TextView
@@ -373,12 +388,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/mejores_rachas"
                 android:textColor="@color/tittle_color"
-                android:textSize="@dimen/text_28"
+                android:textSize="@dimen/t_titulos_estadis"
                 android:fontFamily="@font/encabezados"
                 app:layout_constraintTop_toBottomOf="@id/texto_fecha_inicio_racha_actual"
                 app:layout_constraintStart_toStartOf="@id/frame_racha_actual"
                 app:layout_constraintEnd_toEndOf="@id/frame_racha_actual"
-                android:paddingTop="4dp"
+                android:paddingTop="@dimen/p_top_p_bar_estadis"
                 />
 
             <androidx.recyclerview.widget.RecyclerView
@@ -388,8 +403,8 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/texto_mejores_rachas"
-                android:layout_marginHorizontal="40dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginHorizontal="@dimen/m_horizontal_estadis"
+                android:layout_marginTop="@dimen/m_top_goals_estadis"
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

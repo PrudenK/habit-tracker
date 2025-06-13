@@ -241,7 +241,7 @@ private fun cargarGraficoDeBarras(
     val dataSet = BarDataSet(entries, "$unidad x $tiempoTraducido")
     dataSet.notifyDataSetChanged()
     dataSet.color = habito.colorHabito
-    dataSet.valueTextSize = 14f
+    dataSet.valueTextSize = context.resources.getDimension(R.dimen.t_graficos_estadis)
     dataSet.valueTextColor = ContextCompat.getColor(context, R.color.tittle_color)
     dataSet.valueTypeface = Typeface.DEFAULT_BOLD
     dataSet.valueFormatter = object : ValueFormatter() {
@@ -259,7 +259,7 @@ private fun cargarGraficoDeBarras(
     xAxis.position = XAxis.XAxisPosition.BOTTOM
     xAxis.setDrawGridLines(false)
     xAxis.granularity = 1f
-    xAxis.textSize = 14f
+    xAxis.textSize = context.resources.getDimension(R.dimen.t_graficos_estadis)
     xAxis.textColor = ContextCompat.getColor(context, R.color.tittle_color)
     xAxis.axisLineColor = ContextCompat.getColor(context, R.color.tittle_color)
     xAxis.axisLineWidth = 1.5f
@@ -270,7 +270,7 @@ private fun cargarGraficoDeBarras(
             axisMaximum = 1f  // Valor máximo
             granularity = 1f  // Paso entre valores (solo permite 0 y 1)
             labelCount = 2     // Solo 2 etiquetas (0 y 1)
-            textSize = 14f
+            textSize = context.resources.getDimension(R.dimen.t_graficos_estadis)
             textColor = ContextCompat.getColor(context, R.color.tittle_color)
             axisLineColor = ContextCompat.getColor(context, R.color.tittle_color)
             axisLineWidth = 1.5f
@@ -292,7 +292,7 @@ private fun cargarGraficoDeBarras(
             axisLineWidth = 1.5f
             granularity = 0f
             labelCount = 6
-            textSize = 14f
+            textSize = context.resources.getDimension(R.dimen.t_graficos_estadis)
             textColor = ContextCompat.getColor(context, R.color.tittle_color)
             valueFormatter = object : ValueFormatter() {
                 override fun getFormattedValue(value: Float): String {
@@ -306,7 +306,7 @@ private fun cargarGraficoDeBarras(
     rightAxis.isEnabled = false
 
     val legend = barChart.legend
-    legend.textSize = 14f
+    legend.textSize = context.resources.getDimension(R.dimen.t_graficos_estadis)
     legend.textColor = ContextCompat.getColor(context, R.color.tittle_color)
     legend.typeface = Typeface.DEFAULT_BOLD
 

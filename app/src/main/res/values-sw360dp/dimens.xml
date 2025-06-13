@@ -108,5 +108,35 @@
     <dimen name="h_item_agregar_mini_habito">40dp</dimen>
     <dimen name="m_end_chip_item_categoria">6dp</dimen>
 
+    <!-- Spinner normal -->
+    <dimen name="w_spinner_drop_down_item">100dp</dimen>
+    <dimen name="t_spinner_drop_down_item">16sp</dimen>
+    <dimen name="p_drop_down_item">6dp</dimen>
+    <dimen name="p_spinner_item">3dp</dimen>
+
+    <!-- Fragment estadísticas -->
+    <dimen name="m_bot_scroll_estadis">32dp</dimen>
+    <dimen name="t_titulo_objetivos_estadis">18sp</dimen>
+    <dimen name="m_horizontal_estadis">40dp</dimen>
+    <dimen name="h_p_bar_estadis">18dp</dimen>
+    <dimen name="t_p_bar_estadis">14sp</dimen>
+    <dimen name="m_top_goals_estadis">6dp</dimen>
+    <dimen name="t_fecha_estadis">16sp</dimen>
+    <dimen name="m_top_fecha_estadis">16dp</dimen>
+    <dimen name="p_bot_fecha_estadis">4dp</dimen>
+    <dimen name="h_barchart_estadis">260dp</dimen>
+    <dimen name="h_linechart_estadis">260dp</dimen>
+    <dimen name="m_top_calendario_objetivos_texto">12dp</dimen>
+    <dimen name="m_top_calendario_estadis">40dp</dimen>
+    <dimen name="t_titulos_estadis">24sp</dimen>
+    <dimen name="t_desde_hasta_rachas_estadis">12sp</dimen>
+    <dimen name="p_top_p_bar_estadis">4dp</dimen>
+    <dimen name="t_item_fecha_calendar_estadis">12sp</dimen>
+    <dimen name="wh_item_fecha_calendar_estadis">32dp</dimen>
+    <dimen name="wh_notas_item_fecha_calendar_estadis">6dp</dimen>
+    <dimen name="p_item_fecha_calendar_estadis">2dp</dimen>
+    <dimen name="m_notas_item_fecha_calendar_estadis">2dp</dimen>
+    <dimen name="t_graficos_estadis">6sp</dimen>
+
 
 </resources>

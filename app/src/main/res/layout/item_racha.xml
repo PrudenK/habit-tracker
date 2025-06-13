@@ -9,7 +9,7 @@
         android:id="@+id/frame_racha_actual_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/m_top_goals_estadis"
         app:layout_constraintTop_toTopOf="parent"
         >
 
@@ -17,7 +17,7 @@
             android:id="@+id/progress_racha_actual_item"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
-            android:layout_height="20dp"
+            android:layout_height="@dimen/h_p_bar_estadis"
             android:progressDrawable="@drawable/custom_progress"
             android:max="1"
             android:progress="1"/>
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:text="50/70"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="@dimen/t_p_bar_estadis"
             android:textStyle="bold"
             android:layout_gravity="center"
             android:background="@android:color/transparent"/>
@@ -40,10 +40,10 @@
         android:layout_height="wrap_content"
         android:text="Desde 2023-03-03 hasta hoy"
         android:textColor="@color/tittle_color"
-        android:textSize="14sp"
+        android:textSize="@dimen/t_desde_hasta_rachas_estadis"
         app:layout_constraintTop_toBottomOf="@id/frame_racha_actual_item"
         app:layout_constraintStart_toStartOf="@id/frame_racha_actual_item"
-        android:paddingTop="4dp"
+        android:paddingTop="@dimen/p_top_p_bar_estadis"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

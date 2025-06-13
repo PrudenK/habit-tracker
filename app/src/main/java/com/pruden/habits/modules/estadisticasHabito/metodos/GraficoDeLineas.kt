@@ -233,7 +233,7 @@ private fun cargarGraficoDeLineas(
         circleRadius = 5f
         setDrawCircleHole(false)
         setDrawValues(true)
-        valueTextSize = 14f
+        valueTextSize = context.resources.getDimension(R.dimen.t_graficos_estadis)
         valueTextColor = ContextCompat.getColor(context, R.color.tittle_color)
         valueTypeface = Typeface.DEFAULT_BOLD
         enableDashedLine(10f, 5f, 0f)
@@ -258,7 +258,7 @@ private fun cargarGraficoDeLineas(
         position = XAxis.XAxisPosition.BOTTOM
         setDrawGridLines(false)
         granularity = 1f
-        textSize = 14f
+        textSize = context.resources.getDimension(R.dimen.t_graficos_estadis)
         textColor = ContextCompat.getColor(context, R.color.tittle_color)
         axisLineColor = ContextCompat.getColor(context, R.color.tittle_color)
         axisLineWidth = 1.5f
@@ -272,7 +272,7 @@ private fun cargarGraficoDeLineas(
             axisMaximum = 1f
             granularity = 1f
             labelCount = 2
-            textSize = 14f
+            textSize = context.resources.getDimension(R.dimen.t_graficos_estadis)
             textColor = ContextCompat.getColor(context, R.color.tittle_color)
             axisLineColor = ContextCompat.getColor(context, R.color.tittle_color)
             axisLineWidth = 1.5f
@@ -291,7 +291,7 @@ private fun cargarGraficoDeLineas(
         lineChart.axisLeft.apply {
             resetAxisMaximum()
             axisMinimum = 0f
-            textSize = 14f
+            textSize = context.resources.getDimension(R.dimen.t_graficos_estadis)
             textColor = ContextCompat.getColor(context, R.color.tittle_color)
             axisLineColor = ContextCompat.getColor(context, R.color.tittle_color)
             axisLineWidth = 1.5f
@@ -309,7 +309,7 @@ private fun cargarGraficoDeLineas(
     lineChart.axisRight.isEnabled = false
 
     lineChart.legend.apply {
-        textSize = 14f
+        textSize = context.resources.getDimension(R.dimen.t_graficos_estadis)
         textColor = ContextCompat.getColor(context, R.color.tittle_color)
         typeface = Typeface.DEFAULT_BOLD
     }
