@@ -39,6 +39,7 @@
     <dimen name="h_fecha">55dp</dimen>
     <dimen name="p_contenedor_main">12dp</dimen>
     <dimen name="w_texto_pagina">90dp</dimen>
+    <dimen name="h_boton_pagina">50dp</dimen>
 
     <!-- Item hábitos -->
     <dimen name="h_item_habito">65dp</dimen>
