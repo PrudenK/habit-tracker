@@ -37,6 +37,8 @@ object Constantes {
 
 
     const val GMAIL = "prudencosta@gmail.com"
+    const val GITHUB = "https://github.com/PrudenK"
+
 
     val LISTA_IDIOMAS = listOf(
         Idioma("Español", "ES", R.mipmap.ic_espana),

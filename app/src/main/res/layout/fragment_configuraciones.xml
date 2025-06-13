@@ -34,16 +34,28 @@
 
             >
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                >
+
             <TextView
                 android:id="@+id/titulo_tool_bar_confi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/configuraciones"
-                android:textSize="@dimen/text_32"
+                android:textSize="@dimen/t_titulo_toolbar"
                 android:textColor="@color/tittle_color"
                 android:fontFamily="@font/titulos"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:padding="@dimen/p_contenedor_main"
                 />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </androidx.appcompat.widget.Toolbar>
 
         <ProgressBar
@@ -88,14 +100,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="@dimen/p_linea_layout_configuraciones">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tema"
-                    android:textSize="@dimen/text_24"
-                    android:paddingBottom="8dp"
+                    android:textSize="@dimen/t_titulo_configuraciones"
+                    android:paddingBottom="@dimen/p_bot_entre_textos_configuraciones"
                     android:textColor="@color/tittle_color"
                     />
 
@@ -115,19 +127,22 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/tema_oscuro"
-                        android:textSize="@dimen/text_16"
+                        android:textSize="@dimen/t_link_configuracion"
                         android:textColor="@color/click_button" />
 
                     <com.google.android.material.materialswitch.MaterialSwitch
                         android:id="@+id/switch_tema_oscuro"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:scaleY="@dimen/escala_switch_config"
+                        android:scaleX="@dimen/escala_switch_config"
+
                         android:text=""
                         android:checked="false"
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@+id/texto_tema"
-                        android:layout_marginStart="12dp"
+                        android:layout_marginStart="@dimen/m_start_switch_config"
                         app:thumbTint="@color/switch_tema_thumb"
                         app:trackTint="@color/switch_tema_track"
                         />
@@ -138,16 +153,16 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/h_divider_configuraciones"
                     android:background="@android:color/darker_gray"
-                    android:layout_marginVertical="16dp" />
+                    android:layout_marginVertical="@dimen/m_v_configuraciones" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/idioma"
-                    android:textSize="@dimen/text_24"
-                    android:paddingBottom="8dp"
+                    android:textSize="@dimen/t_titulo_configuraciones"
+                    android:paddingBottom="@dimen/p_bot_entre_textos_configuraciones"
                     android:textColor="@color/tittle_color"
                     />
 
@@ -156,8 +171,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/idioma_actual"
-                    android:textSize="@dimen/text_16"
-                    android:paddingVertical="8dp"
+                    android:textSize="@dimen/t_link_configuracion"
+                    android:paddingVertical="@dimen/p_bot_entre_textos_configuraciones"
                     android:focusable="true"
                     android:clickable="true"
                     android:background="?attr/selectableItemBackground"
@@ -166,17 +181,17 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/h_divider_configuraciones"
                     android:background="@android:color/darker_gray"
-                    android:layout_marginVertical="16dp" />
+                    android:layout_marginVertical="@dimen/m_v_configuraciones" />
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/fechas"
-                    android:textSize="@dimen/text_24"
-                    android:paddingBottom="8dp"
+                    android:textSize="@dimen/t_titulo_configuraciones"
+                    android:paddingBottom="@dimen/p_bot_entre_textos_configuraciones"
                     android:textColor="@color/tittle_color"
                     />
 
@@ -185,8 +200,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/fecha_inicio_de_los_registros"
-                    android:textSize="@dimen/text_16"
-                    android:paddingVertical="8dp"
+                    android:textSize="@dimen/t_link_configuracion"
+                    android:paddingVertical="@dimen/p_bot_entre_textos_configuraciones"
                     android:focusable="true"
                     android:clickable="true"
                     android:background="?attr/selectableItemBackground"
@@ -198,8 +213,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/formato_actual_de_las_fechas"
-                    android:textSize="@dimen/text_16"
-                    android:paddingVertical="8dp"
+                    android:textSize="@dimen/t_link_configuracion"
+                    android:paddingVertical="@dimen/p_bot_entre_textos_configuraciones"
                     android:focusable="true"
                     android:clickable="true"
                     android:background="?attr/selectableItemBackground"
@@ -210,9 +225,9 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/h_divider_configuraciones"
                     android:background="@android:color/darker_gray"
-                    android:layout_marginVertical="16dp" />
+                    android:layout_marginVertical="@dimen/m_v_configuraciones" />
 
 
 
@@ -220,8 +235,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/exportar_datos_a_csv"
-                    android:textSize="@dimen/text_24"
-                    android:paddingBottom="8dp"
+                    android:textSize="@dimen/t_titulo_configuraciones"
+                    android:paddingBottom="@dimen/p_bot_entre_textos_configuraciones"
                     android:focusable="true"
                     android:clickable="true"
                     android:background="?attr/selectableItemBackground"
@@ -233,8 +248,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/exportar_todos_los_datos_a_csv"
-                    android:textSize="@dimen/text_16"
-                    android:paddingVertical="8dp"
+                    android:textSize="@dimen/t_link_configuracion"
+                    android:paddingVertical="@dimen/p_bot_entre_textos_configuraciones"
                     android:focusable="true"
                     android:clickable="true"
                     android:background="?attr/selectableItemBackground"
@@ -246,8 +261,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/exportar_solo_los_habitos"
-                    android:textSize="@dimen/text_16"
-                    android:paddingVertical="8dp"
+                    android:textSize="@dimen/t_link_configuracion"
+                    android:paddingVertical="@dimen/p_bot_entre_textos_configuraciones"
                     android:focusable="true"
                     android:clickable="true"
                     android:background="?attr/selectableItemBackground"
@@ -260,8 +275,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/exportar_solo_los_registros"
-                    android:textSize="@dimen/text_16"
-                    android:paddingVertical="8dp"
+                    android:textSize="@dimen/t_link_configuracion"
+                    android:paddingVertical="@dimen/p_bot_entre_textos_configuraciones"
                     android:focusable="true"
                     android:clickable="true"
                     android:background="?attr/selectableItemBackground"
@@ -274,8 +289,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/exportar_solo_las_etiquetas"
-                    android:textSize="@dimen/text_16"
-                    android:paddingVertical="8dp"
+                    android:textSize="@dimen/t_link_configuracion"
+                    android:paddingVertical="@dimen/p_bot_entre_textos_configuraciones"
                     android:focusable="true"
                     android:clickable="true"
                     android:background="?attr/selectableItemBackground"
@@ -286,16 +301,16 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/h_divider_configuraciones"
                     android:background="@android:color/darker_gray"
-                    android:layout_marginVertical="16dp" />
+                    android:layout_marginVertical="@dimen/m_v_configuraciones" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/copia_de_seguridad"
-                    android:textSize="@dimen/text_24"
-                    android:paddingBottom="4dp"
+                    android:textSize="@dimen/t_titulo_configuraciones"
+                    android:paddingBottom="@dimen/p_bot_entre_textos_configuraciones"
                     android:textColor="@color/tittle_color"
                     />
 
@@ -304,8 +319,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/exportar_copia_de_seguridad"
-                    android:textSize="@dimen/text_16"
-                    android:paddingVertical="8dp"
+                    android:textSize="@dimen/t_link_configuracion"
+                    android:paddingVertical="@dimen/p_bot_entre_textos_configuraciones"
                     android:focusable="true"
                     android:clickable="true"
                     android:background="?attr/selectableItemBackground"
@@ -317,8 +332,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/importar_copia_de_seguridad"
-                    android:textSize="@dimen/text_16"
-                    android:paddingVertical="8dp"
+                    android:textSize="@dimen/t_link_configuracion"
+                    android:paddingVertical="@dimen/p_bot_entre_textos_configuraciones"
                     android:focusable="true"
                     android:clickable="true"
                     android:textColor="@color/click_button"
@@ -327,19 +342,19 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/h_divider_configuraciones"
                     android:background="@android:color/darker_gray"
-                    android:layout_marginVertical="16dp" />
+                    android:layout_marginVertical="@dimen/m_v_configuraciones" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/borrar_datos"
-                    android:textSize="@dimen/text_24"
-                    android:paddingBottom="8dp"
+                    android:textSize="@dimen/t_titulo_configuraciones"
+                    android:paddingBottom="@dimen/p_bot_entre_textos_configuraciones"
                     android:drawableEnd="@drawable/ic_warning"
                     android:textColor="@color/tittle_color"
-                    android:drawablePadding="8dp"
+                    android:drawablePadding="@dimen/p_iconos_configuraciones"
                     android:drawableTint="@color/tittle_color"
                     />
 
@@ -348,8 +363,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/borrar_todos_los_datos"
-                    android:textSize="@dimen/text_16"
-                    android:paddingVertical="8dp"
+                    android:textSize="@dimen/t_link_configuracion"
+                    android:paddingVertical="@dimen/p_bot_entre_textos_configuraciones"
                     android:focusable="true"
                     android:clickable="true"
                     android:background="?attr/selectableItemBackground"
@@ -362,8 +377,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/borrar_todos_los_habitos"
-                    android:textSize="@dimen/text_16"
-                    android:paddingVertical="8dp"
+                    android:textSize="@dimen/t_link_configuracion"
+                    android:paddingVertical="@dimen/p_bot_entre_textos_configuraciones"
                     android:focusable="true"
                     android:clickable="true"
                     android:background="?attr/selectableItemBackground"
@@ -376,8 +391,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/borrar_solo_los_registros"
-                    android:textSize="@dimen/text_16"
-                    android:paddingVertical="8dp"
+                    android:textSize="@dimen/t_link_configuracion"
+                    android:paddingVertical="@dimen/p_bot_entre_textos_configuraciones"
                     android:focusable="true"
                     android:clickable="true"
                     android:background="?attr/selectableItemBackground"
@@ -389,8 +404,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/borrar_todas_las_etiquetas"
-                    android:textSize="@dimen/text_16"
-                    android:paddingVertical="8dp"
+                    android:textSize="@dimen/t_link_configuracion"
+                    android:paddingVertical="@dimen/p_bot_entre_textos_configuraciones"
                     android:focusable="true"
                     android:clickable="true"
                     android:background="?attr/selectableItemBackground"
@@ -400,17 +415,17 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/h_divider_configuraciones"
                     android:background="@android:color/darker_gray"
-                    android:layout_marginVertical="16dp" />
+                    android:layout_marginVertical="@dimen/m_v_configuraciones" />
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/creador"
-                    android:textSize="@dimen/text_24"
-                    android:paddingBottom="4dp"
+                    android:textSize="@dimen/t_titulo_configuraciones"
+                    android:paddingBottom="@dimen/p_bot_entre_textos_configuraciones"
                     android:textColor="@color/tittle_color"
                     />
 
@@ -419,14 +434,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ir_al_gmail"
-                    android:textSize="@dimen/text_16"
-                    android:paddingVertical="8dp"
+                    android:textSize="@dimen/t_link_configuracion"
+                    android:paddingVertical="@dimen/p_bot_entre_textos_configuraciones"
                     android:focusable="true"
                     android:clickable="true"
                     android:background="?attr/selectableItemBackground"
                     android:textColor="@color/click_button"
                     android:drawableEnd="@drawable/ic_gmail"
-                    android:drawablePadding="15dp"
+                    android:drawablePadding="@dimen/p_iconos_configuraciones"
                     android:drawableTint="@color/tittle_color"
                     />
 
@@ -435,29 +450,29 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/github"
-                    android:textSize="@dimen/text_16"
-                    android:paddingVertical="8dp"
+                    android:textSize="@dimen/t_link_configuracion"
+                    android:paddingVertical="@dimen/p_bot_entre_textos_configuraciones"
                     android:focusable="true"
                     android:clickable="true"
                     android:background="?attr/selectableItemBackground"
                     android:textColor="@color/click_button"
                     android:drawableEnd="@drawable/github"
-                    android:drawablePadding="15dp"
+                    android:drawablePadding="@dimen/p_iconos_configuraciones"
                     android:drawableTint="@color/tittle_color"
                     />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/h_divider_configuraciones"
                     android:background="@android:color/darker_gray"
-                    android:layout_marginVertical="16dp" />
+                    android:layout_marginVertical="@dimen/m_v_configuraciones" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/licencias"
-                    android:textSize="@dimen/text_24"
-                    android:paddingBottom="4dp"
+                    android:textSize="@dimen/t_titulo_configuraciones"
+                    android:paddingBottom="@dimen/p_bot_entre_textos_configuraciones"
                     android:textColor="@color/tittle_color"
                     />
 
@@ -466,20 +481,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/ver_licencias"
-                    android:textSize="@dimen/text_16"
-                    android:paddingVertical="8dp"
+                    android:textSize="@dimen/t_link_configuracion"
+                    android:paddingVertical="@dimen/p_bot_entre_textos_configuraciones"
                     android:focusable="true"
                     android:clickable="true"
                     android:textColor="@color/click_button"
                     android:background="?attr/selectableItemBackground"
-                    android:drawablePadding="15dp"
                     />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="@dimen/h_divider_configuraciones"
                     android:background="@android:color/darker_gray"
-                    android:layout_marginVertical="16dp" />
+                    android:layout_marginVertical="@dimen/m_v_configuraciones" />
 
 
             </LinearLayout>

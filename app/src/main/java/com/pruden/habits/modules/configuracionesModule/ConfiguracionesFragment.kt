@@ -112,6 +112,12 @@ class ConfiguracionesFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         menu.clear()
+        inflater.inflate(R.menu.menu_tool_bar_configuraciones, menu)
+        val item = menu.findItem(R.id.github)
+        val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.github)
+
+        drawable?.setTint(ContextCompat.getColor(requireContext(), R.color.background)) ////////
+        item.icon = drawable
         super.onCreateOptionsMenu(menu, inflater)
     }
 
@@ -122,6 +128,11 @@ class ConfiguracionesFragment : Fragment() {
                     parentFragmentManager.setFragmentResult("actualizar_habitos_main", Bundle())
                 }
                 activity?.onBackPressed()
+                true
+            }
+            R.id.github -> {
+                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(Constantes.GITHUB))
+                startActivity(intent)
                 true
             }
             else -> super.onOptionsItemSelected(item)

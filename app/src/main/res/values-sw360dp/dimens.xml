@@ -139,5 +139,17 @@
     <dimen name="m_notas_item_fecha_calendar_estadis">2dp</dimen>
     <dimen name="t_graficos_estadis">6sp</dimen>
 
+    <!-- Fragment configuraciones -->
+    <dimen name="t_titulo_configuraciones">20sp</dimen>
+    <dimen name="m_v_configuraciones">10dp</dimen>
+    <dimen name="h_divider_configuraciones">1dp</dimen>
+    <dimen name="t_link_configuracion">13sp</dimen>
+    <dimen name="p_linea_layout_configuraciones">16dp</dimen>
+    <dimen name="p_bot_entre_textos_configuraciones">4dp</dimen>
+    <dimen name="escala_switch_config">0.7</dimen>
+    <dimen name="m_start_switch_config">2dp</dimen>
+    <dimen name="wh_iconos_normales">20dp</dimen>
+    <dimen name="p_iconos_configuraciones">8dp</dimen>
+
 
 </resources>
