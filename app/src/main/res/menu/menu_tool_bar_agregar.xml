@@ -4,7 +4,7 @@
     <item
         android:id="@+id/guardar_habito"
         android:title="Guardar hábito"
-        android:icon="@drawable/ic_check"
+        android:icon="@drawable/ic_check_agregar_habitos"
         app:showAsAction="ifRoom"
         />
 </menu>

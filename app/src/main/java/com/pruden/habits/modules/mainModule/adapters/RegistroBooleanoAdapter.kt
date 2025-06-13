@@ -30,7 +30,7 @@ class RegistroBooleanoAdapter(val listener : OnClickBooleanRegistro, val color: 
         val registro = getItem(position)
         with(holder as ViewHolder) {
             if(registro.valorCampo == "1.0" || registro.valorCampo == "1"){
-                binding.icono.setImageResource(R.drawable.ic_check)
+                binding.icono.setImageResource(R.drawable.ic_check_habito)
                 binding.icono.setColorFilter(color)
             }else{
                 binding.icono.setImageResource(R.drawable.ic_no_check)

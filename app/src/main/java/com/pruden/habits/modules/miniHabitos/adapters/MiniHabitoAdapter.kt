@@ -73,7 +73,7 @@ class MiniHabitoAdapter(
             tituloMiniHabito.text = miniHabito.nombre
 
             if (miniHabito.cumplido){
-                imagenCheck.setImageResource(R.drawable.ic_check)
+                imagenCheck.setImageResource(R.drawable.ic_check_habito)
                 tituloMiniHabito.paintFlags = tituloMiniHabito.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
             }else{
                 imagenCheck.setImageResource(R.drawable.ic_no_check)

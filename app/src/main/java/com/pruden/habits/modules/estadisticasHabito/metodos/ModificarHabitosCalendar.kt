@@ -136,7 +136,7 @@ fun modificarHabitoCalendarEstadisticas(
         val botonGuardar = dialog.findViewById<ImageView>(R.id.check_calendar)
 
         botonCancelar.setImageResource(R.drawable.ic_no_check)
-        botonGuardar.setImageResource(R.drawable.ic_check)
+        botonGuardar.setImageResource(R.drawable.ic_check_habito)
 
         botonCancelar.setOnClickListener {
             fechaItem.valor = "0.0"

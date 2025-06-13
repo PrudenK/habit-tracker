@@ -74,6 +74,7 @@
     <dimen name="m_start_imagen_color_picker">35dp</dimen>
     <dimen name="m_top_imagen_color_picker">12dp</dimen>
 
+
     <!-- Fragment etiquetas -->
     <dimen name="m_h_recycler_etiquetas">12dp</dimen>
     <dimen name="m_end_item_chip_etiqueta">8dp</dimen>

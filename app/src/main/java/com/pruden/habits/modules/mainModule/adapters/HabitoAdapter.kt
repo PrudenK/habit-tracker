@@ -146,7 +146,7 @@ class HabitoAdapter (
         val botonGuardar = dialog.findViewById<ImageView>(R.id.check)
 
         botonCancelar.setImageResource(R.drawable.ic_no_check)
-        botonGuardar.setImageResource(R.drawable.ic_check)
+        botonGuardar.setImageResource(R.drawable.ic_check_habito)
 
         botonCancelar.setOnClickListener {
             habitoData.valorCampo = "0.0"
@@ -167,7 +167,7 @@ class HabitoAdapter (
             viewModel.updateDataHabito(habitoData)
 
             icono.setColorFilter(color)
-            icono.setImageResource(R.drawable.ic_check)
+            icono.setImageResource(R.drawable.ic_check_habito)
             notasBoolean(habitoData,iconoNotas,color)
             dialog.dismiss()
         }
@@ -199,7 +199,7 @@ class HabitoAdapter (
             habitoData.valorCampo = "1.0"
             viewModel.updateDataHabito(habitoData)
             icono.setColorFilter(color)
-            icono.setImageResource(R.drawable.ic_check)
+            icono.setImageResource(R.drawable.ic_check_habito)
         }
     }
 

@@ -1,6 +1,5 @@
 package com.pruden.habits.modules.agregarEditarHabitoModule
 
-import android.content.res.ColorStateList
 import android.graphics.drawable.LayerDrawable
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -132,7 +131,7 @@ class AgregarEditarHabitoFragment : Fragment() {
         menu.clear()
         inflater.inflate(R.menu.menu_tool_bar_agregar, menu)
         val item = menu.findItem(R.id.guardar_habito)
-        val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_check)
+        val drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_check_agregar_habitos)
 
         drawable?.setTint(ContextCompat.getColor(requireContext(), R.color.tittle_color))
         item.icon = drawable

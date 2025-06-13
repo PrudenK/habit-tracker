@@ -63,7 +63,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:layout_marginTop="16dp"
-                app:srcCompat="@drawable/ic_check"
+                app:srcCompat="@drawable/ic_check_agregar_habitos"
                 app:layout_constraintTop_toBottomOf="@id/til_notas_bool"
                 app:layout_constraintStart_toEndOf="@id/no_check"
                 app:layout_constraintEnd_toEndOf="parent"
