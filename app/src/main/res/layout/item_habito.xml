@@ -3,17 +3,17 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:paddingTop="8dp"
+    android:paddingTop="@dimen/p_top_habito"
     android:background="@color/background">
 
     <HorizontalScrollView
         android:id="@+id/scroll_habito"
-        android:layout_width="140dp"
-        android:layout_height="@dimen/altura_habito"
+        android:layout_width="@dimen/w_nombre_habito"
+        android:layout_height="@dimen/h_item_habito"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:scrollbars="none"
-        android:paddingHorizontal="18dp"
+        android:paddingHorizontal="@dimen/p_h_nombre_habito"
         android:clickable="true"
         android:focusable="true"
         android:background="?attr/selectableItemBackground">
@@ -23,9 +23,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Habit Name"
-            android:textSize="20sp"
+            android:textSize="@dimen/t_nombre_item_habito"
             android:textStyle="bold"
-            android:paddingVertical="16dp"
+            android:paddingVertical="@dimen/p_v_nombre_habito"
             android:maxLines="1"
             android:ellipsize="end"
             android:textColor="@color/tittle_color"
@@ -35,9 +35,9 @@
 
     <ImageView
         android:id="@+id/contendor_nombre_habito"
-        android:layout_width="140dp"
-        android:layout_height="@dimen/altura_habito"
-        android:paddingHorizontal="18dp"
+        android:layout_width="@dimen/w_nombre_habito"
+        android:layout_height="@dimen/h_item_habito"
+        android:paddingHorizontal="@dimen/p_h_nombre_habito"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         />
@@ -46,8 +46,8 @@
         android:id="@+id/recycler_data_habitos"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:paddingTop="4dp"
-        android:layout_marginEnd="16dp"
+        android:paddingTop="@dimen/p_top_recycler_habitos"
+        android:layout_marginEnd="@dimen/p_end_recycler_habitos"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/scroll_habito"
         app:layout_constraintBottom_toBottomOf="@id/scroll_habito"

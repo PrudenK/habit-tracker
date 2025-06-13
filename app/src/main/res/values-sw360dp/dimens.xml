@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="altura_habito">65dp</dimen>
+    <dimen name="boton_width">160dp</dimen>
+    <dimen name="text_24">24sp</dimen>
+    <dimen name="text_18">18sp</dimen>
+    <dimen name="text_20">20sp</dimen>
+    <dimen name="text_26">26sp</dimen>
+    <dimen name="text_32">32sp</dimen>
+    <dimen name="text_16">16sp</dimen>
+    <dimen name="text_28">28sp</dimen>
+    <dimen name="text_14">14sp</dimen>
+    <dimen name="text_22">22sp</dimen>
+    <dimen name="text_12">12sp</dimen>
+    <dimen name="w_40">40dp</dimen>
+    <dimen name="h_40">40dp</dimen>
 
-
-
-
-
+    <!-- Tutorial -->
     <dimen name="text_tama_titulo_tutorial">26sp</dimen>
     <dimen name="ancho_imagen_tutorial">175dp</dimen>
     <dimen name="altura_imagen_tutorial">225dp</dimen>
@@ -12,6 +23,41 @@
     <dimen name="p_item_tutorial">8dp</dimen>
     <dimen name="p_fragment_tutorial">8dp</dimen>
     <dimen name="m_b_viewpager_tutorial">6dp</dimen>
+
+    <!-- Main -->
+    <dimen name="t_boton_cambio_pagina">12sp</dimen>
+    <dimen name="w_boton_pagina">135dp</dimen>
+    <dimen name="t_pagina_habitos">16sp</dimen>
+    <dimen name="t_titulo_toolbar">28sp</dimen>
+    <dimen name="wh_iconos_toolbar">34dp</dimen>
+    <dimen name="t_fecha_mes">18sp</dimen>
+    <dimen name="m_bot_recycler_habitos">48dp</dimen>
+    <dimen name="m_bot_botones_pagina">12dp</dimen>
+    <dimen name="p_texto_pagina">12dp</dimen>
+    <dimen name="p_end_recycler_habitos">16dp</dimen>
+    <dimen name="h_fecha">48dp</dimen>
+    <dimen name="p_contenedor_main">10dp</dimen>
+    <dimen name="w_texto_pagina">70dp</dimen>
+
+    <!-- Item hábitos -->
+    <dimen name="h_item_habito">52dp</dimen>
+    <dimen name="t_nombre_item_habito">16dp</dimen>
+    <dimen name="p_v_nombre_habito">12dp</dimen>
+    <dimen name="w_nombre_habito">130dp</dimen>
+    <dimen name="p_h_nombre_habito">14dp</dimen>
+    <dimen name="p_top_habito">6dp</dimen>
+    <dimen name="p_top_recycler_habitos">3dp</dimen>
+
+    <!-- Item Fecha y hábitos-->
+    <dimen name="t_dia_semana_fecha">14sp</dimen>
+    <dimen name="t_dia_num_fecha">12sp</dimen>
+    <dimen name="w_item_habito_y_fecha">52dp</dimen>
+    <dimen name="wh_nota_habitos">8dp</dimen>
+    <dimen name="t_valor_habito_numerico">14sp</dimen>
+    <dimen name="t_unidad_habito_numerico">12sp</dimen>
+    <dimen name="p_top_habito_numerico">8dp</dimen>
+    <dimen name="m_notas">3dp</dimen>
+    <dimen name="m_entre_unidad_y_valor">2dp</dimen>
 
 
 </resources>

@@ -1,7 +1,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="60dp"
+    android:layout_width="@dimen/w_item_habito_y_fecha"
     android:layout_height="wrap_content"
     android:id="@+id/item_registro_numerico"
 
@@ -11,13 +11,13 @@
     >
 
     <TextView
-        android:paddingTop="10dp"
+        android:paddingTop="@dimen/p_top_habito_numerico"
         android:id="@+id/puntuacion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="50"
         android:gravity="center"
-        android:textSize="16sp"
+        android:textSize="@dimen/t_valor_habito_numerico"
         app:layout_constraintTop_toTopOf="parent"
         android:maxLines="1"
         android:fontFamily="@font/encabezados"
@@ -33,7 +33,7 @@
         android:maxLines="1"
         android:ellipsize="end"
         android:gravity="center"
-        android:textSize="14sp"
+        android:textSize="@dimen/t_unidad_habito_numerico"
         app:layout_constraintTop_toBottomOf="@id/puntuacion"
         android:fontFamily="@font/encabezados"
         android:textColor="@color/habito_no_cumplido"
@@ -41,11 +41,11 @@
 
     <ImageView
         android:id="@+id/icono_notas"
-        android:layout_width="12dp"
-        android:layout_height="12dp"
+        android:layout_width="@dimen/wh_nota_habitos"
+        android:layout_height="@dimen/wh_nota_habitos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="4dp"
+        android:layout_margin="@dimen/m_notas"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,7 +15,6 @@
     <dimen name="w_40">40dp</dimen>
     <dimen name="h_40">40dp</dimen>
 
-
     <!-- Tutorial -->
     <dimen name="text_tama_titulo_tutorial">30sp</dimen>
     <dimen name="ancho_imagen_tutorial">250dp</dimen>
@@ -23,9 +22,9 @@
     <dimen name="subtitulo_tutorial">16sp</dimen>
     <dimen name="p_item_tutorial">16dp</dimen>
     <dimen name="p_fragment_tutorial">16dp</dimen>
+    <dimen name="m_b_viewpager_tutorial">12dp</dimen>
 
     <!-- Main -->
-    <dimen name="m_b_viewpager_tutorial">12dp</dimen>
     <dimen name="t_boton_cambio_pagina">14sp</dimen>
     <dimen name="w_boton_pagina">145dp</dimen>
     <dimen name="t_pagina_habitos">18sp</dimen>
@@ -42,7 +41,7 @@
 
     <!-- Item hábitos -->
     <dimen name="h_item_habito">65dp</dimen>
-    <dimen name="t_nombre_item_habito">20sp</dimen>
+    <dimen name="t_nombre_item_habito">18dp</dimen>
     <dimen name="p_v_nombre_habito">16dp</dimen>
     <dimen name="w_nombre_habito">140dp</dimen>
     <dimen name="p_h_nombre_habito">18dp</dimen>

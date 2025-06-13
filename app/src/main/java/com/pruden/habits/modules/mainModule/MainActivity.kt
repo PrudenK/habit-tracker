@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.os.Bundle
+import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.View
 import androidx.activity.enableEdgeToEdge
@@ -103,7 +104,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
     private fun calcularTamanoPagina() {
         mBinding.recyclerHabitos.post {
             val alturaRecycler = mBinding.recyclerHabitos.height
-            val alturaItem = resources.getDimensionPixelSize(R.dimen.altura_habito)
+            val alturaItem = resources.getDimensionPixelSize(R.dimen.h_item_habito)
 
             tamanoPagina = if (alturaItem > 0) (alturaRecycler / alturaItem) - 1 else 8
 
@@ -244,6 +245,10 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
 
     private fun menuExtra(){
         mBinding.menuExtra.setOnClickListener {
+            val sw = resources.configuration.smallestScreenWidthDp
+            Log.d("TTTTTTTT", "Smallest width = $sw dp")
+
+
             val contextWrapper = ContextThemeWrapper(this, R.style.CustomPopupMenu)
 
             val popupMenu = PopupMenu(contextWrapper, mBinding.menuExtra)

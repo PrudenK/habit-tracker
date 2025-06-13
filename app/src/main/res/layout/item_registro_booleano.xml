@@ -1,8 +1,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="60dp"
-    android:layout_height="60dp"
+    android:layout_width="@dimen/w_item_habito_y_fecha"
+    android:layout_height="@dimen/w_item_habito_y_fecha"
     >
 
     <ImageView
@@ -20,11 +20,11 @@
 
     <ImageView
         android:id="@+id/icono_notas"
-        android:layout_width="12dp"
-        android:layout_height="12dp"
+        android:layout_width="@dimen/wh_nota_habitos"
+        android:layout_height="@dimen/wh_nota_habitos"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="4dp"
+        android:layout_margin="@dimen/m_notas"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
