@@ -4,9 +4,13 @@ import android.content.Context
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.AbsoluteSizeSpan
 import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.View
+import android.view.ViewGroup
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
@@ -261,6 +265,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
                 val setForceShowIcon = menuPopupHelper.javaClass.getDeclaredMethod("setForceShowIcon", Boolean::class.java)
                 setForceShowIcon.invoke(menuPopupHelper, true)
             } catch (e: Exception) {
+                Log.d("errrrrrrOO", "ADSDCAFS")
                 e.printStackTrace()
             }
 
@@ -269,6 +274,22 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
                 val drawable = menuItem.icon
                 drawable?.setTint(ContextCompat.getColor(this, R.color.tittle_color))
             }
+
+
+
+            val tamaTexto = when{
+                sw <= 360 -> 14
+                else -> 16
+            }
+
+            for (i in 0 until popupMenu.menu.size()) {
+                val item = popupMenu.menu.getItem(i)
+                val span = SpannableString(item.title)
+                span.setSpan(AbsoluteSizeSpan(tamaTexto, true), 0, span.length, Spannable.SPAN_INCLUSIVE_INCLUSIVE)
+                item.title = span
+            }
+
+
 
             popupMenu.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
