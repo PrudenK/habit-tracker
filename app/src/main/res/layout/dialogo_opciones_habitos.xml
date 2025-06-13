@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="300dp"
+    android:layout_width="@dimen/w_dialog_opciones_habitos_main"
     android:layout_height="wrap_content"
     android:background="@drawable/background_dialogo_opciones"
-    android:padding="15dp"
-    android:minWidth="140dp"
+    android:padding="@dimen/p_dialog_opciones_habitos_main"
     android:gravity="center">
 
     <TextView
@@ -13,72 +12,72 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/que_quieres_hacer"
-        android:textSize="@dimen/text_24"
+        android:textSize="@dimen/t_opciones_habito"
         android:textStyle="bold"
         android:textColor="@color/tittle_color"
-        android:paddingBottom="10dp"
+        android:paddingBottom="@dimen/p_bot_titulo_opciones_habito"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btnMover"
-        android:layout_width="@dimen/boton_width"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/w_boton_opciones"
+        android:layout_height="@dimen/h_boton_opciones"
         android:text="@string/mover"
         android:backgroundTint="@color/primary"
         android:textColor="@color/tittle_color"
-        android:padding="4dp"
+        android:padding="@dimen/p_boton_opciones"
         app:layout_constraintTop_toBottomOf="@id/tvTitulo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="@dimen/text_18"
+        android:textSize="@dimen/t_boton_opciones"
 
-        android:layout_marginTop="8dp" />
+        android:layout_marginTop="@dimen/m_top_boton_opciones" />
 
     <Button
         android:id="@+id/btnArchivar"
-        android:layout_width="@dimen/boton_width"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/w_boton_opciones"
+        android:layout_height="@dimen/h_boton_opciones"
         android:text="@string/archivar"
         android:backgroundTint="@color/primary"
         android:textColor="@color/tittle_color"
-        android:padding="4dp"
+        android:padding="@dimen/p_boton_opciones"
         app:layout_constraintTop_toBottomOf="@id/btnMover"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
-        android:textSize="@dimen/text_18"
+        android:layout_marginTop="@dimen/m_top_boton_opciones"
+        android:textSize="@dimen/t_boton_opciones"
         />
 
     <Button
         android:id="@+id/btnEditar"
-        android:layout_width="@dimen/boton_width"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/w_boton_opciones"
+        android:layout_height="@dimen/h_boton_opciones"
         android:text="@string/editar"
         android:backgroundTint="@color/primary"
         android:textColor="@color/tittle_color"
-        android:padding="4dp"
+        android:padding="@dimen/p_boton_opciones"
         app:layout_constraintTop_toBottomOf="@id/btnArchivar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
-        android:textSize="@dimen/text_18"
+        android:layout_marginTop="@dimen/m_top_boton_opciones"
+        android:textSize="@dimen/t_boton_opciones"
         />
 
     <Button
         android:id="@+id/btnBorrar"
-        android:layout_width="@dimen/boton_width"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/w_boton_opciones"
+        android:layout_height="@dimen/h_boton_opciones"
         android:text="@string/borrar"
         android:textColor="@color/text_delete_button"
         android:backgroundTint="@color/delete_button"
-        android:padding="4dp"
+        android:padding="@dimen/p_boton_opciones"
         app:layout_constraintTop_toBottomOf="@id/btnEditar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="8dp"
-        android:textSize="@dimen/text_18"
+        android:layout_marginTop="@dimen/m_top_boton_opciones"
+        android:textSize="@dimen/t_boton_opciones"
 
         />
 

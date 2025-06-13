@@ -142,6 +142,15 @@
     <dimen name="m_start_switch_config">12dp</dimen>
     <dimen name="wh_iconos_normales">24dp</dimen>
     <dimen name="p_iconos_configuraciones">15dp</dimen>
+    <dimen name="t_opciones_habito">24sp</dimen>
+    <dimen name="p_bot_titulo_opciones_habito">10dp</dimen>
+    <dimen name="w_boton_opciones">160dp</dimen>
+    <dimen name="t_boton_opciones">18sp</dimen>
+    <dimen name="m_top_boton_opciones">8dp</dimen>
+    <dimen name="p_boton_opciones">4dp</dimen>
+    <dimen name="w_dialog_opciones_habitos_main">300dp</dimen>
+    <dimen name="p_dialog_opciones_habitos_main">15dp</dimen>
+    <dimen name="h_boton_opciones">45dp</dimen>
 
 
 </resources>
