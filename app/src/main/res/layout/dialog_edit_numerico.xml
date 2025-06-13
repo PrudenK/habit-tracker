@@ -6,14 +6,14 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
 
-    android:padding="16dp">
+    android:padding="@dimen/p_dialog_registro">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="12dp"
         app:cardElevation="4dp"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/m_dialog_registro"
         android:background="@drawable/background_dialogo_opciones"
 
         >
@@ -21,12 +21,12 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:padding="@dimen/p_dialog_registro">
 
             <!-- Campo de "Notas" -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_notas"
-                android:layout_width="180dp"
+                android:layout_width="@dimen/w_input_registro"
                 android:layout_height="wrap_content"
                 android:hint="@string/notas"
                 app:endIconMode="clear_text"
@@ -45,13 +45,15 @@
                     android:layout_height="wrap_content"
                     android:maxLines="2"
                     android:textColor="@color/tittle_color"
-                    android:textCursorDrawable="@null" />
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/t_input_comun"
+                    />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Campo de "Cantidad" -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_cantidad"
-                android:layout_width="180dp"
+                android:layout_width="@dimen/w_input_registro"
                 android:layout_height="wrap_content"
                 android:hint="@string/cantidad"
                 app:endIconMode="clear_text"
@@ -73,7 +75,7 @@
                     android:inputType="numberDecimal"
                     android:textColor="@color/tittle_color"
                     android:textCursorDrawable="@null"
-
+                    android:textSize="@dimen/t_input_comun"
                     />
             </com.google.android.material.textfield.TextInputLayout>
 

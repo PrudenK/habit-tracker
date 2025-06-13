@@ -165,4 +165,12 @@
     <dimen name="p_dialog_opciones_habitos_main">10dp</dimen>
     <dimen name="p_bot_titulo_opciones_habito">6dp</dimen>
 
+    <!-- Diálogo registro numérico -->
+    <dimen name="w_input_registro">160dp</dimen>
+    <dimen name="p_dialog_registro">12dp</dimen>
+    <dimen name="m_dialog_registro">16dp</dimen>
+    <dimen name="wh_icono_registro_booleano">40dp</dimen>
+    <dimen name="m_top_icono_registro_booleano">12dp</dimen>
+
+
 </resources>
