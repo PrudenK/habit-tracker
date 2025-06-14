@@ -1,13 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="text_24">24sp</dimen>
-    <dimen name="text_18">18sp</dimen>
-    <dimen name="text_20">20sp</dimen>
-    <dimen name="text_26">26sp</dimen>
-    <dimen name="text_16">16sp</dimen>
-    <dimen name="text_28">28sp</dimen>
-    <dimen name="text_14">14sp</dimen>
-    <dimen name="text_22">22sp</dimen>
 
     <!-- Tutorial -->
     <dimen name="text_tama_titulo_tutorial">30sp</dimen>
@@ -237,5 +229,6 @@
     <dimen name="t_fecha_editar_habito_estadis">22sp</dimen>
     <dimen name="p_bot_fecha_editar_habito_estadis">4dp</dimen>
     <dimen name="m_top_input_editar_habito_estadis">12dp</dimen>
+    <dimen name="t_pb_agregar_habito">28sp</dimen>
 
 </resources>

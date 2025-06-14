@@ -81,7 +81,7 @@
             app:layout_constraintStart_toStartOf="parent"
             android:text="adfsadfsas"
             android:textColor="@color/tittle_color"
-            android:textSize="@dimen/text_28"
+            android:textSize="@dimen/t_pb_agregar_habito"
             android:fontFamily="@font/encabezados"
             android:layout_marginBottom="12dp"
             />
