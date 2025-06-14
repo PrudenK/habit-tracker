@@ -23,12 +23,13 @@ fun generateLastDates(): MutableList<Fecha> {
     calendar.set(yearInit, mesInit, diaInit)
 
     val today = Calendar.getInstance()
+    val idioma = sharedConfiguraciones.getString("idioma", "es") ?: "es"
 
     while (!calendar.after(today)) {
-        val day = SimpleDateFormat("EEE", Locale.getDefault()).format(calendar.time)
-        val date = SimpleDateFormat("dd", Locale.getDefault()).format(calendar.time)
-        val year = SimpleDateFormat("yyyy", Locale.getDefault()).format(calendar.time)
-        val mes = SimpleDateFormat("MMM", Locale.getDefault()).format(calendar.time)
+        val day = SimpleDateFormat("EEE", Locale(idioma)).format(calendar.time)
+        val date = SimpleDateFormat("dd", Locale(idioma)).format(calendar.time)
+        val year = SimpleDateFormat("yyyy", Locale(idioma)).format(calendar.time)
+        val mes = SimpleDateFormat("MMM", Locale(idioma)).format(calendar.time)
         dates.add(Fecha(day, date, year, mes))
         calendar.add(Calendar.DATE, 1)
     }

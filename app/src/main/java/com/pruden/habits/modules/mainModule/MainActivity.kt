@@ -20,6 +20,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.pruden.habits.HabitosApplication.Companion.listaFechas
 import com.pruden.habits.HabitosApplication.Companion.listaHabitos
 import com.pruden.habits.HabitosApplication.Companion.listaHabitosEtiquetas
 import com.pruden.habits.HabitosApplication.Companion.tamanoPagina
@@ -35,6 +36,7 @@ import com.pruden.habits.common.metodos.Dialogos.makeToast
 import com.pruden.habits.common.metodos.Fragments.cargarFragment
 import com.pruden.habits.common.metodos.General.cargarScrollFechaCommon
 import com.pruden.habits.common.metodos.General.configurarRecyclerFechasCommon
+import com.pruden.habits.common.metodos.fechas.generateLastDates
 import com.pruden.habits.databinding.ActivityMainBinding
 import com.pruden.habits.modules.agregarEditarHabitoModule.AgregarEditarHabitoFragment
 import com.pruden.habits.modules.archivarHabitoModule.ArchivarHabitoFragment
@@ -91,6 +93,8 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
         cargarViewModel()
         paginaAnterior()
         paginaSiguiente()
+
+        listaFechas = generateLastDates()
 
         configurarRecyclerFechas()
         configurarRecyclerHabitos()
