@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="@dimen/p_dialog_registro">
+    android:padding="@dimen/p_dialog_comun">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/p_dialog_registro">
+            android:padding="@dimen/p_dialog_comun">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_notas_bool"

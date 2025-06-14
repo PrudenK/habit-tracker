@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
     android:background="@drawable/background_dialogo_opciones"
-    android:padding="16dp"
+    android:padding="@dimen/p_dialog_comun"
     >
 
     <TextView
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/mover_habito"
-        android:textSize="@dimen/text_24"
+        android:textSize="@dimen/t_mover_habito"
         android:textStyle="bold"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
@@ -28,14 +28,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/modifica_la_posicion_de_tu_habito"
-        android:textSize="@dimen/text_12"
+        android:textSize="@dimen/t_subtitulo"
         android:textStyle="bold"
         android:gravity="center"
         app:layout_constraintTop_toBottomOf="@id/dialog_titulo_mover"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:textColor="@color/tittle_color"
-        android:paddingVertical="6dp"
+        android:paddingVertical="@dimen/p_v_subtitulo_mover_habito"
         />
 
     <TextView
@@ -50,11 +50,11 @@
         app:layout_constraintTop_toBottomOf="@+id/dialog_subitulo_mover"
         android:text="-1"
         android:textColor="@color/tittle_color"
-        android:textSize="@dimen/text_28"
-        android:paddingVertical="10dp"
-        android:paddingBottom="6dp"
+        android:textSize="@dimen/t_posicion_al_mover"
+        android:paddingVertical="@dimen/p_v_posicion"
+        android:paddingBottom="@dimen/p_bot_posicion_mover_habito"
         android:textStyle="bold"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/m_top_texto_posicion"
         />
 
     <ImageView
@@ -79,9 +79,9 @@
 
     <ImageView
         android:id="@+id/boton_menos_posicion"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="@dimen/wh_botones_ajustar_posicion"
+        android:layout_height="@dimen/wh_botones_ajustar_posicion"
+        android:layout_marginEnd="@dimen/m_icono_mover"
         android:clickable="false"
 
         android:src="@drawable/ic_remove"
@@ -92,9 +92,9 @@
 
     <ImageView
         android:id="@+id/boton_sumar_posicion"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="@dimen/wh_botones_ajustar_posicion"
+        android:layout_height="@dimen/wh_botones_ajustar_posicion"
+        android:layout_marginStart="@dimen/m_icono_mover"
         android:clickable="false"
 
         android:src="@drawable/ic_add"
@@ -107,29 +107,28 @@
 
     <Button
         android:id="@+id/button_cancelar_number_picker"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_width="@dimen/w_boton_mover_posicion"
+        android:layout_height="@dimen/h_boton_opciones"
         android:text="@string/descartar"
         app:layout_constraintTop_toBottomOf="@id/posicion_picker"
         app:layout_constraintStart_toStartOf="parent"
-        android:textSize="@dimen/text_18"
+        app:layout_constraintEnd_toStartOf="@id/button_aplicar_number_picker"
+        android:textSize="@dimen/t_boton_opciones"
         android:textColor="@color/tittle_color"
         android:backgroundTint="@color/primary"
         />
 
     <Button
         android:id="@+id/button_aplicar_number_picker"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/w_boton_mover_posicion"
+        android:layout_height="@dimen/h_boton_opciones"
         android:text="@string/aplicar"
         app:layout_constraintTop_toBottomOf="@id/posicion_picker"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="@dimen/text_18"
-        app:layout_constraintStart_toEndOf="@id/button_cancelar_number_picker"
-        android:layout_marginStart="16dp"
+        android:textSize="@dimen/t_boton_opciones"
         android:textColor="@color/tittle_color"
         android:backgroundTint="@color/primary"
+        app:layout_constraintStart_toEndOf="@id/button_cancelar_number_picker"
         />
 
 

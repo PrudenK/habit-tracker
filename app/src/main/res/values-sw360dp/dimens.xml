@@ -167,10 +167,22 @@
 
     <!-- Diálogo registro numérico -->
     <dimen name="w_input_registro">160dp</dimen>
-    <dimen name="p_dialog_registro">12dp</dimen>
+    <dimen name="p_dialog_comun">12dp</dimen>
     <dimen name="m_dialog_registro">16dp</dimen>
     <dimen name="wh_icono_registro_booleano">40dp</dimen>
     <dimen name="m_top_icono_registro_booleano">12dp</dimen>
+
+    <!-- Diálogo mover hábito -->
+    <dimen name="t_mover_habito">20sp</dimen>
+    <dimen name="t_subtitulo">12sp</dimen>
+    <dimen name="wh_botones_ajustar_posicion">40dp</dimen>
+    <dimen name="t_posicion_al_mover">24sp</dimen>
+    <dimen name="p_v_posicion">8dp</dimen>
+    <dimen name="m_top_texto_posicion">6dp</dimen>
+    <dimen name="m_icono_mover">12dp</dimen>
+    <dimen name="w_boton_mover_posicion">100dp</dimen>
+    <dimen name="p_v_subtitulo_mover_habito">4dp</dimen>
+    <dimen name="p_bot_posicion_mover_habito">4dp</dimen>
 
 
 </resources>
