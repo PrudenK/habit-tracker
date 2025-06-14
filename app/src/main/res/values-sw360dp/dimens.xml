@@ -184,5 +184,16 @@
     <dimen name="p_v_subtitulo_mover_habito">4dp</dimen>
     <dimen name="p_bot_posicion_mover_habito">4dp</dimen>
 
+    <!-- Diálogo desarchivar -->
+    <dimen name="w_dialog_desarchivar">320dp</dimen>
+    <dimen name="p_dialog_archivar">12dp</dimen>
+    <dimen name="t_titulo_dialog_archivar">20sp</dimen>
+    <dimen name="p_bot_titulo_archivar">6dp</dimen>
+    <dimen name="t_subtitulo_dialog_archivar">14sp</dimen>
+    <dimen name="p_bot_subtitulo_dialog_archivar">16dp</dimen>
+    <dimen name="t_boton_dialog_archivar">14sp</dimen>
+    <dimen name="w_boton_dialog_archivar">125dp</dimen>
+    <dimen name="m_botones_dialog_archivar">2dp</dimen>
+
 
 </resources>
