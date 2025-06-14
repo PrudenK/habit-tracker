@@ -180,7 +180,7 @@
     <dimen name="p_v_posicion">8dp</dimen>
     <dimen name="m_top_texto_posicion">6dp</dimen>
     <dimen name="m_icono_mover">12dp</dimen>
-    <dimen name="w_boton_mover_posicion">100dp</dimen>
+    <dimen name="w_boton_mover_posicion">110dp</dimen>
     <dimen name="p_v_subtitulo_mover_habito">4dp</dimen>
     <dimen name="p_bot_posicion_mover_habito">4dp</dimen>
 
@@ -194,6 +194,18 @@
     <dimen name="t_boton_dialog_archivar">14sp</dimen>
     <dimen name="w_boton_dialog_archivar">125dp</dimen>
     <dimen name="m_botones_dialog_archivar">2dp</dimen>
+
+    <!-- Diálogo agregar/modifcar etiqueta/categoria -->
+    <dimen name="p_dialog_agregar_etiqueta">12dp</dimen>
+    <dimen name="w_input_nombre_etiqueta">240dp</dimen>
+    <dimen name="t_elegir_color_etiqueta">14sp</dimen>
+    <dimen name="m_top_texto_cambiar_posicion">6dp</dimen>
+    <dimen name="p_v_texto_cambiar_posicion">4dp</dimen>
+    <dimen name="m_top_botones_modificar_etiqueta">8dp</dimen>
+    <dimen name="m_top_imagen_color_picker_etiqueta">12dp</dimen>
+    <dimen name="m_start_imagen_color_picker_etiqueta">12dp</dimen>
+    <dimen name="m_top_seccion_mover_pos_etiqueta">6dp</dimen>
+    <dimen name="m_top_texto_posicion_etiqueta">4dp</dimen>
 
 
 </resources>

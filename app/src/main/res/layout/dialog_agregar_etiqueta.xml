@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="@dimen/p_dialog_agregar_etiqueta"
     android:background="@drawable/background_dialogo_opciones">
 
 
@@ -50,7 +50,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_nombre_etiqueta"
-            android:layout_width="300dp"
+            android:layout_width="@dimen/w_input_nombre_etiqueta"
             android:layout_height="wrap_content"
             android:hint="@string/nombre_de_la_etiqueta"
             app:endIconMode="clear_text"
@@ -70,6 +70,7 @@
                 android:textColor="@color/tittle_color"
                 android:textCursorDrawable="@null"
                 android:fontFamily="@font/encabezados"
+                android:textSize="@dimen/t_input_comun"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,7 +79,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Elige el color de la categoría"
-            android:textSize="18sp"
+            android:textSize="@dimen/t_elegir_color_etiqueta"
             android:textColor="@color/tittle_color"
             app:layout_constraintTop_toTopOf="@id/img_color_etiqueta_num"
             app:layout_constraintBottom_toBottomOf="@id/img_color_etiqueta_num"
@@ -88,10 +89,10 @@
 
         <ImageView
             android:id="@+id/img_color_etiqueta_num"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
+            android:layout_width="@dimen/wh_imagen_color_picker"
+            android:layout_height="@dimen/wh_imagen_color_picker"
+            android:layout_marginTop="@dimen/m_top_imagen_color_picker_etiqueta"
+            android:layout_marginStart="@dimen/m_start_imagen_color_picker_etiqueta"
             android:background="@drawable/borde_negro"
             app:layout_constraintTop_toBottomOf="@id/til_nombre_etiqueta"
             app:layout_constraintStart_toEndOf="@id/titulo_color_etiqueta"/>
@@ -99,9 +100,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/contenedor_posicion_mod_etiqueta"
-            android:layout_width="300dp"
+            android:layout_width="@dimen/w_input_nombre_etiqueta"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/m_top_seccion_mover_pos_etiqueta"
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/img_color_etiqueta_num">
@@ -110,11 +111,11 @@
                 android:id="@+id/dialog_posicion_etiqueta"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:paddingVertical="6dp"
+                android:layout_marginTop="@dimen/m_top_texto_cambiar_posicion"
+                android:paddingVertical="@dimen/p_v_texto_cambiar_posicion"
                 android:text="@string/modifica_la_posicion_de_tu_habito"
                 android:textColor="@color/tittle_color"
-                android:textSize="@dimen/text_18"
+                android:textSize="@dimen/t_elegir_color_etiqueta"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -127,14 +128,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/m_top_texto_posicion_etiqueta"
                 android:focusable="true"
                 android:focusableInTouchMode="true"
-                android:paddingVertical="10dp"
-                android:paddingBottom="6dp"
+                android:paddingVertical="@dimen/p_v_posicion"
                 android:text="-1"
                 android:textColor="@color/tittle_color"
-                android:textSize="@dimen/text_28"
+                android:textSize="@dimen/t_posicion_al_mover"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -164,9 +164,9 @@
 
             <ImageView
                 android:id="@+id/boton_menos_posicion"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="16dp"
+                android:layout_width="@dimen/wh_botones_ajustar_posicion"
+                android:layout_height="@dimen/wh_botones_ajustar_posicion"
+                android:layout_marginEnd="@dimen/m_icono_mover"
                 android:clickable="false"
 
                 android:src="@drawable/ic_remove"
@@ -177,9 +177,9 @@
 
             <ImageView
                 android:id="@+id/boton_sumar_posicion"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="16dp"
+                android:layout_width="@dimen/wh_botones_ajustar_posicion"
+                android:layout_height="@dimen/wh_botones_ajustar_posicion"
+                android:layout_marginStart="@dimen/m_icono_mover"
                 android:clickable="false"
 
                 android:src="@drawable/ic_add"
@@ -198,12 +198,11 @@
 
         <Button
             android:id="@+id/button_cancelar_agregar_etiqueta"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/w_boton_mover_posicion"
+            android:layout_height="@dimen/h_boton_opciones"
             android:text="@string/cancelar"
-            android:textSize="@dimen/text_18"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="8dp"
+            android:textSize="@dimen/t_boton_opciones"
+            android:layout_marginTop="@dimen/m_top_botones_modificar_etiqueta"
             app:layout_constraintTop_toBottomOf="@id/contenedor_posicion_mod_etiqueta"
             app:layout_constraintStart_toStartOf="parent"
             android:fontFamily="@font/encabezados"
@@ -213,11 +212,11 @@
 
         <Button
             android:id="@+id/button_guardar_agreagr_etiqueta"
-            android:layout_width="130dp"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/w_boton_mover_posicion"
+            android:layout_height="@dimen/h_boton_opciones"
             android:text="@string/guardar"
-            android:textSize="@dimen/text_18"
-            android:layout_marginTop="20dp"
+            android:textSize="@dimen/t_boton_opciones"
+            android:layout_marginTop="@dimen/m_top_botones_modificar_etiqueta"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/contenedor_posicion_mod_etiqueta"
             android:fontFamily="@font/encabezados"
