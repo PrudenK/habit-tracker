@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="@dimen/p_dialog_archivar"
     android:background="@drawable/background_dialogo_opciones">
 
     <TextView
@@ -12,16 +12,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/confirmacion"
-        android:textSize="@dimen/text_24"
+        android:textSize="@dimen/t_titulo_dialog_archivar"
         android:textStyle="bold"
         android:gravity="center"
-        android:paddingBottom="8dp"
+        android:paddingBottom="@dimen/p_bot_titulo_advertencia_cambiar_fechas"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/tittle_color"
         android:drawableEnd="@drawable/ic_warning"
-        android:drawablePadding="12dp"
+        android:drawablePadding="@dimen/p_drawable_titulo_adv_cambiar_fechas"
         android:drawableTint="@color/tittle_color"
         />
 
@@ -30,9 +30,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/no_habr_vuelta_atras"
-        android:textSize="16sp"
+        android:textSize="@dimen/t_subtitulo_advertencia_cambiar_fecha"
         android:gravity="center"
-        android:paddingBottom="16dp"
+        android:paddingBottom="@dimen/p_bot_subtitulo_adv_cambiar_fecha"
         app:layout_constraintTop_toBottomOf="@id/dialog_titulo_borrar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -43,26 +43,25 @@
 
     <Button
         android:id="@+id/button_cancelar_cambiar_fecha_inicio_confir"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
+        android:layout_width="@dimen/w_boton_dialog_archivar"
+        android:layout_height="@dimen/h_boton_opciones"
         android:text="@string/cancelar"
         app:layout_constraintTop_toBottomOf="@id/dialog_mensaje_borrar"
         app:layout_constraintStart_toStartOf="parent"
-        android:textSize="@dimen/text_18"
+        android:textSize="@dimen/t_boton_dialog_archivar"
         android:textColor="@color/tittle_color"
         android:backgroundTint="@color/primary"
         />
 
     <Button
         android:id="@+id/button_confirmacion_fecha_inicio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/w_boton_dialog_archivar"
+        android:layout_height="@dimen/h_boton_opciones"
         android:text="@string/estoy_seguro"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dialog_mensaje_borrar"
         android:backgroundTint="@color/delete_button"
-        android:textSize="@dimen/text_18"
+        android:textSize="@dimen/t_boton_dialog_archivar"
         android:textColor="@color/text_delete_button"
         />
 

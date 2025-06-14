@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="altura_habito">65dp</dimen>
-    <dimen name="boton_width">160dp</dimen>
     <dimen name="text_24">24sp</dimen>
     <dimen name="text_18">18sp</dimen>
     <dimen name="text_20">20sp</dimen>
     <dimen name="text_26">26sp</dimen>
-    <dimen name="text_32">32sp</dimen>
     <dimen name="text_16">16sp</dimen>
     <dimen name="text_28">28sp</dimen>
     <dimen name="text_14">14sp</dimen>
     <dimen name="text_22">22sp</dimen>
-    <dimen name="text_12">12sp</dimen>
-    <dimen name="w_40">40dp</dimen>
-    <dimen name="h_40">40dp</dimen>
 
     <!-- Tutorial -->
     <dimen name="text_tama_titulo_tutorial">30sp</dimen>
@@ -215,5 +209,12 @@
     <dimen name="t_titulo_info_mini_habitos">26sp</dimen>
     <dimen name="t_subtitulo_info_mini_habito">16sp</dimen>
     <dimen name="p_subtitulo_info_mini_habito">8dp</dimen>
+
+    <!-- Diálogos configuraciones -->
+    <dimen name="t_advertencia_cambiar_fecha">24sp</dimen>
+    <dimen name="p_drawable_titulo_adv_cambiar_fechas">12dp</dimen>
+    <dimen name="t_subtitulo_advertencia_cambiar_fecha">16sp</dimen>
+    <dimen name="p_bot_subtitulo_adv_cambiar_fecha">16dp</dimen>
+    <dimen name="p_bot_titulo_advertencia_cambiar_fechas">8dp</dimen>
 
 </resources>
