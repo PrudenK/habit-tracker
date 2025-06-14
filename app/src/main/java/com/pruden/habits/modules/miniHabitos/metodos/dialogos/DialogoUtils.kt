@@ -35,5 +35,5 @@ fun dialogoBorrarElementoComun(texto: String, context: Context, resources: Resou
 
     dialogBorrar.show()
 
-    ajustarDialogo(resources, dialogBorrar, 0.75f)
+    ajustarDialogo(resources, dialogBorrar, 0.85f)
 }

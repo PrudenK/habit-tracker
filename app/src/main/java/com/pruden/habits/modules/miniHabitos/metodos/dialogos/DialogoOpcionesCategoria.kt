@@ -236,12 +236,12 @@ fun dialogoModificarCategoria(
 
         dialogBorrar.show()
 
-        ajustarDialogo(resources, dialogBorrar, 0.75f)
+        ajustarDialogo(resources, dialogBorrar, 0.85f)
     }
 
 
 
     dialogOpciones.show()
 
-    ajustarDialogo(resources, dialogOpciones, 0.77f)
+    ajustarDialogo(resources, dialogOpciones, 0.85f)
 }

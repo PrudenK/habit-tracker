@@ -212,5 +212,9 @@
     <dimen name="m_top_recycler_gestion_etiquetas">6dp</dimen>
     <dimen name="m_top_boton_gestion_etiquetas">8dp</dimen>
 
+    <!-- Diálogo info mini hábitos-->
+    <dimen name="t_titulo_info_mini_habitos">22sp</dimen>
+    <dimen name="t_subtitulo_info_mini_habito">14sp</dimen>
+    <dimen name="p_subtitulo_info_mini_habito">6dp</dimen>
 
 </resources>

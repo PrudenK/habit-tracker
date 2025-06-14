@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="16dp"
+    android:padding="@dimen/p_dialog_archivar"
     android:background="@drawable/background_dialogo_opciones">
 
     <TextView
@@ -15,7 +15,7 @@
         android:fontFamily="@font/titulos"
         android:text="@string/mini_habitos_info_titulo"
         android:textColor="@color/tittle_color"
-        android:textSize="@dimen/text_26"
+        android:textSize="@dimen/t_titulo_info_mini_habitos"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,8 +26,8 @@
         android:layout_height="wrap_content"
         android:text="@string/mini_habitos_info"
         android:textColor="@color/tittle_color"
-        android:textSize="@dimen/text_16"
-        android:padding="8dp"
+        android:textSize="@dimen/t_subtitulo_info_mini_habito"
+        android:padding="@dimen/p_subtitulo_info_mini_habito"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/titulo_info_mini_habitos" />

@@ -189,6 +189,9 @@
     <dimen name="p_h_titulo_gestion_etiquetas">30dp</dimen>
     <dimen name="m_top_recycler_gestion_etiquetas">12dp</dimen>
     <dimen name="m_top_boton_gestion_etiquetas">16dp</dimen>
+    <dimen name="t_titulo_info_mini_habitos">26sp</dimen>
+    <dimen name="t_subtitulo_info_mini_habito">16sp</dimen>
+    <dimen name="p_subtitulo_info_mini_habito">8dp</dimen>
 
 
 </resources>
