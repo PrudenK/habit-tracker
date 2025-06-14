@@ -206,4 +206,9 @@
     <dimen name="m_top_seccion_mover_pos_etiqueta">10dp</dimen>
     <dimen name="m_top_texto_posicion_etiqueta">8dp</dimen>
 
+    <!-- Diálogo borrar elemento -->
+    <dimen name="p_h_titulo_gestion_etiquetas">30dp</dimen>
+    <dimen name="m_top_recycler_gestion_etiquetas">12dp</dimen>
+    <dimen name="m_top_boton_gestion_etiquetas">16dp</dimen>
+
 </resources>

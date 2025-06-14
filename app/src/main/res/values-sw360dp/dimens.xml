@@ -207,5 +207,10 @@
     <dimen name="m_top_seccion_mover_pos_etiqueta">6dp</dimen>
     <dimen name="m_top_texto_posicion_etiqueta">4dp</dimen>
 
+    <!-- Diálogo gestionar etiquetas -->
+    <dimen name="p_h_titulo_gestion_etiquetas">10dp</dimen>
+    <dimen name="m_top_recycler_gestion_etiquetas">6dp</dimen>
+    <dimen name="m_top_boton_gestion_etiquetas">8dp</dimen>
+
 
 </resources>

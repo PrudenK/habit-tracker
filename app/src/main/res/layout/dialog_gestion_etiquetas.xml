@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
     android:background="@drawable/background_dialogo_opciones"
-    android:padding="16dp">
+    android:padding="@dimen/p_dialog_archivar">
 
 
     <TextView
@@ -14,14 +14,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/gestionar_etiquetas"
-        android:textSize="@dimen/text_24"
+        android:textSize="@dimen/t_titulo_categoria"
         android:textStyle="bold"
         android:gravity="center"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:textColor="@color/tittle_color"
-        android:paddingHorizontal="30dp"
+        android:paddingHorizontal="@dimen/p_h_titulo_gestion_etiquetas"
         />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -33,34 +33,36 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dialog_titulo_gestion_etiquetas"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="@dimen/m_top_recycler_gestion_etiquetas"
         />
 
     <Button
         android:id="@+id/button_cancelar_gestion_etiquetas"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/w_boton_dialog_archivar"
+        android:layout_height="@dimen/h_boton_opciones"
         android:text="@string/cancelar"
-        android:textSize="@dimen/text_18"
+        android:textSize="@dimen/t_boton_dialog_archivar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recycler_etiquetas_gestion"
         app:layout_constraintEnd_toStartOf="@id/button_guardar_gesiton_etiqueta"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/m_top_boton_gestion_etiquetas"
         android:textColor="@color/tittle_color"
         android:backgroundTint="@color/primary"
+        android:layout_marginEnd="@dimen/m_botones_dialog_archivar"
         />
 
     <Button
         android:id="@+id/button_guardar_gesiton_etiqueta"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/w_boton_dialog_archivar"
+        android:layout_height="@dimen/h_boton_opciones"
         android:text="@string/guardar"
-        android:textSize="@dimen/text_18"
+        android:textSize="@dimen/t_boton_dialog_archivar"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/button_cancelar_gestion_etiquetas"
         android:textColor="@color/tittle_color"
         android:backgroundTint="@color/primary"
         app:layout_constraintTop_toTopOf="@+id/button_cancelar_gestion_etiquetas"
+        android:layout_marginStart="@dimen/m_botones_dialog_archivar"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

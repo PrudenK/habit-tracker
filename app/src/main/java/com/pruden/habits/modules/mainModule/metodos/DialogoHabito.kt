@@ -83,7 +83,7 @@ fun dialogoOnLongClickHabito(
         dialogBorrar.show()
         dialogoOpciones.hide()
 
-        ajustarDialogo(resources, dialogBorrar, 0.75f)
+        ajustarDialogo(resources, dialogBorrar, 0.85f)
     }
 
     btnArchivar.setOnClickListener {
