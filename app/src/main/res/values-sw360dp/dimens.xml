@@ -233,4 +233,10 @@
     <dimen name="m_h_codigo_idioma">8dp</dimen>
     <dimen name="w_codigo_idioma">30dp</dimen>
 
+
+    <dimen name="t_cargar_progress_bar">20sp</dimen>
+    <dimen name="t_fecha_editar_habito_estadis">18sp</dimen>
+    <dimen name="p_bot_fecha_editar_habito_estadis">3dp</dimen>
+    <dimen name="m_top_input_editar_habito_estadis">8dp</dimen>
+
 </resources>

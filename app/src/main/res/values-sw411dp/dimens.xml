@@ -232,4 +232,10 @@
     <dimen name="m_h_codigo_idioma">12dp</dimen>
     <dimen name="w_codigo_idioma">40dp</dimen>
 
+
+    <dimen name="t_cargar_progress_bar">20sp</dimen>
+    <dimen name="t_fecha_editar_habito_estadis">22sp</dimen>
+    <dimen name="p_bot_fecha_editar_habito_estadis">4dp</dimen>
+    <dimen name="m_top_input_editar_habito_estadis">12dp</dimen>
+
 </resources>

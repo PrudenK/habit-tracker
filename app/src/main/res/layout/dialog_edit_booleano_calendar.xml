@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="@dimen/p_dialog_comun">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="12dp"
         app:cardElevation="4dp"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/m_dialog_registro"
         android:background="@drawable/background_dialogo_opciones"
 
         >
@@ -20,7 +20,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:padding="@dimen/p_dialog_comun">
 
             <TextView
                 android:id="@+id/fecha_boolean_calendar"
@@ -31,15 +31,15 @@
                 app:layout_constraintStart_toStartOf="@+id/til_notas_bool_calendar"
                 app:layout_constraintTop_toTopOf="parent"
                 android:textColor="@color/tittle_color"
-                android:textSize="@dimen/text_22"
+                android:textSize="@dimen/t_fecha_editar_habito_estadis"
                 android:fontFamily="@font/subtitulos"
-                android:paddingBottom="4dp"
+                android:paddingBottom="@dimen/p_bot_fecha_editar_habito_estadis"
                 />
 
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_notas_bool_calendar"
-                android:layout_width="180dp"
+                android:layout_width="@dimen/w_input_registro"
                 android:layout_height="wrap_content"
                 android:hint="@string/notas"
                 app:endIconMode="clear_text"
@@ -58,14 +58,15 @@
                     android:maxLines="2"
                     android:textColor="@color/tittle_color"
                     android:textCursorDrawable="@null"
+                    android:textSize="@dimen/t_input_comun"
                     />
             </com.google.android.material.textfield.TextInputLayout>
 
             <ImageView
                 android:id="@+id/no_check_calendar"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="16dp"
+                android:layout_width="@dimen/wh_icono_registro_booleano"
+                android:layout_height="@dimen/wh_icono_registro_booleano"
+                android:layout_marginTop="@dimen/m_top_icono_registro_booleano"
                 app:srcCompat="@drawable/ic_no_check"
                 app:layout_constraintTop_toBottomOf="@id/til_notas_bool_calendar"
                 app:layout_constraintStart_toStartOf="parent"
@@ -75,9 +76,9 @@
 
             <ImageView
                 android:id="@+id/check_calendar"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_marginTop="16dp"
+                android:layout_width="@dimen/wh_icono_registro_booleano"
+                android:layout_height="@dimen/wh_icono_registro_booleano"
+                android:layout_marginTop="@dimen/m_top_icono_registro_booleano"
                 app:srcCompat="@drawable/ic_check_agregar_habitos"
                 app:layout_constraintTop_toBottomOf="@id/til_notas_bool_calendar"
                 app:layout_constraintStart_toEndOf="@id/no_check_calendar"

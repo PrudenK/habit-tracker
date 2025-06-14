@@ -5,16 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-
-    android:padding="16dp"
-    >
+    android:padding="@dimen/p_dialog_comun">
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="12dp"
         app:cardElevation="4dp"
-        android:layout_margin="16dp"
+        android:layout_margin="@dimen/m_dialog_registro"
         android:background="@drawable/background_dialogo_opciones"
 
         >
@@ -22,7 +20,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp">
+            android:padding="@dimen/p_dialog_comun">
 
             <TextView
                 android:id="@+id/fecha_numerico_calendar"
@@ -34,14 +32,14 @@
                 app:layout_constraintStart_toStartOf="@+id/til_notas_numerico_calendar"
                 app:layout_constraintTop_toTopOf="parent"
                 android:textColor="@color/tittle_color"
-                android:textSize="@dimen/text_22"
+                android:textSize="@dimen/t_fecha_editar_habito_estadis"
                 android:fontFamily="@font/subtitulos"
-                android:paddingBottom="4dp"
+                android:paddingBottom="@dimen/p_bot_fecha_editar_habito_estadis"
                 />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_notas_numerico_calendar"
-                android:layout_width="180dp"
+                android:layout_width="@dimen/w_input_registro"
                 android:layout_height="wrap_content"
                 android:hint="@string/notas"
                 app:endIconMode="clear_text"
@@ -60,20 +58,22 @@
                     android:layout_height="wrap_content"
                     android:maxLines="2"
                     android:textColor="@color/tittle_color"
-                    android:textCursorDrawable="@null" />
+                    android:textCursorDrawable="@null"
+                    android:textSize="@dimen/t_input_comun"
+                    />
             </com.google.android.material.textfield.TextInputLayout>
 
             <!-- Campo de "Cantidad" -->
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/til_cantidad_numerico_calendar"
-                android:layout_width="180dp"
+                android:layout_width="@dimen/w_input_registro"
                 android:layout_height="wrap_content"
                 android:hint="@string/cantidad"
                 app:endIconMode="clear_text"
                 app:layout_constraintTop_toBottomOf="@id/til_notas_numerico_calendar"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/m_top_input_editar_habito_estadis"
                 app:hintTextColor="@color/hint_color"
                 app:boxStrokeColor="@color/border_color"
                 app:boxStrokeWidth="1dp"
@@ -88,7 +88,7 @@
                     android:inputType="numberDecimal"
                     android:textColor="@color/tittle_color"
                     android:textCursorDrawable="@null"
-
+                    android:textSize="@dimen/t_input_comun"
                     />
             </com.google.android.material.textfield.TextInputLayout>
 

@@ -28,7 +28,7 @@
         android:text="@string/modificando_etiqueta"
         android:textColor="@color/tittle_color"
         android:textStyle="bold"
-        android:textSize="@dimen/text_20"
+        android:textSize="@dimen/t_cargar_progress_bar"
         android:fontFamily="@font/encabezados"
         app:layout_constraintBottom_toTopOf="@id/progress_bar_modificar_etiqueta"
         app:layout_constraintStart_toStartOf="parent"
