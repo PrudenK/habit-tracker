@@ -217,5 +217,20 @@
     <dimen name="t_subtitulo_advertencia_cambiar_fecha">12sp</dimen>
     <dimen name="p_bot_subtitulo_adv_cambiar_fecha">12dp</dimen>
     <dimen name="p_bot_titulo_advertencia_cambiar_fechas">6dp</dimen>
+    <dimen name="t_boton_advertencia_cambiar_fecha">12sp</dimen>
+
+    <!-- Idiomas -->
+    <dimen name="p_dialog_elegir_idioma">6dp</dimen>
+    <dimen name="t_titulo_escoger_idioma">22sp</dimen>
+    <dimen name="p_h_recycler_idiomas">3dp</dimen>
+    <dimen name="p_item_idioma">3dp</dimen>
+    <dimen name="w_item_idioma">80dp</dimen>
+    <dimen name="t_item_idioma">15sp</dimen>
+    <dimen name="m_start_nombre_item_idioma">42dp</dimen>
+    <dimen name="w_bandera_idioma">48dp</dimen>
+    <dimen name="h_bandera_idioma">32dp</dimen>
+    <dimen name="m_start_bandera_idoma">14dp</dimen>
+    <dimen name="m_h_codigo_idioma">8dp</dimen>
+    <dimen name="w_codigo_idioma">30dp</dimen>
 
 </resources>

@@ -4,50 +4,48 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="4dp"
+    android:padding="@dimen/p_item_idioma"
     android:id="@+id/contenedor_idioma"
     >
 
 
     <TextView
         android:id="@+id/nombre_idioma"
-        android:layout_width="95dp"
+        android:layout_width="@dimen/w_item_idioma"
         android:layout_height="wrap_content"
-        android:textSize="@dimen/text_18"
+        android:textSize="@dimen/t_item_idioma"
         android:text="Español"
         android:textColor="@color/tittle_color"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="@dimen/m_start_nombre_item_idioma"
         />
 
     <TextView
         android:id="@+id/codigo_idioma"
-        android:layout_width="40dp"
+        android:layout_width="@dimen/w_codigo_idioma"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="@dimen/text_18"
+        android:textSize="@dimen/t_item_idioma"
         android:text="ES"
         android:textColor="@color/tittle_color"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/nombre_idioma"
-        android:layout_marginHorizontal="12dp"
+        android:layout_marginHorizontal="@dimen/m_h_codigo_idioma"
         />
 
 
     <ImageView
         android:id="@+id/imagen_idioma"
-        android:layout_width="60dp"
-        android:layout_height="40dp"
+        android:layout_width="@dimen/w_bandera_idioma"
+        android:layout_height="@dimen/h_bandera_idioma"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-
         android:src="@mipmap/ic_espana"
         app:layout_constraintStart_toEndOf="@id/codigo_idioma"
-        android:layout_marginStart="18dp"
-
+        android:layout_marginStart="@dimen/m_start_bandera_idoma"
         />
 
 

@@ -2,9 +2,9 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:padding="8dp"
+    android:padding="@dimen/p_dialog_elegir_idioma"
     android:background="@drawable/background_dialogo_opciones"
     app:cardElevation="4dp"
 
@@ -20,9 +20,9 @@
         android:text="@string/elige_tu_idioma"
         android:gravity="center"
         android:textColor="@color/tittle_color"
-        android:textSize="@dimen/text_26"
+        android:textSize="@dimen/t_titulo_escoger_idioma"
         android:fontFamily="@font/encabezados"
-        android:paddingHorizontal="6dp"
+        android:paddingHorizontal="@dimen/p_h_recycler_idiomas"
         />
 
 
@@ -30,7 +30,6 @@
         android:id="@+id/recycler_idiomas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="100dp"
         app:layout_constraintTop_toBottomOf="@id/titulo_elegir_idioma"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
