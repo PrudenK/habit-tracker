@@ -1,17 +1,17 @@
 package com.pruden.habits.modules.archivarHabitoModule.metodos
 
+import android.app.AlertDialog
 import android.content.Context
 import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
-import androidx.appcompat.app.AlertDialog
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.entities.HabitoEntity
 import com.pruden.habits.modules.archivarHabitoModule.viewModel.ArchivarViewModel
+import com.pruden.habits.modules.mainModule.metodos.ajustarDialogo
 
 fun mostrarDialogoDesarchivar(
     habito: HabitoEntity?,
@@ -51,7 +51,5 @@ fun mostrarDialogoDesarchivar(
     dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     dialog.show()
 
-    val window = dialog.window
-
-    window?.setLayout((resources.displayMetrics.widthPixels * 0.8).toInt(), ViewGroup.LayoutParams.WRAP_CONTENT)
+    ajustarDialogo(resources, dialog, 0.9f)
 }
