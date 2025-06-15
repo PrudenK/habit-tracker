@@ -204,6 +204,7 @@
     <dimen name="t_pb_agregar_habito">28sp</dimen>
     <dimen name="wh_check_habito">24dp</dimen>
     <dimen name="m_end_spinner_add_habito">12dp</dimen>
+    <dimen name="wh_iconos_botones_paginas">24dp</dimen>
 
 
 </resources>

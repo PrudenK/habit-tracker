@@ -25,6 +25,7 @@
     <dimen name="p_contenedor_main">10dp</dimen>
     <dimen name="w_texto_pagina">70dp</dimen>
     <dimen name="h_boton_pagina">45dp</dimen>
+    <dimen name="wh_iconos_botones_paginas">18dp</dimen>
 
     <!-- Item hábitos -->
     <dimen name="h_item_habito">52dp</dimen>
