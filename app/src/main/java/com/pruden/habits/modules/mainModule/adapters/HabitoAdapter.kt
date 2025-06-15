@@ -105,7 +105,10 @@ class HabitoAdapter (
                         unidad = habito.unidad,
                         color = habito.colorHabito,
                         archivado = habito.archivado,
-                        posicion = habito.posicion
+                        posicion = habito.posicion,
+                        objetivoSemanal = habito.objetivoSemanal,
+                        objetivoMensual = habito.objetivoMensual,
+                        objetivoAnual = habito.objetivoAnual
                     ), habito
                 )
                 true

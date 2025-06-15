@@ -36,6 +36,9 @@ interface HabitoDao {
         H.color as colorHabito,
         H.archivado,
         H.posicion,
+        H.objetivoSemanal,
+        H.objetivoMensual,
+        H.objetivoAnual,
         (SELECT '[' || GROUP_CONCAT(D.valorCampo) || ']' 
          FROM DataHabitos AS D 
          WHERE D.nombre = H.nombre) AS listaValores,
@@ -61,6 +64,9 @@ interface HabitoDao {
         H.color as colorHabito,
         H.posicion,
         H.archivado,
+        H.objetivoSemanal,
+        H.objetivoMensual,
+        H.objetivoAnual,
         (SELECT '[' || GROUP_CONCAT(D.valorCampo) || ']' 
          FROM DataHabitos AS D 
          WHERE D.nombre = H.nombre) AS listaValores,

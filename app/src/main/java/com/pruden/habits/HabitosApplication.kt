@@ -43,7 +43,7 @@ class HabitosApplication : Application(){
             HabitosDatabase::class.java,
             "HabitosDatabase"
         )
-            //.addMigrations(MIGRATION_10_11, MIGRATION_11_12)
+            .addMigrations(MIGRATION_12_13)
             //.fallbackToDestructiveMigration()
 
             .build()
@@ -189,6 +189,14 @@ class HabitosApplication : Application(){
         }
     }
 
+    // OBJETIVOS PERSONALIZADOS
 
+    val MIGRATION_12_13 = object : Migration(12, 13) {
+        override fun migrate(database: SupportSQLiteDatabase) {
+            database.execSQL("ALTER TABLE Habitos ADD COLUMN objetivoSemanal INTEGER NOT NULL DEFAULT 0")
+            database.execSQL("ALTER TABLE Habitos ADD COLUMN objetivoMensual INTEGER NOT NULL DEFAULT 0")
+            database.execSQL("ALTER TABLE Habitos ADD COLUMN objetivoAnual INTEGER NOT NULL DEFAULT 0")
+        }
+    }
 
 }

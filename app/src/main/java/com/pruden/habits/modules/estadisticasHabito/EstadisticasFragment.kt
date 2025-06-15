@@ -77,6 +77,18 @@ class EstadisticasFragment : Fragment(), OnClikCalendario {
             activity?.onBackPressed()
         }
 
+        binding.objetivoSeamanaTv.setOnClickListener {
+
+        }
+
+        binding.objetivoMensualTv.setOnClickListener {
+
+        }
+
+        binding.objetivoMensualTv.setOnClickListener {
+
+        }
+
         return binding.root
     }
 

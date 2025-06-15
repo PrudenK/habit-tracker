@@ -11,5 +11,8 @@ data class HabitoEntity(
     val unidad: String?,
     val color: Int,
     var archivado: Boolean,
-    var posicion: Int
+    var posicion: Int,
+    var objetivoSemanal: Int,
+    var objetivoMensual: Int,
+    var objetivoAnual: Int
 )

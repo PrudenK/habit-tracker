@@ -54,7 +54,8 @@ fun dialogoMoverHabito(
             }
 
             val listaHabitoEntity = listaHabitos.map {
-                HabitoEntity(it.nombre, it.objetivo, it.tipoNumerico, it.unidad, it.colorHabito, it.archivado, it.posicion)
+                HabitoEntity(it.nombre, it.objetivo, it.tipoNumerico, it.unidad, it.colorHabito,
+                    it.archivado, it.posicion, it.objetivoSemanal, it.objetivoMensual, it.objetivoAnual)
             }.toMutableList()
 
             mainViewModel.actualizarPosicionesHabitos(listaHabitoEntity){

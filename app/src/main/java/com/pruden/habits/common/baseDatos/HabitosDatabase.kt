@@ -18,7 +18,7 @@ import com.pruden.habits.common.clases.entities.MiniHabitoEntity
 
 @Database(entities =  [HabitoEntity::class, DataHabitoEntity::class,
     EtiquetaEntity::class, HabitoEtiquetaEntity::class, CategoriaEntity::class,
-    MiniHabitoEntity::class], version = 12)
+    MiniHabitoEntity::class], version = 13)
 @TypeConverters(Converters::class)
 abstract class HabitosDatabase : RoomDatabase(){
     abstract fun habitoDao(): HabitoDao

@@ -89,7 +89,9 @@
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginHorizontal="@dimen/m_horizontal_estadis"
                 android:fontFamily="@font/encabezados"
-
+                android:drawableEnd="@drawable/ic_editar"
+                android:drawableTint="@color/tittle_color"
+                android:drawablePadding="12dp"
                 />
 
             <FrameLayout
@@ -135,6 +137,9 @@
                 android:layout_marginHorizontal="@dimen/m_horizontal_estadis"
                 android:fontFamily="@font/encabezados"
                 android:layout_marginTop="@dimen/m_top_goals_estadis"
+                android:drawableEnd="@drawable/ic_editar"
+                android:drawableTint="@color/tittle_color"
+                android:drawablePadding="12dp"
                 />
 
             <FrameLayout
@@ -180,6 +185,9 @@
                 android:layout_marginHorizontal="@dimen/m_horizontal_estadis"
                 android:fontFamily="@font/encabezados"
                 android:layout_marginTop="@dimen/m_top_goals_estadis"
+                android:drawableEnd="@drawable/ic_editar"
+                android:drawableTint="@color/tittle_color"
+                android:drawablePadding="12dp"
                 />
 
             <FrameLayout

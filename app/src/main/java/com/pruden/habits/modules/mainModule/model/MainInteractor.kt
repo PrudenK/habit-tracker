@@ -74,7 +74,8 @@ class MainInteractor {
                 if(habito.posicion > posicion && habito.posicion < Constantes.CANTIDAD_DIFF_HABITO_ARCHIVADO){
                     with(habito){
                         HabitosApplication.database.habitoDao().updateHabito(
-                            HabitoEntity(nombre, objetivo, tipoNumerico, unidad, colorHabito, archivado, this.posicion -1)
+                            HabitoEntity(nombre, objetivo, tipoNumerico, unidad, colorHabito, archivado,
+                                this.posicion -1, objetivoSemanal, objetivoMensual, objetivoAnual)
                         )
                     }
                 }

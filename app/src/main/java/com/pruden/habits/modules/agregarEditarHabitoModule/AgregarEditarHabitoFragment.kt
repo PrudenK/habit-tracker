@@ -181,13 +181,17 @@ class AgregarEditarHabitoFragment : Fragment() {
                             unidad = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_unidad).text.toString(),
                             color = colorHabito,
                             archivado = false,
-                            posicion = posicion
+                            posicion = posicion,
+                            objetivoSemanal = -1,
+                            objetivoMensual = -1,
+                            objetivoAnual = -1
                         )
                         nombreRepetido = procesarHabito(nombre, habitoNumerico)
 
                     }else{
                         nombre = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_boolean).text.toString()
-                        val habitoBooleano = HabitoEntity(nombre, null, false, null, colorHabito, false, posicion)
+                        val habitoBooleano = HabitoEntity(nombre, null, false, null, colorHabito,
+                            false, posicion, -1, -1,-1)
                         nombreRepetido = procesarHabito(nombre, habitoBooleano)
                     }
                     campoFecha = nombre.lowercase() == "fecha"
