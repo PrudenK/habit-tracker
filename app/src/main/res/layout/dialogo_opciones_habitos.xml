@@ -5,7 +5,8 @@
     android:layout_height="wrap_content"
     android:background="@drawable/background_dialogo_opciones"
     android:padding="@dimen/p_dialog_opciones_habitos_main"
-    android:gravity="center">
+    android:gravity="center"
+    >
 
     <TextView
         android:id="@+id/tvTitulo"

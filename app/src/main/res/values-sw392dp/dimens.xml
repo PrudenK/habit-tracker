@@ -234,4 +234,10 @@
     <dimen name="m_top_input_editar_habito_estadis">12dp</dimen>
     <dimen name="t_pb_agregar_habito">28sp</dimen>
 
+    <!-- Cambiar objetivos -->
+    <dimen name="t_titulo_cambiar_objetivo">24sp</dimen>
+    <dimen name="w_t_w_goal_estadis">230dp</dimen>
+    <dimen name="m_top_botones_cambiar_objetivo_estadis">12dp</dimen>
+
+
 </resources>

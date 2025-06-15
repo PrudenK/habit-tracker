@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="@dimen/p_dialog_comun"
+    android:background="@drawable/background_dialogo_opciones"
+
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+        <TextView
+            android:id="@+id/titulo_cambiar_objetivo_estadis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="@dimen/t_titulo_cambiar_objetivo"
+            android:text="@string/objetivo_semanal"
+            android:paddingBottom="@dimen/p_bot_fecha_editar_habito_estadis"
+            />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/til_cambiar_objetivo_estadis"
+            android:layout_width="@dimen/w_t_w_goal_estadis"
+            android:layout_height="wrap_content"
+            app:endIconMode="clear_text"
+            app:layout_constraintTop_toBottomOf="@id/titulo_cambiar_objetivo_estadis"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:hintTextColor="@color/hint_color"
+            app:boxStrokeColor="@color/border_color"
+            app:boxStrokeWidth="1dp"
+            android:hint="@string/objetivo_semanal"
+            >
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_cambiar_objetivo_estadis"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:textColor="@color/tittle_color"
+                android:textCursorDrawable="@null"
+                android:textSize="@dimen/t_input_comun"
+                />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/button_cancelar_desarchivar"
+            android:layout_width="@dimen/w_boton_dialog_archivar"
+            android:layout_height="@dimen/h_boton_opciones"
+            android:text="@string/cancelar"
+            app:layout_constraintTop_toBottomOf="@id/til_cambiar_objetivo_estadis"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/button_desarchivar"
+            android:layout_marginEnd="@dimen/m_botones_dialog_archivar"
+            android:textSize="@dimen/t_boton_dialog_archivar"
+            android:textColor="@color/tittle_color"
+            android:backgroundTint="@color/primary"
+            android:layout_marginTop="@dimen/m_top_botones_cambiar_objetivo_estadis"
+            />
+
+        <Button
+            android:id="@+id/button_desarchivar"
+            android:layout_width="@dimen/w_boton_dialog_archivar"
+            android:layout_height="@dimen/h_boton_opciones"
+            android:text="@string/guardar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/til_cambiar_objetivo_estadis"
+            app:layout_constraintStart_toEndOf="@id/button_cancelar_desarchivar"
+            android:layout_marginStart="@dimen/m_botones_dialog_archivar"
+            android:textSize="@dimen/t_boton_dialog_archivar"
+            android:textColor="@color/tittle_color"
+            android:backgroundTint="@color/primary"
+            android:layout_marginTop="@dimen/m_top_botones_cambiar_objetivo_estadis"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

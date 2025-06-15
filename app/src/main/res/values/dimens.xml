@@ -205,6 +205,9 @@
     <dimen name="wh_check_habito">24dp</dimen>
     <dimen name="m_end_spinner_add_habito">12dp</dimen>
     <dimen name="wh_iconos_botones_paginas">24dp</dimen>
+    <dimen name="t_titulo_cambiar_objetivo">28sp</dimen>
+    <dimen name="w_t_w_goal_estadis">230dp</dimen>
+    <dimen name="m_top_botones_cambiar_objetivo_estadis">12dp</dimen>
 
 
 </resources>
