@@ -38,13 +38,14 @@
     <!-- Item Fecha y hábitos-->
     <dimen name="t_dia_semana_fecha">14sp</dimen>
     <dimen name="t_dia_num_fecha">12sp</dimen>
-    <dimen name="w_item_habito_y_fecha">52dp</dimen>
+    <dimen name="wh_item_habito_y_fecha">52dp</dimen>
     <dimen name="wh_nota_habitos">8dp</dimen>
     <dimen name="t_valor_habito_numerico">14sp</dimen>
     <dimen name="t_unidad_habito_numerico">12sp</dimen>
     <dimen name="p_top_habito_numerico">8dp</dimen>
     <dimen name="m_notas">3dp</dimen>
     <dimen name="m_entre_unidad_y_valor">2dp</dimen>
+    <dimen name="wh_check_habito">22dp</dimen>
 
     <!-- Agregar hábito -->
     <dimen name="titulo_elegir_tipo_habito">20sp</dimen>
@@ -55,12 +56,12 @@
     <dimen name="p_subtitulos_tipo_habito">6dp</dimen>
     <dimen name="p_titulo_tipo_habito">8dp</dimen>
     <dimen name="t_escoger_color_habito">16sp</dimen>
-    <dimen name="m_start_escoger_color_habito">50dp</dimen>
+    <dimen name="m_start_escoger_color_habito">35dp</dimen>
     <dimen name="wh_imagen_color_picker">40dp</dimen>
     <dimen name="t_input_comun">12sp</dimen>
-    <dimen name="m_start_imagen_color_picker">35dp</dimen>
+    <dimen name="m_start_imagen_color_picker">25dp</dimen>
     <dimen name="m_top_imagen_color_picker">12dp</dimen>
-
+    <dimen name="m_end_spinner_add_habito">2dp</dimen>
 
     <!-- Fragment etiquetas -->
     <dimen name="m_h_recycler_etiquetas">12dp</dimen>
@@ -98,7 +99,7 @@
 
     <!-- Spinner normal -->
     <dimen name="w_spinner_drop_down_item">100dp</dimen>
-    <dimen name="t_spinner_drop_down_item">16sp</dimen>
+    <dimen name="t_spinner_drop_down_item">14sp</dimen>
     <dimen name="p_drop_down_item">6dp</dimen>
     <dimen name="p_spinner_item">3dp</dimen>
 

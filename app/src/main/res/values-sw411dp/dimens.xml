@@ -12,11 +12,11 @@
 
     <!-- Main -->
     <dimen name="t_boton_cambio_pagina">14sp</dimen>
-    <dimen name="w_boton_pagina">145dp</dimen>
+    <dimen name="w_boton_pagina">150dp</dimen>
     <dimen name="t_pagina_habitos">18sp</dimen>
     <dimen name="t_titulo_toolbar">32sp</dimen>
     <dimen name="wh_iconos_toolbar">40dp</dimen>
-    <dimen name="t_fecha_mes">20sp</dimen>
+    <dimen name="t_fecha_mes">22sp</dimen>
     <dimen name="m_bot_recycler_habitos">60dp</dimen>
     <dimen name="m_bot_botones_pagina">16dp</dimen>
     <dimen name="p_texto_pagina">16dp</dimen>
@@ -27,21 +27,22 @@
     <dimen name="h_boton_pagina">55dp</dimen>
 
     <!-- Item hábitos -->
-    <dimen name="h_item_habito">65dp</dimen>
-    <dimen name="t_nombre_item_habito">18dp</dimen>
+    <dimen name="h_item_habito">67dp</dimen>
+    <dimen name="t_nombre_item_habito">19dp</dimen>
     <dimen name="p_v_nombre_habito">16dp</dimen>
-    <dimen name="w_nombre_habito">135dp</dimen>
+    <dimen name="w_nombre_habito">147dp</dimen>
     <dimen name="p_h_nombre_habito">20dp</dimen>
     <dimen name="p_top_habito">8dp</dimen>
     <dimen name="p_top_recycler_habitos">4dp</dimen>
+    <dimen name="wh_check_habito">30dp</dimen>
 
-    <!-- Item Fecha -->
-    <dimen name="t_dia_semana_fecha">16sp</dimen>
-    <dimen name="t_dia_num_fecha">14sp</dimen>
-    <dimen name="w_item_habito_y_fecha">60dp</dimen>
+    <!-- Item Fecha  -->
+    <dimen name="t_dia_semana_fecha">17sp</dimen>
+    <dimen name="t_dia_num_fecha">15sp</dimen>
+    <dimen name="wh_item_habito_y_fecha">60dp</dimen>
     <dimen name="wh_nota_habitos">12dp</dimen>
-    <dimen name="t_valor_habito_numerico">16sp</dimen>
-    <dimen name="t_unidad_habito_numerico">14sp</dimen>
+    <dimen name="t_valor_habito_numerico">17sp</dimen>
+    <dimen name="t_unidad_habito_numerico">15sp</dimen>
     <dimen name="p_top_habito_numerico">10dp</dimen>
     <dimen name="m_notas">4dp</dimen>
     <dimen name="m_entre_unidad_y_valor">2dp</dimen>
@@ -55,11 +56,12 @@
     <dimen name="p_subtitulos_tipo_habito">6dp</dimen>
     <dimen name="p_titulo_tipo_habito">8dp</dimen>
     <dimen name="t_escoger_color_habito">20sp</dimen>
-    <dimen name="m_start_escoger_color_habito">40dp</dimen>
+    <dimen name="m_start_escoger_color_habito">50dp</dimen>
     <dimen name="wh_imagen_color_picker">50dp</dimen>
     <dimen name="t_input_comun">18sp</dimen>
     <dimen name="m_start_imagen_color_picker">30dp</dimen>
     <dimen name="m_top_imagen_color_picker">12dp</dimen>
+    <dimen name="m_end_spinner_add_habito">10dp</dimen>
 
     <!-- Fragment etiquetas -->
     <dimen name="m_h_recycler_etiquetas">12dp</dimen>

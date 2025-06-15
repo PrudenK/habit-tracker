@@ -40,7 +40,7 @@
     <!-- Item Fecha -->
     <dimen name="t_dia_semana_fecha">16sp</dimen>
     <dimen name="t_dia_num_fecha">14sp</dimen>
-    <dimen name="w_item_habito_y_fecha">60dp</dimen>
+    <dimen name="wh_item_habito_y_fecha">60dp</dimen>
     <dimen name="wh_nota_habitos">12dp</dimen>
     <dimen name="t_valor_habito_numerico">16sp</dimen>
     <dimen name="t_unidad_habito_numerico">14sp</dimen>
@@ -202,6 +202,8 @@
     <dimen name="p_bot_fecha_editar_habito_estadis">4dp</dimen>
     <dimen name="m_top_input_editar_habito_estadis">12dp</dimen>
     <dimen name="t_pb_agregar_habito">28sp</dimen>
+    <dimen name="wh_check_habito">24dp</dimen>
+    <dimen name="m_end_spinner_add_habito">12dp</dimen>
 
 
 </resources>

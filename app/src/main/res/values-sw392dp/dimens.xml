@@ -34,11 +34,12 @@
     <dimen name="p_h_nombre_habito">20dp</dimen>
     <dimen name="p_top_habito">8dp</dimen>
     <dimen name="p_top_recycler_habitos">4dp</dimen>
+    <dimen name="wh_check_habito">24dp</dimen>
 
     <!-- Item Fecha -->
     <dimen name="t_dia_semana_fecha">16sp</dimen>
     <dimen name="t_dia_num_fecha">14sp</dimen>
-    <dimen name="w_item_habito_y_fecha">60dp</dimen>
+    <dimen name="wh_item_habito_y_fecha">60dp</dimen>
     <dimen name="wh_nota_habitos">12dp</dimen>
     <dimen name="t_valor_habito_numerico">16sp</dimen>
     <dimen name="t_unidad_habito_numerico">14sp</dimen>
@@ -60,6 +61,7 @@
     <dimen name="t_input_comun">18sp</dimen>
     <dimen name="m_start_imagen_color_picker">30dp</dimen>
     <dimen name="m_top_imagen_color_picker">12dp</dimen>
+    <dimen name="m_end_spinner_add_habito">10dp</dimen>
 
     <!-- Fragment etiquetas -->
     <dimen name="m_h_recycler_etiquetas">12dp</dimen>
