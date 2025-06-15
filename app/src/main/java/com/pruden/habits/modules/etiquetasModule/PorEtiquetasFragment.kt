@@ -161,25 +161,8 @@ class PorEtiquetasFragment : Fragment(), OnClickHabito, OnLongClickEtiqueta {
 
             val listaEtiquetasSelecoinas = listaHabitosEtiquetas.filter { it.seleccionada }.map { it.nombreEtiquta }
 
-            //val incluirTodos = "Todos" in listaEtiquetasSelecoinas
-            //val incluirArchivados = "Archivados" in listaEtiquetasSelecoinas
-
             val nuevaLista = when {
-              //  incluirTodos && incluirArchivados -> listaArchivados.toMutableList()
-                /*
-                incluirTodos -> listaArchivados.filter { !it.archivado }.toMutableList().apply {
-                    addAll(listaArchivados.filter { habito ->
-                        habito.listaEtiquetas.any { it in listaEtiquetasSelecoinas - "Todos" }
-                    })
-                }.distinct().toMutableList()
 
-                incluirArchivados -> listaArchivados.filter { it.archivado }.toMutableList().apply {
-                    addAll(listaArchivados.filter { habito ->
-                        habito.listaEtiquetas.any { it in listaEtiquetasSelecoinas - "Archivados" }
-                    })
-                }.distinct().toMutableList()
-
-                 */
                 listaEtiquetasSelecoinas.isEmpty() -> listaArchivados.toMutableList()
 
                 else -> listaArchivados.filter { habito ->

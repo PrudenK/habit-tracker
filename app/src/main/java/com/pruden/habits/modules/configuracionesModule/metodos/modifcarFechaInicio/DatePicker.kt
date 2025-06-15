@@ -172,7 +172,7 @@ fun mostrarDatePicker(
 
             }
             dialogConfirmar.show()
-            ajustarDialogo(resurces, dialogConfirmar, 0.8f)
+            ajustarDialogo(resurces, dialogConfirmar, 0.85f)
         }
         dialog.show()
         ajustarDialogo(resurces, dialog, 0.85f)

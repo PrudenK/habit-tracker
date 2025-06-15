@@ -10,7 +10,6 @@ import android.text.style.AbsoluteSizeSpan
 import android.util.Log
 import android.view.ContextThemeWrapper
 import android.view.View
-import android.view.ViewGroup
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
@@ -136,7 +135,6 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
 
             listaHabitos = nuevaLista.toMutableList().sortedBy { it.posicion }.toMutableList()
 
-//            if (nuevaLista == listaHabitos) return@observe
             if (nuevaLista.any { it.listaValores.isEmpty() }) return@observe
 
             val listaFiltrada = nuevaLista.filter { !it.archivado }.sortedBy { it.posicion }
@@ -154,16 +152,6 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
 
     private fun cargarLiveDataEtiquetas(){
         mainViewModel.getAllEtiquetasConHabitos().observe(this){ nuevaLista ->
-
-
-            /*
-            if(nuevaLista.isEmpty()){
-                mainViewModel.insertarEtiqueta(EtiquetaEntity("Todos", Color.parseColor("#4cecec"), true, 1))
-                mainViewModel.insertarEtiqueta(EtiquetaEntity("Archivados", Color.parseColor("#f7634f"), false, 2))
-            }
-             */
-
-
             listaHabitosEtiquetas.clear()
             listaHabitosEtiquetas.addAll(nuevaLista)
         }

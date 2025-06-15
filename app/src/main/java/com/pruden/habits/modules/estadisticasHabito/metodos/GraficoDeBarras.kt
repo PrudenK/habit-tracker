@@ -1,7 +1,6 @@
 package com.pruden.habits.modules.estadisticasHabito.metodos
 
 import android.content.Context
-import android.graphics.Color
 import android.graphics.Typeface
 import android.util.Log
 import android.view.MotionEvent
@@ -138,8 +137,7 @@ private fun actualizarGraficoDeBarras(
             }
 
             "Semana" -> {
-                val datosSemanales =
-                    agruparPorSemanaConRegistros(habito.listaFechas, habito.listaValores)
+                val datosSemanales = agruparPorSemanaConRegistros(habito.listaFechas, habito.listaValores)
                 xValues = datosSemanales.keys.toMutableList()
                 yValues = datosSemanales.values.map { it.toString() }.toMutableList()
                 formatoFechaArriba = "MMM yyyy"
@@ -154,8 +152,7 @@ private fun actualizarGraficoDeBarras(
             }
 
             "Mes" -> {
-                val datosMensuales =
-                    agruparPorMesConRegistros(habito.listaFechas, habito.listaValores)
+                val datosMensuales = agruparPorMesConRegistros(habito.listaFechas, habito.listaValores)
                 xValues = datosMensuales.keys.toMutableList()
                 yValues =
                     datosMensuales.values.map { it.toString().split("@")[0] }.toMutableList()
@@ -170,8 +167,7 @@ private fun actualizarGraficoDeBarras(
             }
 
             "Año" -> {
-                val datosAnuales =
-                    agruparPorAnioConRegistros(habito.listaFechas, habito.listaValores)
+                val datosAnuales = agruparPorAnioConRegistros(habito.listaFechas, habito.listaValores)
                 xValues = datosAnuales.keys.toMutableList()
                 yValues = datosAnuales.values.map { it.toString() }.toMutableList()
                 barras = 5f
@@ -255,7 +251,13 @@ private fun cargarGraficoDeBarras(
 
     // Configurar el eje X
     val xAxis = barChart.xAxis
-    xAxis.valueFormatter = IndexAxisValueFormatter(xValues.map { it.split("@")[0] })
+
+    val fechaXAxis = if(tiempoInterno == "Semana"){
+        IndexAxisValueFormatter(xValues.map { it.split(" ")[0] })
+    }else{
+        IndexAxisValueFormatter(xValues.map { it.split("@")[0] })
+    }
+    xAxis.valueFormatter = fechaXAxis
     xAxis.position = XAxis.XAxisPosition.BOTTOM
     xAxis.setDrawGridLines(false)
     xAxis.granularity = 1f

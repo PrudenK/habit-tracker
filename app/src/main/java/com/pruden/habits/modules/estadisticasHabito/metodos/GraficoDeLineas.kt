@@ -253,8 +253,14 @@ private fun cargarGraficoDeLineas(
     lineChart.data = lineData
     lineChart.invalidate()
 
+    val fechaXAxis = if(tiempoInterno == "Semana"){
+        IndexAxisValueFormatter(xValues.map { it.split(" ")[0] })
+    }else{
+        IndexAxisValueFormatter(xValues.map { it.split("@")[0] })
+    }
+
     lineChart.xAxis.apply {
-        valueFormatter = IndexAxisValueFormatter(xValues.map { it.split("@")[0] })
+        valueFormatter = fechaXAxis
         position = XAxis.XAxisPosition.BOTTOM
         setDrawGridLines(false)
         granularity = 1f
