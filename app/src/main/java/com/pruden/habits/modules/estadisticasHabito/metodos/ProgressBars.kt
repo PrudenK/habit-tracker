@@ -19,68 +19,82 @@ fun cargarProgressBar(
     binding: FragmentEstadisticasBinding,
     context: Context
 ) {
-
     val objetivoDiario = if (habito.objetivo != null && habito.objetivo != "null") {
         habito.objetivo.split("@")[0].toFloat()
     } else 1f
 
+    cargarProgresoSemanal(habito, binding, context, objetivoDiario)
+    cargarProgresoMensual(habito, binding, context, objetivoDiario)
+    cargarProgresoAnual(habito, binding, context, objetivoDiario)
+}
 
-    val objetivoSemanal = if(habito.objetivoSemanal != -1f && habito.objetivoSemanal != 0f){
+private fun cargarProgresoSemanal(
+    habito: Habito,
+    binding: FragmentEstadisticasBinding,
+    context: Context,
+    objetivoDiario: Float
+) {
+    val objetivoSemanal = if (habito.objetivoSemanal != -1f && habito.objetivoSemanal != 0f) {
         habito.objetivoSemanal
-    }else objetivoDiario * 7
+    } else objetivoDiario * 7
 
     cargarCadaProgressBar(
         binding.progressBarSemana,
         objetivoSemanal,
         binding.textoProgresoSemanal,
         obtenerFechasSemanaActual(),
-        habito, context
+        habito,
+        context
     )
+}
 
-
-
-
+private fun cargarProgresoMensual(
+    habito: Habito,
+    binding: FragmentEstadisticasBinding,
+    context: Context,
+    objetivoDiario: Float
+) {
     val listaObjMensuales = habito.objetivoMensual.split(",").map { it.toFloat() }
+    val diasDelMesActual = obtenerDiasDelMesActual()
+    val objMesActual = listaObjMensuales.getOrElse(31 - diasDelMesActual) { -1f }
 
-    val diasDelMesAcutal = obtenerDiasDelMesActual()
-
-    val objMesActual = listaObjMensuales[(31 - diasDelMesAcutal)]
-
-    val objetivoMensual = if(objMesActual != -1f){
+    val objetivoMensual = if (objMesActual != -1f) {
         objMesActual
-    }else objetivoDiario * diasDelMesAcutal
-
+    } else objetivoDiario * diasDelMesActual
 
     cargarCadaProgressBar(
         binding.progressBarMes,
         objetivoMensual,
         binding.textProgresoMensual,
         obtenerFechasMesActual(),
-        habito, context
+        habito,
+        context
     )
+}
 
-
-
-    val listaObjAnual = habito.objetivoAnual.split(",").map {it.toFloat()}
-
+private fun cargarProgresoAnual(
+    habito: Habito,
+    binding: FragmentEstadisticasBinding,
+    context: Context,
+    objetivoDiario: Float
+) {
+    val listaObjAnual = habito.objetivoAnual.split(",").map { it.toFloat() }
     val diasDelYearActual = obtenerDiasDelAnioActual()
+    val objYearActual = listaObjAnual.getOrElse(diasDelYearActual - 365) { -1f }
 
-    val objYearActual = listaObjAnual[diasDelYearActual - 365]
-
-    val objetivoAnual = if(objYearActual != -1f){
+    val objetivoAnual = if (objYearActual != -1f) {
         objYearActual
-    }else objetivoDiario * diasDelYearActual
-
+    } else objetivoDiario * diasDelYearActual
 
     cargarCadaProgressBar(
         binding.progressBarAnual,
         objetivoAnual,
         binding.textProgresoAnual,
         obtenerFechasAnioActual(),
-        habito, context
+        habito,
+        context
     )
 }
-
 
 private fun cargarCadaProgressBar(
     progressBar: ProgressBar,
