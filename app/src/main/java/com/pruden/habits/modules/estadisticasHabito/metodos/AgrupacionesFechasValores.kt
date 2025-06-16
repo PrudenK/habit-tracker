@@ -95,3 +95,33 @@ fun agruparPorAnioConRegistros(fechas: List<String>, valores: List<String>): Map
 
     return aniosMap
 }
+
+fun agruparPorSemanaConFechasCompletas(fechas: List<String>, valores: List<String>): Map<String, Float> {
+    if (fechas.isEmpty() || valores.isEmpty()) return emptyMap()
+
+    val dateFormatInput = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+    val dateFormatOutput = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+    val calendar = Calendar.getInstance()
+
+    val semanasMap = linkedMapOf<String, Float>()
+
+    for (i in fechas.indices) {
+        val fecha = fechas[i]
+        val valor = valores[i].toFloatOrNull() ?: 0.0f
+        val date = dateFormatInput.parse(fecha) ?: continue
+
+        calendar.time = date
+        calendar.firstDayOfWeek = Calendar.MONDAY
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.MONDAY)
+        val inicioSemana = calendar.time
+
+        calendar.set(Calendar.DAY_OF_WEEK, Calendar.SUNDAY)
+        val finSemana = calendar.time
+
+        val clave = "${dateFormatOutput.format(inicioSemana)}@${dateFormatOutput.format(finSemana)}"
+
+        semanasMap[clave] = (semanasMap[clave] ?: 0.0f) + valor
+    }
+
+    return semanasMap
+}

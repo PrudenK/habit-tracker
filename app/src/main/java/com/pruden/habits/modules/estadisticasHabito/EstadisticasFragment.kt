@@ -23,6 +23,7 @@ import com.pruden.habits.modules.estadisticasHabito.adapter.OnClikCalendario
 import com.pruden.habits.modules.estadisticasHabito.dialogos.mostrarDialogoObjetivoAnual
 import com.pruden.habits.modules.estadisticasHabito.dialogos.mostrarDialogoObjetivoMensual
 import com.pruden.habits.modules.estadisticasHabito.dialogos.mostrarDialogoObjetivoSemanal
+import com.pruden.habits.modules.estadisticasHabito.metodos.cargarMejoresStats
 import com.pruden.habits.modules.estadisticasHabito.metodos.cargarProgressBar
 import com.pruden.habits.modules.estadisticasHabito.metodos.cargarSpinnerGraficoDeBarras
 import com.pruden.habits.modules.estadisticasHabito.metodos.cargarSpinnerGraficoDeLineas
@@ -126,8 +127,11 @@ class EstadisticasFragment : Fragment(), OnClikCalendario {
             val graficoLineas = async { cargarSpinnerGraficoDeLineas(requireContext(), binding, habito, formatoFechaOriginal, foramtoFecha_dd) }
             val recyclerCalendar = async { setUpRecyclerCalendar(habito, requireContext(), binding, this@EstadisticasFragment) }
             val recyclerRachas = async { setUpRecyclerRachas(habito, requireContext(), binding) }
+            val cargarOtrasEstadisticas = async { cargarMejoresStats(habito, requireContext(), binding) }
 
-            awaitAll(progressBarCarga, graficoBarras, graficoLineas, recyclerCalendar, recyclerRachas)
+
+            awaitAll(progressBarCarga, graficoBarras, graficoLineas, recyclerCalendar,
+                recyclerRachas, cargarOtrasEstadisticas)
 
             withContext(Dispatchers.Main) {
                 binding.textoMesAnio.text = fechaActual.await()

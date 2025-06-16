@@ -201,7 +201,7 @@
 
     <!-- Otras estadísticas-->
     <string name="mejores_estadisticas">Mejores estadísticas</string>
-    <string name="mejor_dia_otras_estadis"><b>Mejor día:</b> %1$s %2$s el %3$s</string>
+    <string name="mejor_dia_otras_estadis"><![CDATA[<b>Mejor día:</b> %1$s %2$s el %3$s]]></string>
     <string name="mejor_semana_otras_estadis"><b>Mejor semana:</b> %1$s %2$s del %3$s al %4$s</string>
     <string name="mejor_mes_otras_estadis"><b>Mejor mes:</b> %1$s %2$s en %3$s %4$s</string>
     <string name="mejor_year_otras_estadis"><b>Mejor año:</b> %1$s %2$s en %3$s</string>

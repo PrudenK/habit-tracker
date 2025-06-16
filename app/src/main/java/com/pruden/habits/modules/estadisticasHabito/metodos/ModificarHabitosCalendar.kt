@@ -190,6 +190,6 @@ private fun guardarHabitoYActualizarUI(
     cargarProgressBar(habito, binding, contexto)
     cargarSpinnerGraficoDeBarras(contexto, binding, habito, formatoFechaOriginal, foramtoFecha_dd)
     cargarSpinnerGraficoDeLineas(contexto, binding, habito, formatoFechaOriginal, foramtoFecha_dd)
-
     setUpRecyclerRachas(habito, contexto, binding)
+    cargarMejoresStats(habito, contexto, binding)
 }
