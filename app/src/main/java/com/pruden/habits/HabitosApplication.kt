@@ -13,6 +13,7 @@ import com.pruden.habits.common.clases.data.Fecha
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.clases.entities.EtiquetaEntity
 import com.pruden.habits.common.metodos.fechas.generateLastDates
+import java.util.Locale
 
 class HabitosApplication : Application(){
     companion object{

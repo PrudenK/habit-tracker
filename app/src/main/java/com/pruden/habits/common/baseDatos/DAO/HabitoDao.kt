@@ -114,4 +114,7 @@ interface HabitoDao {
 
     @Query("Select max(posicion) From Habitos")
     suspend fun getPosicionMasAlta(): Int
+
+    @Query("UPDATE Habitos SET objetivoSemanal = :obj WHERE nombre = :nombre")
+    suspend fun cambiarObjetivoSemanal(obj : Float, nombre: String)
 }

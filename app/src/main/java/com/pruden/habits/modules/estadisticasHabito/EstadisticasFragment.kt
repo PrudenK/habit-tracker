@@ -23,6 +23,7 @@ import com.pruden.habits.common.metodos.fechas.obtenerFechaActualMESYEAR
 import com.pruden.habits.databinding.FragmentEstadisticasBinding
 import com.pruden.habits.databinding.ItemFechaCalendarBinding
 import com.pruden.habits.modules.estadisticasHabito.adapter.OnClikCalendario
+import com.pruden.habits.modules.estadisticasHabito.dialogos.mostrarDialogoObjetivoSemanal
 import com.pruden.habits.modules.estadisticasHabito.metodos.cargarProgressBar
 import com.pruden.habits.modules.estadisticasHabito.metodos.cargarSpinnerGraficoDeBarras
 import com.pruden.habits.modules.estadisticasHabito.metodos.cargarSpinnerGraficoDeLineas
@@ -82,16 +83,9 @@ class EstadisticasFragment : Fragment(), OnClikCalendario {
         }
 
         binding.objetivoSeamanaTv.setOnClickListener {
-            val dialogoView = LayoutInflater.from(context).inflate(R.layout.dialog_cambiar_objetivos, null)
-            val dialogo = AlertDialog.Builder(context).setView(dialogoView).create()
-
-            dialogo.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-
-
-            dialogo.show()
-
-            ajustarDialogo(resources, dialogo, 0.85f)
-            // 0.8 para 360dp
+            mostrarDialogoObjetivoSemanal(requireContext(), resources, habito, estadisticasViewModel){
+                cargarProgressBar(habito, binding, requireContext())
+            }
         }
 
         binding.objetivoMensualTv.setOnClickListener {

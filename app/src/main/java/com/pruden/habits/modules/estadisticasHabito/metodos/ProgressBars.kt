@@ -25,7 +25,7 @@ fun cargarProgressBar(
     } else 1f
 
 
-    val objetivoSemanal = if(habito.objetivoSemanal != -1 && habito.objetivoSemanal != 0){
+    val objetivoSemanal = if(habito.objetivoSemanal != -1f && habito.objetivoSemanal != 0f){
         habito.objetivoSemanal
     }else objetivoDiario * 7
 

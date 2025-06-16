@@ -49,4 +49,6 @@ object Constantes {
         Idioma("Neerlandés", "NL", R.mipmap.ic_holanda_foreground),
         Idioma("Portugués", "PT", R.mipmap.ic_portugal_foreground)
     ).sortedBy { it.nombre }
+
+    const val DIAS_SEMANA = 7
 }

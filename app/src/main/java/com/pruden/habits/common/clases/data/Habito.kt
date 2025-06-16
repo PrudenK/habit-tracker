@@ -12,7 +12,7 @@ data class Habito(
     var listaFechas: MutableList<String>,
     var posicion: Int,
     var listaEtiquetas: MutableList<String>,
-    var objetivoSemanal: Int,
+    var objetivoSemanal: Float,
     var objetivoMensual: String,
     var objetivoAnual: String
 ) {
