@@ -61,17 +61,20 @@ fun cargarProgressBar(
 
 
 
+    val listaObjAnual = habito.objetivoAnual.split(",").map {it.toFloat()}
 
+    val diasDelYearActual = obtenerDiasDelAnioActual()
 
-    /*
-    val objetivoAnual = if(habito.objetivoAnual != -1 && habito.objetivoAnual != 0){
-        habito.objetivoAnual
-    }else objetivoDiario * obtenerDiasDelAnioActual()
-     */
+    val objYearActual = listaObjAnual[diasDelYearActual - 365]
+
+    val objetivoAnual = if(objYearActual != -1f){
+        objYearActual
+    }else objetivoDiario * diasDelYearActual
+
 
     cargarCadaProgressBar(
         binding.progressBarAnual,
-        objetivoDiario * obtenerDiasDelAnioActual(),
+        objetivoAnual,
         binding.textProgresoAnual,
         obtenerFechasAnioActual(),
         habito, context
