@@ -17,4 +17,10 @@ class EstadisticasViewModel : ViewModel(){
             onComplete()
         }
     }
+
+    fun updateObjetivoMenusal(habito: Habito, onComplete: () -> Unit){
+        interactor.updateObjetivoMensual(habito){
+            onComplete()
+        }
+    }
 }

@@ -20,4 +20,11 @@ class HabitoAdapterInteractor {
             onComplete()
         }
     }
+
+    fun updateObjetivoMensual(habito: Habito, onComplete: () -> Unit){
+        CoroutineScope(Dispatchers.IO).launch {
+            HabitosApplication.database.habitoDao().cambiarObjetivoMensual(habito.objetivoMensual, habito.nombre)
+            onComplete()
+        }
+    }
 }

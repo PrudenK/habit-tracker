@@ -9,9 +9,8 @@ import android.view.LayoutInflater
 import android.widget.Button
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import com.pruden.habits.HabitosApplication.Companion.sharedConfiguraciones
+import com.pruden.habits.HabitosApplication
 import com.pruden.habits.R
-import com.pruden.habits.common.Constantes
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.metodos.Dialogos.makeToast
 import com.pruden.habits.modules.estadisticasHabito.viewModel.EstadisticasViewModel
@@ -29,17 +28,85 @@ fun mostrarDialogoObjetivoMensual(
     val dialogo = AlertDialog.Builder(context).setView(dialogoView).create()
 
     dialogo.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-    /*
-    val btnCancelar = dialogoView.findViewById<Button>(R.id.button_cancelar_obj_semanal)
-    val btnGuardar = dialogoView.findViewById<Button>(R.id.button_guardar_obj_semanal)
-    val inputText = dialogoView.findViewById<TextInputEditText>(R.id.input_cambiar_objetivo_semanal_estadis)
-    val inputTextLayout = dialogoView.findViewById<TextInputLayout>(R.id.til_cambiar_objetivo_semanal_estadis)
 
-    val locale = Locale(sharedConfiguraciones.getString("idioma", "es") ?: "es")
+    val btnCancelar = dialogoView.findViewById<Button>(R.id.button_cancelar_obj_mensual)
+    val btnGuardar = dialogoView.findViewById<Button>(R.id.button_guardar_obj_mensual)
 
+
+    val locale = Locale(HabitosApplication.sharedConfiguraciones.getString("idioma", "es") ?: "es")
+
+    val objetivosMensuales = habito.objetivoMensual.split(",").map { it.toFloat() }
+
+    val listaDias = listOf(31,30,29,28)
+
+    val inputTexts = listOf(
+        dialogoView.findViewById<TextInputEditText>(R.id.input_cambiar_objetivo_mensual_31_estadis),
+        dialogoView.findViewById(R.id.input_cambiar_objetivo_menusla_30_estadis),
+        dialogoView.findViewById(R.id.input_cambiar_objetivo_mensual_29_estadis),
+        dialogoView.findViewById(R.id.input_cambiar_objetivo_mensual_28_estadis)
+    )
+
+    val inputLayouts = listOf(
+        dialogoView.findViewById<TextInputLayout>(R.id.til_cambiar_objetivo_menusla_31_estadis),
+        dialogoView.findViewById(R.id.til_cambiar_objetivo_menusla_30_estadis),
+        dialogoView.findViewById(R.id.til_cambiar_objetivo_mensual_29_estadis),
+        dialogoView.findViewById(R.id.til_cambiar_objetivo_mensual_28_estadis)
+    )
+
+    for(i in 0..3){
+        cargarValoresPorMes(
+            habito,
+            locale,
+            inputTexts[i],
+            inputLayouts[i],
+            listaDias[i],
+            objetivosMensuales[i],
+            context
+        )
+    }
+
+    btnCancelar.setOnClickListener { dialogo.dismiss() }
+
+    btnGuardar.setOnClickListener {
+        for(i in 0..3){
+            comprobarValoresDeLosInputAlGuardar(
+                inputTexts[i],
+                context,
+                habito,
+                listaDias[i]
+            )
+        }
+
+        val objetivosDelMesString = inputTexts.joinToString(",") { it.text.toString().trim() }
+
+        habito.objetivoMensual = objetivosDelMesString
+
+        estadisticasViewModel.updateObjetivoMenusal(habito){
+            onChange()
+        }
+
+        dialogo.dismiss()
+    }
+
+    dialogo.show()
+
+    val escala = context.resources.getInteger(R.integer.e_dialog_cambiar_obj_semanal) / 100f
+
+    ajustarDialogo(resources, dialogo, escala)
+}
+
+private fun cargarValoresPorMes(
+    habito: Habito,
+    locale: Locale,
+    inputText: TextInputEditText,
+    inputTextLayout: TextInputLayout,
+    diasDelMes: Int,
+    objetivosMensuales: Float,
+    context: Context
+){
     if(habito.tipoNumerico){
-        if(habito.objetivoSemanal == -1f){
-            val valor = habito.objetivo!!.split("@")[0].toFloat() * Constantes.DIAS_SEMANA
+        if(objetivosMensuales == -1f){
+            val valor = habito.objetivo!!.split("@")[0].toFloat() * diasDelMes
             val texto = if (valor % 1.0 == 0.0) {
                 valor.toInt().toString()
             } else {
@@ -47,56 +114,39 @@ fun mostrarDialogoObjetivoMensual(
             }
             inputText.setText(texto)
         }else{
-            inputText.setText("${habito.objetivoSemanal}")
+            inputText.setText("$objetivosMensuales")
         }
         inputTextLayout.hint = habito.unidad
     }else{
-        if(habito.objetivoSemanal == -1f){
-            inputText.setText("${Constantes.DIAS_SEMANA}")
+        if(objetivosMensuales == -1f){
+            inputText.setText("$diasDelMes")
         }else{
-            inputText.setText("${habito.objetivoSemanal}")
+            inputText.setText("$objetivosMensuales")
         }
         inputTextLayout.hint = context.getString(R.string.unidades_checks)
     }
+}
 
+private fun comprobarValoresDeLosInputAlGuardar(
+    inputText: TextInputEditText,
+    context: Context,
+    habito: Habito,
+    diasDelMes: Int
+){
+    val obj = inputText.text.toString()
 
-
-    btnCancelar.setOnClickListener { dialogo.dismiss() }
-
-    btnGuardar.setOnClickListener {
-        val obj = inputText.text.toString()
-
-        when {
-            obj == "" -> {
-                makeToast(context.getString(R.string.objetivo_vacio), context)
-                return@setOnClickListener
-            }
-            obj.toFloat() <= 0.0f -> {
-                makeToast(context.getString(R.string.objetivo_menor_o_igual_cero), context)
-                return@setOnClickListener
-            }
-            !habito.tipoNumerico && obj.toFloat() > Constantes.DIAS_SEMANA.toFloat() -> {
-                makeToast(context.getString(R.string.objetivo_maximo_semanal), context)
-                return@setOnClickListener
-            }
+    when {
+        obj == "" -> {
+            makeToast("No puedes dejar el objetivo en blanco", context)
+            return
         }
-
-        habito.objetivoSemanal = obj.toFloat()
-
-        estadisticasViewModel.updateObjetivoSemanal(habito){
-            onChange()
+        obj.toFloat() <= 0.0f -> {
+            makeToast("Los objetivos tienen que ser mayores que 0", context)
+            return
         }
-
-        dialogo.dismiss()
+        !habito.tipoNumerico && obj.toFloat() > diasDelMes.toFloat() -> {
+            makeToast("Para este tipo de hábitos el objetivo máximo mensual es $diasDelMes", context)
+            return
+        }
     }
-
-
-
-     */
-    dialogo.show()
-
-
-    val escala = context.resources.getInteger(R.integer.e_dialog_cambiar_obj_semanal) / 100f
-
-    ajustarDialogo(resources, dialogo, escala)
 }
