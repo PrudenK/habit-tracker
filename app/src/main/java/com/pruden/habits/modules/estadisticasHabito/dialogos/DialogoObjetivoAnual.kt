@@ -17,50 +17,46 @@ import com.pruden.habits.modules.estadisticasHabito.viewModel.EstadisticasViewMo
 import com.pruden.habits.modules.mainModule.metodos.ajustarDialogo
 import java.util.Locale
 
-fun mostrarDialogoObjetivoMensual(
+fun mostrarDialogoObjetivoAnual(
     context: Context,
     resources: Resources,
     habito: Habito,
     estadisticasViewModel: EstadisticasViewModel,
     onChange: () -> Unit
 ){
-    val dialogoView = LayoutInflater.from(context).inflate(R.layout.dialog_cambiar_objetivos_mensual, null)
+    val dialogoView = LayoutInflater.from(context).inflate(R.layout.dialog_cambiar_objetivos_anuales, null)
     val dialogo = AlertDialog.Builder(context).setView(dialogoView).create()
 
     dialogo.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
-    val btnCancelar = dialogoView.findViewById<Button>(R.id.button_cancelar_obj_mensual)
-    val btnGuardar = dialogoView.findViewById<Button>(R.id.button_guardar_obj_mensual)
+    val btnCancelar = dialogoView.findViewById<Button>(R.id.button_cancelar_obj_anual)
+    val btnGuardar = dialogoView.findViewById<Button>(R.id.button_guardar_obj_anual)
 
 
     val locale = Locale(HabitosApplication.sharedConfiguraciones.getString("idioma", "es") ?: "es")
 
-    val objetivosMensuales = habito.objetivoMensual.split(",").map { it.toFloat() }
+    val objetivosAnuales = habito.objetivoAnual.split(",").map { it.toFloat() }
 
-    val listaDias = listOf(31,30,29,28)
+    val listaDias = listOf(365,366)
 
     val inputTexts = listOf(
-        dialogoView.findViewById<TextInputEditText>(R.id.input_cambiar_objetivo_mensual_31_estadis),
-        dialogoView.findViewById(R.id.input_cambiar_objetivo_menusla_30_estadis),
-        dialogoView.findViewById(R.id.input_cambiar_objetivo_mensual_29_estadis),
-        dialogoView.findViewById(R.id.input_cambiar_objetivo_mensual_28_estadis)
+        dialogoView.findViewById<TextInputEditText>(R.id.input_cambiar_objetivo_anual_365_estadis),
+        dialogoView.findViewById(R.id.input_cambiar_objetivo_anual_366_estadis)
     )
 
     val inputLayouts = listOf(
-        dialogoView.findViewById<TextInputLayout>(R.id.til_cambiar_objetivo_menusla_31_estadis),
-        dialogoView.findViewById(R.id.til_cambiar_objetivo_menusla_30_estadis),
-        dialogoView.findViewById(R.id.til_cambiar_objetivo_mensual_29_estadis),
-        dialogoView.findViewById(R.id.til_cambiar_objetivo_mensual_28_estadis)
+        dialogoView.findViewById<TextInputLayout>(R.id.til_cambiar_objetivo_anual_365_estadis_estadis),
+        dialogoView.findViewById(R.id.til_cambiar_objetivo_anual_366_estadis)
     )
 
-    for(i in 0..3){
-        cargarValoresPorMes(
+    for(i in 0..1){
+        cargarValoresPorYear(
             habito,
             locale,
             inputTexts[i],
             inputLayouts[i],
             listaDias[i],
-            objetivosMensuales[i],
+            objetivosAnuales[i],
             context
         )
     }
@@ -68,7 +64,7 @@ fun mostrarDialogoObjetivoMensual(
     btnCancelar.setOnClickListener { dialogo.dismiss() }
 
     btnGuardar.setOnClickListener {
-        for(i in 0..3){
+        for(i in 0..1){
             comprobarValoresDeLosInputAlGuardar(
                 inputTexts[i],
                 context,
@@ -77,11 +73,11 @@ fun mostrarDialogoObjetivoMensual(
             )
         }
 
-        val objetivosDelMesString = inputTexts.joinToString(",") { it.text.toString().trim() }
+        val objetivosDelYearString = inputTexts.joinToString(",") { it.text.toString().trim() }
 
-        habito.objetivoMensual = objetivosDelMesString
+        habito.objetivoAnual = objetivosDelYearString
 
-        estadisticasViewModel.updateObjetivoMenusal(habito){
+        estadisticasViewModel.updateObjetivoAnual(habito){
             onChange()
         }
 
@@ -95,18 +91,18 @@ fun mostrarDialogoObjetivoMensual(
     ajustarDialogo(resources, dialogo, escala)
 }
 
-private fun cargarValoresPorMes(
+private fun cargarValoresPorYear(
     habito: Habito,
     locale: Locale,
     inputText: TextInputEditText,
     inputTextLayout: TextInputLayout,
-    diasDelMes: Int,
-    objetivosMensuales: Float,
+    diasDelYear: Int,
+    objetivosAnuales: Float,
     context: Context
 ){
     if(habito.tipoNumerico){
-        if(objetivosMensuales == -1f){
-            val valor = habito.objetivo!!.split("@")[0].toFloat() * diasDelMes
+        if(objetivosAnuales == -1f){
+            val valor = habito.objetivo!!.split("@")[0].toFloat() * diasDelYear
             val texto = if (valor % 1.0 == 0.0) {
                 valor.toInt().toString()
             } else {
@@ -114,14 +110,14 @@ private fun cargarValoresPorMes(
             }
             inputText.setText(texto)
         }else{
-            inputText.setText("$objetivosMensuales")
+            inputText.setText("$objetivosAnuales")
         }
         inputTextLayout.hint = habito.unidad
     }else{
-        if(objetivosMensuales == -1f){
-            inputText.setText("$diasDelMes")
+        if(objetivosAnuales == -1f){
+            inputText.setText("$diasDelYear")
         }else{
-            inputText.setText("$objetivosMensuales")
+            inputText.setText("$objetivosAnuales")
         }
         inputTextLayout.hint = context.getString(R.string.unidades_checks)
     }
@@ -131,7 +127,7 @@ private fun comprobarValoresDeLosInputAlGuardar(
     inputText: TextInputEditText,
     context: Context,
     habito: Habito,
-    diasDelMes: Int
+    diasDelYear: Int
 ){
     val obj = inputText.text.toString()
 
@@ -144,8 +140,8 @@ private fun comprobarValoresDeLosInputAlGuardar(
             makeToast("Los objetivos tienen que ser mayores que 0", context)
             return
         }
-        !habito.tipoNumerico && obj.toFloat() > diasDelMes.toFloat() -> {
-            makeToast("Para este tipo de hábitos el objetivo máximo mensual es $diasDelMes", context)
+        !habito.tipoNumerico && obj.toFloat() > diasDelYear.toFloat() -> {
+            makeToast("Para este tipo de hábitos el objetivo máximo anual es $diasDelYear", context)
             return
         }
     }

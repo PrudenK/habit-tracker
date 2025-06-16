@@ -20,6 +20,7 @@ import com.pruden.habits.common.metodos.fechas.obtenerFechaActualMESYEAR
 import com.pruden.habits.databinding.FragmentEstadisticasBinding
 import com.pruden.habits.databinding.ItemFechaCalendarBinding
 import com.pruden.habits.modules.estadisticasHabito.adapter.OnClikCalendario
+import com.pruden.habits.modules.estadisticasHabito.dialogos.mostrarDialogoObjetivoAnual
 import com.pruden.habits.modules.estadisticasHabito.dialogos.mostrarDialogoObjetivoMensual
 import com.pruden.habits.modules.estadisticasHabito.dialogos.mostrarDialogoObjetivoSemanal
 import com.pruden.habits.modules.estadisticasHabito.metodos.cargarProgressBar
@@ -92,7 +93,9 @@ class EstadisticasFragment : Fragment(), OnClikCalendario {
         }
 
         binding.objetivoAnualTv.setOnClickListener {
-
+            mostrarDialogoObjetivoAnual(requireContext(), resources, habito, estadisticasViewModel) {
+                cargarProgressBar(habito, binding, requireContext())
+            }
         }
 
         return binding.root

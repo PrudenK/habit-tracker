@@ -55,7 +55,7 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_cambiar_objetivo_mensual_31_estadis"
+                android:id="@+id/input_cambiar_objetivo_anual_365_estadis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="2"
@@ -94,7 +94,7 @@
             >
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/input_cambiar_objetivo_menusla_30_estadis"
+                android:id="@+id/input_cambiar_objetivo_anual_366_estadis"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:maxLines="2"
@@ -117,13 +117,13 @@
             />
 
         <Button
-            android:id="@+id/button_cancelar_obj_mensual"
+            android:id="@+id/button_cancelar_obj_anual"
             android:layout_width="@dimen/w_boton_dialog_archivar"
             android:layout_height="@dimen/h_boton_opciones"
             android:text="@string/cancelar"
             app:layout_constraintTop_toBottomOf="@id/til_cambiar_objetivo_anual_366_estadis"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/button_guardar_obj_mensual"
+            app:layout_constraintEnd_toStartOf="@id/button_guardar_obj_anual"
             android:layout_marginEnd="@dimen/m_botones_dialog_archivar"
             android:textSize="@dimen/t_boton_dialog_archivar"
             android:textColor="@color/tittle_color"
@@ -132,13 +132,13 @@
             />
 
         <Button
-            android:id="@+id/button_guardar_obj_mensual"
+            android:id="@+id/button_guardar_obj_anual"
             android:layout_width="@dimen/w_boton_dialog_archivar"
             android:layout_height="@dimen/h_boton_opciones"
             android:text="@string/guardar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/til_cambiar_objetivo_anual_366_estadis"
-            app:layout_constraintStart_toEndOf="@id/button_cancelar_obj_mensual"
+            app:layout_constraintStart_toEndOf="@id/button_cancelar_obj_anual"
             android:layout_marginStart="@dimen/m_botones_dialog_archivar"
             android:textSize="@dimen/t_boton_dialog_archivar"
             android:textColor="@color/tittle_color"

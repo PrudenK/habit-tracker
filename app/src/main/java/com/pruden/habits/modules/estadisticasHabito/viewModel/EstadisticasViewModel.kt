@@ -23,4 +23,10 @@ class EstadisticasViewModel : ViewModel(){
             onComplete()
         }
     }
+
+    fun updateObjetivoAnual(habito: Habito, onComplete: () -> Unit){
+        interactor.updateObjetivoAnual(habito){
+            onComplete()
+        }
+    }
 }

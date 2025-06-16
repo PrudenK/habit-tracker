@@ -121,4 +121,6 @@ interface HabitoDao {
     @Query("UPDATE Habitos SET objetivoMensual = :obj WHERE nombre = :nombre")
     suspend fun cambiarObjetivoMensual(obj : String, nombre: String)
 
+    @Query("UPDATE Habitos SET objetivoAnual = :obj WHERE nombre = :nombre")
+    suspend fun cambiarObjetivoAnual(obj : String, nombre: String)
 }
