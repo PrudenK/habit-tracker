@@ -33,17 +33,17 @@
             app:layout_constraintTop_toBottomOf="@id/titulo_cambiar_objetivo_estadis"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:textSize="16sp"
+            android:textSize="@dimen/t_subtitulo_cambiar_objetivo"
             android:text="@string/ajusta_los_objetivos_para_los_a_os_normales_y_bisiestos"
             android:paddingBottom="@dimen/p_bot_fecha_editar_habito_estadis"
-            android:layout_marginHorizontal="20dp"
+            android:layout_marginHorizontal="@dimen/m_comun_cambiar_objetivo"
             />
 
 
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_cambiar_objetivo_anual_365_estadis_estadis"
-            android:layout_width="180dp"
+            android:layout_width="@dimen/w_input_text_modificar_obj"
             android:layout_height="wrap_content"
             app:endIconMode="clear_text"
             app:layout_constraintTop_toBottomOf="@id/subtitulo_cambiar_objetivo_estadis"
@@ -51,7 +51,7 @@
             app:hintTextColor="@color/hint_color"
             app:boxStrokeColor="@color/border_color"
             app:boxStrokeWidth="1dp"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="@dimen/m_comun_cambiar_objetivo"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -71,7 +71,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="365"
-            android:textSize="32sp"
+            android:textSize="@dimen/t_num_dias_cambiar_objetivo"
             app:layout_constraintBottom_toBottomOf="@+id/til_cambiar_objetivo_anual_365_estadis_estadis"
             app:layout_constraintEnd_toStartOf="@+id/til_cambiar_objetivo_anual_365_estadis_estadis"
             app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +82,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/til_cambiar_objetivo_anual_366_estadis"
-            android:layout_width="180dp"
+            android:layout_width="@dimen/w_input_text_modificar_obj"
             android:layout_height="wrap_content"
             app:endIconMode="clear_text"
             app:layout_constraintTop_toBottomOf="@id/til_cambiar_objetivo_anual_365_estadis_estadis"
@@ -90,8 +90,8 @@
             app:hintTextColor="@color/hint_color"
             app:boxStrokeColor="@color/border_color"
             app:boxStrokeWidth="1dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="6dp"
+            android:layout_marginEnd="@dimen/m_comun_cambiar_objetivo"
+            android:layout_marginTop="@dimen/m_top_inputs_cambair_obj"
             >
 
             <com.google.android.material.textfield.TextInputEditText
@@ -111,7 +111,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="366"
-            android:textSize="32sp"
+            android:textSize="@dimen/t_num_dias_cambiar_objetivo"
             app:layout_constraintBottom_toBottomOf="@+id/til_cambiar_objetivo_anual_366_estadis"
             app:layout_constraintEnd_toStartOf="@+id/til_cambiar_objetivo_anual_366_estadis"
             app:layout_constraintStart_toStartOf="parent"
