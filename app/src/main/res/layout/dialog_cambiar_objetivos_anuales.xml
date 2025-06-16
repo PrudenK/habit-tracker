@@ -22,7 +22,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:textSize="@dimen/t_titulo_cambiar_objetivo"
-            android:text="Objetivos anuales"
+            android:text="@string/objetivo_anual"
             android:paddingBottom="@dimen/p_bot_fecha_editar_habito_estadis"
             />
 
@@ -34,7 +34,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:textSize="16sp"
-            android:text="Ajusta los objetivos para los años normales y bisiestos."
+            android:text="@string/ajusta_los_objetivos_para_los_a_os_normales_y_bisiestos"
             android:paddingBottom="@dimen/p_bot_fecha_editar_habito_estadis"
             android:layout_marginHorizontal="20dp"
             />

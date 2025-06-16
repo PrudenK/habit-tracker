@@ -23,7 +23,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:textSize="@dimen/t_titulo_cambiar_objetivo"
-            android:text="Objetivos mensuales"
+            android:text="@string/objetivo_mensual"
             android:paddingBottom="@dimen/p_bot_fecha_editar_habito_estadis"
             />
 
@@ -35,7 +35,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:textSize="16sp"
-            android:text="Ajusta los objetivos para los días de cada mes."
+            android:text="@string/ajusta_los_objetivos_para_los_dias_de_cada_mes"
             android:paddingBottom="@dimen/p_bot_fecha_editar_habito_estadis"
             android:layout_marginHorizontal="20dp"
             />

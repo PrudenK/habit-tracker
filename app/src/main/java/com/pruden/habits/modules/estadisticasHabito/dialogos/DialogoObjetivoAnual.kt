@@ -129,15 +129,15 @@ private fun comprobarValoresDeLosInputAlGuardar(
 
     return when {
         obj == "" -> {
-            makeToast("No puedes dejar los objetivos en blanco", context)
+            makeToast(context.getString(R.string.objetivo_vacio_anual), context)
             false
         }
         obj.toFloat() <= 0.0f -> {
-            makeToast("Los objetivos tienen que ser mayores que 0", context)
+            makeToast(context.getString(R.string.objetivo_menor_o_igual_cero_anual), context)
             false
         }
         !habito.tipoNumerico && obj.toFloat() > diasDelYear.toFloat() -> {
-            makeToast("Para este tipo de hábitos el objetivo máximo anual es $diasDelYear", context)
+            makeToast(context.getString(R.string.objetivo_maximo_anual, diasDelYear), context)
             false
         }
         else -> true

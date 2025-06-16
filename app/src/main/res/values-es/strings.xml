@@ -190,5 +190,14 @@
     <string name="objetivo_vacio">No puedes dejar el objetivo en blanco</string>
     <string name="objetivo_menor_o_igual_cero">El objetivo tiene que ser mayor que 0</string>
     <string name="objetivo_maximo_semanal">Para este tipo de hábitos el objetivo máximo semanal es 7</string>
+    <string name="objetivo_vacio_mensual">No puedes dejar los objetivos en blanco</string>
+    <string name="objetivo_menor_o_igual_cero_mensual">Los objetivos tienen que ser mayores que 0</string>
+    <string name="objetivo_maximo_mensual">Para este tipo de hábitos el objetivo máximo mensual es %1$d</string>
+    <string name="objetivo_vacio_anual">No puedes dejar los objetivos en blanco</string>
+    <string name="objetivo_menor_o_igual_cero_anual">Los objetivos tienen que ser mayores que 0</string>
+    <string name="objetivo_maximo_anual">Para este tipo de hábitos el objetivo máximo anual es %1$d</string>
+    <string name="ajusta_los_objetivos_para_los_dias_de_cada_mes">Ajusta los objetivos para los días de cada mes.</string>
+    <string name="ajusta_los_objetivos_para_los_a_os_normales_y_bisiestos">Ajusta los objetivos para los años normales y bisiestos.</string>
+
 
 </resources>

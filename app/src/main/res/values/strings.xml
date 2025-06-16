@@ -190,5 +190,14 @@
     <string name="objetivo_vacio">You can\'t leave the goal empty</string>
     <string name="objetivo_menor_o_igual_cero">The goal must be greater than 0</string>
     <string name="objetivo_maximo_semanal">For this type of habit, the maximum weekly goal is 7</string>
+    <string name="objetivo_vacio_mensual">You can\'t leave the goals empty</string>
+    <string name="objetivo_menor_o_igual_cero_mensual">Goals must be greater than 0</string>
+    <string name="objetivo_maximo_mensual">For this type of habit, the maximum monthly goal is %1$d</string>
+    <string name="objetivo_vacio_anual">You can\'t leave the goals empty</string>
+    <string name="objetivo_menor_o_igual_cero_anual">Goals must be greater than 0</string>
+    <string name="objetivo_maximo_anual">For this type of habit, the maximum annual goal is %1$d</string>
+    <string name="ajusta_los_objetivos_para_los_dias_de_cada_mes">Adjust the goals for each day of the month.</string>
+    <string name="ajusta_los_objetivos_para_los_a_os_normales_y_bisiestos">Adjust the goals for normal and leap years.</string>
+
 
 </resources>
