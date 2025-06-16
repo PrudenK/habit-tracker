@@ -63,6 +63,7 @@
                 android:textColor="@color/tittle_color"
                 android:textCursorDrawable="@null"
                 android:textSize="@dimen/t_input_comun"
+                android:inputType="numberDecimal"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -102,6 +103,7 @@
                 android:textColor="@color/tittle_color"
                 android:textCursorDrawable="@null"
                 android:textSize="@dimen/t_input_comun"
+                android:inputType="numberDecimal"
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -139,7 +141,9 @@
                 android:maxLines="2"
                 android:textColor="@color/tittle_color"
                 android:textCursorDrawable="@null"
-                android:textSize="@dimen/t_input_comun" />
+                android:textSize="@dimen/t_input_comun"
+                android:inputType="numberDecimal"
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -174,7 +178,9 @@
                 android:maxLines="2"
                 android:textColor="@color/tittle_color"
                 android:textCursorDrawable="@null"
-                android:textSize="@dimen/t_input_comun" />
+                android:textSize="@dimen/t_input_comun"
+                android:inputType="numberDecimal"
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
