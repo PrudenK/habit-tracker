@@ -80,23 +80,15 @@ class EstadisticasFragment : Fragment(), OnClikCalendario {
             activity?.onBackPressed()
         }
 
-        binding.objetivoSeamanaTv.setOnClickListener {
-            mostrarDialogoObjetivoSemanal(requireContext(), resources, habito, estadisticasViewModel){
-                cargarProgressBar(habito, binding, requireContext())
-            }
-        }
+        binding.objetivoSeamanaTv.setOnClickListener { abrirDialogoSemanal() }
+        binding.frameSemana.setOnClickListener { abrirDialogoSemanal() }
 
-        binding.objetivoMensualTv.setOnClickListener {
-            mostrarDialogoObjetivoMensual(requireContext(), resources, habito, estadisticasViewModel) {
-                cargarProgressBar(habito, binding, requireContext())
-            }
-        }
+        binding.objetivoMensualTv.setOnClickListener { abrirDialogoMensual() }
+        binding.frameMensual.setOnClickListener { abrirDialogoMensual() }
 
-        binding.objetivoAnualTv.setOnClickListener {
-            mostrarDialogoObjetivoAnual(requireContext(), resources, habito, estadisticasViewModel) {
-                cargarProgressBar(habito, binding, requireContext())
-            }
-        }
+        binding.objetivoAnualTv.setOnClickListener { abrirDialogoAnual() }
+        binding.frameAnual.setOnClickListener { abrirDialogoAnual() }
+
 
         return binding.root
     }
@@ -182,6 +174,24 @@ class EstadisticasFragment : Fragment(), OnClikCalendario {
     override fun onClikHabito(habitoCalendar: Habito, fechaItem: FechaCalendario, binding: ItemFechaCalendarBinding) {
         modificarHabitoCalendarEstadisticas(requireContext(), fechaItem, binding, habitoCalendar, estadisticasViewModel,
             habito, this.binding, this, formatoFechaOriginal, foramtoFecha_dd)
+    }
+
+    private fun abrirDialogoSemanal() {
+        mostrarDialogoObjetivoSemanal(requireContext(), resources, habito, estadisticasViewModel) {
+            cargarProgressBar(habito, binding, requireContext())
+        }
+    }
+
+    private fun abrirDialogoMensual() {
+        mostrarDialogoObjetivoMensual(requireContext(), resources, habito, estadisticasViewModel) {
+            cargarProgressBar(habito, binding, requireContext())
+        }
+    }
+
+    private fun abrirDialogoAnual() {
+        mostrarDialogoObjetivoAnual(requireContext(), resources, habito, estadisticasViewModel) {
+            cargarProgressBar(habito, binding, requireContext())
+        }
     }
 
 }
