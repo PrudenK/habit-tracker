@@ -64,14 +64,10 @@ fun mostrarDialogoObjetivoAnual(
     btnCancelar.setOnClickListener { dialogo.dismiss() }
 
     btnGuardar.setOnClickListener {
-        for(i in 0..1){
-            comprobarValoresDeLosInputAlGuardar(
-                inputTexts[i],
-                context,
-                habito,
-                listaDias[i]
-            )
+        val hayError = (0..1).any { i ->
+            !comprobarValoresDeLosInputAlGuardar(inputTexts[i], context, habito, listaDias[i])
         }
+        if (hayError) return@setOnClickListener
 
         val objetivosDelYearString = inputTexts.joinToString(",") { it.text.toString().trim() }
 
@@ -128,21 +124,22 @@ private fun comprobarValoresDeLosInputAlGuardar(
     context: Context,
     habito: Habito,
     diasDelYear: Int
-){
+): Boolean{
     val obj = inputText.text.toString()
 
-    when {
+    return when {
         obj == "" -> {
             makeToast("No puedes dejar los objetivos en blanco", context)
-            return
+            false
         }
         obj.toFloat() <= 0.0f -> {
             makeToast("Los objetivos tienen que ser mayores que 0", context)
-            return
+            false
         }
         !habito.tipoNumerico && obj.toFloat() > diasDelYear.toFloat() -> {
             makeToast("Para este tipo de hábitos el objetivo máximo anual es $diasDelYear", context)
-            return
+            false
         }
+        else -> true
     }
 }
