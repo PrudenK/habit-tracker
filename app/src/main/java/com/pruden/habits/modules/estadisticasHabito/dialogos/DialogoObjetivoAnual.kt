@@ -84,7 +84,7 @@ fun mostrarDialogoObjetivoAnual(
 
     val escala = context.resources.getInteger(R.integer.e_dialog_cambiar_obj_semanal) / 100f
 
-    ajustarDialogo(resources, dialogo, escala)
+    ajustarDialogo(resources, dialogo, escala, 0.2f)
 }
 
 private fun cargarValoresPorYear(

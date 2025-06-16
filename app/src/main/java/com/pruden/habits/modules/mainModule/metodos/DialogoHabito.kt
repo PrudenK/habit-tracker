@@ -111,9 +111,9 @@ fun dialogoOnLongClickHabito(
 fun ajustarDialogo(
     resources: Resources,
     dialogo: AlertDialog,
-    tamaX: Float
+    tamaX: Float,
+    porcentajeDesplazamiento: Float = 0.25f
 ){
-    val porcentajeDesplazamiento = 0.25
     val desplazamientoY = (resources.displayMetrics.heightPixels * porcentajeDesplazamiento).toInt()
     val window = dialogo.window
 
