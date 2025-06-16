@@ -7,7 +7,7 @@ import java.util.Calendar
 import java.util.Locale
 
 object Constantes {
-    const val CABECERA_HABITOS_CSV = "nombre,objetivo,tipoNumerico,unidad,color,archivado,posicion"
+    const val CABECERA_HABITOS_CSV = "nombre,objetivo,tipoNumerico,unidad,color,archivado,posicion,objSemanal,objMensual,objAnual" //
     const val CABECERA_ETIQUETAS_CSV = "nombre,color,seleccionado,posicion"
     const val CABECERA_HABITOS_ETQUETAS_CSV = "habito,etiqueta"
     const val CABECERA_CATEGORIAS_CSV = "nombre,color,posicion,seleccionada"

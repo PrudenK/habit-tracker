@@ -35,7 +35,7 @@ fun mostrarDialogoObjetivoMensual(
 
     val locale = Locale(HabitosApplication.sharedConfiguraciones.getString("idioma", "es") ?: "es")
 
-    val objetivosMensuales = habito.objetivoMensual.split(",").map { it.toFloat() }
+    val objetivosMensuales = habito.objetivoMensual.split("@").map { it.toFloat() }
 
     val listaDias = listOf(31,30,29,28)
 
@@ -73,7 +73,7 @@ fun mostrarDialogoObjetivoMensual(
         }
         if (hayError) return@setOnClickListener
 
-        val objetivosDelMesString = inputTexts.joinToString(",") { it.text.toString().trim() }
+        val objetivosDelMesString = inputTexts.joinToString("@") { it.text.toString().trim() }
 
         habito.objetivoMensual = objetivosDelMesString
 

@@ -54,7 +54,7 @@ private fun cargarProgresoMensual(
     context: Context,
     objetivoDiario: Float
 ) {
-    val listaObjMensuales = habito.objetivoMensual.split(",").map { it.toFloat() }
+    val listaObjMensuales = habito.objetivoMensual.split("@").map { it.toFloat() }
     val diasDelMesActual = obtenerDiasDelMesActual()
     val objMesActual = listaObjMensuales.getOrElse(31 - diasDelMesActual) { -1f }
 
@@ -78,7 +78,7 @@ private fun cargarProgresoAnual(
     context: Context,
     objetivoDiario: Float
 ) {
-    val listaObjAnual = habito.objetivoAnual.split(",").map { it.toFloat() }
+    val listaObjAnual = habito.objetivoAnual.split("@").map { it.toFloat() }
     val diasDelYearActual = obtenerDiasDelAnioActual()
     val objYearActual = listaObjAnual.getOrElse(diasDelYearActual - 365) { -1f }
 

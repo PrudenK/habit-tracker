@@ -35,7 +35,7 @@ fun mostrarDialogoObjetivoAnual(
 
     val locale = Locale(HabitosApplication.sharedConfiguraciones.getString("idioma", "es") ?: "es")
 
-    val objetivosAnuales = habito.objetivoAnual.split(",").map { it.toFloat() }
+    val objetivosAnuales = habito.objetivoAnual.split("@").map { it.toFloat() }
 
     val listaDias = listOf(365,366)
 
@@ -69,7 +69,7 @@ fun mostrarDialogoObjetivoAnual(
         }
         if (hayError) return@setOnClickListener
 
-        val objetivosDelYearString = inputTexts.joinToString(",") { it.text.toString().trim() }
+        val objetivosDelYearString = inputTexts.joinToString("@") { it.text.toString().trim() }
 
         habito.objetivoAnual = objetivosDelYearString
 
