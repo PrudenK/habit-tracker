@@ -162,11 +162,22 @@ class AgregarEditarHabitoFragment : Fragment() {
                 var nombre = ""
 
                 if(habitoValido){
+                    // Valores por defecto a la hora de editar un hábito
                     val posicion = if(editar){
                         habitoEditar!!.posicion
-                    }else{
-                        listaHabitos.filter { !it.archivado }.size +1
-                    }
+                    }else listaHabitos.filter { !it.archivado }.size +1
+
+                    val objetivoSemanal = if(editar){
+                        habitoEditar!!.objetivoSemanal
+                    }else -1f
+
+                    val objetivoMensual = if(editar){
+                        habitoEditar!!.objetivoMensual
+                    }else "-1@-1@-1@-1"
+
+                    val objetivoAnual = if(editar){
+                        habitoEditar!!.objetivoAnual
+                    }else "-1@-1"
 
                     if(numerico){
                         nombre = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_numerico).text.toString()
@@ -182,16 +193,16 @@ class AgregarEditarHabitoFragment : Fragment() {
                             color = colorHabito,
                             archivado = false,
                             posicion = posicion,
-                            objetivoSemanal = -1f,
-                            objetivoMensual = "-1@-1@-1@-1",
-                            objetivoAnual = "-1@-1"
+                            objetivoSemanal = objetivoSemanal,
+                            objetivoMensual = objetivoMensual,
+                            objetivoAnual = objetivoAnual
                         )
                         nombreRepetido = procesarHabito(nombre, habitoNumerico)
 
                     }else{
                         nombre = vistaDinamicaActual.findViewById<TextInputEditText>(R.id.input_nombre_boolean).text.toString()
                         val habitoBooleano = HabitoEntity(nombre, null, false, null, colorHabito,
-                            false, posicion, -1f, "-1@-1@-1@-1","-1@-1")
+                            false, posicion, objetivoSemanal, objetivoMensual, objetivoAnual)
                         nombreRepetido = procesarHabito(nombre, habitoBooleano)
                     }
                     campoFecha = nombre.lowercase() == "fecha"
