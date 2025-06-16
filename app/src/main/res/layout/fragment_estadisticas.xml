@@ -415,6 +415,89 @@
                 android:layout_marginTop="@dimen/m_top_goals_estadis"
                 />
 
+
+            <TextView
+                android:id="@+id/texto_otras_estadisticas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/encabezados"
+                android:paddingTop="@dimen/p_top_p_bar_estadis"
+                android:text="@string/mejores_estadisticas"
+                android:textColor="@color/tittle_color"
+                android:textSize="@dimen/t_titulos_estadis"
+                app:layout_constraintEnd_toEndOf="@id/frame_racha_actual"
+                app:layout_constraintStart_toStartOf="@id/frame_racha_actual"
+                app:layout_constraintTop_toBottomOf="@+id/recycler_mejores_rachas"
+                />
+
+            <TextView
+                android:id="@+id/texto_otras_estadisticas_mejor_dia"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/m_horizontal_estadis"
+                android:fontFamily="@font/encabezados"
+                android:gravity="start"
+                android:paddingTop="@dimen/p_top_p_bar_estadis"
+                android:text="@string/mejor_dia_otras_estadis"
+                android:textColor="@color/tittle_color"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/recycler_mejores_rachas"
+                app:layout_constraintTop_toBottomOf="@+id/texto_otras_estadisticas" />
+
+            <TextView
+                android:id="@+id/texto_otras_estadisticas_mejor_semana"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/encabezados"
+                android:paddingTop="@dimen/p_top_p_bar_estadis"
+                android:text="@string/mejor_semana_otras_estadis"
+                android:textColor="@color/tittle_color"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/frame_racha_actual"
+                app:layout_constraintTop_toBottomOf="@+id/texto_otras_estadisticas_mejor_dia"
+                android:layout_marginEnd="@dimen/m_horizontal_estadis"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:gravity="start"
+                />
+
+            <TextView
+                android:id="@+id/texto_otras_estadisticas_mejor_mes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/encabezados"
+                android:paddingTop="@dimen/p_top_p_bar_estadis"
+                android:text="@string/mejor_mes_otras_estadis"
+                android:textColor="@color/tittle_color"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/frame_racha_actual"
+                app:layout_constraintTop_toBottomOf="@+id/texto_otras_estadisticas_mejor_semana"
+                android:layout_marginEnd="@dimen/m_horizontal_estadis"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:gravity="start"
+                />
+
+            <TextView
+                android:id="@+id/texto_otras_estadisticas_mejor_year"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/encabezados"
+                android:paddingTop="@dimen/p_top_p_bar_estadis"
+                android:text="@string/mejor_year_otras_estadis"
+                android:textColor="@color/tittle_color"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="@id/frame_racha_actual"
+                app:layout_constraintTop_toBottomOf="@+id/texto_otras_estadisticas_mejor_mes"
+                android:layout_marginEnd="@dimen/m_horizontal_estadis"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:gravity="start"
+                />
+
+
+
+
+
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

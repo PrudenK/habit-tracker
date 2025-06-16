@@ -89,7 +89,6 @@ class EstadisticasFragment : Fragment(), OnClikCalendario {
         binding.objetivoAnualTv.setOnClickListener { abrirDialogoAnual() }
         binding.frameAnual.setOnClickListener { abrirDialogoAnual() }
 
-
         return binding.root
     }
 
@@ -193,5 +192,4 @@ class EstadisticasFragment : Fragment(), OnClikCalendario {
             cargarProgressBar(habito, binding, requireContext())
         }
     }
-
 }
