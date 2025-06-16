@@ -238,6 +238,7 @@
     <dimen name="t_titulo_cambiar_objetivo">20sp</dimen>
     <dimen name="w_t_w_goal_estadis">200dp</dimen>
     <dimen name="m_top_botones_cambiar_objetivo_estadis">8dp</dimen>
+    <integer name="e_dialog_cambiar_obj_semanal">80</integer>
 
 
 </resources>

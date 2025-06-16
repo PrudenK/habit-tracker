@@ -186,5 +186,9 @@
     <string name="paso_3_tutorial_titulo">View statistics</string>
     <string name="paso_3_tutorial">Click on the habit\'s name to view its statistics.</string>
 
+    <!-- Diálogos objetivos estadísticas -->
+    <string name="objetivo_vacio">You can\'t leave the goal empty</string>
+    <string name="objetivo_menor_o_igual_cero">The goal must be greater than 0</string>
+    <string name="objetivo_maximo_semanal">For this type of habit, the maximum weekly goal is 7</string>
 
 </resources>

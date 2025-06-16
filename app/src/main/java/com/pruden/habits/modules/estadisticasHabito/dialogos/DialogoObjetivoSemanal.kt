@@ -67,13 +67,17 @@ fun mostrarDialogoObjetivoSemanal(
     btnGuardar.setOnClickListener {
         val obj = inputText.text.toString()
 
-        when{
+        when {
             obj == "" -> {
-                makeToast("No puedes dejar el objetivo en blanco", context)
+                makeToast(context.getString(R.string.objetivo_vacio), context)
                 return@setOnClickListener
             }
             obj.toFloat() <= 0.0f -> {
-                makeToast("El objetivo tiene que ser mayor que 0", context)
+                makeToast(context.getString(R.string.objetivo_menor_o_igual_cero), context)
+                return@setOnClickListener
+            }
+            !habito.tipoNumerico && obj.toFloat() > Constantes.DIAS_SEMANA.toFloat() -> {
+                makeToast(context.getString(R.string.objetivo_maximo_semanal), context)
                 return@setOnClickListener
             }
         }
@@ -90,6 +94,7 @@ fun mostrarDialogoObjetivoSemanal(
 
     dialogo.show()
 
-    ajustarDialogo(resources, dialogo, 0.85f)
-    // 0.8 para 360dp
+    val escala = context.resources.getInteger(R.integer.e_dialog_cambiar_obj_semanal) / 100f
+
+    ajustarDialogo(resources, dialogo, escala)
 }

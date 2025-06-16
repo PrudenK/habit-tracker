@@ -186,6 +186,9 @@
     <string name="paso_3_tutorial_titulo">Ver estadísticas</string>
     <string name="paso_3_tutorial">Haz click en el nombre del hábito y podrás ver sus estadísticas.</string>
 
-
+    <!-- Diálogos objetivos estadísticas -->
+    <string name="objetivo_vacio">No puedes dejar el objetivo en blanco</string>
+    <string name="objetivo_menor_o_igual_cero">El objetivo tiene que ser mayor que 0</string>
+    <string name="objetivo_maximo_semanal">Para este tipo de hábitos el objetivo máximo semanal es 7</string>
 
 </resources>
