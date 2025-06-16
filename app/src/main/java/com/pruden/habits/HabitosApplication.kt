@@ -43,7 +43,7 @@ class HabitosApplication : Application(){
             HabitosDatabase::class.java,
             "HabitosDatabase"
         )
-            .addMigrations(MIGRATION_12_13)
+            //.addMigrations(MIGRATION_12_13)
             //.fallbackToDestructiveMigration()
 
             .build()

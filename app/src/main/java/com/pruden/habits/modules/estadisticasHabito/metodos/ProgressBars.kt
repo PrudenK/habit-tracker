@@ -36,26 +36,28 @@ fun cargarProgressBar(
         obtenerFechasSemanaActual(),
         habito, context
     )
-
+    /*
     val objetivoMensual = if(habito.objetivoMensual != -1 && habito.objetivoMensual != 0){
         habito.objetivoMensual
     }else objetivoDiario * obtenerDiasDelMesActual()
+     */
 
     cargarCadaProgressBar(
         binding.progressBarMes,
-        objetivoMensual.toFloat(),
+        objetivoDiario * obtenerDiasDelMesActual(),
         binding.textProgresoMensual,
         obtenerFechasMesActual(),
         habito, context
     )
-
+    /*
     val objetivoAnual = if(habito.objetivoAnual != -1 && habito.objetivoAnual != 0){
         habito.objetivoAnual
     }else objetivoDiario * obtenerDiasDelAnioActual()
+     */
 
     cargarCadaProgressBar(
         binding.progressBarAnual,
-        objetivoAnual.toFloat(),
+        objetivoDiario * obtenerDiasDelAnioActual(),
         binding.textProgresoAnual,
         obtenerFechasAnioActual(),
         habito, context

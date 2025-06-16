@@ -13,6 +13,6 @@ data class HabitoEntity(
     var archivado: Boolean,
     var posicion: Int,
     var objetivoSemanal: Int,
-    var objetivoMensual: Int,
-    var objetivoAnual: Int
+    var objetivoMensual: String,
+    var objetivoAnual: String
 )

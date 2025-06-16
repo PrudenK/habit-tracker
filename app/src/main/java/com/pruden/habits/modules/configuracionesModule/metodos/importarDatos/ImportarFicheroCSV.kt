@@ -179,7 +179,8 @@ import java.io.InputStreamReader
                             else->{
                                 val h = linea.split(",")
                                 val habito = HabitoEntity(h[0], h[1], h[2].toBoolean(), h[3], h[4].toInt(), h[5].toBoolean(), h[6].toInt()
-                                ,h[7].toInt(), h[8].toInt(), h[9].toInt())
+                                      ,-1,"-1,-1,-1,-1","-1,-1")
+                                    //,h[7].toInt(), h[8], h[9]) // TODO
                                 listaHabitosEntity.add(habito)
                             }
                         }
