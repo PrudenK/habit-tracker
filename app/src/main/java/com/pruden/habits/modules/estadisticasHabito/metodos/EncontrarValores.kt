@@ -21,26 +21,33 @@ class EncontrarValores(
     private val objetivo = habito.objetivo?.split("@")?.getOrNull(0)?.toFloatOrNull() ?: 1.0f
 
     fun encontrarValorPorDia(): Map.Entry<String, Float>? {
-        with(this.habito){
+        with(this.habito) {
             val datos = listaFechas.zip(listaValores).mapNotNull { (fecha, valorStr) ->
                 val valor = valorStr.toFloatOrNull()
                 if (valor != null) fecha to valor else null
             }.toMap()
 
+            val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
             val objetivo = habito.objetivo?.split("@")?.getOrNull(0)?.toFloatOrNull() ?: 1.0f
 
             return when (modo) {
-                "Mas de", "Más de" -> datos.maxByOrNull { it.value }
-                "Menos de" -> datos.minByOrNull { it.value }
-                "Igual a" -> {
-                    objetivo.let {
-                        datos.minByOrNull { (_, valor) -> kotlin.math.abs(valor - objetivo) }
-                    }
-                }
+                "Mas de", "Más de" -> datos.entries.maxWithOrNull(
+                    compareBy<Map.Entry<String, Float>> { it.value }
+                        .thenBy { sdf.parse(it.key)?.time ?: Long.MIN_VALUE }
+                )
+                "Menos de" -> datos.entries.minWithOrNull(
+                    compareBy<Map.Entry<String, Float>> { it.value }
+                        .thenByDescending { sdf.parse(it.key)?.time ?: Long.MIN_VALUE }
+                )
+                "Igual a" -> datos.entries.minWithOrNull(
+                    compareBy<Map.Entry<String, Float>> { abs(it.value - objetivo) }
+                        .thenByDescending { sdf.parse(it.key)?.time ?: Long.MIN_VALUE }
+                )
                 else -> null
             }
         }
     }
+
 
     fun encontrarValorPorSemana(): Map.Entry<String, Float>? {
         val datos = agruparPorSemanaConFechasCompletas(habito.listaFechas, habito.listaValores)
