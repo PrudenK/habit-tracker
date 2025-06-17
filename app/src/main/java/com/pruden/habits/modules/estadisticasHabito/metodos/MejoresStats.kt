@@ -14,14 +14,19 @@ fun cargarMejoresStats(
 ) {
     val buscadorValores = EncontrarValores(habito, context)
 
-    mostrarMejorDia(habito, context, binding, buscadorValores)
-    mostrarMejorSemana(habito, context, binding, buscadorValores)
-    mostrarMejorMes(habito, context, binding, buscadorValores)
-    mostrarMejorAnio(habito, context, binding, buscadorValores)
+    val unidad = when(habito.unidad){
+        null, "null" -> context.getString(R.string.unidades_checks)
+        else -> habito.unidad
+    }
+
+    mostrarMejorDia(unidad, context, binding, buscadorValores)
+    mostrarMejorSemana(unidad, context, binding, buscadorValores)
+    mostrarMejorMes(unidad, context, binding, buscadorValores)
+    mostrarMejorAnio(unidad, context, binding, buscadorValores)
 }
 
 private fun mostrarMejorDia(
-    habito: Habito,
+    unidad: String,
     context: Context,
     binding: FragmentEstadisticasBinding,
     buscador: EncontrarValores
@@ -36,7 +41,7 @@ private fun mostrarMejorDia(
             context.getString(
                 R.string.mejor_dia_otras_estadis,
                 formatearNumeroOtrasEstadis(valor, 1),
-                habito.unidad,
+                unidad,
                 fecha
             ),
             HtmlCompat.FROM_HTML_MODE_LEGACY
@@ -45,7 +50,7 @@ private fun mostrarMejorDia(
 }
 
 private fun mostrarMejorSemana(
-    habito: Habito,
+    unidad: String,
     context: Context,
     binding: FragmentEstadisticasBinding,
     buscador: EncontrarValores,
@@ -60,7 +65,7 @@ private fun mostrarMejorSemana(
             context.getString(
                 R.string.mejor_semana_otras_estadis,
                 formatearNumeroOtrasEstadis(valor, 1),
-                habito.unidad,
+                unidad,
                 inicio,
                 fin
             ),
@@ -70,7 +75,7 @@ private fun mostrarMejorSemana(
 }
 
 private fun mostrarMejorMes(
-    habito: Habito,
+    unidad: String,
     context: Context,
     binding: FragmentEstadisticasBinding,
     buscador: EncontrarValores
@@ -85,7 +90,7 @@ private fun mostrarMejorMes(
             context.getString(
                 R.string.mejor_mes_otras_estadis,
                 formatearNumeroOtrasEstadis(valor, 1),
-                habito.unidad,
+                unidad,
                 mes.uppercase(),
                 anio
             ),
@@ -95,7 +100,7 @@ private fun mostrarMejorMes(
 }
 
 private fun mostrarMejorAnio(
-    habito: Habito,
+    unidad: String,
     context: Context,
     binding: FragmentEstadisticasBinding,
     buscador: EncontrarValores
@@ -110,7 +115,7 @@ private fun mostrarMejorAnio(
             context.getString(
                 R.string.mejor_year_otras_estadis,
                 formatearNumeroOtrasEstadis(valor, 1),
-                habito.unidad,
+                unidad,
                 anio
             ),
             HtmlCompat.FROM_HTML_MODE_LEGACY
