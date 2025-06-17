@@ -84,9 +84,9 @@ class EncontrarValores(
                 val diasPorMes = obtenerDiasPorMes()
                 val objetivoSemana = if (habito.objetivoSemanal == -1f) objetivo * 7 else habito.objetivoSemanal
                 val objetivosMes = habito.objetivoMensual.takeIf { it != "-1@-1@-1@-1" }
-                    ?.split(",")?.mapNotNull { it.toFloatOrNull() } ?: listOf(objetivo * 31, objetivo * 30, objetivo * 29, objetivo * 28)
+                    ?.split("@")?.mapNotNull { it.toFloatOrNull() } ?: listOf(objetivo * 31, objetivo * 30, objetivo * 29, objetivo * 28)
                 val objetivosAnio = habito.objetivoAnual.takeIf { it != "-1@-1" }
-                    ?.split(",")?.mapNotNull { it.toFloatOrNull() } ?: listOf(objetivo * 365, objetivo * 366)
+                    ?.split("@")?.mapNotNull { it.toFloatOrNull() } ?: listOf(objetivo * 365, objetivo * 366)
 
                 return datos.minWithOrNull(compareBy<Map.Entry<String, Float>> { entry ->
                     val clave = entry.key

@@ -35,6 +35,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
@@ -182,18 +183,21 @@ class EstadisticasFragment : Fragment(), OnClikCalendario {
     private fun abrirDialogoSemanal() {
         mostrarDialogoObjetivoSemanal(requireContext(), resources, habito, estadisticasViewModel) {
             cargarProgressBar(habito, binding, requireContext())
+            cargarMejoresStats(habito, requireContext(), binding)
         }
     }
 
     private fun abrirDialogoMensual() {
         mostrarDialogoObjetivoMensual(requireContext(), resources, habito, estadisticasViewModel) {
             cargarProgressBar(habito, binding, requireContext())
+            cargarMejoresStats(habito, requireContext(), binding)
         }
     }
 
     private fun abrirDialogoAnual() {
         mostrarDialogoObjetivoAnual(requireContext(), resources, habito, estadisticasViewModel) {
             cargarProgressBar(habito, binding, requireContext())
+            cargarMejoresStats(habito, requireContext(), binding)
         }
     }
 }
