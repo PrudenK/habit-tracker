@@ -245,5 +245,8 @@
     <dimen name="m_comun_cambiar_objetivo">20dp</dimen>
     <dimen name="m_top_inputs_cambair_obj">6dp</dimen>
 
+    <!-- Otras estadísticas -->
+    <dimen name="t_best_statics">17sp</dimen>
+
 
 </resources>
