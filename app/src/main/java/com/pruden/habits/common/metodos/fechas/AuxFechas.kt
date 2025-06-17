@@ -89,3 +89,14 @@ fun obtenerFechaActualMESYEAR(): String {
     val formato = SimpleDateFormat("MMM yyyy", Locale.getDefault())
     return formato.format(Date())
 }
+
+fun formatearFecha_yyyy_mm_dd_a_dd_mm_yyyy(fecha: String): String {
+    return try {
+        val originalFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        val targetFormat = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
+        val date = originalFormat.parse(fecha)
+        if (date != null) targetFormat.format(date) else fecha
+    } catch (e: Exception) {
+        fecha
+    }
+}

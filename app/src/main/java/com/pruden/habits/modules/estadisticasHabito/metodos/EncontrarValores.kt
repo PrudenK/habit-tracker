@@ -2,13 +2,10 @@ package com.pruden.habits.modules.estadisticasHabito.metodos
 
 import android.content.Context
 import android.util.Log
-import com.pruden.habits.HabitosApplication
 import com.pruden.habits.HabitosApplication.Companion.sharedConfiguraciones
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.data.Habito
 import java.text.SimpleDateFormat
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
 import java.util.Calendar
 import java.util.Locale
 import kotlin.math.abs

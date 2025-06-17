@@ -5,6 +5,7 @@ import androidx.core.text.HtmlCompat
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.data.Habito
 import com.pruden.habits.common.metodos.General.formatearNumeroOtrasEstadis
+import com.pruden.habits.common.metodos.fechas.formatearFecha_yyyy_mm_dd_a_dd_mm_yyyy
 import com.pruden.habits.databinding.FragmentEstadisticasBinding
 
 fun cargarMejoresStats(
@@ -42,7 +43,7 @@ private fun mostrarMejorDia(
                 R.string.mejor_dia_otras_estadis,
                 formatearNumeroOtrasEstadis(valor, 1),
                 unidad,
-                fecha
+                formatearFecha_yyyy_mm_dd_a_dd_mm_yyyy(fecha)
             ),
             HtmlCompat.FROM_HTML_MODE_LEGACY
         )
