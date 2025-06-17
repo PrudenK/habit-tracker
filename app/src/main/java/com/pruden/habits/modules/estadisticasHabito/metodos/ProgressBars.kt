@@ -13,6 +13,7 @@ import com.pruden.habits.common.metodos.fechas.obtenerFechasAnioActual
 import com.pruden.habits.common.metodos.fechas.obtenerFechasMesActual
 import com.pruden.habits.common.metodos.fechas.obtenerFechasSemanaActual
 import com.pruden.habits.databinding.FragmentEstadisticasBinding
+import kotlin.math.abs
 
 fun cargarProgressBar(
     habito: Habito,
@@ -112,14 +113,23 @@ private fun cargarCadaProgressBar(
         }
     }
 
+    val modo = habito.objetivo?.split("@")?.getOrNull(1) ?: "Mas de"
+
     (context as? Activity)?.runOnUiThread {
-        textoProgressBar.text =
-            "${formatearNumero(sumatorio.toFloat())}/${formatearNumero(objetivo)}"
-        progressBar.max = objetivo.toInt()
-        progressBar.progress = sumatorio.toInt()
+        textoProgressBar.text = "${formatearNumero(sumatorio.toFloat())}/${formatearNumero(objetivo)}"
+
+        if (modo == "Igual a") {
+            val distancia = abs(sumatorio - objetivo)
+            val maxDistancia = objetivo.takeIf { it != 0f } ?: 1f
+            val factor = (1 - (distancia / maxDistancia)).coerceIn(0.0, 1.0)
+            progressBar.max = 100
+            progressBar.progress = (factor * 100).toInt()
+        } else {
+            progressBar.max = objetivo.toInt()
+            progressBar.progress = sumatorio.toInt()
+        }
+
+        val layerDrawableMes = progressBar.progressDrawable as LayerDrawable
+        layerDrawableMes.findDrawableByLayerId(android.R.id.progress).setTint(habito.colorHabito)
     }
-
-
-    val layerDrawableMes = progressBar.progressDrawable as LayerDrawable
-    layerDrawableMes.findDrawableByLayerId(android.R.id.progress).setTint(habito.colorHabito)
 }
