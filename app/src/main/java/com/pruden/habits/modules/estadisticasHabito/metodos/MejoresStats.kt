@@ -12,7 +12,7 @@ fun cargarMejoresStats(
     context: Context,
     binding: FragmentEstadisticasBinding
 ) {
-    val buscadorValores = EncontrarValores(habito)
+    val buscadorValores = EncontrarValores(habito, context)
 
     mostrarMejorDia(habito, context, binding, buscadorValores)
     mostrarMejorSemana(habito, context, binding, buscadorValores)

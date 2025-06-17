@@ -207,6 +207,20 @@
     <string name="mejor_year_otras_estadis"><b>Mejor año:</b> %1$s %2$s en %3$s</string>
 
 
+    <!-- Idiomas -->
+    <string name="mes_ene">ene</string>
+    <string name="mes_feb">feb</string>
+    <string name="mes_mar">mar</string>
+    <string name="mes_abr">abr</string>
+    <string name="mes_may">may</string>
+    <string name="mes_jun">jun</string>
+    <string name="mes_jul">jul</string>
+    <string name="mes_ago">ago</string>
+    <string name="mes_sept">sept</string>
+    <string name="mes_oct">oct</string>
+    <string name="mes_nov">nov</string>
+    <string name="mes_dic">dic</string>
+
 
 
 </resources>

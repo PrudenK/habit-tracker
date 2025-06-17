@@ -207,6 +207,19 @@
     <string name="mejor_mes_otras_estadis"><b>Best month:</b> %1$s %2$s in %3$s %4$s</string>
     <string name="mejor_year_otras_estadis"><b>Best year:</b> %1$s %2$s in %3$s</string>
 
+    <!-- Idiomas -->
+    <string name="mes_ene">Jan</string>
+    <string name="mes_feb">Feb</string>
+    <string name="mes_mar">Mar</string>
+    <string name="mes_abr">Apr</string>
+    <string name="mes_may">May</string>
+    <string name="mes_jun">Jun</string>
+    <string name="mes_jul">Jul</string>
+    <string name="mes_ago">Aug</string>
+    <string name="mes_sept">Sep</string>
+    <string name="mes_oct">Oct</string>
+    <string name="mes_nov">Nov</string>
+    <string name="mes_dic">Dec</string>
 
 
 </resources>
