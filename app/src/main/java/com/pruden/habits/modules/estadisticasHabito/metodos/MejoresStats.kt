@@ -1,6 +1,7 @@
 package com.pruden.habits.modules.estadisticasHabito.metodos
 
 import android.content.Context
+import android.view.View
 import androidx.core.text.HtmlCompat
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.data.Habito
@@ -20,7 +21,7 @@ fun cargarMejoresStats(
         else -> habito.unidad
     }
 
-    mostrarMejorDia(unidad, context, binding, buscadorValores)
+    mostrarMejorDia(unidad, context, binding, buscadorValores, habito)
     mostrarMejorSemana(unidad, context, binding, buscadorValores)
     mostrarMejorMes(unidad, context, binding, buscadorValores)
     mostrarMejorAnio(unidad, context, binding, buscadorValores)
@@ -30,23 +31,28 @@ private fun mostrarMejorDia(
     unidad: String,
     context: Context,
     binding: FragmentEstadisticasBinding,
-    buscador: EncontrarValores
+    buscador: EncontrarValores,
+    habito: Habito
 ) {
-    val valorDia = buscador.encontrarValorPorDia()
+    if(habito.tipoNumerico){
+        val valorDia = buscador.encontrarValorPorDia()
 
-    valorDia?.let { entry ->
-        val fecha = entry.key
-        val valor = entry.value
+        valorDia?.let { entry ->
+            val fecha = entry.key
+            val valor = entry.value
 
-        binding.textoOtrasEstadisticasMejorDia.text = HtmlCompat.fromHtml(
-            context.getString(
-                R.string.mejor_dia_otras_estadis,
-                formatearNumeroOtrasEstadis(valor, 1),
-                unidad,
-                formatearFecha_yyyy_mm_dd_a_dd_mm_yyyy(fecha)
-            ),
-            HtmlCompat.FROM_HTML_MODE_LEGACY
-        )
+            binding.textoOtrasEstadisticasMejorDia.text = HtmlCompat.fromHtml(
+                context.getString(
+                    R.string.mejor_dia_otras_estadis,
+                    formatearNumeroOtrasEstadis(valor, 1),
+                    unidad,
+                    formatearFecha_yyyy_mm_dd_a_dd_mm_yyyy(fecha)
+                ),
+                HtmlCompat.FROM_HTML_MODE_LEGACY
+            )
+        }
+    }else{
+        binding.textoOtrasEstadisticasMejorDia.visibility = View.GONE
     }
 }
 
