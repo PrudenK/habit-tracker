@@ -2,8 +2,15 @@ package com.pruden.habits.modules.estadisticasHabito.metodos
 
 import android.content.Context
 import android.util.Log
+import com.pruden.habits.HabitosApplication
+import com.pruden.habits.HabitosApplication.Companion.sharedConfiguraciones
 import com.pruden.habits.R
 import com.pruden.habits.common.clases.data.Habito
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.Calendar
+import java.util.Locale
 import kotlin.math.abs
 
 class EncontrarValores(
@@ -56,8 +63,19 @@ class EncontrarValores(
         datos: Map<String, Float>, tiempo: String
     ): Map.Entry<String, Float>? {
         return when (modo) {
-            "Mas de", "Más de" -> datos.maxByOrNull { it.value }
-            "Menos de" -> datos.minByOrNull { it.value }
+            "Mas de", "Más de" -> {
+                Log.d("FECHASSSSSSS", datos.keys.toString()) // TODO QUITAR
+                datos.entries.maxWithOrNull(
+                    compareBy<Map.Entry<String, Float>> { it.value }
+                        .thenBy { parseFechaFinal(it.key, tiempo) }
+                )
+            }
+            "Menos de" -> {
+                datos.entries.minWithOrNull(
+                    compareBy<Map.Entry<String, Float>> { it.value }
+                        .thenByDescending { parseFechaFinal(it.key, tiempo) }
+                )
+            }
             "Igual a" -> {
                 val diasPorMes = obtenerDiasPorMes()
                 val objetivoSemana = if (habito.objetivoSemanal == -1f) objetivo * 7 else habito.objetivoSemanal
@@ -65,8 +83,6 @@ class EncontrarValores(
                     ?.split(",")?.mapNotNull { it.toFloatOrNull() } ?: listOf(objetivo * 31, objetivo * 30, objetivo * 29, objetivo * 28)
                 val objetivosAnio = habito.objetivoAnual.takeIf { it != "-1@-1" }
                     ?.split(",")?.mapNotNull { it.toFloatOrNull() } ?: listOf(objetivo * 365, objetivo * 366)
-
-                Log.d("FECHASSSSSSS", datos.keys.toString()) // TODO QUITAR
 
                 return datos.minWithOrNull(compareBy<Map.Entry<String, Float>> { entry ->
                     val clave = entry.key
@@ -137,5 +153,58 @@ class EncontrarValores(
             context.getString(R.string.mes_dic).lowercase() to { 31 }
         )
     }
+
+    private fun parseFechaFinal(clave: String, tiempo: String): Long {
+        val idioma = sharedConfiguraciones.getString("idioma", "es") ?: "es"
+        val locale = Locale(idioma)
+
+
+        return when (tiempo) {
+            "semana" -> {
+                val partes = clave.split("@")
+                if (partes.size != 2) return Long.MIN_VALUE
+                val sdf = SimpleDateFormat("dd-MM-yyyy", locale)
+                return sdf.parse(partes[1])?.time ?: Long.MIN_VALUE
+            }
+            "mes" -> {
+                val partes = clave.split("@")
+                if (partes.size != 2) return Long.MIN_VALUE
+
+                val mesStr = partes[0].lowercase()
+                val anio = partes[1].toIntOrNull() ?: return Long.MIN_VALUE
+
+                val mesesMap = listOf(
+                    context.getString(R.string.mes_ene),
+                    context.getString(R.string.mes_feb),
+                    context.getString(R.string.mes_mar),
+                    context.getString(R.string.mes_abr),
+                    context.getString(R.string.mes_may),
+                    context.getString(R.string.mes_jun),
+                    context.getString(R.string.mes_jul),
+                    context.getString(R.string.mes_ago),
+                    context.getString(R.string.mes_sept),
+                    context.getString(R.string.mes_oct),
+                    context.getString(R.string.mes_nov),
+                    context.getString(R.string.mes_dic)
+                ).mapIndexed { index, nombre -> nombre.lowercase() to index }.toMap()
+
+                val mesIndex = mesesMap[mesStr] ?: return Long.MIN_VALUE
+
+                val cal = Calendar.getInstance()
+                cal.set(Calendar.YEAR, anio)
+                cal.set(Calendar.MONTH, mesIndex)
+                cal.set(Calendar.DAY_OF_MONTH, cal.getActualMaximum(Calendar.DAY_OF_MONTH))
+                return cal.timeInMillis
+            }
+            "year" -> {
+                val anio = clave.toIntOrNull() ?: return Long.MIN_VALUE
+                val cal = Calendar.getInstance()
+                cal.set(anio, Calendar.DECEMBER, 31)
+                return cal.timeInMillis
+            }
+            else -> Long.MIN_VALUE
+        }
+    }
+
 
 }
