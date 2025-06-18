@@ -203,9 +203,9 @@
     <!-- Otras estadísticas-->
     <string name="mejores_estadisticas">Best statistics</string>
     <string name="mejor_dia_otras_estadis"><![CDATA[<b>Best day:</b> %1$s %2$s on %3$s]]></string>
-    <string name="mejor_semana_otras_estadis"><b>Best week:</b> %1$s %2$s from %3$s to %4$s</string>
-    <string name="mejor_mes_otras_estadis"><b>Best month:</b> %1$s %2$s in %3$s %4$s</string>
-    <string name="mejor_year_otras_estadis"><b>Best year:</b> %1$s %2$s in %3$s</string>
+    <string name="mejor_semana_otras_estadis"><![CDATA[<b>Best week:</b> %1$s %2$s from %3$s to %4$s]]></string>
+    <string name="mejor_mes_otras_estadis"><![CDATA[<b>Best month:</b> %1$s %2$s in %3$s %4$s]]></string>
+    <string name="mejor_year_otras_estadis"><![CDATA[<b>Best year:</b> %1$s %2$s in %3$s]]></string>
 
     <!-- Idiomas -->
     <string name="mes_ene">Jan</string>
