@@ -34,6 +34,11 @@ import com.pruden.habits.modules.configuracionesModule.metodos.idiomas.dialogoCa
 import com.pruden.habits.modules.configuracionesModule.metodos.licencias.LicensesFragment
 import com.pruden.habits.modules.configuracionesModule.metodos.modifcarFechaInicio.mostrarDatePicker
 import com.pruden.habits.modules.configuracionesModule.viewModel.ConfiguracionesViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 @Suppress("DEPRECATION")
@@ -233,21 +238,27 @@ class ConfiguracionesFragment : Fragment() {
         }
     }
 
-    private fun cambiarTemas(){
+    private fun cambiarTemas() {
         binding.switchTemaOscuro.isChecked = HabitosApplication.temaOscuro
-        binding.switchTemaOscuro.setOnCheckedChangeListener { _, isChecked ->
-            HabitosApplication.temaOscuro = isChecked
 
+        binding.switchTemaOscuro.setOnCheckedChangeListener { _, isChecked ->
+            binding.switchTemaOscuro.visibility = View.GONE
+            binding.progressBarConfiguraciones.visibility = View.VISIBLE
+
+            HabitosApplication.temaOscuro = isChecked
             HabitosApplication.sharedConfiguraciones.edit()
                 .putBoolean("modoOscuro", isChecked)
                 .apply()
 
-            AppCompatDelegate.setDefaultNightMode(
-                if (isChecked) AppCompatDelegate.MODE_NIGHT_YES
-                else AppCompatDelegate.MODE_NIGHT_NO
-            )
+            CoroutineScope(Dispatchers.Main).launch {
+                AppCompatDelegate.setDefaultNightMode(
+                    if (isChecked) AppCompatDelegate.MODE_NIGHT_YES
+                    else AppCompatDelegate.MODE_NIGHT_NO
+                )
+            }
         }
     }
+
 
     private val REQUEST_CODE_PICK_CSV = 1
 
