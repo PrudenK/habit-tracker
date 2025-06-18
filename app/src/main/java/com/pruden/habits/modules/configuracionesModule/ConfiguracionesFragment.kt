@@ -83,6 +83,8 @@ class ConfiguracionesFragment : Fragment() {
         irAGmail()
         verLicencias()
 
+        opcionesDesarrollo()
+
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             if (fechasCambiadas) {
                 parentFragmentManager.setFragmentResult("actualizar_habitos_main", Bundle())
@@ -282,6 +284,13 @@ class ConfiguracionesFragment : Fragment() {
             } else {
                 Toast.makeText(requireContext(), getString(R.string.no_selecciono_archivo), Toast.LENGTH_SHORT).show()
             }
+        }
+    }
+
+    private fun opcionesDesarrollo(){
+        val sw = resources.configuration.smallestScreenWidthDp
+        binding.verDp.setOnClickListener {
+            makeToast("Smallest width = $sw dp", requireContext())
         }
     }
 }
