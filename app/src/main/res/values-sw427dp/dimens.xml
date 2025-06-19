@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Tutorial -->
+    <dimen name="text_tama_titulo_tutorial">30sp</dimen>
+    <dimen name="ancho_imagen_tutorial">250dp</dimen>
+    <dimen name="altura_imagen_tutorial">300dp</dimen>
+    <dimen name="subtitulo_tutorial">16sp</dimen>
+    <dimen name="p_item_tutorial">16dp</dimen>
+    <dimen name="p_fragment_tutorial">8dp</dimen>
+    <dimen name="m_b_viewpager_tutorial">12dp</dimen>
+
+    <!-- Main -->
+    <dimen name="t_boton_cambio_pagina">14sp</dimen>
+    <dimen name="w_boton_pagina">150dp</dimen>
+    <dimen name="t_pagina_habitos">18sp</dimen>
+    <dimen name="t_titulo_toolbar">32sp</dimen>
+    <dimen name="wh_iconos_toolbar">40dp</dimen>
+    <dimen name="t_fecha_mes">22sp</dimen>
+    <dimen name="m_bot_recycler_habitos">60dp</dimen>
+    <dimen name="m_bot_botones_pagina">16dp</dimen>
+    <dimen name="p_texto_pagina">16dp</dimen>
+    <dimen name="p_end_recycler_habitos">16dp</dimen>
+    <dimen name="h_fecha">55dp</dimen>
+    <dimen name="p_contenedor_main">12dp</dimen>
+    <dimen name="w_texto_pagina">90dp</dimen>
+    <dimen name="h_boton_pagina">55dp</dimen>
+    <dimen name="wh_iconos_botones_paginas">24dp</dimen>
+
+    <!-- Item hábitos -->
+    <dimen name="h_item_habito">67dp</dimen>
+    <dimen name="t_nombre_item_habito">19sp</dimen>
+    <dimen name="p_v_nombre_habito">16dp</dimen>
+    <dimen name="w_nombre_habito">147dp</dimen>
+    <dimen name="p_h_nombre_habito">20dp</dimen>
+    <dimen name="p_top_habito">8dp</dimen>
+    <dimen name="p_top_recycler_habitos">4dp</dimen>
+    <dimen name="wh_check_habito">30dp</dimen>
+
+    <!-- Item Fecha  -->
+    <dimen name="t_dia_semana_fecha">17sp</dimen>
+    <dimen name="t_dia_num_fecha">15sp</dimen>
+    <dimen name="wh_item_habito_y_fecha">60dp</dimen>
+    <dimen name="wh_nota_habitos">12dp</dimen>
+    <dimen name="t_valor_habito_numerico">17sp</dimen>
+    <dimen name="t_unidad_habito_numerico">15sp</dimen>
+    <dimen name="p_top_habito_numerico">10dp</dimen>
+    <dimen name="m_notas">4dp</dimen>
+    <dimen name="m_entre_unidad_y_valor">2dp</dimen>
+
+    <!-- Agregar hábito -->
+    <dimen name="titulo_elegir_tipo_habito">26sp</dimen>
+    <dimen name="t_subtitulo_elegir_tipo_habito">20sp</dimen>
+    <dimen name="m_top_titulo_elegir_tipo_habito">12dp</dimen>
+    <dimen name="m_h_titulo_elegir_tipo_habito">12dp</dimen>
+    <dimen name="m_top_layout_aux_tipo">16dp</dimen>
+    <dimen name="p_subtitulos_tipo_habito">6dp</dimen>
+    <dimen name="p_titulo_tipo_habito">8dp</dimen>
+    <dimen name="t_escoger_color_habito">20sp</dimen>
+    <dimen name="m_start_escoger_color_habito">50dp</dimen>
+    <dimen name="wh_imagen_color_picker">50dp</dimen>
+    <dimen name="t_input_comun">18sp</dimen>
+    <dimen name="m_start_imagen_color_picker">30dp</dimen>
+    <dimen name="m_top_imagen_color_picker">12dp</dimen>
+    <dimen name="m_end_spinner_add_habito">10dp</dimen>
+
+    <!-- Fragment etiquetas -->
+    <dimen name="m_h_recycler_etiquetas">12dp</dimen>
+    <dimen name="m_end_item_chip_etiqueta">16dp</dimen>
+    <dimen name="spacing_h_item_chip_etiqueta">8dp</dimen>
+    <dimen name="m_top_r_fecha_etiquetas">12dp</dimen>
+    <dimen name="min_ancho_chip_etiqueta">70dp</dimen>
+    <dimen name="t_item_chip_etiqueta">6dp</dimen>
+    <dimen name="h_recycler_etiquetas">50dp</dimen>
+
+    <!-- Fragment minihabitos -->
+    <dimen name="m_top_titulo_categoria">12dp</dimen>
+    <dimen name="t_titulo_categoria">24sp</dimen>
+    <dimen name="m_top_recycler_mini_habitos">8dp</dimen>
+    <dimen name="m_bot_recycler_mini_habitos">60dp</dimen>
+    <dimen name="m_h_titulo_categoria">16dp</dimen>
+    <dimen name="h_titulo_categoria">40dp</dimen>
+    <dimen name="t_item_mini_habito">16sp</dimen>
+    <dimen name="wh_check_item_habito">40dp</dimen>
+    <dimen name="wh_basura_item_mini_habito">25dp</dimen>
+    <dimen name="m_basura_item_mini_habito">8dp</dimen>
+    <dimen name="m_check_item_habito">12dp</dimen>
+    <dimen name="p_end_nombre_mini_habito">50dp</dimen>
+    <dimen name="p_start_nombre_mini_habito">40dp</dimen>
+    <dimen name="m_h_item_mini_habito">32dp</dimen>
+    <dimen name="m_top_item_mini_habito">8dp</dimen>
+    <dimen name="m_bot_item_mini_habito">8dp</dimen>
+    <dimen name="h_item_mini_habito">50dp</dimen>
+    <dimen name="t_item_agregar_categoria">20sp</dimen>
+    <dimen name="w_item_agregar_categoria">60dp</dimen>
+    <dimen name="h_item_agregar_categoria">45dp</dimen>
+    <dimen name="t_item_agregar_mini_habito">20sp</dimen>
+    <dimen name="h_item_agregar_mini_habito">45dp</dimen>
+    <dimen name="m_end_chip_item_categoria">8dp</dimen>
+
+    <!-- Spinner normal -->
+    <dimen name="w_spinner_drop_down_item">130dp</dimen>
+    <dimen name="t_spinner_drop_down_item">18sp</dimen>
+    <dimen name="p_drop_down_item">8dp</dimen>
+    <dimen name="p_spinner_item">4dp</dimen>
+    <dimen name="h_linechart_estadis">280dp</dimen>
+
+    <!-- Fragment estadísticas -->
+    <dimen name="m_bot_scroll_estadis">50dp</dimen>
+    <dimen name="t_titulo_objetivos_estadis">20sp</dimen>
+    <dimen name="m_horizontal_estadis">40dp</dimen>
+    <dimen name="h_p_bar_estadis">20dp</dimen>
+    <dimen name="t_p_bar_estadis">16sp</dimen>
+    <dimen name="m_top_goals_estadis">8dp</dimen>
+    <dimen name="t_fecha_estadis">18sp</dimen>
+    <dimen name="m_top_fecha_estadis">16dp</dimen>
+    <dimen name="p_bot_fecha_estadis">4dp</dimen>
+    <dimen name="h_barchart_estadis">280dp</dimen>
+    <dimen name="m_top_calendario_objetivos_texto">16dp</dimen>
+    <dimen name="m_top_calendario_estadis">40dp</dimen>
+    <dimen name="t_titulos_estadis">28sp</dimen>
+    <dimen name="t_desde_hasta_rachas_estadis">14sp</dimen>
+    <dimen name="p_top_p_bar_estadis">4dp</dimen>
+    <dimen name="t_item_fecha_calendar_estadis">14sp</dimen>
+    <dimen name="wh_item_fecha_calendar_estadis">40dp</dimen>
+    <dimen name="wh_notas_item_fecha_calendar_estadis">8dp</dimen>
+    <dimen name="p_item_fecha_calendar_estadis">3dp</dimen>
+    <dimen name="m_notas_item_fecha_calendar_estadis">2dp</dimen>
+    <dimen name="t_graficos_estadis">6.5sp</dimen>
+
+    <!-- Fragment configuraciones -->
+    <dimen name="t_titulo_configuraciones">24sp</dimen>
+    <dimen name="m_v_configuraciones">16dp</dimen>
+    <dimen name="h_divider_configuraciones">1dp</dimen>
+    <dimen name="t_link_configuracion">16sp</dimen>
+    <dimen name="p_linea_layout_configuraciones">16dp</dimen>
+    <dimen name="p_bot_entre_textos_configuraciones">8dp</dimen>
+    <dimen name="escala_switch_config">0.9</dimen>
+    <dimen name="m_start_switch_config">12dp</dimen>
+    <dimen name="wh_iconos_normales">24dp</dimen>
+    <dimen name="p_iconos_configuraciones">15dp</dimen>
+
+    <!-- Diálogos -->
+    <dimen name="t_opciones_habito">24sp</dimen>
+    <dimen name="w_boton_opciones">160dp</dimen>
+    <dimen name="t_boton_opciones">18sp</dimen>
+    <dimen name="m_top_boton_opciones">8dp</dimen>
+    <dimen name="p_boton_opciones">4dp</dimen>
+    <dimen name="h_boton_opciones">50dp</dimen>
+
+    <!-- Diálogo modifcar hábito main-->
+    <dimen name="w_dialog_opciones_habitos_main">300dp</dimen>
+    <dimen name="p_dialog_opciones_habitos_main">15dp</dimen>
+    <dimen name="p_bot_titulo_opciones_habito">10dp</dimen>
+
+    <!-- Diálogo registro numérico -->
+    <dimen name="w_input_registro">180dp</dimen>
+    <dimen name="p_dialog_comun">16dp</dimen>
+    <dimen name="m_dialog_registro">16dp</dimen>
+    <dimen name="wh_icono_registro_booleano">60dp</dimen>
+    <dimen name="m_top_icono_registro_booleano">16dp</dimen>
+
+    <!-- Diálogo mover hábito -->
+    <dimen name="t_mover_habito">24sp</dimen>
+    <dimen name="t_subtitulo">14sp</dimen>
+    <dimen name="wh_botones_ajustar_posicion">48dp</dimen>
+    <dimen name="t_posicion_al_mover">28sp</dimen>
+    <dimen name="p_v_posicion">10dp</dimen>
+    <dimen name="m_top_texto_posicion">8dp</dimen>
+    <dimen name="m_icono_mover">16dp</dimen>
+    <dimen name="w_boton_mover_posicion">140dp</dimen>
+    <dimen name="p_v_subtitulo_mover_habito">6dp</dimen>
+    <dimen name="p_bot_posicion_mover_habito">6dp</dimen>
+
+    <!-- Diálogo desarchivar -->
+    <dimen name="w_dialog_desarchivar">360dp</dimen>
+    <dimen name="p_dialog_archivar">16dp</dimen>
+    <dimen name="t_titulo_dialog_archivar">24sp</dimen>
+    <dimen name="p_bot_titulo_archivar">8dp</dimen>
+    <dimen name="t_subtitulo_dialog_archivar">16sp</dimen>
+    <dimen name="p_bot_subtitulo_dialog_archivar">16dp</dimen>
+    <dimen name="t_boton_dialog_archivar">16sp</dimen>
+    <dimen name="w_boton_dialog_archivar">145dp</dimen>
+    <dimen name="m_botones_dialog_archivar">4dp</dimen>
+
+    <!-- Diálogo agregar/modifcar etiqueta -->
+    <dimen name="p_dialog_agregar_etiqueta">16dp</dimen>
+    <dimen name="w_input_nombre_etiqueta">300dp</dimen>
+    <dimen name="t_elegir_color_etiqueta">18sp</dimen>
+    <dimen name="m_top_texto_cambiar_posicion">16dp</dimen>
+    <dimen name="p_v_texto_cambiar_posicion">6dp</dimen>
+    <dimen name="m_top_botones_modificar_etiqueta">20dp</dimen>
+    <dimen name="m_top_imagen_color_picker_etiqueta">20dp</dimen>
+    <dimen name="m_start_imagen_color_picker_etiqueta">20dp</dimen>
+    <dimen name="m_top_seccion_mover_pos_etiqueta">8dp</dimen>
+    <dimen name="m_top_texto_posicion_etiqueta">8dp</dimen>
+
+    <!-- Diálogo borrar elemento -->
+    <dimen name="p_h_titulo_gestion_etiquetas">30dp</dimen>
+    <dimen name="m_top_recycler_gestion_etiquetas">12dp</dimen>
+    <dimen name="m_top_boton_gestion_etiquetas">16dp</dimen>
+
+    <!-- Diálogo info mini hábitos-->
+    <dimen name="t_titulo_info_mini_habitos">26sp</dimen>
+    <dimen name="t_subtitulo_info_mini_habito">16sp</dimen>
+    <dimen name="p_subtitulo_info_mini_habito">8dp</dimen>
+
+    <!-- Diálogos configuraciones -->
+    <dimen name="t_advertencia_cambiar_fecha">24sp</dimen>
+    <dimen name="p_drawable_titulo_adv_cambiar_fechas">12dp</dimen>
+    <dimen name="t_subtitulo_advertencia_cambiar_fecha">16sp</dimen>
+    <dimen name="p_bot_subtitulo_adv_cambiar_fecha">16dp</dimen>
+    <dimen name="p_bot_titulo_advertencia_cambiar_fechas">8dp</dimen>
+    <dimen name="t_boton_advertencia_cambiar_fecha">16sp</dimen>
+
+    <!-- Idiomas -->
+    <dimen name="p_dialog_elegir_idioma">8dp</dimen>
+    <dimen name="t_titulo_escoger_idioma">26sp</dimen>
+    <dimen name="p_h_recycler_idiomas">6dp</dimen>
+    <dimen name="p_item_idioma">4dp</dimen>
+    <dimen name="w_item_idioma">95dp</dimen>
+    <dimen name="t_item_idioma">18sp</dimen>
+    <dimen name="m_start_nombre_item_idioma">32dp</dimen>
+    <dimen name="w_bandera_idioma">60dp</dimen>
+    <dimen name="h_bandera_idioma">40dp</dimen>
+    <dimen name="m_start_bandera_idoma">18dp</dimen>
+    <dimen name="m_h_codigo_idioma">12dp</dimen>
+    <dimen name="w_codigo_idioma">40dp</dimen>
+
+
+    <dimen name="t_cargar_progress_bar">20sp</dimen>
+    <dimen name="t_fecha_editar_habito_estadis">22sp</dimen>
+    <dimen name="p_bot_fecha_editar_habito_estadis">4dp</dimen>
+    <dimen name="m_top_input_editar_habito_estadis">12dp</dimen>
+    <dimen name="t_pb_agregar_habito">28sp</dimen>
+
+    <!-- Cambiar objetivos -->
+    <dimen name="t_titulo_cambiar_objetivo">28sp</dimen>
+    <dimen name="w_t_w_goal_estadis">230dp</dimen>
+    <dimen name="m_top_botones_cambiar_objetivo_estadis">12dp</dimen>
+    <integer name="e_dialog_cambiar_obj_semanal">85</integer>
+    <dimen name="w_input_text_modificar_obj">180dp</dimen>
+    <dimen name="t_num_dias_cambiar_objetivo">32sp</dimen>
+    <dimen name="t_subtitulo_cambiar_objetivo">16sp</dimen>
+    <dimen name="m_comun_cambiar_objetivo">20dp</dimen>
+    <dimen name="m_top_inputs_cambair_obj">6dp</dimen>
+
+    <!-- Otras estadísticas -->
+    <dimen name="t_best_statics">18sp</dimen>
+
+
+</resources>
