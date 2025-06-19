@@ -269,7 +269,7 @@ private fun cargarGraficoDeBarras(
     if (tiempoInterno == "Día" && !habito.tipoNumerico) {
         barChart.axisLeft.apply {
             axisMinimum = 0f  // Valor mínimo
-            axisMaximum = 1f  // Valor máximo
+            axisMaximum = 1.1f  // Valor máximo
             granularity = 1f  // Paso entre valores (solo permite 0 y 1)
             labelCount = 2     // Solo 2 etiquetas (0 y 1)
             textSize = context.resources.getDimension(R.dimen.t_graficos_estadis)

@@ -275,7 +275,7 @@ private fun cargarGraficoDeLineas(
     if (tiempoInterno == "Día" && !habito.tipoNumerico) {
         lineChart.axisLeft.apply {
             axisMinimum = 0f
-            axisMaximum = 1f
+            axisMaximum = 1.1f
             granularity = 1f
             labelCount = 2
             textSize = context.resources.getDimension(R.dimen.t_graficos_estadis)
