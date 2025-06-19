@@ -65,7 +65,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
-        android:layout_margin="12dp"
+        android:layout_margin="@dimen/m_h_titulo_elegir_tipo_habito"
         android:id="@+id/linearLayoutContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
