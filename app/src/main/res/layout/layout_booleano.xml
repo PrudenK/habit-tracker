@@ -36,26 +36,39 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-    <TextView
-        android:id="@+id/titulo_color_habito"
+    <LinearLayout
+        android:id="@+id/linear_layour_color_habito_booleano"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/elige_el_color_del_habito"
-        android:textSize="@dimen/t_escoger_color_habito"
+        android:layout_marginTop="@dimen/m_top_imagen_color_picker_etiqueta"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="@dimen/m_start_escoger_color_habito"
-        app:layout_constraintTop_toTopOf="@id/img_color_habito_booleano"
-        app:layout_constraintBottom_toBottomOf="@id/img_color_habito_booleano"
-        android:textColor="@color/tittle_color"/>
+        app:layout_constraintTop_toBottomOf="@+id/til_nombre_bol">
 
-    <ImageView
-        android:id="@+id/img_color_habito_booleano"
-        android:layout_width="@dimen/wh_imagen_color_picker"
-        android:layout_height="@dimen/wh_imagen_color_picker"
-        app:layout_constraintTop_toBottomOf="@id/til_nombre_bol"
-        app:layout_constraintStart_toEndOf="@id/titulo_color_habito"
-        android:layout_marginTop="@dimen/m_top_imagen_color_picker"
-        android:layout_marginStart="@dimen/m_start_imagen_color_picker"
-        android:background="@drawable/borde_negro"/>
+        <TextView
+            android:id="@+id/titulo_color_habito"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/elige_el_color_del_habito"
+            android:textColor="@color/tittle_color"
+            android:textSize="@dimen/t_escoger_color_habito"
+            app:layout_constraintBottom_toBottomOf="@id/img_color_habito_booleano"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/img_color_habito_booleano" />
+
+        <ImageView
+            android:id="@+id/img_color_habito_booleano"
+            android:layout_width="@dimen/wh_imagen_color_picker"
+            android:layout_height="@dimen/wh_imagen_color_picker"
+            android:layout_marginStart="@dimen/m_start_imagen_color_picker"
+            android:background="@drawable/borde_negro"
+            app:layout_constraintStart_toEndOf="@id/titulo_color_habito"
+            app:layout_constraintTop_toBottomOf="@id/til_nombre_bol"
+
+            />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

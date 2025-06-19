@@ -100,7 +100,7 @@
 
     <!-- Spinner normal -->
     <dimen name="w_spinner_drop_down_item">130dp</dimen>
-    <dimen name="t_spinner_drop_down_item">18sp</dimen>
+    <dimen name="t_spinner_drop_down_item">20sp</dimen>
     <dimen name="p_drop_down_item">8dp</dimen>
     <dimen name="p_spinner_item">4dp</dimen>
     <dimen name="h_linechart_estadis">280dp</dimen>
