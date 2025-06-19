@@ -129,10 +129,10 @@
     <dimen name="h_linechart_estadis">300dp</dimen>
 
     <!-- Fragment configuraciones -->
-    <dimen name="t_titulo_configuraciones">24sp</dimen>
+    <dimen name="t_titulo_configuraciones">28sp</dimen>
     <dimen name="m_v_configuraciones">16dp</dimen>
     <dimen name="h_divider_configuraciones">1dp</dimen>
-    <dimen name="t_link_configuracion">16sp</dimen>
+    <dimen name="t_link_configuracion">18sp</dimen>
     <dimen name="p_linea_layout_configuraciones">16dp</dimen>
     <dimen name="p_bot_entre_textos_configuraciones">8dp</dimen>
     <dimen name="escala_switch_config">0.9</dimen>
@@ -174,13 +174,13 @@
 
     <!-- Diálogo desarchivar -->
     <dimen name="w_dialog_desarchivar">360dp</dimen>
-    <dimen name="p_dialog_archivar">16dp</dimen>
+    <dimen name="p_dialog_archivar">18dp</dimen>
     <dimen name="t_titulo_dialog_archivar">24sp</dimen>
     <dimen name="p_bot_titulo_archivar">8dp</dimen>
     <dimen name="t_subtitulo_dialog_archivar">18sp</dimen>
     <dimen name="p_bot_subtitulo_dialog_archivar">16dp</dimen>
     <dimen name="t_boton_dialog_archivar">18sp</dimen>
-    <dimen name="w_boton_dialog_archivar">145dp</dimen>
+    <dimen name="w_boton_dialog_archivar">150dp</dimen>
     <dimen name="m_botones_dialog_archivar">4dp</dimen>
 
     <!-- Diálogo agregar/modifcar etiqueta -->
@@ -206,26 +206,26 @@
     <dimen name="p_subtitulo_info_mini_habito">8dp</dimen>
 
     <!-- Diálogos configuraciones -->
-    <dimen name="t_advertencia_cambiar_fecha">24sp</dimen>
+    <dimen name="t_advertencia_cambiar_fecha">28sp</dimen>
     <dimen name="p_drawable_titulo_adv_cambiar_fechas">12dp</dimen>
-    <dimen name="t_subtitulo_advertencia_cambiar_fecha">16sp</dimen>
+    <dimen name="t_subtitulo_advertencia_cambiar_fecha">18sp</dimen>
     <dimen name="p_bot_subtitulo_adv_cambiar_fecha">16dp</dimen>
     <dimen name="p_bot_titulo_advertencia_cambiar_fechas">8dp</dimen>
     <dimen name="t_boton_advertencia_cambiar_fecha">16sp</dimen>
 
     <!-- Idiomas -->
     <dimen name="p_dialog_elegir_idioma">8dp</dimen>
-    <dimen name="t_titulo_escoger_idioma">26sp</dimen>
+    <dimen name="t_titulo_escoger_idioma">32sp</dimen>
     <dimen name="p_h_recycler_idiomas">6dp</dimen>
-    <dimen name="p_item_idioma">4dp</dimen>
-    <dimen name="w_item_idioma">95dp</dimen>
-    <dimen name="t_item_idioma">18sp</dimen>
+    <dimen name="p_item_idioma">6dp</dimen>
+    <dimen name="w_item_idioma">115dp</dimen>
+    <dimen name="t_item_idioma">22sp</dimen>
     <dimen name="m_start_nombre_item_idioma">32dp</dimen>
-    <dimen name="w_bandera_idioma">60dp</dimen>
-    <dimen name="h_bandera_idioma">40dp</dimen>
+    <dimen name="w_bandera_idioma">69dp</dimen>
+    <dimen name="h_bandera_idioma">46dp</dimen>
     <dimen name="m_start_bandera_idoma">18dp</dimen>
     <dimen name="m_h_codigo_idioma">12dp</dimen>
-    <dimen name="w_codigo_idioma">40dp</dimen>
+    <dimen name="w_codigo_idioma">50dp</dimen>
 
 
     <dimen name="t_cargar_progress_bar">20sp</dimen>

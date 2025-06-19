@@ -9,6 +9,7 @@ import android.graphics.drawable.ColorDrawable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.DatePicker
 import com.pruden.habits.HabitosApplication.Companion.formatoFecha
