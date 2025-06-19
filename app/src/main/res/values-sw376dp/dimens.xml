@@ -11,24 +11,24 @@
     <dimen name="m_b_viewpager_tutorial">6dp</dimen>
 
     <!-- Main -->
-    <dimen name="t_boton_cambio_pagina">12sp</dimen>
-    <dimen name="w_boton_pagina">135dp</dimen>
-    <dimen name="t_pagina_habitos">16sp</dimen>
+    <dimen name="t_boton_cambio_pagina">13sp</dimen>
+    <dimen name="w_boton_pagina">137dp</dimen>
+    <dimen name="t_pagina_habitos">17sp</dimen>
     <dimen name="t_titulo_toolbar">28sp</dimen>
-    <dimen name="wh_iconos_toolbar">34dp</dimen>
+    <dimen name="wh_iconos_toolbar">35dp</dimen>
     <dimen name="t_fecha_mes">18sp</dimen>
     <dimen name="m_bot_recycler_habitos">48dp</dimen>
     <dimen name="m_bot_botones_pagina">12dp</dimen>
     <dimen name="p_texto_pagina">12dp</dimen>
     <dimen name="p_end_recycler_habitos">16dp</dimen>
-    <dimen name="h_fecha">48dp</dimen>
+    <dimen name="h_fecha">52dp</dimen>
     <dimen name="p_contenedor_main">10dp</dimen>
-    <dimen name="w_texto_pagina">70dp</dimen>
+    <dimen name="w_texto_pagina">80dp</dimen>
     <dimen name="h_boton_pagina">45dp</dimen>
     <dimen name="wh_iconos_botones_paginas">18dp</dimen>
 
     <!-- Item hábitos -->
-    <dimen name="h_item_habito">52dp</dimen>
+    <dimen name="h_item_habito">54dp</dimen>
     <dimen name="t_nombre_item_habito">16sp</dimen>
     <dimen name="p_v_nombre_habito">12dp</dimen>
     <dimen name="w_nombre_habito">130dp</dimen>
@@ -37,16 +37,16 @@
     <dimen name="p_top_recycler_habitos">3dp</dimen>
 
     <!-- Item Fecha y hábitos-->
-    <dimen name="t_dia_semana_fecha">14sp</dimen>
-    <dimen name="t_dia_num_fecha">12sp</dimen>
-    <dimen name="wh_item_habito_y_fecha">52dp</dimen>
-    <dimen name="wh_nota_habitos">8dp</dimen>
-    <dimen name="t_valor_habito_numerico">14sp</dimen>
-    <dimen name="t_unidad_habito_numerico">12sp</dimen>
+    <dimen name="t_dia_semana_fecha">15sp</dimen>
+    <dimen name="t_dia_num_fecha">13sp</dimen>
+    <dimen name="wh_item_habito_y_fecha">57dp</dimen>
+    <dimen name="wh_nota_habitos">10dp</dimen>
+    <dimen name="t_valor_habito_numerico">15sp</dimen>
+    <dimen name="t_unidad_habito_numerico">13sp</dimen>
     <dimen name="p_top_habito_numerico">8dp</dimen>
     <dimen name="m_notas">3dp</dimen>
     <dimen name="m_entre_unidad_y_valor">2dp</dimen>
-    <dimen name="wh_check_habito">22dp</dimen>
+    <dimen name="wh_check_habito">24dp</dimen>
 
     <!-- Agregar hábito -->
     <dimen name="titulo_elegir_tipo_habito">20sp</dimen>
@@ -137,7 +137,7 @@
     <dimen name="p_bot_entre_textos_configuraciones">4dp</dimen>
     <dimen name="escala_switch_config">0.7</dimen>
     <dimen name="m_start_switch_config">2dp</dimen>
-    <dimen name="wh_iconos_normales">20dp</dimen>
+    <dimen name="wh_iconos_normales">22dp</dimen>
     <dimen name="p_iconos_configuraciones">8dp</dimen>
 
     <!-- Diálogos comun-->
