@@ -15,7 +15,7 @@
     <dimen name="w_boton_pagina">140dp</dimen>
     <dimen name="t_pagina_habitos">17sp</dimen>
     <dimen name="t_titulo_toolbar">30sp</dimen>
-    <dimen name="wh_iconos_toolbar">40dp</dimen>
+    <dimen name="wh_iconos_toolbar">37dp</dimen>
     <dimen name="t_fecha_mes">19sp</dimen>
     <dimen name="m_bot_recycler_habitos">60dp</dimen>
     <dimen name="m_bot_botones_pagina">16dp</dimen>
@@ -129,14 +129,14 @@
     <dimen name="t_graficos_estadis">6sp</dimen>
 
     <!-- Fragment configuraciones -->
-    <dimen name="t_titulo_configuraciones">24sp</dimen>
+    <dimen name="t_titulo_configuraciones">22sp</dimen>
     <dimen name="m_v_configuraciones">16dp</dimen>
     <dimen name="h_divider_configuraciones">1dp</dimen>
-    <dimen name="t_link_configuracion">16sp</dimen>
+    <dimen name="t_link_configuracion">15sp</dimen>
     <dimen name="p_linea_layout_configuraciones">16dp</dimen>
     <dimen name="p_bot_entre_textos_configuraciones">8dp</dimen>
-    <dimen name="escala_switch_config">0.9</dimen>
-    <dimen name="m_start_switch_config">12dp</dimen>
+    <dimen name="escala_switch_config">0.75</dimen>
+    <dimen name="m_start_switch_config">8dp</dimen>
     <dimen name="wh_iconos_normales">24dp</dimen>
     <dimen name="p_iconos_configuraciones">15dp</dimen>
 
@@ -215,17 +215,17 @@
 
     <!-- Idiomas -->
     <dimen name="p_dialog_elegir_idioma">8dp</dimen>
-    <dimen name="t_titulo_escoger_idioma">26sp</dimen>
+    <dimen name="t_titulo_escoger_idioma">24sp</dimen>
     <dimen name="p_h_recycler_idiomas">6dp</dimen>
     <dimen name="p_item_idioma">4dp</dimen>
-    <dimen name="w_item_idioma">95dp</dimen>
-    <dimen name="t_item_idioma">18sp</dimen>
+    <dimen name="w_item_idioma">87dp</dimen>
+    <dimen name="t_item_idioma">16.5sp</dimen>
     <dimen name="m_start_nombre_item_idioma">32dp</dimen>
-    <dimen name="w_bandera_idioma">60dp</dimen>
-    <dimen name="h_bandera_idioma">40dp</dimen>
+    <dimen name="w_bandera_idioma">54dp</dimen>
+    <dimen name="h_bandera_idioma">36dp</dimen>
     <dimen name="m_start_bandera_idoma">18dp</dimen>
     <dimen name="m_h_codigo_idioma">12dp</dimen>
-    <dimen name="w_codigo_idioma">40dp</dimen>
+    <dimen name="w_codigo_idioma">35dp</dimen>
 
 
     <dimen name="t_cargar_progress_bar">20sp</dimen>
