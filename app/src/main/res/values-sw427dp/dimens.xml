@@ -11,10 +11,10 @@
     <dimen name="m_b_viewpager_tutorial">12dp</dimen>
 
     <!-- Main -->
-    <dimen name="t_boton_cambio_pagina">14sp</dimen>
-    <dimen name="w_boton_pagina">150dp</dimen>
-    <dimen name="t_pagina_habitos">18sp</dimen>
-    <dimen name="t_titulo_toolbar">32sp</dimen>
+    <dimen name="t_boton_cambio_pagina">15sp</dimen>
+    <dimen name="w_boton_pagina">160dp</dimen>
+    <dimen name="t_pagina_habitos">19sp</dimen>
+    <dimen name="t_titulo_toolbar">34sp</dimen>
     <dimen name="wh_iconos_toolbar">40dp</dimen>
     <dimen name="t_fecha_mes">22sp</dimen>
     <dimen name="m_bot_recycler_habitos">60dp</dimen>
@@ -24,7 +24,7 @@
     <dimen name="h_fecha">58dp</dimen>
     <dimen name="p_contenedor_main">12dp</dimen>
     <dimen name="w_texto_pagina">90dp</dimen>
-    <dimen name="h_boton_pagina">55dp</dimen>
+    <dimen name="h_boton_pagina">56dp</dimen>
     <dimen name="wh_iconos_botones_paginas">24dp</dimen>
 
     <!-- Item hábitos -->
@@ -137,7 +137,7 @@
     <dimen name="p_bot_entre_textos_configuraciones">8dp</dimen>
     <dimen name="escala_switch_config">0.9</dimen>
     <dimen name="m_start_switch_config">12dp</dimen>
-    <dimen name="wh_iconos_normales">24dp</dimen>
+    <dimen name="wh_iconos_normales">26dp</dimen>
     <dimen name="p_iconos_configuraciones">15dp</dimen>
 
     <!-- Diálogos -->
