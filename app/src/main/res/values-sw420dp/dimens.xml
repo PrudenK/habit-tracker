@@ -31,7 +31,7 @@
     <dimen name="h_item_habito">67dp</dimen>
     <dimen name="t_nombre_item_habito">19sp</dimen>
     <dimen name="p_v_nombre_habito">16dp</dimen>
-    <dimen name="w_nombre_habito">147dp</dimen>
+    <dimen name="w_nombre_habito">150dp</dimen>
     <dimen name="p_h_nombre_habito">20dp</dimen>
     <dimen name="p_top_habito">8dp</dimen>
     <dimen name="p_top_recycler_habitos">4dp</dimen>
@@ -40,7 +40,7 @@
     <!-- Item Fecha  -->
     <dimen name="t_dia_semana_fecha">17sp</dimen>
     <dimen name="t_dia_num_fecha">15sp</dimen>
-    <dimen name="wh_item_habito_y_fecha">60dp</dimen>
+    <dimen name="wh_item_habito_y_fecha">62.5dp</dimen>
     <dimen name="wh_nota_habitos">12dp</dimen>
     <dimen name="t_valor_habito_numerico">17sp</dimen>
     <dimen name="t_unidad_habito_numerico">15sp</dimen>
@@ -80,7 +80,7 @@
     <dimen name="m_bot_recycler_mini_habitos">60dp</dimen>
     <dimen name="m_h_titulo_categoria">16dp</dimen>
     <dimen name="h_titulo_categoria">40dp</dimen>
-    <dimen name="t_item_mini_habito">16sp</dimen>
+    <dimen name="t_item_mini_habito">17sp</dimen>
     <dimen name="wh_check_item_habito">40dp</dimen>
     <dimen name="wh_basura_item_mini_habito">25dp</dimen>
     <dimen name="m_basura_item_mini_habito">8dp</dimen>
@@ -137,7 +137,7 @@
     <dimen name="p_bot_entre_textos_configuraciones">8dp</dimen>
     <dimen name="escala_switch_config">0.9</dimen>
     <dimen name="m_start_switch_config">12dp</dimen>
-    <dimen name="wh_iconos_normales">24dp</dimen>
+    <dimen name="wh_iconos_normales">25dp</dimen>
     <dimen name="p_iconos_configuraciones">15dp</dimen>
 
     <!-- Diálogos -->
@@ -186,7 +186,7 @@
     <!-- Diálogo agregar/modifcar etiqueta -->
     <dimen name="p_dialog_agregar_etiqueta">16dp</dimen>
     <dimen name="w_input_nombre_etiqueta">300dp</dimen>
-    <dimen name="t_elegir_color_etiqueta">18sp</dimen>
+    <dimen name="t_elegir_color_etiqueta">19sp</dimen>
     <dimen name="m_top_texto_cambiar_posicion">16dp</dimen>
     <dimen name="p_v_texto_cambiar_posicion">6dp</dimen>
     <dimen name="m_top_botones_modificar_etiqueta">20dp</dimen>
