@@ -2,10 +2,10 @@
 <resources>
 
     <!-- Tutorial -->
-    <dimen name="text_tama_titulo_tutorial">26sp</dimen>
-    <dimen name="ancho_imagen_tutorial">175dp</dimen>
-    <dimen name="altura_imagen_tutorial">225dp</dimen>
-    <dimen name="subtitulo_tutorial">12sp</dimen>
+    <dimen name="text_tama_titulo_tutorial">27sp</dimen>
+    <dimen name="ancho_imagen_tutorial">200dp</dimen>
+    <dimen name="altura_imagen_tutorial">245dp</dimen>
+    <dimen name="subtitulo_tutorial">14sp</dimen>
     <dimen name="p_item_tutorial">8dp</dimen>
     <dimen name="p_fragment_tutorial">8dp</dimen>
     <dimen name="m_b_viewpager_tutorial">6dp</dimen>
