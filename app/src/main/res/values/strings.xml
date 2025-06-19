@@ -160,6 +160,7 @@
     <string name="categoria_nombre_existe">A category with that name already exists</string>
     <string name="categoria_nombre_vacio">The category name cannot be empty</string>
     <string name="seguro_que_quieres_borrar_la_categoria">Are you sure you want to delete the category?</string>
+    <string name="mini_habito_nombre_existe">You already have a mini habit with that name</string>
 
     <!-- Por etiquetas -->
     <string name="por_etiquetas">Filter by tags</string>

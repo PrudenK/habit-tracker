@@ -160,6 +160,7 @@
     <string name="categoria_nombre_existe">Ya hay una categoría con ese nombre</string>
     <string name="categoria_nombre_vacio">El nombre de la categoría no puede estar en blanco</string>
     <string name="seguro_que_quieres_borrar_la_categoria">¿Seguro qué quieres borrar la categoría?</string>
+    <string name="mini_habito_nombre_existe">Ya tienes un mini hábito con ese nombre</string>
 
     <!-- Por etiquetas -->
     <string name="por_etiquetas">Por etiquetas</string>

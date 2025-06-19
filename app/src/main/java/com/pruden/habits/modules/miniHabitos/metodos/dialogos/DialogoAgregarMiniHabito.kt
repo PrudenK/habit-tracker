@@ -53,21 +53,35 @@ fun dialogoAgregarMiniHabito(
     }
 
     btnGuardar.setOnClickListener {
-        val miniHabito = MiniHabitoEntity(
-            categoria = categoria,
-            nombre = editeTextNombre.text.toString(),
-            cumplido = false,
-            posicion = miniHabitosViewModel.miniHabitos.value!!.filter { it.categoria == categoria }.size
-        )
+        val nombreEdit = editeTextNombre.text.toString()
 
-        miniHabitosViewModel.insertarMiniHabito(miniHabito)
+        val miniHabitoRepetido = miniHabitosViewModel.miniHabitos.value!!
+            .find { it.categoria == categoria && it.nombre == nombreEdit}
 
-        miniHabitos.clear()
-        miniHabitos.addAll(miniHabitosViewModel.miniHabitos.value!!)
-        recyclerMiniHabitos.adapter?.notifyDataSetChanged()
+        if(miniHabitoRepetido == null){
+            if(nombreEdit.isNotBlank()){
+                val miniHabito = MiniHabitoEntity(
+                    categoria = categoria,
+                    nombre = nombreEdit,
+                    cumplido = false,
+                    posicion = miniHabitosViewModel.miniHabitos.value!!.filter { it.categoria == categoria }.size
+                )
 
-        makeToast(context.getString(R.string.mini_habito_creado_con_exito, editeTextNombre.text), context)
-        dialogo.dismiss()
+                miniHabitosViewModel.insertarMiniHabito(miniHabito)
+
+                miniHabitos.clear()
+                miniHabitos.addAll(miniHabitosViewModel.miniHabitos.value!!)
+                recyclerMiniHabitos.adapter?.notifyDataSetChanged()
+
+                makeToast(context.getString(R.string.mini_habito_creado_con_exito, editeTextNombre.text), context)
+
+                dialogo.dismiss()
+            }else {
+                makeToast(context.getString(R.string.error_nombre_vacio, editeTextNombre.text), context)
+            }
+        }else{
+            makeToast(context.getString(R.string.mini_habito_nombre_existe, editeTextNombre.text), context)
+        }
     }
 
 
