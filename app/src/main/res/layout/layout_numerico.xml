@@ -15,8 +15,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="@dimen/m_h_titulo_elegir_tipo_habito"
-        app:hintTextColor="@color/hint_color"
+        android:layout_marginHorizontal="@dimen/m_h_titulo_elegir_tipo_habito"
+        android:layout_marginVertical="@dimen/m_v_agregar_habito"        app:hintTextColor="@color/hint_color"
         app:boxStrokeColor="@color/border_color"
         app:boxStrokeWidth="1dp"
         app:boxStrokeWidthFocused="2dp"
@@ -44,7 +44,8 @@
         app:layout_constraintTop_toBottomOf="@id/til_nombre_num"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_margin="@dimen/m_h_titulo_elegir_tipo_habito"
+        android:layout_marginHorizontal="@dimen/m_h_titulo_elegir_tipo_habito"
+        android:layout_marginVertical="@dimen/m_v_agregar_habito"
         app:hintTextColor="@color/hint_color"
         app:boxStrokeColor="@color/border_color"
         app:boxStrokeWidth="1dp"
@@ -65,7 +66,8 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <LinearLayout
-        android:layout_margin="@dimen/m_h_titulo_elegir_tipo_habito"
+        android:layout_marginHorizontal="@dimen/m_h_titulo_elegir_tipo_habito"
+        android:layout_marginVertical="@dimen/m_v_agregar_habito"
         android:id="@+id/linearLayoutContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

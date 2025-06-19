@@ -247,6 +247,7 @@
 
     <!-- Otras estadísticas -->
     <dimen name="t_best_statics">21sp</dimen>
+    <dimen name="m_v_agregar_habito">12dp</dimen>
 
 
 </resources>
