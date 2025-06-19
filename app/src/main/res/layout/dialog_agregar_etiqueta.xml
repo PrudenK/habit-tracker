@@ -69,7 +69,6 @@
                 android:maxLines="1"
                 android:textColor="@color/tittle_color"
                 android:textCursorDrawable="@null"
-                android:fontFamily="@font/encabezados"
                 android:textSize="@dimen/t_input_comun"
                 />
         </com.google.android.material.textfield.TextInputLayout>
@@ -90,7 +89,6 @@
                 android:id="@+id/titulo_color_etiqueta"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/encabezados"
                 android:text="Elige el color de la "
                 android:textColor="@color/tittle_color"
                 android:textSize="@dimen/t_elegir_color_etiqueta"
@@ -130,7 +128,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:fontFamily="@font/encabezados"
                 android:gravity="center"
                 />
 
@@ -151,7 +148,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/dialog_posicion_etiqueta"
-                android:fontFamily="@font/encabezados"
                 />
 
             <ImageView
@@ -217,7 +213,6 @@
             android:layout_marginTop="@dimen/m_top_botones_modificar_etiqueta"
             app:layout_constraintTop_toBottomOf="@id/contenedor_posicion_mod_etiqueta"
             app:layout_constraintStart_toStartOf="parent"
-            android:fontFamily="@font/encabezados"
             android:textColor="@color/tittle_color"
             android:backgroundTint="@color/primary"
             />
@@ -231,7 +226,6 @@
             android:layout_marginTop="@dimen/m_top_botones_modificar_etiqueta"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/contenedor_posicion_mod_etiqueta"
-            android:fontFamily="@font/encabezados"
             android:textColor="@color/tittle_color"
             android:backgroundTint="@color/primary"
             />

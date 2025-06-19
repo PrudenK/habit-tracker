@@ -186,7 +186,7 @@
     <!-- Diálogo agregar/modifcar etiqueta -->
     <dimen name="p_dialog_agregar_etiqueta">16dp</dimen>
     <dimen name="w_input_nombre_etiqueta">300dp</dimen>
-    <dimen name="t_elegir_color_etiqueta">20sp</dimen>
+    <dimen name="t_elegir_color_etiqueta">22sp</dimen>
     <dimen name="m_top_texto_cambiar_posicion">16dp</dimen>
     <dimen name="p_v_texto_cambiar_posicion">6dp</dimen>
     <dimen name="m_top_botones_modificar_etiqueta">20dp</dimen>
