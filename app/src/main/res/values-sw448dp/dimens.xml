@@ -35,17 +35,17 @@
     <dimen name="p_h_nombre_habito">24dp</dimen>
     <dimen name="p_top_habito">8dp</dimen>
     <dimen name="p_top_recycler_habitos">4dp</dimen>
-    <dimen name="wh_check_habito">30dp</dimen>
+    <dimen name="wh_check_habito">32dp</dimen>
 
     <!-- Item Fecha  -->
     <dimen name="t_dia_semana_fecha">19sp</dimen>
     <dimen name="t_dia_num_fecha">17sp</dimen>
     <dimen name="wh_item_habito_y_fecha">70dp</dimen>
     <dimen name="wh_nota_habitos">12dp</dimen>
-    <dimen name="t_valor_habito_numerico">17sp</dimen>
-    <dimen name="t_unidad_habito_numerico">15sp</dimen>
-    <dimen name="p_top_habito_numerico">10dp</dimen>
-    <dimen name="m_notas">4dp</dimen>
+    <dimen name="t_valor_habito_numerico">18sp</dimen>
+    <dimen name="t_unidad_habito_numerico">16sp</dimen>
+    <dimen name="p_top_habito_numerico">8dp</dimen>
+    <dimen name="m_notas">3dp</dimen>
     <dimen name="m_entre_unidad_y_valor">2dp</dimen>
 
     <!-- Agregar hábito -->
