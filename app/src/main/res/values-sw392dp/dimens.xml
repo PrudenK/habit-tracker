@@ -29,7 +29,7 @@
 
     <!-- Item hábitos -->
     <dimen name="h_item_habito">65dp</dimen>
-    <dimen name="t_nombre_item_habito">18dp</dimen>
+    <dimen name="t_nombre_item_habito">18sp</dimen>
     <dimen name="p_v_nombre_habito">16dp</dimen>
     <dimen name="w_nombre_habito">135dp</dimen>
     <dimen name="p_h_nombre_habito">20dp</dimen>
