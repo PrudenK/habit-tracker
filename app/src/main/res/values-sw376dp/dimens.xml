@@ -14,7 +14,7 @@
     <dimen name="t_boton_cambio_pagina">13sp</dimen>
     <dimen name="w_boton_pagina">137dp</dimen>
     <dimen name="t_pagina_habitos">17sp</dimen>
-    <dimen name="t_titulo_toolbar">28sp</dimen>
+    <dimen name="t_titulo_toolbar">29sp</dimen>
     <dimen name="wh_iconos_toolbar">35dp</dimen>
     <dimen name="t_fecha_mes">18sp</dimen>
     <dimen name="m_bot_recycler_habitos">48dp</dimen>
@@ -50,16 +50,16 @@
 
     <!-- Agregar hábito -->
     <dimen name="titulo_elegir_tipo_habito">20sp</dimen>
-    <dimen name="t_subtitulo_elegir_tipo_habito">16sp</dimen>
+    <dimen name="t_subtitulo_elegir_tipo_habito">17sp</dimen>
     <dimen name="m_top_titulo_elegir_tipo_habito">2dp</dimen>
     <dimen name="m_h_titulo_elegir_tipo_habito">16dp</dimen>
     <dimen name="m_top_layout_aux_tipo">6dp</dimen>
     <dimen name="p_subtitulos_tipo_habito">6dp</dimen>
     <dimen name="p_titulo_tipo_habito">8dp</dimen>
-    <dimen name="t_escoger_color_habito">16sp</dimen>
+    <dimen name="t_escoger_color_habito">17sp</dimen>
     <dimen name="m_start_escoger_color_habito">35dp</dimen>
-    <dimen name="wh_imagen_color_picker">40dp</dimen>
-    <dimen name="t_input_comun">12sp</dimen>
+    <dimen name="wh_imagen_color_picker">43dp</dimen>
+    <dimen name="t_input_comun">14sp</dimen>
     <dimen name="m_start_imagen_color_picker">25dp</dimen>
     <dimen name="m_top_imagen_color_picker">12dp</dimen>
     <dimen name="m_end_spinner_add_habito">2dp</dimen>
@@ -70,12 +70,12 @@
     <dimen name="spacing_h_item_chip_etiqueta">4dp</dimen>
     <dimen name="m_top_r_fecha_etiquetas">6dp</dimen>
     <dimen name="min_ancho_chip_etiqueta">50dp</dimen>
-    <dimen name="t_item_chip_etiqueta">6dp</dimen>
+    <dimen name="t_item_chip_etiqueta">5.5dp</dimen>
     <dimen name="h_recycler_etiquetas">40dp</dimen>
 
     <!-- Fragment minihabitos -->
     <dimen name="m_top_titulo_categoria">12dp</dimen>
-    <dimen name="t_titulo_categoria">20sp</dimen>
+    <dimen name="t_titulo_categoria">21sp</dimen>
     <dimen name="m_top_recycler_mini_habitos">6dp</dimen>
     <dimen name="m_bot_recycler_mini_habitos">40dp</dimen>
     <dimen name="m_h_titulo_categoria">16dp</dimen>
@@ -99,8 +99,8 @@
     <dimen name="m_end_chip_item_categoria">6dp</dimen>
 
     <!-- Spinner normal -->
-    <dimen name="w_spinner_drop_down_item">100dp</dimen>
-    <dimen name="t_spinner_drop_down_item">14sp</dimen>
+    <dimen name="w_spinner_drop_down_item">110dp</dimen>
+    <dimen name="t_spinner_drop_down_item">15.5sp</dimen>
     <dimen name="p_drop_down_item">6dp</dimen>
     <dimen name="p_spinner_item">3dp</dimen>
 
@@ -143,10 +143,10 @@
     <!-- Diálogos comun-->
     <dimen name="t_opciones_habito">18sp</dimen>
     <dimen name="w_boton_opciones">120dp</dimen>
-    <dimen name="t_boton_opciones">14sp</dimen>
+    <dimen name="t_boton_opciones">15sp</dimen>
     <dimen name="m_top_boton_opciones">6dp</dimen>
     <dimen name="p_boton_opciones">3dp</dimen>
-    <dimen name="h_boton_opciones">40dp</dimen>
+    <dimen name="h_boton_opciones">43dp</dimen>
 
     <!-- Diálogo modifcar hábito main-->
     <dimen name="w_dialog_opciones_habitos_main">200dp</dimen>
@@ -163,12 +163,12 @@
     <!-- Diálogo mover hábito -->
     <dimen name="t_mover_habito">20sp</dimen>
     <dimen name="t_subtitulo">12sp</dimen>
-    <dimen name="wh_botones_ajustar_posicion">40dp</dimen>
-    <dimen name="t_posicion_al_mover">24sp</dimen>
+    <dimen name="wh_botones_ajustar_posicion">44dp</dimen>
+    <dimen name="t_posicion_al_mover">26sp</dimen>
     <dimen name="p_v_posicion">8dp</dimen>
     <dimen name="m_top_texto_posicion">6dp</dimen>
     <dimen name="m_icono_mover">12dp</dimen>
-    <dimen name="w_boton_mover_posicion">110dp</dimen>
+    <dimen name="w_boton_mover_posicion">117dp</dimen>
     <dimen name="p_v_subtitulo_mover_habito">4dp</dimen>
     <dimen name="p_bot_posicion_mover_habito">4dp</dimen>
 
@@ -184,13 +184,13 @@
     <dimen name="m_botones_dialog_archivar">2dp</dimen>
 
     <!-- Diálogo agregar/modifcar etiqueta/categoria -->
-    <dimen name="p_dialog_agregar_etiqueta">12dp</dimen>
-    <dimen name="w_input_nombre_etiqueta">240dp</dimen>
-    <dimen name="t_elegir_color_etiqueta">14sp</dimen>
+    <dimen name="p_dialog_agregar_etiqueta">14dp</dimen>
+    <dimen name="w_input_nombre_etiqueta">250dp</dimen>
+    <dimen name="t_elegir_color_etiqueta">16sp</dimen>
     <dimen name="m_top_texto_cambiar_posicion">6dp</dimen>
     <dimen name="p_v_texto_cambiar_posicion">4dp</dimen>
-    <dimen name="m_top_botones_modificar_etiqueta">8dp</dimen>
-    <dimen name="m_top_imagen_color_picker_etiqueta">12dp</dimen>
+    <dimen name="m_top_botones_modificar_etiqueta">12dp</dimen>
+    <dimen name="m_top_imagen_color_picker_etiqueta">15dp</dimen>
     <dimen name="m_start_imagen_color_picker_etiqueta">12dp</dimen>
     <dimen name="m_top_seccion_mover_pos_etiqueta">6dp</dimen>
     <dimen name="m_top_texto_posicion_etiqueta">4dp</dimen>
@@ -201,8 +201,8 @@
     <dimen name="m_top_boton_gestion_etiquetas">8dp</dimen>
 
     <!-- Diálogo info mini hábitos-->
-    <dimen name="t_titulo_info_mini_habitos">22sp</dimen>
-    <dimen name="t_subtitulo_info_mini_habito">14sp</dimen>
+    <dimen name="t_titulo_info_mini_habitos">24sp</dimen>
+    <dimen name="t_subtitulo_info_mini_habito">15sp</dimen>
     <dimen name="p_subtitulo_info_mini_habito">6dp</dimen>
 
     <!-- Diálogos configuraciones -->
