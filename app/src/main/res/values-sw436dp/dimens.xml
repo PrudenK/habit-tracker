@@ -31,7 +31,7 @@
     <dimen name="h_item_habito">67dp</dimen>
     <dimen name="t_nombre_item_habito">20sp</dimen>
     <dimen name="p_v_nombre_habito">16dp</dimen>
-    <dimen name="w_nombre_habito">150dp</dimen>
+    <dimen name="w_nombre_habito">152dp</dimen>
     <dimen name="p_h_nombre_habito">20dp</dimen>
     <dimen name="p_top_habito">8dp</dimen>
     <dimen name="p_top_recycler_habitos">4dp</dimen>
@@ -52,7 +52,7 @@
     <dimen name="titulo_elegir_tipo_habito">27sp</dimen>
     <dimen name="t_subtitulo_elegir_tipo_habito">21sp</dimen>
     <dimen name="m_top_titulo_elegir_tipo_habito">12dp</dimen>
-    <dimen name="m_h_titulo_elegir_tipo_habito">14dp</dimen>
+    <dimen name="m_h_titulo_elegir_tipo_habito">16dp</dimen>
     <dimen name="m_top_layout_aux_tipo">16dp</dimen>
     <dimen name="p_subtitulos_tipo_habito">6dp</dimen>
     <dimen name="p_titulo_tipo_habito">8dp</dimen>
@@ -201,8 +201,8 @@
     <dimen name="m_top_boton_gestion_etiquetas">16dp</dimen>
 
     <!-- Diálogo info mini hábitos-->
-    <dimen name="t_titulo_info_mini_habitos">28sp</dimen>
-    <dimen name="t_subtitulo_info_mini_habito">17sp</dimen>
+    <dimen name="t_titulo_info_mini_habitos">29sp</dimen>
+    <dimen name="t_subtitulo_info_mini_habito">18sp</dimen>
     <dimen name="p_subtitulo_info_mini_habito">8dp</dimen>
 
     <!-- Diálogos configuraciones -->
