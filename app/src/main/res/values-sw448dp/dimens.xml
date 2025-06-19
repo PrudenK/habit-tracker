@@ -59,7 +59,7 @@
     <dimen name="t_escoger_color_habito">22sp</dimen>
     <dimen name="m_start_escoger_color_habito">50dp</dimen>
     <dimen name="wh_imagen_color_picker">50dp</dimen>
-    <dimen name="t_input_comun">20sp</dimen>
+    <dimen name="t_input_comun">22sp</dimen>
     <dimen name="m_start_imagen_color_picker">30dp</dimen>
     <dimen name="m_top_imagen_color_picker">12dp</dimen>
     <dimen name="m_end_spinner_add_habito">10dp</dimen>
@@ -154,8 +154,8 @@
     <dimen name="p_bot_titulo_opciones_habito">10dp</dimen>
 
     <!-- Diálogo registro numérico -->
-    <dimen name="w_input_registro">180dp</dimen>
-    <dimen name="p_dialog_comun">16dp</dimen>
+    <dimen name="w_input_registro">200dp</dimen>
+    <dimen name="p_dialog_comun">20dp</dimen>
     <dimen name="m_dialog_registro">16dp</dimen>
     <dimen name="wh_icono_registro_booleano">60dp</dimen>
     <dimen name="m_top_icono_registro_booleano">16dp</dimen>
@@ -229,19 +229,19 @@
 
 
     <dimen name="t_cargar_progress_bar">20sp</dimen>
-    <dimen name="t_fecha_editar_habito_estadis">22sp</dimen>
-    <dimen name="p_bot_fecha_editar_habito_estadis">4dp</dimen>
+    <dimen name="t_fecha_editar_habito_estadis">28sp</dimen>
+    <dimen name="p_bot_fecha_editar_habito_estadis">6dp</dimen>
     <dimen name="m_top_input_editar_habito_estadis">12dp</dimen>
     <dimen name="t_pb_agregar_habito">28sp</dimen>
 
     <!-- Cambiar objetivos -->
-    <dimen name="t_titulo_cambiar_objetivo">28sp</dimen>
+    <dimen name="t_titulo_cambiar_objetivo">32sp</dimen>
     <dimen name="w_t_w_goal_estadis">230dp</dimen>
     <dimen name="m_top_botones_cambiar_objetivo_estadis">12dp</dimen>
     <integer name="e_dialog_cambiar_obj_semanal">85</integer>
-    <dimen name="w_input_text_modificar_obj">180dp</dimen>
-    <dimen name="t_num_dias_cambiar_objetivo">32sp</dimen>
-    <dimen name="t_subtitulo_cambiar_objetivo">16sp</dimen>
+    <dimen name="w_input_text_modificar_obj">200dp</dimen>
+    <dimen name="t_num_dias_cambiar_objetivo">33sp</dimen>
+    <dimen name="t_subtitulo_cambiar_objetivo">20sp</dimen>
     <dimen name="m_comun_cambiar_objetivo">20dp</dimen>
     <dimen name="m_top_inputs_cambair_obj">6dp</dimen>
 
