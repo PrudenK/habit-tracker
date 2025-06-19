@@ -137,7 +137,7 @@
     <dimen name="p_bot_entre_textos_configuraciones">8dp</dimen>
     <dimen name="escala_switch_config">0.9</dimen>
     <dimen name="m_start_switch_config">12dp</dimen>
-    <dimen name="wh_iconos_normales">24dp</dimen>
+    <dimen name="wh_iconos_normales">28dp</dimen>
     <dimen name="p_iconos_configuraciones">15dp</dimen>
 
     <!-- Diálogos -->

@@ -271,6 +271,7 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
 
             val tamaTexto = when{
                 sw <= 360 -> 14
+                sw >= 448 -> 19
                // sw >= 411 -> 18
                 else -> 16
             }
