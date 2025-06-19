@@ -75,12 +75,12 @@
 
     <!-- Fragment minihabitos -->
     <dimen name="m_top_titulo_categoria">12dp</dimen>
-    <dimen name="t_titulo_categoria">24sp</dimen>
+    <dimen name="t_titulo_categoria">27sp</dimen>
     <dimen name="m_top_recycler_mini_habitos">8dp</dimen>
     <dimen name="m_bot_recycler_mini_habitos">60dp</dimen>
     <dimen name="m_h_titulo_categoria">16dp</dimen>
     <dimen name="h_titulo_categoria">40dp</dimen>
-    <dimen name="t_item_mini_habito">16sp</dimen>
+    <dimen name="t_item_mini_habito">17sp</dimen>
     <dimen name="wh_check_item_habito">40dp</dimen>
     <dimen name="wh_basura_item_mini_habito">25dp</dimen>
     <dimen name="m_basura_item_mini_habito">8dp</dimen>
@@ -94,7 +94,7 @@
     <dimen name="t_item_agregar_categoria">20sp</dimen>
     <dimen name="w_item_agregar_categoria">60dp</dimen>
     <dimen name="h_item_agregar_categoria">45dp</dimen>
-    <dimen name="t_item_agregar_mini_habito">20sp</dimen>
+    <dimen name="t_item_agregar_mini_habito">21sp</dimen>
     <dimen name="h_item_agregar_mini_habito">45dp</dimen>
     <dimen name="m_end_chip_item_categoria">8dp</dimen>
 
@@ -177,7 +177,7 @@
     <dimen name="p_dialog_archivar">16dp</dimen>
     <dimen name="t_titulo_dialog_archivar">24sp</dimen>
     <dimen name="p_bot_titulo_archivar">8dp</dimen>
-    <dimen name="t_subtitulo_dialog_archivar">16sp</dimen>
+    <dimen name="t_subtitulo_dialog_archivar">17sp</dimen>
     <dimen name="p_bot_subtitulo_dialog_archivar">16dp</dimen>
     <dimen name="t_boton_dialog_archivar">17sp</dimen>
     <dimen name="w_boton_dialog_archivar">147dp</dimen>
@@ -186,7 +186,7 @@
     <!-- Diálogo agregar/modifcar etiqueta -->
     <dimen name="p_dialog_agregar_etiqueta">16dp</dimen>
     <dimen name="w_input_nombre_etiqueta">300dp</dimen>
-    <dimen name="t_elegir_color_etiqueta">18sp</dimen>
+    <dimen name="t_elegir_color_etiqueta">20sp</dimen>
     <dimen name="m_top_texto_cambiar_posicion">16dp</dimen>
     <dimen name="p_v_texto_cambiar_posicion">6dp</dimen>
     <dimen name="m_top_botones_modificar_etiqueta">20dp</dimen>
@@ -201,8 +201,8 @@
     <dimen name="m_top_boton_gestion_etiquetas">16dp</dimen>
 
     <!-- Diálogo info mini hábitos-->
-    <dimen name="t_titulo_info_mini_habitos">26sp</dimen>
-    <dimen name="t_subtitulo_info_mini_habito">16sp</dimen>
+    <dimen name="t_titulo_info_mini_habitos">28sp</dimen>
+    <dimen name="t_subtitulo_info_mini_habito">17sp</dimen>
     <dimen name="p_subtitulo_info_mini_habito">8dp</dimen>
 
     <!-- Diálogos configuraciones -->

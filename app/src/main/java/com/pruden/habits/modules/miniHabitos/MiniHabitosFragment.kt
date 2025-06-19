@@ -153,7 +153,7 @@ class MiniHabitosFragment : Fragment(), OnClickMiniHabito, OnClickCategoria {
         recyclerCategorias = binding.recyclerChipsCategorias
         recyclerCategorias.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
-        val adapter = CategoriaAdapter(this, categorias,{
+        val adapter = CategoriaAdapter(this, resources, categorias,{
             dialogoAgregarCategoria(requireContext(), recyclerCategorias, categorias, resources, miniHabitosViewModel)
         }) { categoria ->
             if (!bloqueoCambioCategoria) {

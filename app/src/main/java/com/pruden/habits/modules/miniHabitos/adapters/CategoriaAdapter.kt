@@ -1,6 +1,7 @@
 package com.pruden.habits.modules.miniHabitos.adapters
 
 import android.content.res.ColorStateList
+import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.Typeface
 import android.view.LayoutInflater
@@ -16,6 +17,7 @@ import com.pruden.habits.common.clases.entities.CategoriaEntity
 
 class CategoriaAdapter(
     private val listener: OnClickCategoria,
+    private val resources: Resources,
     private val categorias: MutableList<CategoriaEntity>,
     private val accionAgregarCategoria: () -> Unit,
     private val onChipSelected: (CategoriaEntity?) -> Unit
@@ -70,6 +72,9 @@ class CategoriaAdapter(
                     if (isColorDark(categoria.color)) R.color.lightGrayColor else R.color.black
                 )
             )
+
+            chip.textSize = resources.getDimension(R.dimen.t_item_chip_etiqueta)
+
 
             val font = ResourcesCompat.getFont(itemView.context, R.font.subtitulos)
             chip.typeface = Typeface.create(font, Typeface.BOLD)
