@@ -38,6 +38,7 @@
             android:text="@string/ajusta_los_objetivos_para_los_dias_de_cada_mes"
             android:paddingBottom="@dimen/p_bot_fecha_editar_habito_estadis"
             android:layout_marginHorizontal="@dimen/m_comun_cambiar_objetivo"
+            android:gravity="center"
             />
 
 

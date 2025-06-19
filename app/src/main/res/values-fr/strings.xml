@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Habits</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- Fragment Configurations -->
+    <string name="configuraciones">Paramètres</string>
+    <string name="tema">Thème</string>
+    <string name="tema_oscuro">Thème sombre</string>
+    <string name="idioma">Langue</string>
+    <string name="idioma_actual">Langue actuelle : Français</string>
+    <string name="fechas">Dates</string>
+    <string name="fecha_inicio_de_los_registros">Date de début des enregistrements : %1$s</string>
+    <string name="formato_actual_de_las_fechas">Format actuel des dates : aaaa‑mm‑jj</string>
+    <string name="exportar_datos_a_csv">Exporter des données au format CSV</string>
+    <string name="exportar_todos_los_datos_a_csv">Exporter toutes les données au format CSV</string>
+    <string name="exportar_solo_los_habitos">Exporter uniquement les habitudes</string>
+    <string name="exportar_solo_los_registros">Exporter uniquement les enregistrements</string>
+    <string name="exportar_solo_las_etiquetas">Exporter uniquement les étiquettes</string>
+    <string name="copia_de_seguridad">Sauvegarde</string>
+    <string name="exportar_copia_de_seguridad">Exporter la sauvegarde (réimportable)</string>
+    <string name="importar_copia_de_seguridad">Importer une sauvegarde</string>
+    <string name="borrar_datos">Supprimer les données</string>
+    <string name="borrar_todos_los_datos">Supprimer toutes les données</string>
+    <string name="borrar_todos_los_habitos">Supprimer toutes les habitudes</string>
+    <string name="borrar_solo_los_registros">Supprimer uniquement les enregistrements</string>
+    <string name="borrar_todas_las_etiquetas">Supprimer toutes les étiquettes</string>
+    <string name="elige_tu_idioma">Choisis ta langue</string>
+    <string name="github">HabitTracker sur Github</string>
+    <string name="creador">Contacter le créateur</string>
+    <string name="ir_al_gmail">Contacter via Gmail</string>
+    <string name="enviar_correo_con">Envoyer un e‑mail avec…</string>
+    <string name="no_app_correo">Aucune application e‑mail trouvée</string>
+    <string name="licencias">Licences</string>
+    <string name="ver_licencias">Voir les licences de l’application</string>
+
+    <!-- Dialogues configuration -->
+    <string name="titulo_borrar_todos_datos">Supprimer toutes les données!</string>
+    <string name="mensaje_borrar_todos_datos">Tu es sur le point de supprimer TOUTES TES DONNÉES…</string>
+    <string name="titulo_borrar_todos_habitos">Supprimer toutes les habitudes!</string>
+    <string name="mensaje_borrar_todos_habitos">Tu es sur le point de supprimer toutes tes habitudes…</string>
+    <string name="titulo_borrar_todos_registros">Supprimer tous les enregistrements!</string>
+    <string name="mensaje_borrar_todos_registros">Tu es sur le point de supprimer tous les enregistrements…</string>
+    <string name="titulo_borrar_todas_etiquetas">Supprimer toutes les étiquettes!</string>
+    <string name="mensaje_borrar_todas_etiquetas">Tu es sur le point de supprimer toutes les étiquettes…</string>
+
+    <!-- Fichiers générés (configuration) -->
+    <string name="error_fecha_mayor_hoy">La date du fichier est postérieure à aujourd’hui: invalide</string>
+    <string name="error_fecha_minima_soportada">Erreur à l’import: la date minimale supportée est %1$s</string>
+    <string name="archivo_csv_importado">Fichier CSV importé avec succès</string>
+    <string name="error_importar_sin_habitos">Erreur à l’import: aucune habitude</string>
+    <string name="error_importar_sin_fechas">Erreur à l’import: aucune date</string>
+    <string name="error_leer_archivo">Erreur à la lecture du fichier</string>
+    <string name="fichero_habitos_csv">Habitudes_%1$s.csv</string>
+    <string name="habitos_data_csv">Données_Habitudes_%1$s.csv</string>
+    <string name="habitos_data_package">Données_Habitudes_%1$s</string>
+    <string name="copia_de_seguridad_csv">Sauvegarde_%1$s.csv</string>
+    <string name="etiquetas_csv">Étiquettes_%1$s.csv</string>
+    <string name="datos_habit_tracker_zip">Données_Habit_Tracker_%1$s.zip</string>
+    <string name="datos_habitos_zip">Données_Habitudes_%1$s.zip</string>
+    <string name="cargando_tus_registros">Chargement de tes enregistrements !</string>
+    <string name="no_habr_vuelta_atras">Il n’y aura pas de retour en arrière…</string>
+    <string name="estoy_seguro">Je suis sûr</string>
+    <string name="advertencia">Avertissement</string>
+    <string name="texto_advertencia_cambio_de_fechas">Si tu changes la date de début, les enregistrements seront ajustés : si la nouvelle date est plus ancienne, des enregistrements seront ajoutés, sinon des enregistrements plus anciens seront supprimés.</string>
+    <string name="cambiar_fecha">Changer la date</string>
+    <string name="no_selecciono_archivo">Aucun fichier sélectionné</string>
+
+    <!-- Main -->
+    <string name="anterior">Précédent</string>
+    <string name="pagina_num">Pag.%1$s</string>
+    <string name="siguiente">Suivant</string>
+
+    <!-- Dialogues Main -->
+    <string name="que_quieres_hacer">Que veux-tu faire ?</string>
+    <string name="mover">Déplacer</string>
+    <string name="archivar">Archiver</string>
+    <string name="editar">Modifier</string>
+    <string name="borrar">Supprimer</string>
+    <string name="mover_habito">Déplacer l’habitude</string>
+    <string name="modifica_la_posicion_de_tu_habito">Position de l’habitude</string>
+    <string name="descartar">Annuler</string>
+    <string name="aplicar">Appliquer</string>
+    <string name="confirmacion">Confirmation</string>
+    <string name="estas_seguro_de_que_quieres_borrar_este_habito">Es-tu sûr de vouloir supprimer cette habitude ?</string>
+    <string name="cancelar">Annuler</string>
+    <string name="agregar_etiqueta">Ajouter une étiquette</string>
+    <string name="informacion">Information</string>
+    <string name="guardar_configuraciones">Enregistrer les paramètres</string>
+    <string name="notas">Notes</string>
+    <string name="cantidad">Quantité</string>
+
+    <!-- Archivés -->
+    <string name="archivados">Archives</string>
+    <string name="desarchivar">Désarchiver</string>
+    <string name="quieres_desarchivar_este_habito">Veux-tu désarchiver cette habitude ?</string>
+    <string name="desarchivar_todos">Désarchiver tout</string>
+    <string name="quieres_desarchivar_todos_los_habito">Veux-tu désarchiver toutes les habitudes ?</string>
+    <string name="desarchivar_habito">Désarchiver l’habitude</string>
+
+    <!-- Ajouter habitude -->
+    <string name="agregando_tu_habito">Ajout de ton habitude…!</string>
+    <string name="agregar_habito">Ajouter une habitude</string>
+    <string name="elige_el_tipo_de_habito">Choisissez le type d’habitude</string>
+    <string name="numerico">Numérique</string>
+    <string name="booleano">Oui ou non</string>
+    <string name="editar_habito">Modifier l’habitude</string>
+    <string name="error_palabra_fecha_reservada">Le mot « fecha » est réservé</string>
+    <string name="error_habito_duplicado">Tu as déjà une habitude avec ce nom</string>
+    <string name="exito_habito_editado">Habitude modifiée avec succès</string>
+    <string name="exito_habito_anadido">Habitude ajoutée avec succès</string>
+    <string name="error_campos_vacios">Les champs ne peuvent pas être vides</string>
+    <string name="error_color_invalido">Le blanc n’est pas une couleur valide</string>
+    <string name="spinner_mas_de">Plus de</string>
+    <string name="spinner_igual_a">Égal à</string>
+    <string name="spinner_menos_de">Moins de</string>
+    <string name="escribe_el_nombre_de_tu_habito">Écris le nom de ton habitude.</string>
+    <string name="elige_el_color_del_habito">Choisis la couleur de l’habitude</string>
+    <string name="unidades_agregra_habito">Unités (ex. pages, km, heures…)</string>
+    <string name="tu_objetivo_diario">Ton objectif quotidien</string>
+    <string name="error">Erreur</string>
+
+    <!-- Statistiques -->
+    <string name="objetivo_semanal">Objectif hebdomadaire</string>
+    <string name="objetivo_mensual">Objectif mensuel</string>
+    <string name="objetivo_anual">Objectif annuel</string>
+    <string name="calendario_de_objetivos">Calendrier des objectifs</string>
+    <string name="racha_actual">Série en cours</string>
+    <string name="mejores_rachas">Meilleures séries</string>
+    <string name="periodo_dia">Jour</string>
+    <string name="periodo_semana">Semaine</string>
+    <string name="periodo_mes">Mois</string>
+    <string name="periodo_ano">Année</string>
+    <string name="sin_datos">Sans données</string>
+    <string name="unidades_checks">Complétés</string>
+    <string name="no_tienes_una_racha_activa">Tu n’as pas de série active</string>
+    <string name="desde_hasta_ayer">De %1$s à hier</string>
+    <string name="desde_hasta_hoy">De %1$s à aujourd’hui</string>
+    <string name="desde_hasta">De %1$s à %2$s</string>
+
+    <!-- Mini habitudes -->
+    <string name="mini_habitos">Mini habitudes</string>
+    <string name="selecciona_una_categoria">Sélectionne une catégorie</string>
+    <string name="borrar_mini_habito">Es‑tu sûr(e) de vouloir supprimer cette mini‑habitude ?</string>
+    <string name="borrar_categoria_mini_habito">Es‑tu sûr(e) de vouloir supprimer cette catégorie ?</string>
+    <string name="nombre_de_la_categoria">Nom de la catégorie</string>
+    <string name="ponle_un_color_a_la_categoria">Couleur de la catégorie</string>
+    <string name="guardar">Enregistrer</string>
+    <string name="error_nombre_vacio">Le nom ne peut pas être vide</string>
+    <string name="error_nombre_existente">Ce nom de catégorie existe déjà</string>
+    <string name="error_palabra_reservada">Le mot « fecha » est réservé</string>
+    <string name="nombre_del_mini_habito">Nom de la mini‑habitude</string>
+    <string name="mini_habito_creado_con_exito">Mini‑habitude : %1$s créée avec succès</string>
+    <string name="categoria_creada_exito">Catégorie : %1$s créée avec succès</string>
+    <string name="mini_habitos_info_titulo">Mini‑habitudes ?</string>
+    <string name="mini_habitos_info">Les mini‑habitudes se réinitialisent chaque jour ; elles permettent de marquer des tâches moins importantes et peuvent être regroupées par catégories.</string>
+    <string name="modifica_la_posicion_de_tu_categoria">Position de la catégorie</string>
+    <string name="modifica_la_posicion_de_tu_etiqueta">Position de l’étiquette</string>
+    <string name="categoria_nombre_existe">Une catégorie avec ce nom existe déjà</string>
+    <string name="categoria_nombre_vacio">Le nom de la catégorie ne peut pas être vide</string>
+    <string name="seguro_que_quieres_borrar_la_categoria">Veux‑tu vraiment supprimer la catégorie ?</string>
+    <string name="mini_habito_nombre_existe">Tu as déjà une mini‑habitude avec ce nom</string>
+
+    <!-- Par étiquettes -->
+    <string name="por_etiquetas">Par étiquettes</string>
+    <string name="etiqueta_nombre_existe">Ce nom d’étiquette existe déjà</string>
+    <string name="etiqueta_nombre_vacio">Le nom ne peut pas être vide</string>
+    <string name="etiqueta_nombre_reservado">Le mot « fecha » est réservé</string>
+    <string name="etiqueta_color_blanco">Le blanc n’est pas une couleur</string>
+    <string name="etiqueta_creada_exito">Étiquette : %1$s créée avec succès</string>
+    <string name="buen_intento_pero_no">Bonne tentative, mais non !</string>
+    <string name="modificando_etiqueta">Modification de l’étiquette…!</string>
+    <string name="nombre_de_la_etiqueta">Nom de l’étiquette</string>
+    <string name="seguro_que_quieres_borrar_la_etiqueta">Veux‑tu vraiment supprimer cette étiquette ?</string>
+    <string name="elige_el_color_de_la_etiqueta">Choisis la couleur de l’étiquette</string>
+    <string name="gestionar_etiquetas">Gérer les étiquettes</string>
+    <string name="todos">Tous</string>
+    <string name="no_habits_no_tags">S’il n’y a pas d’habitudes, il n’y a pas d’étiquettes</string>
+
+    <!-- Tutoriel -->
+    <string name="ver_tutorial">Voir le tutoriel</string>
+    <string name="paso_1_tutorial">Maintiens appuyé sur une habitude pour la modifier</string>
+    <string name="paso_1_tutorial_titulo">Modifier une habitude</string>
+    <string name="paso_2_tutorial">Maintiens les habitudes Si/Non pour leur ajouter des notes.</string>
+    <string name="paso_2_tutorial_titulo">Ajouter des notes</string>
+    <string name="paso_3_tutorial_titulo">Voir les statistiques</string>
+    <string name="paso_3_tutorial">Clique sur le nom de l’habitude pour voir ses statistiques.</string>
+
+    <!-- Dialogues objectifs statistiques -->
+    <string name="objetivo_vacio">Tu ne peux pas laisser l’objectif vide</string>
+    <string name="objetivo_menor_o_igual_cero">L’objectif doit être supérieur à 0</string>
+    <string name="objetivo_maximo_semanal">Pour ce type d’habitude, l’objectif hebdomadaire maximal est de 7</string>
+    <string name="objetivo_vacio_mensual">Tu ne peux pas laisser les objectifs mensuels vides</string>
+    <string name="objetivo_menor_o_igual_cero_mensual">Les objectifs doivent être supérieurs à 0</string>
+    <string name="objetivo_maximo_mensual">Pour ce type d’habitude, l’objectif mensuel maximal est %1$d</string>
+    <string name="objetivo_vacio_anual">Tu ne peux pas laisser les objectifs annuels vides</string>
+    <string name="objetivo_menor_o_igual_cero_anual">Les objectifs doivent être supérieurs à 0</string>
+    <string name="objetivo_maximo_anual">Pour ce type d’habitude, l’objectif annuel maximal est %1$d</string>
+    <string name="ajusta_los_objetivos_para_los_dias_de_cada_mes">Ajuste les objectifs aux jours de chaque mois.</string>
+    <string name="ajusta_los_objetivos_para_los_a_os_normales_y_bisiestos">Ajuste les objectifs pour les années normales et bissextiles.</string>
+
+    <!-- Autres statistiques-->
+    <string name="mejores_estadisticas">Meilleures statistiques</string>
+    <string name="mejor_dia_otras_estadis"><![CDATA[<b>Meilleur jour :</b> %1$s %2$s le %3$s]]></string>
+    <string name="mejor_semana_otras_estadis"><![CDATA[<b>Meilleure semaine :</b> %1$s %2$s du %3$s au %4$s]]></string>
+    <string name="mejor_mes_otras_estadis"><![CDATA[<b>Meilleur mois :</b> %1$s %2$s en %3$s %4$s]]></string>
+    <string name="mejor_year_otras_estadis"><![CDATA[<b>Meilleure année :</b> %1$s %2$s en %3$s]]></string>
+
+    <!-- Mois -->
+    <string name="mes_ene">janv.</string>
+    <string name="mes_feb">févr.</string>
+    <string name="mes_mar">mars</string>
+    <string name="mes_abr">avr.</string>
+    <string name="mes_may">mai</string>
+    <string name="mes_jun">juin</string>
+    <string name="mes_jul">juil.</string>
+    <string name="mes_ago">août</string>
+    <string name="mes_sept">sept.</string>
+    <string name="mes_oct">oct.</string>
+    <string name="mes_nov">nov.</string>
+    <string name="mes_dic">déc.</string>
+
+
+</resources>
