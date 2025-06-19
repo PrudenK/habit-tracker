@@ -59,7 +59,7 @@
     <dimen name="t_escoger_color_habito">20sp</dimen>
     <dimen name="m_start_escoger_color_habito">50dp</dimen>
     <dimen name="wh_imagen_color_picker">50dp</dimen>
-    <dimen name="t_input_comun">18sp</dimen>
+    <dimen name="t_input_comun">20sp</dimen>
     <dimen name="m_start_imagen_color_picker">30dp</dimen>
     <dimen name="m_top_imagen_color_picker">12dp</dimen>
     <dimen name="m_end_spinner_add_habito">10dp</dimen>
@@ -100,32 +100,32 @@
 
     <!-- Spinner normal -->
     <dimen name="w_spinner_drop_down_item">130dp</dimen>
-    <dimen name="t_spinner_drop_down_item">18sp</dimen>
+    <dimen name="t_spinner_drop_down_item">19sp</dimen>
     <dimen name="p_drop_down_item">8dp</dimen>
     <dimen name="p_spinner_item">4dp</dimen>
     <dimen name="h_linechart_estadis">280dp</dimen>
 
     <!-- Fragment estadísticas -->
     <dimen name="m_bot_scroll_estadis">50dp</dimen>
-    <dimen name="t_titulo_objetivos_estadis">20sp</dimen>
+    <dimen name="t_titulo_objetivos_estadis">22sp</dimen>
     <dimen name="m_horizontal_estadis">40dp</dimen>
-    <dimen name="h_p_bar_estadis">20dp</dimen>
-    <dimen name="t_p_bar_estadis">16sp</dimen>
+    <dimen name="h_p_bar_estadis">21dp</dimen>
+    <dimen name="t_p_bar_estadis">17sp</dimen>
     <dimen name="m_top_goals_estadis">8dp</dimen>
-    <dimen name="t_fecha_estadis">18sp</dimen>
+    <dimen name="t_fecha_estadis">20sp</dimen>
     <dimen name="m_top_fecha_estadis">16dp</dimen>
     <dimen name="p_bot_fecha_estadis">4dp</dimen>
     <dimen name="h_barchart_estadis">280dp</dimen>
     <dimen name="m_top_calendario_objetivos_texto">16dp</dimen>
     <dimen name="m_top_calendario_estadis">40dp</dimen>
-    <dimen name="t_titulos_estadis">28sp</dimen>
-    <dimen name="t_desde_hasta_rachas_estadis">14sp</dimen>
+    <dimen name="t_titulos_estadis">31sp</dimen>
+    <dimen name="t_desde_hasta_rachas_estadis">16sp</dimen>
     <dimen name="p_top_p_bar_estadis">4dp</dimen>
-    <dimen name="t_item_fecha_calendar_estadis">14sp</dimen>
-    <dimen name="wh_item_fecha_calendar_estadis">40dp</dimen>
-    <dimen name="wh_notas_item_fecha_calendar_estadis">8dp</dimen>
-    <dimen name="p_item_fecha_calendar_estadis">3dp</dimen>
-    <dimen name="m_notas_item_fecha_calendar_estadis">2dp</dimen>
+    <dimen name="t_item_fecha_calendar_estadis">16sp</dimen>
+    <dimen name="wh_item_fecha_calendar_estadis">46dp</dimen>
+    <dimen name="wh_notas_item_fecha_calendar_estadis">10dp</dimen>
+    <dimen name="p_item_fecha_calendar_estadis">3.25dp</dimen>
+    <dimen name="m_notas_item_fecha_calendar_estadis">2.5dp</dimen>
     <dimen name="t_graficos_estadis">6.5sp</dimen>
 
     <!-- Fragment configuraciones -->
@@ -146,7 +146,7 @@
     <dimen name="t_boton_opciones">18sp</dimen>
     <dimen name="m_top_boton_opciones">8dp</dimen>
     <dimen name="p_boton_opciones">4dp</dimen>
-    <dimen name="h_boton_opciones">50dp</dimen>
+    <dimen name="h_boton_opciones">52dp</dimen>
 
     <!-- Diálogo modifcar hábito main-->
     <dimen name="w_dialog_opciones_habitos_main">300dp</dimen>
@@ -179,8 +179,8 @@
     <dimen name="p_bot_titulo_archivar">8dp</dimen>
     <dimen name="t_subtitulo_dialog_archivar">16sp</dimen>
     <dimen name="p_bot_subtitulo_dialog_archivar">16dp</dimen>
-    <dimen name="t_boton_dialog_archivar">16sp</dimen>
-    <dimen name="w_boton_dialog_archivar">145dp</dimen>
+    <dimen name="t_boton_dialog_archivar">17sp</dimen>
+    <dimen name="w_boton_dialog_archivar">147dp</dimen>
     <dimen name="m_botones_dialog_archivar">4dp</dimen>
 
     <!-- Diálogo agregar/modifcar etiqueta -->
@@ -229,24 +229,24 @@
 
 
     <dimen name="t_cargar_progress_bar">20sp</dimen>
-    <dimen name="t_fecha_editar_habito_estadis">22sp</dimen>
+    <dimen name="t_fecha_editar_habito_estadis">25sp</dimen>
     <dimen name="p_bot_fecha_editar_habito_estadis">4dp</dimen>
     <dimen name="m_top_input_editar_habito_estadis">12dp</dimen>
     <dimen name="t_pb_agregar_habito">28sp</dimen>
 
     <!-- Cambiar objetivos -->
-    <dimen name="t_titulo_cambiar_objetivo">28sp</dimen>
+    <dimen name="t_titulo_cambiar_objetivo">30sp</dimen>
     <dimen name="w_t_w_goal_estadis">230dp</dimen>
     <dimen name="m_top_botones_cambiar_objetivo_estadis">12dp</dimen>
     <integer name="e_dialog_cambiar_obj_semanal">85</integer>
-    <dimen name="w_input_text_modificar_obj">180dp</dimen>
+    <dimen name="w_input_text_modificar_obj">190dp</dimen>
     <dimen name="t_num_dias_cambiar_objetivo">32sp</dimen>
-    <dimen name="t_subtitulo_cambiar_objetivo">16sp</dimen>
+    <dimen name="t_subtitulo_cambiar_objetivo">18sp</dimen>
     <dimen name="m_comun_cambiar_objetivo">20dp</dimen>
     <dimen name="m_top_inputs_cambair_obj">6dp</dimen>
 
     <!-- Otras estadísticas -->
-    <dimen name="t_best_statics">18sp</dimen>
+    <dimen name="t_best_statics">19sp</dimen>
 
 
 </resources>
