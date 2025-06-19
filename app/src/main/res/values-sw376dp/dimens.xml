@@ -119,11 +119,11 @@
     <dimen name="m_top_calendario_objetivos_texto">12dp</dimen>
     <dimen name="m_top_calendario_estadis">40dp</dimen>
     <dimen name="t_titulos_estadis">24sp</dimen>
-    <dimen name="t_desde_hasta_rachas_estadis">12sp</dimen>
+    <dimen name="t_desde_hasta_rachas_estadis">13sp</dimen>
     <dimen name="p_top_p_bar_estadis">4dp</dimen>
-    <dimen name="t_item_fecha_calendar_estadis">12sp</dimen>
-    <dimen name="wh_item_fecha_calendar_estadis">32dp</dimen>
-    <dimen name="wh_notas_item_fecha_calendar_estadis">6dp</dimen>
+    <dimen name="t_item_fecha_calendar_estadis">13sp</dimen>
+    <dimen name="wh_item_fecha_calendar_estadis">36dp</dimen>
+    <dimen name="wh_notas_item_fecha_calendar_estadis">7dp</dimen>
     <dimen name="p_item_fecha_calendar_estadis">2dp</dimen>
     <dimen name="m_notas_item_fecha_calendar_estadis">2dp</dimen>
     <dimen name="t_graficos_estadis">6sp</dimen>
@@ -246,7 +246,7 @@
     <dimen name="m_top_inputs_cambair_obj">6dp</dimen>
 
     <!-- Otras estadísticas -->
-    <dimen name="t_best_statics">15sp</dimen>
+    <dimen name="t_best_statics">16sp</dimen>
     <dimen name="m_v_agregar_habito">12dp</dimen>
 
 
