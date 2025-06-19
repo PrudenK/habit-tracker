@@ -74,28 +74,39 @@
                 />
         </com.google.android.material.textfield.TextInputLayout>
 
-        <TextView
-            android:id="@+id/titulo_color_etiqueta"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linear_layour_color_etiqueta"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Elige el color de la categoría"
-            android:textSize="@dimen/t_elegir_color_etiqueta"
-            android:textColor="@color/tittle_color"
-            app:layout_constraintTop_toTopOf="@id/img_color_etiqueta_num"
-            app:layout_constraintBottom_toBottomOf="@id/img_color_etiqueta_num"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:fontFamily="@font/encabezados"
-            />
-
-        <ImageView
-            android:id="@+id/img_color_etiqueta_num"
-            android:layout_width="@dimen/wh_imagen_color_picker"
-            android:layout_height="@dimen/wh_imagen_color_picker"
-            android:layout_marginTop="@dimen/m_top_imagen_color_picker_etiqueta"
-            android:layout_marginStart="@dimen/m_start_imagen_color_picker_etiqueta"
-            android:background="@drawable/borde_negro"
             app:layout_constraintTop_toBottomOf="@id/til_nombre_etiqueta"
-            app:layout_constraintStart_toEndOf="@id/titulo_color_etiqueta"/>
+            android:layout_marginTop="@dimen/m_top_imagen_color_picker_etiqueta"
+            >
+
+            <TextView
+                android:id="@+id/titulo_color_etiqueta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/encabezados"
+                android:text="Elige el color de la "
+                android:textColor="@color/tittle_color"
+                android:textSize="@dimen/t_elegir_color_etiqueta"
+                app:layout_constraintStart_toStartOf="parent"
+                />
+
+            <ImageView
+                android:id="@+id/img_color_etiqueta_num"
+                android:layout_width="@dimen/wh_imagen_color_picker"
+                android:layout_height="@dimen/wh_imagen_color_picker"
+                android:layout_marginStart="@dimen/m_start_imagen_color_picker_etiqueta"
+                android:background="@drawable/borde_negro" />
+
+        </LinearLayout>
+
+
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -105,7 +116,7 @@
             android:layout_marginTop="@dimen/m_top_seccion_mover_pos_etiqueta"
 
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/img_color_etiqueta_num">
+            app:layout_constraintTop_toBottomOf="@id/linear_layour_color_etiqueta">
 
             <TextView
                 android:id="@+id/dialog_posicion_etiqueta"
@@ -120,6 +131,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:fontFamily="@font/encabezados"
+                android:gravity="center"
                 />
 
 

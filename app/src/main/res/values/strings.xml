@@ -79,7 +79,7 @@
     <string name="editar">Edit</string>
     <string name="borrar">Delete</string>
     <string name="mover_habito">Move habit</string>
-    <string name="modifica_la_posicion_de_tu_habito">Change your habit\'s position</string>
+    <string name="modifica_la_posicion_de_tu_habito">Habit position</string>
     <string name="descartar">Discard</string>
     <string name="aplicar">Apply</string>
     <string name="confirmacion">Confirmation</string>
@@ -145,7 +145,7 @@
     <string name="borrar_mini_habito">Are you sure you want to delete this mini habit?</string>
     <string name="borrar_categoria_mini_habito">Are you sure you want to delete this category?</string>
     <string name="nombre_de_la_categoria">Category name</string>
-    <string name="ponle_un_color_a_la_categoria">Choose the category color</string>
+    <string name="ponle_un_color_a_la_categoria">Category color</string>
     <string name="guardar">Save</string>
     <string name="error_nombre_vacio">Name cannot be empty</string>
     <string name="error_nombre_existente">This category name already exists</string>
@@ -155,8 +155,8 @@
     <string name="categoria_creada_exito">Category: %1$s created successfully</string>
     <string name="mini_habitos_info_titulo">Mini habits?</string>
     <string name="mini_habitos_info">Mini habits reset every day and are used to track tasks that aren\'t very important. You can group them into categories.</string>
-    <string name="modifica_la_posicion_de_tu_categoria">Edit the position of your category</string>
-    <string name="modifica_la_posicion_de_tu_etiqueta">Edit the position of your tag</string>
+    <string name="modifica_la_posicion_de_tu_categoria">Category position</string>
+    <string name="modifica_la_posicion_de_tu_etiqueta">Tag position</string>
     <string name="categoria_nombre_existe">A category with that name already exists</string>
     <string name="categoria_nombre_vacio">The category name cannot be empty</string>
     <string name="seguro_que_quieres_borrar_la_categoria">Are you sure you want to delete the category?</string>
@@ -172,7 +172,7 @@
     <string name="modificando_etiqueta">Modifying tag…!</string>
     <string name="nombre_de_la_etiqueta">Tag name</string>
     <string name="seguro_que_quieres_borrar_la_etiqueta">Are you sure you want to delete the tag?</string>
-    <string name="elige_el_color_de_la_etiqueta">Choose the tag color</string>
+    <string name="elige_el_color_de_la_etiqueta">Tag color</string>
     <string name="gestionar_etiquetas">Manage tags</string>
     <string name="todos">All</string>
     <string name="no_habits_no_tags">No tags without habits</string>

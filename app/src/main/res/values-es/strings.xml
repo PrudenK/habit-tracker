@@ -79,7 +79,7 @@
     <string name="editar">Editar</string>
     <string name="borrar">Borrar</string>
     <string name="mover_habito">Mover hábito</string>
-    <string name="modifica_la_posicion_de_tu_habito">Modifica la posición de tu hábito</string>
+    <string name="modifica_la_posicion_de_tu_habito">Posición del hábito</string>
     <string name="descartar">Descartar</string>
     <string name="aplicar">Aplicar</string>
     <string name="confirmacion">Confirmación</string>
@@ -145,7 +145,7 @@
     <string name="borrar_mini_habito">¿Estás seguro de qué quieres borrar este mini hábito?</string>
     <string name="borrar_categoria_mini_habito">¿Estás seguro de qué quieres borrar esta categoría?</string>
     <string name="nombre_de_la_categoria">Nombre de la categoría</string>
-    <string name="ponle_un_color_a_la_categoria">Ponle un color a la categoría</string>
+    <string name="ponle_un_color_a_la_categoria">Color de la categoría</string>
     <string name="guardar">Guardar</string>
     <string name="error_nombre_vacio">No puedes dejar el nombre en blanco</string>
     <string name="error_nombre_existente">Ese nombre de categoría ya existe</string>
@@ -155,8 +155,8 @@
     <string name="categoria_creada_exito">Categoría: %1$s creada con éxito</string>
     <string name="mini_habitos_info_titulo">¿Mini hábitos?</string>
     <string name="mini_habitos_info">Los mini hábitos se reinician cada día y son para marcar tareas que no son tan importantes, estos los puedes agrupar en categorías.</string>
-    <string name="modifica_la_posicion_de_tu_categoria">Modifica la posición de tu categoría</string>
-    <string name="modifica_la_posicion_de_tu_etiqueta">Modifica la posición de tu etiqueta</string>
+    <string name="modifica_la_posicion_de_tu_categoria">Posición de la categoría</string>
+    <string name="modifica_la_posicion_de_tu_etiqueta">Posición de la etiqueta</string>
     <string name="categoria_nombre_existe">Ya hay una categoría con ese nombre</string>
     <string name="categoria_nombre_vacio">El nombre de la categoría no puede estar en blanco</string>
     <string name="seguro_que_quieres_borrar_la_categoria">¿Seguro qué quieres borrar la categoría?</string>
@@ -172,7 +172,7 @@
     <string name="modificando_etiqueta">¡Modificando etiqueta…!</string>
     <string name="nombre_de_la_etiqueta">Nombre de la etiqueta</string>
     <string name="seguro_que_quieres_borrar_la_etiqueta">¿Seguro qué quieres borrar la etiqueta?</string>
-    <string name="elige_el_color_de_la_etiqueta">Elige el color de la etiqueta</string>
+    <string name="elige_el_color_de_la_etiqueta">Color de la etiqueta</string>
     <string name="gestionar_etiquetas">Gestionar etiquetas</string>
     <string name="todos">Todos</string>
     <string name="no_habits_no_tags">Si no hay hábitos no hay etiquetas</string>

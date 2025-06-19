@@ -59,7 +59,7 @@
     <dimen name="t_escoger_color_habito">20sp</dimen>
     <dimen name="m_start_escoger_color_habito">50dp</dimen>
     <dimen name="wh_imagen_color_picker">50dp</dimen>
-    <dimen name="t_input_comun">18sp</dimen>
+    <dimen name="t_input_comun">20sp</dimen>
     <dimen name="m_start_imagen_color_picker">30dp</dimen>
     <dimen name="m_top_imagen_color_picker">12dp</dimen>
     <dimen name="m_end_spinner_add_habito">10dp</dimen>
@@ -186,13 +186,13 @@
     <!-- Diálogo agregar/modifcar etiqueta -->
     <dimen name="p_dialog_agregar_etiqueta">16dp</dimen>
     <dimen name="w_input_nombre_etiqueta">300dp</dimen>
-    <dimen name="t_elegir_color_etiqueta">18sp</dimen>
+    <dimen name="t_elegir_color_etiqueta">20sp</dimen>
     <dimen name="m_top_texto_cambiar_posicion">16dp</dimen>
     <dimen name="p_v_texto_cambiar_posicion">6dp</dimen>
     <dimen name="m_top_botones_modificar_etiqueta">20dp</dimen>
     <dimen name="m_top_imagen_color_picker_etiqueta">20dp</dimen>
     <dimen name="m_start_imagen_color_picker_etiqueta">20dp</dimen>
-    <dimen name="m_top_seccion_mover_pos_etiqueta">10dp</dimen>
+    <dimen name="m_top_seccion_mover_pos_etiqueta">8dp</dimen>
     <dimen name="m_top_texto_posicion_etiqueta">8dp</dimen>
 
     <!-- Diálogo borrar elemento -->
