@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Habits</string>
+    <string name="hello_blank_fragment">Ciao fragment vuoto</string>
+
+    <!-- Fragmento Configurazioni -->
+    <string name="configuraciones">Impostazioni</string>
+    <string name="tema">Tema</string>
+    <string name="tema_oscuro">Tema scuro</string>
+    <string name="idioma">Lingua</string>
+    <string name="idioma_actual">Lingua attuale: Italiano</string>
+    <string name="fechas">Date</string>
+    <string name="fecha_inicio_de_los_registros">Data di inizio dei registri: %1$s</string>
+    <string name="formato_actual_de_las_fechas">Formato attuale delle date: yyyy-mm-dd</string>
+    <string name="exportar_datos_a_csv">Esporta dati in CSV</string>
+    <string name="exportar_todos_los_datos_a_csv">Esporta tutti i dati in CSV</string>
+    <string name="exportar_solo_los_habitos">Esporta solo le abitudini</string>
+    <string name="exportar_solo_los_registros">Esporta solo i registri</string>
+    <string name="exportar_solo_las_etiquetas">Esporta solo le etichette</string>
+    <string name="copia_de_seguridad">Backup</string>
+    <string name="exportar_copia_de_seguridad">Esporta backup (riutilizzabile)</string>
+    <string name="importar_copia_de_seguridad">Importa backup</string>
+    <string name="borrar_datos">Elimina dati</string>
+    <string name="borrar_todos_los_datos">Elimina tutti i dati</string>
+    <string name="borrar_todos_los_habitos">Elimina tutte le abitudini</string>
+    <string name="borrar_solo_los_registros">Elimina solo i registri</string>
+    <string name="borrar_todas_las_etiquetas">Elimina tutte le etichette</string>
+    <string name="elige_tu_idioma">Scegli la tua lingua</string>
+    <string name="github">HabitTracker su Github</string>
+    <string name="creador">Contatta il creatore</string>
+    <string name="ir_al_gmail">Contatta via Gmail</string>
+    <string name="enviar_correo_con">Invia email con…</string>
+    <string name="no_app_correo">Nessuna app email trovata</string>
+    <string name="licencias">Licenze</string>
+    <string name="ver_licencias">Vedi licenze dell\'app</string>
+
+    <!-- Diálogos configuración -->
+    <string name="titulo_borrar_todos_datos">Eliminare tutti i dati!</string>
+    <string name="mensaje_borrar_todos_datos">Stai per eliminare TUTTI I TUOI DATI…</string>
+    <string name="titulo_borrar_todos_habitos">Eliminare tutte le abitudini!</string>
+    <string name="mensaje_borrar_todos_habitos">Stai per eliminare tutte le tue abitudini…</string>
+    <string name="titulo_borrar_todos_registros">Eliminare tutti i registri!</string>
+    <string name="mensaje_borrar_todos_registros">Stai per eliminare tutti i registri…</string>
+    <string name="titulo_borrar_todas_etiquetas">Eliminare tutte le etichette!</string>
+    <string name="mensaje_borrar_todas_etiquetas">Stai per eliminare tutte le tue etichette…</string>
+
+    <!-- Archivos -->
+    <string name="error_fecha_mayor_hoy">La data del file è successiva a oggi, non valida</string>
+    <string name="error_fecha_minima_soportada">Errore: la data minima supportata è %1$s</string>
+    <string name="archivo_csv_importado">File CSV importato correttamente</string>
+    <string name="error_importar_sin_habitos">Errore: nessuna abitudine</string>
+    <string name="error_importar_sin_fechas">Errore: nessuna data</string>
+    <string name="error_leer_archivo">Errore nella lettura del file</string>
+    <string name="fichero_habitos_csv">Abitudini_%1$s.csv</string>
+    <string name="habitos_data_csv">Dati_Abitudini_%1$s.csv</string>
+    <string name="habitos_data_package">Dati_Abitudini_%1$s</string>
+    <string name="copia_de_seguridad_csv">Backup_%1$s.csv</string>
+    <string name="etiquetas_csv">Etichette_%1$s.csv</string>
+    <string name="datos_habit_tracker_zip">Dati_Habit_Tracker_%1$s.zip</string>
+    <string name="datos_habitos_zip">Dati_Abitudini_%1$s.zip</string>
+    <string name="cargando_tus_registros">Caricamento dei tuoi registri…</string>
+    <string name="no_habr_vuelta_atras">Non ci sarà ritorno…</string>
+    <string name="estoy_seguro">Sono sicuro</string>
+    <string name="advertencia">Avviso</string>
+    <string name="texto_advertencia_cambio_de_fechas">Modificando la data di inizio si modificheranno le abitudini. Se la nuova data è precedente, verranno aggiunti registri. Se è successiva, verranno eliminati.</string>
+    <string name="cambiar_fecha">Cambia data</string>
+    <string name="no_selecciono_archivo">Nessun file selezionato</string>
+
+    <!-- Main -->
+    <string name="anterior">Indietro</string>
+    <string name="pagina_num">Pag. %1$s</string>
+    <string name="siguiente">Avanti</string>
+
+    <!-- Diálogos Main -->
+    <string name="que_quieres_hacer">Cosa vuoi fare?</string>
+    <string name="mover">Sposta</string>
+    <string name="archivar">Archivia</string>
+    <string name="editar">Modifica</string>
+    <string name="borrar">Elimina</string>
+    <string name="mover_habito">Sposta abitudine</string>
+    <string name="modifica_la_posicion_de_tu_habito">Posizione dell\'abitudine</string>
+    <string name="descartar">Annulla</string>
+    <string name="aplicar">Applica</string>
+    <string name="confirmacion">Conferma</string>
+    <string name="estas_seguro_de_que_quieres_borrar_este_habito">Sei sicuro di voler eliminare questa abitudine?</string>
+    <string name="cancelar">Annulla</string>
+    <string name="agregar_etiqueta">Aggiungi etichetta</string>
+    <string name="informacion">Informazione</string>
+    <string name="guardar_configuraciones">Salva impostazioni</string>
+    <string name="notas">Note</string>
+    <string name="cantidad">Quantità</string>
+
+    <!-- Archivados -->
+    <string name="archivados">Archiviati</string>
+    <string name="desarchivar">Ripristina</string>
+    <string name="quieres_desarchivar_este_habito">Vuoi ripristinare questa abitudine?</string>
+    <string name="desarchivar_todos">Ripristina tutti</string>
+    <string name="quieres_desarchivar_todos_los_habito">Vuoi ripristinare tutte le abitudini?</string>
+    <string name="desarchivar_habito">Ripristina abitudine</string>
+
+    <!-- Agregar hábito -->
+    <string name="agregando_tu_habito">Aggiungendo la tua abitudine…</string>
+    <string name="agregar_habito">Aggiungi abitudine</string>
+    <string name="elige_el_tipo_de_habito">Scegli il tipo di abitudine</string>
+    <string name="numerico">Numerico</string>
+    <string name="booleano">Sì o No</string>
+    <string name="editar_habito">Modifica abitudine</string>
+    <string name="error_palabra_fecha_reservada">La parola "data" è riservata</string>
+    <string name="error_habito_duplicado">Hai già un\'abitudine con quel nome</string>
+    <string name="exito_habito_editado">Abitudine modificata con successo</string>
+    <string name="exito_habito_anadido">Abitudine aggiunta con successo</string>
+    <string name="error_campos_vacios">Nessun campo può essere vuoto</string>
+    <string name="error_color_invalido">Il bianco non è un colore valido</string>
+    <string name="spinner_mas_de">Più di</string>
+    <string name="spinner_igual_a">Uguale a</string>
+    <string name="spinner_menos_de">Meno di</string>
+    <string name="escribe_el_nombre_de_tu_habito">Scrivi il nome della tua abitudine</string>
+    <string name="elige_el_color_del_habito">Scegli il colore dell\'abitudine</string>
+    <string name="unidades_agregra_habito">Unità (es. pagine, km, ore…)</string>
+    <string name="tu_objetivo_diario">Il tuo obiettivo giornaliero</string>
+    <string name="error">Errore</string>
+
+    <!-- Estadísticas -->
+    <string name="objetivo_semanal">Obiettivo settimanale</string>
+    <string name="objetivo_mensual">Obiettivo mensile</string>
+    <string name="objetivo_anual">Obiettivo annuale</string>
+    <string name="calendario_de_objetivos">Calendario obiettivi</string>
+    <string name="racha_actual">Serie attuale</string>
+    <string name="mejores_rachas">Migliori serie</string>
+    <string name="periodo_dia">Giorno</string>
+    <string name="periodo_semana">Settimana</string>
+    <string name="periodo_mes">Mese</string>
+    <string name="periodo_ano">Anno</string>
+    <string name="sin_datos">Nessun dato</string>
+    <string name="unidades_checks">Completati</string>
+    <string name="no_tienes_una_racha_activa">Nessuna serie attiva</string>
+    <string name="desde_hasta_ayer">Da %1$s a ieri</string>
+    <string name="desde_hasta_hoy">Da %1$s a oggi</string>
+    <string name="desde_hasta">Da %1$s a %2$s</string>
+
+    <!-- Mini hábitos -->
+    <string name="mini_habitos">Mini abitudini</string>
+    <string name="selecciona_una_categoria">Seleziona una categoria</string>
+    <string name="borrar_mini_habito">Vuoi davvero eliminare questa mini abitudine?</string>
+    <string name="borrar_categoria_mini_habito">Vuoi davvero eliminare questa categoria?</string>
+    <string name="nombre_de_la_categoria">Nome della categoria</string>
+    <string name="ponle_un_color_a_la_categoria">Colore della categoria</string>
+    <string name="guardar">Salva</string>
+    <string name="error_nombre_vacio">Il nome non può essere vuoto</string>
+    <string name="error_nombre_existente">Questo nome di categoria esiste già</string>
+    <string name="error_palabra_reservada">La parola "data" è riservata</string>
+    <string name="nombre_del_mini_habito">Nome della mini abitudine</string>
+    <string name="mini_habito_creado_con_exito">Mini abitudine: %1$s creata con successo</string>
+    <string name="categoria_creada_exito">Categoria: %1$s creata con successo</string>
+    <string name="mini_habitos_info_titulo">Mini abitudini?</string>
+    <string name="mini_habitos_info">Le mini abitudini si azzerano ogni giorno e servono per tenere traccia di piccole attività, organizzabili in categorie.</string>
+    <string name="modifica_la_posicion_de_tu_categoria">Posizione della categoria</string>
+    <string name="modifica_la_posicion_de_tu_etiqueta">Posizione dell\'etichetta</string>
+    <string name="categoria_nombre_existe">Esiste già una categoria con questo nome</string>
+    <string name="categoria_nombre_vacio">Il nome della categoria non può essere vuoto</string>
+    <string name="seguro_que_quieres_borrar_la_categoria">Sei sicuro di voler eliminare la categoria?</string>
+    <string name="mini_habito_nombre_existe">Hai già una mini abitudine con questo nome</string>
+
+    <!-- Por etiquetas -->
+    <string name="por_etiquetas">Per etichette</string>
+    <string name="etiqueta_nombre_existe">Questo nome di etichetta esiste già</string>
+    <string name="etiqueta_nombre_vacio">Il nome non può essere vuoto</string>
+    <string name="etiqueta_nombre_reservado">La parola "data" è riservata</string>
+    <string name="etiqueta_color_blanco">Il bianco non è un colore</string>
+    <string name="etiqueta_creada_exito">Etichetta: %1$s creata con successo</string>
+    <string name="buen_intento_pero_no">Bel tentativo, ma no!</string>
+    <string name="modificando_etiqueta">Modificando etichetta…</string>
+    <string name="nombre_de_la_etiqueta">Nome dell\'etichetta</string>
+    <string name="seguro_que_quieres_borrar_la_etiqueta">Sei sicuro di voler eliminare l\'etichetta?</string>
+    <string name="elige_el_color_de_la_etiqueta">Scegli il colore dell\'etichetta</string>
+    <string name="gestionar_etiquetas">Gestisci etichette</string>
+    <string name="todos">Tutti</string>
+    <string name="no_habits_no_tags">Senza abitudini, niente etichette</string>
+
+    <!-- Tutorial -->
+    <string name="ver_tutorial">Vedi tutorial</string>
+    <string name="paso_1_tutorial">Tieni premuto su un\'abitudine per modificarla</string>
+    <string name="paso_1_tutorial_titulo">Modifica un\'abitudine</string>
+    <string name="paso_2_tutorial">Tieni premuto su abitudini Sì/No per aggiungere note</string>
+    <string name="paso_2_tutorial_titulo">Aggiungi note</string>
+    <string name="paso_3_tutorial_titulo">Vedi statistiche</string>
+    <string name="paso_3_tutorial">Clicca sul nome dell\'abitudine per vedere le statistiche</string>
+
+    <!-- Diálogos objetivos estadísticas -->
+    <string name="objetivo_vacio">L\'obiettivo non può essere vuoto</string>
+    <string name="objetivo_menor_o_igual_cero">L\'obiettivo deve essere maggiore di 0</string>
+    <string name="objetivo_maximo_semanal">Obiettivo massimo settimanale: 7</string>
+    <string name="objetivo_vacio_mensual">Gli obiettivi non possono essere vuoti</string>
+    <string name="objetivo_menor_o_igual_cero_mensual">Devono essere maggiori di 0</string>
+    <string name="objetivo_maximo_mensual">Obiettivo massimo mensile: %1$d</string>
+    <string name="objetivo_vacio_anual">Gli obiettivi non possono essere vuoti</string>
+    <string name="objetivo_menor_o_igual_cero_anual">Devono essere maggiori di 0</string>
+    <string name="objetivo_maximo_anual">Obiettivo massimo annuale: %1$d</string>
+    <string name="ajusta_los_objetivos_para_los_dias_de_cada_mes">Adatta gli obiettivi ai giorni di ogni mese</string>
+    <string name="ajusta_los_objetivos_para_los_a_os_normales_y_bisiestos">Adatta per anni normali e bisestili</string>
+
+    <!-- Otras estadísticas-->
+    <string name="mejores_estadisticas">Migliori statistiche</string>
+    <string name="mejor_dia_otras_estadis"><![CDATA[<b>Miglior giorno:</b> %1$s %2$s il %3$s]]></string>
+    <string name="mejor_semana_otras_estadis"><![CDATA[<b>Miglior settimana:</b> %1$s %2$s dal %3$s al %4$s]]></string>
+    <string name="mejor_mes_otras_estadis"><![CDATA[<b>Miglior mese:</b> %1$s %2$s in %3$s %4$s]]></string>
+    <string name="mejor_year_otras_estadis"><![CDATA[<b>Miglior anno:</b> %1$s %2$s in %3$s]]></string>
+
+    <!-- Idiomas -->
+    <string name="mes_ene">gen</string>
+    <string name="mes_feb">feb</string>
+    <string name="mes_mar">mar</string>
+    <string name="mes_abr">apr</string>
+    <string name="mes_may">mag</string>
+    <string name="mes_jun">giu</string>
+    <string name="mes_jul">lug</string>
+    <string name="mes_ago">ago</string>
+    <string name="mes_sept">set</string>
+    <string name="mes_oct">ott</string>
+    <string name="mes_nov">nov</string>
+    <string name="mes_dic">dic</string>
+
+</resources>
