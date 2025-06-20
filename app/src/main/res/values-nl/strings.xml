@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Habits</string>
+    <string name="hello_blank_fragment">Hallo leeg fragment</string>
+
+    <!-- Fragment Configuraties -->
+    <string name="configuraciones">Instellingen</string>
+    <string name="tema">Thema</string>
+    <string name="tema_oscuro">Donker thema</string>
+    <string name="idioma">Taal</string>
+    <string name="idioma_actual">Huidige taal: Spaans</string>
+    <string name="fechas">Datums</string>
+    <string name="fecha_inicio_de_los_registros">Startdatum van de gegevens: %1$s</string>
+    <string name="formato_actual_de_las_fechas">Huidig datumformaat: yyyy‑mm‑dd</string>
+    <string name="exportar_datos_a_csv">Gegevens exporteren naar CSV</string>
+    <string name="exportar_todos_los_datos_a_csv">Alles exporteren naar CSV</string>
+    <string name="exportar_solo_los_habitos">Alleen gewoontes exporteren</string>
+    <string name="exportar_solo_los_registros">Alleen gegevens exporteren</string>
+    <string name="exportar_solo_las_etiquetas">Alleen tags exporteren</string>
+    <string name="copia_de_seguridad">Back‑up</string>
+    <string name="exportar_copia_de_seguridad">Back‑up exporteren (herbruikbaar)</string>
+    <string name="importar_copia_de_seguridad">Back‑up importeren</string>
+    <string name="borrar_datos">Gegevens verwijderen</string>
+    <string name="borrar_todos_los_datos">Alles verwijderen</string>
+    <string name="borrar_todos_los_habitos">Alle gewoontes verwijderen</string>
+    <string name="borrar_solo_los_registros">Alleen gegevens verwijderen</string>
+    <string name="borrar_todas_las_etiquetas">Alle tags verwijderen</string>
+    <string name="elige_tu_idioma">Kies je taal</string>
+    <string name="github">HabitTracker op GitHub</string>
+    <string name="creador">Contact de maker</string>
+    <string name="ir_al_gmail">Contact via Gmail</string>
+    <string name="enviar_correo_con">E-mail verzenden met…</string>
+    <string name="no_app_correo">Geen e‑mail‑app gevonden</string>
+    <string name="licencias">Licenties</string>
+    <string name="ver_licencias">Bekijk licenties van de app</string>
+
+    <!-- Dialoog Instellingen -->
+    <string name="titulo_borrar_todos_datos">Alles verwijderen!</string>
+    <string name="mensaje_borrar_todos_datos">Je staat op het punt AL JE GEGEVENS te verwijderen…</string>
+    <string name="titulo_borrar_todos_habitos">Alle gewoontes verwijderen!</string>
+    <string name="mensaje_borrar_todos_habitos">Je staat op het punt al je gewoontes te verwijderen…</string>
+    <string name="titulo_borrar_todos_registros">Alle gegevens verwijderen!</string>
+    <string name="mensaje_borrar_todos_registros">Je staat op het punt alle gegevens te verwijderen…</string>
+    <string name="titulo_borrar_todas_etiquetas">Alle tags verwijderen!</string>
+    <string name="mensaje_borrar_todas_etiquetas">Je staat op het punt alle tags te verwijderen…</string>
+
+    <!-- Bestandsfouten -->
+    <string name="error_fecha_mayor_hoy">De datum van het bestand ligt in de toekomst – ongeldig</string>
+    <string name="error_fecha_minima_soportada">Importfout: minimale datum is %1$s</string>
+    <string name="archivo_csv_importado">CSV‑bestand succesvol geïmporteerd</string>
+    <string name="error_importar_sin_habitos">Importfout: geen gewoontes aanwezig</string>
+    <string name="error_importar_sin_fechas">Importfout: geen datums aanwezig</string>
+    <string name="error_leer_archivo">Fout bij het lezen van het bestand</string>
+    <string name="fichero_habitos_csv">Gewoontes_%1$s.csv</string>
+    <string name="habitos_data_csv">Gewoontes_Gegevens_%1$s.csv</string>
+    <string name="habitos_data_package">Gewoontes_Gegevens_%1$s</string>
+    <string name="copia_de_seguridad_csv">Back‑up_%1$s.csv</string>
+    <string name="etiquetas_csv">Tags_%1$s.csv</string>
+    <string name="datos_habit_tracker_zip">Gegevens_Habit_Tracker_%1$s.zip</string>
+    <string name="datos_habitos_zip">Gegevens_Gewoontes_%1$s.zip</string>
+    <string name="cargando_tus_registros">Je gegevens worden geladen…</string>
+    <string name="no_habr_vuelta_atras">Geen weg terug…</string>
+    <string name="estoy_seguro">Ik ben zeker</string>
+    <string name="advertencia">Waarschuwing</string>
+    <string name="texto_advertencia_cambio_de_fechas">
+Als je de begindatum van gewoontes wijzigt, worden ze aangepast zodat het nieuwe datum de oudste is. Is het eerder, dan worden gegevens toegevoegd; is het later, dan worden gegevens tot die datum verwijderd.
+    </string>
+    <string name="cambiar_fecha">Datum wijzigen</string>
+    <string name="no_selecciono_archivo">Geen bestand geselecteerd</string>
+
+    <!-- Hoofdscherm -->
+    <string name="anterior">Vorige</string>
+    <string name="pagina_num">Pag. %1$s</string>
+    <string name="siguiente">Volgende</string>
+
+    <!-- Dialoog Hoofdscherm -->
+    <string name="que_quieres_hacer">Wat wil je doen?</string>
+    <string name="mover">Verplaatsen</string>
+    <string name="archivar">Archiveren</string>
+    <string name="editar">Bewerken</string>
+    <string name="borrar">Verwijderen</string>
+    <string name="mover_habito">Gewoonte verplaatsen</string>
+    <string name="modifica_la_posicion_de_tu_habito">Positie van de gewoonte</string>
+    <string name="descartar">Annuleren</string>
+    <string name="aplicar">Toepassen</string>
+    <string name="confirmacion">Bevestigen</string>
+    <string name="estas_seguro_de_que_quieres_borrar_este_habito">Weet je zeker dat je deze gewoonte wilt verwijderen?</string>
+    <string name="cancelar">Annuleer</string>
+    <string name="agregar_etiqueta">Tag toevoegen</string>
+    <string name="informacion">Informatie</string>
+    <string name="guardar_configuraciones">Instellingen opslaan</string>
+    <string name="notas">Notities</string>
+    <string name="cantidad">Aantal</string>
+
+    <!-- Gearchiveerde gewoontes -->
+    <string name="archivados">Gearchiveerd</string>
+    <string name="desarchivar">Herstellen</string>
+    <string name="quieres_desarchivar_este_habito">Wil je deze gewoonte herstellen?</string>
+    <string name="desarchivar_todos">Alles herstellen</string>
+    <string name="quieres_desarchivar_todos_los_habito">Wil je alle gewoontes herstellen?</string>
+    <string name="desarchivar_habito">Herstel gewoonte</string>
+
+    <!-- Gewoonte toevoegen -->
+    <string name="agregando_tu_habito">Gewoonte wordt toegevoegd…</string>
+    <string name="agregar_habito">Toevoegen</string>
+    <string name="elige_el_tipo_de_habito">Kies het type gewoonte</string>
+    <string name="numerico">Numeriek</string>
+    <string name="booleano">Ja of Nee</string>
+    <string name="editar_habito">Bewerken</string>
+    <string name="error_palabra_fecha_reservada">Het woord "datum" is gereserveerd</string>
+    <string name="error_habito_duplicado">Er bestaat al een gewoonte met deze naam</string>
+    <string name="exito_habito_editado">Gewoonte succesvol bewerkt</string>
+    <string name="exito_habito_anadido">Gewoonte succesvol toegevoegd</string>
+    <string name="error_campos_vacios">Velden mogen niet leeg zijn</string>
+    <string name="error_color_invalido">Wit is geen geldige kleur</string>
+    <string name="spinner_mas_de">Meer dan</string>
+    <string name="spinner_igual_a">Gelijk aan</string>
+    <string name="spinner_menos_de">Minder dan</string>
+    <string name="escribe_el_nombre_de_tu_habito">Voer de naam van je gewoonte in</string>
+    <string name="elige_el_color_del_habito">Kies de kleur van de gewoonte</string>
+    <string name="unidades_agregra_habito">Eenheden (bv. pagina\'s, km, uren…)</string>
+    <string name="tu_objetivo_diario">Je dagelijkse doel</string>
+    <string name="error">Fout</string>
+
+    <!-- Statistieken -->
+    <string name="objetivo_semanal">Wekelijks doel</string>
+    <string name="objetivo_mensual">Maandelijks doel</string>
+    <string name="objetivo_anual">Jaarlijks doel</string>
+    <string name="calendario_de_objetivos">Doelkalender</string>
+    <string name="racha_actual">Huidige reeks</string>
+    <string name="mejores_rachas">Beste reeksen</string>
+    <string name="periodo_dia">Dag</string>
+    <string name="periodo_semana">Week</string>
+    <string name="periodo_mes">Maand</string>
+    <string name="periodo_ano">Jaar</string>
+    <string name="sin_datos">Geen gegevens</string>
+    <string name="unidades_checks">Voltooid</string>
+    <string name="no_tienes_una_racha_activa">Geen actieve reeks</string>
+    <string name="desde_hasta_ayer">Van %1$s tot gisteren</string>
+    <string name="desde_hasta_hoy">Van %1$s tot vandaag</string>
+    <string name="desde_hasta">Van %1$s tot %2$s</string>
+
+    <!-- Mini‑gewoontes -->
+    <string name="mini_habitos">Mini‑gewoontes</string>
+    <string name="selecciona_una_categoria">Selecteer een categorie</string>
+    <string name="borrar_mini_habito">Weet je zeker dat je deze mini‑gewoonte wilt verwijderen?</string>
+    <string name="borrar_categoria_mini_habito">Weet je zeker dat je deze categorie wilt verwijderen?</string>
+    <string name="nombre_de_la_categoria">Categorienaam</string>
+    <string name="ponle_un_color_a_la_categoria">Kleur van de categorie</string>
+    <string name="guardar">Opslaan</string>
+    <string name="error_nombre_vacio">Naam mag niet leeg zijn</string>
+    <string name="error_nombre_existente">Deze categorienaam bestaat al</string>
+    <string name="error_palabra_reservada">Het woord "datum" is gereserveerd</string>
+    <string name="nombre_del_mini_habito">Naam mini‑gewoonte</string>
+    <string name="mini_habito_creado_con_exito">Mini‑gewoonte "%1$s" succesvol gemaakt</string>
+    <string name="categoria_creada_exito">Categorie "%1$s" succesvol gemaakt</string>
+    <string name="mini_habitos_info_titulo">Mini‑gewoontes?</string>
+    <string name="mini_habitos_info">Mini‑gewoontes worden dagelijks gereset en zijn voor kleine taken, gesorteerd in categorieën.</string>
+    <string name="modifica_la_posicion_de_tu_categoria">Positie van de categorie</string>
+    <string name="modifica_la_posicion_de_tu_etiqueta">Positie van de tag</string>
+    <string name="categoria_nombre_existe">Deze categorie bestaat al</string>
+    <string name="categoria_nombre_vacio">Categorienaam mag niet leeg zijn</string>
+    <string name="seguro_que_quieres_borrar_la_categoria">Weet je zeker dat je de categorie wilt verwijderen?</string>
+    <string name="mini_habito_nombre_existe">Deze mini‑gewoonte bestaat al</string>
+
+    <!-- Tags -->
+    <string name="por_etiquetas">Per tags</string>
+    <string name="etiqueta_nombre_existe">Deze tagnaam bestaat al</string>
+    <string name="etiqueta_nombre_vacio">Naam mag niet leeg zijn</string>
+    <string name="etiqueta_nombre_reservado">Het woord "datum" is gereserveerd</string>
+    <string name="etiqueta_color_blanco">Wit is geen geldige kleur</string>
+    <string name="etiqueta_creada_exito">Tag "%1$s" succesvol gemaakt</string>
+    <string name="buen_intento_pero_no">Goed geprobeerd, maar nee!</string>
+    <string name="modificando_etiqueta">Tag wordt bewerkt…</string>
+    <string name="nombre_de_la_etiqueta">Naam van de tag</string>
+    <string name="seguro_que_quieres_borrar_la_etiqueta">Weet je zeker dat je de tag wilt verwijderen?</string>
+    <string name="elige_el_color_de_la_etiqueta">Kies de kleur van de tag</string>
+    <string name="gestionar_etiquetas">Tags beheren</string>
+    <string name="todos">Alles</string>
+    <string name="no_habits_no_tags">Zonder gewoontes geen tags</string>
+
+    <!-- Tutorial -->
+    <string name="ver_tutorial">Bekijk handleiding</string>
+    <string name="paso_1_tutorial">Houd een gewoonte ingedrukt om te bewerken</string>
+    <string name="paso_1_tutorial_titulo">Gewoonte bewerken</string>
+    <string name="paso_2_tutorial">Houd ja/nee‑gewoontes ingedrukt voor notities</string>
+    <string name="paso_2_tutorial_titulo">Notities toevoegen</string>
+    <string name="paso_3_tutorial_titulo">Statistieken bekijken</string>
+    <string name="paso_3_tutorial">Tik op de naam van de gewoonte om statistieken te zien</string>
+
+    <!-- Doelinstellingen -->
+    <string name="objetivo_vacio">Doel mag niet leeg zijn</string>
+    <string name="objetivo_menor_o_igual_cero">Doel moet groter zijn dan 0</string>
+    <string name="objetivo_maximo_semanal">Maximaal weekdoel is 7</string>
+    <string name="objetivo_vacio_mensual">Doelen mogen niet leeg zijn</string>
+    <string name="objetivo_menor_o_igual_cero_mensual">Doelen moeten groter zijn dan 0</string>
+    <string name="objetivo_maximo_mensual">Maximaal maanddoel is %1$d</string>
+    <string name="objetivo_vacio_anual">Doelen mogen niet leeg zijn</string>
+    <string name="objetivo_menor_o_igual_cero_anual">Doelen moeten groter zijn dan 0</string>
+    <string name="objetivo_maximo_anual">Maximaal jaardoel is %1$d</string>
+    <string name="ajusta_los_objetivos_para_los_dias_de_cada_mes">Pas doelen aan per maanddag</string>
+    <string name="ajusta_los_objetivos_para_los_a_os_normales_y_bisiestos">Pas aan voor gewone en schrikkeljaren</string>
+
+    <!-- Overige statistieken -->
+    <string name="mejores_estadisticas">Beste statistieken</string>
+    <string name="mejor_dia_otras_estadis"><![CDATA[<b>Beste dag:</b> %1$s %2$s op %3$s]]></string>
+    <string name="mejor_semana_otras_estadis"><![CDATA[<b>Beste week:</b> %1$s %2$s van %3$s tot %4$s]]></string>
+    <string name="mejor_mes_otras_estadis"><![CDATA[<b>Beste maand:</b> %1$s %2$s in %3$s %4$s]]></string>
+    <string name="mejor_year_otras_estadis"><![CDATA[<b>Beste jaar:</b> %1$s %2$s in %3$s]]></string>
+
+    <!-- Maanden -->
+    <string name="mes_ene">jan</string>
+    <string name="mes_feb">feb</string>
+    <string name="mes_mar">mrt</string>
+    <string name="mes_abr">apr</string>
+    <string name="mes_may">mei</string>
+    <string name="mes_jun">jun</string>
+    <string name="mes_jul">jul</string>
+    <string name="mes_ago">aug</string>
+    <string name="mes_sept">sep</string>
+    <string name="mes_oct">okt</string>
+    <string name="mes_nov">nov</string>
+    <string name="mes_dic">dec</string>
+
+</resources>
