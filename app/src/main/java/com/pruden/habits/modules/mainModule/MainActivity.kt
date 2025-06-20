@@ -242,8 +242,6 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
     private fun menuExtra(){
         mBinding.menuExtra.setOnClickListener {
             val sw = resources.configuration.smallestScreenWidthDp
-            Log.d("TTTTTTTT", "Smallest width = $sw dp")
-
 
             val contextWrapper = ContextThemeWrapper(this, R.style.CustomPopupMenu)
 
@@ -273,7 +271,6 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
                 sw <= 360 -> 14
                 sw in 412..447 -> 18
                 sw >= 448 -> 19
-               // sw >= 411 -> 18
                 else -> 16
             }
 
