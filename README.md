@@ -4,6 +4,7 @@ Una app Android para ayudarte a construir buenos hábitos y alcanzar tus objetiv
 
 <div align="center">
   <img src="app/src/main/res/assets/ejemplo_app.png" width="300" />
+  <img src="app/src/main/res/assets/ejemplo_app_4.png" width="300" />
   <img src="app/src/main/res/assets/ejemplo_app_2.png" width="300" />
   <img src="app/src/main/res/assets/ejemplo_app_3.png" width="300" />
 </div>
