@@ -59,11 +59,11 @@
     <string name="etiquetas_csv">Étiquettes_%1$s.csv</string>
     <string name="datos_habit_tracker_zip">Données_Habit_Tracker_%1$s.zip</string>
     <string name="datos_habitos_zip">Données_Habitudes_%1$s.zip</string>
-    <string name="cargando_tus_registros">Chargement de tes enregistrements !</string>
+    <string name="cargando_tus_registros">Chargement de tes enregistrements!</string>
     <string name="no_habr_vuelta_atras">Il n’y aura pas de retour en arrière…</string>
     <string name="estoy_seguro">Je suis sûr</string>
     <string name="advertencia">Avertissement</string>
-    <string name="texto_advertencia_cambio_de_fechas">Si tu changes la date de début, les enregistrements seront ajustés : si la nouvelle date est plus ancienne, des enregistrements seront ajoutés, sinon des enregistrements plus anciens seront supprimés.</string>
+    <string name="texto_advertencia_cambio_de_fechas">Si tu changes la date de début, les enregistrements seront ajustés: si la nouvelle date est plus ancienne, des enregistrements seront ajoutés, sinon des enregistrements plus anciens seront supprimés.</string>
     <string name="cambiar_fecha">Changer la date</string>
     <string name="no_selecciono_archivo">Aucun fichier sélectionné</string>
 
@@ -73,7 +73,7 @@
     <string name="siguiente">Suivant</string>
 
     <!-- Dialogues Main -->
-    <string name="que_quieres_hacer">Que veux-tu faire ?</string>
+    <string name="que_quieres_hacer">Que veux-tu faire?</string>
     <string name="mover">Déplacer</string>
     <string name="archivar">Archiver</string>
     <string name="editar">Modifier</string>
@@ -83,7 +83,7 @@
     <string name="descartar">Annuler</string>
     <string name="aplicar">Appliquer</string>
     <string name="confirmacion">Confirmation</string>
-    <string name="estas_seguro_de_que_quieres_borrar_este_habito">Es-tu sûr de vouloir supprimer cette habitude ?</string>
+    <string name="estas_seguro_de_que_quieres_borrar_este_habito">Es-tu sûr de vouloir supprimer cette habitude?</string>
     <string name="cancelar">Annuler</string>
     <string name="agregar_etiqueta">Ajouter une étiquette</string>
     <string name="informacion">Information</string>
@@ -94,9 +94,9 @@
     <!-- Archivés -->
     <string name="archivados">Archives</string>
     <string name="desarchivar">Désarchiver</string>
-    <string name="quieres_desarchivar_este_habito">Veux-tu désarchiver cette habitude ?</string>
+    <string name="quieres_desarchivar_este_habito">Veux-tu désarchiver cette habitude?</string>
     <string name="desarchivar_todos">Désarchiver tout</string>
-    <string name="quieres_desarchivar_todos_los_habito">Veux-tu désarchiver toutes les habitudes ?</string>
+    <string name="quieres_desarchivar_todos_los_habito">Veux-tu désarchiver toutes les habitudes?</string>
     <string name="desarchivar_habito">Désarchiver l’habitude</string>
 
     <!-- Ajouter habitude -->
@@ -106,7 +106,7 @@
     <string name="numerico">Numérique</string>
     <string name="booleano">Oui ou non</string>
     <string name="editar_habito">Modifier l’habitude</string>
-    <string name="error_palabra_fecha_reservada">Le mot « fecha » est réservé</string>
+    <string name="error_palabra_fecha_reservada">Le mot «fecha» est réservé</string>
     <string name="error_habito_duplicado">Tu as déjà une habitude avec ce nom</string>
     <string name="exito_habito_editado">Habitude modifiée avec succès</string>
     <string name="exito_habito_anadido">Habitude ajoutée avec succès</string>
@@ -142,37 +142,37 @@
     <!-- Mini habitudes -->
     <string name="mini_habitos">Mini habitudes</string>
     <string name="selecciona_una_categoria">Sélectionne une catégorie</string>
-    <string name="borrar_mini_habito">Es‑tu sûr(e) de vouloir supprimer cette mini‑habitude ?</string>
-    <string name="borrar_categoria_mini_habito">Es‑tu sûr(e) de vouloir supprimer cette catégorie ?</string>
+    <string name="borrar_mini_habito">Es‑tu sûr(e) de vouloir supprimer cette mini‑habitude?</string>
+    <string name="borrar_categoria_mini_habito">Es‑tu sûr(e) de vouloir supprimer cette catégorie?</string>
     <string name="nombre_de_la_categoria">Nom de la catégorie</string>
     <string name="ponle_un_color_a_la_categoria">Couleur de la catégorie</string>
     <string name="guardar">Enregistrer</string>
     <string name="error_nombre_vacio">Le nom ne peut pas être vide</string>
     <string name="error_nombre_existente">Ce nom de catégorie existe déjà</string>
-    <string name="error_palabra_reservada">Le mot « fecha » est réservé</string>
+    <string name="error_palabra_reservada">Le mot «fecha» est réservé</string>
     <string name="nombre_del_mini_habito">Nom de la mini‑habitude</string>
-    <string name="mini_habito_creado_con_exito">Mini‑habitude : %1$s créée avec succès</string>
-    <string name="categoria_creada_exito">Catégorie : %1$s créée avec succès</string>
-    <string name="mini_habitos_info_titulo">Mini‑habitudes ?</string>
-    <string name="mini_habitos_info">Les mini‑habitudes se réinitialisent chaque jour ; elles permettent de marquer des tâches moins importantes et peuvent être regroupées par catégories.</string>
+    <string name="mini_habito_creado_con_exito">Mini‑habitude: %1$s créée avec succès</string>
+    <string name="categoria_creada_exito">Catégorie: %1$s créée avec succès</string>
+    <string name="mini_habitos_info_titulo">Mini‑habitudes?</string>
+    <string name="mini_habitos_info">Les mini‑habitudes se réinitialisent chaque jour; elles permettent de marquer des tâches moins importantes et peuvent être regroupées par catégories.</string>
     <string name="modifica_la_posicion_de_tu_categoria">Position de la catégorie</string>
     <string name="modifica_la_posicion_de_tu_etiqueta">Position de l’étiquette</string>
     <string name="categoria_nombre_existe">Une catégorie avec ce nom existe déjà</string>
     <string name="categoria_nombre_vacio">Le nom de la catégorie ne peut pas être vide</string>
-    <string name="seguro_que_quieres_borrar_la_categoria">Veux‑tu vraiment supprimer la catégorie ?</string>
+    <string name="seguro_que_quieres_borrar_la_categoria">Veux‑tu vraiment supprimer la catégorie?</string>
     <string name="mini_habito_nombre_existe">Tu as déjà une mini‑habitude avec ce nom</string>
 
     <!-- Par étiquettes -->
     <string name="por_etiquetas">Par étiquettes</string>
     <string name="etiqueta_nombre_existe">Ce nom d’étiquette existe déjà</string>
     <string name="etiqueta_nombre_vacio">Le nom ne peut pas être vide</string>
-    <string name="etiqueta_nombre_reservado">Le mot « fecha » est réservé</string>
+    <string name="etiqueta_nombre_reservado">Le mot «fecha» est réservé</string>
     <string name="etiqueta_color_blanco">Le blanc n’est pas une couleur</string>
-    <string name="etiqueta_creada_exito">Étiquette : %1$s créée avec succès</string>
-    <string name="buen_intento_pero_no">Bonne tentative, mais non !</string>
+    <string name="etiqueta_creada_exito">Étiquette: %1$s créée avec succès</string>
+    <string name="buen_intento_pero_no">Bonne tentative, mais non!</string>
     <string name="modificando_etiqueta">Modification de l’étiquette…!</string>
     <string name="nombre_de_la_etiqueta">Nom de l’étiquette</string>
-    <string name="seguro_que_quieres_borrar_la_etiqueta">Veux‑tu vraiment supprimer cette étiquette ?</string>
+    <string name="seguro_que_quieres_borrar_la_etiqueta">Veux‑tu vraiment supprimer cette étiquette?</string>
     <string name="elige_el_color_de_la_etiqueta">Choisis la couleur de l’étiquette</string>
     <string name="gestionar_etiquetas">Gérer les étiquettes</string>
     <string name="todos">Tous</string>
