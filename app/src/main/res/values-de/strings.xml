@@ -103,11 +103,11 @@
 
     <!-- Gewohnheit hinzufügen -->
     <string name="agregando_tu_habito">Gewohnheit wird hinzugefügt…</string>
-    <string name="agregar_habito">Gewohnheit hinzufügen</string>
+    <string name="agregar_habito">Hinzufügen</string>
     <string name="elige_el_tipo_de_habito">Gewohnheitstyp wählen</string>
     <string name="numerico">Numerisch</string>
     <string name="booleano">Ja oder Nein</string>
-    <string name="editar_habito">Gewohnheit bearbeiten</string>
+    <string name="editar_habito">Bearbeiten</string>
     <string name="error_palabra_fecha_reservada">Das Wort „Datum“ ist reserviert</string>
     <string name="error_habito_duplicado">Eine Gewohnheit mit diesem Namen existiert bereits</string>
     <string name="exito_habito_editado">Gewohnheit erfolgreich bearbeitet</string>
