@@ -505,6 +505,12 @@
                     android:textSize="@dimen/t_titulo_configuraciones"
                     android:paddingBottom="@dimen/p_bot_entre_textos_configuraciones"
                     android:textColor="@color/tittle_color"
+
+
+
+
+
+                    android:visibility="gone"
                     />
 
                 <TextView
@@ -518,13 +524,25 @@
                     android:clickable="true"
                     android:textColor="@color/click_button"
                     android:background="?attr/selectableItemBackground"
+
+
+
+
+
+                    android:visibility="gone"
                     />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/h_divider_configuraciones"
                     android:background="@android:color/darker_gray"
-                    android:layout_marginVertical="@dimen/m_v_configuraciones" />
+                    android:layout_marginVertical="@dimen/m_v_configuraciones"
+
+
+
+
+                    android:visibility="gone"
+                    />
 
 
 
