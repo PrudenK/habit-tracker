@@ -6,7 +6,7 @@
     android:paddingTop="@dimen/p_top_habito"
     android:background="@color/background">
 
-    <HorizontalScrollView
+    <LinearLayout
         android:id="@+id/scroll_habito"
         android:layout_width="@dimen/w_nombre_habito"
         android:layout_height="@dimen/h_item_habito"
@@ -31,7 +31,7 @@
             android:textColor="@color/tittle_color"
             android:fontFamily="@font/encabezados"
             />
-    </HorizontalScrollView>
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/contendor_nombre_habito"
