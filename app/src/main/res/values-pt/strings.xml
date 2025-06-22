@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Hábitos</string>
+    <string name="app_name">Habits</string>
     <string name="hello_blank_fragment">Olá fragment em branco</string>
 
     <!-- Fragment Configurações -->
