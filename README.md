@@ -1,5 +1,5 @@
-<div astyle="display: flex; align-items: center; justify-content: start; gap: 10px;">
-  <span style="font-size: 2em; font-weight: bold;">📱 Habits</span>
+<div align="center" style="display: flex; align-items: center; justify-content: start; gap: 10px;">
+  <span style="font-size: 3em; font-weight: bold;">📱 Habits</span>
   <a href="https://play.google.com/store/apps/details?id=com.pruden.habits&hl=es_419">
     <img src="https://play.google.com/intl/en_us/badges/images/generic/es_badge_web_generic.png" width="150"/>
   </a>
