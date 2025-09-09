@@ -1,9 +1,8 @@
-<div align="center" style="display: flex; align-items: center; justify-content: start; gap: 10px;">
-  <span style="font-size: 3em; font-weight: bold;">📱 Habits</span>
-  <a href="https://play.google.com/store/apps/details?id=com.pruden.habits&hl=es_419">
-    <img src="https://play.google.com/intl/en_us/badges/images/generic/es_badge_web_generic.png" width="150"/>
-  </a>
-</div>
+# 📱 Habits
+
+<a href="https://play.google.com/store/apps/details?id=com.pruden.habits&hl=es_419">
+  <img src="https://play.google.com/intl/en_us/badges/images/generic/es_badge_web_generic.png" width="200"/>
+</a>
 
 Una app Android para ayudarte a construir buenos hábitos y alcanzar tus objetivos diarios, semanales, mensuales o anuales. Minimalista, sin anuncios, sin registros y totalmente **offline** para mayor **privacidad**.
 
