@@ -1,5 +1,7 @@
 # 📱 Habits
 
+[![Disponible en Google Play](https://play.google.com/store/apps/details?id=com.pruden.habits&hl=es_419)
+
 Una app Android para ayudarte a construir buenos hábitos y alcanzar tus objetivos diarios, semanales, mensuales o anuales. Minimalista, sin anuncios, sin registros y totalmente **offline** para mayor **privacidad**.
 
 <div align="center">
