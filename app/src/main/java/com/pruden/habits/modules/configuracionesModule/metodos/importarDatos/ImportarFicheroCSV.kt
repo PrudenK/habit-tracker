@@ -25,8 +25,6 @@ import com.pruden.habits.modules.mainModule.MainActivity
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
-var lineaaaa = "adsfa"
-
  fun leerCsvDesdeUri(uri: Uri, context: Context, viewModel: ConfiguracionesViewModel, binding: FragmentConfiguracionesBinding, main: MainActivity) {
     try {
 
@@ -79,8 +77,6 @@ var lineaaaa = "adsfa"
                 if(contenidoCsv.removeAt(0).trimEnd(',') == Constantes.CABECERA_HABITOS_CSV){
 
                     contenidoCsv.forEach { linea ->
-                        lineaaaa = linea
-
                         val posibleCabecera = linea.trimEnd(',')
 
                         when (posibleCabecera) {
@@ -185,12 +181,9 @@ var lineaaaa = "adsfa"
                             else->{
                                 val h = linea.split(",")
 
-                                Log.d("HHHHHhh", linea)
-
                                 val habito = HabitoEntity(h[0], h[1], h[2].toBoolean(), h[3], h[4].toInt(), h[5].toBoolean(), h[6].toInt()
                                     ,h[7].toFloat(), h[8], h[9])
                                 listaHabitosEntity.add(habito)
-
                             }
                         }
 
@@ -231,9 +224,6 @@ var lineaaaa = "adsfa"
         }
     } catch (e: Exception) {
         e.printStackTrace()
-
-        Log.d("HHHHHHHHHHHHHHHHHHHHHHHHHh", lineaaaa)
-
         Toast.makeText(context, context.getString(R.string.error_leer_archivo), Toast.LENGTH_SHORT).show()
     }
 }
