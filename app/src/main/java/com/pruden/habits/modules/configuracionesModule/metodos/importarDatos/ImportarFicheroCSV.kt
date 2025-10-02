@@ -25,6 +25,8 @@ import com.pruden.habits.modules.mainModule.MainActivity
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
+var lineaaaa = "adsfa"
+
  fun leerCsvDesdeUri(uri: Uri, context: Context, viewModel: ConfiguracionesViewModel, binding: FragmentConfiguracionesBinding, main: MainActivity) {
     try {
 
@@ -77,7 +79,11 @@ import java.io.InputStreamReader
                 if(contenidoCsv.removeAt(0).trimEnd(',') == Constantes.CABECERA_HABITOS_CSV){
 
                     contenidoCsv.forEach { linea ->
-                        when (linea) {
+                        lineaaaa = linea
+
+                        val posibleCabecera = linea.trimEnd(',')
+
+                        when (posibleCabecera) {
                             Constantes.COMIENZAN_ETIQUETAS -> {
                                 comienzanEtiquetas = true
                                 comienzanHabitosEtiquetas = false
@@ -118,7 +124,7 @@ import java.io.InputStreamReader
 
                         when{
                             comienzanDataHabitos->{
-                                if(linea.trimEnd(',') != Constantes.COMIENZAN_DATA_HABITOS && !linea.startsWith("Fecha")){
+                                if(posibleCabecera != Constantes.COMIENZAN_DATA_HABITOS && !linea.startsWith("Fecha")){
                                     val d = linea.split(",")
                                     val fecha = d[0]
 
@@ -149,28 +155,28 @@ import java.io.InputStreamReader
                             }
 
                             comienzanHabitosEtiquetas->{
-                                if(linea != Constantes.CABECERA_HABITOS_ETQUETAS_CSV && linea != Constantes.COMIENZAN_HABITOS_ETIQUETAS){
+                                if(posibleCabecera != Constantes.CABECERA_HABITOS_ETQUETAS_CSV && posibleCabecera != Constantes.COMIENZAN_HABITOS_ETIQUETAS){
                                     val he = linea.split(",")
                                     listaHabitosEtiquetas.add(HabitoEtiquetaEntity(he[0], he[1]))
                                 }
                             }
 
                             comienzanEtiquetas->{
-                                if(linea != Constantes.COMIENZAN_ETIQUETAS && linea != Constantes.CABECERA_ETIQUETAS_CSV){
+                                if(posibleCabecera != Constantes.COMIENZAN_ETIQUETAS && posibleCabecera != Constantes.CABECERA_ETIQUETAS_CSV){
                                     val e = linea.split(",")
                                     listaEtiquetas.add(EtiquetaEntity(e[0], e[1].toInt(), e[2].toBoolean(), e[3].toInt()))
                                 }
                             }
 
                             comienzanCategorias->{
-                                if(linea != Constantes.COMIENZAN_CATEGORIAS && linea != Constantes.CABECERA_CATEGORIAS_CSV){
+                                if(posibleCabecera != Constantes.COMIENZAN_CATEGORIAS && posibleCabecera != Constantes.CABECERA_CATEGORIAS_CSV){
                                     val c = linea.split(",")
                                     listaCategorias.add(CategoriaEntity(c[0], c[1].toInt(), c[2].toInt(), c[3].toBoolean()))
                                 }
                             }
 
                             comienzanMiniHabitos->{
-                                if(linea != Constantes.COMIENZAN_MINI_HABITOS_CATEGORIA && linea != Constantes.CABECERA_MINI_HABITO_CATEGORIA_CSV){
+                                if(posibleCabecera != Constantes.COMIENZAN_MINI_HABITOS_CATEGORIA && posibleCabecera != Constantes.CABECERA_MINI_HABITO_CATEGORIA_CSV){
                                     val mi = linea.split(",")
                                     listaMiniHabitos.add(MiniHabitoEntity(mi[0], mi[1],false, mi[2].toInt()))
                                 }
@@ -178,9 +184,13 @@ import java.io.InputStreamReader
 
                             else->{
                                 val h = linea.split(",")
+
+                                Log.d("HHHHHhh", linea)
+
                                 val habito = HabitoEntity(h[0], h[1], h[2].toBoolean(), h[3], h[4].toInt(), h[5].toBoolean(), h[6].toInt()
-                                      ,h[7].toFloat(), h[8], h[9])
+                                    ,h[7].toFloat(), h[8], h[9])
                                 listaHabitosEntity.add(habito)
+
                             }
                         }
 
@@ -221,6 +231,9 @@ import java.io.InputStreamReader
         }
     } catch (e: Exception) {
         e.printStackTrace()
+
+        Log.d("HHHHHHHHHHHHHHHHHHHHHHHHHh", lineaaaa)
+
         Toast.makeText(context, context.getString(R.string.error_leer_archivo), Toast.LENGTH_SHORT).show()
     }
 }
