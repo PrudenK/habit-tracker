@@ -12,8 +12,8 @@ android {
         applicationId = "com.pruden.habits"
         minSdk = 24
         targetSdk = 35
-        versionCode = 5
-        versionName = "1.0 Oficial"
+        versionCode = 7
+        versionName = "1.0.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
