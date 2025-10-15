@@ -255,7 +255,6 @@ class MainActivity : AppCompatActivity(), OnClickHabito {
                 val setForceShowIcon = menuPopupHelper.javaClass.getDeclaredMethod("setForceShowIcon", Boolean::class.java)
                 setForceShowIcon.invoke(menuPopupHelper, true)
             } catch (e: Exception) {
-                Log.d("errrrrrrOO", "ADSDCAFS")
                 e.printStackTrace()
             }
 
