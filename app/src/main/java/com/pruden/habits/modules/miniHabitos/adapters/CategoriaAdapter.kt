@@ -26,6 +26,7 @@ class CategoriaAdapter(
     private val CATEGORIA = 0
     private val BOTON_AGREGAR_CATEGORIA = 1
 
+
     private var posicionSeleccionada = 0
 
     override fun getItemCount() = categorias.size + 1
