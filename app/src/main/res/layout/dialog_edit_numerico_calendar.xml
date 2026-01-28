@@ -85,7 +85,7 @@
                     android:layout_height="wrap_content"
                     android:maxLines="1"
                     android:maxLength="15"
-                    android:inputType="numberDecimal"
+                    android:inputType="numberSigned|numberDecimal"
                     android:textColor="@color/tittle_color"
                     android:textCursorDrawable="@null"
                     android:textSize="@dimen/t_input_comun"
