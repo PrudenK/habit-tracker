@@ -180,6 +180,8 @@
 
     <!-- Tutorial -->
     <string name="ver_tutorial">Vedi tutorial</string>
+    <string name="paso_0_tutorial">Tocca i tre punti in alto e seleziona aggiungi abitudine</string>
+    <string name="paso_0_tutorial_titulo">Aggiungere abitudini</string>
     <string name="paso_1_tutorial">Tieni premuto su un\'abitudine per modificarla</string>
     <string name="paso_1_tutorial_titulo">Modifica un\'abitudine</string>
     <string name="paso_2_tutorial">Tieni premuto su abitudini Sì/No per aggiungere note</string>

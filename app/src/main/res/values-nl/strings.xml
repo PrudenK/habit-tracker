@@ -182,6 +182,8 @@ Als je de begindatum van gewoontes wijzigt, worden ze aangepast zodat het nieuwe
 
     <!-- Tutorial -->
     <string name="ver_tutorial">Bekijk handleiding</string>
+    <string name="paso_0_tutorial">Tik op de drie puntjes bovenaan en selecteer Toevoegen</string>
+    <string name="paso_0_tutorial_titulo">Toevoegen</string>
     <string name="paso_1_tutorial">Houd een gewoonte ingedrukt om te bewerken</string>
     <string name="paso_1_tutorial_titulo">Gewoonte bewerken</string>
     <string name="paso_2_tutorial">Houd ja/nee‑gewoontes ingedrukt voor notities</string>

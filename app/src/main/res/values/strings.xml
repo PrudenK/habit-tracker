@@ -180,6 +180,8 @@
 
     <!-- Tutorial -->
     <string name="ver_tutorial">View tutorial</string>
+    <string name="paso_0_tutorial">Tap the three dots at the top and select add habit</string>
+    <string name="paso_0_tutorial_titulo">Add habits</string>
     <string name="paso_1_tutorial">Hold down a habit to edit it</string>
     <string name="paso_1_tutorial_titulo">Edit a habit</string>
     <string name="paso_2_tutorial">Long press Yes or No habits to add notes.</string>

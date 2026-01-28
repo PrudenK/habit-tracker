@@ -182,6 +182,8 @@ Se você mudar a data de início dos hábitos, eles serão ajustados para que a 
 
     <!-- Tutorial -->
     <string name="ver_tutorial">Ver tutorial</string>
+    <string name="paso_0_tutorial">Toque nos três pontos acima e selecione adicionar hábito</string>
+    <string name="paso_0_tutorial_titulo">Adicionar hábitos</string>
     <string name="paso_1_tutorial">Mantenha pressionado um hábito para editá-lo</string>
     <string name="paso_1_tutorial_titulo">Editar um hábito</string>
     <string name="paso_2_tutorial">Mantenha pressionado hábitos Sim/Não para adicionar notas</string>

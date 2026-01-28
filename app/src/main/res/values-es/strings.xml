@@ -180,6 +180,8 @@
 
     <!-- Tutorial -->
     <string name="ver_tutorial">Ver tutorial</string>
+    <string name="paso_0_tutorial">Pulsa los 3 puntos de arriba y selecciona agregar hábito</string>
+    <string name="paso_0_tutorial_titulo">Agregar hábitos</string>
     <string name="paso_1_tutorial">Mantén pulsado un hábito para editarlo</string>
     <string name="paso_1_tutorial_titulo">Editar un hábito</string>
     <string name="paso_2_tutorial">Mantén pulsados los hábitos de Si o No para añadirles notas.</string>

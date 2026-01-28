@@ -182,6 +182,8 @@
 
     <!-- Tutorial -->
     <string name="ver_tutorial">Tutorial ansehen</string>
+    <string name="paso_0_tutorial">Tippe auf die drei Punkte oben und wähle "hinzufügen"</string>
+    <string name="paso_0_tutorial_titulo">Gewohnheiten hinzufügen</string>
     <string name="paso_1_tutorial">Halte eine Gewohnheit gedrückt, um sie zu bearbeiten</string>
     <string name="paso_1_tutorial_titulo">Gewohnheit bearbeiten</string>
     <string name="paso_2_tutorial">Halte Ja/Nein‑Gewohnheiten gedrückt, um Notizen hinzuzufügen</string>
