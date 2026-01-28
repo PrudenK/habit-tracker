@@ -214,12 +214,17 @@ private fun cargarGraficoDeLineas(
     val dateFormatOutputMesFECHA = SimpleDateFormat(formatoFechaArriba, Locale.getDefault())
 
     val entries = yValues.mapIndexed { index, value ->
-        try {
-            Entry(index.toFloat(), value.toFloat())
+        val v = try {
+            value.toFloat()
         } catch (e: Exception) {
-            Log.e("ERROR", "Error al convertir valor en índice $index: $value", e)
-            Entry(index.toFloat(), 0f)
+            0f
         }
+
+        Entry(
+            index.toFloat(),
+            if (v < 0f) 0f else v,
+            v
+        )
     }
 
     var unidad = habito.unidad.toString().take(5).lowercase().replaceFirstChar { it.uppercase() }
@@ -243,9 +248,10 @@ private fun cargarGraficoDeLineas(
             intArrayOf(habito.colorHabito, Color.TRANSPARENT)
         )
         valueFormatter = object : ValueFormatter() {
-            override fun getFormattedValue(value: Float): String {
+            override fun getPointLabel(entry: Entry): String {
+                val realValue = entry.data as? Float ?: entry.y
                 return formatearNumero(
-                    value = value,
+                    value = realValue,
                     reducir = (tiempoInterno == "Día" || tiempoInterno == "Mes")
                 )
             }

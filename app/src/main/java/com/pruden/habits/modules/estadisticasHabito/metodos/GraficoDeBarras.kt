@@ -223,12 +223,19 @@ private fun cargarGraficoDeBarras(
 
     // Crear entradas para el gráfico
     val entries = yValues.mapIndexed { index, value ->
-        try {
-            BarEntry(index.toFloat(), value.toFloat())
+        val v = try {
+            value.toFloat()
         } catch (e: Exception) {
-            BarEntry(index.toFloat(), 0f) // Evitar crash
+            0f
         }
+
+        BarEntry(
+            index.toFloat(),
+            if (v < 0f) 0f else v,
+            v
+        )
     }
+
 
     var unidad = habito.unidad.toString().take(5).lowercase().replaceFirstChar { it.uppercase() }
     if (unidad == "Null") {
@@ -241,13 +248,15 @@ private fun cargarGraficoDeBarras(
     dataSet.valueTextColor = ContextCompat.getColor(context, R.color.tittle_color)
     dataSet.valueTypeface = Typeface.DEFAULT_BOLD
     dataSet.valueFormatter = object : ValueFormatter() {
-        override fun getFormattedValue(value: Float): String {
+        override fun getBarLabel(barEntry: BarEntry): String {
+            val realValue = barEntry.data as? Float ?: barEntry.y
             return formatearNumero(
-                value = value,
+                value = realValue,
                 reducir = (tiempoInterno == "Día" || tiempoInterno == "Mes")
             )
         }
     }
+
 
     val barData = BarData(dataSet)
     barChart.data = barData
