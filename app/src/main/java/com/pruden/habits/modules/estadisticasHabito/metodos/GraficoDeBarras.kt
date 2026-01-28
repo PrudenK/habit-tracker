@@ -242,7 +242,11 @@ private fun cargarGraficoDeBarras(
     dataSet.valueTypeface = Typeface.DEFAULT_BOLD
     dataSet.valueFormatter = object : ValueFormatter() {
         override fun getFormattedValue(value: Float): String {
-            return formatearNumero(value)
+            return if (tiempoInterno == "Día") {
+                String.format("%.1f", value)
+            } else {
+                formatearNumero(value)
+            }
         }
     }
 
