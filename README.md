@@ -7,10 +7,10 @@
 Una app Android para ayudarte a construir buenos hábitos y alcanzar tus objetivos diarios, semanales, mensuales o anuales. Minimalista, sin anuncios, sin registros y totalmente **offline** para mayor **privacidad**.
 
 <div align="center">
-  <img src="app/src/main/res/assets/ejemplo_app.png" width="300" />
-  <img src="app/src/main/res/assets/ejemplo_app_4.png" width="300" />
-  <img src="app/src/main/res/assets/ejemplo_app_2.png" width="300" />
-  <img src="app/src/main/res/assets/ejemplo_app_3.png" width="300" />
+  <img src="app/src/main/assets/ejemplo_app.png" width="300" />
+  <img src="app/src/main/assets/ejemplo_app_4.png" width="300" />
+  <img src="app/src/main/assets/ejemplo_app_2.png" width="300" />
+  <img src="app/src/main/assets/ejemplo_app_3.png" width="300" />
 </div>
 
 ---
