@@ -51,4 +51,6 @@ object Constantes {
     ).sortedBy { it.nombre }
 
     const val DIAS_SEMANA = 7
+
+    const val LINK_POLITICA_PRIVACIDAD = "https://prudenk.github.io/habit-tracker/privacy-policy.html"
 }

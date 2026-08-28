@@ -39,6 +39,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import androidx.core.net.toUri
 
 
 @Suppress("DEPRECATION")
@@ -84,6 +85,7 @@ class ConfiguracionesFragment : Fragment() {
         verLicencias()
 
         opcionesDesarrollo()
+        verPrivacidad()
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
             if (fechasCambiadas) {
@@ -293,4 +295,12 @@ class ConfiguracionesFragment : Fragment() {
             makeToast("Smallest width = $sw dp", requireContext())
         }
     }
+
+    private fun verPrivacidad(){
+        binding.verPrivacidad.setOnClickListener {
+            val intent = Intent(Intent.ACTION_VIEW, Constantes.LINK_POLITICA_PRIVACIDAD.toUri())
+            startActivity(intent)
+        }
+    }
+
 }
