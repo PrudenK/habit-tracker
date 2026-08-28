@@ -225,4 +225,8 @@ Als je de begindatum van gewoontes wijzigt, worden ze aangepast zodat het nieuwe
     <string name="mes_nov">nov</string>
     <string name="mes_dic">dec</string>
 
+    <!-- Privacidad -->
+    <string name="privacy_policy">Privacybeleid</string>
+    <string name="view_privacy_policy">Privacybeleid bekijken</string>
+
 </resources>

@@ -225,4 +225,8 @@ Se você mudar a data de início dos hábitos, eles serão ajustados para que a 
     <string name="mes_nov">nov.</string>
     <string name="mes_dic">dez.</string>
 
+    <!-- Privacidad -->
+    <string name="privacy_policy">Política de privacidade</string>
+    <string name="view_privacy_policy">Ver política de privacidade</string>
+
 </resources>

@@ -225,4 +225,8 @@
     <string name="mes_nov">Nov.</string>
     <string name="mes_dic">Dez.</string>
 
+    <!-- Privacidad -->
+    <string name="privacy_policy">Datenschutzerklärung</string>
+    <string name="view_privacy_policy">Datenschutzerklärung anzeigen</string>
+
 </resources>

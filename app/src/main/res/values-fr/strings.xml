@@ -223,5 +223,8 @@
     <string name="mes_nov">nov.</string>
     <string name="mes_dic">déc.</string>
 
+    <!-- Privacidad -->
+    <string name="privacy_policy">Politique de confidentialité</string>
+    <string name="view_privacy_policy">Voir la politique de confidentialité</string>
 
 </resources>
